@@ -4,7 +4,7 @@
 <title>Helpline</title>
 <script>
 <?php
-include "/var/www/ug2_config.php";
+include "config.php";
 
 echo "var VA_SIP_USER_PREFIX = \"".$VA_SIP_USER_PREFIX."\";\r\n";
 echo "var VA_SIP_PASS_PREFIX = \"".$VA_SIP_PASS_PREFIX."\";\r\n";
