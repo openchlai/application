@@ -558,7 +558,7 @@ te["activity_match_"] = { c:
 			
 		]},
 		
-		{ div:["x20 t20"], c:
+		{ div:["xx tt"], c:
 		[
 			{ div:["c"], c:
 			[
@@ -589,7 +589,7 @@ te["activity_match_"] = { c:
 			
 			{ div:["c xx"], c:
 			[
-				{ ac:["ay","activity_match_f-dispositions_f","_vpf","xx bd16 gg cw",""], c:
+				{ ac:["ay t03","activity_match_f-dispositions_f","_vpf","xx bd16  cb",""], c:
 				[ 
 					{ s:["c t04 h3_ micon","search"] },
 					{ div:["c x y s","","Search"] }, 
@@ -597,7 +597,8 @@ te["activity_match_"] = { c:
 				]}
 			]},
 			
-			{ div:["c xx"], c:
+			/*
+			{ div:["c xx g"], c:
 			[
 				{ input:["g","","activity_vw_vt3","1","radio"] },
 				{ ac:["ay","case_contact_new-r_-^","_vp","xx bd16 gg cw",""], c:
@@ -609,7 +610,7 @@ te["activity_match_"] = { c:
 				{ div:["g"], arg:["","","activity_disposition_r_new_contact-dispositions-vftab-vdisp-!"] }, // vp return anchor
 			]},
 			
-			{ div:["c xx"], c:
+			{ div:["c xx g"], c:
 			[
 				{ input:["g","","activity_vw_vt3","1","radio"] },
 				{ ac:["ay","case_uuid_new-cases_uuid","_activity_case","xx bd16 gg cw",""], c:
@@ -621,7 +622,7 @@ te["activity_match_"] = { c:
 				{ div:["g"] } // arg:["","",""] }, // vp return anchor
 			]},
 			
-			{ div:["c xx"], c:
+			{ div:["c xx g"], c:
 			[
 				{ input:["g","","activity_vw_vt3","0","radio"] },
 				{ ac:["ay","activity_disposition_new-cases_uuid-^","_activity_disposition_new","xx bd16 gg cw",""], c:
@@ -632,6 +633,22 @@ te["activity_match_"] = { c:
 					{ div:["e"] }
 				]},
 				{ div:["g"], arg:["","","activity_disposition_r_new-dispositions-vftab-vdisp-!"] }, // vp return anchor
+			]}, */
+
+			{ div:["d w40 xx"], s:["xx yy bd ba",""], c:
+			[
+				{ s:["x y b","Reason for Calling"] },
+
+				{ ac:["aa t02","","","x y gws bd","VAC"] },
+
+				{ ac:["aa t02","","","x y gws bd","GBV"] },
+
+				{ ac:["aa t02","","","x y gws bd","GIZ"] },
+
+				{ ac:["aa t02","","","x y gws bd","Others"] },
+
+				{ ac:["aa t02","","","x y gws bd","Followup"] },
+
 			]},
 			
 			{ div:["e"] }
@@ -699,8 +716,9 @@ te["activity_vw_id_args"] = { c:[ { arg:["","src",":v:activities:src"] }, { arg:
 
 te["activity_vw_id"] = { c: 
 [
-	{ div:["x20 t20 b15","vb"], c: 
+	{ div:["t","vb"], c: 
 	[
+		/*
 		{ div:["c"], c:
 		[
                 	{ input:["g","","avt","1","radio",null] },
@@ -719,14 +737,25 @@ te["activity_vw_id"] = { c:
 				{ span:["","",":v:activities:src_vector::vector:4"] },
 				{ span:["l","",":v:activities:src::case_src:10"] },
 			]},
-		]},
+		]}, */
 
+		{ div:["c xx"], c:
+		[
+			{ input:["g","","avt","0","radio",null] },
+			{ input:["g","","avt","0","radio",null] },
+			{ ac:["ay","","","xx yy cb",""], c:
+			[
+				{ span:["","",":v:activities:src_vector::vector:4"] },
+				{ span:["l","",":v:activities:src::case_src:10"] },
+				{ span:["l","","Activity"] },
+			]},
+		]},
 	
 		{ p:["d w50 t","src_btns"], c:[ { div:["abs w50",":v:activities:src_uid"], u:[null] } ] }, 	// chan button
 		
 		{ div:["e"], c:[ { p:["g","o"], activity_vw_id_args:[] } ] },
 	]}, 
-	{ form:["bt_ yy"] } 	// tabs
+	{ form:[""] } 	// tabs
 ]};
 
 te["activity_btns"] = { c:
@@ -1096,7 +1125,7 @@ function _activity_vw (ev)
 		if (a.src_callid==undefined) a.src_callid = a.src_uid;
 		// a.src_address = "";
 		a.src_usr = user_cid
-		a.src_vector = 2;
+		a.src_vector = 0;
 		a.src_uid2 = a.src_uid+"-2";
 		if (a.src_callid) 
 		{
