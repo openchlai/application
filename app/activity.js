@@ -663,7 +663,7 @@ te["activity_match_main"] = { c: //
 	]},
 ]};
 
-// --------------------------------------------------------------------------------------------------------------------
+// ---
 
 te["activity_toolbar"] = { div:["ma w12 ","chan_id_here"], c: // 
 [
@@ -674,7 +674,7 @@ te["activity_toolbar"] = { div:["ma w12 ","chan_id_here"], c: //
 	]} ]}
 ]};
 
-te["activity_btns"] = { c:
+te["activity_vw_id_btns"] = { c:
 [	
 	{ div:["d l30"], c:
 	[
@@ -689,9 +689,8 @@ te["activity_btns"] = { c:
 	
 	{ div:["d"], c:
 	[
-		{ arg:["call_rpt_vw-calls","","1,0"] },
-		{ input:["g","","calls_t_","1","radio"] },
-		{ ac:["ay tab","call_rpts-r_","_tab","xx y gws_ bdr cb",""], c:
+		{ input:["g","","activity_vw_id_t_","2","radio",null] },
+		{ ac:["ay tab","","_tab","xx y gws_ bdr cb",""], c:
 		[
 			{ s:["c h2 micon","chat"] },
 			{ div:["e"] }
@@ -700,9 +699,8 @@ te["activity_btns"] = { c:
 	
 	{ div:["d"], c:
 	[
-		{ arg:["call_rpt_vw-calls","","1,0"] },
-		{ input:["g","","calls_t_","1","radio"] },
-		{ ac:["ay tab","call_rpts-r_","_tab","xx y gws_ cb",""], c:
+		{ input:["g","","activity_vw_id_t_","1","radio",null] },
+		{ ac:["ay tab","","_tab","xx y gws_ cb",""], c:
 		[
 			{ s:["c h2 micon","bar_chart"] },
 			{ div:["e"] }
@@ -711,30 +709,13 @@ te["activity_btns"] = { c:
 	
 	{ div:["d"], c:
 	[
-		{ arg:["call_list-calls","","0"] },
-		{ input:["g","","calls_t_","0","radio","1"] },
-		{ ac:["ay tab","call_list-calls","_tab","xx y gws_ bdl cb",""], c:
+		{ input:["g","","activity_vw_id_t_","0","radio",null] },
+		{ ac:["ay tab","","_tab","xx y gws_ bdl cb",""], c:
 		[
 			{ s:["c h2 micon","list"] },
 			{ div:["e"] }
 		]}
-	]},
-	
-	// { div:["d x25 g"], c:
-	//	[
-	//		{ input:["g","","activity_vw_vt3","1","radio"] },
-	//		{ ac:["ay","case_contact_new-r_-^","_vp","x y02 bd6 gws_ cb",""], c:
-	//		[
-	//			{ s:["c l07 t04 h2 b","+"] },
-	//			{ s:["c l r10 y s","Disposition"] },
-	//			{ div:["e"], c:[ { arg:["phone-8","",":k:dispositions_k:reporter_phone:2"] } ] }
-	//		]},
-	//		{ div:["g"], arg:["","","activity_disposition_r_new_contact-dispositions-vftab-vdisp-!"] }
-	//	]},
-	
-	// todo call butons here
-	
-	{ div:["e"] }
+	]}
 ]};
 
 te["activity_vw_id_tabs_"] = { c:
@@ -756,13 +737,9 @@ te["activity_vw_id_tabs_"] = { c:
 	]}	
 ]};
 
-te["activity_case_notify"] = { activity_vw_id_tabs_:["","noop","1","activity_case_notify_vw_id"] };
+te["activity_vw_id_tabs_message"] = { activity_vw_id_tabs_:["","activity_match_main","","noop","1","activity_messages"] };
 
-te["activity_vw_id_messages_match"] = { activity_vw_id_tabs_:["","activity_messages","1","activity_match_main"] };
-
-te["activity_vw_id_messages"] = { activity_vw_id_tabs_:["1","activity_messages","","activity_match_main"] };
-
-te["activity_vw_id_match"] = { activity_vw_id_tabs_:["","noop","1","activity_match_main"] };
+te["activity_vw_id_tabs"] = { activity_vw_id_tabs_:["1","activity_match_main","","noop","","activity_messages"] };
 
 te["activity_vw_id_args"] = { c:[ { arg:["","src",":v:activities:src"] }, { arg:["","src_uid",":v:activities:src_uid"] }, { arg:["","src_address",":v:activities:src_address"] }, { arg:["","src_uid2",":v:activities:src_uid2"] }, { arg:["","src_usr",":v:activities:src_usr"] }, { arg:["","src_vector",":v:activities:src_vector"] }, { arg:["","src_callid",":v:activities:src_callid"] }, { arg:["","src_ts",":v:activities:src_ts"] } ] };
 
@@ -773,10 +750,9 @@ te["activity_vw_id"] = { c:
 		
 		{ div:["c"], c:
 		[
-			{ input:["g","","avt","0","radio",null,null] },
+			{ input:["g","","avt","0","radio"] },
 			{ ac:["ay","","_tab","xx yy cb h2 b",""], c:
 			[
-				//{ span:["","",":v:activities:src_vector::vector:4"] },
 				{ span:["","",":v:activities:src::case_src:10"] },
 				//{ span:["","",":v:activities:src_vector::vector:4"] },
 			]},
@@ -786,7 +762,9 @@ te["activity_vw_id"] = { c:
 
 		{ div:["c t07"], s:["x y cd","Unknown Contact"] },
 
-		{ p:["d w50 t","src_btns"], c:[ { div:["abs w50",":v:activities:src_uid"], u:[null] } ] }, 	// chan button
+		{ activity_vw_id_btns:[null,null,null] },
+
+		{ u:[null] }, 	// call butons here
 
 		{ div:["e"], c:[ { p:["g","o"], activity_vw_id_args:[] } ] },
 	]}, 
@@ -1123,7 +1101,7 @@ function _activity_vw (ev)
 	var a = {};
 	var r_ = re["r_"][0].slice(0);
 	var k = re["activities_k"];
-	var u = ["activity_vw_id_match","activities"];
+	var u = ["activity_vw_id_tabs","activities"];
 	var s_ = "";
 	argv (this, a);
 	var u_ = re["case_src"][a.src];
@@ -1140,7 +1118,6 @@ function _activity_vw (ev)
 		if (a.src_callid) 
 		{
 			s_ = "&src_vector="+a.src_vector+"&src_callid="+a.src_callid;
-			u_[9] = "activity_vw_id_messages_match";
 		}
 	}
 	r_[k["src"][0]] = a.src;
@@ -1165,7 +1142,7 @@ function _activity_vw (ev)
 	coll[6].childNodes[1].childNodes[1].innerHTML = "";
 
 	nd (coll[1], te["activity_toolbar"], [], r_, [0]); // show toolbar	
-	nd (coll[6].childNodes[1].childNodes[1], te["activity_vw_id"], ["activity_btns","","1"], r_, [3]);	
+	nd (coll[6].childNodes[1].childNodes[1], te["activity_vw_id"], ["noop","1","",""], r_, [4]);	
 	url (coll[6].childNodes[1].childNodes[1].lastChild, u_[9], u[1], s);
 
 	boo (ev)
