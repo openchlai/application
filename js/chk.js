@@ -22,10 +22,10 @@ te["tag_"] = { div:["c","va"], s:["mtag gb cw",""], c:
 	{ div:["e",null], c:[ { input:["g","_",null,null,"checkbox","1"] }, { arg:["","",null] } ] }
 ]}; 
 
-te["tagf"] = { div:["c ml mt mb ba_b cb","va"], c: 
+te["tagf"] = { div:["c ml mt mb gb cw bd8","va"], c: 
 [
 	{ div:["c x07 y"], uval:["",null] },
-	{ ac:["c l ab","","_uchkf","x y n cd","&Cross;"] },
+	{ ac:["c l ab","","_uchkf","x y n cws","&Cross;"] },
 	{ input:["g","_",null,"%0","checkbox","1"] },
 	{ arg:["","",null] },
 	{ div:["e"] } 
