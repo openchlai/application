@@ -399,13 +399,20 @@ re["case_status"] =
 "3":["3","Escalated","Escalated to","","","#ff0000"],
 };
 
-
 rk["case_priority_form"] = ["1","2","3"];
 re["case_priority_form"] = re["case_priority"];
 
 rk["case_status_form"] = ["1","2"];
 re["case_status_form"] = re["case_status"];
 
+
+rk["case_dept"] = ["0","1"];
+re["case_dept"] =
+{
+"":["","116","","","",""],
+"0":["0","116","","","",""],
+"1":["1","Labor","","","",""]
+};
 
 //
 //rk["case_src"] = ["walkin","call","sms","email","safepal","WHATSAPP","FACEBOOK","TWITTER"];
@@ -437,7 +444,7 @@ re["case_src"] =
 "all":["all","Total",":k:case_source:total:1",          "g","", "micon hh co","cases","All Cases",                      "noop","noop","","", ""],
 "social":["social","Social Media",":k:case_source:socialmedia:1", "g","", "micon cbl hh","share","Social Media",        "noop","noop","","", ""],
 "edit":["edit","edit","",                               "g","", "g","edit","Edit Activity",                             "noop","activity_vw_id_match", "Edit", "", ""],
-"walkin":["walkin","Walkin",":k:case_source:walkin:1",  "g","", "micon cg hh","directions_walk","Walkin Activity",      "activity_btns","activity_vw_id_match","Walkin", "reporter_phone", ""],
+"walkin":["walkin","Walkin",":k:case_source:walkin:1",  "g","", "micon cg hh","directions_walk","Walkin Activity",      "activity_btns","activity_vw_id_match","Walk In", "reporter_phone", ""],
 "call":["call","Call",":k:case_source:call:1",          "","/helpline/images/bxs-phone-call.png","g","call","Call Activity","cti_btns","activity_vw_id_match","Call", 
 "reporter_phone", ""],
 "sms":["sms","SMS",":k:case_source:sms:1",              "","/helpline/images/sms.png","g","sms","SMS Activity",            "ati_btns","activity_vw_id_messages","SMS Chat", "reporter_phone", ""],
@@ -454,7 +461,36 @@ re["case_src"] =
 "TWITTER":["TWITTER","TWITTER","",                      "","/helpline/images/watsap_ico.png","g","chat","Twitter Activity", "ati_btns","activity_vw_id_messages","Twitter Chat", "reporter_email", ""], 
 };
 
- 
+rk["safepal"] = ["timestamp","reporter_nickname","case_category","victim","perpetrator"];
+
+re["safepal"] = 
+{
+"timestamp": ["timestamp","Timestamp"],
+"reporter_nickname": ["reporter_nickname","Reporter Nickname"],
+"case_category":[ "case_category", "Category" ],
+"victim":["victim","Victim","o"],
+"perpetrator":["perpetrator","Perpetrator","o"]
+};
+
+rk["safepal_victim"] = ["name","age","gender"];
+
+re["safepal_victim"] =
+{
+"name": ["name","Victim Name"],
+"age": ["age","Victim Age"],
+"gender":[ "gender", "Victim Gender"],
+};
+
+rk["safepal_perpetrator"] = ["name","age","gender"];
+
+re["safepal_perpetrator"] =
+{
+"name": ["name","Perpetrator Name"],
+"age": ["age","Perpetrator Age"],
+"gender":[ "gender", "Perpetrator Gender"],
+};
+
+/*
 rk["safepal"] = ["id", "incident_report_id", "survivor_name", "survivor_gender", "survivor_contact_phone_number", "survivor_contact_email", "survivor_age", "unique_case_number", "incident_location", "incident_date_and_time", "incident_type", "incident_descriptio", "incident_reported_by", "number_of_perpetrators", "perpetrator_name", "perpetrator_gender", "perpetrator_estimated_age", "perpetrator_relationship", "perpetrator_location", "date_of_interview_with_cso", "chl_status", "chl_case_id", "chl_time", "chl_user_id"]; // safepal msg object schema
 re["safepal"] = 
 {
@@ -483,7 +519,7 @@ re["safepal"] =
 "chl_time": 		["chl_time","CHL Tie"],
 "chl_user_id": 		["chl_user_id","CHL User"],
 };
-
+*/
 
 rk["dash_src"] = ["all","call","sms","social","email","walkin"];
 re["dash_src"] = 
@@ -1367,7 +1403,7 @@ te["main"] = { c:
 		[
 			 // notifications
 		]} ]},
-		{ div:[], c:[ { input:["g","","mtv","1","radio"] }, { p:["tabv gw  mm","vfvwm"] } ] }, // on call & right sb vw
+		{ div:[], c:[ { input:["g","","mtv","1","radio"] }, { p:["tabv gw bd12 mm","vfvwm"] } ] }, // on call & right sb vw
 		{ div:[], c:[ { input:["g","","mtv","2","radio","1"] }, { p:["tabv mm","vftab"], u:["dash","dash"] } ] }, // wall board
 		{ div:[], c:[ { input:["g","","mtv","3","radio"] }, { p:["tabv","vfvwm"] } ] }, // cases
 		{ div:[], c:[ { input:["g","","mtv","4","radio"] }, { p:["tabv","vftab"] } ] }, // calls

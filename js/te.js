@@ -714,8 +714,8 @@ function val (v, a, r, m, el, k, w)
 	{
 		if (k=="innerHTML") 
 		{
-			//v_ = v_.replace (/>/gm,"&gt;"); 
-			//v_ = v_.replace (/</gm,"&lt;"); 
+			v_ = v_.replace (/>/gm,"&gt;"); 
+			v_ = v_.replace (/</gm,"&lt;"); 
 			//v_ = v_.replace (/\n/gm,""); // line break
 		}
 		el[k] = v_; 
@@ -799,10 +799,34 @@ function uval (el, u, a, r, m)
 	uval_ (el, u, 1, "");
 }
 
+function umimek (el,u,r,vo,z)
+{
+	console.log ("[umimek] -------------------"+z)
+	var ko = re[(u[3]+z)];
+	var kk = rk[(u[3]+z)];
+	for (var k=0; k<kk.length; k++)
+	{
+               if (!vo[kk[k]]) continue;
+		if (ko[kk[k]][2]=="o")
+		{
+			umimek (el,u,r,vo[kk[k]],("_"+kk[k]));
+			continue;
+		}
+               nd (el, te[(u[0]+"_o")], [vo[kk[k]], ko[kk[k]][1]], r, [2]); //
+//                                  console.log ("[umime] "+u[3]+"|"+ kk[k]+" => " + ko[kk[k]][1])
+        }
+}
+
 function umime (el, u, a, r, m)
 {
 	var v = u[2];
 	
+	if (u[1]=="text/plain")
+	{
+		v = atob (u[2])
+		nd (el, te[u[0]], [v], r, [1]);
+		return ;
+	}
 	if (u[1]=="application/json")
 	{
 		v = atob (u[2]); 
@@ -820,14 +844,15 @@ function umime (el, u, a, r, m)
 			}
 			v = "Invalid Payload Received!";
 			if (vo)
-			{ 
-				var kk = rk[u[3]]
-				for (var k=0; k<kk.length; k++)
-				{
-					if (!vo[kk[k]]) continue;
-					nd (el, te[(u[0]+"_o")], [vo[kk[k]], ko[kk[k]][1]], r, [2]); // 
-//					console.log ("[umime] "+u[3]+"|"+ kk[k]+" => " + ko[kk[k]][1])
-				}
+			{
+				umimek (el,u,r,vo,"");
+				//var kk = rk[u[3]]
+				//for (var k=0; k<kk.length; k++)
+				//{
+				//	if (!vo[kk[k]]) continue;
+				//	nd (el, te[(u[0]+"_o")], [vo[kk[k]], ko[kk[k]][1]], r, [2]); // 
+//				//	console.log ("[umime] "+u[3]+"|"+ kk[k]+" => " + ko[kk[k]][1])
+				//}
 				return;	
 			}
 		} 

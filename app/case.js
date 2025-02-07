@@ -836,10 +836,24 @@ te["case_uuid_arg"] = { arg:["","uuid",":v:cases_uuid:uuid"] };
 
 te["case_form_col_1"] = { c:
 [
-	{ div:["t25"], c:
+	{ div:["t20"], c:
 	[
-		{ div:["w60 _ba_"], case_category_enum:[] },
-		{ div:["t15"], c:
+		{ div:[], c:
+		[
+			{ div:[], c:
+                        [
+                                { s:["c x y","Department"] },
+                                { s:["c t cr b h2","*"] },
+                                { div:["e"] }
+                        ]},
+			{ p:["","o"], c:
+                        [
+                                { uchk:["case_yesno_r",":v:cases:dept","case_dept","",   "dept"," %1"] },
+                                { div:["e"] }
+                        ]}
+		]},
+		{ div:["t25 w60 _ba_"], case_category_enum:[] },
+		{ div:["t25"], c:
 		[
 			{ div:[], c:
 			[
