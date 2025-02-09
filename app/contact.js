@@ -3,9 +3,9 @@ te["case_contact_ed_age"] = { c:
 [
 	{ div:["","vb"], c:[ { p:["","o"], c:
 	[
-		{ div:[], c:[ { input:["g","","age_t","0","radio","1"] }, { ac:["c w07 rc_","","_tab","x03 y","Age"] } ] },
-		{ div:[], c:[ { input:["g","","age_t","1","radio"] }, { ac:["c w07 rc_","","_tab","xx y ","DOB"] } ] },
-		{ div:[], c:[ { input:["g","","age_t","2","radio"] }, { ac:["d w07 rc_","","_tab","y tr","Age Group"] } ] }, 
+		{ div:[], c:[ { input:["g","","age_t","0","radio","1"] }, { ac:["c w07 rc_","","_tab","x03 y cd","Age"] } ] },
+		{ div:[], c:[ { input:["g","","age_t","1","radio"] }, { ac:["c w07 rc_","","_tab","xx y cd","DOB"] } ] },
+		{ div:[], c:[ { input:["g","","age_t","2","radio"] }, { ac:["d w07 rc_","","_tab","y cd tr","Age Group"] } ] }, 
 		{ div:["e"] }
 	]} ]},
 	{ div:["","vaa"], c: 
@@ -13,7 +13,7 @@ te["case_contact_ed_age"] = { c:
         	{ div:[], c:
         	[
         		{ input:["g","","age_vw","0","radio","1"] },
-	        	{ p:["tabiv gws h03 b05","o"], c:[ { input:["w21 x tt b05 gws","","age",null,"",""], ev:["","_contact_age"] } ] },
+	        	{ p:["tabiv gws h03 b05 x02","o"], c:[ { input:["w20 x07 y08 gws","","age",null,"",""], ev:["","_contact_age"] } ] },
 	        ]},
 	        { div:[], c:
 	        [

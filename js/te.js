@@ -283,7 +283,7 @@ te["sub"] = { u:["%0","%1"] };
 
 te["btnwait"] = { c:[ { s:["%0","%1"] }, { arg:["tso","","12"] } ] };
 
-te["uvpfn"] = { ufn:["uvpfn"] };
+te["uvpfn"] = { ufn:["uvpr"] };
 
 te["ufn_attach"] = { ufn:["ufn_attach"] };
 
@@ -1277,9 +1277,7 @@ function postj (el,k,mode=2)
 
 function urargs (el, p)
 {
-	//console.log ("urargs("+el.id+")----------------------------")
 	var u = el.id.split("-");
-
 	if (re[u[1]]!=undefined)
 	{
 		ra = [];
@@ -1291,7 +1289,6 @@ function urargs (el, p)
 		nd (p, te[u[0]], [], r_, [0]); 
 		return;
 	}
-
 	var a = {args:"?", ".id":""};	
 	argv (el.lastChild,a);
 	url (p, u[0], u[1], (a[".id"]+a.args));
@@ -1310,7 +1307,6 @@ function uvpfl (p, m=1)
 	}
 
 	if (m==1) coll[2].value =  Math.floor(Date.now ()/1000); // update filter_ts
-	//console.log ("uvpfl("+coll[0].value+")----------------------------"+p.previousSibling.value+","+coll[2].value)
 	if (p.previousSibling.value>=coll[2].value) return;	// skip if no change in  filter_ts
 	p.previousSibling.value = coll[2].value;
 
@@ -1344,12 +1340,11 @@ function uvpf (el)
 	p.style.display = "none";
 	p.innerHTML = "";
 	pvf.firstChild.innerHTML = "";
-console.log (el.id);
 	nd (pvf.firstChild, te[u[0]], [], [], [0]);
 	uvpfl (pvf.parentNode)
 }
 
-function uvpfn (el, u, a, r, m)
+function uvpr (el, u, a, r, m) // uvp return
 {
 	el.style.display = "none"; // hide vp
 	el.innerHTML = "";
@@ -1357,7 +1352,6 @@ function uvpfn (el, u, a, r, m)
 	var u_ = elvp.firstChild.value.split ("-");
 	el = elvp;
 	elvp = null;
-	//console.log ("uvpfn: "+u_)
 	if (u_.length>2 && u_[2].length>0) el = __(el, u_[2]); 	// ascend
 	if (u_.length>3 && u_[3].length>0) el = _(el, u_[3]); 	// descend
 	if (u_.length>4 && u_[4]!="!") el.innerHTML = "";
@@ -1534,6 +1528,7 @@ function _vpf ()
 	elvpf = __(this,"vb").nextSibling;
 	jso (elvpf, o);
 	ra[u[1]] = o;
+	console.log ("[vpf] "+u[1]+" : "+JSON.stringify (o));
 	vp (p);
 	nd (p, te[u[0]], [], [], [0]);
 }

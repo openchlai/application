@@ -97,22 +97,17 @@ var UU =
 "activity_message_send":{ 201:[["activity_message_sended","messages","","sended"]] },
 "activity_messages":{ 200:[["activity_messages_ufn","messages_ctx"]] },
 
-
-"activity_call":{ 201:[["activity_call","activities"]], 202:[["activity_call","activities"]], 412:[["nb","errors","","nb"]] },
-
-"activity_contact_list":{ 200:[["activity_contact_list","contacts_ctx"]] },
-
+"activity_contact_ls":{ 200:[["activity_contact_ls","dispositions_ctx"]] },
 "activity_disposition_vwr":{ 200:[["activity_disposition_vwr","dispositions"]] },
 "activity_disposition":{ 201:[["uvpfn","dispositions","vp"]], 412:[["nb","errors","v","nb"]], 200:[["activity_disposition","dispositions_ctx"]] },
 "activity_disposition_new":{ 201:[["activity_disposition_new","cases_uuid"]], 412:[["nb","errors","v","nb"]] },
-
-
 "activity_match_list":{ 200:[["activity_match_list","dispositions_ctx"]] },
 "activity_match":{ 200:[["activity_match","dispositions_ctx"]] },
 
 "activity_vw_id_tabs_messages":{ 200:[["activity_vw_id_tabs_messages","activities"]] },
 "activity_vw_id_tabs":{ 200:[["activity_vw_id_tabs","activities"]] },
 "activity_vw_id":{ 200:[["activity_vw_id","activities"]] },
+"activity_call":{ 201:[["activity_call","activities"]], 202:[["activity_call","activities"]], 412:[["nb","errors","","nb"]] },
 "activity_lst":{ 200:[["activity_lst","activities_ctx"]] },
 
 // ---

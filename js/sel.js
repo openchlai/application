@@ -12,7 +12,7 @@ function sub (el, u, r, v, v_, f)
 	var vv_ = v_.split (",");
 	for (var j=0; j<vv.length; j++)
 	{
-		var vvv = vv[j].split ("^");
+		var vvv = vv[j].split ("^");	// process hierarch ;/
 		for (var k=0; k<vvv.length; k++)
 		{
 			var id = vvv[k].split(":")[0];

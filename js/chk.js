@@ -8,23 +8,23 @@ te["taga"] = { div:["c","va"], s:["mtag gb cw",""], c: // .f.f.f
 	{ div:["e"], c:[ { input:["g","o",null,null,"checkbox","1"] }, { arg:["fullname_id-2","",null] } ] }
 ]}; 
 
-te["tag"] = { div:["c","va"], s:["mtag gb cw",""], c: 
+te["tag"] = { div:["c","va"], s:["mtag gwd cb bd",""], c: 
 [
-	{ div:["d w02_"], ac:["abs w02_ ao",null,"_usel","x y04 cs n tc","&Cross;"] },
+	{ div:["d w02_"], ac:["abs w02_ ao",null,"_usel","x y04 bdr cws n tc","&Cross;"] },
 	{ div:["x y04 mr3"], uval:["",null] },
 	{ div:["e"], c:[ { input:["g","",null,null,"checkbox","1"] }, { arg:["fullname_id-2","",null] } ] }
 ]};
 
-te["tag_"] = { div:["c","va"], s:["mtag gb cw",""], c:
+te["tag_"] = { div:["c","va"], s:["mtag bd8 gb cw",""], c:
 [
-	{ div:["d w02_"], ac:["abs w02_ ao",null,"_uchk","x y04 cs tc","&Cross;"] },
-	{ div:["x y04 mr3"], uval:["",null] },
+	{ div:["d w02_"], ac:["abs w02_ ao",null,"_uchk","x y04 cs tc ","&Cross;"] },
+	{ div:["l08 y04 mr3"], uval:["",null] },
 	{ div:["e",null], c:[ { input:["g","_",null,null,"checkbox","1"] }, { arg:["","",null] } ] }
 ]}; 
 
-te["tagf"] = { div:["c ml mt mb gb cw bd8","va"], c: 
+te["tagf"] = { div:["c ml mt mb bd8 gb cw","va"], c: 
 [
-	{ div:["c x07 y"], uval:["",null] },
+	{ div:["c l08 y"], uval:["",null] },
 	{ ac:["c l ab","","_uchkf","x y n cws","&Cross;"] },
 	{ input:["g","_",null,"%0","checkbox","1"] },
 	{ arg:["","",null] },
