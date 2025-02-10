@@ -1,4 +1,11 @@
 
+te["tag"] = { div:["c","va"], s:["mtag gwd cb bd",""], c: 
+[
+	{ div:["d w02_"], ac:["abs w02_ ao",null,"_usel","x y04 bdr cws n tc","&Cross;"] },
+	{ div:["x y04 mr3"], uval:["",null] },
+	{ div:["e"], c:[ { input:["g","",null,null,"checkbox","1"] }, { arg:["fullname_id-2","",null] } ] }
+]};
+
 te["tagv"] = { div:["c mtag"], s:[null,""], uval:["",null] };
 
 te["taga"] = { div:["c","va"], s:["mtag gb cw",""], c: // .f.f.f
@@ -8,14 +15,7 @@ te["taga"] = { div:["c","va"], s:["mtag gb cw",""], c: // .f.f.f
 	{ div:["e"], c:[ { input:["g","o",null,null,"checkbox","1"] }, { arg:["fullname_id-2","",null] } ] }
 ]}; 
 
-te["tag"] = { div:["c","va"], s:["mtag gwd cb bd",""], c: 
-[
-	{ div:["d w02_"], ac:["abs w02_ ao",null,"_usel","x y04 bdr cws n tc","&Cross;"] },
-	{ div:["x y04 mr3"], uval:["",null] },
-	{ div:["e"], c:[ { input:["g","",null,null,"checkbox","1"] }, { arg:["fullname_id-2","",null] } ] }
-]};
-
-te["tag_"] = { div:["c","va"], s:["mtag bd8 gb cw",""], c:
+te["tag_"] = { div:["c","va"], s:["mtag bd8 gb cw",""], c: // taga in f
 [
 	{ div:["d w02_"], ac:["abs w02_ ao",null,"_uchk","x y04 cs tc ","&Cross;"] },
 	{ div:["l08 y04 mr3"], uval:["",null] },

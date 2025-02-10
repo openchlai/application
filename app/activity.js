@@ -75,7 +75,17 @@ te["activity_messages"] = { c:
 
 // --------------------------------------------------------------------------------------------------------------------
 
-te["activity_contact_unk"] = { div:["y"], c:
+te["activity_contact_f"] = { c:
+[
+	{ div:[], c:
+	[
+		{ s:["x y","Search Contacts"] },
+		{ activity_disposition_f_:[] }
+	]},
+	{ vp_apply:["activity_disposition_f_tags-dispositions_f"] }
+]};
+
+te["activity_contact_unknown"] = { div:["y"], c:
 [
 	// { s:["","Science Yo!"] }
 	{ div:["c w21"], case_sex_enum:["Sex","",""," %0"] },
@@ -92,7 +102,7 @@ te["activity_contact_r_"] = { c:
 		{ s:[null,null] },
 		{ div:["e"] }
 	]},
-	{ div:["e","sub"], arg:["activity_contact_unk-r_-va-unkr-0","","-2"] }
+	{ div:["e","sub"], arg:["activity_contact_unknown-r_-va-unkr-0","","-2"] }
 ]};
 
 te["activity_contact_r"] = { div:[], activity_contact_r_:["contact_id",":v:dispositions:reporter_id","","c x y b",":v:dispositions:reporter_fullname"] };
@@ -103,11 +113,14 @@ te["activity_contact_ls"] = { c:
 	{ div:[""], c:
 	[
 		{ s:["c y ","Select Contact"] },
-		{ div:["c x20"], ac:["ay","case_f-cases_f","_vpf","x t02 bd8 cb",""], c:
-		[ 
-			{ s:["c y03 micon","search"] },
-			{ div:["c x t03 s","","Search"] }, 
-			{ div:["e"] }
+		{ div:["c x20"], c:
+		[
+			{ ac:["ay","activity_disposition_f-dispositions_f","_activity_vpf","x t02 bd8 cb",""], c:
+			[ 
+				{ s:["c y03 micon","search"] },
+				{ div:["c x t03 s","","Search"] }, 
+				{ div:["e"] }
+			]}
 		]},
 		{ div:["d t"], c:[ { ac:["nav","activity_contact_ls-dispositions","_nav","dh bd",""], c:[ { div:["da_w dr bd"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
 		{ div:["d t"], c:[ { aci:["nav","activity_contact_ls-dispositions","_nav","dh bd","prev",""], c:[ { div:["da_w dl bd"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
@@ -397,22 +410,27 @@ te["activity_disposition_contacts_f"] = { c:
 	{ div:["xx yy"], kf_l:["Reporter Location","tag_-r_--o--%1-category_id-reporter_location_id-%0-%1", "case_location_lc_main-subcategories",  ":k:dispositions_f:reporter_location_id", ""," %1","category_id","reporter_location_id"," %0"," %1", "case_location_root_id"] },
 ]};
 
-te["activity_disposition_f"] = { div:["w60 ma sh__ y gw_ bd8","vddvf"], ev:["_undd"], c:
+te["activity_disposition_f_"] = { c:
+[
+	{ div:["x t20","vb"], s:["",""], c:
+	[
+		{ div:["c"], c:[ { input:["g","","case_f_vw_t","0","radio","1"] }, { ac:["ay tabu","","_tab","x03 y cb","Contacts"] } ] },
+		{ div:["c l20"], c:[ { input:["g","","case_f_vw_t","1","radio"] }, { ac:["ay tabu","","_tab","x03 y cb","Cases"] } ] },
+		{ div:["e"] }
+	]},
+	{ div:["y15"], c:
+	[
+		{ div:[], c:[ { input:["g","","case_f_vw_tv","0","radio","1"] }, { div:["tabv"], activity_disposition_contacts_f:[] } ] },
+		{ div:[], c:[ { input:["g","","case_f_vw_tv","1","radio"] }, { div:["tabv"], activity_disposition_cases_f:[] } ] },		
+	]}
+]};
+
+te["activity_disposition_f"] = { div:["w50 ma sh__ y gw_ bd8","vddvf"], ev:["_undd"], c:
 [
 	{ div:["x15"], c:
 	[
-		{ s:["x t15 h3 b","Search"] },
-		{ div:["x t20","vb"], s:["",""], c:
-		[
-			{ div:["c"], c:[ { input:["g","","case_f_vw_t","0","radio","1"] }, { ac:["ay tabu","","_tab","x03 y cb","Contacts"] } ] },
-			{ div:["c l20"], c:[ { input:["g","","case_f_vw_t","1","radio"] }, { ac:["ay tabu","","_tab","x03 y cb","Cases"] } ] },
-			{ div:["e"] }
-		]},
-		{ div:["y15"], c:
-		[
-			{ div:[], c:[ { input:["g","","case_f_vw_tv","0","radio","1"] }, { div:["tabv"], activity_disposition_contacts_f:[] } ] },
-			{ div:[], c:[ { input:["g","","case_f_vw_tv","1","radio"] }, { div:["tabv"], activity_disposition_cases_f:[] } ] },		
-		]}
+		{ s:["x t15 h3 b","Search Cases"] },
+		{ activity_disposition_f_:[] }
 	]},
 	{ vp_apply:["activity_disposition_f_tags-dispositions_f"] }
 ]};
@@ -957,6 +975,19 @@ function _activity_close (ev)
 {
 	activity_close ();
 	boo (ev)
+}
+
+function _activity_vpf ()
+{
+	var p = document.getElementById ("vp");
+	var u = this.id.split ("-");
+	var o = {};  
+	var el = __(this);
+	argv (el.childNodes[2].firstChild, o)
+	console.log ("[activity_vpf] : "+JSON.stringify (o));
+	ra[u[1]] = o;
+	el.innerHTML = ""; // vp (p);
+	nd (el, te[u[0]], [], [], [0]);
 }
 
 function _activity_case_postj (ev)
