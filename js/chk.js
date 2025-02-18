@@ -25,7 +25,7 @@ te["tag_"] = { div:["c","va"], s:["mtag bd8 gb cw",""], c: // taga in f
 te["tagf"] = { div:["c ml mt mb bd8 gb cw","va"], c: 
 [
 	{ div:["c l08 y"], uval:["",null] },
-	{ ac:["c l ab","","_uchkf","x y n cws","&Cross;"] },
+	{ ac:["c l ao","","_uchkf","x y n bdr8 cws","&Cross;"] },
 	{ input:["g","_",null,"%0","checkbox","1"] },
 	{ arg:["","",null] },
 	{ div:["e"] } 

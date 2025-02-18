@@ -1,3 +1,6 @@
+// "lets think of this as a brainstorming pharse - no bad ideas. Keep spit balling!"
+// "maybe the solution is ai. (how can AI be the solution?) Thats the first question we will ast Ai"
+// 
 
 var APIPATH = "/helpline/api/";  
 
@@ -96,14 +99,12 @@ var UU =
 
 "activity_message_send":{ 201:[["activity_message_sended","messages","","sended"]] },
 "activity_messages":{ 200:[["activity_messages_ufn","messages_ctx"]] },
-
 "activity_contact_ls":{ 200:[["activity_contact_ls","dispositions_ctx"]] },
+"activity_contact_main":{ 200:[["activity_contacts","dispositions_ctx"]] },
 "activity_disposition_vwr":{ 200:[["activity_disposition_vwr","dispositions"]] },
 "activity_disposition":{ 201:[["uvpfn","dispositions","vp"]], 412:[["nb","errors","v","nb"]], 200:[["activity_disposition","dispositions_ctx"]] },
-"activity_disposition_new":{ 201:[["activity_disposition_new","cases_uuid"]], 412:[["nb","errors","v","nb"]] },
-"activity_match_list":{ 200:[["activity_match_list","dispositions_ctx"]] },
-"activity_match":{ 200:[["activity_match","dispositions_ctx"]] },
-
+"activity_list":{ 200:[["activity_list","dispositions_ctx"]] },
+"activity_main":{ 200:[["activity_main","dispositions_ctx"]] },
 "activity_vw_id_tabs_messages":{ 200:[["activity_vw_id_tabs_messages","activities"]] },
 "activity_vw_id_tabs":{ 200:[["activity_vw_id_tabs","activities"]] },
 "activity_vw_id":{ 200:[["activity_vw_id","activities"]] },
@@ -677,12 +678,14 @@ te["loadphone"] = { ufn:["loadphone"] };
 
 te["vfile_not_found"] = { s:["xx y gp cr bd8","Recording Not Found"] };
 
-te["vp_apply"] = { div:["x25 t b15"], c: // 
+te["vp_apply_"] = { div:["xx t b15"], c: // 
 [
-	{ div:["d l15"], c:[ { ac:["ag btn w06",null,"_uvpf","x y04 w05 gb cw tc","Apply"] }, { s:["y07 bd b savl","..."] } ] },
-	{ div:["d","va"], ac:["ay","","_uvp","x y03 w05 ba tc cd","Cancel"] },
+	{ div:["d l15"], c:[ { ac:["ao btn w06",null,null,"x y04 w05 gb bd8 cw tc","Apply"] }, { s:["x y04 w05 gb bd8 cw tc b savl","..."] } ] },
+	{ div:["d","va"], ac:["ay",null,null,"x y03 w05 ba bd8 tc cd","Cancel"] },
 	{ div:["e"] }
 ]};
+
+te["vp_apply"] = { vp_apply_:[null,"_uvpf","","_uvp"] };
 
 te["vp_sav"] = { c:
 [

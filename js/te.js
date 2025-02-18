@@ -83,23 +83,23 @@ te["branch_footer"] = { s:["mln2 mtn13 x y15 abs gws_",""] };
 
 te["pgto2"] = { c:
 [
-	{ div:["c x t03"], s:["cgr","-"] },
-	{ div:["c x t03"], s:["","%3"] }
+	{ div:["c x"], s:["cgr","-"] },
+	{ div:["c x"], s:["","%3"] }
 ]};
 
 te["pgto"] = { c:
 [
-	{ div:["c x t03"], s:["cgr","-"] },
-	{ div:["c x t03"], s:["","%3"] }
+	{ div:["c x"], s:["cgr","-"] },
+	{ div:["c x"], s:["","%3"] }
 ]};
 
 te["pg"] = { c: 
 [
-	{ div:["c"], s:["x t03","%2"] },
+	{ div:["c"], s:["x","%2"] },
 	{ u:[null] },
-	{ div:["c"], s:["x t03","of"] },
-	{ div:["c"], s:["x t03","%4"] },
-	{ div:["c l"], c:[ { aci:["nav",null,"_nav",null,"prev",""], c:[ { div:[null] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
+	{ div:["c"], s:["x","of"] },
+	{ div:["c"], s:["x","%4"] },
+	{ div:["c"], c:[ { aci:["nav",null,"_nav",null,"prev",""], c:[ { div:[null] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
 	{ div:["c"], c:[ { ac:["nav",null,"_nav",null,""], c:[ { div:[null] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] }
 ]};
 
@@ -124,14 +124,14 @@ te["argf"] = { arg:["","%3","%1"] };
 
 te["kf_n"] = { p:["","o"], c: // 	
 [
-	{ s:["c w15 y08 cb",null] }, 
+	{ s:["c w14 y08 cb",null] }, 
 	{ li:["d"], txt:[" ba w30"," w30 x y07","",null,null] },
 	{ div:["e"] }
 ]};
 
 te["kf_d"] = { c:   // 		
 [
-	{ s:["c w15 y08 cb",null] }, 
+	{ s:["c w14 y08 cb",null] }, 
 	{ div:["d","calw"], c:
 	[
 		{ li:["w30 ba gw_ cb","va"], c:[ { div:[""], ev:["_dd"], c:
@@ -158,7 +158,7 @@ te["kf_d"] = { c:   //
 
 te["kf_l"] = { c:
 [
-	{ s:["c w15 y08 cb",null] }, 
+	{ s:["c w14 y08 cb",null] }, 
 	{ div:["d",null], c:
 	[
 		{ li:["w30 ba gw_ cb","va"], c:[ { div:["",null], ev:["_dd"], c: // 
@@ -178,7 +178,7 @@ te["kf_l"] = { c:
 
 te["kf_c"] = { c: 
 [
-	{ s:["c w15 y08 cb",null] }, 
+	{ s:["c w14 y08 cb",null] }, 
 	{ div:["d",null], c:
 	[
 		{ li:["w30 ba gw_ cb","va"], c:[ { div:[""], ev:["_dd"], c:
@@ -199,7 +199,7 @@ te["kf_c"] = { c:
 
 te["kf_s"] = { p:["","o"], c: // 	
 [
-	{ s:["c w15 y08 cb",null] }, 
+	{ s:["c w14 y08 cb",null] }, 
 	{ li:["d"], txt:[" ba w30"," w30 x y07","",null,null] },
 	{ div:["e"] }
 ]};
@@ -651,6 +651,11 @@ function vel (r,a) // :v:table_name:col_name::enum:enum_col
 	{
 		return  vdt (v,["","d","dmy","0"," "]);
 	}
+	if (a[4]=="z")
+	{
+		if (v.length>0) return a[5];
+		return a[6];
+	}
 	return v;
 }
 
@@ -745,7 +750,7 @@ function uv (el, u, a, r, m)
 {
 	var a = {args:"?", ".id":""};
 	argv (el, a);
-	//console.log (JSON.stringify (u)+"|"+JSON.stringify(a))
+	// console.log ("[uv] "+JSON.stringify (u)+"|"+JSON.stringify(a));
 	url (el, u[0], u[1], (a[".id"]+a.args));
 }
 
@@ -1270,8 +1275,8 @@ function postj (el,k,mode=2)
         var u = el.id.split ("-");
         if (u.length>2) id=u[2] 
         var p = __(el,id);
-        var o = {}; 
-        jso (p,o,k);
+        var o = {}; // console.log (k+"|"+id+"|"+p.id);
+        jso (p,o,k); 
         url (p, u[0], u[1], o[".id"], null, mode, o, "POST");
 }
 
@@ -1550,7 +1555,6 @@ function _vw (ev)
 	var p = __(this,"vftab").parentNode.nextSibling;
 	this.previousSibling.checked=true;
 	p.firstChild.checked = true;
-	// if (u.length<3 && p.childNodes[1].childNodes.length>0) return; // dont repopulate
 	p.childNodes[1].innerHTML = ""
 	urargs (this, p.childNodes[1]);
 	boo (ev)

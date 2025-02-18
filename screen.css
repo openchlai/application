@@ -322,7 +322,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 
 :checked + .tab a { background-color:black; color:white; }
 :checked + .tabi a { background-color:#e3e3e8; color:black; font-weight:bold; border-radius:3px; }
-:checked + .tabu a { border-bottom:2px solid black; color:black; font-weight:bold; }
+:checked + .tabu a { border-bottom:3px solid black; color:black; /*font-weight:bold;*/ }
 :checked + .tabv { display:block; }
 :checked + .tabl a { border-left:3px solid black; background-color:lightblue;}
 
@@ -717,6 +717,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 .bdl { border-radius:6px 0 0 6px; }
 .bdl16 { border-radius:16px 0 0 16px; }
 .bdr { border-radius:0 6px 6px 0; }
+.bdr8 { border-radius:0 8px 8px 0; }
 .bdr_ { border-radius:0 3px 3px 0; }
 
 .z0 { z-index:0; }
@@ -864,8 +865,8 @@ a:hover .aw {color:white;}
 
 .awR {position:relative;}
 .awR:before, .awR:after {position:absolute; border: solid transparent; content:" "; height:0; width:0; top:1px; left:3px; }
-.awR:before {border-left-color:dimgray; border-width:8px; }
-.awR:after {border-left-color:white; border-width:6px; margin-left:0px; margin-top:2px;}
+.awR:before {border-left-color:dimgray; border-width:6px; }
+.awR:after {border-left-color:white; border-width:4px; margin-left:0px; margin-top:1px;}
 
 .ve_ { display:none;}
 #ve .ve_ { display:block; }
