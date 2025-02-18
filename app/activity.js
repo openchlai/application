@@ -104,7 +104,7 @@ te["activity_contact_no_data"] = { c:
 	{ s:["xx yy gy","No matching contacts found."] }
 ]};
 
-te["activity_contact_unknown"] = { div:["y"], c:
+te["activity_contact_unknown"] = { div:["x y ba bd mb1"], c:
 [
 	// { s:["","Science Yo!"] }
 	{ div:["c w21"], case_sex_enum:["Sex","",""," %0"] },
@@ -122,7 +122,7 @@ te["activity_contact_r"] = { div:[], c:
 		// todo: age, gender, location
 		{ div:["e"] }
 	]},
-	{ div:["e","sub"], arg:["activity_contact_unknown-r_-va-unkr-0","","-2"] }
+	{ div:["e","sub"], arg:["activity_contact_unknown-r_-vt-unkr-0","","-2"] }
 ]};
 
 te["activity_contact_k"] = { div:["g"], c:
@@ -139,7 +139,7 @@ te["activity_contact_nb"] = { div:[], c:
 	{ u:["activity_contact_no_data","dispositions_no_data"] }
 ]};
 
-te["activity_contact_title"] = { div:[], c:
+te["activity_contact_title"] = { div:["","va"], c:
 [
 	{ div:["yy"], c:
 	[
@@ -171,7 +171,7 @@ te["activity_contact_title"] = { div:[], c:
 				{ div:["c l03 t03 s","","Unknown Reporter"] }, 
 				{ div:["e"] }
 			]},
-			{ div:["e","sub"], arg:["activity_contact_unknown-r_-va-unkr-0","","-2"] }
+			{ div:["e","sub"], arg:["activity_contact_unknown-r_-vt-unkr-0","","-2"] }
 		]},
 		{ div:["e"] },
 	]},

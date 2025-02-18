@@ -1,5 +1,5 @@
 
-te["tag"] = { div:["c","va"], s:["mtag gwd cb bd",""], c: 
+te["tag"] = { div:["c","va"], s:["mtag gb cw bd",""], c: 
 [
 	{ div:["d w02_"], ac:["abs w02_ ao",null,"_usel","x y04 bdr cws n tc","&Cross;"] },
 	{ div:["x y04 mr3"], uval:["",null] },
