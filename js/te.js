@@ -1269,17 +1269,6 @@ function url (p, u, m, a="", data=null, l=0, o=null, meth="GET")
         x.send (data);
 }
 
-function postj (el,k,mode=2) 
-{
-        var id = "v"
-        var u = el.id.split ("-");
-        if (u.length>2) id=u[2] 
-        var p = __(el,id);
-        var o = {}; // console.log (k+"|"+id+"|"+p.id);
-        jso (p,o,k); 
-        url (p, u[0], u[1], o[".id"], null, mode, o, "POST");
-}
-
 function urargs (el, p)
 {
 	var u = el.id.split("-");
@@ -1332,23 +1321,6 @@ function uvpfl (p, m=1)
 	url (p, u[0], u[1], (a[".id"]+a.args));
 }
 
-function uvpf (el)
-{
-	var u = el.id.split ("-");
-	var o = {}; 	
-	var p = __(el);
-	var pvf = elvpf;
-	elvpf = null;
-	jso (p, o);
-	ra[u[1]] = o;
-	p = document.getElementById ("vp");
-	p.style.display = "none";
-	p.innerHTML = "";
-	pvf.firstChild.innerHTML = "";
-	nd (pvf.firstChild, te[u[0]], [], [], [0]);
-	uvpfl (pvf.parentNode)
-}
-
 function uvpr (el, u, a, r, m) // uvp return
 {
 	el.style.display = "none"; // hide vp
@@ -1367,6 +1339,23 @@ function uvpr (el, u, a, r, m) // uvp return
                 el = el_;
         }
 	nd (el, te[u_[0]], [], r, [0]);
+}
+
+function uvpf (el)
+{
+	var u = el.id.split ("-");
+	var o = {}; 	
+	var p = __(el);
+	var pvf = elvpf;
+	elvpf = null;
+	jso (p, o);
+	ra[u[1]] = o;
+	p = document.getElementById ("vp");
+	p.style.display = "none";
+	p.innerHTML = "";
+	pvf.firstChild.innerHTML = "";
+	nd (pvf.firstChild, te[u[0]], [], [], [0]);
+	uvpfl (pvf.parentNode)
 }
 
 function uvp ()
@@ -1411,25 +1400,6 @@ function vp (p)
 
 // ---
 
-function _nd (ev)
-{
-	ra = [];
-	for (var k in re) ra[k]=re[k]; // reset ra
-
-	var u = this.id.split("-");
-	var p = this;
-	if (u.length>2 && u[2].length>0) p = __(p,u[2]);
-	if (u.length>3 && u[3].length>0) p = _(p,u[3]);
-	if (u.length>4 && u[4].length>0) p.innerHTML = ""; // todo: doc-fragment
-	
-	var r_ = ra[u[1]][0].slice(0); // get a copy
-	rargs (r_, this.firstChild.lastChild.childNodes, r_);
-	
-	//console.log ("[nd] "+u[0]+" "+u[1]+" | "+JSON.stringify (r_));
-	nd (p, te[u[0]], [], r_, [0]);
-	boo(ev);
-}
-
 function _u (ev) 
 {
 	var u = this.id.split ("-");
@@ -1464,42 +1434,18 @@ function _nav (ev)
 	boo(ev)
 }
 
-function _del (ev) // delete record
-{
-	// todo: js confirm
-	var u = this.id.split ("-");
-	var el = __(this,"va");
-	var p = el.parentNode;
-	var o = {};
-	argv (this, o);
-	if (this.id.length<1) 
-	{
-		p.removeChild (el);
-		return;
-	}
-	url (el, u[0], u[1], o[".id"], null, 2, o, "POST");
-	boo(ev);
-}
-
 function _postj (ev)
 {
-	postj (this,"name");
-	// boo(ev);
+	var p = __(this,id);
+        var o = {}; 
+        var u = this.id.split ("-");
+        var id = "v"
+	if (u.length>2) id=u[2] 
+        jso (p,o); 
+        url (p, u[0], u[1], o[".id"], null, 2, o, "POST");
 }
 
-function _postji (ev) 
-{
-	postj (this,"id");
-	boo(ev);
-}
-
-function _postjb (ev) 
-{       
-        postj (this,"name",3);
-        boo(ev);
-}
-
-function _uvpf () { uvpf (this); }
+// ---
 
 function _uvpd (ev)
 {	
@@ -1509,6 +1455,8 @@ function _uvpd (ev)
 	if (this.firstChild.id=="vddvf") uvpf (this.firstChild.lastChild.firstChild.firstChild);
 	if (elvp) uvp ();
 }
+
+function _uvpf () { uvpf (this); }
 
 function _uvp (ev)
 {
@@ -1521,9 +1469,19 @@ function _uvp (ev)
 
 function _uvw ()
 {
-	var p = __(this,"vfvw");
+	var p = __(this,"vf"); 
 	p.parentNode.previousSibling.firstChild.checked = true;
+	p.parentNode.parentNode.firstChild.firstChild.checked = true;
 }
+
+function _utab ()
+{
+	var p = __(this,"vf").parentNode.parentNode; 
+	p.previousSibling.firstChild.firstChild.checked = true;
+	p.firstChild.firstChild.checked = true;
+}
+
+// ---
 
 function _vpf ()
 {
@@ -1533,7 +1491,6 @@ function _vpf ()
 	elvpf = __(this,"vb").nextSibling;
 	jso (elvpf, o);
 	ra[u[1]] = o;
-	console.log ("[vpf] "+u[1]+" : "+JSON.stringify (o));
 	vp (p);
 	nd (p, te[u[0]], [], [], [0]);
 }
@@ -1552,7 +1509,7 @@ function _vp (ev)
 function _vw (ev)
 {
 	var u = this.id.split ("-");
-	var p = __(this,"vftab").parentNode.nextSibling;
+	var p = __(this,"vf").parentNode.nextSibling;
 	this.previousSibling.checked=true;
 	p.firstChild.checked = true;
 	p.childNodes[1].innerHTML = ""
@@ -1588,7 +1545,7 @@ function _tab (ev)
 	urargs (this, p.childNodes[1]);
 }
 
-// --------------------
+// ---
 
 function _print ()
 {

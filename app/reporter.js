@@ -73,7 +73,7 @@ te["case_form_reporter_followup_r"] = { case_form_reporter_r_:["case_form_report
 te["case_form_reporter_new_case_r"] = { case_form_reporter_r_:["case_form_reporter_new_case_r-reporters-va--@","reporter_uuid_id"] };
 
 
-te["case_form_reporter"] = { case_form_reporter_:["Reporter","case_form_reporter_r","case_form_reporter_r"] };
+te["case_form_reporter"] = { case_form_reporter_:["New Reporter","case_form_reporter_r","case_form_reporter_r"] };
 
 te["case_form_reporter_followup"] = { case_form_reporter_:["Followup By","case_form_reporter_followup_r","case_form_reporter_followup_r"] };
 
@@ -81,44 +81,42 @@ te["case_form_reporter_new_case"] = { case_form_reporter_:["Reporter","case_form
 
 // ----------------------------------------------------	
 
-te["case_reporter_ed_"] = { div:["w68 ma sh__ gw_"], c:
+te["case_reporter_ed_"] = { c:// div:["w68 ma sh__ gw_"], c:
 [	
-	{ div:["x15 tt"], c:
-	[
-		{ s:["c xx y12 n b",null] },
-		{ ac:["d","","_uvp","xx y08 h cb","&Cross;"] },
-		{ div:["e"] }
-	]},
+	//{ div:[], c:
+	//[
+	//	{ div:[""], s:["tt","New Reporter"] },
+	//]},
 
 	{ div:["","ve"], c:
 	[
-		{ div:["x25 t"], c:[ { p:["c w55","nb"], u:["nb","reporters_nb"] }, { div:["e"] } ] },
+		{ div:["w64 t"], c:[ { p:["c","nb"], u:["nb","reporters_nb"] }, { div:["e"] } ] },
 
-		{ p:["x25","contact"], case_contact_ed_r_:
+		{ p:["w64","contact"], case_contact_ed_r_:
 		[
-"Reporter's Name",":v:reporters:contact_fullname","Enter Reporter's Names",
-":v:reporters:contact_age",":v:reporters:contact_dob",":v:reporters:contact_dob",":v:reporters:contact_age_group_id",":v:reporters:contact_age_group"," %0", 
-":v:reporters:contact_location_id",":v:reporters:contact_location"," %0",
-":v:reporters:contact_sex_id",":v:reporters:contact_sex"," %0",  
-":v:reporters:contact_landmark",
-":v:reporters:contact_nationality_id",":v:reporters:contact_nationality"," %0",
-":v:reporters:contact_national_id_type_id",":v:reporters:contact_national_id_type"," %0",
-":v:reporters:contact_national_id", 
-":v:reporters:contact_lang_id",":v:reporters:contact_lang"," %0", 
-"Is the Reporter a Refugee?",":v:reporters:contact_is_refugee",
-":v:reporters:contact_tribe_id",":v:reporters:contact_tribe"," %0",
-":v:reporters:contact_phone",
-":v:reporters:contact_phone2", 
-":v:reporters:contact_email"
+	"Reporter's Name",":v:reporters:contact_fullname","Enter Reporter's Names",
+	":v:reporters:contact_age",":v:reporters:contact_dob",":v:reporters:contact_dob",":v:reporters:contact_age_group_id",":v:reporters:contact_age_group"," %0", 
+	":v:reporters:contact_location_id",":v:reporters:contact_location"," %0",
+	":v:reporters:contact_sex_id",":v:reporters:contact_sex"," %0",  
+	":v:reporters:contact_landmark",
+	":v:reporters:contact_nationality_id",":v:reporters:contact_nationality"," %0",
+	":v:reporters:contact_national_id_type_id",":v:reporters:contact_national_id_type"," %0",
+	":v:reporters:contact_national_id", 
+	":v:reporters:contact_lang_id",":v:reporters:contact_lang"," %0", 
+	"Is the Reporter a Refugee?",":v:reporters:contact_is_refugee",
+	":v:reporters:contact_tribe_id",":v:reporters:contact_tribe"," %0",
+	":v:reporters:contact_phone",
+	":v:reporters:contact_phone2", 
+	":v:reporters:contact_email"
 		]},			
-				
-		{ div:["w63 x25 t30 b20"], vp_sav:[null,null,null,null,null,null,null] }
+			
+		{ div:["w63 t25 b10"], vp_sav:[null,null,null,null,null,null,null] }
 	]}
 ]};
+		
+te["case_reporter_ed"] = { case_reporter_ed_:["reporter_ed-reporters","_activity_postj","Update","Updating...","","_utab","Cancel"] };
 
-te["case_reporter_ed"] = { case_reporter_ed_:["Edit Reporter","reporter_ed-reporters","_activity_case_postj","Update","Updating...","","_uvp","Cancel"] };
-
-te["case_reporter_new"] = { case_reporter_ed_:["New Reporter","reporter_new-reporters","_activity_case_postj","Create","Creating...","","_uvp","Cancel"] };
+te["case_reporter_new"] = { case_reporter_ed_:["reporter_new-contacts^disposition","_activity_postj","Create","Creating...","","_utab","Cancel"] };
 
 // --------------------------------------------------------------------------------------------
 

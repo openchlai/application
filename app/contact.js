@@ -92,7 +92,7 @@ te["case_contact_ed_r_"] = { c:  //
 	
 	{ div:["tt"], c:
 	[
-		{ div:["c"], c:
+		{ div:["c w41"], c:
 		[
 			{ s:["x y",null] },
 			{ p:["","o"], c:
@@ -101,7 +101,7 @@ te["case_contact_ed_r_"] = { c:  //
 				{ div:["e"] }
 			]}, 
 		]},
-		{ div:["d w21"], case_tribe_enum:["Tribe",null,null,null] },
+		{ div:["c w21 ll"], case_tribe_enum:["Tribe",null,null,null] },
 		{ div:["e"] }
 	]},
 	
@@ -114,20 +114,20 @@ te["case_contact_ed_r_"] = { c:  //
 	]},
 ]};
 
-te["case_contact_ed_"] = { div:["w68 ma sh__ gw_"], c:
+te["case_contact_ed_"] = { c: // div:["w68 ma sh__ gw_"], c:
 [	
-	{ div:["x15 tt"], c:
-	[
-		{ s:["c xx y12 n b",null] },
-		{ ac:["d","","_uvp","xx y08 h cb","&Cross;"] },
-		{ div:["e"] }
-	]},
+	// { div:["x15 tt"], c:
+	// [
+	// 	{ s:["c xx y12 n b",null] },
+	// 	{ ac:["d","","_uvp","xx y08 h cb","&Cross;"] },
+	// 	{ div:["e"] }
+	// ]},
 
 	{ div:["","ve"], c:
 	[
-		{ div:["x25 t"], c:[ { p:["c w55","nb"], u:["nb","contacts_nb"] }, { div:["e"] } ] },
+		{ div:["t"], c:[ { p:["c w63","nb"], u:["nb","contacts_nb"] }, { div:["e"] } ] },
 
-		{ p:["x25","contact"], case_contact_ed_r_:
+		{ p:["w64","contact"], case_contact_ed_r_:
 		[
 "Name",":v:contacts:fullname","Enter Contact's Names",
 ":v:contacts:age",":v:contacts:dob",":v:contacts:dob",":v:contacts:age_group_id",":v:contacts:age_group"," %0", 
@@ -147,13 +147,13 @@ te["case_contact_ed_"] = { div:["w68 ma sh__ gw_"], c:
 		
                 { p:["g","o"], arg:["","disposition_id",null] },		
 				
-		{ div:["w63 x25 t40 b20"], vp_sav:[null,null,null,null,null,null,null] }
+		{ div:["w63 t25 b10"], vp_sav:[null,null,null,null,null,null,null] }
 	]}
 ]};
 
-te["case_contact_ed"] = { case_contact_ed_:["Edit Contact",DISPOSITION_ID_CONTACT_EDIT, "case_contact_ed-contacts","_activity_postj","Update","Updating...","","_uvp", "Cancel"] };
+te["case_contact_ed"] = { case_contact_ed_:[DISPOSITION_ID_CONTACT_EDIT, "case_contact_ed-contacts","_activity_postj","Update","Updating...","","_uvp", "Cancel"] };
 
-te["case_contact_new"] = { case_contact_ed_:["New Contact", DISPOSITION_ID_CONTACT_NEW, "case_contact_new-contacts^disposition", "_activity_postj", "Create", "Creating...", "", "_uvp", "Cancel"] };
+te["case_contact_new"] = { case_contact_ed_:[DISPOSITION_ID_CONTACT_NEW, "case_contact_new-contacts^disposition", "_activity_postj", "Create", "Creating...", "", "_uvp", "Cancel"] };
 
 // ---
 
@@ -278,7 +278,7 @@ te["contact_vw_rv_phone"] = { c:
 
 te["contact_vw_rv"] = { c:
 [
-	{ div:["x t"], c:
+	{ div:["x"], c:
 	[
 		{ div:["c l t"], uval:["",null] },
 		{ s:["c t",","] },
@@ -290,7 +290,7 @@ te["contact_vw_rv"] = { c:
 	{ div:["x s"], c:
 	[
 		{ div:[" x t"], uval:["",null] },
-		{ s:["c x t s cd","Nearest Landmark:"] },
+		// { s:["c x t s cd","Nearest Landmark:"] },
 		{ s:["c t i",null] },
 		{ div:["e"] }
 	]},

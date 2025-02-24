@@ -124,7 +124,7 @@ var UU =
 "reporter_uuid": { 201:[["case_new","r_"]], 			412:[["reporter_not_selected","r_"]] },
 "reporter_is_client":{ 202:[["reporter_isclient_ufn","reporters_isclient","va"]],  412:[["nb","errors","v","nb"]] },
 "reporter_ed":{ 200:[["case_reporter_ed","reporters","vp"]], 202:[["uvpfn","reporters","vp"]], 412:[["nb","errors","v","nb"]] },
-"reporter_new":{ 201:[["uvpfn","contacts","vp"]], 412:[["nb","errors","v","nb"]] },
+"reporter_new":{ 201:[["sasasas","reporters"]], 412:[["nb","errors","v","nb"]] },
 "reporter_vw_id":{ 200:[["case_reporter_vw_id","reporters"]] },
 
 "client_del":{ 202:[["case_client_del","clients_del","va"]], 412:[["nb","errors","v","nb"]] },
@@ -691,10 +691,10 @@ te["vp_sav"] = { c:
 [
 	{ div:["d l15"], c:
 	[ 
-		{ ac:["ag btn",null,null,"w10 y gb cw tc",null] }, 
+		{ ac:["ao btn",null,null,"w10 y gb bd8 cw tc",null] }, 
 		{ s:["y b savl",null] } 
 	]},
-	{ div:["d","va"], ac:["ay",null,null,"w09 y04 ba tc cd",""], c:
+	{ div:["d","va"], ac:["ay",null,null,"w09 y04 bd8 ba tc cd",""], c:
 	[ 
 		{ s:["",null] },
 		{ p:["g","o"], arg:["",".id","%0"] } 

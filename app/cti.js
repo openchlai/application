@@ -1020,3 +1020,53 @@ function ldami (o,c)
         chans_pop (ts);
 }
 
+// depricated te
+
+function _postjb (ev)
+{
+	var id = "v"
+        var u = el.id.split ("-");
+        if (u.length>2) id=u[2]
+        var p = __(el,id);
+        var o = {}; // console.log (k+"|"+id+"|"+p.id);
+        jso (p,o);
+        url (p, u[0], u[1], o[".id"], null, 3, o, "POST");
+        boo(ev);
+}
+
+function _del (ev) // delete record
+{
+	// todo: js confirm
+	var u = this.id.split ("-");
+	var el = __(this,"va");
+	var p = el.parentNode;
+	var o = {};
+	argv (this, o);
+	if (this.id.length<1)
+	{
+		p.removeChild (el);
+		return;
+	}
+	url (el, u[0], u[1], o[".id"], null, 2, o, "POST");
+	boo(ev);
+}
+
+function _nd (ev)
+{
+	ra = [];
+	for (var k in re) ra[k]=re[k]; // reset ra
+
+	var u = this.id.split("-");
+	var p = this;
+	if (u.length>2 && u[2].length>0) p = __(p,u[2]);
+	if (u.length>3 && u[3].length>0) p = _(p,u[3]);
+	if (u.length>4 && u[4].length>0) p.innerHTML = ""; // todo: doc-fragment
+
+	var r_ = ra[u[1]][0].slice(0); // get a copy
+	rargs (r_, this.firstChild.lastChild.childNodes, r_);
+
+	//console.log ("[nd] "+u[0]+" "+u[1]+" | "+JSON.stringify (r_));
+	nd (p, te[u[0]], [], r_, [0]);
+	boo(ev);
+}
+

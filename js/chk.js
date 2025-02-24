@@ -1,7 +1,7 @@
 
 te["tag"] = { div:["c","va"], s:["mtag gb cw bd",""], c: 
 [
-	{ div:["d w02_"], ac:["abs w02_ ao",null,"_usel","x y04 bdr cws n tc","&Cross;"] },
+	{ div:["d w02_"], ac:["abs w02_ ao",null,"_usel","x y04 bdr8 cws n tc","&Cross;"] },
 	{ div:["x y04 mr3"], uval:["",null] },
 	{ div:["e"], c:[ { input:["g","",null,null,"checkbox","1"] }, { arg:["fullname_id-2","",null] } ] }
 ]};
@@ -10,14 +10,14 @@ te["tagv"] = { div:["c mtag"], s:[null,""], uval:["",null] };
 
 te["taga"] = { div:["c","va"], s:["mtag gb cw",""], c: // .f.f.f
 [
-	{ div:["d w02_"], ac:["abs w02_ ao",null,"_uchk","x y04 cs n tc","&Cross;"] },
+	{ div:["d w02_"], ac:["abs w02_ ao",null,"_uchk","x y04 bdr8 cws n tc","&Cross;"] },
 	{ div:["x y04 mr3"], uval:["",null] },
 	{ div:["e"], c:[ { input:["g","o",null,null,"checkbox","1"] }, { arg:["fullname_id-2","",null] } ] }
 ]}; 
 
 te["tag_"] = { div:["c","va"], s:["mtag bd8 gb cw",""], c: // taga in f
 [
-	{ div:["d w02_"], ac:["abs w02_ ao",null,"_uchk","x y04 cs tc ","&Cross;"] },
+	{ div:["d w02_"], ac:["abs w02_ ao",null,"_uchk","x y04 bdr8 cws n tc","&Cross;"] },
 	{ div:["l08 y04 mr3"], uval:["",null] },
 	{ div:["e",null], c:[ { input:["g","_",null,null,"checkbox","1"] }, { arg:["","",null] } ] }
 ]}; 
