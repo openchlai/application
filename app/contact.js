@@ -123,6 +123,9 @@ te["case_contact_ed_"] = { c: // div:["w68 ma sh__ gw_"], c:
 	// 	{ div:["e"] }
 	// ]},
 
+	{ s:["x t15 b",null] },
+
+
 	{ div:["","ve"], c:
 	[
 		{ div:["t"], c:[ { p:["c w63","nb"], u:["nb","contacts_nb"] }, { div:["e"] } ] },
@@ -145,15 +148,66 @@ te["case_contact_ed_"] = { c: // div:["w68 ma sh__ gw_"], c:
 ":v:contacts:email"
 		]},
 		
-                { p:["g","o"], arg:["","disposition_id",null] },		
-				
+                { p:["g","o"], c:
+		[
+			{ arg:["","disposition_id",null] },		
+			{ arg:["","case_uuid","-1"] }
+		]},
+
 		{ div:["w63 t25 b10"], vp_sav:[null,null,null,null,null,null,null] }
 	]}
 ]};
 
-te["case_contact_ed"] = { case_contact_ed_:[DISPOSITION_ID_CONTACT_EDIT, "case_contact_ed-contacts","_activity_postj","Update","Updating...","","_uvp", "Cancel"] };
+te["case_contact_ed"] = { case_contact_ed_:["Edit Reporter", DISPOSITION_ID_CONTACT_EDIT, "activity_contact_ed-reporters^disposition","_activity_postj","Update","Updating...","","_utab", "Cancel"] };
 
-te["case_contact_new"] = { case_contact_ed_:[DISPOSITION_ID_CONTACT_NEW, "case_contact_new-contacts^disposition", "_activity_postj", "Create", "Creating...", "", "_uvp", "Cancel"] };
+te["case_contact_new"] = { case_contact_ed_:["New Reporter", DISPOSITION_ID_CONTACT_NEW, "activity_contact_new-reporters^disposition", "_activity_postj", "Create", "Creating...", "", "_utab", "Cancel"] };
+
+te["contact_ed_r_"] = { div:["","ve"], c:
+[
+	{ div:["x"], c:[ { p:["c w40","nb"], u:["nb","contacts_nb"] }, { div:["e"] } ] },
+	{ p:["","o"], c:
+	[
+		{ div:["t15"], c:
+		[
+			{ s:["c w13 y","First Name"] }, { txt:["c w25 gw ba","w25 x y","","fname","%8"] }, { div:["e"] }
+		]},
+		{ div:["t15"], c:
+		[
+			{ s:["c w13 y","Last Name"] }, { txt:["c w25 gw ba","w25 x y","","lname","%9"] }, { div:["e"] }
+		]},
+		{ div:["t15"], c:
+		[
+			{ s:["c w13 y","Phone"] }, { txt:["c w25 gw ba","w25 x y","","phone","%10"] }, { div:["e"] }
+		]},
+		{ div:["t15"], c:
+		[
+			{ s:["c w13 y","Email"] }, { txt:["c w25 gw ba","w25 x y","","email","%11"] }, { div:["e"] }
+		]},
+		{ div:["t15"], c:
+		[
+			{ s:["c w13 y","Membership"] }, { txt:["c w25 gw ba","w25 x y","","membership","%13"] }, { div:["e"] }
+		]},
+		{ div:["t15"], c:
+		[
+			{ s:["c w13 y","DNC Status"] }, { txt:["c w25 gw ba","w25 x y","","dnc","%13"] }, { div:["e"] }
+		]},
+		
+	]},
+	{ div:["t35"], c:
+	[
+		{ div:["c w06 r02"], c:[ { ac:["aa btn",null,"_postj","x y04 w05 gbl cw tc","Save"] }, { s:["y07 bd b savl","..."] } ] },
+		{ div:["c l20","va"], ac:["ay",null,null,"x y04 w05 gwd tc cbr","Cancel"], c:[ { p:["g","o"], arg:["",".id","%0"] } ] },
+		{ div:["e"] }
+	]}
+]};
+
+te["contact_ed_r"] = { contact_ed_r_:["contact_ed-contacts","contact_vw_id-contacts-vp","_u"] };
+
+te["contact_new_r"] = { contact_ed_r_:["contact_new-contacts","","_vpclose"] };
+
+te["contact_ed"] = { vped:["w60 ma bd sh__ gw","Edit Contact","contact_ed_r"] };
+
+te["contact_new"] = { vped:["w60 ma bd sh__ gw","New Contact","contact_new_r"] };
 
 // ---
 
@@ -213,56 +267,15 @@ te["case_contact_vw_id_"] = { c:
 	
 ]};
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-te["contact_ed_r_"] = { div:["","ve"], c:
+te["case_contact_vw_id"] = { case_contact_vw_id_:
 [
-	{ div:["x"], c:[ { p:["c w40","nb"], u:["nb","contacts_nb"] }, { div:["e"] } ] },
-	{ p:["","o"], c:
-	[
-		{ div:["t15"], c:
-		[
-			{ s:["c w13 y","First Name"] }, { txt:["c w25 gw ba","w25 x y","","fname","%8"] }, { div:["e"] }
-		]},
-		{ div:["t15"], c:
-		[
-			{ s:["c w13 y","Last Name"] }, { txt:["c w25 gw ba","w25 x y","","lname","%9"] }, { div:["e"] }
-		]},
-		{ div:["t15"], c:
-		[
-			{ s:["c w13 y","Phone"] }, { txt:["c w25 gw ba","w25 x y","","phone","%10"] }, { div:["e"] }
-		]},
-		{ div:["t15"], c:
-		[
-			{ s:["c w13 y","Email"] }, { txt:["c w25 gw ba","w25 x y","","email","%11"] }, { div:["e"] }
-		]},
-		{ div:["t15"], c:
-		[
-			{ s:["c w13 y","Membership"] }, { txt:["c w25 gw ba","w25 x y","","membership","%13"] }, { div:["e"] }
-		]},
-		{ div:["t15"], c:
-		[
-			{ s:["c w13 y","DNC Status"] }, { txt:["c w25 gw ba","w25 x y","","dnc","%13"] }, { div:["e"] }
-		]},
-		
-	]},
-	{ div:["t35"], c:
-	[
-		{ div:["c w06 r02"], c:[ { ac:["aa btn",null,"_postj","x y04 w05 gbl cw tc","Save"] }, { s:["y07 bd b savl","..."] } ] },
-		{ div:["c l20","va"], ac:["ay",null,null,"x y04 w05 gwd tc cbr","Cancel"], c:[ { p:["g","o"], arg:["",".id","%0"] } ] },
-		{ div:["e"] }
-	]}
+":v:reporters:contact_fullname",":v:reporters:contact_age",":v:reporters:contact_age_group",":v:reporters:contact_dob",
+":v:reporters:contact_location",":v:reporters:contact_sex",
+":v:reporters:contact_landmark",":v:reporters:contact_nationality",
+":v:reporters:contact_national_id_type",":v:reporters:contact_national_id", ":v:reporters:contact_lang",
+":v:reporters:contact_is_refugee::yesno:2", ":v:reporters:contact_tribe",
+":v:reporters:contact_phone",":v:reporters:contact_phone2",":v:reporters:contact_email"
 ]};
-
-te["contact_ed_r"] = { contact_ed_r_:["contact_ed-contacts","contact_vw_id-contacts-vp","_u"] };
-
-te["contact_new_r"] = { contact_ed_r_:["contact_new-contacts","","_vpclose"] };
-
-te["contact_ed"] = { vped:["w60 ma bd sh__ gw","Edit Contact","contact_ed_r"] };
-
-te["contact_new"] = { vped:["w60 ma bd sh__ gw","New Contact","contact_new_r"] };
-
-// ------------------------------------------
 
 te["contact_vw_rv_phone"] = { c:
 [
@@ -278,8 +291,9 @@ te["contact_vw_rv_phone"] = { c:
 
 te["contact_vw_rv"] = { c:
 [
-	{ div:["x"], c:
+	{ div:["x cb"], c:
 	[
+		//{ ac:["c","","","l t cb u",""], uval:["",null] },
 		{ div:["c l t"], uval:["",null] },
 		{ s:["c t",","] },
 		{ div:["c ll t"], uval:["",null] },
@@ -287,11 +301,11 @@ te["contact_vw_rv"] = { c:
 		{ div:["c ll t"], uval:["",null] },
 		{ div:["e"] }
 	]},
-	{ div:["x s"], c:
+	{ div:["xx y s"], c:
 	[
-		{ div:[" x t"], uval:["",null] },
+		{ uval:["",null] },
 		// { s:["c x t s cd","Nearest Landmark:"] },
-		{ s:["c t i",null] },
+		{ span:["xx i cd m","",null] },
 		{ div:["e"] }
 	]},
 ]};

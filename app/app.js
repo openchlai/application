@@ -99,6 +99,8 @@ var UU =
 
 "activity_message_send":{ 201:[["activity_message_sended","messages","","sended"]] },
 "activity_messages":{ 200:[["activity_messages_ufn","messages_ctx"]] },
+"activity_contact_ed":{ 200:[["activity_contact_updated","reporters_disposition","vf"]], 202:[["activity_contact_updated","reporters_disposition"]], 412:[["nb","errors","v","nb"]] },
+"activity_contact_new":{ 201:[["activity_contact_created","reporters_disposition","vf"]], 412:[["nb","errors","v","nb"]] },
 "activity_contact_ls":{ 200:[["activity_contact_ls","dispositions_ctx"]] },
 "activity_contact_main":{ 200:[["activity_contacts","dispositions_ctx"]] },
 "activity_disposition_vwr":{ 200:[["activity_disposition_vwr","dispositions"]] },
@@ -144,9 +146,6 @@ var UU =
 "client_referal_del":{ 202:[["case_notif_del","client_referals"]], 412:[["nb","errors","v","nb"]] },
 "referal_del":{ 202:[["case_notif_del","referals"]], 412:[["nb","errors","v","nb"]] },
 "service_del":{ 202:[["case_notif_del","services"]], 412:[["nb","errors","v","nb"]] },
-
-"case_contact_ed":{ 200:[["case_contact_ed","contacts"]], 202:[["uvpfn","contacts","vp"]], 412:[["nb","errors","v","nb"]] },
-"case_contact_new":{ 201:[["uvpfn","contacts_disposition","vp"]], 412:[["nb","errors","v","nb"]] },
 
 "case_rpt_vw":{ 200:[["rpt_vw","cases_rpt"]] },
 "case_update":{ 202:[["uvpfn","cases","vp"]], 412:[["nb","errors","v","nb"]], 200:[["case_update","cases"]] },

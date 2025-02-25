@@ -16,7 +16,6 @@ _nav
 
 _u
 
-
 $contacts_api = array // todo: primary_contact_foreign_key (when someone calls with different number)
 (
         array ("categories","","duf","id","age_group_id",NULL, "id:age_group_id", "fullname:age_group"),

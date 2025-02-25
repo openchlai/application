@@ -66,7 +66,7 @@ li {display:block; list-style-type:none; padding:0; margin:0; cursor:pointer; }
 .h3_ {font-size:18px; line-height:18px;}
 .h3 {font-size:16px; line-height:16px;}
 .n {font-size:15px;}
-.m {font-size:12px;}
+.m {font-size:13px;}
 .s {font-size:11px;}
 .ss {font-size:6px;}
 .sss {font-size:2px;}
@@ -297,10 +297,8 @@ ul:hover {background-color:#cee8f0; color:black;}
 .nav a:hover .dl_ {border-right:5px solid white; border-left:0;}
 .nav a:hover .dr_ {border-left:5px solid white; border-right:0; }
 
-:checked + .rc_ a { color:black; }
 
-:checked + .rg a { background-color:#d1d1d1; color:black; }
-:checked + .rg_ { background-color:lightblue; color:black; }
+:checked + .r li { background-color:#d1d1d1; color:black; }
 
 :checked + .r .opt { border:1px solid black; }
 :checked + .r .opt:after { position:absolute; height:6px; width:5px; top:2px; left:2px; border-radius:11px; border:1px solid black; content:" "; background-color:black; }

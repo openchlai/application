@@ -77,15 +77,34 @@ te["activity_messages"] = { c:
 
 // --------------------------------------------------------------------------------------------------------------------
 
-te["activity_contact_new_saved"] = { c:
+te["activity_contact_created_r"] = { c:
 [
-	{ u:["case_contact_new","r_"] }
-	// { } // switch tabs and load contacts
+	{ div:["","va"], s:["x y15 b","New Reporter"] },
+	{ div:[], c:
+	[
+		{ input:["g","","contact_id",":v:reporters:contact_id","radio","1"] },
+		{ div:["r bt_"], ev:["_opt"], c:[ { li:["x t02 bd cb rg"], c:
+		[
+			{ div:["c w01_ t08"], s:["opt",""] },
+			{ div:["c w55"], contact_vw_rv:[":v:reporters:contact_fullname", ":v:reporters:contact_age_group", ":v:reporters:contact_sex", ":v:reporters:contact_location",":v:reporters:contact_landmark"] },
+			{ ac:["d","","","x07 y03 bd","Edit"] },
+			{ div:["e"] }
+		]} ]},
+		// { div:["e","sub"], arg:["activity_contact_unknown-r_-vt-unkr-0","","-2"] }
+	]},
+	{ div:["y bt_"] },
+	{ ac:["t15 b10 ao btn","activity_disposition-dispositions","_activity_postj","y07 gb bd cw b n tc","Next"] }
+]};
+
+te["activity_contact_created"] = { c:
+[
+	{ u:["case_contact_vw_id","reporters_disposition"] },
+	{ ufn:["activity_contact_created_ufn"] } // switch tab to 'select contact'
 ]};
 
 te["activity_contact_unknown"] = { c:
 [
-	{ s:["x yy b","Enter Gender and Age Estimate."] },
+	{ s:["x y15 b","Enter Gender and Age Estimate."] },
 
 	{ div:["t"], c:
 	[
@@ -94,7 +113,7 @@ te["activity_contact_unknown"] = { c:
 		{ div:["e"] }
 	]},
 
-	{ ac:["yy ao btn","activity_disposition-dispositions","_activity_reporter_postj","y07 gb bd cw b n tc","Next"] }
+	{ ac:["t30 b10 ao btn","activity_disposition-dispositions","_activity_reporter_postj","y07 gb bd cw b n tc","Next"] }
 
 ]};
 
@@ -109,7 +128,7 @@ te["activity_contact_f"] = { c:
 
 // ---
 
-te["activity_contact_footer"] = { div:["y"], c:
+te["activity_contact_footer"] = { div:["y bt_"], c:
 [
 	{ div:["d t"], c:[ { ac:["nav","activity_contact_ls-dispositions","_nav","dh bd",""], c:[ { div:["da_w dr bd"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
 	{ div:["d t"], c:[ { aci:["nav","activity_contact_ls-dispositions","_nav","dh bd","prev",""], c:[ { div:["da_w dl bd"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
@@ -129,12 +148,12 @@ te["activity_contact_no_data"] = { c:
 te["activity_contact_r"] = { div:[], c:
 [
 	{ input:["g","","contact_id",":v:dispositions:reporter_id","radio"] },
-	{ ac:["rg rc r ay","","_opt","x t02 bd cb",""], c:
+	{ div:["r bt_"], ev:["_opt"], c:[ { li:["x t02 bd cb rg"], c:
 	[
 		{ div:["c w01_ t08"], s:["opt",""] },
-		{ contact_vw_rv:[":v:dispositions:reporter_fullname", ":v:dispositions:reporter_age_group", ":v:dispositions:reporter_sex", ":v:dispositions:reporter_location",":v:dispositions:reporter_landmark"] },
+		{ div:["c w60"], contact_vw_rv:[":v:dispositions:reporter_fullname", ":v:dispositions:reporter_age_group", ":v:dispositions:reporter_sex", ":v:dispositions:reporter_location",":v:dispositions:reporter_landmark"] },
 		{ div:["e"] }
-	]},
+	]} ]},
 	// { div:["e","sub"], arg:["activity_contact_unknown-r_-vt-unkr-0","","-2"] }
 ]};
 
@@ -152,7 +171,7 @@ te["activity_contact_nb"] = { div:[], c:
 	{ u:["activity_contact_no_data","dispositions_no_data"] }
 ]};
 
-te["activity_contact_title"] = { div:["","va"] };
+te["activity_contact_title"] = { div:["","va"], s:["x y15 b","Select Reporter If has Called/Chatted before."] };
 
 te["activity_contact_ls"] = { list:["activity_contact_title", "activity_contact_nb", "", "activity_contact_k", "activity_contact_r", "dispositions", "activity_contact_footer"] };
 
@@ -163,13 +182,13 @@ te["activity_contact_main"] = { c:
 	[
 		{ activity_f_tags:[] }
 	]},
-	{ div:["t","vt"], c:
+	{ div:["","vt"], c:
 	[
 		{ activity_f_tags:[] },
 		{ arg:["","disposition_id",(DISPOSITION_ID_CONTACT_NEW+","+DISPOSITION_ID_CONTACT_EDIT)] },
 		{ uv:["activity_contact_ls","dispositions"] } 
 	]},
-	{ ac:["yy ao btn","activity_disposition-dispositions","_activity_postj","y07 gb bd cw b n tc","Next"] }
+	{ ac:["t15 b10 ao btn","activity_disposition-dispositions","_activity_postj","y07 gb bd cw b n tc","Next"] }
 ]};
 
 // --------------------------------------------------------------------------------------------------------------------
@@ -193,18 +212,21 @@ te["activity_disposition_new_"] = { div:["w64 x15 y ma sh__ gw_ bd8","vdd"], ev:
 				{ ac:["ay tab","","_tab","x t02 bd8 cb",""], c:
 				[ 
 					{ s:["c y03 micon","person"] },
-					{ div:["c l03 t03 s","","Select Contact"] }, 
+					{ div:["c l03 r05 t03 s","","Select Reporter"] }, 
 					{ div:["e"] }
 				]}
 			]},
 			{ div:["c l15"], c:
 			[
 				{ input:["g","","activity_action","1","radio"] },
-				{ ac:["ay tab","","_tab","x t02 bd8 cb",""], c:
+				{ ac:["ay tab","case_contact_new-r_","_tab","x t02 bd8 cb",""], c:
 				[ 
 					{ s:["c y03 micon","add"] },
-					{ div:["c l03 t03 s","","New Reporter"] }, 
-					{ div:["e"] }
+					{ div:["c l03 r05 t03 s","","New Reporter"] }, 
+					{ div:["e"], c:
+					[
+
+					]}
 				]}
 			]},
 			{ div:["c l15"], c:
@@ -213,7 +235,7 @@ te["activity_disposition_new_"] = { div:["w64 x15 y ma sh__ gw_ bd8","vdd"], ev:
 				{ ac:["tab ay","","_tab","x t02 bd8 cb",""], c:
 				[ 
 					{ s:["c y03 micon","priority_high"] },
-					{ div:["c l03 t03 s","","Unknown Reporter"] }, 
+					{ div:["c l03 r05 t03 s","","Unknown Reporter"] }, 
 					{ div:["e"] }
 				]},
 			]},
@@ -1019,9 +1041,14 @@ function activity_case_ufn (el, u, a, r, m)
 	nd (el_, te["activity_disposition_r_new"], [], ra["dispositions"][0], [0]); // show toolbar	
 }
 
-function activity_postj (el, p__, o) 
+function activity_contact_created_ufn (el, u, a, r, m)
 {
-
+	var p = el.parentNode.parentNode;
+	var o = {};
+	p.previousSibling.firstChild.firstChild.checked = true;
+	p.firstChild.firstChild.checked = true;	
+	p.firstChild.childNodes[1].innerHTML = "";
+	nd (p.firstChild.childNodes[1], te["activity_contact_created_r"], [], r, [0]);
 }
 
 function _activity_close (ev)
@@ -1029,54 +1056,6 @@ function _activity_close (ev)
 	activity_close ();
 	boo (ev)
 }
-
-/*
-function _activity_case_postj (ev)
-{
-	var u = this.id.split ("-");
-	var p = __(this, "ve");
-	var p_ = __(elvp,"vfvw");
-	var p__ = __(p_,"vfvwm");
-	var o = {};
-	var o_ = {};
-	jso (p__.firstChild, o);  // channel details
-	jso (p, o);
-	jso (p_, o_);
-	o["case_id"] = o_[".id"];
-	url (p, u[0], u[1], o[".id"], null, 2, o, "POST");
-}
-
-function _activity_disposition_new (ev)
-{
-	var p = document.getElementById ("vp");
-	var p_ = __(this, "vftab");
-	var o_ = {};
-	var o = { "contact_id":"-1", "case_id":"-1" };
-	elvp = this.nextSibling;
-	vp (p);
-	jso (__(p_,"vfvwm").firstChild, o);  	// channel data
-	argv (p_, o_)				// contact_id (reporter)
-	if (o_["activity_contact_id"]) o["contact_id"] = o_["activity_contact_id"];
-	url (p, "activity_disposition_new", "cases_uuid", "", null, 0, o, "POST");
-	boo (ev);
-}
-
-function _activity_disposition_uvwr ()
-{
-	this.previousSibling.checked = true;
-	var p = __(this,"va").parentNode;
-	p.innerHTML = "";
-}
-
-function _activity_disposition_vwr (ev)
-{
-	var p = __(this,"vt").previousSibling.firstChild.firstChild;
-	var a = {};
-	argv (this, a);
-	this.previousSibling.checked = true;
-	url (p, "activity_disposition_vwr", "dispositions", a[".id"]);
-}
-*/
 
 function _activity_postj ()
 {

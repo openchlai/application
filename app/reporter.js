@@ -81,12 +81,12 @@ te["case_form_reporter_new_case"] = { case_form_reporter_:["Reporter","case_form
 
 // ----------------------------------------------------	
 
-te["case_reporter_ed_"] = { c:// div:["w68 ma sh__ gw_"], c:
+te["case_reporter_ed_"] = { div:["w68 ma sh__ gw_"], c: // reporter edit in case_form only 
 [	
-	//{ div:[], c:
-	//[
-	//	{ div:[""], s:["tt","New Reporter"] },
-	//]},
+	{ div:[], c:
+	[
+		{ div:[""], s:["tt","Edit Reporter"] },
+	]},
 
 	{ div:["","ve"], c:
 	[
@@ -108,15 +108,13 @@ te["case_reporter_ed_"] = { c:// div:["w68 ma sh__ gw_"], c:
 	":v:reporters:contact_phone",
 	":v:reporters:contact_phone2", 
 	":v:reporters:contact_email"
-		]},			
-			
+		]},
+					
 		{ div:["w63 t25 b10"], vp_sav:[null,null,null,null,null,null,null] }
 	]}
 ]};
 		
 te["case_reporter_ed"] = { case_reporter_ed_:["reporter_ed-reporters","_activity_postj","Update","Updating...","","_utab","Cancel"] };
-
-te["case_reporter_new"] = { case_reporter_ed_:["reporter_new-contacts^disposition","_activity_postj","Create","Creating...","","_utab","Cancel"] };
 
 // --------------------------------------------------------------------------------------------
 
