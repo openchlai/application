@@ -104,7 +104,7 @@ var UU =
 "activity_contact_ls":{ 200:[["activity_contact_ls","dispositions_ctx"]] },
 "activity_contact_main":{ 200:[["activity_contacts","dispositions_ctx"]] },
 "activity_disposition_vwr":{ 200:[["activity_disposition_vwr","dispositions"]] },
-"activity_disposition":{ 201:[["uvpfn","dispositions","vp"]], 412:[["nb","errors","v","nb"]], 200:[["activity_disposition","dispositions_ctx"]] },
+"activity_disposition":{ 200:[["activity_disposition_form","reporters_disposition"]], 201:[["activity_disposition_ufn","dispositions"]], 412:[["nb","errors","v","nb"]] },
 "activity_list":{ 200:[["activity_list","dispositions_ctx"]] },
 "activity_main":{ 200:[["activity_main","dispositions_ctx"]] },
 "activity_vw_id_tabs_messages":{ 200:[["activity_vw_id_tabs_messages","activities"]] },

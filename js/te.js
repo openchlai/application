@@ -493,7 +493,10 @@ function jso (p, o, k)
 			}
 			continue;
 		}
-		if (coll[i].id=="o") argv (coll[i], o, k, null, b);
+		if (coll[i].id=="o") 
+		{
+			argv (coll[i], o, k, null, b);
+		}
 	}
 
 	console.log ("[jso]  ("+p.id+"/"+p.className+") "+JSON.stringify (o)+" | "+JSON.stringify (b));
@@ -649,7 +652,8 @@ function vel (r,a) // :v:table_name:col_name::enum:enum_col
 	};
 	if (a[4]=="d") // date
 	{
-		return  vdt (v,["","d","dmy","0"," "]);
+		// console.log (a);
+		return  vdt (v,["","d",a[5],"0"," "]);
 	}
 	if (a[4]=="z")
 	{

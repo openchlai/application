@@ -299,13 +299,14 @@ te["contact_vw_rv"] = { c:
 		{ div:["c ll t"], uval:["",null] },
 		{ s:["c t",","] },
 		{ div:["c ll t"], uval:["",null] },
+		{ div:["d"], s:[null,null] },
 		{ div:["e"] }
 	]},
 	{ div:["xx y s"], c:
 	[
 		{ uval:["",null] },
 		// { s:["c x t s cd","Nearest Landmark:"] },
-		{ span:["xx i cd m","",null] },
+		{ span:["xx i co m","",null] },
 		{ div:["e"] }
 	]},
 ]};
