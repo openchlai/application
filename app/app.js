@@ -1,5 +1,5 @@
 // "lets think of this as a brainstorming pharse - no bad ideas. Keep spit balling!"
-// "maybe the solution is ai. (how can AI be the solution?) Thats the first question we will ast Ai"
+// "maybe the solution is ai. (how can AI be the solution?) Thats the first question we will ask Ai"
 // 
 
 var APIPATH = "/helpline/api/";  
@@ -81,7 +81,6 @@ var UU =
 "qa_main":{ 200:[["qa_main","qas_ctx"]] },
 "qas":{ 200:[["qas","qas_ctx"]], 201:[["qas","qas_ctx"]] },
 
-
 "call_rpt_vw":{ 200:[["rpt_vw","calls_rpt"]] },
 "call_dispositioned":{ 201:[["call_dispositioned","activities","vp"]], 202:[["call_dispositioned","activities","vp"]], 412:[["nb","errors","v","nb"]] },
 "call_case":{ 200:[["call_case","cases_ctx"]] },
@@ -103,8 +102,10 @@ var UU =
 "activity_contact_new":{ 201:[["activity_contact_created","reporters_disposition","vf"]], 412:[["nb","errors","v","nb"]] },
 "activity_contact_ls":{ 200:[["activity_contact_ls","dispositions_ctx"]] },
 "activity_contact_main":{ 200:[["activity_contacts","dispositions_ctx"]] },
+"activity_case_followup":{ 201:[["activity_case_ufn","reporters_uuid"]], 412:[["nb","errors","v","nb"]] },
+"activity_case_new":{ 201:[["activity_reporter_ufn","reporters_uuid"]], 412:[["nb","errors","v","nb"]] },
+"activity_disposition":{ 200:[["activity_disposition_form","contacts_disposition"]], 201:[["activity_disposition_ufn","dispositions"]], 412:[["nb","errors","v","nb"]] },
 "activity_disposition_vwr":{ 200:[["activity_disposition_vwr","dispositions"]] },
-"activity_disposition":{ 200:[["activity_disposition_form","reporters_disposition"]], 201:[["activity_disposition_ufn","dispositions"]], 412:[["nb","errors","v","nb"]] },
 "activity_list":{ 200:[["activity_list","dispositions_ctx"]] },
 "activity_main":{ 200:[["activity_main","dispositions_ctx"]] },
 "activity_vw_id_tabs_messages":{ 200:[["activity_vw_id_tabs_messages","activities"]] },
@@ -115,15 +116,6 @@ var UU =
 
 // ---
 
-"case_uuid_update":{ 201:[["case_update","cases"]], 412:[["nb","errors","v","nb"]] },
-"case_uuid_edit":{ 201:[["case_ed","cases"]], 412:[["nb","errors","v","nb"]] },
-"case_uuid_new":{ 201:[["case_new","r_"]], 412:[["nb","errors","v","nb"]] },
-
-// ---
-
-"reporter_duuid":{ 201:[["activity_disposition_new","r_"]], 	412:[["nb","errors"]] },
-"reporter_fuuid":{ 201:[["case_vw_id","cases"]], 		412:[["reporter_not_selected","r_"]] },
-"reporter_uuid": { 201:[["case_new","r_"]], 			412:[["reporter_not_selected","r_"]] },
 "reporter_is_client":{ 202:[["reporter_isclient_ufn","reporters_isclient","va"]],  412:[["nb","errors","v","nb"]] },
 "reporter_ed":{ 200:[["case_reporter_ed","reporters","vp"]], 202:[["uvpfn","reporters","vp"]], 412:[["nb","errors","v","nb"]] },
 "reporter_new":{ 201:[["sasasas","reporters"]], 412:[["nb","errors","v","nb"]] },
@@ -150,7 +142,7 @@ var UU =
 "case_rpt_vw":{ 200:[["rpt_vw","cases_rpt"]] },
 "case_update":{ 202:[["uvpfn","cases","vp"]], 412:[["nb","errors","v","nb"]], 200:[["case_update","cases"]] },
 "case_ed":{ 202:[["activity_case_ufn","cases","vfvw"]], 412:[["nb","errors","v","nb"]], 200:[["case_ed","cases"]] },
-"case_new":{ 200:[["case_new","cases"]], 201:[["activity_case_ufn","cases","vfvw"]], 202:[["activity_case_ufn","cases","vfvw"]], 412:[["nb","errors","v","nb"]] },
+"case_new":{ 200:[["case_new","cases"]], 201:[["activity_case_ufn","dispositions"]], 412:[["nb","errors","v","nb"]] },
 "case_vw_id":{ 200:[["case_vw_id","cases"]] },
 "case_vw":{ 200:[["case_vw","cases"]] },
 "case_list":{ 200:[["case_list","cases_ctx"]] },
@@ -1238,7 +1230,7 @@ te["toolbar_default"] = { div:["ma w15"], c:
 [
 	{ input:["g","","sbl_","1","radio","1"] },
 	{ input:["g","","sbr_","1","radio"] },
-	{ ac:["abs mtn45 ao t08 w15","","_activity_vw","xx bd gg cw",""], c:
+	{ ac:["abs mtn45 ao t08 w15","","_activity_vw_id","xx bd gg cw",""], c:
 	[
 		{ s:["c y","Walk In"]},
 		{ s:["d t03 h2 micon","directions_walk"] },
@@ -1318,6 +1310,10 @@ te["main"] = { c:
 	]},
 	
 	{ div:["","vb"], toolbar_default:[] },
+
+	{ p:["abs zz y op_ga g","vp"], ev:["_uvpd"] }, // popup window	
+	
+	{ p:["abs zzzz y op_ga g","vip"], ev:["_uvpd"] }, // incoming call popup	
 	
 	{ div:["g"], c:  // 
 	[
@@ -1350,11 +1346,7 @@ te["main"] = { c:
 		
 		{ div:["e"] } 
 	]},
-
-	{ p:["abs zz y op_ga g","vp"], ev:["_uvpd"] }, // popup window	
 	
-	{ p:["abs zzzz y op_ga g","vip"], ev:["_uvpd"] }, // incoming call popup	
-		
 	{ div:["h80 gb abs","vb"], s:["sb_",""], c: 
 	[
 		{ sbl:["","2","1","","speed","Dash","noop"] },

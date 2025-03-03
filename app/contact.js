@@ -158,9 +158,9 @@ te["case_contact_ed_"] = { c: // div:["w68 ma sh__ gw_"], c:
 	]}
 ]};
 
-te["case_contact_ed"] = { case_contact_ed_:["Edit Reporter", DISPOSITION_ID_CONTACT_EDIT, "activity_contact_ed-reporters^disposition","_activity_postj","Update","Updating...","","_utab", "Cancel"] };
+te["case_contact_ed"] = { case_contact_ed_:["Edit Reporter", DISPOSITION_ID_CONTACT_EDIT, "activity_contact_ed-contacts^disposition","_activity_postj","Update","Updating...","","_utab", "Cancel"] };
 
-te["case_contact_new"] = { case_contact_ed_:["New Reporter", DISPOSITION_ID_CONTACT_NEW, "activity_contact_new-reporters^disposition", "_activity_postj", "Create", "Creating...", "", "_utab", "Cancel"] };
+te["case_contact_new"] = { case_contact_ed_:["New Reporter", DISPOSITION_ID_CONTACT_NEW, "activity_contact_new-contacts^disposition", "_activity_postj", "Create", "Creating...", "", "_utab", "Cancel"] };
 
 te["contact_ed_r_"] = { div:["","ve"], c:
 [

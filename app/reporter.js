@@ -6,7 +6,7 @@ te["reporter_uuid"] = { p:["g","o"], c:[ { arg:["","reporter_uuid_id","%0"] } ] 
 
 te["reporter_disposition_vw_r"] = { div:["x y gbn"], c:
 [
-	{ contact_vw_rv:[":v:reporters:contact_fullname", ":v:reporters:contact_age_group", ":v:reporters:contact_sex", ":v:reporters:contact_location", ":v:reporters:contact_landmark"] },
+	{ contact_vw_rv:[":v:reporters:contact_fullname", ":v:reporters:contact_age_group", ":v:reporters:contact_sex", "","", ":v:reporters:contact_location", ":v:reporters:contact_landmark"] },
 	{ contact_vw_rv_phone:[":v:reporters:contact_phone", ":v:reporters:contact_email"] },
 	{ p:["g","o"], arg:["","reporter_id","%0"] }
 ]}
@@ -29,7 +29,7 @@ te["case_form_reporter_r_"] = { c:
 		{ input:["g","","case_form_a","1","radio"] },
 		{ li:["x y bd cb gbn","reporter_ed-reporters-^"], ev:["_vp"], c:
 		[
-			{ contact_vw_rv:[":v:reporters:contact_fullname", ":v:reporters:contact_age_group", ":v:reporters:contact_sex", ":v:reporters:contact_location", ":v:reporters:contact_landmark"] },
+			{ contact_vw_rv:[":v:reporters:contact_fullname", ":v:reporters:contact_age_group", ":v:reporters:contact_sex", "","", ":v:reporters:contact_location", ":v:reporters:contact_landmark"] },
 			{ contact_vw_rv_phone:[":v:reporters:contact_phone", ":v:reporters:contact_email"] },
 			{ div:["x btn"], c:
 			[
@@ -58,7 +58,7 @@ te["case_form_reporter_"] = { c:
 [
 	{ div:["t"], c:
 	[
-		{ s:["xx yy b n",null] },
+		{ s:["xx yy b",null] },
 		{ div:["e"] }
 	]},
 	{ div:["","va"], u:[null] },
@@ -73,7 +73,7 @@ te["case_form_reporter_followup_r"] = { case_form_reporter_r_:["case_form_report
 te["case_form_reporter_new_case_r"] = { case_form_reporter_r_:["case_form_reporter_new_case_r-reporters-va--@","reporter_uuid_id"] };
 
 
-te["case_form_reporter"] = { case_form_reporter_:["New Reporter","case_form_reporter_r","case_form_reporter_r"] };
+te["case_form_reporter"] = { case_form_reporter_:["Reporter","case_form_reporter_r","case_form_reporter_r"] };
 
 te["case_form_reporter_followup"] = { case_form_reporter_:["Followup By","case_form_reporter_followup_r","case_form_reporter_followup_r"] };
 
@@ -128,7 +128,7 @@ te["case_vw_reporter_r_"] = {  c:
 			{ div:["d w07"], s:["abs t",""], c:[ { s:[":v:reporters:is_client::reporter_is_client:3",":v:reporters:is_client::reporter_is_client:4"] } ] }, 
 			{ div:["e"] }
 		]},
-		{ contact_vw_rv:[":v:reporters:contact_fullname", ":v:reporters:contact_age_group", ":v:reporters:contact_sex", ":v:reporters:contact_location",":v:reporters:contact_landmark"] },
+		{ contact_vw_rv:[":v:reporters:contact_fullname", ":v:reporters:contact_age_group", ":v:reporters:contact_sex", "","", ":v:reporters:contact_location",":v:reporters:contact_landmark"] },
 		{ contact_vw_rv_phone:[":v:reporters:contact_phone", ":v:reporters:contact_email"] },
 		
 		{ div:["g"], arg:["",".id","%0"] }

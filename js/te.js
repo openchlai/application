@@ -1516,8 +1516,11 @@ function _vw (ev)
 	var p = __(this,"vf").parentNode.nextSibling;
 	this.previousSibling.checked=true;
 	p.firstChild.checked = true;
-	p.childNodes[1].innerHTML = ""
-	urargs (this, p.childNodes[1]);
+	if (u.length>1)
+	{
+		p.childNodes[1].innerHTML = ""
+		urargs (this, p.childNodes[1]);
+	}
 	boo (ev)
 }
 

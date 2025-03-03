@@ -289,9 +289,9 @@ te["case_rpt_main"] = { c:
 te["case_yesno_r"] = { c:
 [
 	{ input:["g","",null,"%0","radio","%9"] },
-	{ ac:["c ay r05 r rg","","_opt","x cb bd_",""], c:
+	{ ac:["c ay r05 r","","_opt","x cb bd_",""], c:
 	[
-		{ div:["c w01_ t"], s:["opt",""] },
+		{ div:["c w01_ t08"], s:["opt",""] },
 		{ s:["c x y w07",null] },
 		{ div:["e"] }			
 	]}
@@ -564,7 +564,7 @@ te["case_service_sel_sub"] = { div:["","sub"], c:
 	{ arg:["case_ed_sub_other_service-r_-ve-_case_other_service_","",CASE_SERVICE_OTHER_ID] },
 ]};
 
-te["case_service_enum"] = { case_enum_lc:["x y",null,"","taga-r_--a--%1-category_id-%0-%2", "case_lc_main-subcategories", "services", "c w41",    
+te["case_service_enum"] = { case_enum_lc:["x y b",null,"","taga-r_--a--%1-category_id-%0-%2", "case_lc_main-subcategories", "services", "c w41",    
 null, "service_del-services-case_id"," %1","category_id"," %0"," %2",  
 CASE_SERVICES_ROOT_ID,"noop", 
 "dd w50 ba_b gw_","case_service_sel_sub"] };
@@ -908,10 +908,9 @@ te["case_form_col_1"] = { c:
 
 te["case_form_col_0"] = {  c:   
 [
-	{ div:["tt",""], c:
+	{ div:["t",""], c:
 	[
 		{ u:["case_form_reporter","reporters"] }, // reporter_id
-	
 		{ u:[null,"reporters_uuid"] }, // caller (reporter_uuid_id)
 	]},
 	
@@ -919,7 +918,7 @@ te["case_form_col_0"] = {  c:
 	[
 		{ div:[], c:
 		[
-			{ s:["xx yy b n","Clients"] },
+			{ s:["xx yy b","Clients"] },
 			{ div:["e"] }
 		]},
 		{ p:["","a"], u:["case_form_client_r","clients"] },
@@ -943,7 +942,7 @@ te["case_form_col_0"] = {  c:
 	[
 		{ div:[], c:
 		[
-			{ s:["xx yy b n","Perpetrators"] },
+			{ s:["xx yy b","Perpetrators"] },
 			{ div:["e"] }
 		]},
 		{ p:["","a"], u:["case_form_perpetrator_r","perpetrators"] },
@@ -967,7 +966,7 @@ te["case_form_col_0"] = {  c:
 	[
 		{ div:[], c:
 		[
-			{ s:["xx yy b n","Related Files"] },
+			{ s:["xx yy b","Related Files"] },
 			{ div:["e"] }
 		]},
 		{ p:["","a"], u:["case_attachment","attachments"] },
@@ -1004,13 +1003,13 @@ te["case_form_"] = { div:["","ve"], s:["mw110",""], c: // new case // div:[" y15
 [		
 	{ div:["x20 tt","va"], c:
 	[
-		{ div:["c x t02"], ac:["","","_uvw","h2 x y bd16 gb cw micon","arrow_back"] }, // { u:[null] },	
+		{ div:["c x t02"], ac:["","","_activity_uvw","h2 x y bd16 gb cw micon","arrow_back"] }, // { u:[null] },	
 		{ s:["c x08 tt h2 b",CASE_ID_PREFIX] },
 		{ s:["c tt h2 b w40",null] },
 		{ div:["e"] }
 	]},
 	
-	{ div:["x20 t"], c:[ { p:["c w100","nb"], c:[ { u:["nb","cases_nb"] }, { u:["nb","newcase_nb"] } ] }, { div:["e"] } ] },
+	{ div:["x20 t15"], c:[ { p:["c w100","nb"], c:[ { u:["nb","cases_nb"] }, { u:["nb","newcase_nb"] } ] }, { div:["e"] } ] },
 					
 	{ div:["x20 w130_"], c:
 	[
@@ -1023,11 +1022,11 @@ te["case_form_"] = { div:["","ve"], s:["mw110",""], c: // new case // div:[" y15
 	[
 		{ div:["d w12"], c:
 		[
-			{ ac:["btn ao",null,"_case_postj","y tc gb b cw",null] },
-			{ div:["savl"], s:["yy tc bd go b n cw","Saving..."] }
+			{ ac:["btn ao",null,"_activity_postj","y bd gb b tc cw",null] },
+			{ div:["savl"], s:["y bd go b tc cw","Saving..."] }
 		]},
 
-		{ div:["d x35","va"], ac:["w12 ao",null,null,"y04 tc cd ba","Cancel"], c:  // todo: on cancel notify that changes will be lost	
+		{ div:["d x20","va"], ac:["w12 ao",null,null,"y04 ba bd tc cd","Cancel"], c:  // todo: on cancel notify that changes will be lost	
 		[ 
 			{ arg:["",".id","%0"] },
 			{ div:["e"], c:
@@ -1053,7 +1052,7 @@ te["case_form_"] = { div:["","ve"], s:["mw110",""], c: // new case // div:[" y15
 
 te["case_ed"] = { case_form_:[":v:cases:id", "case_form_reporter_followup", "case_ed-cases","Update", "case_vw_id-cases_uuid-vf","_u", DISPOSITION_ID_CASE_EDIT] };
 
-te["case_new"] = { case_form_:["NEW CASE", "case_form_reporter_new_case", "case_new-cases","Create", "","_uvw", DISPOSITION_ID_NEW_CASE] };
+te["case_new"] = { case_form_:["NEW CASE", "case_form_reporter_new_case", "case_new-cases","Create", "","_activity_uvw", DISPOSITION_ID_NEW_CASE] };
 
 te["case_update"] = { div:["w65 ma sh__ gw_"], c:
 [
@@ -1095,7 +1094,7 @@ te["case_update"] = { div:["w65 ma sh__ gw_"], c:
                 [
                         { div:["d xx"], c:
                         [
-                                { ac:["btn w22 ao","case_update-cases","_case_postj_update","y gb cw tc","Update"] },
+                                { ac:["btn w22 ao","case_update-cases","_activity_postj","y gb cw tc bd","Update"] },
                                 { div:["savl w20 ll t30 b05"], s:["y go cw tc bd","Updating ..."] },
                         ]},
                         { p:["e","o"], c:
@@ -2065,21 +2064,3 @@ te["cases"] = { c:
 		]}
 	]}
 ]};
-
-// -----
-
-function case_postj (el, p_, o) 
-{
-	console.log ("VooV "+p_.id+","+p_.className);
-	var u = el.id.split ("-");
-	var p = __(el,"ve");
-	var o = {};
-	jso (p_.firstChild, o); 	// channel data
-	jso (p,o); 			// case details (including reporter|followup)
-	url (p, u[0], u[1], o[".id"], null, 2, o, "POST");
-}
-
-function _case_postj (ev) { case_postj (this, __(this,"vfvwm"));  boo(ev); }
-
-function _case_postj_update (ev) { case_postj (this, __(elvp,"vfvwm")); boo(ev);  }
-
