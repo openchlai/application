@@ -84,10 +84,10 @@ function sel (el, r_)
 	var u_ = p_.id.split ("-");
 	if (u_.length>2 && u_[2].length>0) p_ = __(p_, u_[2]);
 	if (u_.length>3 && u_[3].length>0) p_ = _(p_, u_[3]);
-
 	if (!r_) r_ = ra[u_[1]][0].slice(0); // get a copy
 	var coll = el.firstChild.lastChild.childNodes;
 	rargs (r_, coll);
+	console.log (u_[1]+"|"+r_);
  
  	var a_ = [];
  	for (var i=u_.length-1; i>3; i--) a_[a_.length]=u_[i]; 	

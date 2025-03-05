@@ -41,7 +41,7 @@ te["case_contact_ed_age"] = { c:
         	{ div:[], c:
 		[
 			{ input:["g","","age_vw","1","radio"] },
-			{ div:["tabiv","tag-r_--o-case_age_tag_txa-%1-age_group_id-%0-noop"], c: 
+			{ div:["tabiv","tagnm-r_--o-case_age_tag_txa-%1-age_group_id-%0-age_group-%1"], c: 
         		[
         	        	{ li:["gws b05","va"], c:[ { div:["","category_ls-subcategories"], ev:["_dd"], c: // ls
         	        	[
@@ -151,16 +151,15 @@ te["case_contact_ed_"] = { c: // div:["w68 ma sh__ gw_"], c:
                 { p:["g","o"], c:
 		[
 			{ arg:["","disposition_id",null] },		
-			{ arg:["","case_uuid","-1"] }
 		]},
 
 		{ div:["w63 t25 b10"], vp_sav:[null,null,null,null,null,null,null] }
 	]}
 ]};
 
-te["case_contact_ed"] = { case_contact_ed_:["Edit Reporter", DISPOSITION_ID_CONTACT_EDIT, "activity_contact_ed-contacts^disposition","_activity_postj","Update","Updating...","","_utab", "Cancel"] };
+te["case_contact_ed"] = { case_contact_ed_:["Edit Contact", DISPOSITION_ID_CONTACT_EDIT, "activity_contact_ed-contacts^disposition","_activity_postj","Update","Updating...","","_utab", "Cancel"] };
 
-te["case_contact_new"] = { case_contact_ed_:["New Reporter", DISPOSITION_ID_CONTACT_NEW, "activity_contact_new-contacts^disposition", "_activity_postj", "Create", "Creating...", "", "_utab", "Cancel"] };
+te["case_contact_new"] = { case_contact_ed_:["New Contact", DISPOSITION_ID_CONTACT_NEW, "activity_contact_new-contacts^disposition", "_activity_postj", "Create", "Creating...", "", "_utab", "Cancel"] };
 
 te["contact_ed_r_"] = { div:["","ve"], c:
 [
@@ -269,12 +268,12 @@ te["case_contact_vw_id_"] = { c:
 
 te["case_contact_vw_id"] = { case_contact_vw_id_:
 [
-":v:reporters:contact_fullname",":v:reporters:contact_age",":v:reporters:contact_age_group",":v:reporters:contact_dob",
-":v:reporters:contact_location",":v:reporters:contact_sex",
-":v:reporters:contact_landmark",":v:reporters:contact_nationality",
-":v:reporters:contact_national_id_type",":v:reporters:contact_national_id", ":v:reporters:contact_lang",
-":v:reporters:contact_is_refugee::yesno:2", ":v:reporters:contact_tribe",
-":v:reporters:contact_phone",":v:reporters:contact_phone2",":v:reporters:contact_email"
+":v:contacts:fullname",":v:contacts:age",":v:contacts:age_group",":v:contacts:dob",
+":v:contacts:location",":v:contacts:sex",
+":v:contacts:landmark",":v:contacts:nationality",
+":v:contacts:national_id_type",":v:contacts:national_id", ":v:contacts:lang",
+":v:contacts:is_refugee::yesno:2", ":v:contacts:tribe",
+":v:contacts:phone",":v:contacts:phone2",":v:contacts:email"
 ]};
 
 te["contact_vw_rv_phone"] = { c:
@@ -288,7 +287,7 @@ te["contact_vw_rv_phone"] = { c:
 		{ div:["e"] }
 	]}
 ]};
-
+ 
 te["contact_vw_rv"] = { c:
 [
 	{ div:["x cb"], c:
@@ -654,7 +653,7 @@ function contact_age_group (p, v)
 		if (!Number.isInteger (vv[0]*1)) 
 		{
 			vv = aa[i][5].split (" ");
-			console.log ("[agegroup]"+vv[0]+","+vv[1]+",")
+			// console.log ("[agegroup]"+vv[0]+","+vv[1]+",")
 			if (vv[0]=="Above" && (vv[1]*1)<=(v*1))
 			{
 				m[0]=i;
@@ -668,15 +667,15 @@ function contact_age_group (p, v)
 		}
 		if ((vv[0]*1)<=v) m[1]=i;
 	}
-	
-	//console.log ("AGEGROUP: '"+v+"' ["+m[0]+","+m[1]+"]")
 		
 	i=-1;
 	if (m[1]>-1) i=m[1]
 	if (m[0]>-1) i=m[0]
 	if (i<0) return;
+
+	console.log ("AGEGROUP: '"+i+": ["+aa[i])
 		
-	nd (el, te["tag"], ["noop","%0","age_group_id","%6","case_age_tag_txa"], aa[i], [5]);
+	nd (el, te["tagnm"], ["%5","age_group","%0","age_group_id","%6","case_age_tag_txa"], aa[i], [6]);
 }
 
 function contact_age (p, v)

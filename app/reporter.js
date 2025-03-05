@@ -10,7 +10,7 @@ te["reporter_disposition_vw_r"] = { div:["x y gbn"], c:
 	{ contact_vw_rv_phone:[":v:reporters:contact_phone", ":v:reporters:contact_email"] },
 	{ p:["g","o"], arg:["","reporter_id","%0"] }
 ]}
-
+ 
 te["reporter_not_selected"] = { c:
 [
 	{ div:["x20 t b20","va"], c:

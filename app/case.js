@@ -283,7 +283,7 @@ te["case_rpt_main"] = { c:
 		{ div:[], c:[ { input:["g","","case_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
 	]}
 ]};
-
+ 
 // =========================================================================================
 
 te["case_yesno_r"] = { c:
@@ -535,13 +535,13 @@ te["case_national_id_type_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-cas
 
 te["case_sex_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","Select Gender","sex_id"] };
 
-te["case_sex_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_sex_tag_txa-%1-sex_id-%0-", "category_ls-subcategories", "c w17", "case_sex_tag_txa","r_", null, "case_sex_tag_txa",null,"sex_id",null,"",  SEX_ROOT_ID, "fullname", "noop", "dd w21 gw_ ba_b", "noop"] };
+te["case_sex_enum"] = { case_enum_ls:["x y",null,"", "tagnm-r_--o-case_sex_tag_txa-%1-sex_id-%0-sex-%1", "category_ls-subcategories", "c w17", "case_sex_tag_txa","r_", null, "case_sex_tag_txa",null,"sex_id",null,"",  SEX_ROOT_ID, "fullname", "noop", "dd w21 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_age_tag_txa"] = { case_enum_tag_txa_:["w21 xx t08 b05","fullname__","Select Age Group","age_group_id"] };
 
-te["case_age_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_age_tag_txa-%1-age_group_id-%0-", "category_ls-subcategories", "c w17", "case_age_tag_txa","r_", null, "case_age_tag_txa",null, "age_group_id",null,"",  AGE_GROUP_ROOT_ID, "fullname", "noop", "dd w21 gw_ ba_b", "noop"] };
+te["case_age_enum"] = { case_enum_ls:["x y",null,"", "tagnm-r_--o-case_age_tag_txa-%1-age_group_id-%0-age_group-%1", "category_ls-subcategories", "c w17", "case_age_tag_txa","r_", null, "case_age_tag_txa",null, "age_group_id",null,"",  AGE_GROUP_ROOT_ID, "fullname", "noop", "dd w21 gw_ ba_b", "noop"] };
 
 // ----
 
