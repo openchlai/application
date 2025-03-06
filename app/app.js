@@ -110,7 +110,7 @@ var UU =
 "activity_disposition_vwr":{ 200:[["activity_disposition_vwr","dispositions"]] },
 "activity_list":{ 200:[["activity_list","dispositions_ctx"]] },
 "activity_main":{ 200:[["activity_main","dispositions_ctx"]] },
-"activity_vw_id_tabs_messages":{ 200:[["activity_vw_id_tabs_messages","activities"]] },
+"activity_vw_id_tabs_message":{ 200:[["activity_vw_id_tabs_message","activities"]] },
 "activity_vw_id_tabs":{ 200:[["activity_vw_id_tabs","activities"]] },
 "activity_vw_id":{ 200:[["activity_vw_id","activities"]] },
 "activity_call":{ 201:[["activity_call","activities"]], 202:[["activity_call","activities"]], 412:[["nb","errors","","nb"]] },

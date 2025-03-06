@@ -1025,9 +1025,9 @@ function ldami (o,c)
 function _postjb (ev)
 {
 	var id = "v"
-        var u = el.id.split ("-");
+        var u = this.id.split ("-");
         if (u.length>2) id=u[2]
-        var p = __(el,id);
+        var p = __(this,id);
         var o = {}; // console.log (k+"|"+id+"|"+p.id);
         jso (p,o);
         url (p, u[0], u[1], o[".id"], null, 3, o, "POST");

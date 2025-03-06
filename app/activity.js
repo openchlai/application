@@ -868,9 +868,9 @@ te["activity_vw_id_tabs_"] = { c:
 	]}	
 ]};
 
-te["activity_vw_id_tabs"] = { activity_vw_id_tabs_:["1","",""] };
+te["activity_vw_id_tabs"] = { activity_vw_id_tabs_:["1",""] };
 
-te["activity_vw_id_tabs_message"] = { activity_vw_id_tabs_:["","","1"] };
+te["activity_vw_id_tabs_message"] = { activity_vw_id_tabs_:["","1"] };
 
 te["activity_vw_id"] = { c: 
 [
