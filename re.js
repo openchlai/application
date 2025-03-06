@@ -17,5 +17,7 @@ _nav
 _u
 
 
-{ div:["c w01_ t08"], s:["opt",""] },
+AI meeting 6 March 2025
++ 10 Audios to be transcribed manualy using audacity
++ Hosting AI model in GPU, 
 

@@ -1313,10 +1313,6 @@ te["main"] = { c:
 	
 	{ div:["","vb"], toolbar_default:[] },
 
-	{ p:["abs zz y op_ga g","vp"], ev:["_uvpd"] }, // popup window	
-	
-	{ p:["abs zzzz y op_ga g","vip"], ev:["_uvpd"] }, // incoming call popup	
-	
 	{ div:["g"], c:  // 
 	[
 		{ div:["d w28"], s:["abs zz w28 gw mt",""], c:
@@ -1385,6 +1381,10 @@ te["main"] = { c:
 		{ sbl:["admin_","7","","contacts-contacts","import_contacts","Contacts","noop"] },
 	]},
 
+	{ p:["abs zz y op_ga g","vp"], ev:["_uvpd"] }, // popup window	
+	
+	{ p:["abs zzzz y op_ga g","vip"], ev:["_uvpd"] }, // incoming call popup	
+
 	{ div:["ml6"], c: // 
 	[
 		{ div:[], c:[ { div:["d w28"], s:["abs w27 x y zzz",""], c:
@@ -1406,8 +1406,8 @@ te["main"] = { c:
 		
 		{ div:["g"], c:
 		[
-			// { iframe:["","",VA_AMI_HOST] },
-			// { iframe:["","",VA_ATI_HOST] },
+			{ iframe:["","",VA_AMI_HOST] },
+			{ iframe:["","",VA_ATI_HOST] },
 		]},
 	]}
 ]};
@@ -1535,7 +1535,7 @@ function loadphone (el, u, a, r, m)
 	if (v) document.getElementById ("vv").className = v[2];
 	console.log ("loadphone: "+ra["auth"][0][7]+" | "+JSON.stringify (v));
 	DetectDevices ();
-	// VOICEAPPS_UA.connect (ra["auth"][0][7]);
+	VOICEAPPS_UA.connect (ra["auth"][0][7]);
 }
 
 function ami_wait (el, u, a, r, m)
