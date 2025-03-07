@@ -238,9 +238,9 @@ te["pmessage_vw_id"] = { div:["section-to-print tt","ve"], c:
 		[
 			{ input:["g","","sbli_","1","radio","1"] },
 			{ input:["g","","sbri__","1","radio"] },
-			{ ac:["ao","","_activity_vw","xx bd gg cw",""], c:
+			{ ac:["ao","","_activity_vw_id","xx bd ba_b cb",""], c:
 			[
-				{ s:["c y","Menu"]},
+				{ s:["c y","Edit"]},
 				// { s:["d t03 h2 micon","directions_walk"] },
 				{ div:["e"], c:
 				[ 
