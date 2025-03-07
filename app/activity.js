@@ -741,10 +741,10 @@ te["activity_list"] = { c:
 [
         { div:[], c:
         [
-                { div:["d w55"], s:["w55 abs gws",""] },
+                { div:["d w55"], s:["w55 abs gws",""] }, // todo summary stats
                 { div:["e"] }
         ]},
-        { div:["mr60","vt"], u:["activity_disposition_list","dispositions_ctx"] }
+        { div:["","vt"], u:["activity_disposition_list","dispositions_ctx"] }
 ]};
 
 te["activity_main"] = { c: 
@@ -929,7 +929,7 @@ te["activity_vw_id"] = { c:
 			]}
 		]},
 		
-		{ div:["d activity_tab_0_"], c:
+		{ div:["d activity_tab_0_ l30"], c:
 		[
 			{ input:["g","","activity_vw_id_t_","0","radio",null] }, // [0,0] | [1]
 			{ ac:["ay tab","","_tab","xx y gws_ bdl cb",""], c:

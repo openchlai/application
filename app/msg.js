@@ -442,7 +442,7 @@ te["pmessage_r_"] = { c:
 	{ input:["g","","pmessagevwr","1","radio",""] },
 	{ ac:["ay w300","pmessage_vw_id-pmessages-@","_vw","cb gw",""], c:
 	[
-		{ div:["c w17"], s:["xx y08",":d:dmyhnr:6: "] },
+		{ div:["c w17"], s:["xx y08",":d:dmyhnr:1: "] },
 		{ div:["c w13"], s:["xx tt b05 h01_",":v:pmessages:src_vector::vector:1"] },
 		{ div:["c w15"], s:["xx tt b05 h01_",":v:pmessages:src_address"] },
 		{ div:["c w15"], s:["tt b05 h01_  xx",""], c:
