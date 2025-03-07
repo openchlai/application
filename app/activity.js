@@ -874,7 +874,7 @@ te["activity_vw_id_tabs_message"] = { activity_vw_id_tabs_:["","1"] };
 
 te["activity_vw_id"] = { c: 
 [
-	{ div:["x20 t20 b15","vb"], c: 
+	{ div:["x20 t20 b15","vb"], s:["",""], c: 
 	[
 		
 		{ div:["c"], c:
@@ -897,6 +897,12 @@ te["activity_vw_id"] = { c:
 				{ span:["","",""] },
 			]},
 		]},
+
+		{ div:["d"], c:
+                [
+                        { s:["y20","&nbsp;"] },
+                        { div:["abs t15 mln50 w50 "], u:[null] } // call btns here
+                ]},
 
 		{ div:["d l30"], c:
 		[
@@ -939,7 +945,7 @@ te["activity_vw_id"] = { c:
 			]}
 		]},
 
-		{ u:[null] }, 	// call buttons here
+		//{ u:[null] },
 
 		{ div:["e"], c:[ { p:["g","o"], c:
 		[
@@ -1296,7 +1302,7 @@ function _activity_vw_id (ev)
 	coll[6].childNodes[1].childNodes[1].innerHTML = "";
 
 	nd (coll[1], te["activity_toolbar"], [], r_, [0]); // show toolbar	
-	nd (coll[6].childNodes[1].childNodes[1], te["activity_vw_id"], ["noop","1","",""], r_, [4]);	
+	nd (coll[6].childNodes[1].childNodes[1], te["activity_vw_id"], ["1","","","noop"], r_, [4]);	
 	url (coll[6].childNodes[1].childNodes[1].lastChild, u_[9], u[1], s);
 
 	boo (ev)

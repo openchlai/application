@@ -172,6 +172,7 @@ te["call_btns"] = { c:
 //	[	
 		{ div:["d w09 x call_ended_"], c:
 		[
+		//	{ s:["d x t08 cb tc","Close"] },
 			{ input:["g","","sbr","1","radio"] },
 			{ ac:["d x t","","_activity_close","x y03 h2 cb bd16","&Cross;"] },
 			{ s:["d x t08 cb tc","Close"] },
@@ -180,18 +181,18 @@ te["call_btns"] = { c:
 		
 		{ div:["d w09 x call_hangup_"], c:
 		[
-			{ ac:["c ao","","_hangup","x t b03 w02 h02 h2 ma bd16 gb cw tc",""], c:
+			{ ac:["d ao","","_hangup","x t b03 w02 h02 h2 ma bd16 gb cw tc",""], c:
 			[
 				{ s:["","&Cross;"] },
 				{ div:["e"] }
 			]},
-			{ s:["c x s cb t tc","Hangup"] },
+			{ s:["d x s cb t tc","Hangup"] },
 			{ div:["e"] }
 		]}, 
 			
 		{ div:["d w09 x"], c:
 		[
-			{ div:["c"], c:
+			{ div:["d"], c:
 			[
 				{ ac:["ao call_connected_","call_add_form_main-r_","_add_dial_form","x t b03 w02 h02 h2 ma bd16 gb cw tc",""], c:
 				[
@@ -200,9 +201,10 @@ te["call_btns"] = { c:
 				]},
 				{ div:[] }
 			]},
-			{ s:["c call_connected_ x t s cb tc","Add"] },
-			{ s:["c call_connected__ x y w02 ma bd16 gws_ cd_ tc h2","+"] },
-			{ s:["c call_connected__ x t s cd_ tc","Add"] },
+			{ s:["d call_connected__ x y w02 ma bd16 gws_ cd_ tc h2","+"] },
+			{ s:["d call_connected_ x t s cb tc","Add"] },
+			//{ s:["d call_connected__ x y w02 ma bd16 gws_ cd_ tc h2","+"] },
+			{ s:["d call_connected__ x t s cd_ tc","Add"] },
 			{ div:["e"] }
 		]},
 		{ div:["d w09 x"], c:
@@ -210,11 +212,12 @@ te["call_btns"] = { c:
 			{ input:["g","chanholdstate","","1","checkbox"] },
 			{ div:["w10 btnhold"], c:
 			[
-				{ ac:["c ao call_connected_","","_hold","x y w02 h2 ma bd16 gb cw tc","||"] },
-				{ div:["c call_connected_"], s:["x y s cb btnhold_lbl","Hold"] },
-				{ div:["c call_connected_"], s:["x y s cr btnunhold_lbl","UnHold"] },
-				{ s:["c call_connected__ x y w02 ma bd16 gws_ cd_ tc h2","||"] },
-				{ s:["c call_connected__ x y s cd_ btnhold_lbl","Hold"] },
+				{ ac:["d ao call_connected_","","_hold","x y w02 h2 ma bd16 gb cw tc","||"] },
+				{ s:["d call_connected__ x y w02 ma bd16 gws_ cd_ tc h2","||"] },
+				{ div:["d call_connected_"], s:["x y s cb btnhold_lbl","Hold"] },
+				{ div:["d call_connected_"], s:["x y s cr btnunhold_lbl","UnHold"] },
+				// { s:["d call_connected__ x y w02 ma bd16 gws_ cd_ tc h2","||"] },
+				{ s:["d call_connected__ x y s cd_ btnhold_lbl","Hold"] },
 				{ div:["e"] }
 			]}
 		]},
@@ -223,8 +226,8 @@ te["call_btns"] = { c:
 		[
 			{ div:["g"], c: // show only in cbid
 			[
-				{ ac:["c ao","","_answer","x t b03 w02 h02 h2 ma cb tc bd16 gws_ micon","group"] },
-				{ s:["c t08 cb","4"] },
+				{ ac:["d ao","","_answer","x t b03 w02 h02 h2 ma cb tc bd16 gws_ micon","group"] },
+				{ s:["d t08 cb","4"] },
 				{ div:["e"] }
 			]}
 		]},
@@ -233,14 +236,13 @@ te["call_btns"] = { c:
 		[ 
 			{ div:["w09 x ao call_ringing_"], c:
 			[
-				{ ac:["c ","","_answer","x t b03 w02 h02 h2 ma bd16 gb cw tc micon","call"] },
-				{ s:["c x t s cb tc","Answer"] },
+				{ ac:["d ","","_answer","x t b03 w02 h02 h2 ma bd16 gb cw tc micon","call"] },
+				{ s:["d x t s cb tc","Answer"] },
 				{ div:["e"] }
 			]} 
 		]},
 				
-//		{ div:["e"] }
-//	]}
+		{ div:["e"] }
 ]};
 
 //te["call_toolbar"] = { div:["ma w14",":v:activities:src_uid"], c: //  
@@ -489,14 +491,14 @@ function call_popup_end (ts)
 	// toolbar
 	var coll_ = coll[1].firstChild.childNodes[1].firstChild.firstChild.childNodes;
 	coll_[0].parentNode.className = "cr b gp";
-	coll_[0].innerHTML = "Wrapup";
-	coll_[1].innerHTML = hmst ((ts*1), ["","","","","","",""]); // status-duration;
-	coll_[2].value = ts; // dont stop timer
+	coll_[1].innerHTML = "Wrapup";
+	coll_[2].innerHTML = hmst ((ts*1), ["","","","","","",""]); // status-duration;
+	coll_[3].value = ts; // dont stop timer
 	
 	// action btns
-	var p = _(coll[6].childNodes[1].childNodes[1].firstChild,"src_btns")
-	var last_status = p.firstChild.childNodes[1].className;
-	p.firstChild.childNodes[1].className = "call_ended";
+	var p = coll[6].childNodes[1].childNodes[1].firstChild,firstChild;
+	var last_status = p.className;
+	p.className = "call_ended";
 	if (last_status!="call_connected")  // auto close popup is call not connected
 	{
 		activity_close (); // clear
@@ -552,7 +554,7 @@ function call_popup_upd (el)
 	coll_[3].value = a.src_state_ts;
 		
 	// action btns
-//	_(coll[6].childNodes[1].childNodes[1].firstChild,"src_btns").firstChild.childNodes[1].className = ss[a.src_state][1];
+	coll[6].childNodes[1].childNodes[1].firstChild.firstChild.className = ss[a.src_state][1];
 	
 	return 0;	
 }
@@ -605,7 +607,7 @@ function call_popup (el, f=0)
 	}
 
 	nd (coll[1], te["call_toolbar"], [], r_, [0]); // show toolbar	
-	nd (coll[6].childNodes[1].childNodes[1], te["activity_vw_id"], ["call_btns","1","",""], r_, [4]);	
+	nd (coll[6].childNodes[1].childNodes[1], te["activity_vw_id"], ["1","","","call_btns"], r_, [4]);	
 	url (coll[6].childNodes[1].childNodes[1].lastChild, "activity_vw_id_tabs", "activities", s);
 
 	var isaa = document.getElementById ("is_auto_answer");
