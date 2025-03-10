@@ -874,7 +874,7 @@ te["activity_vw_id_tabs_message"] = { activity_vw_id_tabs_:["","1"] };
 
 te["activity_vw_id"] = { c: 
 [
-	{ div:["x20 t20 b15","vb"], s:["",""], c: 
+	{ div:["x20 t20 b15","vb"], c: // s:["",""], c: 
 	[
 		
 		{ div:["c"], c:
@@ -887,7 +887,7 @@ te["activity_vw_id"] = { c:
 			]},
 		]},
 	
-		{ div:["c l tt g"], s:["h02 w02 awR",""] },
+		// { div:["c l tt g"], s:["h02 w02 awR",""] },
 
 		{ div:["c"], c:
 		[
@@ -900,7 +900,7 @@ te["activity_vw_id"] = { c:
 
 		{ div:["d"], c:
                 [
-                        { s:["y20","&nbsp;"] },
+                        { s:["","&nbsp;"] },
                         { div:["abs t15 mln50 w50 "], u:[null] } // call btns here
                 ]},
 
