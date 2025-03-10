@@ -17,4 +17,5 @@ _nav
 _u
 
 
-SELECT 
+- perp
+- decode whatup messages

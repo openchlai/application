@@ -196,6 +196,7 @@ te["activity_contact_main_"] = { div:["","ve"], c:
 		{ arg:["","sort","id"] },
 		{ uv:["activity_contact_ls","dispositions"] } 
 	]},
+	{ p:["","o"], arg:["","case_id","-1"] },
 	{ ac:["t15 b10 ao btn",null,null,"y07 gb bd cw b n tc",null] }
 ]};
 
