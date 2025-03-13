@@ -187,7 +187,7 @@ te["activity_contact_ls"] = { listo:["activity_contact_title", "activity_contact
 
 te["activity_contact_main_"] = { div:["","ve"], c:
 [
-	{ div:[], c:[ { p:["","nb"] }, { div:["e"] } ] },
+	{ div:["gp"], c:[ { p:["","nb"] }, { div:["e"] } ] },
 	{ div:["","vt"], c:
 	[
 		{ activity_f_tags:[] },
@@ -709,6 +709,9 @@ te["activity_contacts_f"] = { c:
 	{ div:["l r10 tt"], kf_s:["Reporter Email","reporter_email",":k:dispositions_f:reporter_email"] },
 	
 	{ div:["l r10 yy"], kf_l:["Reporter Location","tag_-r_--o--%1-category_id-reporter_location_id-%0-%1", "case_location_lc_main-subcategories",  ":k:dispositions_f:reporter_location_id", ""," %1","category_id","reporter_location_id"," %0"," %1", "case_location_root_id"] },
+
+	{ div:["l r10 tt"], kf_s:["Passport/ID Number","reporter_national_id",":k:dispositions_f:reporter_national_id"] },
+
 ]};
 	
 te["activity_f_"] = { c:
@@ -875,7 +878,7 @@ te["activity_vw_id_tabs_message"] = { activity_vw_id_tabs_:["","1"] };
 
 te["activity_vw_id"] = { c: 
 [
-	{ div:["x20 t20 b15","vb"], c: // s:["",""], c: 
+	{ div:["x20 t20 b15","vb"],  s:["",""], c: 
 	[
 		
 		{ div:["c"], c:
@@ -1184,9 +1187,11 @@ function _activity_postj ()
 {
 	var u = this.id.split ("-");
 	var p = __(this); 
+	var el = __(p);  // console.log ("[activity_postj] "+p_.id)
 	var o = {};
-	jso (__(this,"vv").lastChild.childNodes[1].childNodes[1].firstChild, o);	// src
-	jso (p, o); 									// form
+	console.log ("----> "+el.id+"|"+elvpf)
+	jso (__((el.id=="vp"?(elvpf==null?elvp:elvpf):p),"vfvwm").firstChild, o);		// src
+	jso (p, o); 										// form
 	url (p, u[0], u[1], o[".id"], null, 2, o, "POST");
 }
 

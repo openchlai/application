@@ -294,10 +294,10 @@ te["contact_vw_rv"] = { c:
 	[
 		//{ ac:["c","","","l t cb u",""], uval:["",null] },
 		{ div:["c l t"], uval:["",null] },
-		{ s:["c t",","] },
-		{ div:["c ll t"], uval:["",null] },
-		{ s:["c t",","] },
-		{ div:["c ll t"], uval:["",null] },
+		//{ s:["c t",","] },
+		{ div:["c l15 t"], uval:["",null] },
+		//{ s:["c t",","] },
+		{ div:["c l15 t"], uval:["",null] },
 		{ div:["d"], s:[null,null] },
 		{ div:["e"] }
 	]},

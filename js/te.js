@@ -587,8 +587,8 @@ function hmst (t,a)
 function vdt (x,a)
 {
 	// var x = r[a[3]];
-        if (x.length<1) return ""; // :d:dmyhm:1:
-	var vv = x.split (";");	// console.log (a);
+        if (x.length<1) return ""; 	// :d:dmyhm:1:
+	var vv = x.split (";");		// console.log (a);
 	var na = a[2].length; 
 	var kk = {"d":0, "m":1, "y":2, "h":3, "n":4, "s":5, "r":6, "x":7};
 	var c = 0;
@@ -821,7 +821,7 @@ function umimek (el,u,r,vo,z)
 			umimek (el,u,r,vo[kk[k]],("_"+kk[k]));
 			continue;
 		}
-               nd (el, te[(u[0]+"_o")], [vo[kk[k]], ko[kk[k]][1]], r, [2]); //
+               nd (el, te[(u[0]+"_o")], [(""+vo[kk[k]]), (""+ko[kk[k]][1])], r, [2]); //
 //                                  console.log ("[umime] "+u[3]+"|"+ kk[k]+" => " + ko[kk[k]][1])
         }
 }
@@ -832,7 +832,8 @@ function umime (el, u, a, r, m)
 	
 	if (u[1]=="text/plain")
 	{
-		v = atob (u[2])
+		v = u[2];
+		try { v=atob (u[2]); } catch (e) {}
 		nd (el, te[u[0]], [v], r, [1]);
 		return ;
 	}

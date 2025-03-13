@@ -830,6 +830,8 @@ te["case_ed_sub_justice"] = { div:["mt15"],  c:
 
 // ---
 
+te["case_reporter_uuid_id_arg"] = { arg:["",".id","%0"] };
+
 te["case_reporter_uuid_arg"] = { arg:["","reporter_uuid_id","%0"] };
 
 te["case_uuid_arg"] = { arg:["","uuid",":v:cases_uuid:uuid"] };
@@ -910,8 +912,8 @@ te["case_form_col_0"] = {  c:
 [
 	{ div:["t",""], c:
 	[
-		{ u:["case_form_reporter","reporters"] }, // reporter_id
-		{ u:[null,"reporters_uuid"] }, // caller (reporter_uuid_id)
+		{ u:["case_form_reporter","reporters"] }, 	// reporter_id
+		{ u:[null,"reporters_uuid"] }, 			// caller (reporter_uuid_id)
 	]},
 	
 	{ p:["t15","clients_case"], c:
@@ -1033,7 +1035,7 @@ te["case_form_"] = { div:["","ve"], s:["mw110",""], c: // new case // div:[" y15
 			[ 
 				{ arg:["",".id","-1"] }, 
 				{ arg:["","case_id",":v:cases:id"] }, 
-				{ u:["case_reporter_uuid_arg","reporters_uuid"] }
+				{ u:["case_reporter_uuid_id_arg","reporters_uuid"] }
 			]}
 		]},
 		
@@ -1054,7 +1056,7 @@ te["case_ed"] = { case_form_:[":v:cases:id", "case_form_reporter_followup", "cas
 
 te["case_new"] = { case_form_:["NEW CASE", "case_form_reporter_new_case", "case_new-cases","Create", "","_activity_uvw", DISPOSITION_ID_NEW_CASE] };
 
-te["case_update"] = { div:["w65 ma sh__ gw_"], c:
+te["case_update"] = { div:["w65 ma sh__ gw_ bd16 "], c:
 [
         { div:["t15 x15"], c:
         [
@@ -1063,13 +1065,11 @@ te["case_update"] = { div:["w65 ma sh__ gw_"], c:
 		{ ac:["d","","_uvp","x y03 h cb","&Cross;"] },
                 { div:["e"] }
         ]},
-        { div:["","ve"], s:["x20",""], c:
+        { div:["","ve"], s:["x20 t",""], c:
         [
-                { div:["x y"], c:[ { p:["c w55","nb"], u:["nb","cases_nb"] }, { div:["e"] } ] },
-                
-                // todo: case_followup_vw_r ?
+                { div:["gp"], c:[ { p:["c w55","nb"], u:["nb","cases_nb"] }, { div:["e"] } ] },
 
-                { div:["t15"], c:
+                { div:["t"], c:
 		[
 			{ div:[], c:
 			[
@@ -1092,22 +1092,17 @@ te["case_update"] = { div:["w65 ma sh__ gw_"], c:
 
 		{ div:["y15"], c:
                 [
-                        { div:["d xx"], c:
+                        { div:["r05"], c:
                         [
-                                { ac:["btn w22 ao","case_update-cases","_activity_postj","y gb cw tc bd","Update"] },
+                                { ac:["btn ao","case_update-cases","_activity_postj","y07 gb cw tc bd n","Update"] },
                                 { div:["savl w20 ll t30 b05"], s:["y go cw tc bd","Updating ..."] },
                         ]},
                         { p:["e","o"], c:
                         [
                                 { arg:["",".id","%0"] },
-                                { div:[], c:
-				[
-					{ arg:["","disposition_id",DISPOSITION_ID_CASE_UPDATE] },
-					// todo: override disposition if reporter_uuid exist
-				]},
+                                { arg:["","disposition_id",DISPOSITION_ID_CASE_UPDATE] },
 				{ u:["case_reporter_uuid_arg","reporters_uuid"] }
-                        ] },
-                        { div:["e"] }
+                        ]}
                 ]}
         ]}
 ]};
@@ -1284,19 +1279,19 @@ te["case_vw_col_0"] = { c:
 	[
 		{ div:["t"], c:
 		[
-			{ s:["xx yy b n","Reported By"] },
+			{ s:["xx yy b","Reported By"] },
 			{ div:["e"] }
 		]},
 		{ u:["case_vw_reporter_r","reporters"] },
 		
-		{ u:["case_vw_reporter_uuid","reporters_uuid"] },
+		{ u:["case_vw_reporter_uuid","reporters_uuid"] }
 	]},
 
 	{ p:["t15","clients"], c:
 	[
 		{ div:[], c:
 		[
-			{ s:["xx yy b n","Clients"] },
+			{ s:["xx yy b","Clients"] },
 			{ div:["e"] }
 		]},
 		{ p:["","a"], u:["case_vw_client_r","clients"] },
@@ -1306,7 +1301,7 @@ te["case_vw_col_0"] = { c:
 	[
 		{ div:[], c:
 		[
-			{ s:["xx yy b n","Perpetrators"] },
+			{ s:["xx yy b","Perpetrators"] },
 			{ div:["e"] }
 		]},
 		{ p:["","a"], u:["case_vw_perpetrator_r","perpetrators"] },
@@ -1316,7 +1311,7 @@ te["case_vw_col_0"] = { c:
 	[
 		{ div:[], c:
 		[
-			{ s:["xx yy b n","Related Files"] },
+			{ s:["xx yy b","Related Files"] },
 			{ div:["e"] }
 		]},
 		{ p:["","a"], c:
@@ -1328,7 +1323,7 @@ te["case_vw_col_0"] = { c:
 	
 	{ div:["tt"], c:
 	[
-		{ s:["xx tt cd","Services Offered"] },
+		{ s:["xx tt cb b","Services Offered"] },
 		{ div:["x b05"], c:
 		[ 
 			{ uchk:["tagv",":v:cases:services","","",  "x y bd n gws_ mr"," %1"] }, 
@@ -1343,7 +1338,7 @@ te["case_vw_col_0"] = { c:
 	{ div:["x yy"], case_vw_val_cat:["Know About 116","",":v:cases:knowabout116"] }
 ]};
 
-te["case_vw_id_"] = { div:["section-to-print tt","ve"], c: 
+te["case_vw_id"] = { div:["section-to-print tt","ve"], c: 
 [	
 	{ div:["x20 y","vb"], c:
 	[		
@@ -1367,15 +1362,14 @@ te["case_vw_id_"] = { div:["section-to-print tt","ve"], c:
 			[
 				{ div:["c w10","va"], c:
 				[
-					{ ac:["ao mr_","case_update-cases_uuid-^","_vp","x08 y h02 n gws_ cb",""], c: 
+					{ ac:["ao mr_","case_update-reporters^uuid-^","_vp","x08 y h02 n gws_ cb",""], c: 
 					[
 						{ s:["c micon h3","edit"] }, 
 						{ s:["c xx s","Update"] }, 
 						{ div:["e"], c:
 						[ 
-							{ arg:["",".id","-1"] }, 
-							{ arg:["","case_id",":v:cases:id"] }, 
-							{ u:["case_reporter_uuid_arg","reporters_uuid"] }
+							{ arg:["","case_id","%0"] }, 
+							{ u:["case_reporter_uuid_id_arg","reporters_uuid"] }
 						]}
 					]},
                 			{ div:["g"], arg:["","","activity_case_ufn-cases-vf--@"] }
@@ -1385,14 +1379,13 @@ te["case_vw_id_"] = { div:["section-to-print tt","ve"], c:
 			]},
 			{ div:["dd w13 gws_ mt3","vdd"], c:
 			[
-				{ div:["","va"], ac:["ao","case_ed-cases_uuid-vf","_u","xx y cb",""], c: 
+				{ div:["","va"], ac:["ao","case_ed-reporters^uuid-vf","_u","xx y cb",""], c: 
 				[
 					{ s:["","Edit"] },
 					{ div:[], c:
 					[ 
-						{ arg:["",".id","-1"] }, 
-						{ arg:["","case_id",":v:cases:id"] }, 
-						{ u:["case_reporter_uuid_arg","reporters_uuid"] }
+						{ arg:["","case_id","%0"] }, 
+						{ u:["case_reporter_uuid_id_arg","reporters_uuid"] }
 					]}
 				]},
 			]}
@@ -1455,8 +1448,6 @@ te["case_vw_id_"] = { div:["section-to-print tt","ve"], c:
 	 	
 	 ]}	
 ]};
-
-te["case_vw_id"] = { case_vw_id_:[] };
 
 // ------------------------------------------------------------------------
 
@@ -1847,7 +1838,7 @@ te["case_footer"] = { div:["x gw ba"], c:
 te["case_r"] = { div:[], c: 
 [
 	{ input:["g","","casevwr","1","radio",""] },
-	{ ac:["ay w300","case_vw_id-cases-@","_vw","cb gw",""], c:
+	{ ac:["ay w300","case_vw_id-reporters^uuid-@","_vw","cb gw",""], c:
 	[
 		{ div:["c w07"], s:["tt b05 h01_  xx","%0"] },
 		{ div:["c w10"], s:["tt b05 h01_  xx","%2"] },
@@ -1871,7 +1862,11 @@ te["case_r"] = { div:[], c:
 			{ div:["e"] }
 		]},
 		{ div:["c w100"], s:["tt b05 xx",""], uval:["",":v:cases:reporter_location"] },
-		{ div:["e"], arg:["",".id","%0"] }
+		{ div:["e"], c:
+		[ 
+			{ arg:["",".id","-1"] },
+			{ arg:["","case_id","%0"] }
+		]}
 	]}
 ]};
 
@@ -2032,8 +2027,16 @@ te["case_main"] = { c:
 	]} ]},
 	{ div:[], c:
 	[
-		{ div:[], c:[ { input:["g","","cases_v","100","radio","1"] }, { p:["tabv yy","vt"], case_list:[] } ] },
-		{ div:[], c:[ { input:["g","","cases_v","0","radio"] }, { p:["tabv","vt"] } ] },				
+		{ div:[], c:
+		[ 
+			{ input:["g","","cases_v","100","radio","1"] }, 
+			{ p:["tabv yy","vt"], case_list:[] } 
+		]},
+		{ div:[], c:
+		[ 
+			{ input:["g","","cases_v","0","radio"] }, 
+			{ p:["tabv","vt"] } 
+		]},				
 	]}
 ]};
 	
@@ -2048,7 +2051,10 @@ te["cases"] = { c:
 		{ div:[] },
 		{ div:[] },
 		{ div:[] },
-		{ div:[] }, 
+		{ div:[], p:["","o"], c:
+		[
+			{ arg:["","src","edit"] }, 
+		]}, 
 	]},
 	{ form:[], c:
 	[
@@ -2059,8 +2065,8 @@ te["cases"] = { c:
 		]},
 		{ div:[], c:
 		[	
-			{ input:["g","","case_vw_vt","1","radio"] }, 		// _new | _ed | _vw_id
-			{ p:["tabv gw yy mm","vfvw"] }
+			{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
+			{ p:["tabv gw yy mm bd12","vfvw"] }
 		]}
 	]}
 ]};
