@@ -1452,42 +1452,6 @@ function _postj (ev)
 
 // ---
 
-function _uvpd (ev)
-{	
-	if (!this.firstChild) return;
-	if (this.firstChild.id!="vddvw" && this.firstChild.id!="vddvf") return; // block non-vddvw from closing
-	this.style.display = "none";
-	if (this.firstChild.id=="vddvf") uvpf (this.firstChild.lastChild.firstChild.firstChild);
-	if (elvp) uvp ();
-}
-
-function _uvpf () { uvpf (this); }
-
-function _uvp (ev)
-{
-	var p = document.getElementById ("vp");
-	p.style.display = "none";
-	p.innerHTML = "";
-	if (elvp) uvp ();
-	boo(ev);	
-}
-
-function _uvw ()
-{
-	var p = __(this,"vf"); 
-	p.parentNode.previousSibling.firstChild.checked = true;
-	p.parentNode.parentNode.firstChild.firstChild.checked = true;
-}
-
-function _utab ()
-{
-	var p = __(this,"vf").parentNode.parentNode; 
-	p.previousSibling.firstChild.firstChild.checked = true;
-	p.firstChild.firstChild.checked = true;
-}
-
-// ---
-
 function _vpf ()
 {
 	var p = document.getElementById ("vp");
@@ -1514,7 +1478,7 @@ function _vp (ev)
 function _vw (ev)
 {
 	var u = this.id.split ("-");
-	var p = __(this,"vf").parentNode.nextSibling;
+	var p = __(this,"vf").parentNode.parentNode.childNodes[this.previousSibling.value];
 	this.previousSibling.checked=true;
 	p.firstChild.checked = true;
 	if (u.length>1)
@@ -1551,6 +1515,33 @@ function _tab (ev)
 	if (u.length<2) return; // skip non-res
 	if (u.length<3 && p.childNodes[1].childNodes.length>0) return; // dont repopulate
 	urargs (this, p.childNodes[1]);
+}
+
+// ---
+
+function _uvpd (ev)
+{	
+	if (!this.firstChild) return;
+	if (this.firstChild.id!="vddvw" && this.firstChild.id!="vddvf") return; // block non-vddvw from closing
+	this.style.display = "none";
+	if (this.firstChild.id=="vddvf") uvpf (this.firstChild.lastChild.firstChild.firstChild);
+	if (elvp) uvp ();
+}
+
+function _uvpf () { uvpf (this); }
+
+function _uvp (ev)
+{
+	var p = document.getElementById ("vp");
+	p.style.display = "none";
+	p.innerHTML = "";
+	if (elvp) uvp ();
+	boo(ev);	
+}
+
+function _uvw ()
+{
+	__(this,"vf").parentNode.parentNode.firstChild.firstChild.checked = true;
 }
 
 // ---

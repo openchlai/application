@@ -123,12 +123,12 @@ te["case_contact_ed_"] = { c: // div:["w68 ma sh__ gw_"], c:
 	// 	{ div:["e"] }
 	// ]},
 
-	{ s:["x t15 b",null] },
+	{ s:[" tt b",null] },
 
 
 	{ div:["","ve"], c:
 	[
-		{ div:["t"], c:[ { p:["c w63","nb"], u:["nb","contacts_nb"] }, { div:["e"] } ] },
+		{ div:["tt"], c:[ { p:["c w63","nb"], u:["nb","contacts_nb"] }, { div:["e"] } ] },
 
 		{ p:["w64","contact"], case_contact_ed_r_:
 		[
@@ -157,9 +157,9 @@ te["case_contact_ed_"] = { c: // div:["w68 ma sh__ gw_"], c:
 	]}
 ]};
 
-te["case_contact_ed"] = { case_contact_ed_:["Edit Contact", DISPOSITION_ID_CONTACT_EDIT, "activity_contact_ed-contacts^disposition","_activity_postj","Update","Updating...","","_utab", "Cancel"] };
+te["case_contact_ed"] = { case_contact_ed_:["Edit Contact", DISPOSITION_ID_CONTACT_EDIT, "activity_contact_ed-contacts^disposition","_activity_postj","Update","Updating...","","_uvw", "Cancel"] };
 
-te["case_contact_new"] = { case_contact_ed_:["New Contact", DISPOSITION_ID_CONTACT_NEW, "activity_contact_new-contacts^disposition", "_activity_postj", "Create", "Creating...", "", "_utab", "Cancel"] };
+te["case_contact_new"] = { case_contact_ed_:["New Contact", DISPOSITION_ID_CONTACT_NEW, "activity_contact_new-contacts^disposition", "_activity_postj", "Create", "Creating...", "", "_uvw", "Cancel"] };
 
 te["contact_ed_r_"] = { div:["","ve"], c:
 [
@@ -301,7 +301,7 @@ te["contact_vw_rv"] = { c:
 		{ div:["d"], s:[null,null] },
 		{ div:["e"] }
 	]},
-	{ div:["xx y s"], c:
+	{ div:["xx y03 s"], c:
 	[
 		{ uval:["",null] },
 		// { s:["c x t s cd","Nearest Landmark:"] },

@@ -1001,11 +1001,11 @@ te["case_form_col_0"] = {  c:
 	]},
 ]};
 
-te["case_form_"] = { div:["","ve"], s:["mw110",""], c: // new case // div:[" y15 gw"], 
+te["case_form_"] = { div:["","ve"], c: // new case 
 [		
-	{ div:["x20 tt","va"], c:
+	{ div:["x20","va"], c:
 	[
-		{ div:["c x t02"], ac:["","","_activity_uvw","h2 x y bd16 gb cw micon","arrow_back"] }, // { u:[null] },	
+		{ div:["c x t02"], ac:["","","_uvw","h2 x y bd16 gb cw micon","arrow_back"] }, // { u:[null] },	
 		{ s:["c x08 tt h2 b",CASE_ID_PREFIX] },
 		{ s:["c tt h2 b w40",null] },
 		{ div:["e"] }
