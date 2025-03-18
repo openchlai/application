@@ -326,9 +326,9 @@ te["activity_disposition_new_case"] = { activity_disposition_new_:["New Case","c
 
 // ---
 
-te["activity_disposition_vwr_case"] = { div:["xx y07 mb"], c:
+te["activity_disposition_vwr_case"] = { c:
 [
-	{ div:["x tt"], c:
+	{ div:["tt"], c:
 	[
 		{ s:["c x y b",CASE_ID_PREFIX] },
 		{ s:["c y b",":v:cases:id"] },
@@ -340,31 +340,31 @@ te["activity_disposition_vwr_case"] = { div:["xx y07 mb"], c:
 		]}, 
 		{ div:["e"] }
 	]},
-	{ div:["x tt"], c:
+	{ div:["tt"], c:
 	[
 		{ s:["x t cd","Case Category"] },
 		{ div:["x t"], uval:["",":v:cases:case_category"] },
 		{ div:["e"] }
 	]},
-	{ div:["x tt"], c:
+	{ div:["tt"], c:
 	[
 		{ s:["x t cd","Case Narrative"] },
 		{ div:["x t"], s:["",":v:cases:narrative"] },
 		{ div:["e"] }
 	]},
-	{ div:["x tt"], c:
+	{ div:["tt"], c:
 	[
 		{ s:["x t cd","Case Plan"] },
 		{ div:["x t"], s:["",":v:cases:plan"] },
 		{ div:["e"] }
 	]},
-	{ div:["x tt"], c:
+	{ div:["tt"], c:
 	[
 		{ s:["c x t cd","Priority"] },
 		{ s:["d x t cd","Status"] },
 		{ div:["e"] }
 	]},
-	{ div:["x"], c:
+	{ div:[""], c:
 	[
 		{ div:["c x t"], s:["",":v:cases:priority::case_priority:2"] },
 		{ div:["d x t"], s:["",":v:cases:status::case_status:1"] },
@@ -376,16 +376,16 @@ te["activity_disposition_vwr_case"] = { div:["xx y07 mb"], c:
 	{ div:[], usub:["case_vw_escalated_to_sub","cases",":v:cases:is_escalated_to","1"] } 
 ]};
 
-te["activity_disposition_vwr_contact_"] = { c:
+te["activity_disposition_vwr_contact"] = { c:
 [
-        { div:["xx t"], c:
+        { div:["t n"], c:
 	[
 		{ s:["c b r05",":v:contacts:fullname"] },
 		{ div:["c xx"], uval:["",":v:contacts:sex"] },
 		{ div:["c"], uval:["",":v:contacts:age_group"] },
 		{ div:["e"] }
 	]},
-	{ div:["xx tt"], c:
+	{ div:["t15 s"], c:
 	[
 		{ div:["abs"], c:
 		[
@@ -399,14 +399,14 @@ te["activity_disposition_vwr_contact_"] = { c:
 		]},
 		{ div:["e"] }
 	]},
-	{ div:["xx tt"], c:
+	{ div:["tt"], c:
 	[
 		{ s:["c w03 micon h3","call"] },
 		{ s:["c ",":v:contacts:phone"] },
 		{ s:["c xx ",":v:contacts:phone2"] },
 		{ div:["e"] }
 	]},
-	{ div:["xx tt"], c:
+	{ div:["tt"], c:
 	[
 		{ s:["c w03 micon h3","email"] },
 		{ s:["c",":v:contacts:email"] },
@@ -414,48 +414,10 @@ te["activity_disposition_vwr_contact_"] = { c:
 	]},
 ]};
 
-te["activity_disposition_vwr_contact"] = { c:
+te["activity_disposition_vwr"] = { div:["w64 x15 y15 ma sh__ gw_ bd8","vddvw"], ev:["_undd"], c:
 [
-	{ input:["g","","activity_contact_id",":v:contacts:id","radio","1"] },
-	{ div:["xx y07 mb"], c: 
-	[
-		{ div:["x"], c:
-		[
-			{ div:["d w03"], c:
-			[
-				{ input:["g","","advwt","%0","radio"] },
-				{ ac:["ab abs","","_activity_disposition_uvwr","x y tr cb h3 gws_",""], c:
-				[
-					{ s:["","&Cross;"] },
-				]},
-			]},
-			{ div:["e"] }
-		]},
-		{ div:[], c:
-		[
-			{ activity_disposition_vwr_contact_:[] },
-			{ div:["tt"], c:
-			[
-				{ div:["c"], c:
-				[
-					{ ac:["ay","case_contact_ed-contacts-^","_vp","xx y04",""], c:
-					[
-						{ s:["","Edit"] },
-						{ div:["g"], arg:["",".id",":v:contacts:id"] }
-					]},
-					{ div:["g"], arg:["","","activity_disposition_vwr_contact-contacts-va--@"] }, // vp return anchor
-				]},
-				{ div:["e"] }
-			]}
-		]},
-		{ div:["x g"], c:[ { u:["nb","contacts_nb"] }, { div:["e"] } ] }	
-	]}
-]};
-
-te["activity_disposition_vwr"] = { c:
-[
-	{ div:["bl2_b","va"], u:["activity_disposition_vwr_contact","contacts"] },
-	{ div:["bl2_b","va"], u:["activity_disposition_vwr_case","cases_related"] } 
+	{ div:["xx","va"], u:["activity_disposition_vwr_contact","contacts"] },
+	{ div:["x yy","va"], u:["activity_disposition_vwr_case","cases_related"] } 
 ]};
 
 // ---
@@ -476,20 +438,13 @@ te["activity_disposition_r_case"] = { c:
 	{ div:["e"] }
 ]};
 
-te["activity_disposition_r_contact"] = { c:
-[
-	{ div:["c x t"], s:["",":v:dispositions:reporter_fullname"] },
-	{ div:["c x t"], uval:["",":v:dispositions:reporter_sex"] },
-	{ div:["c x t"], uval:["",":v:dispositions:reporter_age_group"] },
-]};
-
-te["activity_disposition_r_"] = { div:["l35"], c:
+te["activity_disposition_r_"] = { div:["l35","va"], c:
 [
 	{ input:["g","","advwt","%0","radio"] },
-	{ li:[null], ev:["_activity_disposition_vwr"], c:
+	{ li:[null,"activity_disposition_vwr-dispositions-^"], ev:["_vp"], c:
 	[
 		{ div:["abs xx tt"], s:["x y micon h3 ba gws_ bd16",":v:dispositions:src::case_src:6"] },
-		{ div:[null], c:
+		{ div:["ml2_ mh05 x30 yy bl r"], c:
 		[
 			{ div:[], c:
 			[
@@ -498,24 +453,28 @@ te["activity_disposition_r_"] = { div:["l35"], c:
 				{ div:["e"] }	
 			]},
 			{ div:[], c:
-				[
-					{ activity_disposition_r_contact:[] },
-					{ div:["e"] }	
-				]},
+			[
+				{ div:["c x t"], s:["",":v:dispositions:reporter_fullname"] },
+				{ div:["c x t"], uval:["",":v:dispositions:reporter_sex"] },
+				{ div:["c x t"], uval:["",":v:dispositions:reporter_age_group"] },
+				{ div:["e"] }	
+			]},
 			{ div:["cd"], c:
 			[
 				{ s:["c l y",":r::1:: : ago:: : ago:"] },
 				{ arg:["tm","","%1"] },
 				{ s:["c x20 y",":v:dispositions:created_by"] },
-				{ p:["e","o"], arg:["",".id","%0"] }	
+				{ div:["e"] }	
 			]}
-		]}
-	]}
+		]},
+		{ div:["e"], arg:["",".id","%0"] }
+	]},
+	{ div:["g"], arg:["","","activity_disposition_r-dispositions-va--@"] }, // vp return anchor
 ]};
 
-te["activity_disposition_r"] = { activity_disposition_r_:["lr l","ml2_ mh05 x30 yy bl r"] };
+te["activity_disposition_r"] = { activity_disposition_r_:["l lr",""] };
 
-te["activity_disposition_r_new"] = { activity_disposition_r_:["lr l gh","ml2_ mh05 x30 yy bl r"] };
+te["activity_disposition_r_new"] = { activity_disposition_r_:["l gh lr","ml2_ mh05 x30 yy bl r"] };
 
 te["activity_disposition_k_"] = { c:
 [
@@ -762,7 +721,7 @@ te["activity_main"] = { c:
 
 	{ div:["x25 yy" ,"vf"], c:[ { div:["","activity_disposition_f-dispositions_f"], ev:["l__vpf"], c:
 	[
-		{ activity_disposition_f_tags_k:[] }
+		{ activity_f_tags_k:[] }
 	]} ]},
 	
 	{ div:[], c: 
@@ -1188,7 +1147,7 @@ function _activity_vw_id (ev)
 		a.src_ts = Date.now()/1000;
 		a.src_uid = a.src+"-"+user_cid+"-"+Date.now ();
 		if (a.src_callid==undefined) a.src_callid = a.src_uid;
-		// a.src_address = "";
+		a.src_address = ""; // "0700112233"; // debug
 		a.src_usr = user_cid
 		a.src_vector = 2;
 		a.src_uid2 = a.src_uid+"-2";

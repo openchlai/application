@@ -1243,21 +1243,21 @@ te["toolbar_default"] = { div:["ma w15"], c:
 			
 te["main"] = { c: 
 [
-	{ div:["x y07 gw"], c: // 
+	{ div:[" gw"], c: // 
 	[
 		{ div:["c "], s:["",""], c:
 		[
-			{ a:["c aa","","","/helpline/"], c:[ { img:["","",APP_LOGO, "48"] } ] },
+			{ a:["c aa x02 y02","","","/helpline/"], c:[ { img:["","",APP_LOGO, "44"] } ] },
 			{ div:["e"] }
 		]}, 		
 			
-		{ div:["d r10"], c:
+		{ div:["d t08 r20"], c:
 		[
 			{ input:["g","","rtab","0","radio"] },
 			{ ac:["ll ay tab","","_mtabr","gw bd x y micon h2_ cb","history"] }				
 		]},
 		
-		{ div:["d mr"], c:
+		{ div:["d mr t08"], c:
 		[
 			{ input:["g","","rtab","1","radio"] },
 			{ ac:["l15 ay tab","","_mtabr","gw bd cb",""], c:
@@ -1267,7 +1267,7 @@ te["main"] = { c:
 			]},
 		]},
 		
-		{ div:["d mr g"], c: // active chat (shown only when chat-activity is open)
+		{ div:["d mr t g"], c: // active chat (shown only when chat-activity is open)
 		[
 			{ input:["g","","rtab","2","radio"] },
 			{ ac:["l15 ay rb","","_mtabr","gw bd cb",""], c:
@@ -1277,7 +1277,7 @@ te["main"] = { c:
 			]},
 		]},
 					
-		{ div:["d w17 t01"], s:["abs w17 zzz",""], c:
+		{ div:["d w17 t08"], s:["abs w17 zzz",""], c:
 		[
 			{ div:["ay","va"], ac:["","","_dd","w17 bd gws_",""], c:
 			[
@@ -1403,8 +1403,6 @@ te["main"] = { c:
 		{ div:[], c:[ { input:["g","","mtv","9","radio"] }, { p:["tabv","vftab"] } ] }, // 
 		{ div:[], c:[ { input:["g","","mtv","10","radio"] }, { p:["tabv gw mm","vfvwm"], wallboard:[] } ] }, // wallboard
 
-
-		
 		{ div:["g"], c:
 		[
 			{ iframe:["","",VA_AMI_HOST] },

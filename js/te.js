@@ -1149,9 +1149,10 @@ function ld (p, m, http_status)
 	console.log (http_status+" -> "+m+":"+JSON.stringify (uu)+" @"+p.id)
 
 	for (var i=0; i<uu.length; i++)
-	{		
+	{	
 		var u_ = uu[i];
 		var p_ = p;
+
 		// if (!ra[u_[1]]) continue;
 		if (u_.length>2 && u_[2].length>0 && p_.id.substr (0,u_[2].length)!=u_[2])
 		{
@@ -1181,6 +1182,13 @@ function ld (p, m, http_status)
 		// for (var j=ra.a[i].length-1; j>-1; j--) { a_[m_[0]]=ra.a[i][j]; m_[0]++; }
 		// console.log (p_.id+" | "+u_[0]+" "+u_[1]);
 		nd (p_, {u:[u_[0],u_[1]]}, a_, [], m_);
+
+		if (p_.id=="vp"  && p_.childNodes.length>0) 
+		{
+			p_.firstChild.style.marginTop = window.scrollY+"px";
+			console.log ("[LDvp] "+p_.id+"|"+window.scrollY)
+
+		}
 	}
 
 	ra["auth_nb"] = [];
@@ -1399,7 +1407,8 @@ function vp (p)
 	p.style.width = w
 	p.style.display = "block";
 	p.innerHTML = ""; // todo: doc-fragment	
- 	window.scrollTo(0, 0); 
+	console.log (window.innerHeight+" / "+document.body.scrollHeight+" "+window.scrollY);
+	// window.scrollTo(0, 0); 
 	// console.log (p.className)
 } 
 
@@ -1468,6 +1477,7 @@ function _vp (ev)
 {
 	var p = document.getElementById ("vp");
 	var u = this.id.split ("-");
+	if (this.previousSibling) this.previousSibling.checked=true;
 	elvp = null;
 	if (u.length>2) elvp = this.nextSibling;
 	vp (p);
