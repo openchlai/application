@@ -227,7 +227,7 @@ function ati_popup (el, f=0)
 
 	var u_ = re["case_src"][a.src];
 	nd (coll[1], te["ati_toolbar"], [], r_, [0]); // show toolbar	
-	nd (coll[6].childNodes[1].childNodes[1], te["activity_vw_id"], ["","","1",u_[8]], r_, [4]);
+	nd (coll[6].childNodes[1].childNodes[1], te["activity_vw_id"], [u_[8],"","","1"], r_, [4]);
 	url (coll[6].childNodes[1].childNodes[1].lastChild, "activity_vw_id_tabs_message", "activities", s);
 }
 
