@@ -1186,8 +1186,7 @@ function ld (p, m, http_status)
 		if (p_.id=="vp"  && p_.childNodes.length>0) 
 		{
 			p_.firstChild.style.marginTop = window.scrollY+"px";
-			console.log ("[LDvp] "+p_.id+"|"+window.scrollY)
-
+			// console.log ("[LDvp] "+p_.id+"|"+window.scrollY)
 		}
 	}
 
