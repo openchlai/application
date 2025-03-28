@@ -741,12 +741,24 @@ te["activity_main"] = { c:
 
 // -----------------------------------------------------------------------------------------
 
+te["activity_vw_id_args"] = { c:
+[
+    { arg:["","src",":v:activities:src"] },
+    { arg:["","src_uid",":v:activities:src_uid"] },
+    { arg:["","src_address",":v:activities:src_address"] },
+    { arg:["","src_uid2",":v:activities:src_uid2"] },
+    { arg:["","src_usr",":v:activities:src_usr"] },
+    { arg:["","src_vector",":v:activities:src_vector"] },
+    { arg:["","src_callid",":v:activities:src_callid"] },
+    { arg:["","src_ts",":v:activities:src_ts"] }
+]};
+
 te["activity_toolbar"] = { div:["ma w12 ","chan_id_here"], c: // 
 [
 	{ input:["g","","sbl","100","radio","1"] },
 	{ ac:["abs mtn37 ao w12 sbl bd","","_activity_show","w12 bd tc cb bd gws_",""], c:[ { div:[""], c:
 	[
-		{ s:["x y tc",":v:activities:src::case_src:7"] },
+		{ s:["x y tc",":v:activities:src::case_src:1"] },
 	]} ]}
 ]};
 

@@ -127,7 +127,21 @@ te["ati_btns"] = { c:
 	{ div:["e"] }
 ]};
 
-te["ati_toolbar"] = { div:["ma w20",":v:activities:src_callid"], c: //  
+
+te["ati_toolbar"] = { div:["ma w15 ",":v:activities:src_callid"], c: //
+[
+	{ input:["g","ati_toolbar","sbl","1","radio","1"] },
+	{ ac:["abs mtn37 ao w15 sbl bd","","_activity_show","w15 bd tc cb bd gws_",""], c:[ { div:[""], c:
+	[
+		{ s:["c ll y",":v:activities:src::case_src:1"] },
+		{ s:["c",""] }, //	{ s:["c w08 y tc b",":v:activities:src_address"] },
+		{ s:["d r10 y tr",""] },
+		{ arg:["ts","",":v:activities:src_ts"] },
+		{ div:["e"] }
+	]} ]}
+]};
+
+/*te["ati_toolbar"] = { div:["ma w20",":v:activities:src_callid"], c: //  
 [
 	{ input:["g","ati_toolbar","barr","1","radio","1"] },
 	{ li:["abs mtn37 ao w20 bd"], ev:["_activity_show"], s:["gr bd cw",""], c:
@@ -144,7 +158,7 @@ te["ati_toolbar"] = { div:["ma w20",":v:activities:src_callid"], c: //
 		//{ div:["e"] }
 	]}
 ]};
-
+*/
 
 te["ati_available"] = { div:[], s:["xx y cd","Text Queues On"] };
 
