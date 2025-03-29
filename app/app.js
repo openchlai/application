@@ -144,7 +144,7 @@ var UU =
 
 "case_rpt_vw":{ 200:[["rpt_vw","cases_rpt"]] },
 "case_update":{ 202:[["uvpfn","cases","vp"]], 412:[["nb","errors","v","nb"]], 200:[["case_update","cases"]] },
-"case_ed":{ 202:[["activity_case_ufn","cases","vfvw"]], 412:[["nb","errors","v","nb"]], 200:[["case_ed","cases"]] },
+"case_ed":{ 202:[["activity_case_ufn","dispositions"]], 412:[["nb","errors","v","nb"]], 200:[["case_ed","cases"]] },
 "case_new":{ 201:[["activity_case_ufn","dispositions"]], 412:[["nb","errors","v","nb"]] },
 "case_vw_id":{ 200:[["case_vw_id","cases"]] },
 "case_vw":{ 200:[["case_vw","cases"]] },

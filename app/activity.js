@@ -1048,10 +1048,21 @@ function activity_disposition_ufn (el, u, a, r, m)
 
 function activity_case_ufn (el, u, a, r, m)
 {
-	var el_ = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
 	var coll = __(el,"vf").parentNode.previousSibling.childNodes;
-	var p = coll[1].childNodes[2].firstChild.childNodes[1].childNodes[1].childNodes[1];
 	coll[0].checked = true;
+	if (coll[0].name=="case_vw_vt") 
+	{
+		var p = coll[1].childNodes[2].firstChild.childNodes[1].childNodes[2]
+		var a = {}; //"casevwr":null};
+		var b = {};
+		argv (p.childNodes[1], a, "name", null, b);
+		var el_ = b["casevwr"][0].parentNode;
+		el_.innerHTML = ""
+		nd (el_, te["case_r_"], ["gh cb"], ra["cases"][0], [1])
+		return;
+	}
+	var el_ = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
+	var p = coll[1].childNodes[2].firstChild.childNodes[1].childNodes[1].childNodes[1];
 	p.insertBefore (el_, p.firstChild);
 	nd (el_, te["activity_disposition_r_new"], [], r, [0]);
 	coll[1].firstChild.childNodes[2].childNodes[0].firstChild.checked = true; 		// toggle new-case btn 
