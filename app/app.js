@@ -445,6 +445,12 @@ re["case_src"] =
 "whatsup":["whatsup","WHATSAPP","",                   "","/helpline/images/watsap_ico.png","g","chat","Whatsup Activity", "ati_btns","activity_vw_id_tabs_message","Whatsapp Chat", "reporter_phone", ""],
 "FACEBOOK":["FACEBOOK","FACEBOOK","",                   "","/helpline/images/watsap_ico.png","g","chat","Facebook Activity", "ati_btns","activity_vw_id_tabs_message","Facebook Chat", "reporter_email", ""], 
 "TWITTER":["TWITTER","TWITTER","",                      "","/helpline/images/watsap_ico.png","g","chat","Twitter Activity", "ati_btns","activity_vw_id_tabs_message","Twitter Chat", "reporter_email", ""], 
+
+
+"webform":["webform","Webform",":k:case_source:webform:1",  "g","", "micon cg hh","directions_walk","Webform Activity",      "activity_btns","activity_vw_id_tabs","Web Form", "reporter_phone", ""],
+
+"cmis":["cmis","CMIS",":k:case_source:cmis:1",  "g","", "micon cg hh","directions_walk","CMIS Activity",      "activity_btns","activity_vw_id_tabs","CMIS", "reporter_phone", ""],
+
 };
 
 rk["safepal"] = ["timestamp","reporter_nickname","case_category","victim","perpetrator"];
