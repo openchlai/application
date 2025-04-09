@@ -1467,6 +1467,7 @@ function _vpf ()
 	var o = {}; 
 	elvpf = __(this,"vb").nextSibling;
 	jso (elvpf, o);
+	argv (this.firstChild.lastChild, o)
 	ra[u[1]] = o;
 	vp (p);
 	nd (p, te[u[0]], [], [], [0]);

@@ -149,7 +149,6 @@ te["activity_contact_r"] = { div:[""], c:
 te["activity_contact_k"] = { div:["g"], c:
 [
 	{ activity_disposition_k_:[] },
-	{ arg:["","disposition_id",(DISPOSITION_ID_CONTACT_NEW+","+DISPOSITION_ID_CONTACT_EDIT)] },
 	{ arg:["","_c","%1"] },
 	{ arg:["","sort","id"] }, 
 	{ div:["e"] } 
@@ -200,12 +199,10 @@ te["activity_contact_main"] = { div:["","ve"], c:
 	{ div:["","vt"], c:
 	[
 		{ activity_f_tags:[] },
-		{ arg:["","disposition_id",(DISPOSITION_ID_CONTACT_NEW+","+DISPOSITION_ID_CONTACT_EDIT)] },
 		{ arg:["","_c","5"] },
 		{ arg:["","sort","id"] },
 		{ uv:["activity_contact_ls_main","dispositions"] } 
 	]},
-	{ p:["","o"], arg:["","case_id","-1"] },
 	{ ac:["t15 b10 ao btn","","_activity_next","y07 gb bd cw b n tc","Next"] }
 ]};
 
@@ -293,14 +290,14 @@ te["activity_disposition_new_"] = { div:["w64 x15 y ma sh__ gw_ bd8","vdd"], ev:
 	[
 		{ s:["c x t15 b10 h3 b",null] },
 		{ ac:["d","","_uvp","x y h cb","&Cross;"] },
-		{ p:["e","o"], arg:["","m",null] }
+		{ p:["e","o"], arg:["","case_id",null] }
 	]},
 	{ div:[], c:
 	[
 		{ div:[], c:		// select contact
 		[
 			{ input:["g","","activity_action_0","0","radio","1"] },
-			{ div:["tabv","vf"], activity_contact_main:[] }
+			{ div:["tabv","vf"], u:["activity_contact_main"] }
 		]},
 		{ div:[], c:		// search contact
 		[
@@ -320,9 +317,9 @@ te["activity_disposition_new_"] = { div:["w64 x15 y ma sh__ gw_ bd8","vdd"], ev:
 	]}
 ]};
 
-te["activity_disposition_new"] = { activity_disposition_new_:["Disposition","disposition"] };
+te["activity_disposition_new"] = { activity_disposition_new_:["Disposition","-2"] };
 
-te["activity_disposition_new_case"] = { activity_disposition_new_:["New Case","case"] };
+te["activity_disposition_new_case"] = { activity_disposition_new_:["New Case","-1"] };
 
 // ---
 
@@ -332,11 +329,10 @@ te["activity_disposition_vwr_case"] = { c:
 	[
 		{ s:["c x y b",CASE_ID_PREFIX] },
 		{ s:["c y b",":v:cases:id"] },
-		{ ac:["d ao","case_vw_id-cases_uuid-@","_vw","xx y bd16 cw gb",""], c:
+		{ ac:["d ao","activity_disposition_new_case-dispositions_f","_activity_followup","xx y bd16 cw gb",""], c:
 		[
-			//{ s:["c x t04 h2 b","+"] },
 			{ s:["c","Followup"] },
-			{ div:["e"], c:[ { arg:["",".id","-1"] }, { arg:["","case_id",":v:cases:id"] }, { arg:["","reporter_uuid_id",":v:cases:reporter_id"] } ] }
+			{ div:["e"], arg:["","case_id",":v:cases:id"] }
 		]}, 
 		{ div:["e"] }
 	]},
@@ -484,7 +480,8 @@ te["activity_disposition_k_"] = { c:
 	{ arg:["","reporter_phone",		":k:dispositions_k:reporter_phone:2"] },
 	{ arg:["","reporter_email",		":k:dispositions_k:reporter_email:2"] },
 	{ arg:["","reporter_location_id",	":k:dispositions_k:reporter_location_id:2"] },
-	
+	{ arg:["","disposition_id",       	":k:dispositions_k:disposition_id:2"] },
+
 	{ arg:["","case_id",			":k:dispositions_k:case_id:2"] },
 	{ arg:["","cases^created_on",		":k:dispositions_k:cases^created_on:2"] },
 	{ arg:["","cases^created_by_id",	":k:dispositions_k:cases^created_by_id:2"] },
@@ -537,7 +534,11 @@ te["activity_f_tags_"] = { c:
 	{ f:["Case Assessment",null,	" %1","cases^assessment_id"," %1"] },
 	{ f:["Status in Justice System",null," %1","cases^justice_id"," %1"] },
 	
-	{ p:["g","o"], arg:["","sort","id"] }, 
+	{ p:["g","o"], c:
+	[
+		{ arg:["","disposition_id",null] },
+		{ arg:["","sort","id"] }
+	]},
 	{ div:["e"] }
 ]};
 	
@@ -549,6 +550,7 @@ te["activity_f_tags_k"] = { activity_f_tags_:
 ":k:dispositions_k:src:2", 		":k:dispositions_k:cases^case_category_id:2", 	":k:dispositions_k:cases^gbv_related:2",
 ":k:dispositions_k:cases^priority:2", 	":k:dispositions_k:cases^status:2", 		":k:dispositions_k:cases^escalated_to_id:2", 
 ":k:dispositions_k:cases^assessment_id:2",":k:dispositions_k:cases^justice_id:2",   
+":k:dispositions_k:disposition_id:2",
 ]};
 	
 te["activity_f_tags"] = { activity_f_tags_:
@@ -559,6 +561,7 @@ te["activity_f_tags"] = { activity_f_tags_:
 ":k:dispositions_f:src", 		":k:dispositions_f:cases^case_category_id", 	":k:dispositions_f:cases^gbv_related", 
 ":k:dispositions_f:cases^priority", 	":k:dispositions_f:cases^status", 		":k:dispositions_f:cases^escalated_to_id",  
 ":k:dispositions_f:cases^assessment_id",":k:dispositions_f:cases^justice_id",  
+":k:dispositions_f:disposition_id",
 ]};
 	
 te["activity_cases_f"] = { c:
@@ -628,6 +631,7 @@ te["activity_f_"] = { c:
 	[
 		{ div:[], c:[ { input:["g","","case_f_vw_tv","0","radio","1"] }, { div:["tabv"], activity_contacts_f:[] } ] },
 		{ div:[], c:[ { input:["g","","case_f_vw_tv","1","radio"] }, { div:["tabv"], activity_cases_f:[] } ] },		
+		{ p:["","o"], arg:["","disposition_id",":k:dispositions_f:disposition_id"] }
 	]}
 ]};
 	
@@ -686,7 +690,10 @@ te["activity_main"] = { c:
 				[
 					{ s:["c x t04 h2 b","+"] },
 					{ s:["c x y s","New Case"] },
-					{ div:["e"], arg:["","case_id","-1"] }
+					{ div:["e"], c:
+					[
+						{ arg:["","disposition_id",(DISPOSITION_ID_CONTACT_NEW+","+DISPOSITION_ID_CONTACT_EDIT)] }
+					]}
 				]},
 				{ div:["g"] } // arg:["","",""] }, // vp return anchor
 			]},
@@ -696,11 +703,22 @@ te["activity_main"] = { c:
 				{ ac:["ay tabv","","_vw","xx bd16 co gws_",""], c:
 				[
 					{ s:["c x t04 h2 b","+"] },
-					{ s:["c x y s","New Case (In Progress)"] },
-					{ div:["e"], arg:["","case_id","-1"] }
+					{ s:["c x y s","New Case In Progress ..."] },
+					{ div:["e"] }
 				]},
 				{ div:["g"] } // arg:["","",""] }, // vp return anchor
-			]}
+			]},
+			{ div:[], c:
+                        [
+                                { input:["g","","activity_vw_vt_ss","1","radio"] },
+                                { ac:["ay tabv","","_vw","xx bd16 co gws_",""], c:
+                                [
+                                        { s:["c x t04 h2 b","+"] },
+                                        { s:["c x y s","Followup In Progress ..."] },
+                                        { div:["e"] }
+                                ]},
+                                { div:["g"] } // arg:["","",""] }, // vp return anchor
+                        ]}
 		]},
 
 		{ div:["c xx "], c:
@@ -710,8 +728,11 @@ te["activity_main"] = { c:
 			[
 				{ s:["c x t h2 b","#"] },
 				{ s:["c x y s","Disposition"] },
-				{ input:["g","","adt","2","radio",""] },
-				{ div:["e"] }
+				// { input:["g","","adt","2","radio",""] },
+				{ div:["e"], c:
+				[
+					 { arg:["","disposition_id",(DISPOSITION_ID_CONTACT_NEW+","+DISPOSITION_ID_CONTACT_EDIT)] }
+				]}
 			]},
 			{ div:["g"], arg:["","","activity_disposition_r_new-dispositions-vftab-vdisp-!"] }, // vp return anchor
 		]},
@@ -1073,12 +1094,16 @@ function activity_reporter_ufn (el, u, a, r, m)
 {
 	var coll = elvpf.parentNode.parentNode.nextSibling.childNodes;
 	var p = document.getElementById ("vp");
+	var u_= [["case_new","r_"],["case_vw_id","cases"]];
+	var k = 0;
+	if (ra["cases"] && ra["cases"][0] && (ra["cases"][0][0]*1)>0) k=1;
 	p.style.display = "none";
 	p.innerHTML = "";
 	coll[0].checked = true;
 	coll[1].innerHTML = "";
-	nd (coll[1], te["case_new"], [], re["r_"][0], [0]);
-	elvpf.previousSibling.childNodes[2].childNodes[1].firstChild.checked = true; 		// toggle new-case btn 
+	nd (coll[1], te[u_[k][0]], [], ra[u_[k][1]][0], [0]);
+	k++;
+	elvpf.previousSibling.childNodes[2].childNodes[k].firstChild.checked = true; 		// toggle new-case btn 
 	// todo: update title with contact_id
 }
 
@@ -1110,29 +1135,46 @@ function _activity_postj ()
 
 function _activity_next ()
 {
-	var p = __(this,"vf").parentNode.parentNode.lastChild;
+	var p = __(this,"vf").parentNode.parentNode.lastChild
 	var o = {};
-	jso (__(this,"ve"), o);
-	jso (p.parentNode.previousSibling, o);		// disposition type : m=?
-	if (o["m"]=="case") 				// activity_postj -> create reporter
+	jso (__(this,"ve"), o);				// contact_id
+	jso (p.parentNode.previousSibling, o);		// case_id
+	jso (__(elvpf,"vfvwm").firstChild, o); 		// src
+
+	if ((o["case_id"]*1) > -2)
 	{
 		if (!o["contact_id"] || o["contact_id"].length<1) 
 		{ 
 			alert ("Select Reporter!"); 
 			return; 
 		}
-		jso (__(elvpf?elvpf:(elvp?elvp:p),"vfvwm").firstChild, o); // src
-		url (__(this,"ve"), "activity_case_new", "reporters^uuid", "", null, 2, o, "POST");
+		url (__(this,"ve"), "activity_reporter", "reporters^uuid", "", null, 2, o, "POST");
 		return;
 	}
+
 	p.firstChild.checked = true;
 	p.childNodes[1].innerHTML = "";
-	if (o["contact_id"]>0)				// disposition with contact_id
+	
+	if (!o["contact_id"] || o["contact_id"].length<1) // disposition without contact_id
 	{
-		url (p.childNodes[1], "activity_disposition", "contacts^disposition", o["contact_id"]);
+		nd (p.childNodes[1], te["activity_disposition_form_"], ["r_","activity_disposition_form_contact_unknown"], ["","",""], [2]);
 		return;
 	}
-	nd (p.childNodes[1], te["activity_disposition_form_"], ["r_","activity_disposition_form_contact_unknown"], ["","",""], [2]); 	// disposition without contact_id
+	
+	url (p.childNodes[1], "activity_disposition", "contacts^disposition", o["contact_id"]);
+}
+
+function _activity_followup ()
+{
+        var p = document.getElementById ("vp");
+        var o = {};
+        elvpf = __(elvp,"vf").childNodes[1]; // __(this,"vb").nextSibling;
+        argv (this, o);
+        console.log ("[followup] "+JSON.stringify(o));
+        ra["dispositions_f"] = o;
+        p.innerHTML = "";
+        nd (p, te["activity_disposition_new_"], [o["case_id"],"Followup"], [], [2]);
+	p.firstChild.style.marginTop = window.scrollY+"px";
 }
 
 function _activity_uvpf ()
