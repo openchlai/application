@@ -105,9 +105,10 @@ var UU =
 "activity_contact_main":{ 200:[["activity_contacts","dispositions_ctx"]] },
 "activity_reporter":{ 201:[["activity_reporter_ufn","reporters_uuid"]], 412:[["nb","errors","v","nb"]] },
 "activity_disposition_ed_r":{ 200:[["activity_disposition_ed_r","subcategories"]] },
-"activity_disposition_unknown":{ 201:[["activity_disposition_ufn","dispositions_unknown"]] },
-"activity_disposition":{ 200:[["activity_disposition_form","contacts_disposition"]], 201:[["activity_disposition_ufn","dispositions"]], 412:[["nb","errors","v","nb"]] },
+"activity_disposition_unk":{ 201:[["activity_disposition_ufn","dispositions_unk"]], 412:[["nb","errors","v","nb"]] },
+"activity_disposition":{ 200:[["activity_disposition","contacts_disposition"]], 201:[["activity_disposition_ufn","dispositions"]], 412:[["nb","errors","v","nb"]] },
 "activity_disposition_vwr":{ 200:[["activity_disposition_vwr","dispositions"]] },
+"activity_disposition_list":{ 200:[["activity_disposition_list","dispositions_ctx"]] },
 "activity_list":{ 200:[["activity_list","dispositions_ctx"]] },
 "activity_main":{ 200:[["activity_main","dispositions_ctx"]] },
 "activity_vw_id_tabs_message":{ 200:[["activity_vw_id_tabs_message","activities"]] },
@@ -142,7 +143,7 @@ var UU =
 "service_del":{ 202:[["case_notif_del","services"]], 412:[["nb","errors","v","nb"]] },
 
 "case_rpt_vw":{ 200:[["rpt_vw","cases_rpt"]] },
-"case_update":{ 202:[["uvpfn","cases","vp"]], 412:[["nb","errors","v","nb"]], 200:[["case_update","cases"]] },
+"case_update":{ 202:[["uvpfn","dispositions","vp"]], 412:[["nb","errors","v","nb"]], 200:[["case_update","cases"]] },
 "case_ed":{ 202:[["activity_case_ufn","dispositions"]], 412:[["nb","errors","v","nb"]], 200:[["case_ed","cases"]] },
 "case_new":{ 201:[["activity_case_ufn","dispositions"]], 412:[["nb","errors","v","nb"]] },
 "case_vw_id":{ 200:[["case_vw_id","cases"]] },
@@ -1539,7 +1540,7 @@ function loadphone (el, u, a, r, m)
 	if (v) document.getElementById ("vv").className = v[2];
 	console.log ("loadphone: "+ra["auth"][0][7]+" | "+JSON.stringify (v));
 	DetectDevices ();
-	VOICEAPPS_UA.connect (ra["auth"][0][7]);
+//	VOICEAPPS_UA.connect (ra["auth"][0][7]);
 }
 
 function ami_wait (el, u, a, r, m)

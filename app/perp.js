@@ -63,12 +63,12 @@ te["case_perpetrator_ed_sub_spouse"] = { div:["tt"], c:
 
 // ---- 
 
-te["case_perpetrator_ed_"] = { div:["w68 ma mb sh__ gw_"], c:
+te["case_perpetrator_ed_"] = { div:["w68 ma mb sh__ bd16 gw_ "], c:
 [
 	{ div:["x15 tt"], c:
 	[
-		{ s:["c xx y12 n b",null] },
-		{ ac:["d","","_uvp","xx y08 h cb","&Cross;"] },
+		{ s:["c xx y12 h3 b",null] },
+		{ ac:["d","","_uvp","xx y h cb","&Cross;"] },
 		{ div:["e"] }
 	]},
 			
@@ -96,7 +96,7 @@ te["case_perpetrator_ed_"] = { div:["w68 ma mb sh__ gw_"], c:
 	
 		{ div:["x25 tt"], c:
 		[
-			{ div:["c w20"], case_rela_enum:["Relationship with Client?",":v:perpetrators:relationship_id",":v:perpetrators:relationship"," %0"] },
+			{ div:["c w20"], case_rela_enum:["Relationship with Client?","",":v:perpetrators:relationship_id",":v:perpetrators:relationship"," %0"] },
 			{ div:["c w20 ll"], case_shareshome_enum:["Shares Home with Client?",":v:perpetrators:shareshome_id",":v:perpetrators:shareshome"," %0"] }, 
 			{ div:["e"] }
 		]},
@@ -110,7 +110,7 @@ te["case_perpetrator_ed_"] = { div:["w68 ma mb sh__ gw_"], c:
 		]},
 		
 		{ p:["x25","_case_perp_spouse_"], usub:["case_perpetrator_ed_sub_spouse,case_perpetrator_ed_sub_spouse,case_perpetrator_ed_sub_spouse,case_perpetrator_ed_sub_spouse,case_perpetrator_ed_sub_spouse", "r_", ":v:perpetrators:marital_id", MARITAL_STATUS_WITH_SPOUSE_ID] },
-			
+		
 		{ div:["x25 tt"], c:
 		[
 			{ div:["c w41"], case_txt_:["Perpetrator's Guardian's Name","gws w41 x tt b05","guardian_fullname",":v:perpetrators:guardian_fullname","Enter Perpetrator's Guardian Name"] },
@@ -124,12 +124,12 @@ te["case_perpetrator_ed_"] = { div:["w68 ma mb sh__ gw_"], c:
 			{ p:["w63 gws bd","o"], c:[ { textarea:["gws w63 h11 x y08","","notes",":v:perpetrators:notes","Enter Additional Details"] } ] },
 			{ div:["e"] }
 		]},
-		
+
 		{ div:["x25 t30 b20"], vp_sav:[null,null,null,null,null,null,null] }
 	]}
 ]};
 
-te["case_perpetrator_ed"] = { case_perpetrator_ed_:["Edit Perpetrator Details","perpetrator_ed-perpetrators","_activity_postj","Update","Updating...", "perpetrator_vw_id-perpetrators-vp","_u","Cancel"] };
+te["case_perpetrator_ed"] = { case_perpetrator_ed_:["Edit Perpetrator Details","perpetrator_ed-perpetrators","_activity_postj","Update","Updating...", "","_uvp","Cancel"] };
 
 te["case_perpetrator_new"] = { case_perpetrator_ed_:["New Perpetrator","perpetrator_new-perpetrators","_activity_postj","Create","Creating...","","_uvp","Cancel"] };
 

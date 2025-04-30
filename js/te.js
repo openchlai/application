@@ -717,6 +717,7 @@ function val (v, a, r, m, el, k, w)
 	var v_ = v;
 	if (v===null) { v_ = a[(m[0]-1)]; m[0]--; } // pop a stack
 	if (v_===null) return null;
+	// console.log ("v:"+v_+"|"+m[0])
 	if (v_.length<1) return v_;
 	if (v_.length>1 && r) v_ = valf (r,v_);
 	if (el && k && w!=1) 

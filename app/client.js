@@ -115,12 +115,12 @@ te["case_client_ed_sub_spouse"] = { div:["t15 b20"], c:
 
 // ---
 
-te["case_client_ed_"] = { div:["w68 ma mb sh__ gw_"], c:
+te["case_client_ed_"] = { div:["w68 ma mb sh__ bd16 gw_"], c:
 [
 	{ div:["x15 tt"], c:
 	[
-		{ s:["c xx y12 n b",null] },
-		{ ac:["d","","_uvp","xx y08 h cb","&Cross;"] },
+		{ s:["c xx y12 h3 b",null] },
+		{ ac:["d","","_uvp","xx y h cb","&Cross;"] },
 		{ div:["e"] }
 	]},
 			
@@ -148,16 +148,16 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ gw_"], c:
 		
 		{ div:["x25 t15"], c:
                 [
-                        { div:["c w20"], case_rela_enum:["Reporter's Relationship with Client",":v:clients:relationship_id",":v:clients:relationship"," %0"] },
-                        { div:["c w42 ll"], case_txt_:["Relationship <br/>Comment","gws w42 x yy","relationship_comment",":v:clients:relationship_comment","Enter Comments about the relationship"] },
+                        { div:["c w20"], case_rela_enum:["Reporter's Relationship with","Client",":v:clients:relationship_id",":v:clients:relationship"," %0"] },
+                        { div:["c w42 ll"], case_txt2_:["Relationship","Comment","gws w42 x yy","relationship_comment",":v:clients:relationship_comment","Enter Comments about the relationship"] },
                         { div:["e"] }
                 ]},
 
 		{ div:["x25 tt"], c:
 		[
-			{ div:["c w20"], case_txt_:["Number of Adult<br/> in Household","gws w20 x tt b05","household_adults",":v:clients:household_adults",""] },			
-			{ div:["c w20 ll"], case_household_enum:["Household <br/> Type",":v:clients:household_id",":v:clients:household"," %0"] },
-			{ div:["c w21 ll"], case_household_head_employment_enum:["Head of Household<br/> Occupation", ":v:clients:household_head_occupation_id",":v:clients:household_head_occupation"," %0"] },
+			{ div:["c w20"], case_txt2_:["Number of Adult","in Household","gws w20 x tt b05","household_adults",":v:clients:household_adults",""] },			
+			{ div:["c w20 ll"], case_household_enum:["Household","Type",":v:clients:household_id",":v:clients:household"," %0"] },
+			{ div:["c w21 ll"], case_household_head_employment_enum:["Head of Household","Occupation", ":v:clients:household_head_occupation_id",":v:clients:household_head_occupation"," %0"] },
 			{ div:["e"] }
 		]},
 
@@ -213,7 +213,7 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ gw_"], c:
 	]}
 ]};	
 
-te["case_client_ed"] = { case_client_ed_:["Edit Client Details","client_ed-clients","_activity_postj","Update","Updating...","client_vw_id-clients-vp","_u","Cancel"] };
+te["case_client_ed"] = { case_client_ed_:["Edit Client Details","client_ed-clients","_activity_postj","Update","Updating...","","_uvp","Cancel"] };
 
 te["case_client_new"] = { case_client_ed_:["New Client","client_new-clients","_activity_postj","Create","Creating...","","_uvp","Cancel"] };
 
@@ -312,9 +312,9 @@ te["case_client_vw_id_"] = { c:
         
 	{ div:["x15 bt_ mt t"], c:
 	[	
-		{ div:["c w20"], case_vw_val_cat:["Number of Adult <br/>in Household","",":v:clients:household_adults"] },
-		{ div:["c w20 ll"], case_vw_val_cat:["Household<br/>Type","",":v:clients:household"] },
-		{ div:["c w21 ll"], case_vw_val_cat:["Head of Household<br/>Occupation","",":v:clients:household_head_occupation"] },
+		{ div:["c w20"], case_vw_val_cat2:["Number of Adult"," in Household","",":v:clients:household_adults"] },
+		{ div:["c w20 ll"], case_vw_val_cat2:["Household", "Type","",":v:clients:household"] },
+		{ div:["c w21 ll"], case_vw_val_cat2:["Head of Household", "Occupation","",":v:clients:household_head_occupation"] },
 		{ div:["e"] }
 	]},
 	

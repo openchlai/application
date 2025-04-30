@@ -349,11 +349,15 @@ te["case_enum_lsh"] = { c:
 	]}
 ]};
 
-te["case_enum_ls"] = { c:  
+te["case_enum_ls_"] = { c:  
 [
 	{ div:[], c:
 	[
-		{ div:["c"], s:[null,null] },
+		{ div:["c"], c:
+		[
+			{ s:[null,null] },
+			{ s:[null,null] }
+		]},
 		{ s:["c t h2 cr b",null] },
 		{ div:["e"] }
 	]},
@@ -373,6 +377,8 @@ te["case_enum_ls"] = { c:
                 { u:[null] } 
         ]}
 ]};
+
+te["case_enum_ls"] = { case_enum_ls_:[null,null,"","",null, null, null, null, null,null, null, null,null,null,null,null,  null, null, null, null, null] };
 
 te["case_enum_sel"] = { c:
 [
@@ -409,6 +415,16 @@ te["case_enum_tag_txa_"] = { p:["","txa"], c: // [nb] id(txa) used by uhilite
 	{ arg:["",null,""] }, // placeholder for upd
 ]};
 
+te["case_txt2_"] = { c:
+[
+        { div:["x y"], c:
+	[
+		{ s:["",null] },
+		{ s:["",null] }
+	]},
+        { p:["","o"], c:[ { input:[null,"",null,null,"text","",null] } ] },
+]};
+
 te["case_txt_"] = { c:
 [
 	{ s:["x y",null] },
@@ -419,7 +435,7 @@ te["case_txt_"] = { c:
 
 te["case_household_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","","household_id"] };
 
-te["case_household_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_household_tag_txa-%1-household_id-%0-", "category_ls-subcategories", "c w17", "case_household_tag_txa","r_", null,"case_household_tag_txa",null,"household_id",null,"", HOUSEHOLD_TYPE_ROOT_ID, "fullname", "noop","dd w21 gw_ ba_b", "noop"] };
+te["case_household_enum"] = { case_enum_ls_:["x t",null,"x b05",null,"", "tag-r_--o-case_household_tag_txa-%1-household_id-%0-", "category_ls-subcategories", "c w17", "case_household_tag_txa","r_", null,"case_household_tag_txa",null,"household_id",null,"", HOUSEHOLD_TYPE_ROOT_ID, "fullname", "noop","dd w21 gw_ ba_b", "noop"] };
 
 // ---
 
@@ -431,7 +447,7 @@ te["case_guardian_marital_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-cas
 
 te["case_household_head_employment_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","Select Employment Status","household_head_occupation_id"] };
 
-te["case_household_head_employment_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_household_head_employment_tag_txa-%1-household_head_occupation_id-%0-", "category_ls-subcategories", "c w17", "case_household_head_employment_tag_txa","r_", null,"case_household_head_employment_tag_txa",null,"household_head_occupation_id",null,"", EMPLOYMENT_STATUS_ROOT_ID, "fullname", "noop","dd w20 gw_ ba_b", "noop"] };
+te["case_household_head_employment_enum"] = { case_enum_ls_:["x t",null,"x b05",null,"", "tag-r_--o-case_household_head_employment_tag_txa-%1-household_head_occupation_id-%0-", "category_ls-subcategories", "c w17", "case_household_head_employment_tag_txa","r_", null,"case_household_head_employment_tag_txa",null,"household_head_occupation_id",null,"", EMPLOYMENT_STATUS_ROOT_ID, "fullname", "noop","dd w20 gw_ ba_b", "noop"] };
 
 // ---
 
@@ -486,7 +502,7 @@ null, "case_shareshome_tag_txa",null,"shareshome_id",null,"", SHARES_HOME_ROOT_I
 
 te["case_rela_tag_txa"] = { case_enum_tag_txa_:["w20 xx tt b05","fullname__","Select Relationship","relationship_id"] };
 
-te["case_rela_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_rela_tag_txa-%1-relationship_id-%0-", "category_ls-subcategories", "c w17", "case_rela_tag_txa","r_", null, "case_rela_tag_txa",null, "relationship_id",null,"",  RELATIONSHIP_ROOT_ID, "fullname", "noop", "dd w20 gw_ ba_b", "noop"] };
+te["case_rela_enum"] = { case_enum_ls_:["x t",null,"x b05",null,"", "tag-r_--o-case_rela_tag_txa-%1-relationship_id-%0-", "category_ls-subcategories", "c w17", "case_rela_tag_txa","r_", null, "case_rela_tag_txa",null, "relationship_id",null,"",  RELATIONSHIP_ROOT_ID, "fullname", "noop", "dd w20 gw_ ba_b", "noop"] };
 
 // ---
 
@@ -834,11 +850,9 @@ te["case_reporter_uuid_id_arg"] = { arg:["",".id","%0"] };
 
 te["case_reporter_uuid_arg"] = { arg:["","reporter_uuid_id","%0"] };
 
-te["case_uuid_arg"] = { arg:["","uuid",":v:cases_uuid:uuid"] };
-
 te["case_form_col_1"] = { c:
 [
-	{ div:["t20"], c:
+	{ div:["t15"], c:
 	[
 		{ div:[], c:
 		[
@@ -1042,17 +1056,12 @@ te["case_form_"] = { div:["","ve"], c: // new case
 		{ p:["e","o"], c:
 		[
 			{ arg:["",".id","%0"] },
-			{ div:[], c:
-			[
-				{ arg:["","disposition_id",null] },
-				// todo: override if reporter_uuid exist
-			]},
-			{ u:["case_uuid_arg","cases_uuid"] }, // used when creating new case
+			{ arg:["","disposition_id",null] }
 		]},
 	]}
 ]};
 
-te["case_ed"] = { case_form_:[":v:cases:id", "case_form_reporter_followup", "case_ed-cases","Update", "case_vw_id-cases_uuid-vf","_u", DISPOSITION_ID_CASE_EDIT] };
+te["case_ed"] = { case_form_:[":v:cases:id", "case_form_reporter_followup", "case_ed-cases","Update", "case_vw_id-reporters^uuid-vf","_u", DISPOSITION_ID_CASE_EDIT] };
 
 te["case_new"] = { case_form_:["NEW CASE", "case_form_reporter_new_case", "case_new-cases","Create", "","_activity_uvw", DISPOSITION_ID_NEW_CASE] };
 
@@ -1113,6 +1122,16 @@ te["case_vw_val_cat_tr"] = { c:
 [
 	{ s:["x tt tr v",null] },
 	{ div:["x y n mh02 bd tr"], uval:[null,null] }
+]};
+
+te["case_vw_val_cat2"] = { c:
+[
+        { div:["x tt b05"], c:
+	[
+		{ s:["",null] },
+		{ s:["",null] }
+	]},
+        { div:["x y n mh02 bd"], uval:[null,null] }
 ]};
 
 te["case_vw_val_cat"] = { c:

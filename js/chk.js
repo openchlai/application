@@ -223,3 +223,7 @@ function _chk ()
 	nd (p_, te[u_[0]], a_, r_, [a_.length]);	
 }
 
+function _chk_ ()
+{
+        chk (this.previousSibling);
+}

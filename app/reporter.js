@@ -81,12 +81,12 @@ te["case_form_reporter_followup_"] = { case_form_reporter_:["Followup By","case_
 te["case_form_reporter_followup"] = { u:[":u::0:0:noop:case_form_reporter_followup_"] }; // skip -1
 
 
-te["case_reporter_ed_"] = { div:["w68 ma sh__ gw_"], c:
+te["case_reporter_ed_"] = { div:["w68 ma mb sh__ bd16 gw_"], c:
 [	
 	{ div:["x15 tt"], c:
 	[
-		{ s:["c xx y12 n b",null] },
-		{ ac:["d","","_uvp","xx y08 h cb","&Cross;"] },
+		{ s:["c xx y12 h3 b",null] },
+		{ ac:["d","","_uvp","xx y h cb","&Cross;"] },
 		{ div:["e"] }
 	]},
 
@@ -140,13 +140,13 @@ te["case_vw_reporter_r_"] = {  c:
 
 te["case_vw_reporter_r"] = { div:["mb","va"], case_vw_reporter_r_:["xx y bd cb gws_"] };
 
-te["case_vw_reporter_uuid_r"] = { div:["mb","va"], case_vw_reporter_r_:["xx y bd cb gbn"] };
+te["case_vw_reporter_uuid_r"] = { div:["mb","va"], case_vw_reporter_r_:["xx y bd cb gws_"] };
 
 te["case_vw_reporter_uuid_"] = { c:
 [
 	{ div:["t"], c:
 	[
-		{ s:["xx yy b n","Followup By"] },
+		{ s:["xx yy b","Followup By"] },
 		{ div:["e"] }
 	]},
 	{ u:["case_vw_reporter_uuid_r"] },
@@ -217,13 +217,10 @@ function _reporter_isclient (ev)
 	var o_ = {};
 	jso (p_.firstChild, o); 		// channel data
 	jso (__(p.parentNode,"ve"), o_); 	// get case_id 
-	argv (p.nextSibling, o); 		// get reporter_id 
+	// argv (p.nextSibling, o); 		// get reporter_id 
 	o["case_id_"] = o_[".id"];
-	o["case_uuid"] = o_["uuid"];
 	if (this.previousSibling.checked) { o["case_id_"]="-9"; }
-	if (o["reporter_uuid_id"]) o["reporter_id"] = o["reporter_uuid_id"];
-	url (p, "reporter_is_client", "reporters^isclient", o["reporter_id"], null, 2, o, "POST"); // create|del client (from reporter_contact_id)
+	url (p, "reporter_is_client", "reporters^isclient", p.nextSibling.firstChild.value, null, 2, o, "POST"); 
 	boo (ev);
-	//console.log (o)
 }
 
