@@ -344,7 +344,7 @@ te["case_enum_lsh"] = { c:
 			]},
 			{ div:["g",null], arg:[".id","",null] } 
 		]},			
-		{ form:[null,"vdd"], ev:["_undd"] },
+		{ form:[null,"vdd"], ev:["_undd"], u:[null] },
 		{ u:[null] }
 	]}
 ]};
@@ -520,7 +520,7 @@ te["case_loc_enum"] = { case_enum_lsh:["x y",null,"",
 null, "case_loc_tag_txa",null,"location_id",null,"",   
 LOCATION_ROOT_ID, "", "fullname", "noop",
 "category_lsh_main-categories", LOCATION_ROOT_ID,
-"dd w65 gw_ ba_b mtn1", 
+"dd w65 gw_ ba_b mtn1","noop", 
 "noop"] };
 
 // ---
@@ -652,13 +652,15 @@ te["case_category_sel_sub"] = { div:["","sub"], c:
 
 te["case_category_tag_txa"] = { case_enum_tag_txa_:["w57 xx tt b05","fullname__","Select Category","case_category_id"] };
 
+te["case_category_dd"] = { c:[ { arg:["",".id",CASE_CATEGORY_ROOT_ID] }, { uv:["category_lsh_main","categories"] } ] };
+
 te["case_category_enum"] = { case_enum_lsh:["x y","Case Category","*",
 "tag-r_--o-case_category_tag_txa-%1-case_category_id-%0-%2", "category_ls-subcategories-h", "c w56",  // todo: category_lsh
 "case_category_tag_txa","r_", 
 ":v:cases:case_category_id", "case_category_tag_txa",":v:cases:case_category","case_category_id",":v:cases:case_category_id",":v:cases:case_category_fullname_id",   
 CASE_CATEGORY_ROOT_ID, "", "fullname", "noop",
 "category_lsh_main-categories",CASE_CATEGORY_ROOT_ID,
-"dd w60_ gw_ ba_b mtn1",
+"dd w60_ gw_ ba_b mtn1","case_category_dd",
 "case_category_sel_sub"] };
 
 // --------------------------
@@ -1017,7 +1019,7 @@ te["case_form_col_0"] = {  c:
 
 te["case_form_"] = { div:["","ve"], c: // new case 
 [		
-	{ div:["x20","va"], c:
+	{ div:["x20 t15","va"], c:
 	[
 		{ div:["c x t02"], ac:["","","_uvw","h2 x y bd16 gb cw micon","arrow_back"] }, // { u:[null] },	
 		{ s:["c x08 tt h2 b",CASE_ID_PREFIX] },
@@ -1047,8 +1049,8 @@ te["case_form_"] = { div:["","ve"], c: // new case
 			{ arg:["",".id","%0"] },
 			{ div:["e"], c:
 			[ 
-				{ arg:["",".id","-1"] }, 
-				{ arg:["","case_id",":v:cases:id"] }, 
+				//{ arg:["",".id","-1"] }, 
+				//{ arg:["","case_id",":v:cases:id"] }, 
 				{ u:["case_reporter_uuid_id_arg","reporters_uuid"] }
 			]}
 		]},
@@ -1387,7 +1389,7 @@ te["case_vw_id"] = { div:["section-to-print tt","ve"], c:
 						{ s:["c xx s","Update"] }, 
 						{ div:["e"], c:
 						[ 
-							{ arg:["","case_id","%0"] }, 
+							//{ arg:["","case_id","%0"] }, 
 							{ u:["case_reporter_uuid_id_arg","reporters_uuid"] }
 						]}
 					]},
@@ -1403,7 +1405,7 @@ te["case_vw_id"] = { div:["section-to-print tt","ve"], c:
 					{ s:["","Edit"] },
 					{ div:[], c:
 					[ 
-						{ arg:["","case_id","%0"] }, 
+						// { arg:["","case_id","%0"] }, 
 						{ u:["case_reporter_uuid_id_arg","reporters_uuid"] }
 					]}
 				]},
@@ -1856,13 +1858,13 @@ te["case_footer"] = { div:["x gw ba"], c:
 
 te["case_r_"] = { c: 
 [
-	{ input:["g","","casevwr","1","radio",""] },
-	{ ac:["ay w300","case_vw_id-reporters^uuid-@","_vw",null,""], c:
+	{ input:["g","","casevwr","1","radio",null] },
+	{ ac:["tabh ay w300","case_vw_id-reporters^none","_activity_postj",null,""], c:
 	[
 		{ div:["c w07"], s:["tt b05 h01_  xx","%0"] },
 		{ div:["c w10"], s:["tt b05 h01_  xx","%2"] },
 		{ div:["c w16"], s:["tt b05 h01_  xx",":d:dmyhnr:1: "] },
-		{ div:["c w10"], s:["tt b05 h01_ xx",":v:cases:src"] },
+		{ div:["c w10"], s:["tt b05 h01_  xx",":v:cases:src"] },
 		{ div:["c w45"], s:["tt b05 xx",""], uval:["",":v:cases:case_category"] }, // category
                 { div:["c w10"], s:["tt b05 h01_  xx",":v:cases:gbv_related::yesno:2"] },
 		{ div:["c w10"], s:["tt b05 h01_  xx",":v:cases:priority::case_priority:1"] },
@@ -1881,15 +1883,13 @@ te["case_r_"] = { c:
 			{ div:["e"] }
 		]},
 		{ div:["c w100"], s:["tt b05 xx",""], uval:["",":v:cases:reporter_location"] },
-		{ div:["e"], c:
-		[ 
-			{ arg:["",".id","-1"] },
-			{ arg:["","case_id","%0"] }
-		]}
-	]}
+		{ div:["e"] }
+	]},
+	{ p:["","o"], arg:["","case_id","%0"] },
+	{ p:["","nb"] }
 ]};
 
-te["case_r"] = { div:[], case_r_:["gw cb"] };
+te["case_r"] = { div:["","ve"], case_r_:[""," gw cb"] };
 
 te["case_k"] = { div:["w300 bt bb"], s:["",""], c: // activate filter ctx
 [
@@ -2091,3 +2091,15 @@ te["cases"] = { c:
 		]}
 	]}
 ]};
+
+te["case_vw_id_ufn"] = { ufn:["case_vw_id_ufn"] };
+
+function case_vw_id_ufn (el, u, a, r, m)
+{
+	var p = __(el)
+	var coll = __(el,"vf").parentNode.parentNode.childNodes[1].childNodes;
+	p.firstChild.checked = true;
+	coll[0].checked = true;
+	coll[1].innerHTML = "";
+	nd (coll[1], te["case_vw_id"], a, r, m);
+}

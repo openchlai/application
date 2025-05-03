@@ -78,8 +78,9 @@ te["case_form_reporter_new_case"] = { case_form_reporter_:["Reporter","case_form
 
 te["case_form_reporter_followup_"] = { case_form_reporter_:["Followup By","case_form_reporter_followup_r","case_form_reporter_followup_r"] };
 
-te["case_form_reporter_followup"] = { u:[":u::0:0:noop:case_form_reporter_followup_"] }; // skip -1
+te["case_form_reporter_followup_arg"] = { p:["","o"], case_reporter_uuid_arg:[] };
 
+te["case_form_reporter_followup"] = { u:[":u::5:0:case_form_reporter_followup_arg:case_form_reporter_followup_"] };
 
 te["case_reporter_ed_"] = { div:["w68 ma mb sh__ bd16 gw_"], c:
 [	
@@ -152,8 +153,7 @@ te["case_vw_reporter_uuid_"] = { c:
 	{ u:["case_vw_reporter_uuid_r"] },
 ]};
 
-te["case_vw_reporter_uuid"] = { u:[":u::0:0:noop:case_vw_reporter_uuid_"] }; // skip -1
-
+te["case_vw_reporter_uuid"] = { u:[":u::0:0:noop:case_vw_reporter_uuid_"] };
 
 te["case_reporter_vw_id_"] = { c:
 [
