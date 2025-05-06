@@ -497,7 +497,7 @@ function call_popup_end (ts)
 	coll_[3].value = ts; // dont stop timer
 	
 	// action btns
-	var p = coll[6].childNodes[1].childNodes[1].firstChild,firstChild;
+	var p = coll[6].childNodes[1].childNodes[1].firstChild.firstChild;
 	var last_status = p.className;
 	p.className = "call_ended";
 	if (last_status!="call_connected")  // auto close popup is call not connected
