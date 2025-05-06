@@ -170,16 +170,16 @@ te["call_btns"] = { c:
 //	{ arg:["","",":v:activities:src_callid"] }, // sipid needed to invoke call actions
 //	{ div:["","va"],  c:
 //	[	
-		{ div:["d w09 call_ended_ g"], c:
-		[
+		//{ div:["d w09 call_ended_ g"], c:
+		//[
 		//	{ s:["d x t08 cb tc","Close"] },
-			{ input:["g","","sbr","1","radio"] },
-			{ ac:["d x t","","_activity_close","x y03 h2 cb bd16","&Cross;"] },
-			{ s:["d x t08 cb tc","Close"] },
-			{ div:["e"] }
-		]},
+		//	{ input:["g","","sbr","1","radio"] },
+		//	{ ac:["d x t","","_activity_close","x y03 h2 cb bd16","&Cross;"] },
+		//	{ s:["d x t08 cb tc","Close"] },
+		//	{ div:["e"] }
+	//	]},
 		
-		{ div:["d w09 call_hangup_"], c:
+		{ div:["d w09 r10 call_hangup_"], c:
 		[
 			{ ac:["d ao","","_hangup","x t b03 w02 h02 h2 ma bd16 gb cw tc",""], c:
 			[
@@ -508,12 +508,14 @@ function call_popup_end (ts)
 
 function call_popup_hold_state (el, f)
 {
-	var p = _(document.getElementById ("vv").childNodes[6].childNodes[1].childNodes[1].firstChild,"src_btns")
+	var p = document.getElementById ("vv").childNodes[6].childNodes[1].childNodes[1].firstChild.firstChild
 	var a = {};
+	var a_ = {};
+	var el_ = _(p, "chanholdstate", "input");
 	argv (el, a);
-	console.log ("call_popup_hold_state ("+f+") "+p.id+"=="+a.src_uid)
-	if (p.firstChild.id!=a.src_uid) return;
-	var el_ = _(p.firstChild, "chanholdstate", "input");
+	argv (p.lastChild, a_)
+	console.log ("call_popup_hold_state ("+f+") "+a.src_uid+"=="+a_.src_uid+"|"+el_)
+	if (a.src_uid!=a_.src_uid) return;
 	if (el_) el_.checked = f;
 }
 

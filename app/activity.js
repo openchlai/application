@@ -27,7 +27,7 @@ te["activity_message_r_"] = { c:
 	{ arg:["","","%0"] },
 	{ div:[":v:messages:src_vector::vector:10"], c:
 	[
-		{ div:[], umime:["activity_message_r_v", ":v:messages:src_mime", ":v:messages:src_msg", ":v:messages:src::case_src:12"] },
+		{ div:[], umime:["activity_message_r_v", ":v:messages:src_mime", ":v:messages:src_msg", ":v:messages:src::case_src:13"] },
 		{ div:[":v:messages:src_vector::vector:12"], c:
 		[
 			{ div:[":v:messages:src_vector::vector:13"], s:["x bd gr cw m",":v:messages:src_status"] },
@@ -855,7 +855,7 @@ te["activity_vw_id_tabs_"] = { c:
 		{ input:["g","","activity_vw_vt","0","radio",null] }, 	// activity history list
 		{ p:["tabv","vf"], c:
 		[
-			{ arg:["",":v:activities:src::case_src:11",":v:activities:src_address"] },
+			{ arg:["",":v:activities:src::case_src:12",":v:activities:src_address"] },
 			{ arg:["",":v:activities:src_address:z:zz:id","-1"] }, // if src is blank then id=-1
 			{ uv:["activity_main","dispositions"] }
 		]} 
