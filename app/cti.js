@@ -170,7 +170,7 @@ te["call_btns"] = { c:
 //	{ arg:["","",":v:activities:src_callid"] }, // sipid needed to invoke call actions
 //	{ div:["","va"],  c:
 //	[	
-		{ div:["d w09 x call_ended_"], c:
+		{ div:["d w09 call_ended_ g"], c:
 		[
 		//	{ s:["d x t08 cb tc","Close"] },
 			{ input:["g","","sbr","1","radio"] },
@@ -179,7 +179,7 @@ te["call_btns"] = { c:
 			{ div:["e"] }
 		]},
 		
-		{ div:["d w09 x call_hangup_"], c:
+		{ div:["d w09 call_hangup_"], c:
 		[
 			{ ac:["d ao","","_hangup","x t b03 w02 h02 h2 ma bd16 gb cw tc",""], c:
 			[
@@ -190,7 +190,7 @@ te["call_btns"] = { c:
 			{ div:["e"] }
 		]}, 
 			
-		{ div:["d w09 x"], c:
+		{ div:["d w09"], c:
 		[
 			{ div:["d"], c:
 			[
@@ -207,10 +207,11 @@ te["call_btns"] = { c:
 			{ s:["d call_connected__ x t s cd_ tc","Add"] },
 			{ div:["e"] }
 		]},
-		{ div:["d w09 x"], c:
+
+		{ div:["d w09"], c:
 		[
 			{ input:["g","chanholdstate","","1","checkbox"] },
-			{ div:["w10 btnhold"], c:
+			{ div:["w09 btnhold"], c:
 			[
 				{ ac:["d ao call_connected_","","_hold","x y w02 h2 ma bd16 gb cw tc","||"] },
 				{ s:["d call_connected__ x y w02 ma bd16 gws_ cd_ tc h2","||"] },
@@ -234,7 +235,7 @@ te["call_btns"] = { c:
 			
 		{ div:["d w09"], s:[":v:activities:src_vector::vector:7",""], c:
 		[ 
-			{ div:["w09 x ao call_ringing_"], c:
+			{ div:["w09 ao call_ringing_"], c:
 			[
 				{ ac:["d ","","_answer","x t b03 w02 h02 h2 ma bd16 gb cw tc micon","call"] },
 				{ s:["d x t s cb tc","Answer"] },

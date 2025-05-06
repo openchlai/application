@@ -120,7 +120,8 @@ te["activity_contact_created_r"] = { c:
 
 te["activity_contact_created"] = { c:
 [
-	{ u:["case_contact_new","r_"] },
+	{ ufn:["activity_src_address_ufn"] },
+	{ u:["case_contact_new","contacts_src"] },
 	{ ufn:["activity_contact_ufn"] } // switch to 'select contact' tab
 ]};
 
@@ -350,7 +351,11 @@ te["activity_new_"] = { div:["w64 x15 y ma sh__ gw_ bd8","vdd"], ev:["_undd"], c
 		{ div:[], c:		// new contact
 		[
 			{ input:["g","","activity_action_0","0","radio"] },
-			{ div:["tabv x","vf"], u:["case_contact_new","r_"] }
+			{ div:["tabv x","vf"], c:
+			[
+				{ ufn:["activity_src_address_ufn"] },
+				{ u:["case_contact_new","contacts_src"] }
+			]}
 		]},
 		{ div:[], c:		// disposition
 		[
@@ -896,10 +901,10 @@ te["activity_vw_id"] = { c:
 			]},
 		]},
 
-		{ div:["d l30"], c:
+		{ div:["d l"], c:
 		[
 			{ input:["g","","sbr","1","radio"] },
-			{ ac:["x ay","","_activity_close","x cb y02 bd",""], c:
+			{ ac:["x ay","","_activity_close","x cb t01 bd",""], c:
 			[
 				{ s:["d x h b","&Cross;"] },
 				{ s:["d x y s","Close"] },
@@ -1180,6 +1185,23 @@ function activity_contact_ufn (el, u, a, r, m)
 	// todo: update title with contact
 }
 
+function activity_src_address_ufn (el, u, a, r, m)
+{
+	var j_ = -1;
+	var k_ = re["contacts_k"];
+	var v_ = "";
+	var r_ = re["r_"][0].slice(0);
+	var o = {};
+	jso (__(elvpf,"vfvwm").firstChild, o); 		// src
+	console.log (o)
+	j_ = re["case_src"][o.src][11];
+	v_ = o.src_address;
+	console.log ("--->"+o.src+"|"+j_);
+	if (j_=="phone") v_= _phone_fmt (o.src_address);
+	r_[k_[j_][0]] = v_;
+	ra["contacts_src"] = [r_];
+}
+
 function _activity_close (ev)
 {
 	activity_close ();
@@ -1284,7 +1306,7 @@ function _activity_vw_id (ev)
 		a.src_ts = Date.now()/1000;
 		a.src_uid = a.src+"-"+user_cid+"-"+Date.now ();
 		if (a.src_callid==undefined) a.src_callid = a.src_uid;
-		a.src_address = ""; // "0700112233"; // debug
+		a.src_address =  "0700112233"; // debug
 		a.src_usr = user_cid
 		a.src_vector = 2;
 		a.src_uid2 = a.src_uid+"-2";
@@ -1301,7 +1323,7 @@ function _activity_vw_id (ev)
 	r_[k["src_usr"][0]] = a.src_usr;
 	r_[k["src_vector"][0]] = a.src_vector;
 	r_[k["src_uid2"][0]] = a.src_uid2;
-	if (re["case_src"][a.src][11]=="reporter_phone") r_[k["src_address"][0]] = _phone_fmt (a.src_address);
+	if (re["case_src"][a.src][11]=="phone") r_[k["src_address"][0]] = _phone_fmt (a.src_address);
 
 	var s = a[".id"]+"?src=" + a.src + "&src_uid=" + a.src_uid + s_;
 	if (r_[k["src_address"][0]].length>0)  

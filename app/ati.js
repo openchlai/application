@@ -201,7 +201,7 @@ function ati_popup (el, f=0)
 	r_[k["src_callid"][0]] = a.src_callid;
 	r_[k["src_ts"][0]] = a.src_ts;
 	
-	if (re["case_src"][a.src][11]=="reporter_phone") r_[k["src_address"][0]] = _phone_fmt (a.src_address);
+	if (re["case_src"][a.src][11]=="phone") r_[k["src_address"][0]] = _phone_fmt (a.src_address);
 	
 	if (f==0 && coll[1].childNodes.length>0 && coll[1].firstChild.id.length>0) // vw is occupied
 	{
