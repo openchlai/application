@@ -424,7 +424,7 @@ re["case_dept"] =
 //"TWITTER":["TWITTER","TWITTER","Chat Activity","chat",                   "ati_btns","activity_messages_main","activities"],
 
 
-rk["case_src"] = ["walkin","call","sms","email","safepal","chat","whatsup","FACEBOOK","TWITTER","WENI"];
+rk["case_src"] = ["walkin","call","sms","email","safepal","chat","whatsApp","FACEBOOK","TWITTER","WENI"];
 re["case_src"] = 
 {                               
 "":["edit","edit","",                               	"g","", "g","edit","Edit Activity",                             "noop","activity_vw_id_match", "Edit", "", "","",],
@@ -443,7 +443,7 @@ re["case_src"] =
 "chat":["chat","Chat","",                               "","/helpline/images/chat.png","g","chat","Chat Activity",         "ati_btns","activity_vw_id_tabs_message","Web Chat", "phone", "reporter_email", "safepal"],
 "escalation":["escalation","Escalation","",		"","","","","",							   "nti_btns","activity_vw_id_tabs_message","activities^case", "phone", "reporter_email", ""],
 "WENI":["WENI","WENI","",                      		"","/helpline/images/watsap_ico.png","g","chat","WENI Activity", "ati_btns","activity_vw_id_tabs_message","Weni Chat", "phone", "reporter_email", ""], 
-"whatsup":["whatsup","WHATSAPP","",                   "","/helpline/images/watsap_ico.png","g","chat","Whatsup Activity", "ati_btns","activity_vw_id_tabs_message","Whatsapp Chat", "phone", "reporter_email", ""],
+"whatsApp":["whatsApp","WHATSAPP","",                   "","/helpline/images/watsap_ico.png","g","chat","WhatsApp Activity", "ati_btns","activity_vw_id_tabs_message","Whatsapp Chat", "phone", "reporter_phone", ""],
 "FACEBOOK":["FACEBOOK","FACEBOOK","",                   "","/helpline/images/watsap_ico.png","g","chat","Facebook Activity", "ati_btns","activity_vw_id_tabs_message","Facebook Chat", "email", "reporter_email", ""], 
 "TWITTER":["TWITTER","TWITTER","",                      "","/helpline/images/watsap_ico.png","g","chat","Twitter Activity", "ati_btns","activity_vw_id_tabs_message","Twitter Chat", "email", "reporter_email", ""], 
 

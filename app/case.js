@@ -846,6 +846,11 @@ te["case_ed_sub_justice"] = { div:["mt15"],  c:
 	{ div:["e"] }
 ]};
 
+te["case_ed_sub_dept_labor"] = { div:["t15"], c:
+[
+	{ case_txt_:["Client's Passport Number","gws_ w45 x tt b05","eemis",":v:cases:eemis","Enter Passport/National ID Number"] }
+]};
+
 // ---
 
 te["case_reporter_uuid_id_arg"] = { arg:["",".id","%0"] };
@@ -856,19 +861,23 @@ te["case_form_col_1"] = { c:
 [
 	{ div:["t15"], c:
 	[
-		{ div:[], c:
+		{ div:["","deptv"], c:
 		[
 			{ div:[], c:
-                        [
-                                { s:["c x y","Department"] },
-                                { s:["c t cr b h2","*"] },
-                                { div:["e"] }
-                        ]},
-			{ p:["","o"], c:
-                        [
-                                { uchk:["case_yesno_r",":v:cases:dept","case_dept","",   "dept"," %1"] },
-                                { div:["e"] }
-                        ]}
+			[
+				{ div:[], c:
+                        	[
+                                	{ s:["c x y","Department"] },
+                            	    	{ s:["c t cr b h2","*"] },
+                                	{ div:["e"] }
+                        	]},
+				{ p:["","o"], c:
+                        	[
+                                	{ uchk:["case_yesno_r",":v:cases:dept","case_dept","",   "dept"," %1"] },
+                                	{ div:["e","sub"], arg:["case_ed_sub_dept_labor-r_-deptv-dept_labor-0","","1"] }
+                        	]}
+			]},
+			{ p:["","dept_labor"], usub:["case_ed_sub_dept_labor","r_",":v:cases:dept","1"]},
 		]},
 		{ div:["t25 w60 _ba_"], case_category_enum:[] },
 		{ div:["t25"], c:
