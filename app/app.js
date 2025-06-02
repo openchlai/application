@@ -142,6 +142,7 @@ var UU =
 "referal_del":{ 202:[["case_notif_del","referals"]], 412:[["nb","errors","v","nb"]] },
 "service_del":{ 202:[["case_notif_del","services"]], 412:[["nb","errors","v","nb"]] },
 
+"case_insights":{ 200:[["case_insights","r_"]] },
 "case_rpt_vw":{ 200:[["rpt_vw","cases_rpt"]] },
 "case_update":{ 202:[["uvpfn","dispositions","vp"]], 412:[["nb","errors","v","nb"]], 200:[["case_update","cases"]] },
 "case_ed":{ 202:[["activity_case_ufn","dispositions"]], 412:[["nb","errors","v","nb"]], 200:[["case_ed","cases"]] },
@@ -1256,8 +1257,14 @@ te["main"] = { c:
 			{ a:["c aa x02 y02","","","/helpline/"], c:[ { img:["","",APP_LOGO, "44"] } ] },
 			{ div:["e"] }
 		]}, 		
-			
+	
 		{ div:["d t08 r20"], c:
+		[
+			{ input:["g","","rtab","0","radio"] },
+			{ ac:["ll ay tab","","_mtabr","gw bd x y micon h2_ cb","bubble_chart"] }
+		]},
+
+		{ div:["d t08"], c:
 		[
 			{ input:["g","","rtab","0","radio"] },
 			{ ac:["ll ay tab","","_mtabr","gw bd x y micon h2_ cb","history"] }				
@@ -1320,9 +1327,9 @@ te["main"] = { c:
 	
 	{ div:["","vb"], toolbar_default:[] },
 
-	{ div:["g"], c:  // 
+	{ div:["iiig"], c:  // 
 	[
-		{ div:["d w28"], s:["abs zz w28 gw mt",""], c:
+		{ div:["d w28"], s:["abs zz w28 gw mt bd8",""], c:
 		[
 			{ div:[], c:
 			[
@@ -1346,6 +1353,15 @@ te["main"] = { c:
                                                 { p:["","call_sessions"] }, // el.p.p.p.f.c1.c1
 					]}
 				]},
+				{ div:[], c:
+                                [
+                                        { input:["g","","ntabv","2","radio","1"] },
+                                        { p:["tabv","vt_activity"], c:
+					[
+						// sample ai case insights
+						{ uv:["case_insights","aii"] },
+					]}
+                                ]},
 			]}
 		]},
 		

@@ -20,7 +20,7 @@ var rz = {};
 
 var FILE_UPLOAD_COUNT = 0;
 
-var ND = ["u","uchk","uhilite","umime","uval","ufn","uaudio","ucolor","uerror","usub","uchkargs","ucal","ucalv","utime", "urpt", "pivot", "uchart", "utable", "usummary", "uv", "uredirect"];
+var ND = ["u","uchk","uhilite","umime","uval","ufn","uaudio","ucolor","uerror","usub","uchkargs","ucal","ucalv","utime", "urpt", "pivot", "uchart", "utable", "usummary", "uv", "uredirect", "uo"];
 
 aa["div"] = 	["className","id","innerHTML"];
 aa["span"] = 	["className","id","innerHTML"];
