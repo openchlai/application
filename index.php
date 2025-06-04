@@ -130,6 +130,7 @@ include "app/attachment.js";
 include "app/case.js";
 include "app/case_activity.js";
 
+include "app/safepal.js";
 include "app/aii.js";
 
 echo "\r\nrz[\"location\"]=[".$LOCATION_HIERARCHY."];\r\n";
