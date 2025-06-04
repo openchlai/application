@@ -1256,21 +1256,15 @@ te["main"] = { c:
 		[
 			{ a:["c aa x02 y02","","","/helpline/"], c:[ { img:["","",APP_LOGO, "44"] } ] },
 			{ div:["e"] }
-		]}, 		
-	
-		{ div:["d t08 r20"], c:
-		[
-			{ input:["g","","rtab","3","radio"] },
-			{ ac:["ll ay tab","","_mtabr","gw bd x y micon h2_ cb","bubble_chart"] }
 		]},
 
-		{ div:["d t08"], c:
+		{ div:["d t08 r20"], c:
 		[
 			{ input:["g","","rtab","0","radio"] },
 			{ ac:["ll ay tab","","_mtabr","gw bd x y micon h2_ cb","history"] }				
 		]},
 		
-		{ div:["d mr t08"], c:
+		{ div:["d t08 "], c:
 		[
 			{ input:["g","","rtab","1","radio"] },
 			{ ac:["l15 ay tab","","_mtabr","gw bd cb",""], c:
@@ -1279,18 +1273,14 @@ te["main"] = { c:
 				{ s:["x y micon h2_","notifications"] }				
 			]},
 		]},
-		
-		{ div:["d mr t g"], c: // active chat (shown only when chat-activity is open)
+
+		{ div:["d t08 l"], c:
 		[
 			{ input:["g","","rtab","2","radio"] },
-			{ ac:["l15 ay rb","","_mtabr","gw bd cb",""], c:
-			[
-				{ p:["abs g","chat_count"], s:["ml2 x07 y02  h01_ tc gr cw bd16 s",""] },
-				{ s:["x y micon h2_","chat"] }				
-			]},
+			{ ac:["ll ay tab","","_mtabr","gw bd x y micon h2_ cb","bubble_chart"] }
 		]},
 					
-		{ div:["d w17 t08"], s:["abs w17 zzz",""], c:
+		{ div:["d w17 t08 "], s:["abs w17 zzz",""], c:
 		[
 			{ div:["ay","va"], ac:["","","_dd","w17 bd gws_",""], c:
 			[
@@ -1329,7 +1319,7 @@ te["main"] = { c:
 
 	{ div:["g r05"], c:  // 
 	[
-		{ div:["d w33"], s:["abs zz w33 gw mt bd8",""], c:
+		{ div:["d w32"], s:["abs zz w32 gw mt bd8",""], c:
 		[
 			{ div:[], c:
 			[
@@ -1356,7 +1346,7 @@ te["main"] = { c:
 				{ div:[], c:
                                 [
                                         { input:["g","","ntabv","2","radio","1"] },
-                                        { p:["tabv","vt_activity"], c:
+                                        { p:["tabv xx yy","vt_activity"], c:
 					[
 						// sample ai case insights
 						{ uv:["case_insights","aii"] },
@@ -1414,7 +1404,7 @@ te["main"] = { c:
 		[
 			 // notifications
 		]} ]},
-		{ div:[], c:[ { input:["g","","mtv","1","radio"] }, { p:["tabv gw bd12 mm","vfvwm"] } ] }, // on call & right sb vw
+		{ div:[], c:[ { input:["g","","mtv","1","radio"] }, { p:["tabv gw bd8 mm","vfvwm"] } ] }, // on call & right sb vw
 		{ div:[], c:[ { input:["g","","mtv","2","radio","1"] }, { p:["tabv mm","vftab"], u:["dash","dash"] } ] }, // wall board
 		{ div:[], c:[ { input:["g","","mtv","3","radio"] }, { p:["tabv","vfvwm"] } ] }, // cases
 		{ div:[], c:[ { input:["g","","mtv","4","radio"] }, { p:["tabv","vftab"] } ] }, // calls
@@ -1606,7 +1596,7 @@ function _mtabr ()
 	this.previousSibling.checked = true;
 	coll_[this.previousSibling.value].firstChild.checked=true;
 	coll[2].style.display = "block";
-	coll[6].style.marginRight = "330px";
+	coll[6].style.marginRight = "325px";
 }
 
 function rxmsg (ev)

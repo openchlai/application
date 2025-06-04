@@ -208,7 +208,7 @@ function ati_popup (el, f=0)
 		var a_ = {};
 		argv (coll[6].childNodes[1].childNodes[1].firstChild.lastChild, a_)
 		//console.log (a)
-		//console.log (a_)
+		console.log ("[ati] activity_vw_id_args "+a.src_callid+" "+a_.src_callid)
 		if (a.src_callid==a_.src_callid) // is same session -- update src args only and select new ati_session
 		{
 			var p_ = coll[6].childNodes[1].childNodes[1].firstChild.firstChild.lastChild;
@@ -312,7 +312,7 @@ function atis (o,k,ts)
 				el = nd (pu, te["ati_session"], [], ch, [0]);
 				el = el.parentNode.parentNode;
 				chan_t[ch[2]] = { "el":el, "ts":ts };
-				// console.log ("[ati] new: "+ch[2]+" "+ch[4]+","+ch[6]+" |"+el) 
+				console.log ("[ati] new "+ch[2]+" "+ch[4]+","+ch[6]+" |"+el) 
 				ati_popup (el);
 			}
 			chan_t[ch[2]].ts=ts;

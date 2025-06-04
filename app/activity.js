@@ -522,13 +522,13 @@ te["activity_disposition_r_dsp_"] = { div:["","va"], c:
         { div:[null], activity_disposition_r_:["",""] }
 ]};
 
-te["activity_disposition_r_case_new"] = { activity_disposition_r_case_:["l lr gh"] };
+te["activity_disposition_r_case_new"] = { activity_disposition_r_case_:["xx lr gh"] };
 
-te["activity_disposition_r_dsp_new"] = { activity_disposition_r_dsp_:["l lr gy cd"] };
+te["activity_disposition_r_dsp_new"] = { activity_disposition_r_dsp_:["xx lr gy cd"] };
 
-te["activity_disposition_r_case"] = { activity_disposition_r_case_:["l lr"] };
+te["activity_disposition_r_case"] = { activity_disposition_r_case_:["xx lr"] };
 
-te["activity_disposition_r_dsp"] = { activity_disposition_r_dsp_:["l lr cd"] };
+te["activity_disposition_r_dsp"] = { activity_disposition_r_dsp_:["xx lr cd"] };
 
 te["activity_disposition_r"] = { u:[":u::57:0:activity_disposition_r_dsp:activity_disposition_r_case"] };
 
@@ -567,11 +567,11 @@ te["activity_disposition_k"] = { div:["g"], c:
 
 te["activity_disposition_no_data"] = { div:[""], s:["xx yy gy","No records found"] };
 
-te["activity_disposition_nb"] = { div:["x25"], u:["activity_disposition_no_data","dispositions_no_data"] };
+te["activity_disposition_nb"] = { div:[""], u:["activity_disposition_no_data","dispositions_no_data"] };
 
 te["activity_disposition_title"] = { div:[], c:[ { p:["","vdisp"] } ] };
 
-te["activity_disposition_list"] = { list:["activity_disposition_title", "activity_disposition_nb", "x25", "activity_disposition_k", "activity_disposition_r", "dispositions", "activity_disposition_footer"] };
+te["activity_disposition_list"] = { list:["activity_disposition_title", "activity_disposition_nb", "", "activity_disposition_k", "activity_disposition_r", "dispositions", "activity_disposition_footer"] };
 
 // -----------------------------------------------------------------------------------------
 
@@ -724,7 +724,7 @@ te["activity_list"] = { c:
 
 te["activity_main"] = { c: 
 [
-	{ div:["x20 t20","vb"], c:
+	{ div:["x t","vb"], c:
 	[
 		{ div:["c"], c:
 		[
@@ -805,7 +805,7 @@ te["activity_main"] = { c:
 		{ div:["e"], c:[ { arg:["","","activity_list-dispositions"] }, { arg:["","","0"] }, { arg:["","","0"] }, { arg:["","",""] } ] }
 	]},	
 
-	{ div:["x25 yy" ,"vf"], c:[ { div:["","activity_disposition_f-dispositions_f"], ev:["l__vpf"], c:
+	{ div:["x15 yy" ,"vf"], c:[ { div:["","activity_disposition_f-dispositions_f"], ev:["l__vpf"], c:
 	[
 		{ activity_f_tags_k:[] }
 	]} ]},
@@ -815,7 +815,7 @@ te["activity_main"] = { c:
 		{ div:[], c:
 		[ 
 			{ input:["g","","cghgmtv","0","radio","1"] }, 
-			{ p:["tabv vb r40 yy","vt"], u:["activity_list","dispositions_ctx"] } 
+			{ p:["tabv","vt"], u:["activity_list","dispositions_ctx"] } 
 		]},
 		{ div:[], c:
 		[	
@@ -848,7 +848,7 @@ te["activity_toolbar"] = { div:["ma w12 ","chan_id_here"], c: //
 	]} ]}
 ]};
 
-te["acoll[1].childNodes.lengthctivity_vw_id_tabs_"] = { c:
+te["activity_vw_id_tabs_"] = { c:
 [
 	{ div:[], c:
 	[	
@@ -878,12 +878,12 @@ te["activity_vw_id_tabs_message"] = { activity_vw_id_tabs_:["","1"] };
 
 te["activity_vw_id"] = { c: 
 [
-	{ div:["x20 t20","vb"],  s:["",""], c: 
+	{ div:["x12 y08","vb"],  s:["",""], c: 
 	[
 		{ div:["c"], c:
 		[
 			{ input:["g","","avt","0","radio"] },
-			{ ac:["","","_tab","xx yy cb h3 b",""], c:
+			{ ac:["","","_tab","x t08 cb h3 b",""], c:
 			[
 				{ span:["","",":v:activities:src::case_src:10"] },
 				//{ span:["","",":v:activities:src_vector::vector:4"] },
@@ -901,7 +901,7 @@ te["activity_vw_id"] = { c:
 			]},
 		]},
 
-		{ div:["d l"], c:
+		{ div:["d l g"], c:
 		[
 			{ input:["g","","sbr","1","radio"] },
 			{ ac:["x ay","","_activity_close","x cb t01 bd",""], c:
@@ -1025,7 +1025,7 @@ te["activity_lst"] = { list:["activity_lst_title","end","","activity_lst_k","act
 
 function activity_messages_height (el, u, a, r, m)
 {
-	el.style.height = window.innerHeight-310;
+	el.style.height = window.innerHeight-260;
 	var h = el.scrollHeight;
 	console.log (" [scroll height ] "+h);
 	el.scroll ({ top: h, left: 0, behavior: 'smooth' }); 

@@ -26,7 +26,7 @@ te["aiir3"] = { div:["t"], c:
 
 te["case_insights"] = { c:
 [
-        { s:["x y h2","Case Insights"] },
+        { s:["x y b","Case Summary"] },
         { s:["x ",":k:aii:case_summary"] },
 
 	 { aiir2:["Persons","aiiv","named_entities","persons"] },
