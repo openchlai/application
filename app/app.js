@@ -1260,7 +1260,7 @@ te["main"] = { c:
 	
 		{ div:["d t08 r20"], c:
 		[
-			{ input:["g","","rtab","0","radio"] },
+			{ input:["g","","rtab","3","radio"] },
 			{ ac:["ll ay tab","","_mtabr","gw bd x y micon h2_ cb","bubble_chart"] }
 		]},
 
@@ -1327,7 +1327,7 @@ te["main"] = { c:
 	
 	{ div:["","vb"], toolbar_default:[] },
 
-	{ div:["iiig"], c:  // 
+	{ div:["g r05"], c:  // 
 	[
 		{ div:["d w33"], s:["abs zz w33 gw mt bd8",""], c:
 		[
@@ -1606,7 +1606,7 @@ function _mtabr ()
 	this.previousSibling.checked = true;
 	coll_[this.previousSibling.value].firstChild.checked=true;
 	coll[2].style.display = "block";
-	coll[6].style.marginRight = "280px";
+	coll[6].style.marginRight = "330px";
 }
 
 function rxmsg (ev)
