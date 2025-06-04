@@ -840,7 +840,7 @@ function umime (el, u, a, r, m)
 	}
 	if (u[2]=="application/json")
 	{
-		v = atob (u[2]); 
+		v = atob (u[1]); 
 		var vo = null;
 		try 
 		{
@@ -848,7 +848,7 @@ function umime (el, u, a, r, m)
 		}
 		catch (e)
 		{
-			console.error (v)
+			console.error (e)
 		}
 		v = "Invalid Payload Received!";
 		if (vo)
