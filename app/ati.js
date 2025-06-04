@@ -350,8 +350,8 @@ function atis (o,k,ts)
 				pcoll[6].style.marginRight = "325px";
 				p_ = pcoll[2].firstChild.firstChild.firstChild.childNodes[2]; // reload aii sidebar
 				p_.childNodes[0].checked = true;
-				p_.childNodes[1].innerHTML = "Loading case insights..."
-				url (p_, "case_insights_msg","messages",  ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30&sort=id")); // pick latest
+				p_.childNodes[1].innerHTML = "..."
+				url (p_childNodes[1], "case_insights_msg","messages",  ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30&sort=id")); // pick latest
 			}
 		}
 	}

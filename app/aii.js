@@ -24,7 +24,7 @@ te["aiir3"] = { div:["t"], c:
         { div:["e"] }
 ]},
 
-te["case_insights"] = { c:
+te["aii"] = { c:
 [
         { s:["x y b","Case Summary"] },
         { s:["x ",":k:aii:case_summary"] },
@@ -56,7 +56,7 @@ te["case_insights"] = { c:
 
 ]};
 
-te["case_insights_msg"] = { div:["x y"] }; // umime
+te["case_insights_msg"] = { s:["x y",null] }; // umime
 
 function uo (el, u, a, r, m)
 {
