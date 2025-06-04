@@ -611,7 +611,7 @@ function call_popup (el, f=0)
 
 	nd (coll[1], te["call_toolbar"], [], r_, [0]); // show toolbar	
 	nd (coll[6].childNodes[1].childNodes[1], te["activity_vw_id"], ["call_btns","1","",""], r_, [4]);	
-	url (coll[6].childNodes[1].childNodes[1].lastChild, "activity_vw_id_tabs", "activities^call", s);
+	url (coll[6].childNodes[1].childNodes[1].lastChild, "activity_vw_id_tabs_call", "activities^call", s);
 
 	var isaa = document.getElementById ("is_auto_answer");
 	var sess = CALLS[r_[k["src_callid"][0]]];
