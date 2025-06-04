@@ -143,8 +143,7 @@ var UU =
 "referal_del":{ 202:[["case_notif_del","referals"]], 412:[["nb","errors","v","nb"]] },
 "service_del":{ 202:[["case_notif_del","services"]], 412:[["nb","errors","v","nb"]] },
 
-"case_insights_msg" : { 200:[["case_insights_msg","r_"]] },
-"case_insights":{ 200:[["case_insights","r_"]] },
+"case_insights" : { 200:[["case_insights","messages"]] },
 "case_rpt_vw":{ 200:[["rpt_vw","cases_rpt"]] },
 "case_update":{ 202:[["uvpfn","dispositions","vp"]], 412:[["nb","errors","v","nb"]], 200:[["case_update","cases"]] },
 "case_ed":{ 202:[["activity_case_ufn","dispositions"]], 412:[["nb","errors","v","nb"]], 200:[["case_ed","cases"]] },

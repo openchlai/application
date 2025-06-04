@@ -56,7 +56,9 @@ te["aii"] = { c:
 
 ]};
 
-te["case_insights_msg"] = { s:["x y",null] }; // umime
+te["case_insights_msg"] = { s:["x y",null] }; // mime not application/json
+
+te["case_insights"] = { umime:["case_insights_msg",":v:messages:src_msg", ":v:messages:src_mime", ":v:messages:src"] }
 
 function uo (el, u, a, r, m)
 {
