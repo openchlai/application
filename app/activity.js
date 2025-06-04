@@ -805,7 +805,7 @@ te["activity_main"] = { c:
 		{ div:["e"], c:[ { arg:["","","activity_list-dispositions"] }, { arg:["","","0"] }, { arg:["","","0"] }, { arg:["","",""] } ] }
 	]},	
 
-	{ div:["x15 yy" ,"vf"], c:[ { div:["","activity_disposition_f-dispositions_f"], ev:["l__vpf"], c:
+	{ div:["x12 yy" ,"vf"], c:[ { div:["","activity_disposition_f-dispositions_f"], ev:["l__vpf"], c:
 	[
 		{ activity_f_tags_k:[] }
 	]} ]},
@@ -878,7 +878,7 @@ te["activity_vw_id_tabs_message"] = { activity_vw_id_tabs_:["","1"] };
 
 te["activity_vw_id"] = { c: 
 [
-	{ div:["x12 y08","vb"],  s:["",""], c: 
+	{ div:["x12 yy","vb"],  s:["",""], c: 
 	[
 		{ div:["c"], c:
 		[
