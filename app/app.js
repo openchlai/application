@@ -111,8 +111,9 @@ var UU =
 "activity_disposition_list":{ 200:[["activity_disposition_list","dispositions_ctx"]] },
 "activity_list":{ 200:[["activity_list","dispositions_ctx"]] },
 "activity_main":{ 200:[["activity_main","dispositions_ctx"]] },
-"activity_vw_id_tabs_message":{ 200:[["activity_vw_id_tabs_message","activities"]] },
 "activity_vw_id_tabs":{ 200:[["activity_vw_id_tabs","activities"]] },
+"activity_vw_id_tabs_message":{ 200:[["activity_vw_id_tabs_message","activities"]] },
+"activity_vw_id_tabs_call":{ 200:[["activity_vw_id_tabs_call","activities_call"]] },
 "activity_vw_id":{ 200:[["activity_vw_id","activities"]] },
 "activity_call":{ 201:[["activity_call","activities"]], 202:[["activity_call","activities"]], 412:[["nb","errors","","nb"]] },
 "activity_lst":{ 200:[["activity_lst","activities_ctx"]] },
@@ -142,6 +143,7 @@ var UU =
 "referal_del":{ 202:[["case_notif_del","referals"]], 412:[["nb","errors","v","nb"]] },
 "service_del":{ 202:[["case_notif_del","services"]], 412:[["nb","errors","v","nb"]] },
 
+"case_insights_msg" : { 200:[["case_insights_msg","r_"]] },
 "case_insights":{ 200:[["case_insights","r_"]] },
 "case_rpt_vw":{ 200:[["rpt_vw","cases_rpt"]] },
 "case_update":{ 202:[["uvpfn","dispositions","vp"]], 412:[["nb","errors","v","nb"]], 200:[["case_update","cases"]] },
@@ -1348,8 +1350,7 @@ te["main"] = { c:
                                         { input:["g","","ntabv","2","radio","1"] },
                                         { p:["tabv xx yy","vt_activity"], c:
 					[
-						// sample ai case insights
-						{ uv:["case_insights","aii"] },
+						
 					]}
                                 ]},
 			]}

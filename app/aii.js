@@ -56,6 +56,8 @@ te["case_insights"] = { c:
 
 ]};
 
+te["case_insights_msg"] = { div:["x y"] }; // umime
+
 function uo (el, u, a, r, m)
 {
 	var o = ra[u[1]];

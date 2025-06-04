@@ -282,12 +282,19 @@ function atis_pop (ts)
 
 function atis (o,k,ts)
 {
+	var pcoll = document.getElementById ("vv").childNodes;
 	var pu = document.getElementById ("call_sessions");
 	var user_cid = document.getElementById ("user_cid").value;
 	var c = [0,0,0,0,0,0,0];
 	var unread_tot = 0;
 	var ch_agent = null;
-	
+	var activitya = {};
+
+	if (pcoll[1].childNodes.length>0 && pcoll[1].firstChild.id.length>0) 
+	{
+		argv (pcoll[6].childNodes[1].childNodes[1].firstChild.firstChild.lastChild, activitya)
+	}
+
 	for (var i=k.length-1; i>-1; i--)
 	{
 		var ch = o[k[i]];
@@ -331,7 +338,22 @@ function atis (o,k,ts)
 				el.firstChild.childNodes[2].firstChild.play ();
 				if (el_ !=null) ati_ld_unread (ch);	
 			}
-		}	
+		}
+		if (ch[ATI.CHAN_SRC]=="aii" && ch[ATI.CHAN_CONTEXT]=="trunk")
+		{
+			console.log ("ati aii !!!!!!"+ch[ATI.CHAN_BRIDGE_ID]+" "+activitya.src_uid2)
+			if (ch[ATI.CHAN_BRIDGE_ID]==activitya.src_uid2)
+			{
+				var p_ = _(pcoll[6].childNodes[1].childNodes[1].lastChild, "msgs"); // reload chats
+				url (p_.previousSibling, "activity_messages", "messages", ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30"));
+				pcoll[2].style.display = "block";
+				pcoll[6].style.marginRight = "325px";
+				p_ = pcoll[2].firstChild.firstChild.firstChild.childNodes[2]; // reload aii sidebar
+				p_.childNodes[0].checked = true;
+				p_.childNodes[1].innerHTML = "Loading case insights..."
+				url (p_, "case_insights_msg","messages",  ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30&sort=id")); // pick latest
+			}
+		}
 	}
 
 	var p_ = document.getElementById ("ati_status");

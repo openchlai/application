@@ -27,7 +27,7 @@ te["activity_message_r_"] = { c:
 	{ arg:["","","%0"] },
 	{ div:[":v:messages:src_vector::vector:10"], c:
 	[
-		{ div:[], umime:["activity_message_r_v", ":v:messages:src_mime", ":v:messages:src_msg", ":v:messages:src::case_src:13"] },
+		{ div:[], umime:["activity_message_r_v", ":v:messages:src_msg", ":v:messages:src_mime", ":v:messages:src"] },
 		{ div:[":v:messages:src_vector::vector:12"], c:
 		[
 			{ div:[":v:messages:src_vector::vector:13"], s:["x bd gr cw m",":v:messages:src_status"] },
@@ -461,7 +461,7 @@ te["activity_disposition_vwr"] = { div:["w64 x15 y15 ma sh__ gw_ bd8","vddvw"], 
 
 // ---
 
-te["activity_disposition_footer"] = { div:["x30 t30 b10"], c:
+te["activity_disposition_footer"] = { div:["x20 t20 b10"], c:
 [
 	{ pg:["pgto","activity_disposition_list-dispositions"," dh","da dl","activity_disposition_list-dispositions"," dh","da dr"] },
 	{ div:["e"] }
@@ -565,7 +565,7 @@ te["activity_disposition_k"] = { div:["g"], c:
 	{ div:["e"] }
 ]};
 
-te["activity_disposition_no_data"] = { div:[""], s:["xx yy gy","No records found"] };
+te["activity_disposition_no_data"] = { div:[""], s:["x20 yy gy","No records found"] };
 
 te["activity_disposition_nb"] = { div:[""], u:["activity_disposition_no_data","dispositions_no_data"] };
 
@@ -876,6 +876,8 @@ te["activity_vw_id_tabs"] = { activity_vw_id_tabs_:["1",""] };
 
 te["activity_vw_id_tabs_message"] = { activity_vw_id_tabs_:["","1"] };
 
+te["activity_vw_id_tabs_call"] = { activity_vw_id_tabs_:["1",""] };
+
 te["activity_vw_id"] = { c: 
 [
 	{ div:["x12 yy","vb"],  s:["",""], c: 
@@ -969,8 +971,8 @@ te["activity_lst_disposition"] = { uchk:["activity_lst_disposition_r","%0"] };
 
 te["activity_lst_r"] = { div:[], c:
 [
-	{ input:["g","","sbl","1","radio"] },
-	{ li:["sbr cb xx bb_",""], ev:["_activity_vw_id"], s:["x s y",""], c: 
+	{ input:["g","","sbr","1","radio"] },
+	{ li:["sbr cb xx bb_",""], ev:["_activity_vw_id"], s:["x y s",""], c: 
 	[
 		{ div:[""], c:
 		[
@@ -1314,6 +1316,8 @@ function _activity_vw_id (ev)
 	r_[k["src_vector"][0]] = a.src_vector;
 	r_[k["src_uid2"][0]] = a.src_uid2;
 	if (re["case_src"][a.src][11]=="phone") r_[k["src_address"][0]] = _phone_fmt (a.src_address);
+	u[0] = u_[9];
+	if (a.src=="call")  u = ["activity_vw_id_tabs_call","activities^call"];
 
 	var s = a[".id"]+"?src=" + a.src + "&src_uid=" + a.src_uid + s_;
 	if (r_[k["src_address"][0]].length>0)  
@@ -1328,7 +1332,7 @@ function _activity_vw_id (ev)
 
 	nd (coll[1], te["activity_toolbar"], [], r_, [0]); // show toolbar	
 	nd (coll[6].childNodes[1].childNodes[1], te["activity_vw_id"], ["noop","1","",""], r_, [4]);	
-	url (coll[6].childNodes[1].childNodes[1].lastChild, u_[9], u[1], s);
+	url (coll[6].childNodes[1].childNodes[1].lastChild, u[0], u[1], s);
 
 	boo (ev)
 }
