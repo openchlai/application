@@ -351,7 +351,7 @@ function atis (o,k,ts)
 				p_ = pcoll[2].firstChild.firstChild.firstChild.childNodes[2]; // reload aii sidebar
 				p_.childNodes[0].checked = true;
 				p_.childNodes[1].innerHTML = "..."
-				url (p_.childNodes[1], "case_insights","messages",  ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30&sort=id")); // pick latest
+				url (p_.childNodes[1], "case_insights","messages",  ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=1&sort=id")); // pick latest
 			}
 		}
 	}
