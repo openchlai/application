@@ -848,7 +848,7 @@ te["activity_toolbar"] = { div:["ma w12 ","chan_id_here"], c: //
 	]} ]}
 ]};
 
-te["activity_vw_id_tabs_"] = { c:
+te["acoll[1].childNodes.lengthctivity_vw_id_tabs_"] = { c:
 [
 	{ div:[], c:
 	[	
@@ -944,17 +944,7 @@ te["activity_vw_id"] = { c:
 
 		{ u:[null] },
 
-		{ div:["e"], c:[ { p:["g","o"], c:
-		[
-			{ arg:["","src",":v:activities:src"] }, 
-			{ arg:["","src_uid",":v:activities:src_uid"] }, 
-			{ arg:["","src_address",":v:activities:src_address"] }, 
-			{ arg:["","src_uid2",":v:activities:src_uid2"] }, 
-			{ arg:["","src_usr",":v:activities:src_usr"] }, 
-			{ arg:["","src_vector",":v:activities:src_vector"] }, 
-			{ arg:["","src_callid",":v:activities:src_callid"] }, 
-			{ arg:["","src_ts",":v:activities:src_ts"] }
-		] } ] },
+		{ div:["e"], c:[ { p:["g","o"], activity_vw_id_args:[] } ] }
 	]}, 
 	{ form:[] } 		// tabs
 ]};

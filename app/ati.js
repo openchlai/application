@@ -211,7 +211,7 @@ function ati_popup (el, f=0)
 		//console.log (a_)
 		if (a.src_callid==a_.src_callid) // is same session -- update src args only and select new ati_session
 		{
-			var p_ = coll[6].childNodes[1].childNodes[1].firstChild.lastChild;
+			var p_ = coll[6].childNodes[1].childNodes[1].firstChild.firstChild.lastChild;
 			p_.firstChild.innerHTML = "";
 			nd (p_.firstChild, te["activity_vw_id_args"], [], r_, [0]);
 			el.firstChild.firstChild.checked = true; 		// hilite call-notif			
