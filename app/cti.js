@@ -243,7 +243,7 @@ te["call_btns"] = { c:
 			]} 
 		]},
 				
-		{ div:["e"] }
+//		{ div:["e"] }
 ]};
 
 //te["call_toolbar"] = { div:["ma w14",":v:activities:src_uid"], c: //  
@@ -557,7 +557,12 @@ function call_popup_upd (el)
 	coll_[3].value = a.src_state_ts;
 		
 	// action btns
-	coll[6].childNodes[1].childNodes[1].firstChild.firstChild.className = ss[a.src_state][1];
+	var p_ = coll[6].childNodes[1].childNodes[1].firstChild.firstChild;
+	p_.className = ss[a.src_state][1];
+
+	// src_uid2
+	console.log ("src_uid2:"+a.src_uid2+" ("+p_.lastChild.firstChild.childNodes[3].value)
+	p_.lastChild.firstChild.childNodes[3].value = a.src_uid2;
 	
 	return 0;	
 }
@@ -908,6 +913,7 @@ function chans (o,k,ts)
 				el.childNodes[4].value = ch[AMI.CHAN_CHAN_2]; // update last peer chan
 				el.childNodes[5].value = ch[AMI.CHAN_CID_NUM_2]; // update last peer cid
 				el.childNodes[6].value = ch[AMI.CHAN_ORIG]; // autodial status
+				el.childNodes[17].value = ch[AMI.CHAN_UNIQUEID_2]; // update last peer chan
 				call_popup_upd (el);
 						
 				if (vp_add && vp_add.id==ch[AMI.CHAN_UNIQUEID]) 
