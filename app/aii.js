@@ -56,7 +56,7 @@ function uo (el, u, a, r, m)
 	var o = ra[u[3]];
 	for (var i=4; i<u.length; i++)
 	{
-		if (!o[u[i]]) return; 
+		if (!o[u[i]]) { console.error ("[uo] missing "+u[i]+" ("+i+")"); return; }
 		o = o[u[i]];
 	}
 	if (Array.isArray(o))
