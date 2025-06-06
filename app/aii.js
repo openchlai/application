@@ -10,7 +10,7 @@ te["aii"] = { c:
         { div:["cr"], c:[ { uo:["","noop","aiiv","aii","error"] }, { div:["e"]} ] },
 	{ div:["cr"], c:[ { uo:["","noop","aiiv","aii","details","error_message"] }, { div:["e"]} ] },
 
-	{ div:["cr"], c:[ { uo:["","noop","aiiv","aii","step"] }, { div:["e"]} ] },
+	{ div:["u"], c:[ { uo:["","noop","aiiv","aii","step"] }, { div:["e"]} ] },
 
 	{ div:[""], c:[ { uo:["Case Summary","aiik","aiiv","aii","data","insights","case_summary"] }, { div:["e"]} ] },
 
@@ -39,6 +39,12 @@ te["aii"] = { c:
 
         { div:[""], c:[ { ou:["Cultural Considerations","aiik","aiiv","aii","data","insights","cultural_considerations"] }, { div:["e"]} ] },
 
+
+	{ div:[""], c:[ { uo:["transcript","aiik","aiiv","aii","data","transcript"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["translation","aiik","aiiv","aii","data","translated_transcript"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["entities","aiik","aiiv","aii","data","summary_entities"] }, { div:["e"]} ] },
+ 	{ div:[""], c:[ { uo:["category","aiik","aiiv","aii","data","summary_classification","category"] }, { div:["e"]} ] },
+ 	{ div:[""], c:[ { uo:["confidence score","aiik","aiiv","aii","data","summary_classification","confidence"] }, { div:["e"]} ] },
 ]};
 
 te["case_insights_txt"] = { s:["gy x y",null] }; // mime not application/json
