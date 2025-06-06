@@ -14,30 +14,30 @@ te["aii"] = { c:
 
 	{ div:[""], c:[ { uo:["Case Summary","aiik","aiiv","aii","data","insights","case_summary"] }, { div:["e"]} ] },
 
-	{ div:[""], c:[ { ou:["Persons","aiik","aiik","aiiv","aii","data","insights","named_entities","persons"] }, { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Organisations","aiik","aiiv","aii","data","insights","named_entities","organizations"] },  { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Locations","aiik","aiiv","aii","data","insights","named_entities","locations"] },  { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Dates","aiik","aiiv","aii","data","insights","named_entities","dates"] },  { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Contact Information","aiik","aiiv","aii","data","insights","named_entities","contact_information"] },  { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Category","aiik","aiitag","aii","data","insights","classification","category"] },  { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Interventions","aiik","aiiv","aii","data","insights","classification","interventions_needed"] },  { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Priority","aiik","aiiv","aii","data","insights","classification","priority_level"] },  { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Persons","aiik","aiik","aiiv","aii","data","insights","named_entities","persons"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Organisations","aiik","aiiv","aii","data","insights","named_entities","organizations"] },  { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Locations","aiik","aiiv","aii","data","insights","named_entities","locations"] },  { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Dates","aiik","aiiv","aii","data","insights","named_entities","dates"] },  { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Contact Information","aiik","aiiv","aii","data","insights","named_entities","contact_information"] },  { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Category","aiik","aiitag","aii","data","insights","classification","category"] },  { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Interventions","aiik","aiiv","aii","data","insights","classification","interventions_needed"] },  { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Priority","aiik","aiiv","aii","data","insights","classification","priority_level"] },  { div:["e"]} ] },
 	 
-	{ div:[""], c:[ { ou:["Safety Immediate Actions","aiik","aiiv","aii","data","insights","case_management","safety_planning","immediate_actions"] },  { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Safety Long Term Measures","aiik","aiiv","aii","data","insights","case_management","safety_planning","long_term_measures"] }, { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Psychosocial Support Short Term Measures","aiik","aiiv","aii","data","insights","case_management","psychosocial_support","short_term"] }, { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Psychosocial Support Long Term Measures","aiik","aiiv","aii","data","insights","case_management","psychosocial_support","long_term"] }, { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Applicable Laws","aiik","aiiv","aii","data","insights","case_management","legal_protocols","applicable_laws"] }, { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Required Documents","aiik","aiiv","aii","data","insights","case_management","legal_protocols","required_documents"] }, { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Authorities To Contact","aiik","aiiv","aii","data","insights","case_management","legal_protocols","authorities_to_contact"] }, { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Immediate Medical Needs","aiik","aiiv","aii","data","insights","case_management","medical_protocols","immediate_needs"] }, { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Followup Medical Care","aiik","aiiv","aii","data","insights","case_management","medical_protocols","follow_up_care"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Safety Immediate Actions","aiik","aiiv","aii","data","insights","case_management","safety_planning","immediate_actions"] },  { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Safety Long Term Measures","aiik","aiiv","aii","data","insights","case_management","safety_planning","long_term_measures"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Psychosocial Support Short Term Measures","aiik","aiiv","aii","data","insights","case_management","psychosocial_support","short_term"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Psychosocial Support Long Term Measures","aiik","aiiv","aii","data","insights","case_management","psychosocial_support","long_term"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Applicable Laws","aiik","aiiv","aii","data","insights","case_management","legal_protocols","applicable_laws"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Required Documents","aiik","aiiv","aii","data","insights","case_management","legal_protocols","required_documents"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Authorities To Contact","aiik","aiiv","aii","data","insights","case_management","legal_protocols","authorities_to_contact"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Immediate Medical Needs","aiik","aiiv","aii","data","insights","case_management","medical_protocols","immediate_needs"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Followup Medical Care","aiik","aiiv","aii","data","insights","case_management","medical_protocols","follow_up_care"] }, { div:["e"]} ] },
 	
-        { div:[""], c:[ { ou:["Red Flags","aiik","aiiv","aii","data","insights","risk_assessment","red_flags"] }, { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Potential Barriers","aiik","aiiv","aii","data","insights","risk_assessment","potential_barriers"] }, { div:["e"]} ] },
-	{ div:[""], c:[ { ou:["Protective Factors","aiik","aiiv","aii","data","insights","risk_assessment","protective_factors"] }, { div:["e"]} ] },
+        { div:[""], c:[ { uo:["Red Flags","aiik","aiiv","aii","data","insights","risk_assessment","red_flags"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Potential Barriers","aiik","aiiv","aii","data","insights","risk_assessment","potential_barriers"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["Protective Factors","aiik","aiiv","aii","data","insights","risk_assessment","protective_factors"] }, { div:["e"]} ] },
 
-        { div:[""], c:[ { ou:["Cultural Considerations","aiik","aiiv","aii","data","insights","cultural_considerations"] }, { div:["e"]} ] },
+        { div:[""], c:[ { uo:["Cultural Considerations","aiik","aiiv","aii","data","insights","cultural_considerations"] }, { div:["e"]} ] },
 
 
 	{ div:[""], c:[ { uo:["transcript","aiik","aiiv","aii","data","transcript"] }, { div:["e"]} ] },
@@ -71,6 +71,6 @@ function uo (el, u, a, r, m)
 		return;
 	}
 	nd (el, te[u[1]], [], [u[0]], [0]);
-	nd (el, te[u[2]], [], [o], [0]);
+	nd (el, te[u[2]], [], [(""+o)], [0]);
 }
 
