@@ -1417,6 +1417,19 @@ function _u (ev)
 	boo(ev);
 } 
 
+function _uve (ev)
+{
+        var u = this.id.split ("-");
+        var v = "v";
+        if (u.length>2 && u[2].length>0) v = u[2];
+        var p = __(this,v); // ascend
+        if (u.length>3 && u[3].length>0) p = _(p, u[3]); // descend
+        var a = {args:"?", ".id":""};
+        argv (__(this),a);
+        url (p, u[0], u[1], (a[".id"]+a.args), null, 2);
+        boo(ev);
+}
+
 function _nav (ev) 
 {
 	var u = this.id.split ("-");

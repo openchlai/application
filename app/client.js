@@ -46,7 +46,7 @@ te["case_client_marital_sel_sub"] = { div:["","sub"], c:
 
 te["case_client_marital_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","Select Marital Status","marital_id"] };
 
-te["case_client_marital_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_client_marital_tag_txa-%1-marital_id-%0-%2", "category_ls-subcategories", "c w17", 
+te["case_client_marital_enum"] = { case_enum_ls:["x y cd",null,"", "tag-r_--o-case_client_marital_tag_txa-%1-marital_id-%0-%2", "category_ls-subcategories", "c w17", 
 "case_client_marital_tag_txa","r_", 
 null, "case_client_marital_tag_txa",null,"marital_id",null," %2", 
 MARITAL_STATUS_ROOT_ID, "fullname", "noop", 
@@ -187,7 +187,7 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ bd16 gw_"], c:
 
 		{ div:["x25 t15","va"], c:
 		[
-			{ s:["x t","Is the Client Attending School?"] },
+			{ s:["x t cd","Is the Client Attending School?"] },
 			{ p:["","o"], c:
 			[
 				{ uchk:["case_yesno_r",":v:clients:in_school","yesno","",  "in_school"," %2"] },
@@ -199,7 +199,7 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ bd16 gw_"], c:
 		
 		{ div:["x25 t15","va"], c:
 		[
-			{ s:["x t","Is the Client Disabled?"] },
+			{ s:["x t cd","Is the Client Disabled?"] },
 			{ p:["","o"], c:
 			[
 				{ uchk:["case_yesno_r",":v:clients:is_disabled","yesno","",  "is_disabled", " %2"] },

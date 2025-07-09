@@ -417,7 +417,7 @@ te["case_enum_tag_txa_"] = { p:["","txa"], c: // [nb] id(txa) used by uhilite
 
 te["case_txt2_"] = { c:
 [
-        { div:["x y"], c:
+        { div:["x y cd"], c:
 	[
 		{ s:["",null] },
 		{ s:["",null] }
@@ -427,7 +427,7 @@ te["case_txt2_"] = { c:
 
 te["case_txt_"] = { c:
 [
-	{ s:["x y",null] },
+	{ s:["x y cd",null] },
 	{ p:["","o"], c:[ { input:[null,"",null,null,"text","",null] } ] },
 ]};
 
@@ -435,86 +435,86 @@ te["case_txt_"] = { c:
 
 te["case_household_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","","household_id"] };
 
-te["case_household_enum"] = { case_enum_ls_:["x t",null,"x b05",null,"", "tag-r_--o-case_household_tag_txa-%1-household_id-%0-", "category_ls-subcategories", "c w17", "case_household_tag_txa","r_", null,"case_household_tag_txa",null,"household_id",null,"", HOUSEHOLD_TYPE_ROOT_ID, "fullname", "noop","dd w21 gw_ ba_b", "noop"] };
+te["case_household_enum"] = { case_enum_ls_:["x t cd",null,"x b05 cd",null,"", "tag-r_--o-case_household_tag_txa-%1-household_id-%0-", "category_ls-subcategories", "c w17", "case_household_tag_txa","r_", null,"case_household_tag_txa",null,"household_id",null,"", HOUSEHOLD_TYPE_ROOT_ID, "fullname", "noop","dd w21 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_guardian_marital_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","","guardian_marital_id"] };
 
-te["case_guardian_marital_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_guardian_marital_tag_txa-%1-guardian_marital_id-%0-", "category_ls-subcategories", "c w17", "case_guardian_marital_tag_txa","r_", null,"guardian_marital_id",null,"guardian_marital_id",null,"", MARITAL_STATUS_ROOT_ID, "fullname", "noop","dd w21 gw_ ba_b", "noop"] };
+te["case_guardian_marital_enum"] = { case_enum_ls:["x y cd",null,"", "tag-r_--o-case_guardian_marital_tag_txa-%1-guardian_marital_id-%0-", "category_ls-subcategories", "c w17", "case_guardian_marital_tag_txa","r_", null,"guardian_marital_id",null,"guardian_marital_id",null,"", MARITAL_STATUS_ROOT_ID, "fullname", "noop","dd w21 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_household_head_employment_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","Select Employment Status","household_head_occupation_id"] };
 
-te["case_household_head_employment_enum"] = { case_enum_ls_:["x t",null,"x b05",null,"", "tag-r_--o-case_household_head_employment_tag_txa-%1-household_head_occupation_id-%0-", "category_ls-subcategories", "c w17", "case_household_head_employment_tag_txa","r_", null,"case_household_head_employment_tag_txa",null,"household_head_occupation_id",null,"", EMPLOYMENT_STATUS_ROOT_ID, "fullname", "noop","dd w20 gw_ ba_b", "noop"] };
+te["case_household_head_employment_enum"] = { case_enum_ls_:["x t cd",null,"x b05 cd",null,"", "tag-r_--o-case_household_head_employment_tag_txa-%1-household_head_occupation_id-%0-", "category_ls-subcategories", "c w17", "case_household_head_employment_tag_txa","r_", null,"case_household_head_employment_tag_txa",null,"household_head_occupation_id",null,"", EMPLOYMENT_STATUS_ROOT_ID, "fullname", "noop","dd w20 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_spouse_employment_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","Select Employment Status","spouse_profession_id"] };
 
-te["case_spouse_employment_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_spouse_employment_tag_txa-%1-spouse_profession_id-%0-", "category_ls-subcategories", "c w17", "case_spouse_employment_tag_txa","r_", null,"case_spouse_employment_tag_txa",null,"spouse_profession_id",null,"", EMPLOYMENT_STATUS_ROOT_ID, "fullname", "noop","dd w21 gw_ ba_b", "noop"] };
+te["case_spouse_employment_enum"] = { case_enum_ls:["x y cd",null,"", "tag-r_--o-case_spouse_employment_tag_txa-%1-spouse_profession_id-%0-", "category_ls-subcategories", "c w17", "case_spouse_employment_tag_txa","r_", null,"case_spouse_employment_tag_txa",null,"spouse_profession_id",null,"", EMPLOYMENT_STATUS_ROOT_ID, "fullname", "noop","dd w21 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_hiv_tag_txa"] = { case_enum_tag_txa_:["w20 xx tt b05","fullname__","","hiv_id"] };
 
-te["case_hiv_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_hiv_tag_txa-%1-hiv_id-%0-", "category_ls-subcategories", "c w17", "case_hiv_tag_txa","r_", null,"case_hiv_tag_txa",null,"hiv_id",null,"", HIV_STATUS_ROOT_ID, "fullname", "noop","dd w20 gw_ ba_b", "noop"] };
+te["case_hiv_enum"] = { case_enum_ls:["x y cd",null,"", "tag-r_--o-case_hiv_tag_txa-%1-hiv_id-%0-", "category_ls-subcategories", "c w17", "case_hiv_tag_txa","r_", null,"case_hiv_tag_txa",null,"hiv_id",null,"", HIV_STATUS_ROOT_ID, "fullname", "noop","dd w20 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_disability_tag_txa"] = { case_enum_tag_txa_:["w20 xx tt b05","fullname__","","disability_id"] };
 
-te["case_disability_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_disability_tag_txa-%1-disability_id-%0-", "category_ls-subcategories", "c w17", "case_disability_tag_txa","r_", null, "case_disability_tag_txa",null,"disability_id",null,"", DISABILITY_ROOT_ID, "fullname", "noop","dd w20 gw_ ba_b", "noop"] };
+te["case_disability_enum"] = { case_enum_ls:["x y cd",null,"", "tag-r_--o-case_disability_tag_txa-%1-disability_id-%0-", "category_ls-subcategories", "c w17", "case_disability_tag_txa","r_", null, "case_disability_tag_txa",null,"disability_id",null,"", DISABILITY_ROOT_ID, "fullname", "noop","dd w20 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_school_level_tag_txa"] = { case_enum_tag_txa_:["w20 xx tt b05","fullname__","","school_level_id"] };
 
-te["case_school_level_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_school_level_tag_txa-%1-school_level_id-%0-", "category_ls-subcategories", "c w17", "case_school_level_tag_txa","r_",null, "case_school_level_tag_txa",null,"school_level_id",null,"", SCHOOL_LEVEL_ROOT_ID, "fullname", "noop","dd w20 gw ba_b", "noop"] };
+te["case_school_level_enum"] = { case_enum_ls:["x y cd",null,"", "tag-r_--o-case_school_level_tag_txa-%1-school_level_id-%0-", "category_ls-subcategories", "c w17", "case_school_level_tag_txa","r_",null, "case_school_level_tag_txa",null,"school_level_id",null,"", SCHOOL_LEVEL_ROOT_ID, "fullname", "noop","dd w20 gw ba_b", "noop"] };
 
 // --- 
 
 te["case_school_type_tag_txa"] = { case_enum_tag_txa_:["w20 xx tt b05","fullname__","","school_type_id"] };
 
-te["case_school_type_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_school_type_tag_txa-%1-school_type_id-%0-", "category_ls-subcategories", "c w17", "case_school_type_tag_txa","r_", null, "case_school_type_tag_txa",null,"school_type_id",null,"", SCHOOL_TYPE_ROOT_ID, "fullname", "noop","dd w20 gw_ ba_b", "noop"] };
+te["case_school_type_enum"] = { case_enum_ls:["x y cd",null,"", "tag-r_--o-case_school_type_tag_txa-%1-school_type_id-%0-", "category_ls-subcategories", "c w17", "case_school_type_tag_txa","r_", null, "case_school_type_tag_txa",null,"school_type_id",null,"", SCHOOL_TYPE_ROOT_ID, "fullname", "noop","dd w20 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_employment_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","Select Work Status","employment_id"] };
 
-te["case_employment_enum"] = { case_enum_ls:["x y",null,"",  "tag-r_--o-case_employment_tag_txa-%1-employment_id-%0-", "category_ls-subcategories", "c w17", "case_employment_tag_txa","r_", null, "case_employment_tag_txa",null,"employment_id",null,"", EMPLOYMENT_STATUS_ROOT_ID, "fullname", "noop","dd w21 gw_ ba_b", "noop"] };
+te["case_employment_enum"] = { case_enum_ls:["x y cd",null,"",  "tag-r_--o-case_employment_tag_txa-%1-employment_id-%0-", "category_ls-subcategories", "c w17", "case_employment_tag_txa","r_", null, "case_employment_tag_txa",null,"employment_id",null,"", EMPLOYMENT_STATUS_ROOT_ID, "fullname", "noop","dd w21 gw_ ba_b", "noop"] };
 
 // --- 
 
 te["case_health_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","Select Health Status","health_id"] };
 
-te["case_health_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_health_tag_txa-%1-health_id-%0-", "category_ls-subcategories", "c w17", "case_health_tag_txa","r_", null, "case_health_tag_txa",null,"health_id",null,"", HEALTH_STATUS_ROOT_ID, "fullname", "noop", "dd w21 gw_ ba_b", "noop"] };
+te["case_health_enum"] = { case_enum_ls:["x y cd",null,"", "tag-r_--o-case_health_tag_txa-%1-health_id-%0-", "category_ls-subcategories", "c w17", "case_health_tag_txa","r_", null, "case_health_tag_txa",null,"health_id",null,"", HEALTH_STATUS_ROOT_ID, "fullname", "noop", "dd w21 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_shareshome_tag_txa"] = { case_enum_tag_txa_:["w20 xx tt b05","fullname__","","shareshome_id"] };
 
-te["case_shareshome_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_shareshome_tag_txa-%1-shareshome_id-%0-", "category_ls-subcategories","c w17", "case_shareshome_tag_txa","r_", 
+te["case_shareshome_enum"] = { case_enum_ls:["x y cd",null,"", "tag-r_--o-case_shareshome_tag_txa-%1-shareshome_id-%0-", "category_ls-subcategories","c w17", "case_shareshome_tag_txa","r_", 
 null, "case_shareshome_tag_txa",null,"shareshome_id",null,"", SHARES_HOME_ROOT_ID, "fullname", "noop","dd w20 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_rela_tag_txa"] = { case_enum_tag_txa_:["w20 xx tt b05","fullname__","Select Relationship","relationship_id"] };
 
-te["case_rela_enum"] = { case_enum_ls_:["x t",null,"x b05",null,"", "tag-r_--o-case_rela_tag_txa-%1-relationship_id-%0-", "category_ls-subcategories", "c w17", "case_rela_tag_txa","r_", null, "case_rela_tag_txa",null, "relationship_id",null,"",  RELATIONSHIP_ROOT_ID, "fullname", "noop", "dd w20 gw_ ba_b", "noop"] };
+te["case_rela_enum"] = { case_enum_ls_:["x t cd",null,"x b05 cd",null,"", "tag-r_--o-case_rela_tag_txa-%1-relationship_id-%0-", "category_ls-subcategories", "c w17", "case_rela_tag_txa","r_", null, "case_rela_tag_txa",null, "relationship_id",null,"",  RELATIONSHIP_ROOT_ID, "fullname", "noop", "dd w20 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_not_in_school_tag_txa"] = { case_enum_tag_txa_:["w62 xx tt b05","fullname__","Select Reason","not_in_school_id"] };
 
-te["case_not_in_school_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_not_in_school_tag_txa-%1-not_in_school_id-%0-", "category_ls-subcategories", "c w59", "case_not_in_school_tag_txa","r_", null, "case_not_in_school_tag_txa",null,"not_in_school_id",null,"",  NOT_IN_SCHOOL_ROOT_ID, "fullname", "noop", "dd w62 gw_ ba_b", "noop"] };
+te["case_not_in_school_enum"] = { case_enum_ls:["x y cd",null,"", "tag-r_--o-case_not_in_school_tag_txa-%1-not_in_school_id-%0-", "category_ls-subcategories", "c w59", "case_not_in_school_tag_txa","r_", null, "case_not_in_school_tag_txa",null,"not_in_school_id",null,"",  NOT_IN_SCHOOL_ROOT_ID, "fullname", "noop", "dd w62 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_loc_tag_txa"] = { case_enum_tag_txa_:["w38 xx tt b05","fullname__","Select Location","location_id"] };
 
-te["case_loc_enum"] = { case_enum_lsh:["x y",null,"",
+te["case_loc_enum"] = { case_enum_lsh:["x y cd",null,"",
 "tag-r_--o-case_loc_tag_txa-%1-location_id-%0-",   "category_ls-subcategories-h", "c w37", 
 "case_loc_tag_txa","r_", 
 null, "case_loc_tag_txa",null,"location_id",null,"",   
@@ -527,37 +527,37 @@ LOCATION_ROOT_ID, "", "fullname", "noop",
 
 te["case_lang_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","Select Language","lang_id"] };
 
-te["case_lang_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_lang_tag_txa-%1-lang_id-%0-", "category_ls-subcategories", "c w17", "case_lang_tag_txa","r_", null, "case_lang_tag_txa", null, "lang_id", null,"", LANGUAGE_ROOT_ID, "fullname", "noop", "dd w21 gw_ ba_b", "noop"] };
+te["case_lang_enum"] = { case_enum_ls:["x y cd",null,"", "tag-r_--o-case_lang_tag_txa-%1-lang_id-%0-", "category_ls-subcategories", "c w17", "case_lang_tag_txa","r_", null, "case_lang_tag_txa", null, "lang_id", null,"", LANGUAGE_ROOT_ID, "fullname", "noop", "dd w21 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_tribe_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","Select Tribe","tribe_id"] };
 
-te["case_tribe_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_tribe_tag_txa-%1-tribe_id-%0-", "category_ls-subcategories", "c w16", "case_tribe_tag_txa","r_", null, "case_tribe_tag_txa",null, "tribe_id",null,"",  TRIBE_ROOT_ID, "fullname", "noop", "dd w20 gw_ ba_b", "noop"] };
+te["case_tribe_enum"] = { case_enum_ls:["x y cd",null,"", "tag-r_--o-case_tribe_tag_txa-%1-tribe_id-%0-", "category_ls-subcategories", "c w16", "case_tribe_tag_txa","r_", null, "case_tribe_tag_txa",null, "tribe_id",null,"",  TRIBE_ROOT_ID, "fullname", "noop", "dd w20 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_nationality_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","Select Nationality","nationality_id"] };
 
-te["case_nationality_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_nationality_tag_txa-%1-nationality_id-%0-", "category_ls-subcategories", "c w17", "case_nationality_tag_txa","r_", null, "case_nationality_tag_txa",null,"nationality_id",null,"", NATIONALITY_ROOT_ID, "fullname", "noop", "dd w21 gw_ ba_b", "noop"] };
+te["case_nationality_enum"] = { case_enum_ls:["x y cd",null,"", "tag-r_--o-case_nationality_tag_txa-%1-nationality_id-%0-", "category_ls-subcategories", "c w17", "case_nationality_tag_txa","r_", null, "case_nationality_tag_txa",null,"nationality_id",null,"", NATIONALITY_ROOT_ID, "fullname", "noop", "dd w21 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_national_id_type_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","Select ID Type","national_id_type_id"] };
 
-te["case_national_id_type_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_national_id_type_tag_txa-%1-national_id_type_id-%0-", "category_ls-subcategories", "c w16", "case_national_id_type_tag_txa","r_", null, "case_national_id_type_tag_txa",null,"national_id_type_id",null,"",  NATIONAL_ID_TYPE_ROOT_ID, "fullname", "noop", "dd w20 gw_ ba_b", "noop"] };
+te["case_national_id_type_enum"] = { case_enum_ls:["x y cd",null,"", "tag-r_--o-case_national_id_type_tag_txa-%1-national_id_type_id-%0-", "category_ls-subcategories", "c w16", "case_national_id_type_tag_txa","r_", null, "case_national_id_type_tag_txa",null,"national_id_type_id",null,"",  NATIONAL_ID_TYPE_ROOT_ID, "fullname", "noop", "dd w20 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_sex_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","Select Gender","sex_id"] };
 
-te["case_sex_enum"] = { case_enum_ls:["x y",null,"", "tagnm-r_--o-case_sex_tag_txa-%1-sex_id-%0-sex-%1", "category_ls-subcategories", "c w17", "case_sex_tag_txa","r_", null, "case_sex_tag_txa",null,"sex_id",null,"",  SEX_ROOT_ID, "fullname", "noop", "dd w21 gw_ ba_b", "noop"] };
+te["case_sex_enum"] = { case_enum_ls:["x y cd",null,"", "tagnm-r_--o-case_sex_tag_txa-%1-sex_id-%0-sex-%1", "category_ls-subcategories", "c w17", "case_sex_tag_txa","r_", null, "case_sex_tag_txa",null,"sex_id",null,"",  SEX_ROOT_ID, "fullname", "noop", "dd w21 gw_ ba_b", "noop"] };
 
 // ---
 
 te["case_age_tag_txa"] = { case_enum_tag_txa_:["w21 xx t08 b05","fullname__","Select Age Group","age_group_id"] };
 
-te["case_age_enum"] = { case_enum_ls:["x y",null,"", "tagnm-r_--o-case_age_tag_txa-%1-age_group_id-%0-age_group-%1", "category_ls-subcategories", "c w17", "case_age_tag_txa","r_", null, "case_age_tag_txa",null, "age_group_id",null,"",  AGE_GROUP_ROOT_ID, "fullname", "noop", "dd w21 gw_ ba_b", "noop"] };
+te["case_age_enum"] = { case_enum_ls:["x y cd",null,"", "tagnm-r_--o-case_age_tag_txa-%1-age_group_id-%0-age_group-%1", "category_ls-subcategories", "c w17", "case_age_tag_txa","r_", null, "case_age_tag_txa",null, "age_group_id",null,"",  AGE_GROUP_ROOT_ID, "fullname", "noop", "dd w21 gw_ ba_b", "noop"] };
 
 // ----
 
@@ -846,9 +846,44 @@ te["case_ed_sub_justice"] = { div:["mt15"],  c:
 	{ div:["e"] }
 ]};
 
+te["case_passport_num_tag"] = { c:
+[
+	{ tag:["case_passport_num_tag_txa",":v:clients:contact_national_id","national_id_",":v:clients:contact_national_id",""] },
+	{ ufn:["case_client_passport_ufn"] }
+]};
+
+te["case_passport_num_tag_txa"] = { p:["","txa"], c: // [nb] id(txa) used by uhilite
+[ 
+	{ input:["w28 x t08 b07","","national_id_","","text","","Enter Client's passport / national-id number "] }, // ev:["","_ky","","_uky"] }, 
+	// { arg:["",null,null] }, // placeholder for upd
+]};
+
+te["case_passport_num_no_match"] = { s:["xx y gr cw","No Match"] };
+
+te["case_passport_num"] = { div:["ba w34"], c:
+[
+	{ li:[""], c:
+	[
+		{ p:["c","o"], c:
+		[
+			{ u:["case_passport_num_tag_txa","r_"] },
+			{ u:["case_passport_num_tag","clients","","clients"] } 
+		]},
+		{ div:["d y02 r03"], c:
+		[
+			{ ac:["ao btn ","case_passport_num-clients","_activity_postj","w05 y04 bd gb cw tc s","Search"] },
+			{ s:["savl w04 y04 bd go cw tc","..."] }
+		]},
+		{ div:["e"], arg:["","_c","1"] }
+	]},
+	{ p:["","nb"], u:["case_passport_num_no_match","clients_no_data"] }
+]};
+
 te["case_ed_sub_dept_labor"] = { div:["t15"], c:
 [
-	{ case_txt_:["Client's Passport Number","gws_ w45 x tt b05","eemis",":v:cases:eemis","Enter Passport/National ID Number"] }
+	{ s:["x y","Client's Passport Number"] },
+	{ div:["","va"], c:[ { div:["","ve"], u:["case_passport_num","r_"] } ] },
+	{ div:[] }
 ]};
 
 // ---
@@ -2102,6 +2137,17 @@ te["cases"] = { c:
 ]};
 
 te["case_vw_id_ufn"] = { ufn:["case_vw_id_ufn"] };
+
+function case_client_passport_ufn (el, u, a, r, m)
+{
+	var p = document.getElementById ("vp");
+	elvp = _(__(el,"vf"),"clients_case").lastChild.firstChild.lastChild; // todo elvp to clients list
+	console.log ("passport elvp:"+elvp)
+	vp(p)
+	r[0]="";
+	p.innerHTML = ""
+	nd (p, te["case_client_new"], [], r, [0])
+}
 
 function case_vw_id_ufn (el, u, a, r, m)
 {

@@ -94,7 +94,7 @@ te["case_contact_ed_r_"] = { c:  //
 	[
 		{ div:["c w41"], c:
 		[
-			{ s:["x y",null] },
+			{ s:["x y cd",null] },
 			{ p:["","o"], c:
 			[
 				{ uchk:["case_yesno_r",null,"yesno","",  "is_refugee"," %2"] },
