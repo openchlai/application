@@ -507,14 +507,14 @@ function rargs (r_, coll)
 	var v = "";
 	for (var i=0; i<coll.length; i++)
 	{
-		// console.log ("  rarg: "+coll[i].id+"="+coll[i].value);
+		console.log ("rarg: "+coll[i].id+"="+coll[i].value);
 		if (coll[i].id.length<1) continue;
 		var kk = coll[i].id.split ("-");
 		if (kk.length<2) continue;
 		v = coll[i].value;
 		r_[kk[1]] = v;
 	}
-	// console.log ("[rargs] "+JSON.stringify (r_));
+	console.log ("[rargs] ("+coll.length+") "+JSON.stringify (r_));
 }
 
 function hmsr (t,a) // :r:dmyhn:17: :0:899999999:Remaining :DHm::Expred :DHm::

@@ -340,6 +340,8 @@ ul:hover {background-color:#cee8f0; color:black;}
 :checked + .lr { background-color:#dadcdf; }
 :checked + .lr .r { border-left:1px solid darkorange; }
 
+:checked + .rc_ { font-weight:bold; }
+
 .navl { padding:5px; width:11px; height:10px; background-color:orange; display:none; }
 .savl { display:none; }
 

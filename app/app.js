@@ -143,7 +143,7 @@ var UU =
 "referal_del":{ 202:[["case_notif_del","referals"]], 412:[["nb","errors","v","nb"]] },
 "service_del":{ 202:[["case_notif_del","services"]], 412:[["nb","errors","v","nb"]] },
 
-"case_passport_num":{ 200:[["case_passport_num","r_"]], 201:[["case_passport_num","r_"]], 202:[["case_passport_num","r_"]] },
+"case_passport_num":{ 200:[["case_passport_num","r_","","national_reg_search"]], 201:[["case_passport_num","r_","","national_reg_search"]], 202:[["case_passport_num","r_","","national_reg_search"]] },
 "case_insights" : { 200:[["case_insights","messages"]] },
 "case_rpt_vw":{ 200:[["rpt_vw","cases_rpt"]] },
 "case_update":{ 202:[["uvpfn","dispositions","vp"]], 412:[["nb","errors","v","nb"]], 200:[["case_update","cases"]] },
@@ -401,7 +401,6 @@ re["case_status_form"] = re["case_status"];
 rk["case_dept"] = ["0","1"];
 re["case_dept"] =
 {
-"":["","116","","","",""],
 "0":["0","116","","","",""],
 "1":["1","Labor","","","",""]
 };

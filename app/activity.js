@@ -1220,7 +1220,7 @@ function _activity_uvw (ev)
 function _activity_postj ()
 {
 	var u = this.id.split ("-");
-	var p = __(this); 
+	var p = __(this,"ve"); 
 	var o = {};
 	jso (__(elvpf?elvpf:(elvp?elvp:p),"vfvwm").firstChild, o);			// src
 	jso (p, o); 									// form

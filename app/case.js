@@ -882,7 +882,7 @@ te["case_passport_num"] = { div:["ba w34"], c:
 te["case_ed_sub_dept_labor"] = { div:["t15"], c:
 [
 	{ s:["x y","Client's Passport Number"] },
-	{ div:["","va"], c:[ { div:["","ve"], u:["case_passport_num","r_"] } ] },
+	{ div:["","va"], c:[ { p:["","national_reg_search"], u:["case_passport_num","r_"] } ] },
 	{ div:[] }
 ]};
 
@@ -1309,8 +1309,9 @@ te["case_vw_col_1"] = { c:
 	{ div:[""], c:
 	[
 		{ div:[], c:
-		[			
-			{ div:[""], case_vw_val_cat:["Case Category","",":v:cases:case_category"] },
+		[
+			{ div:[""], case_vw_val:["Department",":v:cases:dept::case_dept:1"] },
+			{ div:["tt"], case_vw_val_cat:["Case Category","",":v:cases:case_category"] },
 			{ div:["tt"], case_vw_val:["Is Case GBV Related?",":v:cases:gbv_related::yesno:2"] },
 		]},
 		{ div:[], usub:["case_vw_sub_medical_exam,case_vw_sub_medical_exam","r_",":v:cases:case_category_fullname_id", CASE_CATEGORY_PHYSICAL_N_SEXUAL_ABUSE_ID] },
