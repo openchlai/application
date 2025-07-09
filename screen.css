@@ -926,6 +926,7 @@ a:hover .aw {color:white;}
 .caseworker #joinq_status { display:none; }
 .casemanager #joinq_status { display:none; }
 
+.dept_of_labor .not_dept_of_labor {display:none;}
 
 .no_vline .bl { border-left:0; }
 .no_vline .br { border-right:0; }

@@ -124,8 +124,10 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ bd16 gw_"], c:
 		{ div:["e"] }
 	]},
 			
-	{ div:["","ve"], c:
+	{ div:["","ve"], s:["",""], c:
 	[
+		{ ufn:["client_case_ctx_ufn"] },
+
 		{ div:["x25 t"], c:[ { p:["c w55","nb"], u:["nb","clients_nb"] }, { div:["e"] } ] },
 
 		{ p:["x25 clk_client","contact"], case_contact_ed_r_:
@@ -146,14 +148,14 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ bd16 gw_"], c:
 ":v:clients:contact_email", 
 		]},	
 		
-		{ div:["x25 t15"], c:
+		{ div:["x25 t15 not_dept_of_labor"], c:
                 [
                         { div:["c w20"], case_rela_enum:["Reporter's Relationship with","Client",":v:clients:relationship_id",":v:clients:relationship"," %0"] },
                         { div:["c w42 ll"], case_txt2_:["Relationship","Comment","gws w42 x yy","relationship_comment",":v:clients:relationship_comment","Enter Comments about the relationship"] },
                         { div:["e"] }
                 ]},
 
-		{ div:["x25 tt"], c:
+		{ div:["x25 tt not_dept_of_labor"], c:
 		[
 			{ div:["c w20"], case_txt2_:["Number of Adult","in Household","gws w20 x tt b05","household_adults",":v:clients:household_adults",""] },			
 			{ div:["c w20 ll"], case_household_enum:["Household","Type",":v:clients:household_id",":v:clients:household"," %0"] },
@@ -161,20 +163,20 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ bd16 gw_"], c:
 			{ div:["e"] }
 		]},
 
-		{ div:["x25 t15"], c:
+		{ div:["x25 t15 not_dept_of_labor"], c:
 		[
 			{ div:["c w41"], case_txt_:["Parent/Guardian's Name","gws w41 x tt b05","guardian_fullname",":v:clients:guardian_fullname",""] },
 			{ div:["c w21 ll"], case_guardian_marital_enum:["Parent/Guardian's Marital Status",":v:clients:guardian_marital_id",":v:clients:guardian_marital"," %0"] },
 			{ div:["e"] }
 		]},
 
-		{ div:["x25 tt"], c:
+		{ div:["x25 tt not_dept_of_labor"], c:
 		[
 			{ div:["c w20"], case_txt_:["Parent/Guardian's Identification Number","gws w20 x tt b05", "guardian_national_id", ":v:clients:guardian_national_id", ""] },
 			{ div:["e"] }
 		]},
 		
-		{ div:["x25 t15 "], c:
+		{ div:["x25 t15 not_dept_of_labor"], c:
 		[	
 			{ div:["c w20"], case_health_enum:["Client's Health Status",":v:clients:health_id",":v:clients:health"," %0"] },
 			{ div:["c w20 ll"], case_hiv_enum:["Client's HIV Status",":v:clients:hiv_id",":v:clients:hiv"," %0"] },
@@ -182,10 +184,10 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ bd16 gw_"], c:
 			{ div:["e"] }
 		]},
 		
-		{ p:["x25","_case_client_spouse_"], usub:["case_client_ed_sub_spouse,case_client_ed_sub_spouse,case_client_ed_sub_spouse,case_client_ed_sub_spouse,case_client_ed_sub_spouse", "r_", ":v:clients:marital_id", MARITAL_STATUS_WITH_SPOUSE_ID] },
+		{ p:["x25 not_dept_of_labor","_case_client_spouse_"], usub:["case_client_ed_sub_spouse,case_client_ed_sub_spouse,case_client_ed_sub_spouse,case_client_ed_sub_spouse,case_client_ed_sub_spouse", "r_", ":v:clients:marital_id", MARITAL_STATUS_WITH_SPOUSE_ID] },
 
 
-		{ div:["x25 t15","va"], c:
+		{ div:["x25 t15 not_dept_of_labor","va"], c:
 		[
 			{ s:["x t cd","Is the Client Attending School?"] },
 			{ p:["","o"], c:
@@ -195,9 +197,9 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ bd16 gw_"], c:
 			]},
 		]},
 
-		{ p:["x25","_case_client_inschool_"], usub:["case_client_ed_sub_inschool_no,case_client_ed_sub_inschool_yes","r_",":v:clients:in_school","0,1"] },
+		{ p:["x25 not_dept_of_labor","_case_client_inschool_"], usub:["case_client_ed_sub_inschool_no,case_client_ed_sub_inschool_yes","r_",":v:clients:in_school","0,1"] },
 		
-		{ div:["x25 t15","va"], c:
+		{ div:["x25 t15 not_dept_of_labor","va"], c:
 		[
 			{ s:["x t cd","Is the Client Disabled?"] },
 			{ p:["","o"], c:
@@ -207,7 +209,7 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ bd16 gw_"], c:
 			]}
 		]},
 
-		{ p:["x25","_case_client_disabled_"], usub:["case_client_ed_sub_disabled","r_",":v:clients:is_disabled","1"] },
+		{ p:["x25 not_dept_of_labor","_case_client_disabled_"], usub:["case_client_ed_sub_disabled","r_",":v:clients:is_disabled","1"] },
 
 		{ div:["x25 t30 b20"], vp_sav:[null,null,null,null,null,null,null] }
 	]}
@@ -377,6 +379,19 @@ te["case_client_vw_id"] = { div:["w66 ma bd sh__ y gw_","vddvw"], ev:["_undd"], 
 ]};
 
 // -----------------------------
+
+function client_case_ctx_ufn (el, u, a, r, m)
+{
+	var o = {}
+	var p = __(elvp,"ve")
+	// var cn =
+	jso(p,o)
+	if (o.dept==1)
+	{
+		el.className = "dept_of_labor"
+	}
+	console.log ("client case ctx:"+JSON.stringify(o))
+}
 
 function case_client_del_ufn (el, u, a, r, m)
 {
