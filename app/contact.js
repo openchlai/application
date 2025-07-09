@@ -90,7 +90,7 @@ te["case_contact_ed_r_"] = { c:  //
 		{ div:["e"] }
 	]},
 	
-	{ div:["tt"], c:
+	{ div:["tt not_dept_of_labor"], c:
 	[
 		{ div:["c w41"], c:
 		[
