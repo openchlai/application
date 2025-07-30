@@ -103,6 +103,8 @@ var UU =
 "activity_contact_ls":{ 200:[["activity_contact_ls","dispositions_ctx"]] },
 "activity_contact_ls_main":{ 200:[["activity_contact_ls_main","dispositions_ctx"]] },
 "activity_contact_main":{ 200:[["activity_contacts","dispositions_ctx"]] },
+"activity_contact":{ 200:[["activity_contact","contacts","contacts","contact"]] },
+"activity_contacts":{ 200:[["activity_contacts","dispositions_ctx"]] },
 "activity_reporter":{ 201:[["activity_reporter_ufn","reporters_uuid"]], 412:[["nb","errors","v","nb"]] },
 "activity_disposition_ed_r":{ 200:[["activity_disposition_ed_r","subcategories"]] },
 "activity_disposition_unk":{ 201:[["activity_disposition_ufn","dispositions_unk"]], 412:[["nb","errors","v","nb"]] },
@@ -450,9 +452,9 @@ re["case_src"] =
 "TWITTER":["TWITTER","TWITTER","",                      "","/helpline/images/watsap_ico.png","g","chat","Twitter Activity", "ati_btns","activity_vw_id_tabs_message","Twitter Chat", "email", "reporter_email", ""], 
 
 
-"webform":["webform","Webform",":k:case_source:webform:1",  "g","", "micon cg hh","directions_walk","Webform Activity",      "activity_btns","activity_vw_id_tabs","Web Form", "reporter_phone", ""],
+"webform":["webform","Webform",":k:case_source:webform:1",  "g","", "micon cg hh","chat","Webform Activity",      "activity_btns","activity_vw_id_tabs","Web Form", "reporter_phone", ""],
 
-"cmis":["cmis","CMIS",":k:case_source:cmis:1",  "g","", "micon cg hh","directions_walk","CMIS Activity",      "activity_btns","activity_vw_id_tabs","CMIS", "reporter_phone", ""],
+"ceemis":["ceemis","CEEMIS",":k:case_source:ceemis:1",  "g","", "micon cg hh","chat","CMIS Activity",      "activity_btns","activity_vw_id_tabs","CMIS", "reporter_phone", ""],
 
 };
 
@@ -1487,7 +1489,7 @@ function loadphone (el, u, a, r, m)
 	if (v) document.getElementById ("vv").className = v[2];
 	console.log ("loadphone: "+ra["auth"][0][7]+" | "+JSON.stringify (v));
 	DetectDevices ();
-	VOICEAPPS_UA.connect (ra["auth"][0][7]);
+	// VOICEAPPS_UA.connect (ra["auth"][0][7]);
 }
 
 function ami_wait (el, u, a, r, m)

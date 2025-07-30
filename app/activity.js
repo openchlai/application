@@ -127,7 +127,7 @@ te["activity_contact_created"] = { c:
 
 // ---
 
-te["activity_contact_footer"] = { div:["xx b05"], c:
+te["activity_contact_footer"] = { div:["b05"], c:
 [
 	{ div:["d t"], c:[ { ac:["nav","activity_contact_ls-dispositions","_nav","dh bd",""], c:[ { div:["da_w dr bd"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
 	{ div:["d t"], c:[ { aci:["nav","activity_contact_ls-dispositions","_nav","dh bd","prev",""], c:[ { div:["da_w dl bd"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
@@ -144,14 +144,14 @@ te["activity_contact_no_data"] = { c:
 	{ s:["xx yy gy","No matching contacts found."] }
 ]};
 
-te["activity_contact_r"] = { div:[""], c:
+te["activity_contact_r"] = { div:["","ve"], c:
 [
-	{ input:["g","","contact_id",":v:dispositions:reporter_contact_id","radio"] },
-	{ div:["r h05 oh"], ev:["_opt"], c:[ { li:["x t02 cb rg"], c:
+	{ input:["g","",".id",":v:dispositions:reporter_contact_id","radio"] },
+	{ div:["r mb","activity_contact-contacts"], ev:["_uve"], c:[ { li:["x t02 gws_ h05  oh cb rg bd"], c:
 	[
 		{ div:["c l w01_ t08"], s:["opt",""] },
-		{ div:["c w59"], contact_vw_rv:[":v:dispositions:reporter_fullname", ":v:dispositions:reporter_age_group", ":v:dispositions:reporter_sex", "d x t cd s",":v:dispositions:created_on:d:dmyhnr", ":v:dispositions:reporter_location",":v:dispositions:reporter_landmark"] },
-		{ div:["e"] }
+		{ div:["c w40"], contact_vw_rv:[":v:dispositions:reporter_fullname", ":v:dispositions:reporter_age_group", ":v:dispositions:reporter_sex", "d x t cd s",":v:dispositions:created_on:d:dmyhnr", ":v:dispositions:reporter_location",":v:dispositions:reporter_landmark"] },
+		{ div:["e"] } // , arg:["",".id",":v:dispositions:reporter_conntact_id"] }
 	]} ]},
 ]};
 
@@ -169,7 +169,7 @@ te["activity_contact_nb"] = { div:[], c:
 	{ u:["activity_contact_no_data","dispositions_no_data"] }
 ]};
 
-te["activity_contact_ls"] = { listo:["end", "activity_contact_nb", "h25", "activity_contact_k", "activity_contact_r", "dispositions", "activity_contact_footer"] };
+te["activity_contact_ls"] = { listo:["end", "activity_contact_nb", "", "activity_contact_k", "activity_contact_r", "dispositions", "activity_contact_footer"] };
 
 te["activity_contact_ls_main"] = { c:
 [
@@ -256,6 +256,64 @@ te["activity_contact_followup"] = { div:["","ve"], c:
         ]}
 ]};
 
+te["activity_contact"] = { div:["bl2_b"], c:
+[
+	{ div:["h08 oh ll"], c:
+	[
+		{ div:["t"], c:
+		[
+			{ s:["x h3",":v:contacts:fullname"] },
+			{ s:["d x t",":v:contacts:age_group"] },
+			{ div:["d t",":v:contacts:sex"] },
+			{ div:["e"] }
+		]},
+		{ div:["y03 s l"], c:
+		[
+			{ uval:["",":v:contacts:location"] },
+			{ span:["xx i co m","",":v:contacts:landmark"] },
+			{ div:["e"] }
+		]},
+		// contact_vw_rv:["b h3",":v:contacts:fullname", ":v:contacts:age_group", ":v:contacts:sex", "d x t cd s",":v:contacts:created_on:d:dmyhnr", ":v:contacts:location",":v:contacts:landmark"] },
+	]},
+	{ div:["h04 oh"], c:
+	[
+		{ ac:["d ab","","","xx y tr gr cw bd16","New Case"] },
+		{ div:["e"] }
+	]}
+]};
+
+te["activity_contacts"] = { div:["xx","contacts"], c:
+[
+	{ p:["","contact"], c:
+	[
+		{ div:["h12 gp"], s:["xx y tr gp cr bd","Select / New Reporter"] }
+	]},
+	{ div:["t"], c:
+	[
+		{ div:["ao","vg"], ac:["content-shown","","_g","y02 cd",""], c:
+		[
+			//{ div:["d w02 x y "],  c:
+			//[ 
+			//	{ div:["content-hidden_ h02 w02 awb"] },
+			//	{ div:["content-shown_ h02 w02 awt"] },
+			//]}, 
+			{ s:["d x y03","Matching Contacts"] },
+			{ s:["d x y03","%4"] },
+			{ div:["d w02 y03 bd mtn2"],  c:
+			[ 
+				{ s:["content-hidden_ n tc","+"] },
+				{ s:["content-shown_ n tc","-"] },
+			]},
+			{ div:["e"] }
+		]},
+		{ div:["","vt"], c:
+		[
+			{ u:["activity_contact_ls","dispositions_ctx"] }
+		]}
+	]},
+	{ ac:["ao t","","","x15 y cr tr","+ New Reporter"] },
+	{ ac:["ao t","","","x15 y cr tr","# Disposition"] },
+]};
 // ---
 
 te["activity_disposition_ed_r"] = { div:["",""], c:
@@ -471,7 +529,7 @@ te["activity_disposition_vwr"] = { div:["w64 x15 y15 ma sh__ gw_ bd8","vddvw"], 
 
 // ---
 
-te["activity_disposition_footer"] = { div:["x20 t20 b10"], c:
+te["activity_disposition_footer"] = { div:["ml x40 y20"], c:
 [
 	{ pg:["pgto","activity_disposition_list-dispositions"," dh","da dl","activity_disposition_list-dispositions"," dh","da dr"] },
 	{ div:["e"] }
@@ -484,13 +542,13 @@ te["activity_disposition_rv_case"] = { c:
 	{ div:["c l15 y02"], uval:["",":v:dispositions:case_category"] },
 	// { s:["c x20 t cd",":v:dispositions:case_priority::case_priority:2"] },
 	// { s:["c t cd",":v:dispositions:case_status::case_status:1"] },
-	{ div:["e"] }
+	// { div:["e"] }
 ]};
 
 te["activity_disposition_r_"] = { c:
 [
-	{ div:["abs xx tt"], s:["x y micon h3 ba gws_ bd16",":v:dispositions:src::case_src:6"] },
-	{ div:["ml2_ mh05 x30 yy bl r"], c:
+	{ div:["abs x tt"], s:["x y micon h3 ba gws_ bd16",":v:dispositions:src::case_src:6"] },
+	{ div:["ml2 mh05 x30 yy bl r"], c:
 	[
 		{ div:[], c:
 		[
@@ -500,16 +558,18 @@ te["activity_disposition_r_"] = { c:
 		]},
 		{ div:[null], c:
 		[
-			{ div:["c x t"], s:["",":v:dispositions:reporter_fullname"] },
+			//{ s:["g",null] },
+			{ div:["c x y gws_ bd"], s:["",":v:dispositions:reporter_fullname"] },
 			{ div:["c x t"], uval:["",":v:dispositions:reporter_sex"] },
 			{ div:["c x t"], uval:["",":v:dispositions:reporter_age_group"] },
-			{ div:["e"] }	
-		]},
-		{ div:["cd"], c:
-		[
-			{ s:["c l y",":r::1:: : ago:: : ago:"] },
+		//	{ div:["e"] }	
+		//]},
+		//{ div:["cd"], c:
+		//[
+			{ s:["c x t cd s","|"] },
+			{ s:["c x y cd s",":v:dispositions:created_by"] },
+			{ s:["c x y cd s",":r::1:: : ago:: : ago:"] },
 			{ arg:["tm","","%1"] },
-			{ s:["c x20 y",":v:dispositions:created_by"] },
 			{ div:["e"] }	
 		]}
 	]},
@@ -519,26 +579,26 @@ te["activity_disposition_r_"] = { c:
 	]}
 ]};
 
-te["activity_disposition_r_case_"] = { div:["","va"], c:
+te["activity_disposition_r_case_"] = { div:["l20","va"], c:
 [
-        { input:["g","","advwt","%0","radio"] },
+     { input:["g","","advwt","%0","radio"] },
 	{ li:[null,"activity_followup-dispositions_f"], ev:["_activity_new"], activity_disposition_r_:["b",""] },
-        { div:["g"], arg:["","","activity_disposition_r-dispositions-va--@"] }, // vp return anchor
+     { div:["g"], arg:["","","activity_disposition_r-dispositions-va--@"] }, // vp return anchor
 ]};
 
-te["activity_disposition_r_dsp_"] = { div:["","va"], c:
+te["activity_disposition_r_dsp_"] = { div:["l20","va"], c:
 [
         // { input:["g","","advwt","%0","radio"] },
         { div:[null], activity_disposition_r_:["",""] }
 ]};
 
-te["activity_disposition_r_case_new"] = { activity_disposition_r_case_:["xx lr gh"] };
+te["activity_disposition_r_case_new"] = { activity_disposition_r_case_:["lr gh"] };
 
-te["activity_disposition_r_dsp_new"] = { activity_disposition_r_dsp_:["xx lr gy cd"] };
+te["activity_disposition_r_dsp_new"] = { activity_disposition_r_dsp_:["lr gy"] };
 
-te["activity_disposition_r_case"] = { activity_disposition_r_case_:["xx lr"] };
+te["activity_disposition_r_case"] = { activity_disposition_r_case_:["lr"] };
 
-te["activity_disposition_r_dsp"] = { activity_disposition_r_dsp_:["xx lr cd"] };
+te["activity_disposition_r_dsp"] = { activity_disposition_r_dsp_:["lr"] };
 
 te["activity_disposition_r"] = { u:[":u::57:0:activity_disposition_r_dsp:activity_disposition_r_case"] };
 
@@ -546,7 +606,7 @@ te["activity_disposition_r"] = { u:[":u::57:0:activity_disposition_r_dsp:activit
 
 te["activity_disposition_k_"] = { c:
 [
-	{ arg:["","reporter_fullname",		":k:dispositions_k:reporter_fullname:2"] },
+	{ arg:["","reporter_fullname",	":k:dispositions_k:reporter_fullname:2"] },
 	{ arg:["","reporter_age_group_id",	":k:dispositions_k:reporter_age_group_id:2"] },
 	{ arg:["","reporter_sex_id",		":k:dispositions_k:reporter_sex_id:2"] },
 	{ arg:["","reporter_phone",		":k:dispositions_k:reporter_phone:2"] },
@@ -558,8 +618,8 @@ te["activity_disposition_k_"] = { c:
 	{ arg:["","cases^created_on",		":k:dispositions_k:cases^created_on:2"] },
 	{ arg:["","cases^created_by_id",	":k:dispositions_k:cases^created_by_id:2"] },
 	{ arg:["","src",			":k:dispositions_k:src:2"] },
-	{ arg:["","cases^case_category_id",	":k:dispositions_k:cases^case_category_id:2"] },
-	{ arg:["","cases^gbv_related",		":k:dispositions_k:cases^gbv_related:2"] },
+	{ arg:["","cases^case_category_id",":k:dispositions_k:cases^case_category_id:2"] },
+	{ arg:["","cases^gbv_related",	":k:dispositions_k:cases^gbv_related:2"] },
 	{ arg:["","cases^priority",		":k:dispositions_k:cases^priority:2"] },
 	{ arg:["","cases^status",		":k:dispositions_k:cases^status:2"] },
 	{ arg:["","cases^escalated_to_id",	":k:dispositions_k:cases^escalated_to_id:2"] },
@@ -575,7 +635,7 @@ te["activity_disposition_k"] = { div:["g"], c:
 	{ div:["e"] }
 ]};
 
-te["activity_disposition_no_data"] = { div:[""], s:["x20 yy gy","No records found"] };
+te["activity_disposition_no_data"] = { div:[""], s:["x25 yy","No records found"] };
 
 te["activity_disposition_nb"] = { div:[""], u:["activity_disposition_no_data","dispositions_no_data"] };
 
@@ -724,17 +784,25 @@ te["activity_f"] = { div:["w50 x15 tt b05 ma sh__ gw_ bd8","vddvf"], ev:["_undd"
 	
 te["activity_list"] = { c:
 [
-        { div:[], c:
-        [
-                { div:["d w55"], s:["w55 abs gws",""] }, // todo summary stats
-                { div:["e"] }
-        ]},
-        { div:["x","vt"], u:["activity_disposition_list","dispositions_ctx"] }
+	{ div:[] },
+     { div:[], c:
+     [
+          { div:["d w50"], c:[ { div:["w45 abs","vt"], c:
+		[
+			{ activity_f_tags_k:[] },
+          	{ arg:["","_c","5"] },
+          	{ arg:["","sort","id"] },
+			{ arg:["","group","reporter_contact_id"] },
+     		{ uv:["activity_contacts","dispositions",":k:activities_k:id:2"] }
+		]} ]},
+		{ div:["e"] }
+     ]},
+     { div:["mr50 mh30","vt"], u:["activity_disposition_list","dispositions_ctx"] }
 ]};
 
 te["activity_main"] = { c: 
 [
-	{ div:["x t","vb"], c:
+	{ div:["xx t","vb"], c:
 	[
 		{ div:["c"], c:
 		[
@@ -748,7 +816,7 @@ te["activity_main"] = { c:
 		
 		{ div:["c "], c:
 		[
-			{ ac:["ay","activity_f-dispositions_f","_vpf","xx bd16 cb",""], c:
+			{ ac:["ao","activity_f-dispositions_f","_vpf","xx bd16 cb",""], c:
 			[ 
 				{ s:["c y h3_ b micon","search"] },
 				//{ div:["c x y s","","Search"] }, 
@@ -756,6 +824,7 @@ te["activity_main"] = { c:
 			]}
 		]},
 		
+		/*
 		{ div:["c l25"], c: 
 		[
 			{ div:[], c:
@@ -810,12 +879,22 @@ te["activity_main"] = { c:
 				]}
 			]},
 			{ div:["g"] } //, arg:["","","activity_disposition_r_new-dispositions-vftab-vdisp-!"] }, // vp return anchor
+		]},*/
+
+		{ div:["d"], c:
+		[
+			{ div:["","va"], s:["",""], c:
+			[
+				{ input:["g","","cases_t_","0","radio","1"] },
+				{ ac:["c x40","activity_match-activities-vftab","___u","xx y b n cb tr","Reporter Details"] }, 	
+				{ div:["e"] }
+			]}
 		]},
 				
 		{ div:["e"], c:[ { arg:["","","activity_list-dispositions"] }, { arg:["","","0"] }, { arg:["","","0"] }, { arg:["","",""] } ] }
 	]},	
 
-	{ div:["x15 yy" ,"vf"], c:[ { div:["","activity_disposition_f-dispositions_f"], ev:["l__vpf"], c:
+	{ div:["x20 y" ,"vf"], c:[ { div:["","activity_disposition_f-dispositions_f"], ev:["l__vpf"], c:
 	[
 		{ activity_f_tags_k:[] }
 	]} ]},
@@ -895,21 +974,21 @@ te["activity_vw_id"] = { c:
 		{ div:["c"], c:
 		[
 			{ input:["g","","avt","0","radio"] },
-			{ ac:["","","_tab","x t08 cb h3 b",""], c:
+			{ ac:["x","","_tab","x tt cb h2 b",""], c:
 			[
 				{ span:["","",":v:activities:src::case_src:10"] },
 				//{ span:["","",":v:activities:src_vector::vector:4"] },
 			]},
 		]},
 	
-		// { div:["c l tt g"], s:["h02 w02 awR",""] },
+		{ div:["c x tt"], s:["h2","/"] },
 
 		{ div:["c"], c:
 		[
 			{ input:["g","","avt","0","radio"] },
-			{ ac:["ay","","","xx yy cb h3 cd",""], c:
+			{ ac:["ay tt","","","x h2 cb",""], c:
 			[
-				{ span:["","",""] },
+				{ span:["","",":v:activities:src_address"] },
 			]},
 		]},
 
@@ -924,36 +1003,46 @@ te["activity_vw_id"] = { c:
 			]},
 		]},
 		
-		{ div:["d"], c:
+		{ div:["d ll"], c:
 		[
 			{ input:["g","","activity_vw_id_t_","2","radio",null] },
-			{ ac:["ay tab","","_tab","xx y gws_ bdr cb",""], c:
+			{ ac:["ao tab","","_tab","xx y gws_ bd cb",""], c:
 			[
 				{ s:["c h2 micon","chat"] },
 				{ div:["e"] }
 			]}
 		]},
 		
-		{ div:["d"], c:
+		{ div:["d g"], c:
 		[
 			{ input:["g","","activity_vw_id_t_","0,1","radio",null] },
-			{ ac:["ay tab","","","xx y gws_ cb",""], c: // todo: show sub ie: [0,1]
+			{ ac:["ao tab","","","xx y gws_ bd cb",""], c: // todo: show sub ie: [0,1]
 			[
 				{ s:["c h2 micon","bar_chart"] },
 				{ div:["e"] }
 			]}
 		]},
 		
-		{ div:["d activity_tab_0_ l30"], c:
+		{ div:["d ll"], c:
+		[
+			{ input:["g","","activity_vw_id_t_","0","radio"] }, 
+			{ ac:["ao tab","","_tab","xx y gws_ bd cb",""], c:
+			[
+				{ s:["c h2 micon","wysiwyg"] },
+				{ div:["e"] }
+			]}
+		]},
+
+		{ div:["d ll"], c:
 		[
 			{ input:["g","","activity_vw_id_t_","0","radio",null] }, // [0,0] | [1]
-			{ ac:["ay tab","","_tab","xx y gws_ bdl cb",""], c:
+			{ ac:["ao tab","","_tab","xx y gws_ bd cb",""], c:
 			[
 				{ s:["c h2 micon","list"] },
 				{ div:["e"] }
 			]}
 		]},
-
+		
 		{ u:[null] },
 
 		{ div:["e"], c:[ { p:["g","o"], activity_vw_id_args:[] } ] }
@@ -1308,7 +1397,7 @@ function _activity_vw_id (ev)
 		a.src_ts = Date.now()/1000;
 		a.src_uid = a.src+"-"+user_cid+"-"+Date.now ();
 		if (a.src_callid==undefined) a.src_callid = a.src_uid;
-		a.src_address =  "0700112233"; // debug
+		//a.src_address =  "0700112233"; // debug
 		a.src_usr = user_cid
 		a.src_vector = 2;
 		a.src_uid2 = a.src_uid+"-2";

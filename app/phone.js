@@ -1,7 +1,7 @@
 
 te["call_session"] = { /*p:["","sipid(0,10)"],*/ c: 
 [ 
-	{ input:["g","","sbl","%0","radio"] }, // sipid js full
+	{ input:["g","","sbr","%0","radio"] }, // sipid js full
 	{ li:["sbr x15 y","va"], ev:["_call_popup"], c:  
 	[ 
 		{ div:["abs w02_ y g"],  c:

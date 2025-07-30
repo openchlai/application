@@ -46,7 +46,7 @@ var ATI =
 
 te["ati_session"] = { p:["","%2"], s:["",""], c: 
 [ 
-	{ input:["g","","sbl","%2","radio"] },
+	{ input:["g","","sbr","%2","radio"] },
 	{ li:["sbr xx y mt1","va"], ev:["_ati_popup"], c: 
 	[ 
 		{ div:[], c: 
@@ -177,11 +177,11 @@ function _ati_end ()
 function ati_ld_unread (ch)
 {
 	var coll = document.getElementById ("vv").childNodes;
-	if (!coll[1].firstChild) return;
+	if (!coll[1].firstChild) { console.log("ati_ld_unread | "+ch[20]); return; }
 	console.log ("ati_ld_unread |"+ch[20]+"|"+coll[1].firstChild.id+"|")
 	if (coll[1].firstChild.id!=ch[20]) return;
 	var p = _(coll[6].childNodes[1].childNodes[1].lastChild, "msgs")
-	url (p.previousSibling, "activity_messages", "messages", ("?src="+ch[7]+"&src_callid="+ch[20]+"&_c=30"));
+	if (p && p.previousSibling) url (p.previousSibling, "activity_messages", "messages", ("?src="+ch[7]+"&src_callid="+ch[20]+"&_c=30"));
 }
 
 function ati_popup (el, f=0)
@@ -206,7 +206,7 @@ function ati_popup (el, f=0)
 	if (f==0 && coll[1].childNodes.length>0 && coll[1].firstChild.id.length>0) // vw is occupied
 	{
 		var a_ = {};
-		argv (coll[6].childNodes[1].childNodes[1].firstChild.lastChild, a_)
+		argv (coll[6].childNodes[1].childNodes[1].firstChild.firstChild.lastChild, a_)
 		//console.log (a)
 		console.log ("[ati] activity_vw_id_args "+a.src_callid+" "+a_.src_callid)
 		if (a.src_callid==a_.src_callid) // is same session -- update src args only and select new ati_session
@@ -327,16 +327,16 @@ function atis (o,k,ts)
 			var coll = el.firstChild.childNodes[1].childNodes;
 			var unnotified = (ch[22]*1) - (coll[1].childNodes[1].firstChild.innerHTML*1) //
 			unread_tot += (ch[22]*1)
-			console.log ("[ati] status="+st+" unread="+ch[22] +" unnotified="+unnotified)
+			console.log ("[ati] status="+st+" unread="+ch[22] +" unnotified="+unnotified+"|"+el_)
 			coll[0].childNodes[3].innerHTML = hmst (ch[st], ["","","hms","","","",""]);;
 			coll[0].childNodes[4].value = ch[st];
 			coll[1].childNodes[0].innerHTML = ch[27];
 			coll[1].childNodes[1].firstChild.innerHTML = ch[22];
 			coll[1].childNodes[1].style.display = (ch[22]*1)>0?"block":"none";
-			if (unnotified!=0) 
+			if (unnotified!=0 || el_==null) 
 			{
 				el.firstChild.childNodes[2].firstChild.play ();
-				if (el_ !=null) ati_ld_unread (ch);	
+				/*if (el_ !=null)*/ ati_ld_unread (ch);	
 			}
 		}
 		if (ch[ATI.CHAN_SRC]=="aii" && ch[ATI.CHAN_CONTEXT]=="trunk")

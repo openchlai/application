@@ -755,7 +755,12 @@ function uv (el, u, a, r, m)
 {
 	var a = {args:"?", ".id":""};
 	argv (el, a);
-	// console.log ("[uv] "+JSON.stringify (u)+"|"+JSON.stringify(a));
+	//console.log ("[uv] "+JSON.stringify (u)+"|"+JSON.stringify(a));
+	//if (u.length>2 && u[2]<1)
+	//{
+	//	el.innerHTML = "";
+	//	return
+	// }
 	url (el, u[0], u[1], (a[".id"]+a.args));
 }
 
@@ -1353,6 +1358,7 @@ function uvpf (el)
 	elvpf = null;
 	jso (p, o);
 	ra[u[1]] = o;
+	console.log(o)
 	p = document.getElementById ("vp");
 	p.style.display = "none";
 	p.innerHTML = "";
@@ -1412,6 +1418,7 @@ function _u (ev)
 	var p = __(this,v); // ascend
 	if (u.length>3 && u[3].length>0) p = _(p, u[3]); // descend
 	var a = {args:"?", ".id":""};
+	if (this.previousSibling.type === "radio") this.previousSibling.checked = true;
 	argv (__(this),a);
 	url (p, u[0], u[1], (a[".id"]+a.args));
 	boo(ev);
@@ -1425,7 +1432,9 @@ function _uve (ev)
         var p = __(this,v); // ascend
         if (u.length>3 && u[3].length>0) p = _(p, u[3]); // descend
         var a = {args:"?", ".id":""};
+	   if (this.previousSibling.type === "radio") this.previousSibling.checked = true;
         argv (__(this),a);
+	   console.log (u+"|"+__(this).id )
         url (p, u[0], u[1], (a[".id"]+a.args), null, 2);
         boo(ev);
 }
@@ -1473,6 +1482,7 @@ function _vpf ()
 	jso (elvpf, o);
 	argv (this.firstChild.lastChild, o)
 	ra[u[1]] = o;
+	console.log (o)
 	vp (p);
 	nd (p, te[u[0]], [], [], [0]);
 }
