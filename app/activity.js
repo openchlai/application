@@ -260,6 +260,11 @@ te["activity_contact"] = { div:["bl2_b"], c:
 [
 	{ div:["h08 oh ll"], c:
 	[
+		{ div:[], c:
+		[
+			{ div:["d w03"], s:["abs w02 x y tc h2","&Cross;"] },
+			{ div:["e"] }
+		]},
 		{ div:["t"], c:
 		[
 			{ s:["x h3",":v:contacts:fullname"] },
@@ -277,6 +282,7 @@ te["activity_contact"] = { div:["bl2_b"], c:
 	]},
 	{ div:["h04 oh"], c:
 	[
+		{ ac:["c ab y02 ll","","","x y03 cr tr","# Disposition"] },
 		{ ac:["d ab","","","xx y tr gr cw bd16","New Case"] },
 		{ div:["e"] }
 	]}
@@ -286,24 +292,22 @@ te["activity_contacts"] = { div:["xx","contacts"], c:
 [
 	{ p:["","contact"], c:
 	[
-		{ div:["h12 gp"], s:["xx y tr gp cr bd","Select / New Reporter"] }
-	]},
-	{ div:["t"], c:
-	[
-		{ div:["ao","vg"], ac:["content-shown","","_g","y02 cd",""], c:
+		{ div:["h12 gp bd"], c:
 		[
-			//{ div:["d w02 x y "],  c:
-			//[ 
-			//	{ div:["content-hidden_ h02 w02 awb"] },
-			//	{ div:["content-shown_ h02 w02 awt"] },
-			//]}, 
-			{ s:["d x y03","Matching Contacts"] },
-			{ s:["d x y03","%4"] },
-			{ div:["d w02 y03 bd mtn2"],  c:
-			[ 
-				{ s:["content-hidden_ n tc","+"] },
-				{ s:["content-shown_ n tc","-"] },
-			]},
+			{ s:["xx y h07 tr gp cd s","Select / New Reporter"] },
+			{ div:["x tt"], c:
+			[
+				{ ac:["c ab y02","","","x y03 cr tr","# Disposition"] },
+				{ ac:["d ab y02","","","x y03 cr tr","+ New Reporter"] },
+				{ div:["e"] }
+			]}
+		]}
+	]},
+	{ div:[], c:
+	[
+		{ div:["tt"], c:
+		[
+			{ s:["c xx y cd m","Select Reporter"] },
 			{ div:["e"] }
 		]},
 		{ div:["","vt"], c:
@@ -311,8 +315,6 @@ te["activity_contacts"] = { div:["xx","contacts"], c:
 			{ u:["activity_contact_ls","dispositions_ctx"] }
 		]}
 	]},
-	{ ac:["ao t","","","x15 y cr tr","+ New Reporter"] },
-	{ ac:["ao t","","","x15 y cr tr","# Disposition"] },
 ]};
 // ---
 
@@ -547,8 +549,8 @@ te["activity_disposition_rv_case"] = { c:
 
 te["activity_disposition_r_"] = { c:
 [
-	{ div:["abs x tt"], s:["x y micon h3 ba gws_ bd16",":v:dispositions:src::case_src:6"] },
-	{ div:["ml2 mh05 x30 yy bl r"], c:
+	{ div:["abs tt"], s:["x y micon h3 ba gws_ bd16",":v:dispositions:src::case_src:6"] },
+	{ div:["ml1_ mh05 x20 yy bl r"], c:
 	[
 		{ div:[], c:
 		[
