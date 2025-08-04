@@ -116,15 +116,12 @@ te["case_contact_ed_r_"] = { c:  //
 
 te["case_contact_ed_"] = { c: // div:["w68 ma sh__ gw_"], c:
 [	
-	// { div:["x15 tt"], c:
-	// [
-	// 	{ s:["c xx y12 n b",null] },
-	// 	{ ac:["d","","_uvp","xx y08 h cb","&Cross;"] },
-	// 	{ div:["e"] }
-	// ]},
-
-	{ s:[" yy b",null] },
-
+	{ div:[], c:
+	[
+		{ s:["c x y15 b h3",null] },
+		{ ac:["d","","_uvp","xx y08 h cb","&Cross;"] },
+		{ div:["e"] }
+	]},
 
 	{ form:["","ve"], c:
 	[
@@ -148,18 +145,21 @@ te["case_contact_ed_"] = { c: // div:["w68 ma sh__ gw_"], c:
 ":v:contacts:email"
 		]},
 		
-                { p:["g","o"], c:
+          { p:["g","o"], c:
 		[
 			{ arg:["","disposition_id",null] },		
 		]},
 
-		{ div:["w63 t25 b10"], vp_sav:[null,null,null,null,null,null,null] }
+		{ div:["w63 t25 b05"], vp_sav:[null,null,null,null,null,null,null] }
 	]}
 ]};
 
-te["case_contact_ed"] = { case_contact_ed_:["Edit Reporter", DISPOSITION_ID_CONTACT_EDIT, "activity_contact_ed-contacts^disposition","_activity_postj","Update","Updating...","","_uvw", "Cancel"] };
+te["case_contact_ed"] = { case_contact_ed_:["Edit Reporter", DISPOSITION_ID_CONTACT_EDIT, "activity_contact_ed-contacts^disposition","_activity_postj","Update","Updating...","","_uvp", "Cancel"] };
 
-te["case_contact_new"] = { case_contact_ed_:["New Reporter", DISPOSITION_ID_CONTACT_NEW, "activity_contact_new-contacts^disposition", "_activity_postj", "Create", "Creating...", "", "_uvw", "Cancel"] };
+te["case_contact_new"] = { div:["w64 x15 yy ma sh__ gw_ bd8"], ev:["_undd"], c:
+[
+	{ case_contact_ed_:["New Reporter", DISPOSITION_ID_CONTACT_NEW, "activity_contact_new-contacts^disposition", "_activity_postj", "Create", "Creating...", "", "_uvp", "Cancel"] }
+]}
 
 te["contact_ed_r_"] = { div:["","ve"], c:
 [

@@ -1418,7 +1418,7 @@ function _u (ev)
 	var p = __(this,v); // ascend
 	if (u.length>3 && u[3].length>0) p = _(p, u[3]); // descend
 	var a = {args:"?", ".id":""};
-	if (this.previousSibling.type === "radio") this.previousSibling.checked = true;
+	if (this.previousSibling && this.previousSibling.type === "radio") this.previousSibling.checked = true;
 	argv (__(this),a);
 	url (p, u[0], u[1], (a[".id"]+a.args));
 	boo(ev);
