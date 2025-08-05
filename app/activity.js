@@ -187,9 +187,9 @@ te["activity_contact_no_data"] = { c:
 	{ s:["xx yy gy","No matching contacts found."] }
 ]};
 
-te["activity_contact_r"] = { div:["","ve"], c:
+te["activity_contact_r_"] = { div:["","ve"], c:
 [
-	{ input:["g","",".id",":v:dispositions:reporter_contact_id","radio"] },
+	{ input:["g","",".id",":v:dispositions:reporter_contact_id","radio",null] },
 	{ div:["r mb","activity_contact-contacts"], ev:["_uve"], c:[ { li:["x t02 gws_ h05  oh cb rg bd"], c:
 	[
 		{ div:["c l w01_ t08"], s:["opt",""] },
@@ -197,6 +197,10 @@ te["activity_contact_r"] = { div:["","ve"], c:
 		{ div:["e"] } // , arg:["",".id",":v:dispositions:reporter_conntact_id"] }
 	]} ]},
 ]};
+
+te["activity_contact_r_new"] = { div:["gh"], activity_contact_r_:["1"] };
+
+te["activity_contact_r"] = { div:[], activity_contact_r_:[""] };
 
 te["activity_contact_k"] = { div:["g"], c:
 [
@@ -207,7 +211,11 @@ te["activity_contact_k"] = { div:["g"], c:
 	{ div:["e"] } 
 ]};
 	 
-te["activity_contact_nb"] = { div:[], u:["activity_contact_no_data","dispositions_no_data"] }
+te["activity_contact_nb"] = { div:[], c:
+[
+	{ u:["activity_contact_no_data","dispositions_no_data"] },
+	{ p:["","vcontactnew"] }
+]};
 
 te["activity_contact_ls"] = { listo:["end", "activity_contact_nb", "", "activity_contact_k", "activity_contact_r", "dispositions", "activity_contact_footer"] };
 
@@ -1025,7 +1033,7 @@ function activity_reporter_ufn (el, u, a, r, m)
 
 function activity_contact_ufn (el, u, a, r, m)
 {
-	//var el_ = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
+	var el_ = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
 	var p = document.getElementById ("vp");
 	p.style.display = "none";
 	p.innerHTML = "";
@@ -1033,7 +1041,9 @@ function activity_contact_ufn (el, u, a, r, m)
 	elvp = null;
 	p.innerHTML = "";
 	nd (p, te["activity_contact"], [], r, [0]);
-	//p.insertBefore (el_, p.firstChild);
+	p = _(p.nextSibling,"vcontactnew")
+	nd (el_, te["activity_contact_r_new"], [], ra["dispositions"][0], [0]);
+	p.insertBefore (el_, p.firstChild);
 }
 
 function _activity_close (ev)

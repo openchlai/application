@@ -814,24 +814,6 @@ function uval (el, u, a, r, m)
 	uval_ (el, u, 1, "");
 }
 
-//function umimek (el,u,r,vo,z)
-//{
-//	console.log ("[umimek] -------------------"+z)
-//	var ko = re[(u[3]+z)];
-//	var kk = rk[(u[3]+z)];
-//	for (var k=0; k<kk.length; k++)
-//	{
-//             if (!vo[kk[k]]) continue;
-//		if (ko[kk[k]][2]=="o")
-//		{
-//			umimek (el,u,r,vo[kk[k]],("_"+kk[k]));
-//			continue;
-//		}
-//             nd (el, te[(u[0]+"_o")], [(""+vo[kk[k]]), (""+ko[kk[k]][1])], r, [2]); //
-////                                  console.log ("[umime] "+u[3]+"|"+ kk[k]+" => " + ko[kk[k]][1])
-//        }
-//}
-
 function umime (el, u, a, r, m)
 {
 	var v = u[1];
@@ -843,6 +825,7 @@ function umime (el, u, a, r, m)
 		nd (el, te[u[0]], [v], r, [1]);
 		return ;
 	}
+
 	if (u[2]=="application/json")
 	{
 		v = atob (u[1]); 
