@@ -7,10 +7,10 @@ te["aiitag"] = { s:["c x bd cw gb mr mb","%0"] };
 
 te["aii_usub"] = { usub:
 [
-"aii_transcript,aii_translation,aii_classification,aii_entity_extraction,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_classification_final,aii_insights_final",
+"aii_transcript,aii_translation,aii_classification,aii_entity_extraction,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_classification_final,aii_insights_final,aii_insights_final",
 "r_",
 "%0",
-"transcript_segment,translation_update,classification_update,entity_update,post_call_processing_started,post_call_translation,post_call_translation_complete,post_call_classification,post_call_ner_analysis,post_call_ner_complete,post_call_qa_analysis,post_call_qa_complete,post_call_summary,post_call_summary_complete,post_call_insights,post_call_processing_complete,post_call_classification_complete,post_call_insights_complete"
+"transcript_segment,translation_update,classification_update,entity_update,post_call_processing_started,post_call_translation,post_call_translation_complete,post_call_classification,post_call_ner_analysis,post_call_ner_complete,post_call_qa_analysis,post_call_qa_complete,post_call_summary,post_call_summary_complete,post_call_insights,post_call_classification_complete,post_call_insights_complete,post_call_processing_complete"
 ]};
 
 te["aii_insights_final"] = { c:
@@ -72,16 +72,16 @@ te["aii_classification"] = { c:
  	{ div:[""], c:[ { uo:["aiik","Priority","aiiv","aii","classification","priority"] }, { div:["e"] } ] },
 ]};
 
-te["aii_translation"] = { div:[""], c:[ { uo:["aiik","translation","aiiv","aii","window_translation"] }, { div:["e"]} ] },
+te["aii_translation"] = { div:[""], c:[ { uo:["noop","translation","aiiv","aii","window_translation"] }, { div:["e"]} ] },
 
-te["aii_transcript"] = { div:[""], c:[ { uo:["aiik","transcript","aiiv","aii","segment","transcript"] }, { div:["e"]} ] },
+te["aii_transcript"] = { div:[""], c:[ { uo:["noop","transcript","aiiv","aii","segment","transcript"] }, { div:["e"]} ] },
 
-te["aii_message"] = { div:[""], c:[ { uo:["aiik","transcript","aiiv","aii","message"] }, { div:["e"]} ] },
+te["aii_message"] = { div:[""], c:[ { uo:["noop","","aiiv","aii","message"] }, { div:["e"]} ] },
 
 te["aii"] = { c:
 [
 	{ div:["cr"], c:[ { uo:["noop","","aiiv","aii","update_type"] }, { div:["e"]} ] },
-	{ uo:["noop","","aii_usub","aii","update_type"] }
+	{ div:[], uo:["noop","","aii_usub","aii","update_type"] }
 ]};
 
 te["case_insights_txt"] = { s:["gy x y",null] }; // mime not application/json
