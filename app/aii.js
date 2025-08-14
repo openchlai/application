@@ -47,6 +47,7 @@ te["aii_insights_final"] = { c:
 
 te["aii_classification_final"] = { c:
 [
+	{ s:["x y b","Classification"] },
  	{ div:[""], c:[ { uo:["aiik","Main Category","aiiv","aii","result","classification","main_category"] }, { div:["e"]} ] },
  	{ div:[""], c:[ { uo:["aiik","Sub Category","aiiv","aii","result","classification","sub_category"] }, { div:["e"]} ] },
 	{ div:[""], c:[ { uo:["aiik","Intervention","aiiv","aii","result","classification","intervention"] }, { div:["e"]} ] },
@@ -55,6 +56,7 @@ te["aii_classification_final"] = { c:
 
 te["aii_entity_extraction"] = { c:
 [
+	{ s:["x y b","Entities"] },
 	{ div:[""], c:[ { uo:["aiik","Organisations","aiiv","aii","entities","ORG"] }, { div:["e"]} ] },
 	{ div:[""], c:[ { uo:["aiik","Products","aiiv","aii","entities","PRODUCT"] }, { div:["e"]} ] },
 	{ div:[""], c:[ { uo:["aiik","Dates","aiiv","aii","entities","DATE"] }, { div:["e"]} ] },
@@ -63,6 +65,7 @@ te["aii_entity_extraction"] = { c:
 
 te["aii_classification"] = { c:
 [
+	{ s:["x y b","Classification"] },
  	{ div:[""], c:[ { uo:["aiik","Main Category","aiiv","aii","classification","main_category"] }, { div:["e"]} ] },
  	{ div:[""], c:[ { uo:["aiik","Sub Category","aiiv","aii","classification","sub_category"] }, { div:["e"]} ] },
 	{ div:[""], c:[ { uo:["aiik","Intervention","aiiv","aii","classification","intervention"] }, { div:["e"]} ] },

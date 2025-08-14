@@ -341,7 +341,7 @@ function atis (o,k,ts)
 		}
 		if (ch[ATI.CHAN_SRC]=="aii" && ch[ATI.CHAN_CONTEXT]=="trunk")
 		{
-			console.log ("ati aii !!!!!!"+ch[ATI.CHAN_BRIDGE_ID]+" "+activitya.src_uid2)
+			// console.log ("ati aii !!!!!!"+ch[ATI.CHAN_BRIDGE_ID]+" "+activitya.src_uid2)
 			if (ch[ATI.CHAN_BRIDGE_ID]==activitya.src_uid2)
 			{
 				var p_ = _(pcoll[6].childNodes[1].childNodes[1].lastChild, "msgs"); // reload chats
