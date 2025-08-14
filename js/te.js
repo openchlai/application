@@ -1391,6 +1391,18 @@ function vp (p)
 	// console.log (p.className)
 } 
 
+function vpf (el)
+{
+	var p = document.getElementById ("vp");
+	var u = el.id.split ("-"); 
+	var o = {}; 
+	jso (elvpf, o);
+	ra[u[1]] = o;
+	console.log (o)
+	vp (p);
+	nd (p, te[u[0]], [], [], [0]);
+}
+
 // ---
 
 function _u (ev) 
@@ -1458,16 +1470,8 @@ function _postj (ev)
 
 function _vpf ()
 {
-	var p = document.getElementById ("vp");
-	var u = this.id.split ("-"); 
-	var o = {}; 
 	elvpf = __(this,"vb").nextSibling;
-	jso (elvpf, o);
-	argv (this.firstChild.lastChild, o)
-	ra[u[1]] = o;
-	console.log (o)
-	vp (p);
-	nd (p, te[u[0]], [], [], [0]);
+	vpf (this);
 }
 
 function _vp (ev)

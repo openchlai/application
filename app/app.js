@@ -98,8 +98,9 @@ var UU =
  
 "activity_message_send":{ 201:[["activity_message_sended","messages","","sended"]] },
 "activity_messages":{ 200:[["activity_messages_ufn","messages_ctx"]] },
-"activity_contact_ed":{ 200:[["activity_contact_updated","contacts_disposition"]], 202:[["activity_contact_updated","contacts_disposition"]], 412:[["nb","errors","v","nb"]] },
+"activity_contact_ed":{  202:[["activity_contact_updated","contacts_disposition"]], 412:[["nb","errors","v","nb"]] , 200:[["case_contact_ed","contacts"]], },
 "activity_contact_new":{ 201:[["activity_contact_ufn","contacts_disposition"]], 412:[["nb","errors","v","nb"]] },
+"activity_contact_vw_id":{ 200:[["case_contact_vw_id","contacts"]] },
 "activity_contact_ls":{ 200:[["activity_contact_ls","dispositions_ctx"]] },
 "activity_contact_main":{ 200:[["activity_contacts","dispositions_ctx"]] },
 "activity_contact":{ 200:[["activity_contact","contacts","contacts","contact"]] },

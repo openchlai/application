@@ -154,7 +154,10 @@ te["case_contact_ed_"] = { c: // div:["w68 ma sh__ gw_"], c:
 	]}
 ]};
 
-te["case_contact_ed"] = { case_contact_ed_:["Edit Reporter", DISPOSITION_ID_CONTACT_EDIT, "activity_contact_ed-contacts^disposition","_activity_postj","Update","Updating...","","_uvp", "Cancel"] };
+te["case_contact_ed"] = { div:["w64 x15 yy ma sh__ gw_ bd8"], ev:["_undd"], c:
+[
+	{ case_contact_ed_:["Edit Reporter", DISPOSITION_ID_CONTACT_EDIT, "activity_contact_ed-contacts^disposition","_activity_postj","Update","Updating...","","_uvp", "Cancel"] }
+]};
 
 te["case_contact_new"] = { div:["w64 x15 yy ma sh__ gw_ bd8"], ev:["_undd"], c:
 [
@@ -266,14 +269,15 @@ te["case_contact_vw_id_"] = { c:
 	
 ]};
 
-te["case_contact_vw_id"] = { case_contact_vw_id_:
+te["case_contact_vw_id"] = { div:["w64 x15 yy ma sh__ gw_ bd8","vddvw"], ev:["_undd"], c:
 [
+	{ case_contact_vw_id_:[
 ":v:contacts:fullname",":v:contacts:age",":v:contacts:age_group",":v:contacts:dob",
 ":v:contacts:location",":v:contacts:sex",
 ":v:contacts:landmark",":v:contacts:nationality",
 ":v:contacts:national_id_type",":v:contacts:national_id", ":v:contacts:lang",
 ":v:contacts:is_refugee::yesno:2", ":v:contacts:tribe",
-":v:contacts:phone",":v:contacts:phone2",":v:contacts:email"
+":v:contacts:phone",":v:contacts:phone2",":v:contacts:email"] }
 ]};
 
 te["contact_vw_rv_phone"] = { c:
