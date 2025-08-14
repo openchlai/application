@@ -7,10 +7,28 @@ te["aiitag"] = { s:["c x bd cw gb mr mb","%0"] };
 
 te["aii_usub"] = { usub:
 [
-"aii_transcript,aii_translation,aii_classification,aii_entity_extraction,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_classification_final,aii_insights_final,aii_insights_final",
+"aii_transcript,aii_translation,aii_classification,aii_entity_extraction,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_message,aii_classification_final,aii_insights_final,aii_final",
 "r_",
 "%0",
 "transcript_segment,translation_update,classification_update,entity_update,post_call_processing_started,post_call_translation,post_call_translation_complete,post_call_classification,post_call_ner_analysis,post_call_ner_complete,post_call_qa_analysis,post_call_qa_complete,post_call_summary,post_call_summary_complete,post_call_insights,post_call_classification_complete,post_call_insights_complete,post_call_processing_complete"
+]};
+
+te["aii_final"] = { c:
+[
+	{ div:[""], c:[ { uo:["aiik","Case Summary",		"aiiv","aii","result","results","summary"] }, { div:["e"]} ] },
+
+	{ div:[""], c:[ { uo:["aiik","Persons",			"aiiv","aii","result","results","entities","PERSON"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["aiik","Organizations",	"aiiv","aii","result","results","entities","ORG"] }, { div:["e"]} ] },
+ 	{ div:[""], c:[ { uo:["aiik","GPE",			"aiiv","aii","result","results","entities","GPE"] }, { div:["e"] } ] },
+ 	{ div:[""], c:[ { uo:["aiik","NORP",			"aiiv","aii","result","results","entities","NORP"] }, { div:["e"] } ] },
+
+	{ div:[""], c:[ { uo:["aiik","Main Category", 	"aiiv","aii","result","results","classification","main_category"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["aiik","Sub Category",    	"aiiv","aii","result","results","classification","sub_category"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["aiik","Interventions",	"aiiv","aii","result","results","classification","intervention"] }, { div:["e"]} ] },
+	{ div:[""], c:[ { uo:["aiik","Priority",       	"aiiv","aii","result","results","classification","priority"] }, { div:["e"]} ] },
+
+	{ div:[""], c:[ { uo:["aiik","Translation","aiiv","aii","result","results","translation"] }, { div:["e"]} ] },
+
 ]};
 
 te["aii_insights_final"] = { c:
