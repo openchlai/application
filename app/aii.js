@@ -27,6 +27,54 @@ te["aii_final"] = { c:
 	{ div:[""], c:[ { uo:["aiik","Interventions",	"aiiv","aii","result","results","classification","intervention"] }, { div:["e"]} ] },
 	{ div:[""], c:[ { uo:["aiik","Priority",       	"aiiv","aii","result","results","classification","priority"] }, { div:["e"]} ] },
 
+	{ s:["x y b","QA Opening"] },
+	{ div:[""], c:
+	[ 
+		{ div:["c"], uo:["noop","",       	"aiiv","aii","result","results","qa_scores","opening","submetric"] },
+		{ div:["c"], uo:["noop","",       	"aiiv","aii","result","results","qa_scores","opening","score"] }, 
+		{ div:["e"] } 
+	]},
+
+	{ s:["x y b","QA Listening"] },
+	{ div:[""], c:
+	[ 
+		{ div:["c"], uo:["noop","",       	"aiiv","aii","result","results","qa_scores","listening","submetric"] },
+		{ div:["c"], uo:["noop","",       	"aiiv","aii","result","results","qa_scores","listening","score"] }, 
+		{ div:["e"] } 
+	]},
+
+	{ s:["x y b","QA Proactiveness"] },
+	{ div:[""], c:
+	[ 
+		{ div:["c"], uo:["noop","",       	"aiiv","aii","result","results","qa_scores","proactiveness","submetric"] },
+		{ div:["c"], uo:["noop","",       	"aiiv","aii","result","results","qa_scores","proactiveness","score"] }, 
+		{ div:["e"] } 
+	]},
+
+	{ s:["x y b","QA Resolution"] },
+	{ div:[""], c:
+	[ 
+		{ div:["c"], uo:["noop","",       	"aiiv","aii","result","results","qa_scores","resolution","submetric"] },
+		{ div:["c"], uo:["noop","",       	"aiiv","aii","result","results","qa_scores","resolution","score"] }, 
+		{ div:["e"] } 
+	]},
+
+	{ s:["x y b","QA Hold"] },
+	{ div:[""], c:
+	[ 
+		{ div:["c"], uo:["noop","",       	"aiiv","aii","result","results","qa_scores","hold","submetric"] },
+		{ div:["c"], uo:["noop","",       	"aiiv","aii","result","results","qa_scores","hold","score"] }, 
+		{ div:["e"] } 
+	]},
+
+	{ s:["x y b","QA Closing"] },
+	{ div:[""], c:
+	[ 
+		{ div:["c"], uo:["noop","",       	"aiiv","aii","result","results","qa_scores","closing","submetric"] },
+		{ div:["c"], uo:["noop","",       	"aiiv","aii","result","results","qa_scores","closing","score"] }, 
+		{ div:["e"] } 
+	]},
+
 	{ div:[""], c:[ { uo:["aiik","Translation","aiiv","aii","result","results","translation"] }, { div:["e"]} ] },
 
 ]};
