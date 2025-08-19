@@ -28,7 +28,7 @@ te["aii_final"] = { c:
 	{ div:[""], c:[ { uo:["aiik","Interventions",	"aiiv","aii","result","results","classification","intervention"] }, { div:["e"]} ] },
 	{ div:[""], c:[ { uo:["aiik","Priority",       	"aiiv","aii","result","results","classification","priority"] }, { div:["e"]} ] },
 
-	{ s:["x y b","QA Opening"] },
+	{ div:["tt"], s:["x y b","QA Opening"] },
 	{ div:[""], c:
 	[ 
 		{ div:["c"], uo:["noop","",       	"aiirv","aii","result","results","qa_scores","opening","submetric"] },
@@ -76,7 +76,7 @@ te["aii_final"] = { c:
 		{ div:["e"] } 
 	]},
 
-	{ div:[""], c:[ { uo:["aiik","Translation","aiiv","aii","result","results","translation"] }, { div:["e"]} ] },
+	{ div:["tt"], c:[ { uo:["aiik","Translation","aiiv","aii","result","results","translation"] }, { div:["e"]} ] },
 
 ]};
 
