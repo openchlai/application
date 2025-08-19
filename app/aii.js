@@ -168,7 +168,7 @@ function uo_ (el, u, i, o)
 			console.log ("[uo] isarray "+ u[i]+ " "+ o.length)
 			for (var j=0; j<o.length; j++)
 			{
-				uo_(el,u,i,o)
+				uo_(el,u,i,o[j])
 			}
 			return;
 		}
