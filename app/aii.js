@@ -165,7 +165,7 @@ function uo_ (el, u, i, o)
 		o = o[u[i]];
 		if (Array.isArray(o))
 		{
-			console,log (" > "+ u[i]+ " "+ o.length)
+			console.log (" > "+ u[i]+ " "+ o.length)
 			for (var j=0; j<o.length; j++)
 			{
 				uo_(el,u,i,o)
