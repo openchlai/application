@@ -413,14 +413,14 @@ function argv (p,a,k="name",skipid=null,b={})
 	{
 		var o = coll[i];
 		if (o[k].length<1) continue;
-		if (skipid!=null && o.id!=skipid) continue;
+		if (skipid!=null && o.id!=skipid) continue;					// ???
 		v = o.value;
 		if (o.type=="radio" || o.type=="checkbox")
 		{
 			if (!o.checked) continue; 
 			// console.log (" >> "+o[k]+" | "+ b[o[k]]);
 			if (a[o[k]]===undefined) { a[o[k]]=""; b[o[k]]=[]; }
-			if (b[o[k]]===undefined) { b[o[k]]=[]; } // just incase
+			if (b[o[k]]===undefined) { b[o[k]]=[]; } // just incase	// ???
 			b[o[k]][b[o[k]].length] = o; 
 			if (a[o[k]].length>0) a[o[k]]+=",";
 			a[o[k]]+=v;

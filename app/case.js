@@ -1431,7 +1431,7 @@ te["case_vw_id"] = { div:["section-to-print ","ve"], c:
 						{ s:["c xx s","Update"] }, 
 						{ div:["e"], u:["case_reporter_uuid_id_arg","reporters_uuid"] }
 					]},
-                			{ div:["g"], arg:["","","activity_case_ufn-cases---@"] }
+                		{ div:["g"], arg:["","","activity_case_ufn-cases---@"] }
 				]},
 				{ ac:["c w03 ao","","_dd","x y h02 n gws_ cb",""], c:[ { div:["h02 w02 awb"] }] },
 				{ div:["e"] }
@@ -1892,7 +1892,7 @@ te["case_footer"] = { div:["x gw ba"], c:
 
 te["case_r_"] = { c: 
 [
-	{ input:["g","","casevwr","1","radio",null] },
+	{ input:["g","","casevwr","%0","radio",null] },
 	{ ac:["tabh ay w300","case_vw_id-reporters^none","_activity_postj",null,""], c:
 	[
 		{ div:["c w07"], s:["tt b05 h01_  xx","%0"] },
@@ -1922,6 +1922,8 @@ te["case_r_"] = { c:
 	{ p:["","o"], arg:["","case_id","%0"] },
 	{ p:["","nb"] }
 ]};
+
+te["case_r_r"] = { case_r_:["","gg cb"] };
 
 te["case_r"] = { div:["","ve"], case_r_:[""," gw cb"] };
 
@@ -2097,7 +2099,7 @@ te["case_main"] = { c:
 	
 te["cases"] = { c:
 [
-	{ div:["g"], c:
+	{ div:["g"], s:["",""], c:
 	[
 		{ div:[] },
 		{ div:[] },
@@ -2105,10 +2107,15 @@ te["cases"] = { c:
 		{ div:[] },
 		{ div:[] },
 		{ div:[] },
-		{ div:[] },
-		{ div:[], p:["","o"], c:
+
+		{ div:["d ll "], c:
 		[
-			{ arg:["","src","edit"] }, 
+			{ input:["g","","case_vw_id_t_","0","radio"] }, // [0,0] | [1]
+		]},
+		
+		{ div:[], c:
+		[
+			{ p:["g","o"], c:[ { arg:["","src","edit"] } ] } 
 		]}, 
 	]},
 	{ form:[], c:
