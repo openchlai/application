@@ -1258,7 +1258,7 @@ function url (p, u, m, a="", data=null, l=0, o=null, meth="GET")
 				ra={};
 				// console.log (Object.keys(ra))
 				try{ ra = JSON.parse (text); } catch (e) { console.error("feelings"); ra={}; }
-				console.log (Object.keys(ra))
+				// console.log (Object.keys(ra))
                     if (l==2 || l==3 || l==4) p.className="";
                     // if (l==4) ; // set timeout 
                     ld (p,u,x.status);

@@ -75,6 +75,7 @@ var UU =
 "contact_list":{ 200:[["contact_list","contacts_ctx"]] },
 "contacts":{ 200:[["contacts","contacts_ctx"]] },
 
+"qa_rpt_vw":{ 200:[["rpt_vw","qas_rpt"]] },
 "qa_form":{ 201:[["uvpfn","calls","vp"]], 412:[["nb","errors","","nb"]] },
 "qa_vw_id":{ 200:[["qa_vw_id","qas"]] },
 "qa_list":{ 200:[["qa_list","qas_ctx"]] },
@@ -595,6 +596,7 @@ re["reporter_is_client"] =
 
 re["metrics"] = 
 {
+"qa_count":["qa_count", "QA Count","QA Count","",			"qas","","qa_count", 		"","",,"", "0","","",""], 
 "case_count":["case_count", "Case Count","Case Count","",			"cases","","case_count", 		"","",,"", "0","","",""], 
 "pmessage_count":["pmessage_count", "Message Session Count","Message Session Count","",	 "pmessages","","pmessages_count", 	"","",,"", "0","","",""], 
 "call_count":["call_count", "Call Count","Call Count","",			"calls","","call_count", 		"","",,"", "0","","",""], 

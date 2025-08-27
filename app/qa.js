@@ -1,4 +1,232 @@
+rk["qa_metrics"] = ["qa_count","qa_percent"];
+re["qa_metrics"] = 
+{
+"qa_count":	["qa_count",	"Count","0","qa_rpt_count","qa_rpt-qas-@:1:0:0"],
+"qa_percent":	["qa_percent",	"Percent","1","qa_rpt_percent","qa_rpt-qas-@:1:1:1"],
 
+}; 
+
+re["qa_k"] = 
+{
+	"chan_vector":["chan_vector","Direction"],
+	"chan_user_name":["chan_user_name","Extension"],
+	
+	/*
+	"cat_0":["cat_0","Main Category"],
+	"cat_1":["cat_1","SubCategory 1"],
+	"cat_2":["cat_2","SubCategory 2"],
+	"cat_3":["cat_3","SubCategory 3"],
+        "cat_4":["cat_3","SubCategory 4"],
+        "gbv_related":["gbv_related","GBV Related"],
+	"src":["src","Case Source"],
+	"priority":["priority","Priority"],
+	"status":["status","Status"],
+	"created_by":["created_by","Created By"],
+	"escalated_to":["escalated_to","Escalated To"],
+	"escalated_by":["escalated_by","Escalated By"],
+	"assessment":["assessment","Case Assessment"],
+	"justice":["justice","Status in Justice System"],
+*/
+
+	"dispositions^disposition":["dispositions^disposition","Disposition"],
+	"dispositions^reporter_age_group":["dispositions^reporter_age_group","Reporter Age Group"],
+	"dispositions^reporter_sex":["dispositions^reporter_sex","Reporter Sex"],
+	"dispositions^reporter_national_id_type":["dispositions^reporter_national_id_type","Reporter ID Type"],
+	"dispositions^reporter_nationality":["dispositions^reporter_nationality","Reporter Nationality"],
+	"dispositions^reporter_lang":["dispositions^reporter_lang","Reporter Language"],
+	"dispositions^reporter_tribe":["dispositions^reporter_tribe","Reporter Tribe"],
+	"dispositions^reporter_location_0":["dispositions^reporter_location_0","Reporter Region"], 
+	"dispositions^reporter_location_1":["dispositions^reporter_location_1","Reporter District"],
+	"dispositions^reporter_location_2":["dispositions^reporter_location_2","Reporter County"],
+	"dispositions^reporter_location_3":["dispositions^reporter_location_3","Reporter Sub County"],
+	"dispositions^reporter_location_4":["dispositions^reporter_location_4","Reporter Parish"],
+	"dispositions^reporter_location_5":["dispositions^reporter_location_5","Reporter Village"],
+	"dispositions^reporter_location_6":["dispositions^reporter_location_6","Reporter Constituency"],
+};
+
+rk["qa_reporters_k"] = [
+"dispositions^reporter_age_group", 		"dispositions^reporter_sex", 
+"dispositions^reporter_national_id_type", 	"dispositions^reporter_nationality", 
+"dispositions^reporter_lang", 			"dispositions^reporter_tribe", 
+"dispositions^reporter_location_0", 		"dispositions^reporter_location_1", 
+"dispositions^reporter_location_2", 		"dispositions^reporter_location_3", 
+"dispositions^reporter_location_4", 		"dispositions^reporter_location_5",
+"dispositions^reporter_location_6"];
+re["qa_reporters_k"] = re["qa_k"];
+
+rk["qa_cases_k"] = []; //[ "cat_0", "cat_1", "cat_2", "cat_3", "cat_4", "gbv_related", "src", "priority", "status", "created_by", "escalated_to", "escalated_by", "assessment", "justice"];
+re["qa_cases_k"] = re["qa_k"];
+
+rk["qa_calls_k"] = []; //[ "cat_0", "cat_1", "cat_2", "cat_3", "cat_4", "gbv_related", "src", "priority", "status", "created_by", "escalated_to", "escalated_by", "assessment", "justice"];
+re["qa_calls_k"] = re["qa_k"];
+
+rk["qa_qas_k"] = ["chan_user_name"];
+re["qa_qas_k"] = re["qa_k"];
+
+// ---
+
+te["qa_rpt_metric_tab"] = { div:["c x","%4"], c:
+[
+	{ arg:["","","0"] },
+	{ input:["g","","qa_metric","%2","radio","%9"] },
+	{ li:["opth x y tc cb","%3","%1"], ev:["_tab"] }
+]};
+
+te["qa_k_tag"] = { "rpt_axis_tag":["::qa_k:0:1","xaxis"] };
+
+te["qa_k_r"] = { "rpt_axis_r":["xaxis","qa_k_tag","::qa_k:0:1"] };
+
+te["qa_rpt_ymenu"] = { c:
+[
+	{ div:["xx t bb_","vb"], c:
+	[
+		{ div:["c x"], c:[ { input:["g","","qa_rpt_vw_t","0","radio","1"] }, { ac:["ay tabu","","_tab","xx y cb","QA"] } ] },
+		{ div:["c x"], c:[ { input:["g","","qa_rpt_vw_t","1","radio"] }, { ac:["ay tabu","","_tab","xx y cb","Call"] } ] },
+		{ div:["c x"], c:[ { input:["g","","qa_rpt_vw_t","2","radio"] }, { ac:["ay tabu","","_tab","xx y cb","Case"] } ] },
+		{ div:["e"] }
+	]},
+	{ div:["xx yy"], c:
+	[
+		{ div:[], c:[ { input:["g","","qa_rpt_vw_tv","0","radio","1"] }, { div:["tabv"], uchk:["qa_k_r",null,"qa_qas_k"] } ] },
+		{ div:[], c:[ { input:["g","","qa_rpt_vw_tv","1","radio"] }, { div:["tabv"], uchk:["qa_k_r",null,"qa_calls_k"] } ] },
+		{ div:[], c:[ { input:["g","","qa_rpt_vw_tv","2","radio"] }, { div:["tabv"], uchk:["qa_k_r",null,"qa_cases_k"] } ] },
+		//{ div:[], c:[ { input:["g","","qa_rpt_vw_tv","3","radio"] }, { div:["tabv"], uchk:["qa_k_r",null,"qa_clients_k"] } ] },
+		//{ div:[], c:[ { input:["g","","qa_rpt_vw_tv","3","radio"] }, { div:["tabv"], uchk:["qa_k_r",null,"qa_perps_k"] } ] },
+		//{ div:[], c:[ { input:["g","","qa_rpt_vw_tv","4","radio"] }, { div:["tabv"], uchk:["qa_k_r",null,"qa_services_k"] } ] },
+		//{ div:[], c:[ { input:["g","","qa_rpt_vw_tv","5","radio"] }, { div:["tabv"], uchk:["qa_k_r",null,"qa_referals_k"] } ] }
+	]}
+]};
+
+te["qa_rpt_options"] = {  c:
+[
+	
+	{ input:["g","","type","bar","radio","1"] },
+	{ ac:["r ay","","_rpt_opt","xx y02 cb",""], c:
+	[
+		{ div:["c w01_ t"], s:["opt",""] },
+		{ s:["c x y ","Bar Chart"] },
+		{ div:["e"] }			
+	]},
+	{ input:["g","","type","line","radio"] },
+	{ ac:["r ay","","_rpt_opt","xx y02 cb",""], c:
+	[
+		{ div:["c w01_ t"], s:["opt",""] },
+		{ s:["c x y ","Line Chart"] },
+		{ div:["e"] }			
+	]},
+
+	{ input:["g","","stacked","stacked","checkbox","1"] },
+	{ ac:["r ay","","_rpt_chk","xx y02 cb",""], c:
+	[
+		{ div:["c w01_ t"], s:["chk",""] },
+		{ s:["c x y ","Stacked"] },
+		{ div:["e"] }			
+	]},
+
+	{ input:["g","","sortrpt","1","checkbox"] },
+	{ ac:["r ay","","_rpt_chk","xx y02 cb",""], c:
+	[
+		{ div:["c w01_ t"], s:["chk",""] },
+		{ s:["c x y ","Sort by Total"] },
+		{ div:["e"] }			
+	]},
+]};
+
+te["qa_rpt_"] = { c:
+[
+	{ form:["tt","vrpt"], c:
+	[
+		{ div:["c"], c:
+		[
+			{ div:["ay","va"], ac:["","","_dd","x y04 cb",""], c:
+			[
+				{ s:["c x b h3",null] },
+				//{ div:["c"], s:["h02 w02 awb",""] },
+				{ div:["e"] }
+			]},
+			{ div:["dd w20 y ba gw sh","vdd"], ev:["_undd"], c:
+			[
+				// metrics
+			]}	
+		]},
+		{ div:["d"], c:
+		[
+			{ div:["ay l20","va"], ac:["","","_dd","x y04 h02 cb ba",""], c:
+			[
+				{ s:["c x","Options"] },
+				{ s:["c x t02 micon","more_vert"] },
+				{ div:["e"] }
+			]},
+			{ div:["dd w18 mln7 mt y ba gw sh","vdd"], ev:["_undd"], qa_rpt_options:[] }
+		]},
+		{ div:["d"], s:["",""], c:
+		[
+			{ div:["d"], c: // xaxis
+			[
+				{ div:["ba","va"], s:["",""], c:
+				[	
+					{ div:["d w03"], ac:["ay","","_dd","x y04",""],  c:[ { div:["h02 w02 awb"] } ] },
+					{ div:["e"] }
+				]},
+				{ div:["dd y mln47 w50 gw ba mt1","vdd_rpt"], ev:["_undd"], c:[ { qa_rpt_ymenu:[null,null,null] } ] }
+			]},
+			{ div:["d"], uchk:["qa_k_tag",null] },
+			{ s:["d l20 r05 y07 cd","Y Axis:"] },
+			{ div:[] },
+		]},
+		{ div:["d"], s:["",""], c:
+		[
+			{ uchk:["rpt_dist_r",null,"dist"]}, // xaxis (distribution options)
+			{ s:["d l20 r05 y07 cd","X Axis:"] },
+			{ div:["e"] },
+		]},
+		{ div:["e"], c:
+		[ 
+			{ arg:["","metrics",null] },
+			{ input:["g","","rpt",null,"checkbox","1"] },
+		]}
+	]},
+	{ div:["","qa_rpt_vw-qas"], urpt:[] } 
+]};
+
+te["qa_rpt"] 			= { qa_rpt_:["::qa_metrics:4:1","%2","%2","%3","%4","%7"] };  
+// te["qa_rpt_percent"] 	= { qa_rpt_:["Percent", "src","src","src", "src", "-", "qa_percent","qa_percent"] };
+te["qa_rpt_count"] 		= { qa_rpt_:["Count", "chan_user_name","chan_user_name","chan_user_name", "chan_user_name", "-", "qa_count","qa_count"] };
+
+te["qa_rpt_main"] = { c:
+[
+	{ div:["g xx t15 bb_ s","vb"], c:
+	[
+		{ s:["c x y cd","Metric:"] },
+		{ div:["d g"], c:
+		[
+			{ div:["w12 ay","va"], ac:["","","_dd","x cd",""], c:
+			[
+				{ div:["d w02 t04"], s:["h02 w02 awb",""] },
+				{ s:["d x y","Saved Reports"] }, 
+				{ div:["e"] }
+			]},			
+			{ div:["dd mln13 w25 ba sh gw cb","vdd"], ev:["_undd"], c:
+			[
+				{s:["xx y cd","- Saved Reports List -"] }
+			]}
+		]},
+		{ div:["e"] }
+	]},
+	{ div:["","vrpt"], c:
+	[
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio","1"] }, { p:["tabv","vt"], qa_rpt_count:[] } ]},
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv oh","vt"] } ] },
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+	]}
+]};
+
+// -----------------------------
 
 te["qa_score_yes_no"] = { p:["x y","o"], c:[ { li:[], c:
 [
@@ -618,8 +846,8 @@ te["qa_main"] = { c:
 
 		{ div:["c l40"], ac:["ay","qa_f-qas_f","_vpf","x t01 bd_ cb s",""], c:
 		[ 
-			{ s:["c t04 h3_ micon","filter_alt"] },
-			{ div:["c x y","","Filter"] }, 
+			{ s:["c t04 h3_ micon","search"] },
+			{ div:["c x y","","Search"] }, 
 			{ div:["e"] }
 		]},
 
@@ -655,12 +883,12 @@ te["qas"] = { c:
 	[
 		{ div:[], c:
 		[	
-			{ input:["g","","qas_mv","0","radio","1"] }, 
+			{ input:["g","","qas_vf","0","radio","1"] }, 
 			{ p:["tabv x20 y20 gw mm","vftab"], qa_main:[] } 
 		]},
 		{ div:[], c:
 		[	
-			{ input:["g","","qas_mv","1","radio"] }, 
+			{ input:["g","","qas_vf","1","radio"] }, 
 			{ p:["tabv gw yy mm","vfvw"] }
 		]}
 	]}
