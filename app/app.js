@@ -137,9 +137,9 @@ var UU =
 "perpetrator_new":{ 201:[["uvpfn","perpetrators","vp"]], 412:[["nb","errors","v","nb"]] },
 "perpetrator_vw_id":{ 200:[["case_perpetrator_vw_id","perpetrators"]] },
 
-"case_attachment_del":{ 202:[["case_attachment_del","files","va"]], 412:[["nb","errors","","nb"]] },
+"case_attachment_del":{ 202:[["case_attachment_del","attachments_del","va"]], 412:[["nb","errors","","nb"]] },
 "case_attachment":{ 201:[["case_attachment_","attachments"]] },
-"case_attachment_new":{ 201:[["ufn_attach","files","va","nb"]], 412:[["nb","errors","","nb"]] },
+"case_attachment_new":{ 201:[["ufn_attach","files","","nb"]], 412:[["nb","errors","","nb"]], 413:[["nb413","r_","","nb"]] },
 
 "client_referal_del":{ 202:[["case_notif_del","client_referals"]], 412:[["nb","errors","v","nb"]] },
 "referal_del":{ 202:[["case_notif_del","referals"]], 412:[["nb","errors","v","nb"]] },

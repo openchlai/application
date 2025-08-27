@@ -289,6 +289,17 @@ te["ufn_attach"] = { ufn:["ufn_attach"] };
 
 // -------------------------
 
+function formatFileSize(bytes, decimals = 2) {
+  if (bytes === 0) return "0 B";
+
+  const k = 1024; // use 1000 if you prefer decimal units
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ["B", "KB", "MB", "GB", "TB", "PB"];
+
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+}
+
 function op(){}
 
 function _ID(id){ return  document.getElementById(id); }
@@ -1244,11 +1255,13 @@ function url (p, u, m, a="", data=null, l=0, o=null, meth="GET")
                 }
                 x.response.text().then (text =>
                 {
-                        ra = JSON.parse (text);
-                        if (l==2 || l==4) p.className="";
-                        // if (l==4) ; // set timeout 
-                        ld (p,u,x.status);
-
+				ra={};
+				// console.log (Object.keys(ra))
+				try{ ra = JSON.parse (text); } catch (e) { console.error("feelings"); ra={}; }
+				console.log (Object.keys(ra))
+                    if (l==2 || l==3 || l==4) p.className="";
+                    // if (l==4) ; // set timeout 
+                    ld (p,u,x.status);
 			// todo: if l==1 and loadn.count>1 then append n-1 loaders for pending queries
                 });
         };
@@ -1628,11 +1641,11 @@ function _file_download ()
 
 function ufn_attach (el, u, a, r, m)
 {
-	var u = el.parentNode.nextSibling.id.split ("-");
 	var p = __(el)
 	var o = {};
+	var u = p.lastChild.id.split ("-");
 	o["file_id"] = r[0];
-	jso (el.parentNode.nextSibling, o);
+	jso (p.lastChild, o);
 	// console.log (JSON.stringify (o));
 	url (p, u[0], u[1], "", null, 2, o, "POST");
 }
@@ -1640,7 +1653,8 @@ function ufn_attach (el, u, a, r, m)
 function ufile (el,f)
 {
 	console.log("Name: " +f.name+" Type: " + f.type +"Size: " + f.size);
-	el.nextSibling.innerHTML = f.name; // todo: mutliple files
+	el.nextSibling.innerHTML = f.name; 
+	el.nextSibling.nextSibling.nextSibling.innerHTML = formatFileSize(f.size);
 	var u = el.id.split ("-");
 	var data = new FormData ();
 	argv (el.parentNode, data);

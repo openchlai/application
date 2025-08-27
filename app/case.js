@@ -1104,7 +1104,9 @@ te["case_form_"] = { div:["","ve"], c: // new case
 	]}
 ]};
 
-te["case_ed"] = { case_form_:["case_vw_id-reporters^uuid-vf","_u",":v:cases:id", "case_form_reporter_followup", "case_ed-cases","Update", "case_vw_id-reporters^uuid-vf","_u", "%0", DISPOSITION_ID_CASE_EDIT] };
+// case_vw_id-reporters^uuid-vf,"_u"
+
+te["case_ed"] = { case_form_:["","_activity_uvw",":v:cases:id", "case_form_reporter_followup", "case_ed-cases","Update", "case_vw_id-reporters^uuid-vf","_u", "%0", DISPOSITION_ID_CASE_EDIT] };
 
 te["case_new"] = { case_form_:["","_activity_uvw","NEW CASE", "case_form_reporter_new_case", "case_new-cases","Create", "","_activity_uvw", "", DISPOSITION_ID_NEW_CASE] };
 

@@ -1,8 +1,9 @@
+te["nb413"] = { s:["x y gr cw","Attachment exceed allowed upload limit"] };
 
-te["case_attachment_del"] = { div:["l cr gp"], c:
+te["case_attachment_del"] = { div:["l cr gp mb"], c:
 [
 	{ s:["c x y","Attachment Deleted"] },
-	{ ac:["d ay ga","","_rm","x y h2","&Cross;"] },
+	{ ac:["d ab","","_rm","x y h2","&Cross;"] },
 	{ div:["e"] }
 ]};
 
@@ -10,7 +11,7 @@ te["case_attachment_"] = { div:["gbn mb"], c:
 [
 	{ div:[], c:
 	[
-		{ div:["d w03"], ac:["ao abs w03","case_attachment_del-attachments^del","_del","cb h2",""], c:
+		{ div:["d w03"], ac:["ab abs w03","case_attachment_del-attachments^del","_del","cb h2",""], c:
 		[
 			{ s:["x y h2 tc","&Cross;"] },
 			{ div:[], c:[ { arg:["",".id","%0"] } ] }
@@ -30,13 +31,18 @@ te["case_attachment"] = { div:["","va"], case_attachment_:[] };
 
 te["case_attachment_upload"] = { div:["g","va"], c:
 [
-	{ div:["ba mb"], c:
+	{ div:["gr"], c:
 	[ 
 		{ input:["g","case_attachment_new-files","file[]","","file"], ev:["","_file_upload"] }, 
-		{ s:["c xx y07 gw cb",""] },
-		{ ac:["d x y02","","_rm","x y n","&Cross;"] },
-		{ p:["d x y02","nb"], s:["x y go cw","Uploading ..."] }, // todo: show progress
+		{ s:["c xx y cw",""] },
+		{ ac:["d ab","","_rm","x y02 h2 cw","&Cross;"] },
+		{ s:["d x y cw",""] },
 		{ div:["e"] },
+	]},
+	{ div:["gr mb"], c:
+	[
+		{ p:["","nb"], s:["x y gr cw","Uploading ..."] }, // todo: show progress
+		{ div:["e"] }
 	]},
 	{ div:["","case_attachment-attachments"], c:
 	[
