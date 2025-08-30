@@ -244,24 +244,58 @@ te["call_case"] = { ufn:["ufn_vw","call_case_","call_case_none"] };
 
 // ---------------------------------------------------------------------------------------------
 
+te["call_activity_r"] = { div:[], c:
+[
+	{ s:["",":v:case_activities:activity::case_activity:1"] }
+]};
+
+te["call_vw_r"] = { c:
+[
+	{ s:["x y cb",":d:dmyhnr:1: "] }, 
+			
+			{ div:["t"], c:
+			[
+				{ s:["c x t cd","Phone:"] },
+				{ s:["c x y cb",":v:calls:phone"] },
+				{ div:["c"], s:["abs",""], c:[ { s:["x t cb",":v:calls:vector::vector:1"] } ] },
+				{ div:["e"] }
+			]},
+			{ div:["t"], c:
+			[
+				{ s:["c x t cd","Extension:"] },
+				{ s:["c x y",":v:calls:usr"] },
+				{ s:["c y",":v:calls:user_name"] }, 
+				{ div:["e"] }
+			]},
+			{ div:["t"], c:
+			[
+				{ s:["c x t cd","WaitTime:"] }, 
+				{ s:["c x y cb",":h:ms:10:"] },
+				{ div:["e"] }
+			]},
+			{ div:["t"], c:
+			[
+				{ s:["c x t cd","Hangup Status:"] }, 
+				{ s:["c x y cb",":v:calls:hangup_status_txt"] },
+				{ div:["e"] }
+			]},
+			{ div:["t","va"], usub:["call_vw_id_play,call_vw_id_play","r_",":v:calls:hangup_status_txt","answered,voicemail"] }, 
+]};
+
 te["call_vw_id_qa_score"] = { c:
 [
-	{ s:["d xx y tr gws h02 bd8 b",""], c:[ { s:["d"," %"] }, { s:["d",":v:calls:qa_score"] }, { div:["e"] } ] },
+	{ s:["d x y07 tr gws h02 bd32 b",""], c:[ { s:["d"," %"] }, { s:["d",":v:calls:qa_score"] }, { div:["e"] } ] },
 	{ s:["d x y h02","QA Score"] },
 	{ div:["e"] }
 ]};
 
-te["call_vw_id_ssqa_form"] = { c: // todo: show only for supervisor
-[
- 	{ ac:["ay ","","","xx y tr bd8","Open QA Form"] }
-]};
-
 te["call_vw_id_qa_form"] = { div:[], c:
 [
-	{ ac:["","qa_form-r_-^","_vp","xx y tr bd8",""], c:
+	{ ac:["","qa_form-r_-^","_call_vw_id","xx y tr bd8",""], c:
 	[
-		{ s:["tr","Open QA"] }, 
-		{ div:[], c:[ { arg:["chan_uniqueid-5","","%0"] }, { arg:["chan_ts-6","",":v:calls:chan_ts"] }, { arg:["chan_vector-7","",":v:calls:vector"] }, { arg:["chan_phone-8","",":v:calls:phone"] }, { arg:["chan_usr-9","",":v:calls:usr"] }, { arg:["chan_talk_time-11","",":v:calls:talk_time"] } ] },
+		{ s:["tr","Open QA"] },
+		{ div:[], arg:["","","%0"] } 
+		//{ div:[], c:[ { arg:["chan_uniqueid-5","","%0"] }, { arg:["chan_ts-6","",":v:calls:chan_ts"] }, { arg:["chan_vector-7","",":v:calls:vector"] }, { arg:["chan_phone-8","",":v:calls:phone"] }, { arg:["chan_usr-9","",":v:calls:usr"] }, { arg:["chan_talk_time-11","",":v:calls:talk_time"] } ] },
 	]},
 	{ div:["g"], arg:["","","call_r_-r_-va--@"] }
 ]};
@@ -269,9 +303,9 @@ te["call_vw_id_qa_form"] = { div:[], c:
 
 te["call_vw_id_qa"] = { u:[":u::30:0:call_vw_id_qa_form:call_vw_id_qa_score"] };
 
-te["call_vw_id_play"] = { div:["gws bd8"], c:
+te["call_vw_id_play"] = { div:["gws_"], c:
 [
-	{ ac:["ay","vfile_vw_r-calls-va-play","_u"," bd8 y cb",""], c:
+	{ ac:["ay","vfile_vw_r-calls-va-play","_u"," y cb",""], c:
 	[ 
 		{ s:["c w02 x h3_ micon","play_arrow"] },
 		{ s:["c y02","Talk Time"] },
@@ -281,85 +315,43 @@ te["call_vw_id_play"] = { div:["gws bd8"], c:
 	{ p:["","play"] }
 ]};
 
-te["call_vw_id"] = { div:["w70 ma sh__ y gw_","vddvw"], ev:["_undd"], c:
+te["call_vp"] = { div:["w60 ma sh__ bd gw_","vddvw"], ev:["_undd"], c:
 [
-	{ div:["x20 yy"], c:
+	{ div:["x y"], c:
 	[
-		{ s:["c x tt h3 b","Call Details"] },
-		{ ac:["d ab","","_uvp","x cb",""], c:[ { s:["c h2 t03","&Cross;"] }, { s:["c x y g","Close"] }, { div:["e"] } ] },
-		// { div:["d xx ay","va"], ac:["r05","client_ed-clients-vp","_u","xx y gww cb bd","Edit"], c:[ { arg:["",".id","%0"] } ] },
+		{ s:["c x15 y15 h3 b","Call Details"] },
+		{ ac:["d ay x t","","_uvp","x y01 bd cb",""], c:[ { s:["c h","&Cross;"] }, { s:["c x y g","Close"] }, { div:["e"] } ] },
 		{ div:["e"] }
 	]},
-	{ div:["x20"], c:
-	[ 
-		{ div:["d xx w30"], s:["abs tt w30",""], c:
+	{ div:["x15 b10"], c:
+	[
+		{ div:["c w20"], call_vw_r:[] },
+		{ div:["d w25"], c:
 		[
-			{ div:["","va"], usub:["call_vw_id_play,call_vw_id_play","r_",":v:calls:hangup_status_txt","answered,voicemail"] }, 
-			{ div:["yy","va"], usub:["call_vw_id_qa","r_",":v:calls:hangup_status_txt","answered"] }
+			{ s:["x  y cb tr",":v:calls:dispositions"] }, 
+			{ s:["x y cb tr",":v:calls:contacts"] }, 
+			{ div:["yy","va"], usub:["call_vw_id_qa","r_",":v:calls:hangup_status_txt","answered"] }, //{ s:["x  cb",":h:ms:11:"] },
 		]},
 		{ div:["e"] }
-	]},
-	{ div:["x20 y"], c:
-	[
-		{ p:["c","nb"], c:[ { u:["nb","calls_nb"] }, { u:["nb","errors"] } ] },
-		{ div:["e"] }
-	]},
-	{ div:["x20"], c:
-	[ 
-		{ s:["c w10 x y cd","Call Date"] }, 
-		{ s:["c w30 x y cb",":d:dmyhnr:1: "] }, 
-		{ div:["e"] }
-	]},
-	{ div:["x20 t15"], c:
-	[ 
-		{ s:["c w10 x y cd","Direction"] }, 
-		{ s:["c w30 x y cb",":v:calls:vector::vector:1"] }, 
-		{ div:["e"] }
-	]},
-	{ div:["x20 t15"], c:
-	[ 
-		{ s:["c w10 x y cd","Phone"] }, 
-		{ s:["c w30 x y cb",":v:calls:phone"] }, 
-		{ div:["e"] }
-	]},
-	{ div:["x20 t15"], c:
-	[ 
-		{ s:["c w10 x y cd","Extension"] },
-		{ s:["c x",":v:calls:usr"] },
-		{ s:["c x",":v:calls:user_name"] }, 
-		{ div:["e"] }
-	]},
-	{ div:["x20 t15"], c:
-	[ 
-		{ s:["c w10 x y cd","Wait Time"] }, 
-		{ s:["c w30 x y cb",":h:ms:10:"] }, // :h:ms:10:
-		{ div:["e"] }
-	]},
-	{ div:["x20 t15"], c:
-	[ 
-		{ s:["c w10 x y cd","Talk Time"] }, 
-		{ s:["c w30 x y cb",":h:ms:11:"] }, 
-		{ div:["e"] }
-	]},
-	{ div:["x20 t15"], c:
-	[ 
-		{ s:["c w10 x y cd","Hangup Status"] }, 
-		{ s:["c w30 x y cb",":v:calls:hangup_status_txt"] }, 
-		{ div:["e"] }
-	]},
-	{ div:["x20 t15"], c:
-	[ 
-		{ s:["c w10 x y cd","Disposition"] }, 
-		{ s:["c w30 x y cb",":v:calls:dispositions"] }, 
-		{ div:["e"] }
-	]},
-	{ div:["x20 t15 b25"], c:
-	[ 
-		{ s:["c w10 x y cd","Reporter"] }, 
-		{ s:["c w30 x y cb",":v:calls:contacts"] }, 
-		{ div:["e"] }
-	]},
+	]}
+]};
 
+te["call_vw_id"] = { c:
+[
+	{ div:["x15 y"], c:
+	[
+		{ div:["c x t"], ac:["ay","","_uvw","h2 x y bd16 gb cw micon","arrow_back"] },	
+		{ s:["c x15 y15 h3 b","Call Details"] },
+		{ ac:["d ay x t","","_uvw","x y01 bd cb",""], c:[ { s:["c h","&Cross;"] }, { s:["c x y g","Close"] }, { div:["e"] } ] },
+		{ div:["e"] }
+	]},
+	{ div:["x25"], c:
+	[
+		{ div:["c w20"], s:["abs w20 gw",""], c:[ { call_vw_r:[] } ] },
+		{ div:["d w35"], s:["abs w35 gw",""], c:[ { qa_ed_r:[] } ] },
+		{ div:["e"] }
+	]},
+	{ div:["ml23 mr38 x20 y20 mh90"], u:["call_activity_r","case_activities"] }
 ]};
 
 // ---------------------------------------------------------------------------------------------
@@ -632,7 +624,7 @@ te["call_r_qa_score"] = { s:["xx t b05 h01_",""], c:
 te["call_r_"] = { c:
 [
 	{ input:["g","","callvwr","1","radio",""] },
-	{ li:["ay w300","call_vw_id-calls"], ev:["_vp"], c:
+	{ li:["ay w300","call_vp-calls-@"], ev:["_vp"], c:
 	[
 		{ div:["c w17"], s:["xx y08",":d:dmyhnr:1: "] },
 		{ div:["c w13"], s:["xx tt b05 h01_",":v:calls:vector::vector:1"] },
@@ -670,7 +662,8 @@ te["call_r_"] = { c:
 		{ div:["c w100 xx y"], s:["",":v:calls:contacts"] },
 	
 		{ div:["e"], c:[ { arg:["",".id","%0"] } ] }
-	]}
+	]},
+	{ div:[] }
 ]};
 
 te["call_r"] = { li:["w300","va"], call_r_:[] };
@@ -813,4 +806,16 @@ function call_qa_done (r,a)
 	return 1;
 }
 
+function _call_vw_id ()
+{
+	var p = document.getElementById ("vp");
+	p.style.display = "none";
+	p.innerHTML = "";
+	var coll = __(elvp,"vftab").parentNode.nextSibling.childNodes
+	elvp=null;
+	coll[0].checked = true;
+	coll[1].innerHTML = "";
+	url (coll[1], "call_vw_id", "calls^vw", this.firstChild.lastChild.firstChild.value);
+
+}
 

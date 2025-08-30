@@ -267,10 +267,10 @@ te["pmessage_vw_id"] = { div:["section-to-print tt","ve"], c:
 te["pmessage_f_tags_"] = { c: 
 [
 	{ f:["Date",null,		" :d:dmy:0: ","src_ts"," "] },
-	{ f:["Direction",null,		" ::vector:0:1","src_vector"," "] },
+	{ f:["Direction",null,	" ::vector:0:1","src_vector"," "] },
 	{ f:["Phone",null,		" %0","src_address"," "] },
-	{ f:["Extension",null,		" %1","user_id"," %1"] },
-	{ f:["Source",null,		" %0","src",""] },
+	{ f:["Extension",null,	" %1","user_id"," %1"] },
+	{ f:["Source",null,		" ::case_src:0:1","src",""] },
 	{ f:["Disposition",null,	" %1","dispositions^disposition_id"," %1"] },
 
 	{ f:["Case ID",null,		" %0","dispositions^case_id"," "] },
@@ -389,7 +389,7 @@ te["pmessage_pmessages_f"] = { c:
 ""," %1","user_id","user_id"," %0"," %1", "noop"] },
 
 	{ div:["xx yy"], kf_c:["Source","tag_-r_--o--::case_src:0:1--src-%0-",  	":k:pmessages_f:src",
-""," %0","","src"," %0","", 				":k:pmessages_f:src","case_src", "src"," %0",""] },
+""," ::case_src:0:1","","src"," %0","", 				":k:pmessages_f:src","case_src", "src"," ::case_src:0:1",""] },
 		
 	// { div:["xx yy"], kf_s:["CaseID","dispositions^case_id",":k:pmessages_f:dispositions^case_id"] },			
 
@@ -451,7 +451,7 @@ te["pmessage_r_"] = { c:
 			//{ s:["c x",":v:pmessages:user_name"] },
 			{ div:["e"] } 
 		]},
-		{ div:["c w15"], s:["xx tt b05 h01_",":v:pmessages:src"] },
+		{ div:["c w15"], s:["xx tt b05 h01_",":v:pmessages:src:case_src:1"] },
 		{ div:["c w15"], s:["xx tt b05 h01_",":v:pmessages:in_count"] },
 		{ div:["c w15"], s:["xx tt b05 h01_",":v:pmessages:out_count"] },
 		

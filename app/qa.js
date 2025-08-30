@@ -228,10 +228,11 @@ te["qa_rpt_main"] = { c:
 
 // -----------------------------
 
-te["qa_score_yes_no"] = { p:["x y","o"], c:[ { li:[], c:
+te["qa_score_yes_no"] = { p:["y","o"], c:[ { li:[], c:
 [
 	{ s:["c y w02",null] },
-	{ s:["c y w50 n",null] }, 
+	{ s:["c y w27",null] }, 
+	{ div:["e"] },
 
 	{ input:["g","score",null,"0","radio"] },
 	{ ac:["d ba mln1 opti","","_qa_opt","xx y cb ","No"] }, 
@@ -245,17 +246,17 @@ te["qa_score_yes_no"] = { p:["x y","o"], c:[ { li:[], c:
 	{ div:["e"] },
 ]} ]};
 
-te["qa_ed_comment"] = { p:["x y","o"], c:
+te["qa_ed_comment"] = { p:["","o"], c:
 [
 	{ s:["c y w02",null] },
 	{ s:["c y n",null] },
 	{ div:["e"] },
-	{ ta:["ml2 ba","w67 h10 x y","",null,""] }
+	{ ta:["ba","w35 h10 x y","",null,""] }
 ]};
 
-te["qa_ed_section_title"] = { s:["x07 t15 b10 b cb n",null] };
+te["qa_ed_section_title"] = { s:["t15 b10 b cb n",null] };
 
-te["qa_tabi"] = { div:[null], c: 	// 
+te["qa_tabc"] = { div:[null], c: 	// 
 [
 	{ input:["g","",null,null,"radio",null] },
 	{ li:["cb gws_ tabi_",null], ev:[null], c:
@@ -275,6 +276,19 @@ te["qa_tabi"] = { div:[null], c: 	//
 	]},
 ]};
 
+te["qa_tabi"] = { div:[null], c: 	// 
+[
+	{ input:["g","",null,null,"radio",null] },
+	{ li:["cb tabi_ gws_",null], ev:[null], c:
+	[
+		{ s:["c w15 x y ",null] },
+		{ s:["d r05 y","%"] },
+		{ s:["d w06 l y tr","0"] },
+		{ s:["d w04 x y tr","0"]},
+		{ div:["e"] }
+	]}
+]};
+
 te["qa_nav"] = { div:["x yy"], c:
 [
 	{ ac:["c w08","prev","_qa_nav","x y04 gws_ bd_ cb n tc",""], c:[ { s:["","Previous"] }, { arg:["","",null] } ] },
@@ -283,55 +297,49 @@ te["qa_nav"] = { div:["x yy"], c:
 ]};
 		
 te["qa_ed_r"] = { div:["","ve"], c: // 
-[
+[	
 	{ div:["yy r05","vb"], c:
 	[
-		{ qa_tabi:["c w11 mr", "qaed","0","1", "","_tab", "0","Opening / Greeting"," %","0"] },
-		{ qa_tabi:["c w11 mr", "qaed","1","", "","_tab", "0","Listening"," %","0"] },
-		{ qa_tabi:["c w11 mr", "qaed","2","", "","_tab", "0","Pro-activeness"," %","0"] },
-		{ qa_tabi:["c w11 mr", "qaed","3","", "","_tab", "0","Resolution / Counselling"," %","0"] },
-		{ qa_tabi:["c w11 mr", "qaed","4","", "","_tab", "0","Hold Procedures"," %","0"] },
-		{ qa_tabi:["c w11 mr", "qaed","5","", "","_tab", "0","Closing"," %","0"] },
-		{ qa_tabi:["c w11 mr", "qaed","6","", "","_tab", "","Feedback","","&nbsp;"] },		
-		{ div:["d w12 ba"], c:
+		{ qa_tabi:["", "qaed","0","1", "","_tab", "Opening / Greeting"] },
+		{ qa_tabi:["", "qaed","1","", "","_tab", "Listening"] },
+		{ qa_tabi:["", "qaed","2","", "","_tab", "Pro-activeness"] },
+		{ qa_tabi:["", "qaed","3","", "","_tab", "Resolution / Counselling"] },
+		{ qa_tabi:["", "qaed","4","", "","_tab", "Hold Procedures"] },
+		{ qa_tabi:["", "qaed","5","", "","_tab", "Closing"] },
+		{ div:["n b"], c: 
 		[
-			{ div:["xx t h04 h b"], c:
+			{ input:["g","","qaed","6","radio"] },
+			{ li:["cb tabi_ gws_",""], ev:["_tab"], c:
 			[
-				{ s:["d n"," 0"] },
-				{ s:["c n","Total Score"] },
-				{ div:["e"] }
-			]},
-			{ div:["y b"], c:
-			[
-				{ s:["d x"," %"] },
-				{ s:["d h"," 0"] },
+				{ s:["c x y","Total Score"] },
+				{ s:["d r05 y","%"] },
+				{ s:["d w06 l y tr","0"] },
+				{ s:["d w04 x y tr","0"]},
 				{ div:["e"] }
 			]}
-		]},
-		
-		{ div:["e"] }
+		]}
 	]},
 	
-	{ div:["x"], c:[ { p:["c","nb"] }, { div:["e"] } ] },
+	{ div:["gp"], c:[ { p:["c","nb"] }, { div:["e"] } ] },
 	
-	{ div:["w70 tt"], c:
+	{ div:["b40"], c:
 	[
 		{ div:[], c:
 		[
 			{ input:["g","","qtv","0","radio","1"] },
 			{ div:["tabv"], c:
 			[
-				{ div:["h40"], c:
+				{ div:[], c:
 				[
 					{ qa_ed_section_title:["Opening Call Greeting"] },
 					{ qa_score_yes_no:["1.","Use of call opening phrase",  "opening_phrase","opening_phrase","opening_phrase"]  }, 
 					{ qa_ed_comment:["2.","Section Comments","opening_phrase_comments"] },
 				]},
-				{ div:["x yy"], c:
-				[
-					{ ac:["d w08","","_qa_nav","x y gws_ bd_ cb n tc",""], c:[ { s:["","Next"] }, { arg:["","","1"] } ] },
-					{ div:["e"] }
-				]}
+				//{ div:["x yy"], c:
+				//[
+				//	{ ac:["d w08","","_qa_nav","x y gws_ bd_ cb n tc",""], c:[ { s:["","Next"] }, { arg:["","","1"] } ] },
+				//	{ div:["e"] }
+				//]}
 			]},
 		]},
 	
@@ -340,7 +348,7 @@ te["qa_ed_r"] = { div:["","ve"], c: //
 			{ input:["g","","qtv","1","radio"] },
 			{ div:["tabv"], c:
 			[
-				{ div:["h40"], c:
+				{ div:[], c:
 				[
 					{ qa_ed_section_title:["Listening Skills"] },
 					{ qa_score_yes_no:["1.","Caller was not interrupted during the conversation", "non_interrupting","non_interrupting","non_interrupting"]  }, 
@@ -350,7 +358,7 @@ te["qa_ed_r"] = { div:["","ve"], c: //
 					{ qa_score_yes_no:["5.","Does not hesitate or sound unsure when providing feedback.",   "nonhesitant", "nonhesitant","nonhesitant"]  },
 					{ qa_ed_comment:["6.","Section Comments","listening_comments"] },
 				]},
-				{ qa_nav:["0","2"] }
+				//{ qa_nav:["0","2"] }
 			]}
 		]},
 		
@@ -359,7 +367,7 @@ te["qa_ed_r"] = { div:["","ve"], c: //
 			{ input:["g","","qtv","2","radio"] },
 			{ div:["tabv"], c:
 			[
-				{ div:["h40"], c:
+				{ div:[], c:
 				[
 					{ qa_ed_section_title:["Pro-activeness"] },
 					{ qa_score_yes_no:["1.","Willingness to solve additional issues not proposed by the client.", "extra_mile_willingness","extra_mile_willingness","extra_mile_willingness"]  }, 
@@ -367,7 +375,7 @@ te["qa_ed_r"] = { div:["","ve"], c: //
 					{ qa_score_yes_no:["3.","Follows up on case updates.",   "follows_up_on_case_updates","follows_up_on_case_updates","follows_up_on_case_updates"]  },
 					{ qa_ed_comment:["4.","Section Comments","pro_active_comments"] },
 				]},
-				{ qa_nav:["1","3"] }
+				//{ qa_nav:["1","3"] }
 			]}
 		]},
 		
@@ -376,7 +384,7 @@ te["qa_ed_r"] = { div:["","ve"], c: //
 			{ input:["g","","qtv","3","radio"] },
 			{ div:["tabv"], c:
 			[
-				{ div:["h40"], c:
+				{ div:[], c:
 				[
 					{ qa_ed_section_title:["Resolution / Counselling provided"] },
 					{ qa_score_yes_no:["1.","Gives accurate and precise information to the caller.", "accuracy","accuracy","accuracy"]  }, 
@@ -386,7 +394,7 @@ te["qa_ed_r"] = { div:["","ve"], c: //
 					{ qa_score_yes_no:["5.","Explains in detail to the caller the process of doing the problem solving.",   "educative", "educative","educative"]  },
 					{ qa_ed_comment:["6","Section Comments","resolution_comments"] },
 				]},
-				{ qa_nav:["2","4"] }
+				//{ qa_nav:["2","4"] }
 			]}
 		]},
 		
@@ -395,14 +403,14 @@ te["qa_ed_r"] = { div:["","ve"], c: //
 			{ input:["g","","qtv","4","radio"] },
 			{ div:["tabv"], c:
 			[
-				{ div:["h40"], c:
+				{ div:[], c:
 				[
 					{ qa_ed_section_title:["Hold procedures"] },
 					{ qa_score_yes_no:["1.","Provides an explanation/instructions to the caller before placing on hold/transfer and obtains consent", "notifies_hold","notifies_hold","notifies_hold"]  }, 
 					{ qa_score_yes_no:["2.","Revisits caller, providing status and offering. Always thanks the caller for holding.",   "updates_hold","updates_hold","updates_hold"]  }, 
 					{ qa_ed_comment:["3.","Section Comments","hold_comments"] },
 				]},
-				{ qa_nav:["3","5"] }
+				//{ qa_nav:["3","5"] }
 			]}
 		]},
 		
@@ -411,13 +419,13 @@ te["qa_ed_r"] = { div:["","ve"], c: //
 			{ input:["g","","qtv","5","radio"] },
 			{ div:["tabv"], c:
 			[
-				{ div:["h40"], c:
+				{ div:[], c:
 				[
 					{ qa_ed_section_title:["Closing the Call"] },
 					{ qa_score_yes_no:["1.","Demonstrates appreciation and thanks caller for calling", "call_closing_coutesy","call_closing_coutesy","call_closing_coutesy"]  }, 
 					{ qa_ed_comment:["2.","Section Comments","call_closing_comments"] },
 				]},
-				{ qa_nav:["4","6"] }
+				//{ qa_nav:["4","6"] }
 			]}
 		]},
 		
@@ -426,28 +434,28 @@ te["qa_ed_r"] = { div:["","ve"], c: //
 			{ input:["g","","qtv","6","radio"] },
 			{ div:["tabv"], c:
 			[
-				{ div:["h40"], c:
+				{ div:[], c:
 				[
 					{ qa_ed_section_title:["Feedback"] },
 					{ qa_ed_comment:["","","feedback"] },
 				]},
-				{ div:["x yy"], c:
+				{ div:["y20"], c:
 				[
-					{ ac:["c w08","","_qa_nav","x y gws bd_ cb n tc",""], c:[ { s:["","Previous"] }, { arg:["","","5"] } ] },
+					//{ ac:["c w08","","_qa_nav","x y gws bd_ cb n tc",""], c:[ { s:["","Previous"] }, { arg:["","","5"] } ] },
 					// { ac:["d w08 ag","","_postj","x y gb bd_ cw n tc","Finish"] },
-					{ div:["d w08"], c:
+					{ div:[], c:
 					[
 						{ ac:["btn ag","qa_form-qas","_postj","x y gb bd_ cw n tc","Finish"] }, 
 						{ div:["savl"], s:["x y go bd_ cw n tc","Saving..."] }
 					]},
-					{ p:["e","o"], arg:["","chan_uniqueid","%5"] }
+					{ p:["e","o"], arg:["","chan_uniqueid","%0"] }
 				]}
 			]}
 		]}
 	]}
 ]};
 
-te["qa_form"] = { div:["w100 ma bd sh__ gw_"], ev:["_undd"], c:
+te["qa_form_vp"] = { div:["w100 ma bd sh__ gw_"], ev:["_undd"], c:
 [
 	{ div:["x15 tt"], c:
 	[
@@ -561,7 +569,7 @@ te["qa_vw_id"] = { div:["w100 ma bd sh__ gw","vddvw"], ev:["_undd"], c:
 			{ qa_tabi:["c w11 mr", "qaed","4","", "","_tab", ":v:qas:holding_score","Hold Procedures"," %",":v:qas:holding_score_p"] },
 			{ qa_tabi:["c w11 mr", "qaed","5","", "","_tab", ":v:qas:closing_score","Closing"," %",":v:qas:closing_score_p"] },
 			{ qa_tabi:["c w11 mr", "qaed","6","", "","_tab", "","Feedback","","&nbsp;"] },		
-			{ div:["d w12 ba"], c:
+			/*{ div:["d w12 ba"], c:
 			[
 				{ div:["xx t h04 h b"], c:
 				[
@@ -575,7 +583,7 @@ te["qa_vw_id"] = { div:["w100 ma bd sh__ gw","vddvw"], ev:["_undd"], c:
 					{ s:["d h",":v:qas:total_score_p"] },
 					{ div:["e"] }
 				]}
-			]},
+			]},*/
 		
 			{ div:["e"] }
 		]},
@@ -894,6 +902,8 @@ te["qas"] = { c:
 	]}
 ]};
 
+// ---------------------------------------------------------------------------------------
+
 function _qa_nav ()
 {
 	var p = __(this,"ve");
@@ -929,13 +939,10 @@ function _qa_opt ()
 		}
 		gtot += tot;
 		// console.log ("qa group: "+i+"="+tot+"  | "+gtot)
-		coll[i].childNodes[1].childNodes[0].childNodes[0].innerHTML = ""+tot;
-		coll[i].childNodes[1].childNodes[1].childNodes[1].innerHTML = ""+(Math.round (((tot/gv[i])*100),0));
+		coll[i].childNodes[1].childNodes[3].innerHTML = ""+tot;
+		coll[i].childNodes[1].childNodes[2].innerHTML = ""+(Math.round (((tot/gv[i])*100),0));
 	}
 	
-	coll[7].childNodes[0].childNodes[0].innerHTML = ""+gtot;
-	coll[7].childNodes[1].childNodes[1].innerHTML = ""+(Math.round (((gtot/34)*100),0));
-	
-	
+	coll[6].childNodes[1].childNodes[3].innerHTML = ""+gtot;
+	coll[6].childNodes[1].childNodes[2].innerHTML = ""+(Math.round (((gtot/34)*100),0));
 }
-

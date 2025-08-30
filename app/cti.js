@@ -400,28 +400,28 @@ te["chan_agent_cid_name"] = { s:["","%1"] };
 
 te["chan_agent"] = { p:["","%2"], c:[ { div:[], c:
 [
-        { input:["g","optc","chvw0","%2","radio",""] },
-        { li:["y02 gws_ mtn1"], c: // x y02 gw bl_ br_ bb_
-        [
-                { s:["c w03 ll y cb",""] },      // cid_num
-                { s:["c w08 x y cb",null] },    // cid_name
-                { s:["c w02 x y cb",""] },      // vector
-                { s:["c w12 x y s",""] },   	// cid2
+	{ input:["g","optc","chvw0","%2","radio",""] },
+	{ li:["y02 gws_ mtn1"], c: // x y02 gw bl_ br_ bb_
+	[
+		{ s:["c w03 ll y cb",""] },      // cid_num
+		{ s:["c w08 x y cb",null] },    // cid_name
+		{ s:["c w02 x y cb",""] },      // vector
+		{ s:["c w12 x y s",""] },   	// cid2
 		{ div:[] },
 
 		{ div:["d l "], c:
 		[
-			{ div:["admin_"], chan_agent_sup:[] },
-			{ div:["supervisor_"], chan_agent_sup:[] }
+			{ div:["admin_ supervisor_"], chan_agent_sup:[] },
+			// { div:["supervisor_"], chan_agent_sup:[] }
 		]},
 
-                { s:["d x y w08 tr b",""] },    // status-duration
-                { arg:["ts","",""] },           // status-ts
-                { s:["d x y w08 tr s",""] },    // status-text
+		{ s:["d x y w08 tr b",""] },    // status-duration
+		{ arg:["ts","",""] },           // status-ts
+		{ s:["d x y w08 tr s",""] },    // status-text
                            
-                { div:["e"] }
-        ]},
-        { div:["mb"] }
+		{ div:["e"] }
+	]},
+     { div:["mb"] }
 ]} ]};
 
 te["aa_status"] = { div:["",null], c:[ { div:["","ve"], c:

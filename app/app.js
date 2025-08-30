@@ -85,7 +85,8 @@ var UU =
 "call_rpt_vw":{ 200:[["rpt_vw","calls_rpt"]] },
 "call_dispositioned":{ 201:[["call_dispositioned","activities","vp"]], 202:[["call_dispositioned","activities","vp"]], 412:[["nb","errors","v","nb"]] },
 "call_case":{ 200:[["call_case","cases_ctx"]] },
-"call_vw_id":{ 200:[["call_vw_id","calls"]] },
+"call_vp":{ 200:[["call_vp","calls"]] },
+"call_vw_id":{ 200:[["call_vw_id","calls_vw"]] },
 "call_lst":{ 200:[["call_lst","calls_ctx"]] },
 "call_list":{ 200:[["call_list","calls_ctx"]] },
 "call_main":{ 200:[["call_main","calls_ctx"]] },
@@ -197,6 +198,8 @@ re["perpetrators_k"] = {};
 re["messages_k"] = {};
 re["qas_k"] = {};
 re["dispositions_k"] = {};
+re["calls_k"] = {};
+re["case_activities_k"] = {};
 
 rk["dist"] = ["-","h","dt","wk","mn","yr"];
 re["dist"] = 
@@ -447,7 +450,7 @@ re["case_src"] =
 "twitter":["twitter","Twitter","",                      "","/helpline/images/twitter_ico.png","g","chat","Twitter Activity","ati_btns","activity_vw_id_tabs_message","Twitter Posts", "email", "reporter_email", ""],
 "chat":["chat","Chat","",                               "","/helpline/images/chat.png","g","chat","Chat Activity",         "ati_btns","activity_vw_id_tabs_message","Web Chat", "phone", "reporter_email", "safepal"],
 "escalation":["escalation","Escalation","",		"","","","","",							   "nti_btns","activity_vw_id_tabs_message","activities^case", "phone", "reporter_email", ""],
-"WENI":["WENI","WENI","",                      		"","/helpline/images/watsap_ico.png","g","chat","WENI Activity", "ati_btns","activity_vw_id_tabs_message","Weni Chat", "phone", "reporter_email", ""], 
+"WENI":["WENI","Chatbot","",                      	"","/helpline/images/watsap_ico.png","g","chat","Chatbot Activity", "ati_btns","activity_vw_id_tabs_message","Chatbot Chat", "phone", "reporter_email", ""], 
 "whatsApp":["whatsApp","WHATSAPP","",                   "","/helpline/images/watsap_ico.png","g","chat","WhatsApp Activity", "ati_btns","activity_vw_id_tabs_message","Whatsapp Chat", "phone", "reporter_phone", ""],
 "FACEBOOK":["FACEBOOK","FACEBOOK","",                   "","/helpline/images/watsap_ico.png","g","chat","Facebook Activity", "ati_btns","activity_vw_id_tabs_message","Facebook Chat", "email", "reporter_email", ""], 
 "TWITTER":["TWITTER","TWITTER","",                      "","/helpline/images/watsap_ico.png","g","chat","Twitter Activity", "ati_btns","activity_vw_id_tabs_message","Twitter Chat", "email", "reporter_email", ""], 
@@ -967,7 +970,7 @@ te["wallonly"] = { c:
         [
                 { arg:["user_cid","","---"] },
                 { iframe:["","",VA_AMI_HOST] },
-                { iframe:["","",VA_ATI_HOST] },
+               // { iframe:["","",VA_ATI_HOST] },
         ]},
 ]};
 
