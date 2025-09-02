@@ -7,7 +7,7 @@ te["au_r_"] = { li:["%5"], s:["t bb_",""], c:
 	{ div:["e"] }
 ]};
 
-te["au_r"] = { ufn:["au_r_fn"] };
+te["au_r"] = { ufn:["au_r_fn","au_r_"] };
 
 // ----------------------------------------------
 
@@ -68,7 +68,6 @@ te["case_history_r"] = { div:["bt_"], c:
 	]}
 ]};
 
-
 te["case_history_k"] = { div:["g"], c:
 [
 	{ k_a:["g","case_rr-cases","cd st","Case ID","da db","case_id",":k:case_activities_k:case_id:2"] },
@@ -84,6 +83,7 @@ te["case_history"] = { list:["case_history_title","end","","case_history_k","cas
 
 function au_r_fn (el, u, a, r, m)
 {
+	console.log ("[aur] "+JSON.stringify(u))
 	var v = ["","","","","","","","","",""];
 	v[0] = valf (r,":v:au:t")+"_k";
 	v[1] = valf (r,":v:au:k");
@@ -94,6 +94,7 @@ function au_r_fn (el, u, a, r, m)
 	v[8] = v[3];
 	if (v[1].substr (v[1].length-3, 3)=="_id") v[5]="g";
 	if (v[1].substr (v[1].length-4, 4)=="_id_") v[5]="g";
+	if (v[1].substr (v[1].length-5, 4)=="_id_") v[5]="g";
 	if (re[v[0]] && re[v[0]][v[1]])
 	{
 		v[6] = re[v[0]][v[1]][3];
@@ -103,7 +104,7 @@ function au_r_fn (el, u, a, r, m)
 			v[8] = valf ([v[3]], re[v[0]][v[1]][4]);
 		}
 	}	
-	nd (el, te["au_r_"], [], v, [0]);
+	nd (el, te[u[1]], [], v, [0]);
 
 	// todo show system fields below (hidden in an expandable widget)
 }

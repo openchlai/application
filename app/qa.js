@@ -279,12 +279,12 @@ te["qa_tabc"] = { div:[null], c: 	//
 te["qa_tabi"] = { div:[null], c: 	// 
 [
 	{ input:["g","",null,null,"radio",null] },
-	{ li:["cb tabi_ gws_",null], ev:[null], c:
+	{ li:[null,null], ev:[null], c:
 	[
 		{ s:["c w15 x y ",null] },
 		{ s:["d r05 y","%"] },
-		{ s:["d w06 l y tr","0"] },
-		{ s:["d w04 x y tr","0"]},
+		{ s:["d w06 l y tr",null] },
+		{ s:["d w04 x y tr",null]},
 		{ div:["e"] }
 	]}
 ]};
@@ -296,16 +296,16 @@ te["qa_nav"] = { div:["x yy"], c:
 	{ div:["e"] }
 ]};
 		
-te["qa_ed_r"] = { div:["","ve"], c: // 
+te["qa_ed_r"] = { c: // 
 [	
-	{ div:["yy r05","vb"], c:
+	{ div:["r05","vb"], c:
 	[
-		{ qa_tabi:["", "qaed","0","1", "","_tab", "Opening / Greeting"] },
-		{ qa_tabi:["", "qaed","1","", "","_tab", "Listening"] },
-		{ qa_tabi:["", "qaed","2","", "","_tab", "Pro-activeness"] },
-		{ qa_tabi:["", "qaed","3","", "","_tab", "Resolution / Counselling"] },
-		{ qa_tabi:["", "qaed","4","", "","_tab", "Hold Procedures"] },
-		{ qa_tabi:["", "qaed","5","", "","_tab", "Closing"] },
+		{ qa_tabi:["", "qaed","0","1", "cb tabi_ gws_","","_tab", "Opening / Greeting","0","0"] },
+		{ qa_tabi:["", "qaed","1","", "cb tabi_ gws_","","_tab", "Listening","0","0"] },
+		{ qa_tabi:["", "qaed","2","", "cb tabi_ gws_","","_tab", "Pro-activeness","0","0"] },
+		{ qa_tabi:["", "qaed","3","", "cb tabi_ gws_","","_tab", "Resolution / Counselling","0","0"] },
+		{ qa_tabi:["", "qaed","4","", "cb tabi_ gws_","","_tab", "Hold Procedures","0","0"] },
+		{ qa_tabi:["", "qaed","5","", "cb tabi_ gws_","","_tab", "Closing","0","0"] },
 		{ div:["n b"], c: 
 		[
 			{ input:["g","","qaed","6","radio"] },
@@ -445,7 +445,7 @@ te["qa_ed_r"] = { div:["","ve"], c: //
 					// { ac:["d w08 ag","","_postj","x y gb bd_ cw n tc","Finish"] },
 					{ div:[], c:
 					[
-						{ ac:["btn ag","qa_form-qas","_postj","x y gb bd_ cw n tc","Finish"] }, 
+						{ ac:["btn ag","qa_form-qas","_postj","x y gb bd_ cw n tc","Save"] }, 
 						{ div:["savl"], s:["x y go bd_ cw n tc","Saving..."] }
 					]},
 					{ p:["e","o"], arg:["","chan_uniqueid","%0"] }
@@ -505,13 +505,14 @@ re["qa_yes_no"] =
 te["qa_vw_yes_no_r"] = { div:["d"], c:
 [
 	{ input:["g","score","v","1","radio","%9"] },
-	{ li:["d ba_w mln1 opti xx y cb ","","%1"] }
+	{ li:["d ba_w mln1 optg xx y cb ","","%1"] }
 ]};
 
 te["qa_vw_yes_no"] =  { form:[], c:[ { li:[], c:
 [
 	{ s:["c y w02",null] },
-	{ s:["c y w50 n",null] }, 
+	{ s:["c y w27",null] }, 
+	{ div:["e"] }, 
 	{ uchk:["qa_vw_yes_no_r",null,"qa_yes_no"] },
 	{ div:["e"] }
 ]} ]};
@@ -519,79 +520,38 @@ te["qa_vw_yes_no"] =  { form:[], c:[ { li:[], c:
 te["qa_vw_comment"] = { div:["x y","o"], c:
 [
 	{ s:["c y w02",null] },
-	{ s:["c y n",null] },
+	{ s:["c y",null] },
 	{ div:["e"] },
-	{ div:["ml2"], s:["w67 h10 x y",null] }
+	{ s:["h10 x y",null] }
 ]};
 
-te["qa_vw_id"] = { div:["w100 ma bd sh__ gw","vddvw"], ev:["_undd"], c:
+te["qa_vw_r"] = { c:
 [
-	{ div:["x15 tt"], c:
+	{ div:["","vb"], c:
 	[
-		{ s:["c xx y12 n b","QA Results"] },
-		{ ac:["d","","_uvp","xx y08 h cb","&Cross;"] },
+		{ qa_tabi:["", "qaed","0","1", "cb tabg_ ","","_tab", "Opening / Greeting",":v:qas:greeting_score",":v:qas:greeting_score_p"] },
+		{ qa_tabi:["", "qaed","1","", "cb tabg_ ","","_tab", "Listening",":v:qas:listening_score",":v:qas:listening_score_p"] },
+		{ qa_tabi:["", "qaed","2","", "cb tabg_ ","","_tab", "Pro-activeness",":v:qas:proactive_score",":v:qas:proactive_score_p"] },
+		{ qa_tabi:["", "qaed","3","", "cb tabg_ ","","_tab", "Resolution / Counselling",":v:qas:resolution_score",":v:qas:resolution_score_p"] },
+		{ qa_tabi:["", "qaed","4","", "cb tabg_ ","","_tab", "Hold Procedures",":v:qas:holding_score",":v:qas:holding_score_p"] },
+		{ qa_tabi:["", "qaed","5","", "cb tabg_ ","","_tab", "Closing",":v:qas:closing_score",":v:qas:closing_score_p"] },
+		{ div:["n b"], c: 
+		[
+			{ input:["g","","qaed","6","radio"] },
+			{ li:["cb tabg_",""], ev:["_tab"], c:
+			[
+				{ s:["c x y","Total Score"] },
+				{ s:["d r05 y","%"] },
+				{ s:["d w06 l y tr",":v:qas:total_score_p"] },
+				{ s:["d w04 x y tr",":v:qas:total_score"]},
+				{ div:["e"] }
+			]}
+		]},	
 		{ div:["e"] }
 	]},
-	{ div:["","va"], c:
-	[
-		{ div:["x25 x15 tt n"], c:
-		[
-			{ s:["c y b",":v:qas:chan_vector::vector:1"] }, 
-			{ s:["c x y b","Call"] },
-			{ s:["c y b",":v:qas:chan_vector::vector:3"] },
-			{ s:["c x y b",":v:qas:chan_phone"] },
-			{ s:["c y b",":v:qas:chan_vector::vector:6"] },
-			{ s:["c x y b",":v:qas:chan_usr"] },		
-			{ s:["c xx y cd",":d:dmyhn:6: "] },
-			{ div:["d"], ac:["ao ","vfile_vw_r-calls-va-play","_u","y03 gws cb",""], c:
-			[ 
-				{ s:["c x h3_ micon","play_arrow"] },
-				{ s:["c y02","Talk Time"] },
-				{ s:["c xx y02",":h:ms:11:"] },	
-				{ div:["e"], c:[ { arg:["",".id",":v:qas:chan_uniqueid"] }, { arg:["","file","wav"] } ] },
-			]},
-			{ div:["e"]}
-		]},
-		{ div:["x25"], c:
-		[
-			{ p:["d t02","play"] },
-			{ div:["e"] }
-		]},
-	]},
-	{ div:["x20 tt gw"], c:
-	[
-		{ div:["yy r05","vb"], c:
-		[
-			{ qa_tabi:["c w11 mr", "qaed","0","1", "","_tab", ":v:qas:greeting_score","Opening / Greeting"," %",":v:qas:greeting_score_p"] },
-			{ qa_tabi:["c w11 mr", "qaed","1","", "","_tab", ":v:qas:listening_score","Listening"," %",":v:qas:listening_score_p"] },
-			{ qa_tabi:["c w11 mr", "qaed","2","", "","_tab", ":v:qas:proactive_score","Pro-activeness"," %",":v:qas:proactive_score_p"] },
-			{ qa_tabi:["c w11 mr", "qaed","3","", "","_tab", ":v:qas:resolution_score","Resolution / Counselling"," %",":v:qas:resolution_score_p"] },
-			{ qa_tabi:["c w11 mr", "qaed","4","", "","_tab", ":v:qas:holding_score","Hold Procedures"," %",":v:qas:holding_score_p"] },
-			{ qa_tabi:["c w11 mr", "qaed","5","", "","_tab", ":v:qas:closing_score","Closing"," %",":v:qas:closing_score_p"] },
-			{ qa_tabi:["c w11 mr", "qaed","6","", "","_tab", "","Feedback","","&nbsp;"] },		
-			/*{ div:["d w12 ba"], c:
-			[
-				{ div:["xx t h04 h b"], c:
-				[
-					{ s:["d n",":v:qas:total_score"] },
-					{ s:["c n","Total Score"] },
-					{ div:["e"] }
-				]},
-				{ div:["y b"], c:
-				[
-					{ s:["d x"," %"] },
-					{ s:["d h",":v:qas:total_score_p"] },
-					{ div:["e"] }
-				]}
-			]},*/
-		
-			{ div:["e"] }
-		]},
-	
-		{ div:["x"], c:[ { p:["c","nb"], u:["nb","qas_nb"] }, { div:["e"] } ] },
-	
-		{ div:["w70 tt"], c:
-		[
+
+	{ div:[], c:
+	[	
 			{ div:[], c:
 			[
 				{ input:["g","","qtv","0","radio","1"] },
@@ -705,6 +665,48 @@ te["qa_vw_id"] = { div:["w100 ma bd sh__ gw","vddvw"], ev:["_undd"], c:
 					
 				]}
 			]}
+		]}
+]};
+
+te["qa_vw_id"] = { div:["w100 ma bd sh__ gw","vddvw"], ev:["_undd"], c:
+[
+	{ div:["x15 tt"], c:
+	[
+		{ s:["c xx y12 n b","QA Results"] },
+		{ ac:["d","","_uvp","xx y08 h cb","&Cross;"] },
+		{ div:["e"] }
+	]},
+	{ div:["","va"], c:
+	[
+		{ div:["x25 x15 tt n"], c:
+		[
+			{ s:["c y b",":v:qas:chan_vector::vector:1"] }, 
+			{ s:["c x y b","Call"] },
+			{ s:["c y b",":v:qas:chan_vector::vector:3"] },
+			{ s:["c x y b",":v:qas:chan_phone"] },
+			{ s:["c y b",":v:qas:chan_vector::vector:6"] },
+			{ s:["c x y b",":v:qas:chan_usr"] },		
+			{ s:["c xx y cd",":d:dmyhn:6: "] },
+			{ div:["d"], ac:["ao ","vfile_vw_r-calls-va-play","_u","y03 gws cb",""], c:
+			[ 
+				{ s:["c x h3_ micon","play_arrow"] },
+				{ s:["c y02","Talk Time"] },
+				{ s:["c xx y02",":h:ms:11:"] },	
+				{ div:["e"], c:[ { arg:["",".id",":v:qas:chan_uniqueid"] }, { arg:["","file","wav"] } ] },
+			]},
+			{ div:["e"]}
+		]},
+		{ div:["x25"], c:
+		[
+			{ p:["d t02","play"] },
+			{ div:["e"] }
+		]},
+	]},
+	{ div:["x20 tt gw"], c:
+	[
+		{ div:["yy r05","vb"], c:
+		[
+			
 		]}
 	]}
 ]};

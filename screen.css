@@ -128,6 +128,7 @@ li {display:block; list-style-type:none; padding:0; margin:0; cursor:pointer; }
 .t50 {padding-top:50px;}
 .t60 {padding-top:60px;}
 .t70 {padding-top:70px;}
+
 .r02 {padding-right:2px;}
 .r03 {padding-right:3px;}
 .r04 {padding-right:4px;}
@@ -146,6 +147,7 @@ li {display:block; list-style-type:none; padding:0; margin:0; cursor:pointer; }
 .r50 {padding-right:50px;}
 .r60 {padding-right:60px;}
 .r130 {padding-right:130px;}
+
 .b01 {padding-bottom:1px;}
 .b02 {padding-bottom:2px;}
 .b03 {padding-bottom:3px;}
@@ -329,13 +331,15 @@ ul:hover {background-color:#cee8f0; color:black;}
 
 :checked + .tabiv { display:block; }
 :checked + .tabi_ { background-color:black; color:white; }
+:checked + .tabg_ { background-color:green; color:white; }
 
 :checked + .opta { background-color:black; border:1px solid black; color:white; }
 :checked + .opth { background-color:#e1e2e3; color:black; }
 :checked + .opto { background-color:black; color:white; border:1px solid black; }
+:checked + .optg { background-color:green;  color:white; }
 :checked + .opti { background-color:black; border:1px solid black; color:white; }
 :checked + .opti a { background-color:black; color:white; }
-:checked + .opti_ a { background-color:aliceblue; color:black; border-left:3px solid black; }
+:checked + .opti_ a { background-color:aliceblue; color:black;  }
 :checked + .opty .cb { background-color:dodgerblue; color:white; }
 
 :checked + .lr { background-color:#dadcdf; }
@@ -351,20 +355,21 @@ ul:hover {background-color:#cee8f0; color:black;}
 #days .d6 a {color:red;}
 #days .d7 a {background-color:dodgerblue; color:white; padding:4px;}
 
-.ba_ {border:1px solid #cfd1d4;}
-.bl_ {border-left:1px solid #cfd1d4;}
-.br_ {border-right:1px solid #cfd1d4;}
-.bb_ {border-bottom:1px solid #cfd1d4;}
-.bt_ {border-top:1px solid #cfd1d4;}
-
 .ba {border:1px solid #afb1b4;} 
 .bb {border-bottom:1px solid #afb1b4;}
 .bt {border-top:1px solid #afb1b4;}
 .bl {border-left:1px solid #afb1b4;}
 .br {border-right:1px solid #afb1b4;}
 
-.ba_b {border:1px solid gray;} 
-.bb_b {border-bottom:1px solid gray;} 
+.ba_ {border:1px solid #cfd1d4;}
+.bl_ {border-left:1px solid #cfd1d4;}
+.br_ {border-right:1px solid #cfd1d4;}
+.bb_ {border-bottom:1px solid #cfd1d4;}
+.bt_ {border-top:1px solid #cfd1d4;}
+
+.bt_b {border-top:1px solid black;}
+.ba_b {border:1px solid black} 
+.bb_b {border-bottom:1px solid black;} 
 .bl2_b {border-left:2px solid black;} 
 .bb2_b {border-bottom:2px solid black;}
 

@@ -2125,12 +2125,12 @@ te["cases"] = { c:
 		{ div:[], c:
 		[	
 			{ input:["g","","case_vw_vt","0","radio","1"] }, 	// list
-			{ p:["tabv x20 y20 gw mm","vftab"], case_main:[] } 
+			{ p:["tabv x20 y20 gw","vftab"], case_main:[] } 
 		]},
 		{ div:[], c:
 		[	
 			{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
-			{ p:["tabv gw yy mm bd12","vfvw"] }
+			{ p:["tabv gw yy  ","vfvw"] }
 		]}
 	]}
 ]};
