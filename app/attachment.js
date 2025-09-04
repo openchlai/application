@@ -41,7 +41,8 @@ te["case_attachment_upload"] = { div:["g","va"], c:
 	]},
 	{ div:["gr mb"], c:
 	[
-		{ p:["","nb"], s:["x y gr cw","Uploading ..."] }, // todo: show progress
+		{ p:["","nb"] }, 
+		{ s:["xx y gr cw savl","Uploading ..."] },
 		{ div:["e"] }
 	]},
 	{ div:["","case_attachment-attachments"], c:

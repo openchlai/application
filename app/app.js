@@ -1102,7 +1102,7 @@ te["dash"] = { c:
 
 	{ div:["yy gw mb mtn1	"], c:
 	[
-		{ s:["c xx y h","OpenCHS"] },
+		{ s:["c xx y h2 b","OpenCHS"] },
 		{ div:["e"] }
 	]},
 	{ div:["abs w14_5","vdf"], c: // filter params
@@ -1215,8 +1215,8 @@ te["main"] = { c:
 		//	{ ac:["ll ay tab","","_mtabr","gw bd x y micon h2_ cb","bubble_chart"] }
 		//]},
 		
-		/*
-		{ div:["d w17 t08 "], s:["abs w17 zzz",""], c:
+		
+		{ div:["d w19 t01 "], s:["abs t15 w17 zzz",""], c:
 		[
 			{ div:["ay","va"], ac:["","","_dd","w17 bd gws_",""], c:
 			[
@@ -1246,8 +1246,8 @@ te["main"] = { c:
 
 		]},
 
-		{ p:["d xx","aa_status_ico"] },
-		*/
+		// { p:["d xx","aa_status_ico"] },
+		
 
 		{ div:["e"] }
 	]},

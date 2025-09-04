@@ -39,8 +39,6 @@ aa["pre"] = 	["className","id","innerHTML"];
 
 te["noop"] = {};
 
-
-
 te["ur"] = { u:[null,null] };
 
 te["s"] = { div:[null,"",null] }; 
