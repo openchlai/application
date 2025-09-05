@@ -1340,6 +1340,8 @@ te["case_vw_col_1"] = { c:
 
 te["case_vw_col_0"] = { c:
 [
+	{ u:["case_vw_reporter_uuid","reporters_uuid"] },
+
 	{ div:[], c:
 	[
 		{ div:["t"], c:
@@ -1347,9 +1349,7 @@ te["case_vw_col_0"] = { c:
 			{ s:["xx yy b","Reported By"] },
 			{ div:["e"] }
 		]},
-		{ u:["case_vw_reporter_r","reporters"] },
-		
-		{ u:["case_vw_reporter_uuid","reporters_uuid"] }
+		{ u:["case_vw_reporter_r","reporters"] }
 	]},
 
 	{ p:["t15","clients"], c:
@@ -1405,13 +1405,15 @@ te["case_vw_col_0"] = { c:
 
 te["case_vw_id"] = { div:["section-to-print ","ve"], c: 
 [	
-	{ div:["x20 t15","vb"], c:
+	{ div:["x15 t","vb"], c:
 	[		
 		{ div:["c x t"], ac:["ay","","_activity_uvw","h2 x y bd16 gb cw micon","arrow_back"] },	
 		{ s:["c x08 tt h2 b",CASE_ID_PREFIX] },
 		{ s:["c tt h2 b","%0"] },
 		
-		{ div:["d t","va"], c:
+		// todo: close btn - floating
+
+		{ div:["d t mr12","va"], c:
 		[
 			{ ac:["ao","","_print","x08 y h02 n gws_ cb",""], c:
 			[
@@ -1421,7 +1423,7 @@ te["case_vw_id"] = { div:["section-to-print ","ve"], c:
 			]}
 		]},
 				
-		{ div:["d t r10 ","va"], c:
+		{ div:["d t r10","va"], c:
 		[
 			{ div:["w13","va"], s:["",""], c:
 			[
@@ -2013,12 +2015,12 @@ te["case_main"] = { c:
 [
 	{ div:["tt","vb"], c:
 	[
-		{ div:["c t03"], c:
+		{ div:["c"], c:
 		[
 			{ div:["","va"], s:["",""], c:
 			[
 				{ input:["g","","cases_t_","0","radio","1"] },
-				{ ac:["c","case_main-cases-vftab","_u","x y cb b h2","::case_title:5:1"] }, 
+				{ ac:["c","case_main-cases-vftab","_u","x y cb b h3_","::case_title:5:1"] }, 
 				{ ac:["c t02 x ay","","_dd","h02 w02 gws_ awb",""] },
 				{ div:["e"], arg:["","_title","%5"] }
 			]},
@@ -2089,7 +2091,7 @@ te["case_main"] = { c:
 		{ div:[], c:
 		[ 
 			{ input:["g","","cases_v","100","radio","1"] }, 
-			{ p:["tabv yy","vt"], case_list:[] } 
+			{ p:["tabv","vt"], case_list:[] } 
 		]},
 		{ div:[], c:
 		[ 
@@ -2125,12 +2127,12 @@ te["cases"] = { c:
 		{ div:[], c:
 		[	
 			{ input:["g","","case_vw_vt","0","radio","1"] }, 	// list
-			{ p:["tabv x20 y20 gw","vftab"], case_main:[] } 
+			{ p:["tabv x20 yy gw","vftab"], case_main:[] } 
 		]},
 		{ div:[], c:
 		[	
 			{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
-			{ p:["tabv gw yy  ","vfvw"] }
+			{ p:["tabv gw yy bd8 mm ","vfvw"] }
 		]}
 	]}
 ]};

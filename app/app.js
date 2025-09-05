@@ -1061,7 +1061,7 @@ te["dash_rpt"] = { c: // dash_rpt:["Case Categories","bar","stacked","case_categ
 te["dash_src_r"] = { div:[], c:
 [
 	{ input:["g","","dash_src","%0","radio","%9"] },
-	{ ac:["opti_","","_dash","x y gw mb cb ",""], c:
+	{ ac:["opti_","","_dash","x y gw cb bd ",""], c:
 	[
 		{ s:["x y tc","%1"] },
 		{ div:["x y w03 ma"], s:["%2",""], c:[ { img:["","","%3","30"] } ] },
@@ -1083,15 +1083,15 @@ te["dash_period_r"] = { div:[], c:
 
 te["dash_view"] = { c:
 [
-	{ div:["c wp50"], s:["",""], c:
+	{ div:["c wp50 gw"], s:["",""], c:
 	[
-		{ div:["x y gw mb h40","vc"], dash_rpt:["Case Categories","bar","stacked","cat_0","-","case_count","dash_rpt_pie-cases"] },	
-		{ div:["x y gw mb","vc"], dash_rpt:["Case per Location","bar","stacked","reporter_location_0","-","case_count","dash_rpt_pie-cases"] },
+		{ div:["xx h50","vc"], dash_rpt:["Case Categories","bar","stacked","cat_0","-","case_count","dash_rpt_pie-cases"] },	
+		{ div:["xx h50","vc"], dash_rpt:["Case per Location","bar","stacked","reporter_location_0","-","case_count","dash_rpt_pie-cases"] },
 	]},
-	{ div:["c wp50"], s:["ml",""], c:
+	{ div:["c wp50 gw"], s:["ml",""], c:
 	[
-		{ div:["x y gw mb h40","vc"], dash_rpt:["Daily Cases","line","","src","dt","case_count","dash_rpt_line-cases"] },		
-		{ div:["x y gw mb","vc"], dash_rpt:["Case Status","bar","stacked","final_status,priority","-","case_count","dash_case_priority-cases"] },			
+		{ div:["xx h50","vc"], dash_rpt:["Daily Cases","line","","src","dt","case_count","dash_rpt_line-cases"] },		
+		{ div:["xx h50","vc"], dash_rpt:["Case Status","bar","stacked","final_status,priority","-","case_count","dash_case_priority-cases"] },			
 	]},
 	{ div:["e"] }	
 ]}
@@ -1100,16 +1100,16 @@ te["dash"] = { c:
 [
 	{ div:[""], toolbar_default:[] },
 
-	{ div:["yy gw mb mtn1	"], c:
+	{ div:["xx tt b20 gw  mtn1	"], c:
 	[
-		{ s:["c xx y h2 b","OpenCHS"] },
+		{ s:["c x yy h2 b","OpenCHS"] },
 		{ div:["e"] }
 	]},
-	{ div:["abs w14_5","vdf"], c: // filter params
+	{ div:["abs w13 h100 xx gw","vdf"], c: // filter params
 	[
-		{ div:["gw mb"], c:
+		{ div:["gw "], c:
 		[
-			{ div:["ay","va"], ac:["","","_dd","x gw cb",""], c:
+			{ div:["ay","va"], ac:["","","_dd","x gw cb ba bd",""], c:
 			[
 				{ s:["c l y","::dash_period:0:1"] },
 				{ div:["d w02 t04"], c:[ { div:["h02 w02 awb"] } ] },
@@ -1126,9 +1126,9 @@ te["dash"] = { c:
 			]},
 		]},
 		
-		{ div:["gw mb"], c:
+		{ div:["gw yy"], c:
 		[
-			{ div:["ay","va"], ac:["","","_dd","x bd gw cb",""], c:
+			{ div:["ay","va"], ac:["","","_dd","x bd gw cb bd ba",""], c:
 			[
 				{ s:["c l y","::dash_gbv:1:1"] },
 				{ div:["d w02 t04"], c:[ { div:["h02 w02 awb"] } ] },
@@ -1147,7 +1147,7 @@ te["dash"] = { c:
 		{ arg:["","src","%5"] }
 		
 	]},
-	{ div:["ml15"], dash_view:[] }
+	{ div:["ml15 gw"], dash_view:[] }
 ]};
 
 // ------------------------------------------	
@@ -1177,8 +1177,8 @@ te["toolbar_default"] = { div:["ma w15 t01"], c:
 	{ input:["g","","sbr_","1","radio"] },
 	{ ac:["abs ao t15 w15","","_activity_vw_id","xx bd gg cw",""], c:
 	[
-		{ s:["c y","Walk In"]},
-		{ s:["d t03 h2 micon","directions_walk"] },
+		{ s:["c y","Walk In"] }, // todo : change to new activity to allow outboud calls and messages  new activiy| walkin_ico|call_ico|msg_ico
+		{ s:["d t03 h2 micon","directions_walk"] },  // center activity action btns here
 		{ div:["e"], c:[ { arg:["",".id","-1"] }, { arg:["","src","walkin"] }, { arg:["","src_address",""] } ] }
 	]},
 ]};
@@ -1193,40 +1193,26 @@ te["main"] = { c:
 		//	{ div:["e"] }
 		//]},
 
-		{ div:["d r50 w06 t01"], s:["abs w06 t15 zzzzzz",""], c:
-		[
-			{ input:["g","","rtab","0","radio"] },
-			{ ac:["ll t01 ay tab","","_mtabr","gw bd x y micon h2_ cb","account_circle"] }				
-		]},
-		
-		{ div:["d w06 t01"], s:["abs w06 t15 zzzzzz",""], c:
-		[
-			{ input:["g","","rtab","1","radio"] },
-			{ ac:["ll t01 ay tab","","_mtabr","gw bd cb",""], c:
-			[
-				{ p:["abs g","notif_count"], s:["ml2 x07 y02  h01_ tc gr cw bd16 s",""] },
-				{ s:["x y micon h2_","notifications"] }				
-			]},
-		]},
-
-		//{ div:["d w06 t01"], s:["abs w06 t20 zzzzzz",""], c:
+		//{ div:["d r50 w06 t01"], s:["abs w06 t15 zzz",""], c:
 		//[
-		//	{ input:["g","","rtab","2","radio"] },
-		//	{ ac:["ll ay tab","","_mtabr","gw bd x y micon h2_ cb","bubble_chart"] }
+		//	{ input:["g","","rtab","0","radio"] },
+		//	{ ac:["ll t01 ay tab","","_mtabr","gw bd x y micon h2_ cb","account_circle"] }				
 		//]},
 		
-		
-		{ div:["d w19 t01 "], s:["abs t15 w17 zzz",""], c:
+		{ div:["d w04_ r20 t01"], s:["abs w04_ t15 zzz",""], c:  // nb: onvw overlap with X
 		[
-			{ div:["ay","va"], ac:["","","_dd","w17 bd gws_",""], c:
+			{ div:["ay","va"], ac:["","","_dd"," bd cb",""], c:
 			[
-				{ p:["","agent_status"], agent_status:["aoffline","gd bd h01 w01","cd","Connecting ...","",""] },									
+				{ p:["abs g","notif_status"], s:["ml2 x07 y02  h01_ tc gr cw bd16 s",""] },
+				{ s:["w04 y micon h2_ tc","account_circle"] },								
 				{ div:["e"], u:["user_cid","auth"] }
 			]},
-			{ div:["g w17","vdd"], s:["xx yy gw ba",""], c:
+			{ div:["g w17 mln13 t zzz","vdd"], s:["xx yy gw ba",""], c:
 			[	
 				{ div:[""], u:["user_usn","auth"] }, // 
 				
+				{ p:["","agent_status"], agent_status:["aoffline","gd bd h01 w01","cd","Connecting ...","",""] },	
+
 				{ p:["","phone_status"], s:["xx y cd","Checking Phone Status ..."] },
 
 				{ p:["","ati_status"] },
@@ -1245,9 +1231,33 @@ te["main"] = { c:
 			]},	
 
 		]},
-
-		// { p:["d xx","aa_status_ico"] },
 		
+		{ div:["d w04_ t01 r10"], s:["abs w04_ t15 zzz",""], c:
+		[
+			{ input:["g","","rtab","1","radio"] },
+			{ ac:["ay tab","","_mtabr","bd cb",""], c:
+			[
+				{ p:["abs g","notif_count"], s:["ml2 x07 y02  h01_ tc gr cw bd16 s","0"] },
+				{ s:["w04 y micon h2_ tc","notifications"] }				
+			]},
+		]},
+
+		{ div:["d w04_ t01 r10"], s:["abs w04_ t15 zzz",""], c:
+		[
+			{ input:["g","","rtab","0","radio"] },
+			{ ac:["ay tab","","_mtabr","bd cb",""], c:
+			[
+				// { p:["abs g","notif_count"], s:["ml2 x07 y02  h01_ tc gr cw bd16 s","0"] },
+				{ s:["w04 y micon h2_ tc","schedule"] }				
+			]},
+		]},
+
+		//{ div:["d w06 t01"], s:["abs w06 t20 zzzzzz",""], c:
+		//[
+		//	{ input:["g","","rtab","2","radio"] },
+		//	{ ac:["ll ay tab","","_mtabr","gw bd x y micon h2_ cb","bubble_chart"] }
+		//]},
+				
 
 		{ div:["e"] }
 	]},
@@ -1294,7 +1304,7 @@ te["main"] = { c:
 		{ div:["e"] } 
 	]},
 	
-	{ div:["h80 gb abs","vb"], s:["sb_",""], c: 
+	{ div:["h108 gb abs","vb"], s:["sb_",""], c: 
 	[
 		{ div:["gb mtn1"], c:[ { a:["aa","","","/helpline/"], c:[ { img:["","",APP_LOGO, "60"] } ] } ] },
 
@@ -1329,7 +1339,7 @@ te["main"] = { c:
                 { sbl:["admin_","10","","","dashboard","Wallboard","noop"] },
 
 
-		{ sbl:["admin_","7","","contacts-contacts","import_contacts","Contacts","noop"] },
+		// { sbl:["admin_","7","","contacts-contacts","import_contacts","Contacts","noop"] },
 	]},
 
 	{ p:["abs zz y op_ga g","vp"], ev:["_uvpd"] }, // popup window	

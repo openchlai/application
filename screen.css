@@ -339,7 +339,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 :checked + .optg { background-color:green;  color:white; }
 :checked + .opti { background-color:black; border:1px solid black; color:white; }
 :checked + .opti a { background-color:black; color:white; }
-:checked + .opti_ a { background-color:aliceblue; color:black;  }
+:checked + .opti_ a { background-color:#e1e2e3; color:black; border:1px solid orange;  }
 :checked + .opty .cb { background-color:dodgerblue; color:white; }
 
 :checked + .lr { background-color:#dadcdf; }
@@ -611,6 +611,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 .h60 {height:600px;}
 .h80 {height:800px;}
 .h100 {height:1000px;}
+.h108 {height:1060px;}
 .hp100 {height:100%;}
 
 .ma {margin:0 auto;}
