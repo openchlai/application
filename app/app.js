@@ -113,6 +113,7 @@ var UU =
 "activity_contact":{ 200:[["activity_contact","contacts","contacts","contact"]] },
 "activity_contacts":{ 200:[["activity_contacts","dispositions_ctx"]] },
 
+"activity_notify":{ 202:[["notification_lst_r_vw","activities_notify"]] },
 "activity_reporter":{ 201:[["activity_reporter_ufn","reporters_uuid","","nb"]], 202:[["activity_reporter_ufn","reporters_uuid","","nb"]], 412:[["nb","errors","v","nb"]] },
 "activity_disposition_unk":{ 201:[["activity_disposition_ufn","dispositions_unk"]], 412:[["nb","errors","v","nb"]] },
 "activity_disposition":{ 200:[["activity_disposition","contacts_disposition"]], 201:[["activity_disposition_ufn","dispositions"]], 412:[["nb","errors","v","nb"]] },
@@ -268,20 +269,6 @@ re["hangup_status"] =
 "Reattempt":["Reattempt","Reattempt","Reattempt","x y03 gg cw","","#20B2AA"],
 };
 
-
-rk["lead_status"] = ["answered","busy","dump","no-answer","network-error","voicemail","SCHED","Reattempt"];
-re["lead_status"] = re["hangup_status"]; 
-
-
-//rk["vector"] = ["1","2"];
-//re["vector"] = 
-//{
-//"":["","","","","","","","","","","","","","","","","","","","",""],
-//"0":["0","","","","","","","","","","","","","","","","","","","",""],
-//"1":["1","Inbound","&#8702","From",  "Outbound","&#8701","To", "g","Outbound Call",,"c w80","c xx y bd8 gg cw","x08 y s cd"],
-//"2":["2","Outbound","&#8701","To",  "Inbound","&#8702","From", "","Inbound Call",,"d w80","d xx y bd8 go_ cb","x08 y tr s cd"],
-//};
-
 rk["vector"] = ["1","2"];
 re["vector"] =
 {
@@ -290,8 +277,6 @@ re["vector"] =
 "1":["1","Inbound","&#8702","From",  "Outbound","&#8701","To", "g","Outbound Call",,"c w50","c xx y08 bd8 go cw","y s cd", "c x","g"],
 "2":["2","Outbound","&#8701","To",  "Inbound","&#8702","From", "","Inbound Call",,"d w50","d xx y08 bd8 gg cw","y s cd tr","d x",""],
 };         
-
-
 
 rk["user_role"] = ["1","2","3","4","5","6","99"];
 re["user_role"] = 
@@ -315,72 +300,6 @@ re["onbreak"] =
 "FX":["FX","On Break"],
 };
 
-rk["voiceprompt_type"] = ["1","2","3","4","5","6","7"];
-re["voiceprompt_type"] = 
-{
-"":["","",			"",		"leaf",		"branch_footer","leaf", 	"noop","noop","noop-noop-ve-type"],
-"0":["0","-",			"-",		"leaf",		"branch_footer","leaf", 	"noop","noop","noop-noop-ve-type"],
-"1":["1","Playback",       	"Playback",  	"voiceprompt_r_branch",		"voicemap_rr_btn","voicemap_r_branch", 	"noop","noop","noop-noop-ve-type"],
-"2":["2","Menu",		"Menu",		"voiceprompt_r_branch",		"voicemap_rr_btn","voicemap_r_branch", 	"noop","noop","noop-noop-ve-type"],
-"3":["3","Capture Digits",	"DTMF",		"leaf", 	"branch_footer","leaf", 	"voiceprompt_vw_dtmf","voiceprompt_ed_dtmf","voiceprompt_ed_dtmf-voiceprompt_-ve-type"],  
-"4":["4","Capture Voice",	"Record",	"leaf",		"branch_footer","leaf", 	"voiceprompt_vw_record","voiceprompt_ed_record","voiceprompt_ed_record-voiceprompt_-ve-type"], 
-"5":["5","Dial Extension",	"Exten",	"leaf",		"branch_footer","leaf", 	"voiceprompt_vw_extension","voiceprompt_ed_extension","voiceprompt_ed_extension-voiceprompt_-ve-type"],
-"6":["6","Dial Campaign Users",	"Queue",	"leaf",		"branch_footer","leaf", 	"noop","noop","noop-noop-ve-type"],  
-"7":["7","Invoke API",		"API",		"voiceprompt_r_branch", 	"voicemap_rr_btn","voicemap_r_branch", 	"voiceprompt_vw_api","voiceprompt_ed_api","voiceprompt_ed_api-voiceprompt_-ve-type"] 
-};
-
-rk["campaign"] = ["1","2"];  // match spefic date first then 
-re["campaign"] = 
-{
-"":["","", "noop", "noop", "noop-noop-ve-type", "noop","", ""],
-"1":["1","Inbound", "campaign_vw_inbound", "campaign_ed_inbound", "campaign_ed_inbound-campaign_-ve-type", "campaign_vw_id_menu_inbound","campaign_vw_tabs_inbound", "Inbound Campaign"],
-"2":["2","Outbound", "campaign_vw_outbound", "campaign_ed_outbound", "campaign_ed_outbound-campaign_-ve-type", "campaign_vw_id_menu_outbound","campaign_vw_tabs_outbound", "Outbound Campaign"],
-};
-
-
-rk["workinghour_priority"] = ["","0","1","2","3","4","5"];  
-re["workinghour_priority"] = 
-{
-"":["","",""],
-"0":["0","Disabled","", "--"],
-"1":["1","Out of Office","","OO"],
-"2":["2","Working Hours","", "WH"],
-"3":["3","Reattempt Hours","","RH"],
-"4":["4","Holiday","","HD"],
-"5":["5","Event","","EV"],
-};
-
-rk["workinghour_priority_inbound"] = ["2","0"];  
-re["workinghour_priority_inbound"] = re["workinghour_priority"];
-
-rk["workinghour_priority_outbound"] = ["2","3","0"];  
-re["workinghour_priority_outbound"] = re["workinghour_priority"];
-
-rk["ooohour_priority"] = ["1","4","5","0"];  
-re["ooohour_priority"] = re["workinghour_priority"];
-
-
-re["contact_fields"] = 
-{
-"fname":["fname","First Name"],
-"lname":["lname","Last Name"],
-"phone":["phone","Phone"],
-};
-
-re["dialstatus"] = 
-{
-"ANSWER":["ANSWER","Answered the call"],
-"BUSY":["BUSY","is Busy"],
-"NOANSWER":["NOANSWER","did Not-Answer"],
-"CANCEL":["CANCEL","is Unavailable"],
-"CHANUNAVAIL":["CHANUNAVAIL","is Unavailable"],
-"DONTCALL":["DONTCALL","is Unavailable"],
-"DONTCALL":["DONTCALL","is Unavailable"],
-"INVALIDARGS":["INVALIDARGS","is Unavailable"]
-};
-
-
-
 rk["case_priority"] = ["1","2","3","0"];
 re["case_priority"] =
 {
@@ -390,7 +309,6 @@ re["case_priority"] =
 "2":["2","Medium","Medium Priority","","","#ffa500"],
 "3":["3","High","High Priority","","","#ff0000"],
 };
-
 
 rk["case_status"] = ["1","2","3","0"];
 re["case_status"] =
@@ -416,54 +334,36 @@ re["case_dept"] =
 "1":["1","Labor","","","",""]
 };
 
-//
-//rk["case_src"] = ["walkin","call","sms","email","safepal","WHATSAPP","FACEBOOK","TWITTER"];
-//re["case_src"] = 
-//{
-//"":["","","","edit","","","","",""],
-//"walkin":["walkin","Walkin","Walkin Activity","walkin",		"activity_btns","activity_match","activities"],
-//"call":["call","Call","Call Activity","call",			"cti_btns","activity_match","activities"],
-//"sms":["sms","SMS","SMS Activity","sms",			"ati_btns","activity_messages_main","activities"],
-//"email":["email","Email","Email Activity","email",		"ati_btns","activity_messages_main","activities"],
-//"safepal":["safepal","SafePal","Safepal Activity","chat",	"ati_btns","activity_messages_main","activities"],
-//"whatsup":["whatsup","Whatsup","Whatup Activity","chat",	"ati_btns","activity_messages_main","activities"],
-//"facebook":["facebook","Facebook","Facebook Activity","chat",	"ati_btns","activity_messages_main","activities"],
-//"twitter":["twitter","Twitter","Twitter Activity","chat",	"ati_btns","activity_messages_main","activities"],
-//"chat":["chat","Chat","Chat Activity","chat",			"ati_btns","activity_messages_main","activities"],
-//"escalation":["escalation","escalation","Escalation","notify",	"nti_btns","activity_case_notify","activities^case"],
-//"WENI":["WENI","WENI","Chat Activity","chat",                   "ati_btns","activity_messages_main","activities"],
-//"FACEBOOK":["FACEBOOK","FACEBOOK","Chat Activity","chat",                   "ati_btns","activity_messages_main","activities"],
-//"WHATSAPP":["WHATSAPP","WHATSAPP","Chat Activity","chat",                   "ati_btns","activity_messages_main","activities"],
-//"TWITTER":["TWITTER","TWITTER","Chat Activity","chat",                   "ati_btns","activity_messages_main","activities"],
-
 
 rk["case_src"] = ["walkin","call","sms","email","safepal","chat","whatsApp","FACEBOOK","TWITTER","WENI"];
 re["case_src"] = 
 {                               
 "":["edit","edit","",                               	"g","", "g","edit","Edit Activity",                             "noop","activity_vw_id_match", "Edit", "", "","",],
-"all":["all","Total",":k:case_source:total:1",          "g","", "micon hh co","cases","All Cases",                      "noop","noop","","", "", ""],
-"social":["social","Social Media",":k:case_source:socialmedia:1", "g","", "micon cbl hh","share","Social Media",        "noop","noop","","", "", ""],
-"edit":["edit","edit","",                               "g","", "g","edit","Edit Activity",                             "noop","activity_vw_id_tabs", "Edit", "", "", ""],
-"walkin":["walkin","Walkin",":k:case_source:walkin:1",  "g","", "micon cg hh","directions_walk","Walkin Activity",      "activity_btns","activity_vw_id_tabs","Walk In", "phone", "reporter_phone", ""],
-"call":["call","Call",":k:case_source:call:1",          "","/helpline/images/bxs-phone-call.png","g","call","Call Activity","cti_btns","activity_vw_id_tabs","Call", 
+"all":	["all","Total",":k:case_source:total:1",          "g","", "micon hh co","cases","All Cases",                      "noop","noop","","", "", ""],
+"social":	["social","Social Media",":k:case_source:socialmedia:1", "g","", "micon cbl hh","share","Social Media",        "noop","noop","","", "", ""],
+"edit":	["edit","Edit","",                               "g","", "g","edit","Edit Activity",                             "noop","activity_vw_id_tabs", "Edit", "", "", ""],
+"walkin":	["walkin","Walkin",":k:case_source:walkin:1",  "g","", "micon cg hh","directions_walk","Walkin Activity",      "activity_btns","activity_vw_id_tabs","Walk In", "phone", "reporter_phone", ""],
+"call":	["call","Call",":k:case_source:call:1",          "","/helpline/images/bxs-phone-call.png","g","call","Call Activity","cti_btns","activity_vw_id_tabs","Call", 
 "phone", "reporter_phone", ""],
-"sms":["sms","SMS",":k:case_source:sms:1",              "","/helpline/images/sms.png","g","sms","SMS Activity",            "ati_btns","activity_vw_id_tabs_message","SMS Chat", "phone", "reporter_phone", ""],
-"email":["email","Email",":k:case_source:email:1",      "","/helpline/images/envelope-fill.png","g","chat","Email Activity","ati_btns","activity_vw_id_tabs_message","Email", "email", "reporter_email", ""],
+"sms":	["sms","SMS",":k:case_source:sms:1",              "","/helpline/images/sms.png","g","sms","SMS Activity",            "ati_btns","activity_vw_id_tabs_message","SMS Chat", "phone", "reporter_phone", ""],
+"email":	["email","Email",":k:case_source:email:1",      "","/helpline/images/envelope-fill.png","g","chat","Email Activity","ati_btns","activity_vw_id_tabs_message","Email", "email", "reporter_email", ""],
 "safepal":["safepal","SafePal","",                      "","/helpline/images/safepal_ico.png","g","chat","Safepal Activity","ati_btns","activity_vw_id_tabs_message","Safepal", "phone", "reporter_email", "safepal"],
 "whatsup":["whatsup","Whatsup","",                      "","/helpline/images/watsap_ico.png","g","chat","Whatup Activity", "ati_btns","activity_vw_id_tabs_message","Whatsapp Chat", "phone", "reporter_email", ""],
 "facebook":["facebook","Facebook","",                   "","/helpline/images/fb_ico.png","g","chat","Facebook Activity",   "ati_btns","activity_vw_id_tabs_message","Facebook Posts", "email", "reporter_email", ""],
 "twitter":["twitter","Twitter","",                      "","/helpline/images/twitter_ico.png","g","chat","Twitter Activity","ati_btns","activity_vw_id_tabs_message","Twitter Posts", "email", "reporter_email", ""],
-"chat":["chat","Chat","",                               "","/helpline/images/chat.png","g","chat","Chat Activity",         "ati_btns","activity_vw_id_tabs_message","Web Chat", "phone", "reporter_email", "safepal"],
-"escalation":["escalation","Escalation","",		"","","","","",							   "nti_btns","activity_vw_id_tabs_message","activities^case", "phone", "reporter_email", ""],
-"WENI":["WENI","Chatbot","",                      	"","/helpline/images/watsap_ico.png","g","chat","Chatbot Activity", "ati_btns","activity_vw_id_tabs_message","Chatbot Chat", "phone", "reporter_email", ""], 
+"chat":	["chat","Chat","",                               "","/helpline/images/chat.png","g","chat","Chat Activity",         "ati_btns","activity_vw_id_tabs_message","Web Chat", "phone", "reporter_email", "safepal"],
+"WENI":	["WENI","Chatbot","",                      	"","/helpline/images/watsap_ico.png","g","chat","Chatbot Activity", "ati_btns","activity_vw_id_tabs_message","Chatbot Chat", "phone", "reporter_email", ""], 
 "whatsApp":["whatsApp","WHATSAPP","",                   "","/helpline/images/watsap_ico.png","g","chat","WhatsApp Activity", "ati_btns","activity_vw_id_tabs_message","Whatsapp Chat", "phone", "reporter_phone", ""],
 "FACEBOOK":["FACEBOOK","FACEBOOK","",                   "","/helpline/images/watsap_ico.png","g","chat","Facebook Activity", "ati_btns","activity_vw_id_tabs_message","Facebook Chat", "email", "reporter_email", ""], 
 "TWITTER":["TWITTER","TWITTER","",                      "","/helpline/images/watsap_ico.png","g","chat","Twitter Activity", "ati_btns","activity_vw_id_tabs_message","Twitter Chat", "email", "reporter_email", ""], 
 
+"escalation":["escalation","Escalation","",  "g","", "micon cg hh","","",      "activity_btns","activity_vw_id_tabs","Case Escalation", "phone", "reporter_phone", ""],
+"update":	["update","Case Update","",  		"g","", "micon cg hh","","",      "activity_btns","activity_vw_id_tabs","Case Update", "phone", "reporter_phone", ""],
+
 
 "webform":["webform","Webform",":k:case_source:webform:1",  "g","", "micon cg hh","chat","Webform Activity",      "activity_btns","activity_vw_id_tabs","Web Form", "reporter_phone", ""],
 
-"ceemis":["ceemis","CEEMIS",":k:case_source:ceemis:1",  "g","", "micon cg hh","chat","CMIS Activity",      "activity_btns","activity_vw_id_tabs","CMIS", "reporter_phone", ""],
+"ceemis":	["ceemis","CEEMIS",":k:case_source:ceemis:1",  "g","", "micon cg hh","chat","CMIS Activity",      "activity_btns","activity_vw_id_tabs","CMIS", "reporter_phone", ""],
 
 };
 
@@ -1098,18 +998,30 @@ te["dash_view"] = { c:
 
 te["dash"] = { c:
 [
-	{ div:[""], toolbar_default:[] },
-
-	{ div:["xx tt b20 gw  mtn1	"], c:
+	{ div:["","vb"], c:
 	[
-		{ s:["c x yy h2 b","OpenCHS"] },
+		{ div:["ma w19 t01"], c:
+		[
+			{ input:["g","","sbl_","1","radio","1"] },
+			{ input:["g","","sbr_","1","radio"] },
+			{ ac:["abs ao mt17 w15 sh__ bd gg","","_activity_vw_id","xx bd gg cw",""], c:
+			[
+				{ s:["c y","Walk In"] }, // todo : change to new activity to allow outboud calls and messages  new activiy| walkin_ico|call_ico|msg_ico
+				{ s:["d t03 h2 micon","directions_walk"] },  // center activity action btns here
+				{ div:["e"], c:[ { arg:["",".id","-1"] }, { arg:["","src","walkin"] }, { arg:["","src_address",""] } ] }
+			]},
+		]}
+	]},
+	{ div:["xx tt b20  mtn1	"], c:
+	[
+		{ s:["c xx y15 h3_ b","OpenCHS"] },
 		{ div:["e"] }
 	]},
-	{ div:["abs w13 h100 xx gw","vdf"], c: // filter params
+	{ div:["abs w12 h100 x15","vdf"], c: // filter params
 	[
-		{ div:["gw "], c:
+		{ div:[" "], c:
 		[
-			{ div:["ay","va"], ac:["","","_dd","x gw cb ba bd",""], c:
+			{ div:["ay","va"], ac:["","","_dd","x  cb ba bd",""], c:
 			[
 				{ s:["c l y","::dash_period:0:1"] },
 				{ div:["d w02 t04"], c:[ { div:["h02 w02 awb"] } ] },
@@ -1126,15 +1038,15 @@ te["dash"] = { c:
 			]},
 		]},
 		
-		{ div:["gw yy"], c:
+		{ div:[" yy"], c:
 		[
-			{ div:["ay","va"], ac:["","","_dd","x bd gw cb bd ba",""], c:
+			{ div:["ay","va"], ac:["","","_dd","x bd cb bd ba",""], c:
 			[
 				{ s:["c l y","::dash_gbv:1:1"] },
 				{ div:["d w02 t04"], c:[ { div:["h02 w02 awb"] } ] },
 				{ div:["e"] }
 			]},
-			{ div:["dd w13 y ba gw bd","vdd"], c:
+			{ div:["dd w13 y ba bd","vdd"], c:
 			[
 				{ uchk:["dash_gbv_r","%1","dash_gbv"] }
 			]},
@@ -1170,36 +1082,12 @@ te["sbl_case"] = { arg:["","_title","all_cases"] };
 te["user_cid"] = { arg:["user_cid","","%7"] }; 
 
 te["user_usn"] = { div:[], c:[ { s:["xx y cb b","%5"] }, { div:["e"] } ] }; 
-
-te["toolbar_default"] = { div:["ma w15 t01"], c:
-[
-	{ input:["g","","sbl_","1","radio","1"] },
-	{ input:["g","","sbr_","1","radio"] },
-	{ ac:["abs ao t15 w15","","_activity_vw_id","xx bd gg cw",""], c:
-	[
-		{ s:["c y","Walk In"] }, // todo : change to new activity to allow outboud calls and messages  new activiy| walkin_ico|call_ico|msg_ico
-		{ s:["d t03 h2 micon","directions_walk"] },  // center activity action btns here
-		{ div:["e"], c:[ { arg:["",".id","-1"] }, { arg:["","src","walkin"] }, { arg:["","src_address",""] } ] }
-	]},
-]};
 			
 te["main"] = { c: 
 [
 	{ div:[], c:
 	[
-		//{ div:["c "], s:["abs",""], c:
-		//[
-		//	{ a:["c aa x02 y02","","","/helpline/"], c:[ { img:["","",APP_LOGO, "44"] } ] },
-		//	{ div:["e"] }
-		//]},
-
-		//{ div:["d r50 w06 t01"], s:["abs w06 t15 zzz",""], c:
-		//[
-		//	{ input:["g","","rtab","0","radio"] },
-		//	{ ac:["ll t01 ay tab","","_mtabr","gw bd x y micon h2_ cb","account_circle"] }				
-		//]},
-		
-		{ div:["d w04_ r20 t01"], s:["abs w04_ t15 zzz",""], c:  // nb: onvw overlap with X
+		{ div:["d w04_ r20 t01"], s:["abs w04_ t20 zzz",""], c:  // nb: onvw overlap with X
 		[
 			{ div:["ay","va"], ac:["","","_dd"," bd cb",""], c:
 			[
@@ -1207,9 +1095,9 @@ te["main"] = { c:
 				{ s:["w04 y micon h2_ tc","account_circle"] },								
 				{ div:["e"], u:["user_cid","auth"] }
 			]},
-			{ div:["g w17 mln13 t zzz","vdd"], s:["xx yy gw ba",""], c:
+			{ div:["g w17 mln13 mt zzz gw ba sh__ bd","vdd"], s:["xx yy",""], c:
 			[	
-				{ div:[""], u:["user_usn","auth"] }, // 
+				{ div:[""], u:["user_usn","auth"] },
 				
 				{ p:["","agent_status"], agent_status:["aoffline","gd bd h01 w01","cd","Connecting ...","",""] },	
 
@@ -1221,18 +1109,27 @@ te["main"] = { c:
 								
 				{ p:["","joinq_status"] },
 				
-				{ div:["","va"], ac:["aa","myprofile-r_","_vp","xx y cb ",""], c:
+				{ div:["","va"], ac:["aa","myprofile-r_","_vp","xx y cb bd",""], c:
 				[
 					{ s:["","My Profile"] },
 					{ div:[] }
 				]},
 						
-				{ div:["","va"], ac:["aa","logout-","_u","xx y cb ","Logout"], c:[ { arg:["","logout","1"] } ] },
+				{ div:["","va"], ac:["aa","logout-","_u","xx y cb bd","Logout"], c:[ { arg:["","logout","1"] } ] },
 			]},	
 
 		]},
 		
-		{ div:["d w04_ t01 r10"], s:["abs w04_ t15 zzz",""], c:
+		{ div:["d w04_ t01 r10"], s:["abs w04_ t20 zzz",""], c:
+		[
+			{ input:["g","","rtab","0","radio"] },
+			{ ac:["ay tab","","_mtabr","bd cb",""], c:
+			[
+				{ s:["w04 y micon h2_ tc","schedule"] }				
+			]},
+		]},
+
+		{ div:["d w04_ t01 r10"], s:["abs w04_ t20 zzz",""], c:
 		[
 			{ input:["g","","rtab","1","radio"] },
 			{ ac:["ay tab","","_mtabr","bd cb",""], c:
@@ -1242,27 +1139,19 @@ te["main"] = { c:
 			]},
 		]},
 
-		{ div:["d w04_ t01 r10"], s:["abs w04_ t15 zzz",""], c:
+		{ div:["d w04_ t01 r10"], s:["abs w04_ t20 zzz",""], c:
 		[
-			{ input:["g","","rtab","0","radio"] },
+			{ input:["g","","rtab","2","radio"] },
 			{ ac:["ay tab","","_mtabr","bd cb",""], c:
 			[
-				// { p:["abs g","notif_count"], s:["ml2 x07 y02  h01_ tc gr cw bd16 s","0"] },
-				{ s:["w04 y micon h2_ tc","schedule"] }				
+				{ s:["w04 y micon h2_ tc","bubble_chart"] }				
 			]},
 		]},
-
-		//{ div:["d w06 t01"], s:["abs w06 t20 zzzzzz",""], c:
-		//[
-		//	{ input:["g","","rtab","2","radio"] },
-		//	{ ac:["ll ay tab","","_mtabr","gw bd x y micon h2_ cb","bubble_chart"] }
-		//]},
-				
 
 		{ div:["e"] }
 	]},
 	
-	{ div:["g","vb"] }, // toolbar_default:[] },
+	{ div:[] },
 
 	{ div:["g r05"], c:  // 
 	[
@@ -1273,27 +1162,34 @@ te["main"] = { c:
 				{ div:[], c:
 				[
 					{ input:["g","","ntabv","0","radio"] },
-					{ p:["tabv t70 gw","vt_activity"], u:["activity_lst","activities_ctx"] },
+					{ p:["tabv t70 gw","vt_activity"], c:
+					[
+						{ div:["x"], c:
+						[
+							{ div:["c","va"], ac:["","activity_lst-activities-vt","__u","xx yy cb b","Activities"] },
+							{ div:["e"] }
+						]},
+						{ u:["activity_lst","activities_ctx"] },
+					]}
 				]},
 				{ div:[], c:
 				[
 					{ input:["g","","ntabv","1","radio"] },
-					{ div:["tabv"], c:
+					{ div:["tabv t70 gw"], c:
 					[
-						{ div:["gw bb_ x t70"], c:
-                              [
-                                                        { ac:["c w03 ay","","","x07 y h2 cb",""],  c:[ { s:["micon","search"] } ] },
-                                                        { div:["c w21","txa"], c:[ { input:["w21 xx t08 b05 gw n","name_","","","text","","Enter Phone Number"] } ] },
-                                                        { ac:["d w03 ay","","_dial","x07 y h2 cb",""],  c:[ { s:["micon","call"] } ] },
-                                                        { div:["e"] },
+						{ div:["x"], c:
+						[
+							{ div:["c","va"], ac:["","activity_lst-activities-vt","__u","xx yy cb b","Notifications"] },
+							{ div:["e"] }
 						]},
 						{ p:["","call_sessions"] }, // el.p.p.p.f.c1.c1
+						{ u:["notification_lst","activities_notify_ctx"] }
 					]}
 				]},
 				{ div:[], c:
 				[
                          { input:["g","","ntabv","2","radio","1"] },
-                         { p:["tabv xx yy gw t70","vt_activity"], c:
+                         { p:["tabv t70 gw","vt_activity"], c:
 					[
 						
 					]}
@@ -1304,7 +1200,7 @@ te["main"] = { c:
 		{ div:["e"] } 
 	]},
 	
-	{ div:["h108 gb abs","vb"], s:["sb_",""], c: 
+	{ div:["h105 gb abs","vb"], s:["sb_",""], c: 
 	[
 		{ div:["gb mtn1"], c:[ { a:["aa","","","/helpline/"], c:[ { img:["","",APP_LOGO, "60"] } ] } ] },
 
@@ -1341,17 +1237,14 @@ te["main"] = { c:
 
 		// { sbl:["admin_","7","","contacts-contacts","import_contacts","Contacts","noop"] },
 	]},
-
+	
 	{ p:["abs zz y op_ga g","vp"], ev:["_uvpd"] }, // popup window	
 	
 	{ p:["abs zzzz y op_ga g","vip"], ev:["_uvpd"] }, // incoming call popup	
 
-	{ div:["ml6"], c: // 
+	{ div:["ml6 gw"], c:
 	[
-		{ div:[], c:[ { div:["d w28"], s:["abs w27 x y zzz",""], c:
-		[
-			 // notifications
-		]} ]},
+		{ div:[] }, // noop
 		{ div:[], c:[ { input:["g","","mtv","1","radio"] }, { p:["tabv gw bd8 mm","vfvwm"] } ] }, // on call & right sb vw
 		{ div:[], c:[ { input:["g","","mtv","2","radio","1"] }, { p:["tabv ","vftab"], u:["dash","dash"] } ] }, // wall board
 		{ div:[], c:[ { input:["g","","mtv","3","radio"] }, { p:["tabv","vfvwm"] } ] }, // cases
@@ -1362,7 +1255,6 @@ te["main"] = { c:
 		{ div:[], c:[ { input:["g","","mtv","8","radio"] }, { p:["tabv","vftab"] } ] }, // users
 		{ div:[], c:[ { input:["g","","mtv","9","radio"] }, { p:["tabv","vftab"] } ] }, // 
 		{ div:[], c:[ { input:["g","","mtv","10","radio"] }, { p:["tabv gw mm","vfvwm"], wallboard:[] } ] }, // wallboard
-
 		{ div:["g"], c:
 		[
 			{ iframe:["","",VA_AMI_HOST] },
@@ -1538,13 +1430,15 @@ function _mtabr ()
 	{
 		this.previousSibling.checked = false;
 		coll[2].style.display = "none";
-		coll[6].style.marginRight = "";	
+		// coll[6].style.marginRight = "";	
+		coll[6].className = "ml6 gw";
 		return
 	}
 	this.previousSibling.checked = true;
 	coll_[this.previousSibling.value].firstChild.checked=true;
 	coll[2].style.display = "block";
-	coll[6].style.marginRight = "327px";
+	// coll[6].style.marginRight = "327px";
+	coll[6].className = "mmr gw";
 }
 
 function rxmsg (ev)

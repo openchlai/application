@@ -625,8 +625,9 @@ function vdt (x,a)
 	return s;
 }
 
-function vu (r,a) // ":u:f:3:4:5:6"
+function vu (v,a,r) // ":u:f:3:4:5:6"
 {
+	console.log("[vu]"+v);
 	var f = 0;
 	if (a[2].length>0) f = window[a[2]] (r,a); 
 	if (a[2].length<1) f = (r[a[3]]*1)>(a[4]*1) ? 1 : 0;
@@ -634,52 +635,14 @@ function vu (r,a) // ":u:f:3:4:5:6"
 	return a[5+(f*1)];
 }
 
-function vel (r,a) // :v:table_name:col_name::enum:enum_col
+function venum (v,a) // ::yesno:25:2 
 {
-	// console.log ("vel: "+JSON.stringify (a))
-
-	var kk = ra[(a[2]+"_k")];
-	if (kk==undefined)
-	{
-		if (a.length<5)  return "";
-		return ra[a[4]][""][a[5]];
-	}
-	var k = kk[a[3]];
-	if (k==undefined) return "";
-	if (a[1]=="v") k = kk[a[3]][0];
-	var v = r[k];
-	// console.log (a[2]+":"+a[3]+" | "+JSON.stringify (r))
-	if (a.length<5) return v;
-	if (a[4]=="") 
-	{
-		if (a.length>7) v = a[7]+v; // prefix
-		var o = ra[a[5]];
-		if (o===undefined) return v;	
-		var v_ = o[v];
-		if (v_===undefined) return v;
-		return v_[a[6]];
-	};
-	if (a[4]=="d") // date
-	{
-		// console.log (a);
-		return  vdt (v,["","d",a[5],"0"," "]);
-	}
-	if (a[4]=="z")
-	{
-		if (v.length>0) return a[5];
-		return a[6];
-	}
-	return v;
-}
-
-function ve (r,a) // ::yesno:25:2 
-{
-	var v = r[a[3]];
 	var o = ra[a[2]];
 	if (o===undefined) return "!";	
 	var v_ = o[v];
 	if (v_===undefined) return v;
-	return v_[a[4]];
+	if (a[4]) return v_[a[4]];
+	return v_[a[3]]
 }
 
 function valf (r,v)
@@ -687,38 +650,46 @@ function valf (r,v)
 	if (v.length<2 || !r) return v;
 	if (v.substr(0,1)=="%") return r[(1*v.substr(1))]; 
 	if (v.substr(0,1)!=":") return v;
+
 	var a = v.split (":");
+	var v = null;
 	
-	if (a[1]=="k") // return k value
+	if (a[1]=="k") 					// :k:users_k:usn:2:: // ::role:
 	{
 		if (!ra[a[2]]) return ""
 		if (!ra[a[2]][a[3]]) return ""; 
-		if (a.length==4) return ra[a[2]][a[3]]; // used by applyf
-		if (a.length==5 && a[4]=="p") return hmsp ([ra[a[2]][a[3]]], [,,,0,]);
-		if (a.length==5 && a[4]=="h") return hmsf ([ra[a[2]][a[3]]], ["","h","hms","0",""]);
-		if (a.length==5) return ra[a[2]][a[3]][a[4]]; 
-		if (a.length==6) 
-		{
-			var v_=  ra[a[2]][a[3]][r[a[5]]]; 
-			// console.log (" valf-k: "+JSON.stringify (ra[a[2]][a[3]])+" |"+r[a[5]]+" | "+v_)
-			if (v_==undefined) return "";
-			return v_;
-		}
-		return "";
+		v = ra[a[2]][a[3]]
+		if (Array.isArray(v)) v = v[a[4]];
+		a = a.splice (4); 		
 	} 
-	if (a[1]=="v") return vel (r,a);
-	if (a[1]=="V") return vel (r,a);
-	if (a[1]=="u") return vu (r,a)
-	if (a.length<4) return v;
-	if (r[a[3]]===undefined) return "?.";
-	if (a[1]=="f") return "" + ( (r[a[3]]*1).toFixed (a[2]*1) ); 
-	if (a[1]=="d") return vdt (r[a[3]],a);
-	if (a[1]=="h") return hmsf (r[a[3]],a);
-	if (a[1]=="t") return hmst (r[a[3]],a);
-	if (a[1]=="p") return hmsp (r[a[3]],a);
-	if (a[1]=="r") return hmsr (r[a[3]],a);
+	else if (a[1]=="v" || a[1]=="V") 		// :v:table_name:col_name::enum:enum_col
+	{ 
+		var kk = ra[(a[2]+"_k")];
+		if (kk==undefined) return "";
+		var k = kk[a[3]];
+		if (k==undefined) return "";
+		if (a[1]=="v") k = kk[a[3]][0];
+		v = r[k];
+		a = a.splice (3)
+	}
+	else
+	{
+		v = r[a[3]]
+	}
 
-	return ve (r,a);
+	if (v===undefined || v===null) { console.log("[err]"+JSON.stringify(a)); return "?."; }
+
+	if (a.length<4) return v;
+
+	if (a[1]=="f") return "" +  ( (v*1).toFixed (a[2]*1) ); 
+	if (a[1]=="h") return hmsf  (v,a);
+	if (a[1]=="t") return hmst  (v,a);
+	if (a[1]=="p") return hmsp  (v,a);
+	if (a[1]=="r") return hmsr  (v,a);
+	if (a[1]=="d") return vdt   (v,a);
+	if (a[1]=="u") return vu    (v,a,r);
+	if (a[1]=="")  return venum (v,a);
+	return v;
 }
 
 function val (v, a, r, m, el, k, w)

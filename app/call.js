@@ -852,10 +852,10 @@ te["call_r_"] = { c:
 		
 		{ div:["c w15"], c:
                 [
-                        { s:[" tt b05 h01_  xx",":v:calls:hangup_reason::hangup_reason:1"] },
+                        { s:[" tt b05 h01_  xx",":v:calls:hangup_reason::hangup_reason::1"] },
                 ]},
 
-		{ div:["c w15 t"], u:[":u::30:0:noop:call_r_qa_score"] },
+		{ div:["c w15 t"] }, //, u:[":u::30:0:noop:call_r_qa_score"] },
 		
 		{ div:["c w20 t"], s:["xx t b05 h01_",":v:calls:dispositions"] },
 		

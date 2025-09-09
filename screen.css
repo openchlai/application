@@ -339,7 +339,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 :checked + .optg { background-color:green;  color:white; }
 :checked + .opti { background-color:black; border:1px solid black; color:white; }
 :checked + .opti a { background-color:black; color:white; }
-:checked + .opti_ a { background-color:#e1e2e3; color:black; border:1px solid orange;  }
+:checked + .opti_ a { background-color:rgba(255, 166, 0, 0.165); color:black; border:1px solid orange;  }
 :checked + .opty .cb { background-color:dodgerblue; color:white; }
 
 :checked + .lr { background-color:#dadcdf; }
@@ -611,11 +611,12 @@ ul:hover {background-color:#cee8f0; color:black;}
 .h60 {height:600px;}
 .h80 {height:800px;}
 .h100 {height:1000px;}
-.h108 {height:1060px;}
+.h105 {height:1078px;}
 .hp100 {height:100%;}
 
 .ma {margin:0 auto;}
 .mm {margin:5px; }
+.mmr {margin-top:5px; margin-bottom:5px; margin-left:65px; margin-right:330px; border-radius:8px; background-color:#ebedf0; }
 .mmb { margin-left:5px; margin-right:10px; margin-top:5px; margin-bottom:15px; }
 .mtag { margin-left:3px; margin-top:3px; }
 .ml {margin-left:5px;}
@@ -696,6 +697,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 .mt {margin-top:5px;}
 .mt10 {margin-top:10px;}
 .mt15 {margin-top:15px;}
+.mt17 {margin-top:18px;}
 .mt20 {margin-top:20px;}
 .mtn1 {margin-top:-1px;}
 .mtn2 {margin-top:-2px;}
@@ -714,8 +716,6 @@ ul:hover {background-color:#cee8f0; color:black;}
 .mt5 {margin-top:5px;}
 .mt10 {margin-top:10px;}
 .mt50 {margin-top:50px;}
-
-.mtoolbar { margin-top:-45px; margin-left:60px; margin-right:290px; border-right:5px solid whitesmoke;}
 
 .bd32 { border-radius:32px; }
 .bd16 { border-radius:16px; }
@@ -879,32 +879,16 @@ a:hover .aw {color:white;}
 .awR:before {border-left-color:dimgray; border-width:6px; }
 .awR:after {border-left-color:white; border-width:4px; margin-left:0px; margin-top:1px;}
 
-.ve_ { display:none;}
-#ve .ve_ { display:block; }
- 
-.neg .gr { color:red; }
-.neg .gg { color:green;}
-.neg .go { color:orange; }
-
-.rev .c { float:right; text-align:right; padding:5px 10px; background-color:#dadae0; border-radius:5px; } /*x y mh02 bd*/
 
 .content-shown_ { display:none;}
 .content-shown .content-shown_ { display:block;}
 .content-shown .content-hidden_ { display:none;}
-
-.content-showng_ { display:none;}
-.content-showng .content-showng_ { display:block;}
-.content-showng .content-hiddeng_ { display:none;}
-
-
-
 
 .clk_client .clk { display:none; }
 
 .call_ringing_ { display:none; }
 .call_connected_ { display:none; }
 .call_ended_ { display:none; }
-
 .call_ringing .call_ringing_ { display:block; }
 .call_connected .call_connected_ { display:block; }
 .call_connected .call_connected__ { display:none; }

@@ -1305,7 +1305,7 @@ te["case_vw_sub_justice"] = { div:["tt"], c:
 
 te["case_vw_col_1"] = { c:
 [
-	{ div:[""], c:
+	{ div:["t07"], c:
 	[
 		{ div:[], c:
 		[
@@ -1405,15 +1405,15 @@ te["case_vw_col_0"] = { c:
 
 te["case_vw_id"] = { div:["section-to-print ","ve"], c: 
 [	
-	{ div:["x15 t","vb"], c:
+	{ div:["xx","vb"], c:
 	[		
-		{ div:["c x t"], ac:["ay","","_activity_uvw","h2 x y bd16 gb cw micon","arrow_back"] },	
-		{ s:["c x08 tt h2 b",CASE_ID_PREFIX] },
-		{ s:["c tt h2 b","%0"] },
+		//{ div:["c x t"], ac:["ay","","_activity_uvw","h2 x y bd16 gb cw micon","arrow_back"] },	
+		{ s:["c x t h2 b",CASE_ID_PREFIX] },
+		{ s:["c t h2 b","%0"] },
 		
 		// todo: close btn - floating
 
-		{ div:["d t mr12","va"], c:
+		{ div:["d r10","va"], c:
 		[
 			{ ac:["ao","","_print","x08 y h02 n gws_ cb",""], c:
 			[
@@ -1423,7 +1423,7 @@ te["case_vw_id"] = { div:["section-to-print ","ve"], c:
 			]}
 		]},
 				
-		{ div:["d t r10","va"], c:
+		{ div:["d r10","va"], c:
 		[
 			{ div:["w13","va"], s:["",""], c:
 			[
@@ -1450,7 +1450,7 @@ te["case_vw_id"] = { div:["section-to-print ","ve"], c:
 			]}
 		]},
 
-		{ div:["d t r10","va"],  c:
+		{ div:["d r10","va"],  c:
 		[ 
 			{ input:["g","","case_vw_id_t","1","radio"] },
 			{ ac:["ao tab","","_tab","x08 y h02 n gws_ cb",""], c:
@@ -1461,7 +1461,7 @@ te["case_vw_id"] = { div:["section-to-print ","ve"], c:
 			]}
 		]},
 
-		{ div:["d t r10","va"], c:
+		{ div:["d r10","va"], c:
 		[ 
 			{ input:["g","","case_vw_id_t","0","radio","1"] },
 			{ ac:["ao tab","","_tab","x08 y gws_ h02 n cb",""], c:
@@ -1475,14 +1475,14 @@ te["case_vw_id"] = { div:["section-to-print ","ve"], c:
 		{ div:["e"] }
 	]},
 
-	{ div:["x25 tt"], c:[ { p:["c w100","nb"], c:[ { u:["nb","cases_nb"] }, { u:["nb","newcase_nb"] } ] }, { div:["e"] } ] },
+	{ div:["x20 tt"], c:[ { p:["c w100","nb"], c:[ { u:["nb","cases_nb"] }, { u:["nb","newcase_nb"] } ] }, { div:["e"] } ] },
 		
 	{ div:[], c:
 	[
 		{ div:[], c:
 		[
 			{ input:["g","","case_vw_id_v","0","radio","1"] },
-			{ div:["tabv w130_ x20 b30","ve"], c:
+			{ div:["tabv w130_ x15 b30","ve"], c:
 			[
 				{ div:["c w40_ r50"], case_vw_col_0:[] },
 				{ div:["c w75_"], case_vw_col_1:[] },
@@ -2127,12 +2127,12 @@ te["cases"] = { c:
 		{ div:[], c:
 		[	
 			{ input:["g","","case_vw_vt","0","radio","1"] }, 	// list
-			{ p:["tabv x20 yy gw","vftab"], case_main:[] } 
+			{ p:["tabv x20 yy","vftab"], case_main:[] } 
 		]},
 		{ div:[], c:
 		[	
 			{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
-			{ p:["tabv gw yy bd8 mm ","vfvw"] }
+			{ p:["tabv yy bd8 mm ","vfvw"] }
 		]}
 	]}
 ]};
