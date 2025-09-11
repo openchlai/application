@@ -145,15 +145,15 @@ te["case_vw_reporter_uuid_r"] = { div:["mb","va"], case_vw_reporter_r_:["xx y bd
 
 te["case_vw_reporter_uuid_"] = { c:
 [
-	{ div:["t"], c:
+	{ div:[], c:
 	[
-		{ s:["xx yy b","Followup By"] },
+		{ s:["xx y b","Followup By"] },
 		{ div:["e"] }
 	]},
 	{ u:["case_vw_reporter_uuid_r"] },
 ]};
 
-te["case_vw_reporter_uuid"] = { u:[":u::0:0:noop:case_vw_reporter_uuid_"] };
+te["case_vw_reporter_uuid"] = { u:[":v:reporters:contact_id:u::0:0:noop:case_vw_reporter_uuid_"] };
 
 te["case_reporter_vw_id_"] = { c:
 [

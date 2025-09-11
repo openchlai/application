@@ -627,11 +627,10 @@ function vdt (x,a)
 
 function vu (v,a,r) // ":u:f:3:4:5:6"
 {
-	console.log("[vu]"+v);
 	var f = 0;
 	if (a[2].length>0) f = window[a[2]] (r,a); 
-	if (a[2].length<1) f = (r[a[3]]*1)>(a[4]*1) ? 1 : 0;
-	//console.log ("[VU] "+r[a[3]]+"|"+f+"|"+JSON.stringify (a));
+	if (a[2].length<1) f = (v*1)>(a[4]*1) ? 1 : 0;
+	console.log("[vu]"+JSON.stringify(a)+"|"+v+"=>"+f);
 	return a[5+(f*1)];
 }
 
