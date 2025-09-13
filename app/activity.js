@@ -924,7 +924,7 @@ te["activity_vw_id_tabs_"] = { c:
 	{ div:[], c:
 	[	
 		{ input:["g","","activity_vw_vt","0","radio",null] }, 		// case_form | case_vw_id
-		{ p:["tabv l r20","vf"], u:["case_vw_id","cases"] } 
+		{ p:["tabv l r20g","vf"], u:["case_vw_id","cases"] } 
 	]},
 	{ div:[], c:
 	[	
@@ -1311,7 +1311,7 @@ function activity_reporter_ufn (el, u, a, r, m)
 		t = "case_vw_id"
 	}
 	var coll = __(el,"vf").parentNode.nextSibling.childNodes
-	// coll[0].parentNode.parentNode.previousSibling.firstChild.childNodes[5].firstChild.checked = true; // switch tab-btn
+	coll[0].parentNode.parentNode.previousSibling.childNodes[4].firstChild.childNodes[1].firstChild.checked = true; // switch tab-btn
 	coll[0].checked = true; // switch tab
 	coll[1].innerHTML = "";
 	nd (coll[1], te[t], [], r, [0]);
@@ -1438,7 +1438,7 @@ function _activity_vw_id (ev)
 	coll[0].parentNode.parentNode.previousSibling.checked = true;
 	coll[0].checked = true;
 	coll[1].innerHTML = "";
-	nd (coll[1], te["activity_vw_id"], ["","1","","noop"], r_, [4]);	
+	nd (coll[1], te["activity_vw_id"], ["1","","","noop"], r_, [4]);	
 	url (coll[1].lastChild, u[0], u[1], s);
 
 	boo (ev)
