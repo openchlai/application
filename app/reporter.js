@@ -57,7 +57,7 @@ te["case_form_reporter_"] = { c:
 [
 	{ div:["t"], c:
 	[
-		{ s:["xx yy b",null] },
+		{ s:["xx yy cd",null] },
 		{ div:["e"] }
 	]},
 	{ div:["","va"], u:[null] },
@@ -141,13 +141,13 @@ te["case_vw_reporter_r_"] = {  c:
 
 te["case_vw_reporter_r"] = { div:["mb","va"], case_vw_reporter_r_:["xx y bd cb gws_"] };
 
-te["case_vw_reporter_uuid_r"] = { div:["mb","va"], case_vw_reporter_r_:["xx y bd cb gbn"] };
+te["case_vw_reporter_uuid_r"] = { div:["mb1","va"], case_vw_reporter_r_:["xx y bd cb gbn"] };
 
 te["case_vw_reporter_uuid_"] = { c:
 [
 	{ div:[], c:
 	[
-		{ s:["xx y b","Followup By"] },
+		{ s:["xx y cd","Followup By"] },
 		{ div:["e"] }
 	]},
 	{ u:["case_vw_reporter_uuid_r"] },
