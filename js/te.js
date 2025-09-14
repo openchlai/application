@@ -1303,14 +1303,14 @@ function uvpr (el, u, a, r, m) // uvp return
 	el = elvp;
 	elvp = null;
 	if (u_.length>2 && u_[2].length>0) el = __(el, u_[2]); 	// ascend
-	if (u_.length>3 && u_[3].length>0) el = _(el, u_[3]); 	// descend
-	if (u_.length>4 && u_[4]!="!") el.innerHTML = "";
-        if (u_.length>4 && u_[4]=="!" && el.childNodes.length>0)
-        {
-                var el_ = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
-                el.insertBefore (el_, el.firstChild);
-                el = el_;
-        }
+	if (u_.length>3 && u_[3].length>0) el = _(el, u_[3]); 		// descend
+	if (u_.length>4 && u_[4]=="@") el.innerHTML = "";
+	if (u_.length>4 && u_[4]=="!" && el.childNodes.length>0)
+	{
+		var el_ = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
+		el.insertBefore (el_, el.firstChild);
+		el = el_;
+	}
 	nd (el, te[u_[0]], [], r, [0]);
 }
 

@@ -772,6 +772,8 @@ ul:hover {background-color:#cee8f0; color:black;}
 .notice {padding:5px 8px; background-color:lightyellow; color:darkorange; border-left:2px solid darkorange; box-shadow:1px 1px 1px linen; margin-right:5px; margin-bottom:5px; float:left; }
 .info {padding:5px 8px; background-color:honeydew; color:green; border-left: 2px solid green; box-shadow:1px 1px 4px azure; margin-right:5px; margin-bottom:5px; float:left; }
 
+._ba_ .gww_ { border:1px solid #afb1b4; }
+
 /* .savn .navl {display:block;} */
 .savn .savl {display:block;}
 .savn .btn {display:none;}

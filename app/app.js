@@ -823,16 +823,16 @@ te["main"] = { c:
 
 	{ div:["ml6"], c:
 	[
-		{ div:[], c:[ { input:["g","","mtv","1","radio","1"] }, { p:["tabv ","vftab"], activities:[] } ] }, // dash aka realtime-activities
-		{ div:[], c:[ { input:["g","","mtv","0","radio"] }, { p:["tabv ","vftab"] } ] }, // view historical activities (sbr)
-		{ div:[], c:[ { input:["g","","mtv","2","radio"] }, { p:["tabv","vfvwm"] } ] }, // cases
-		{ div:[], c:[ { input:["g","","mtv","3","radio"] }, { p:["tabv","vftab"] } ] }, // calls
-		{ div:[], c:[ { input:["g","","mtv","4","radio"] }, { p:["tabv","vftab"] } ] }, // text (non-call) channels
-		{ div:[], c:[ { input:["g","","mtv","5","radio"] }, { p:["tabv","vftab"] } ] }, // qa
-		{ div:[], c:[ { input:["g","","mtv","6","radio"] }, { p:["tabv","vftab"] } ] }, // categories
-		{ div:[], c:[ { input:["g","","mtv","7","radio"] }, { p:["tabv","vftab"] } ] }, // users
-		{ div:[], c:[ { input:["g","","mtv","8","radio"] }, { p:["tabv","vftab"] } ] }, // contacts
-		{ div:[], c:[ { input:["g","","mtv","9","radio"] }, { p:["tabv gw mm","vfvwm"], wallboard:[] } ] }, // wallboard
+		{ div:[], c:[ { input:["g","","mtv","1","radio","1"] }, { form:["tabv ","vftab"], activities:[] } ] }, // dash aka realtime-activities
+		{ div:[], c:[ { input:["g","","mtv","0","radio"] }, { form:["tabv ","vftab"] } ] }, // view historical activities (sbr)
+		{ div:[], c:[ { input:["g","","mtv","2","radio"] }, { form:["tabv","vfvwm"] } ] }, // cases
+		{ div:[], c:[ { input:["g","","mtv","3","radio"] }, { form:["tabv","vftab"] } ] }, // calls
+		{ div:[], c:[ { input:["g","","mtv","4","radio"] }, { form:["tabv","vftab"] } ] }, // text (non-call) channels
+		{ div:[], c:[ { input:["g","","mtv","5","radio"] }, { form:["tabv","vftab"] } ] }, // qa
+		{ div:[], c:[ { input:["g","","mtv","6","radio"] }, { form:["tabv","vftab"] } ] }, // categories
+		{ div:[], c:[ { input:["g","","mtv","7","radio"] }, { form:["tabv","vftab"] } ] }, // users
+		{ div:[], c:[ { input:["g","","mtv","8","radio"] }, { form:["tabv","vftab"] } ] }, // contacts
+		{ div:[], c:[ { input:["g","","mtv","9","radio"] }, { form:["tabv gw mm","vfvwm"], wallboard:[] } ] }, // wallboard
 		{ div:["g"], c:
 		[
 			{ iframe:["","",VA_AMI_HOST] },

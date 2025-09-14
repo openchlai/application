@@ -55,7 +55,7 @@ te["case_history_r"] = { div:["bt_"], c:
 		{ s:["c w14 x y",":d:dmyhnr:1: "] },
 		{ s:["c w08 x y","%2"] },
 		{ s:["c w13 x y",":v:case_activities:activity::case_activity:1"] },
-		{ s:["c x t w50",":v:case_activities:detail"] },
+		{ s:["c x t w40",":v:case_activities:detail"] },
 		{ s:["c x t w08",":v:case_activities:priority::case_priority:2"] },
 		{ s:["c x t w08",":v:case_activities:status::case_status:1"] },
 		{ s:["c l t cd",":u::12:0::Escalated to"] },

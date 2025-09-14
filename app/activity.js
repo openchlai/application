@@ -610,10 +610,18 @@ te["activity_disposition_rv_case"] = { c:
 [
 	{ s:["c l t",CASE_ID_PREFIX] },
 	{ s:["c x t",":v:dispositions:case_id"] },
-	{ div:["c l15 y02"], uval:["",":v:dispositions:case_category"] },
+	{ div:["c x y02"], uval:["",":v:dispositions:case_category"] },
 	// { s:["c x20 t cd",":v:dispositions:case_priority::case_priority:2"] },
 	// { s:["c t cd",":v:dispositions:case_status::case_status:1"] },
 	// { div:["e"] }
+]};
+
+te["activity_disposition_rv_reporter"] = { c:
+[
+	{ div:["c x y gws_ bd"], s:["",":v:dispositions:reporter_fullname"] },
+	{ div:["c x t"], uval:["",":v:dispositions:reporter_sex"] },
+	{ div:["c x t"], uval:["",":v:dispositions:reporter_age_group"] },	
+	{ s:["c x t cd s","|"] },
 ]};
 
 te["activity_disposition_r_"] = { c:
@@ -624,20 +632,12 @@ te["activity_disposition_r_"] = { c:
 		{ div:[], c:
 		[
 			{ div:["c x t"], s:[null,""], uval:["",":v:dispositions:disposition"] },	
-			{ u:[":u::57:0:noop:activity_disposition_rv_case"] },
+			{ u:[":v:dispositions:case_id:u:::0:noop:activity_disposition_rv_case"] },
 			{ div:["e"] }	
 		]},
 		{ div:[null], c:
 		[
-			//{ s:["g",null] },
-			{ div:["c x y gws_ bd"], s:["",":v:dispositions:reporter_fullname"] },
-			{ div:["c x t"], uval:["",":v:dispositions:reporter_sex"] },
-			{ div:["c x t"], uval:["",":v:dispositions:reporter_age_group"] },
-		//	{ div:["e"] }	
-		//]},
-		//{ div:["cd"], c:
-		//[
-			{ s:["c x t cd s","|"] },
+			{ u:[":v:dispositions:reporter_contact_id:u:::0:noop:activity_disposition_rv_reporter"] },
 			{ s:["c x y cd s",":v:dispositions:created_by"] },
 			{ s:["c x y cd s",":r::1:: : ago:: : ago:"] },
 			{ arg:["tm","","%1"] },
@@ -924,7 +924,7 @@ te["activity_vw_id_tabs_"] = { c:
 	{ div:[], c:
 	[	
 		{ input:["g","","activity_vw_vt","0","radio",null] }, 		// case_form | case_vw_id
-		{ p:["tabv l r20g","vf"], u:["case_vw_id","cases"] } 
+		{ p:["tabv l r20","vf"], u:["case_vw_id","cases"] } 
 	]},
 	{ div:[], c:
 	[	
@@ -982,14 +982,15 @@ te["activity_vw_id"] = { c:
 			]}
 		]},
 
-		{ div:["d w50 t01 casevwmenu"], s:["abs zzzz w50 gw",""], c:
+		{ div:["d w50 t casevwmenu"], s:["abs zzzz w50 gw",""], c:
 		[
 			{ div:["d r10"], c:
 			[
 				{ input:["g","","activity_vw_id_t_","2","radio",null] },
-				{ ac:["ao tab y","","_tab","xx y gws_ bdr cb",""], c:
+				{ ac:["ao tab y","","_tab"," y bt bb br bdr cb",""], c:
 				[
-					{ s:["c h2 micon","chat"] },
+					{ s:["c ll h3_ micon","chat"] },
+					{ s:["c l r10 s","Chat"] },
 					{ div:["e"] }
 				]}
 			]},
@@ -1007,9 +1008,10 @@ te["activity_vw_id"] = { c:
 			{ div:["d"], c:
 			[
 				{ input:["g","","activity_vw_id_t_","1","radio",null] }, 
-				{ ac:["ao tab y","","_tab","xx y gws_ cb",""], c:
+				{ ac:["ao tab y","","_tab"," y bt bb cb",""], c:
 				[
-					{ s:["c h2 micon","wysiwyg"] },
+					{ s:["c ll h3_ micon","wysiwyg"] },
+					{ s:["c l r10 s","Detail"] },
 					{ div:["e"] }
 				]}
 			]},
@@ -1017,9 +1019,10 @@ te["activity_vw_id"] = { c:
 			{ div:["d"], c:
 			[
 				{ input:["g","","activity_vw_id_t_","0","radio",null] }, // [0,0] | [1]
-				{ ac:["ao tab y","","_tab","xx y gws_ bdl cb",""], c:
+				{ ac:["ao tab y","","_tab","y bl bt bb bdl cb",""], c:
 				[
-					{ s:["c h2 micon","list"] },
+					{ s:["c ll h3_ micon","list"] },
+					{ s:["c l r10 s","List"] },
 					{ div:["e"] }
 				]}
 			]},
@@ -1262,9 +1265,10 @@ function _msg (ev)
 
 function activity_case_ufn (el, u, a, r, m)
 {
-	var coll = __(el,"vf").parentNode.previousSibling.childNodes
-	coll[0].parentNode.parentNode.previousSibling.firstChild.childNodes[6].firstChild.checked = true; // switch tab-btn
+	var el_ = __(el,"vf");
+	var coll = el_.parentNode.previousSibling.childNodes
 	coll[0].checked = true; // switch tab
+	el_.innerHTML = ""; // todo: reload case_vw
 	var p = _(coll[1],"vdisp"); // load disposition
 	if (!p)
 	{
@@ -1283,6 +1287,7 @@ function activity_case_ufn (el, u, a, r, m)
 	var el_ = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
 	nd (el_, te["activity_disposition_r_case_new"], [], r, [0]);
 	p.insertBefore (el_, p.firstChild);
+	coll[0].parentNode.parentNode.previousSibling.childNodes[4].firstChild.childNodes[2].firstChild.checked = true; // switch tab-btn
 }
 
 function activity_disposition_ufn (el, u, a, r, m)
@@ -1340,13 +1345,6 @@ function activity_notify_ufn (el, u, a, r, m)
 	coll[6].childNodes[1].childNodes[1].innerHTML = "";
 	nd (coll[6].childNodes[1].childNodes[1], te["activity_vw_id"], ["","1","","content-shown","noop"], r, [5]);	
 	nd (coll[6].childNodes[1].childNodes[1].lastChild, te["activity_vw_id_tabs_notify"], [], r, [0]);	
-}
-
-function _activity_uvw (ev)
-{
-	var coll = __(this,"vf").parentNode.previousSibling.childNodes
-	coll[0].parentNode.parentNode.previousSibling.firstChild.childNodes[6].firstChild.checked = true; // switch tab-btn
-	coll[0].checked = true; // switch tab
 }
 
 function _activity_contact_del ()
