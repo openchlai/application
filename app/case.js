@@ -972,8 +972,8 @@ te["case_form_col_0"] = {  c:
 [
 	{ div:["t",""], c:
 	[
-		{ u:["case_form_reporter","reporters"] }, 	// reporter_id
 		{ u:[null,"reporters_uuid"] }, 			// caller (reporter_uuid_id)
+		{ u:["case_form_reporter","reporters"] }, 	// reporter_id
 	]},
 	
 	{ p:["t15","clients_case"], c:
@@ -1063,18 +1063,31 @@ te["case_form_col_0"] = {  c:
 
 te["case_form_"] = { div:["","ve"], c: // new case 
 [		
-	{ div:["x20 t15","va"], c:
+	{ div:["xx t15 h03 ","va"], c:
 	[
-		{ div:["c x t02"], ac:["",null,null,"h2 x y bd16 gb cw micon","arrow_back"], c:
+		{ div:["c l is_vw_"], ac:["ay","vf","_uvw","h2 x y bd16 gb cw micon","arrow_back"] },
+		{ s:["c xx y n b",CASE_ID_PREFIX] },
+		{ s:["c y n b",null] },
+
+		{ div:["d t01 w04 ll r05 is_activity_"], s:["w04 gw abs zzzz",""], c:
 		[
-			{ div:["e"], u:["case_reporter_uuid_id_arg","reporters_uuid"] }
-		]}, 	
-		{ s:["c x08 tt h2 b",CASE_ID_PREFIX] },
-		{ s:["c tt h2 b w40",null] },
+			{ ac:["ay","","_uvw","cb bd y01",""], c:
+			[
+				{ s:["tc h b","&Cross;"] },
+				// { s:["d x y s","Close"] },
+				{ div:["e"] }
+			]}
+		]},
+
+		{ div:["d w40 t01 casevwmenu"], s:["abs zzzz w40 h04 gw",""], c:
+		[
+			{ div:["e"] }
+		]},
+
 		{ div:["e"] }
 	]},
 	
-	{ div:["x20 t15"], c:[ { p:["c w100","nb"], c:[ { u:["nb","cases_nb"] }, { u:["nb","newcase_nb"] } ] }, { div:["e"] } ] },
+	{ div:["x20 t"], c:[ { p:["c w100","nb"], c:[ { u:["nb","cases_nb"] }, { u:["nb","newcase_nb"] } ] }, { div:["e"] } ] },
 					
 	{ div:["x20 w130_"], c:
 	[
@@ -1104,11 +1117,9 @@ te["case_form_"] = { div:["","ve"], c: // new case
 	]}
 ]};
 
-// case_vw_id-reporters^uuid-vf,"_u"
+te["case_ed"] = { case_form_:[":v:cases:id", "case_form_reporter_followup", "case_ed-cases","Update", "case_vw_id-reporters^uuid-vf","_u", "%0", DISPOSITION_ID_CASE_EDIT] };
 
-te["case_ed"] = { case_form_:["","_activity_uvw",":v:cases:id", "case_form_reporter_followup", "case_ed-cases","Update", "case_vw_id-reporters^uuid-vf","_u", "%0", DISPOSITION_ID_CASE_EDIT] };
-
-te["case_new"] = { case_form_:["","_activity_uvw","NEW CASE", "case_form_reporter_new_case", "case_new-cases","Create", "","_activity_uvw", "", DISPOSITION_ID_NEW_CASE] };
+te["case_new"] = { case_form_:["NEW CASE", "case_form_reporter_new_case", "case_new-cases","Create", "","_uvw", "", DISPOSITION_ID_NEW_CASE] };
 
 te["case_update"] = { div:["w65 ma sh__ gw_ bd8 "], c:
 [
@@ -1403,6 +1414,41 @@ te["case_vw_col_0"] = { c:
 	{ div:["x yy"], case_vw_val_cat:["Know About 116","",":v:cases:knowabout116"] }
 ]};
 
+te["case_vw_id_tabs"] = { c:
+[
+	{ div:[], c:
+	[
+		{ input:["g","","case_vw_id_v","0","radio","1"] },
+		{ div:["tabv w130_ x15 b30","ve"], c:
+		[
+			{ div:["c w35 r50"], case_vw_col_0:[] },
+			{ div:["c w55"], case_vw_col_1:[] },
+			{ p:["e","o"], c:[ { arg:["",".id","%0"] } ] } 
+		]}
+	]},
+	
+	{ div:[], c:
+	[
+		{ input:["g","","case_vw_id_v","1","radio"] },
+	 	{ div:["tabv x20","vs"], u:["case_history","case_activities_ctx"] }
+	]},
+	 	
+	{ div:["print-only"], c:
+	[ 
+		{ div:["page-break"] },
+		{ u:["case_reporter_vw_id_print","reporters"] },
+		{ u:["case_client_vw_id_print","clients"] },
+		{ u:["case_perpetrator_vw_id_print","perpetrators"] },
+		{ div:["x15","vs"], u:["case_history","case_activities_ctx"] }
+	]}	
+]};
+
+te["case_vw_id_ca"] = { div:["x20 yy gy mb2"], c:
+[
+	{ s:["x y h3 cr",":v:activities:src::case_src::1"] },
+	{ div:[], u:["call_activity_aub","case_activities_notify"] }
+]};
+
 te["case_vw_id_menu"] = { c:
 [
 	{ div:["d","va"], c:
@@ -1467,55 +1513,10 @@ te["case_vw_id_menu"] = { c:
 	{ div:["e"] }
 ]};
 
-te["case_vw_id_tabs"] = { c:
+te["case_vw_id"] = { c: 
 [
-	{ div:[], c:
-	[
-		{ input:["g","","case_vw_id_v","0","radio","1"] },
-		{ div:["tabv w130_ x15 b30","ve"], c:
-		[
-			{ div:["c w35 r50"], case_vw_col_0:[] },
-			{ div:["c w55"], case_vw_col_1:[] },
-			{ p:["e","o"], c:[ { arg:["",".id","%0"] } ] } 
-		]}
-	]},
-	
-	{ div:[], c:
-	[
-		{ input:["g","","case_vw_id_v","1","radio"] },
-	 	{ div:["tabv x20","vs"], u:["case_history","case_activities_ctx"] }
-	]},
-	 	
-	{ div:["print-only"], c:
-	[ 
-		{ div:["page-break"] },
-		{ u:["case_reporter_vw_id_print","reporters"] },
-		{ u:["case_client_vw_id_print","clients"] },
-		{ u:["case_perpetrator_vw_id_print","perpetrators"] },
-		{ div:["x15","vs"], u:["case_history","case_activities_ctx"] }
-	]}	
-]};
-
-te["case_vw_id"] = { div:["section-to-print ","ve"], c: 
-[	
-	{ div:["xx t20 h03","vb"], c:
-	[		
-		//{ div:["c x t"], ac:["ay","","_activity_uvw","h2 x y bd16 gb cw micon","arrow_back"] },	
-		{ s:["c xx y h2 b",CASE_ID_PREFIX] },
-		{ s:["c y h2 b","%0"] },
-		{ case_vw_id_menu:[] },
-		{ div:["e"] }
-	]},
-
-	{ div:["x20 tt"], c:[ { p:["c w100","nb"], c:[ { u:["nb","cases_nb"] }, { u:["nb","newcase_nb"] } ] }, { div:["e"] } ] },
-		
-	{ div:[], case_vw_id_tabs:[] }
-]};
-
-te["case_vw_id_activity"] = { div:["section-to-print ","ve"], c: 
-[	
-	{ div:["xx y15 h03","vb"], c:
-	[		
+	{ div:["xx y15 h03 is_activity_","vb"], c:
+	[	
 		{ s:["c xx y h2 b",CASE_ID_PREFIX] },
 		{ s:["c y h2 b","%0"] },
 		
@@ -1538,9 +1539,48 @@ te["case_vw_id_activity"] = { div:["section-to-print ","ve"], c:
 		{ div:["e"] }
 	]},
 
-	{ div:["x20 tt"], c:[ { p:["c w100","nb"], c:[ { u:["nb","cases_nb"] }, { u:["nb","newcase_nb"] } ] }, { div:["e"] } ] },
-		
+	{ div:["xx t20 b05 h03 is_vw_","vb"], c:
+	[		
+		{ div:["c l"], ac:["ay","vf","_uvw","h2 x y bd16 gb cw micon","arrow_back"] },	
+		{ s:["c xx y n b",CASE_ID_PREFIX] },
+		{ s:["c y n b","%0"] },
+		{ case_vw_id_menu:[] },
+		{ div:["e"] }
+	]},
+
+	{ div:["x20 tt"], c:
+	[ 
+		{ p:["c","nb"], c:[ { u:["nb","cases_nb"] } ] }, 
+		{ div:["e"] } 
+	]},	
+
+	{ u:["case_vw_id_ca","activities_notify"] },	
+
 	{ div:[], case_vw_id_tabs:[] }
+]};
+
+te["case_vw_id_activity"] = { c: 
+[
+	{ div:[], c:
+	[
+		{ div:["e"], c:[ { p:["g","o"], c:
+		[
+			{ arg:["","src",":v:reporters:src"] },
+			{ arg:["","src_uid",":v:reporters:src_uid"] },
+			{ arg:["","src_address",":v:reporters:src_address"] },
+			{ arg:["","src_uid2",":v:reporters:src_uid2"] },
+			// { arg:["","src_usr",":v:activities:src_usr"] },
+			{ arg:["","src_vector",":v:reporters:src_vector"] },
+			// { arg:["","src_callid",":v:activities:src_callid"] },
+			// { arg:["","src_ts",":v:activities:src_ts"] }
+		]} ]}
+	]},
+
+	{ div:["is_activity"], c:
+	[
+		{ input:["g","","case_activity_vw_vt","0","radio","1"] }, 	
+		{ div:["","vf"], u:["case_vw_id","cases"] }
+	]}
 ]};
 
 // ------------------------------------------------------------------------
@@ -1932,7 +1972,7 @@ te["case_footer"] = { div:["x gw ba"], c:
 te["case_r_"] = { c: 
 [
 	{ input:["g","","casevwr","%0","radio",null] },
-	{ ac:["tabh ay w300","case_vw_id_activity-reporters^none","_activity_postj",null,""], c:
+	{ ac:["tabh ay w300","case_vw_id_activity-reporters^none","_postj",null,""], c:
 	[
 		{ div:["c w07"], s:["tt b05 h01_  xx","%0"] },
 		{ div:["c w10"], s:["tt b05 h01_  xx","%2"] },
@@ -2077,30 +2117,6 @@ te["case_main"] = { c:
 			]}
 		]},
 
-		{ div:["c l40"], c: 
-		[
-			{ arg:["case_list-cases","","0"] },
-			{ input:["g","","cases_t_","0","radio","1"] },
-			{ li:["opto x bl bt bb gw s cb","case_list-cases"], ev:["_tab"], c:
-			[
-				{ s:["c l t h3_ micon","list"] },
-				{ div:["c xx y","","List"] }, 
-				{ div:["e"] }
-			]}
-		]},
-
-		{ div:["c"], c: 
-		[
-			{ arg:["case_rpt_vw-cases-@","","1,0"] },
-			{ input:["g","","cases_t_","1","radio"] },
-			{ li:["opto x ba gw s cb","case_rpt_main-r_"], ev:["_tab"], c:[ { div:[], c:
-			[
-				{ s:["c l t h3_ micon","bar_chart"] },
-				{ s:["c xx y","Reports"] }, 
-				{ div:["e"] }
-			]} ]}
-		]},
-
 		{ div:["c l40"], ac:["ay","case_f-cases_f","_vpf","x t01 bd_ cb s",""], c:
 		[ 
 			{ s:["c t04 h3_ micon","search"] },
@@ -2115,6 +2131,30 @@ te["case_main"] = { c:
 			{ div:["e"], arg:["","join","services,referals,clients,perpetrators"] }
 		]},
 		
+		{ div:["c l40"], c: 
+		[
+			{ arg:["case_list-cases","","0"] },
+			{ input:["g","","cases_t_","0","radio","1"] },
+			{ li:["opto x s cb","case_list-cases"], ev:["_tab"], c:
+			[
+				{ s:["c l t h3_ micon","list"] },
+				{ div:["c xx y","","List"] }, 
+				{ div:["e"] }
+			]}
+		]},
+
+		{ div:["c l40"], c: 
+		[
+			{ arg:["case_rpt_vw-cases-@","","1,0"] },
+			{ input:["g","","cases_t_","1","radio"] },
+			{ li:["opto x gw s cb","case_rpt_main-r_"], ev:["_tab"], c:[ { div:[], c:
+			[
+				{ s:["c l t h3_ micon","bar_chart"] },
+				{ s:["c xx y","Reports"] }, 
+				{ div:["e"] }
+			]} ]}
+		]},
+
 		{ div:["e"], c:[ { arg:["","","case_list-cases"] }, { arg:["","","0"] }, { arg:["","","100"] }, { arg:["","",""] } ] }
 	]},
 	{ div:["yy","vf"], c:[ { div:["","case_f-cases_f"], c: // ev:["_n_vpf"], c:
@@ -2138,37 +2178,15 @@ te["case_main"] = { c:
 	
 te["cases"] = { c:
 [
-	{ div:["g"], s:["",""], c:
-	[
-		{ div:[] },
-		{ div:[] },
-		{ div:[] },
-		{ div:[] },
-		{ div:[] },
-		{ div:[] },
-
-		{ div:["d ll "], c:
-		[
-			{ input:["g","","case_vw_id_t_","0","radio"] }, // [0,0] | [1]
-		]},
-		
-		{ div:[], c:
-		[
-			{ p:["g","o"], c:[ { arg:["","src","edit"] } ] } 
-		]}, 
+	{ div:[], c:
+	[	
+		{ input:["g","","case_vw_vt","0","radio","1"] }, 		// list
+		{ p:["tabv x20 yy gw bd8","vftab"], case_main:[] } 
 	]},
 	{ div:[], c:
-	[
-		{ div:[], c:
-		[	
-			{ input:["g","","case_vw_vt","0","radio","1"] }, 	// list
-			{ p:["tabv x20 yy gw bd8","vftab"], case_main:[] } 
-		]},
-		{ div:[], c:
-		[	
-			{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
-			{ p:["tabv bd8 mm gw","vfvw"] }
-		]}
+	[	
+		{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
+		{ p:["tabv bd8 mm gw","vfvw"] }
 	]}
 ]};
 
@@ -2188,7 +2206,7 @@ function case_client_passport_ufn (el, u, a, r, m)
 function case_vw_id_ufn (el, u, a, r, m)
 {
 	var p = __(el)
-	var coll = __(el,"vf").parentNode.parentNode.childNodes[1].childNodes;
+	var coll = __(el,"vf").parentNode.nextSibling.childNodes;
 	p.firstChild.checked = true;
 	coll[0].checked = true;
 	coll[1].innerHTML = "";

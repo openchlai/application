@@ -63,7 +63,7 @@ te["case_perpetrator_ed_sub_spouse"] = { div:["tt"], c:
 
 // ---- 
 
-te["case_perpetrator_ed_"] = { div:["w68 ma mb sh__ bd16 gw_ "], c:
+te["case_perpetrator_ed_"] = { div:["w68 ma mb sh__ bd8 gw_ "], c:
 [
 	{ div:["x15 tt"], c:
 	[

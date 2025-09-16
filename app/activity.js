@@ -984,10 +984,10 @@ te["activity_vw_id"] = { c:
 
 		{ div:["d w50 t casevwmenu"], s:["abs zzzz w50 gw",""], c:
 		[
-			{ div:["d r10"], c:
+			{ div:["d r10 g"], c:
 			[
 				{ input:["g","","activity_vw_id_t_","2","radio",null] },
-				{ ac:["ao tab y","","_tab"," y bt bb br bdr cb",""], c:
+				{ ac:["ao tab y","","_tab"," y bdr cb",""], c:
 				[
 					{ s:["c ll h3_ micon","chat"] },
 					{ s:["c l r10 s","Chat"] },
@@ -1005,10 +1005,10 @@ te["activity_vw_id"] = { c:
 			//	]}
 			//]},
 		
-			{ div:["d"], c:
+			{ div:["d g"], c:
 			[
 				{ input:["g","","activity_vw_id_t_","1","radio",null] }, 
-				{ ac:["ao tab y","","_tab"," y bt bb cb",""], c:
+				{ ac:["ao tabb y","","_tab"," y bt bb cb",""], c:
 				[
 					{ s:["c ll h3_ micon","wysiwyg"] },
 					{ s:["c l r10 s","Detail"] },
@@ -1016,10 +1016,10 @@ te["activity_vw_id"] = { c:
 				]}
 			]},
 
-			{ div:["d"], c:
+			{ div:["d g"], c:
 			[
 				{ input:["g","","activity_vw_id_t_","0","radio",null] }, // [0,0] | [1]
-				{ ac:["ao tab y","","_tab","y bl bt bb bdl cb",""], c:
+				{ ac:["ao tabb y","","_tab","y bl bt bb bdl cb",""], c:
 				[
 					{ s:["c ll h3_ micon","list"] },
 					{ s:["c l r10 s","List"] },
@@ -1027,10 +1027,10 @@ te["activity_vw_id"] = { c:
 				]}
 			]},
 
-			{ div:["d r30"], c:
+			{ div:["d r10"], c:
 			[
 				{ input:["g","","activity_vw_id_t_","0","radio"] },
-				{ ac:["ay tab t","activity_f-dispositions_f","_activity_vpf","x y bd8 cb",""], c: // contextual search: dispositions | messages
+				{ ac:["ay tabb t03","activity_f-dispositions_f","_activity_vpf","x y bd8 cb",""], c: // contextual search: dispositions | messages
 				[
 					{ s:["c h2 b micon","search"] },
 					{ div:["c x t01 s","","Search"] }, 
@@ -1261,21 +1261,23 @@ function _msg (ev)
 		return false;
 	}
 }
+
 // -------------------------------------------------------------
 
 function activity_case_ufn (el, u, a, r, m)
 {
-	var el_ = __(el,"vf");
-	var coll = el_.parentNode.previousSibling.childNodes
-	coll[0].checked = true; // switch tab
-	el_.innerHTML = ""; // todo: reload case_vw
-	var p = _(coll[1],"vdisp"); // load disposition
-	if (!p)
+	var kk = ra["dispositions_k"];
+	el_ = __(el,"vf")
+	el_.innerHTML = "";
+	nd (el_, te["case_vw_id"], [], ra["cases"][0], [0]);
+	if (r[kk["src"][0]]=="escalation" || r[kk["src"][0]]=="update")  return;
+	if (el_.previousSibling.name=="case_activity_vw_vt")
 	{
 		var a={};
 		var b={};
+		var coll = __(el_,"vfvw").parentNode.previousSibling.childNodes
+		coll[0].checked = true; // switch tab
 		argv(coll[1].childNodes[2].firstChild.childNodes[1].childNodes[2].childNodes[1], a, "name", null, b)
-		console.log(b)
 		if (b.casevwr && b.casevwr.length>0)
 		{
 			p = b.casevwr[0].parentNode;
@@ -1284,10 +1286,13 @@ function activity_case_ufn (el, u, a, r, m)
 		}
 		 return;
 	}
-	var el_ = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
+	var coll = el_.parentNode.previousSibling.childNodes;
+	var p = _(coll[1],"vdisp"); // load disposition
+	coll[0].checked = true;
+	el_ = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
 	nd (el_, te["activity_disposition_r_case_new"], [], r, [0]);
 	p.insertBefore (el_, p.firstChild);
-	coll[0].parentNode.parentNode.previousSibling.childNodes[4].firstChild.childNodes[2].firstChild.checked = true; // switch tab-btn
+	
 }
 
 function activity_disposition_ufn (el, u, a, r, m)
@@ -1316,7 +1321,7 @@ function activity_reporter_ufn (el, u, a, r, m)
 		t = "case_vw_id"
 	}
 	var coll = __(el,"vf").parentNode.nextSibling.childNodes
-	coll[0].parentNode.parentNode.previousSibling.childNodes[4].firstChild.childNodes[1].firstChild.checked = true; // switch tab-btn
+	// coll[0].parentNode.parentNode.previousSibling.childNodes[4].firstChild.childNodes[1].firstChild.checked = true; // switch tab-btn
 	coll[0].checked = true; // switch tab
 	coll[1].innerHTML = "";
 	nd (coll[1], te[t], [], r, [0]);
@@ -1339,12 +1344,13 @@ function activity_contact_ufn (el, u, a, r, m)
 
 function activity_notify_ufn (el, u, a, r, m)
 {
+	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes;
+	var coll_ = coll[1].childNodes[1].childNodes; // if id>0 the vv,6,1
+	coll[0].checked = true
+	coll_[0].checked = true;
+	coll_[1].innerHTML = "";
+	nd (coll_[1], te["case_vw_id_activity"], [], ra["reporters_uuid"][0], [0]);
 	// todo: update notification counter on bell ico
-	var coll = document.getElementById ("vv").childNodes;
-	coll[6].childNodes[1].firstChild.checked = true;
-	coll[6].childNodes[1].childNodes[1].innerHTML = "";
-	nd (coll[6].childNodes[1].childNodes[1], te["activity_vw_id"], ["","1","","content-shown","noop"], r, [5]);	
-	nd (coll[6].childNodes[1].childNodes[1].lastChild, te["activity_vw_id_tabs_notify"], [], r, [0]);	
 }
 
 function _activity_contact_del ()

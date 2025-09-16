@@ -82,7 +82,7 @@ te["case_form_reporter_followup_arg"] = { p:["","o"], case_reporter_uuid_arg:[] 
 
 te["case_form_reporter_followup"] = { u:[":u::5:0:case_form_reporter_followup_arg:case_form_reporter_followup_"] };
 
-te["case_reporter_ed_"] = { div:["w68 ma mb sh__ bd16 gw_"], c:
+te["case_reporter_ed_"] = { div:["w68 ma mb sh__ bd8 gw_"], c:
 [	
 	{ div:["x15 tt"], c:
 	[

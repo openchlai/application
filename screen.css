@@ -323,6 +323,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 
 
 :checked + .tab a { background-color:black; color:white; }
+:checked + .tabb a { background-color:black; border:1px solid black; color:white; }
 :checked + .tabh a { background-color:#dadcdf; }
 :checked + .tabi a { background-color:#e3e3e8; color:black; font-weight:bold; border-radius:3px; }
 :checked + .tabu a { border-bottom:3px solid black; color:black; /*font-weight:bold;*/ }
@@ -612,7 +613,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 .h80 {height:800px;}
 .h100 {height:1000px;}
 .h105 {height:1078px;}
-.hp100 {height:100%;}
+.hv100 {height:100vh;}
 
 .ma {margin:0 auto;}
 .mm {margin:5px; }
@@ -783,6 +784,9 @@ ul:hover {background-color:#cee8f0; color:black;}
 
 .ml6 .casevwmenu { margin-right:55px;}
 
+.is_activity_ { display:none;}
+.is_activity .is_activity_ { display:block;}
+.is_activity .is_vw_ { display:none;}
 
 #bhv {display:none;}
 #bdv {display:none;}

@@ -115,7 +115,7 @@ te["case_client_ed_sub_spouse"] = { div:["t15 b20"], c:
 
 // ---
 
-te["case_client_ed_"] = { div:["w68 ma mb sh__ bd16 gw_"], c:
+te["case_client_ed_"] = { div:["w68 ma mb sh__ bd8 gw_"], c:
 [
 	{ div:["x15 tt"], c:
 	[

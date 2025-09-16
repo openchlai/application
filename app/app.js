@@ -160,7 +160,7 @@ var UU =
 "case_ed":{ 202:[["activity_case_ufn","dispositions"]], 412:[["nb","errors","v","nb"]], 200:[["case_ed","cases"]] },
 "case_new":{ 201:[["activity_case_ufn","dispositions"]], 412:[["nb","errors","v","nb"]] },
 "case_vw_id":{ 200:[["case_vw_id","cases"]] }, // 201:[["case_vw_id_ufn","cases","","nb"]] },
-"case_vw_id_activity":{ 200:[["case_vw_id_activity","cases"]], 201:[["case_vw_id_ufn","cases","","nb"]] },
+"case_vw_id_activity":{ 200:[["case_vw_id_activity","reporters_uuid"]], 201:[["case_vw_id_ufn","reporters_uuid","","nb"]] },
 "case_vw":{ 200:[["case_vw","cases"]] },
 "case_list":{ 200:[["case_list","cases_ctx"]] },
 "case_main":{ 200:[["case_main","cases_ctx"]] },

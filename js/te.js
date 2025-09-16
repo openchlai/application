@@ -630,7 +630,7 @@ function vu (v,a,r) // ":u:f:3:4:5:6"
 	var f = 0;
 	if (a[2].length>0) f = window[a[2]] (r,a); 
 	if (a[2].length<1) f = (v*1)>(a[4]*1) ? 1 : 0;
-	console.log("[vu]"+JSON.stringify(a)+"|"+v+"=>"+f);
+	// console.log("[vu]"+JSON.stringify(a)+"|"+v+"=>"+f);
 	return a[5+(f*1)];
 }
 
@@ -1439,13 +1439,12 @@ function _nav (ev)
 
 function _postj (ev)
 {
+	var u = this.id.split ("-");
+	var id = "v"; if (u.length>2) id=u[2]
 	var p = __(this,id);
-        var o = {}; 
-        var u = this.id.split ("-");
-        var id = "v"
-	if (u.length>2) id=u[2] 
-        jso (p,o); 
-        url (p, u[0], u[1], o[".id"], null, 2, o, "POST");
+     var o = {}; 
+     jso (p,o); 
+     url (p, u[0], u[1], o[".id"], null, 2, o, "POST");
 }
 
 // ---
@@ -1534,7 +1533,9 @@ function _uvp (ev)
 
 function _uvw ()
 {
-	__(this,"vf").parentNode.parentNode.firstChild.firstChild.checked = true;
+	var id = "vfvw";
+	if (this.id.length>0) id="vf"
+	__(this,id).parentNode.parentNode.firstChild.firstChild.checked = true;
 }
 
 // ---
