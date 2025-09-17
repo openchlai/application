@@ -764,7 +764,7 @@ te["qa_footer"] = { div:["x ba"], c:
 
 te["qa_r"] ={ div:[], c:
 [
-	{ ac:["ay w200","qa_vw_id-qas","_vp","cb gw",""], c:
+	{ ac:["ay w200","qa_vw_id-qas","_qa_vw_id","cb gw",""], c:
 	[
 		{ div:["c w14"], s:["tt b05 h01_  xx",":d:dmyhn:6: "] },
 		{ div:["c w14"], s:["tt b05 h01_  xx",":v:qas:chan_user_name"] },		
@@ -829,30 +829,6 @@ te["qa_main"] = { c:
 			
 			]}
 		]},
-		
-		{ div:["c l40"], c: 
-		[
-			{ arg:["qa_list-qas","","0"] },
-			{ input:["g","","qas_t_","0","radio","1"] },
-			{ li:["opto x bl bt bb gw s cb","qa_list-qas"], ev:["_tab"], c:
-			[
-				{ s:["c l t h3_ micon","list"] },
-				{ div:["c xx y","","List"] }, 
-				{ div:["e"] }
-			]}
-		]},
-
-		{ div:["c"], c: 
-		[
-			{ arg:["qa_rpt_vw-qas-@","","1,0"] },
-			{ input:["g","","qas_t_","1","radio"] },
-			{ li:["opto x ba gw s cb","qa_rpt_main-r_"], ev:["_tab"], c:[ { div:[], c:
-			[
-				{ s:["c l t h3_ micon","bar_chart"] },
-				{ s:["c xx y","Reports"] }, 
-				{ div:["e"] }
-			]} ]}
-		]},
 
 		{ div:["c l40"], ac:["ay","qa_f-qas_f","_vpf","x t01 bd_ cb s",""], c:
 		[ 
@@ -866,6 +842,30 @@ te["qa_main"] = { c:
 			{ s:["c t04 h3_ micon","download"] },
 			{ div:["c x y","","Download"] }, 
 			{ div:["e"] }
+		]},
+
+		{ div:["c l40"], c: 
+		[
+			{ arg:["qa_list-qas","","0"] },
+			{ input:["g","","qas_t_","0","radio","1"] },
+			{ li:["opto x gw s cb","qa_list-qas"], ev:["_tab"], c:
+			[
+				{ s:["c l t h3_ micon","list"] },
+				{ div:["c xx y","","List"] }, 
+				{ div:["e"] }
+			]}
+		]},
+
+		{ div:["c l40"], c: 
+		[
+			{ arg:["qa_rpt_vw-qas-@","","1,0"] },
+			{ input:["g","","qas_t_","1","radio"] },
+			{ li:["opto x gw s cb","qa_rpt_main-r_"], ev:["_tab"], c:[ { div:[], c:
+			[
+				{ s:["c l t h3_ micon","bar_chart"] },
+				{ s:["c xx y","Reports"] }, 
+				{ div:["e"] }
+			]} ]}
 		]},
 		
 		{ div:["e"], c:[ { arg:["","","qa_list-qas"] }, { arg:["","","0"] }, { arg:["","","-1"] }, { arg:["","",""] } ] }
@@ -885,22 +885,15 @@ te["qa_main"] = { c:
 		
 te["qas"] = { c:
 [
-	{ div:["g"], c:
-	[
-		
+	{ div:[], c:
+	[	
+		{ input:["g","","qa_vw_vt","0","radio","1"] }, 		// list
+		{ p:["tabv x20 yy gw bd8","vftab"], qa_main:[] } 
 	]},
-	{ form:[], c:
-	[
-		{ div:[], c:
-		[	
-			{ input:["g","","qas_vf","0","radio","1"] }, 
-			{ p:["tabv x20 y20 gw mm","vftab"], qa_main:[] } 
-		]},
-		{ div:[], c:
-		[	
-			{ input:["g","","qas_vf","1","radio"] }, 
-			{ p:["tabv gw yy mm","vfvw"] }
-		]}
+	{ div:[], c:
+	[	
+		{ input:["g","","qa_vw_vt","1","radio"] }, 		// _vw_id | _ed
+		{ p:["tabv bd8 mm gw","vfvw"] }
 	]}
 ]};
 

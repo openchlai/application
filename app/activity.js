@@ -641,13 +641,10 @@ te["activity_disposition_r_"] = { c:
 			{ s:["c x y cd s",":v:dispositions:created_by"] },
 			{ s:["c x y cd s",":r::1:: : ago:: : ago:"] },
 			{ arg:["tm","","%1"] },
-			{ div:["e"] }	
+			{ div:["e"], arg:["","case_id",":v:dispositions:case_id"] }	
 		]}
 	]},
-	{ div:["e"], c:
-	[
-		{ arg:["","case_id",":v:dispositions:case_id"] }
-	]}
+	{ p:["","nb"] } // nb
 ]};
 
 te["activity_disposition_r_case_"] = { div:["l20","va"], c:
@@ -665,9 +662,9 @@ te["activity_disposition_r_dsp_"] = { div:["l20","va"], c:
 
 te["activity_disposition_r_case_new"] = { activity_disposition_r_case_:["lr gh"] };
 
-te["activity_disposition_r_dsp_new"] = { activity_disposition_r_dsp_:["lr gy"] };
-
 te["activity_disposition_r_case"] = { activity_disposition_r_case_:["lr"] };
+
+te["activity_disposition_r_dsp_new"] = { activity_disposition_r_dsp_:["lr gy"] };
 
 te["activity_disposition_r_dsp"] = { activity_disposition_r_dsp_:["lr"] };
 
@@ -1310,18 +1307,8 @@ function activity_disposition_ufn (el, u, a, r, m)
 function activity_reporter_ufn (el, u, a, r, m)
 {
 	var r = ra["cases"][0]; 
-	var t = "case_new"
-	if (r[0]>0)	// followup 
-	{
-		var p = document.getElementById ("vp");
-		p.style.display = "none";
-		p.innerHTML = "";
-		el = elvp;
-		elvp = null;
-		t = "case_vw_id"
-	}
+	var t = r[0]>0 ? "case_vw_id" : "case_new";
 	var coll = __(el,"vf").parentNode.nextSibling.childNodes
-	// coll[0].parentNode.parentNode.previousSibling.childNodes[4].firstChild.childNodes[1].firstChild.checked = true; // switch tab-btn
 	coll[0].checked = true; // switch tab
 	coll[1].innerHTML = "";
 	nd (coll[1], te[t], [], r, [0]);
@@ -1373,16 +1360,25 @@ function _activity_postj ()
 
 function _activity_disposition_r ()
 {
-     var p = document.getElementById ("vp");
 	var u = this.id.split ("-");
-	var a = {args:"?", ".id":""};;
+	var a = {};
 	this.previousSibling.checked = true;
 	argv (_(__(this,"vt").previousSibling,"contact"), a);
-	argv (this.lastChild, a);
-	// console.log (a)
+	argv (this, a);
+	console.log (a)
+	if (a.contact_id && a.contact_id>0)
+	{
+		var o = {};
+		jso (__(this,"vfvw").firstChild.lastChild, o);		// src
+		o.case_id = a.case_id;
+		o.contact_id = a.contact_id
+		url (this, "activity_reporter", u[1], "", null, 2, o, "POST");
+		return
+	}
+	var p = document.getElementById ("vp");
 	elvp = this.nextSibling;
 	vp (p)
-	url (p, u[0], u[1], ("-1"+a.args));
+	url (p, u[0], u[1], ("-1"+"?contact_id=-1&case_id="+a.case_id));
 }
 
 function _activity_vpf ()
@@ -1393,29 +1389,22 @@ function _activity_vpf ()
 
 function _activity_vw_id (ev) 
 {
-	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; // if id>0 the vv,6,1
 	var a = {};
-	var r_ = re["r_"][0].slice(0);
-	var k = re["activities_k"];
-	var u = ["activity_vw_id_tabs","activities"];
-	var s_ = "";
 	argv (this, a);
-	var u_ = re["case_src"][a.src];
-	if (/*a.src=="walkin") && */ a.src_uid==undefined) // simulate chani 
+	if (a.src_uid==undefined) // simulate chani 
 	{ 
 		var user_cid = document.getElementById ("user_cid").value;
 		a.src_ts = Date.now()/1000;
 		a.src_uid = a.src+"-"+user_cid+"-"+Date.now ();
-		if (a.src_callid==undefined) a.src_callid = a.src_uid;
+		if (a.src_uid2==undefined) a.src_uid2 = a.src_uid+"-1";
+		if (a.src_callid==undefined) a.src_callid = a.src_uid2;
 		//a.src_address =  "0700112233"; // debug
 		a.src_usr = user_cid
-		a.src_vector = 0;
-		a.src_uid2 = a.src_uid+"-1";
-		if (a.src_callid) 
-		{
-			s_ = "&src_vector="+a.src_vector+"&src_callid="+a.src_callid;
-		}
+		a.src_vector = 2;
 	}
+
+	var k = re["activities_k"];
+	var r_ = re["r_"][0].slice(0);
 	r_[k["src"][0]] = a.src;
 	r_[k["src_ts"][0]] = a.src_ts;
 	r_[k["src_uid"][0]] = a.src_uid;
@@ -1425,19 +1414,23 @@ function _activity_vw_id (ev)
 	r_[k["src_vector"][0]] = a.src_vector;
 	r_[k["src_uid2"][0]] = a.src_uid2;
 	if (re["case_src"][a.src][11]=="phone") r_[k["src_address"][0]] = _phone_fmt (a.src_address);
-	u[0] = u_[9];
-	if (a.src=="call")  u = ["activity_vw_id_tabs_call","activities^call"];
 
 	var s = a[".id"];
 	if ((a[".id"]*1) < 0) 
 	{
-		s+="?src=" + a.src + "&src_uid=" + a.src_uid + s_;
+		s+="?src=" + a.src + "&src_uid=" + a.src_uid + "&src_uid2=" + a.src_uid2 + "&src_vector="+a.src_vector+"&src_callid="+a.src_callid;
 		if (r_[k["src_address"][0]].length>0)  
 		{
 			s += "&src_address="+r_[k["src_address"][0]];
 		}
 	}
 
+	var u_ = re["case_src"][a.src];
+	var u = ["activity_vw_id_tabs","activities"];
+	u[0] = u_[9];
+	if (a.src=="call")  u = ["activity_vw_id_tabs_call","activities^call"];
+
+	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; // if id>0 the vv,6,1
 	this.previousSibling.checked = true; // hilite call-notif
 	coll[0].parentNode.parentNode.previousSibling.checked = true;
 	coll[0].checked = true;

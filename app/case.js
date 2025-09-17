@@ -1443,11 +1443,17 @@ te["case_vw_id_tabs"] = { c:
 	]}	
 ]};
 
-te["case_vw_id_ca"] = { div:["x20 yy gy mb2"], c:
+te["case_vw_id_ca_"] = { div:["x20 yy gy mb2"], c:
 [
-	{ s:["x y h3 cr",":v:activities:src::case_src::1"] },
-	{ div:[], u:["call_activity_aub","case_activities_notify"] }
+	{ s:["x y h3 cr",":v:reporters:src::case_src::1"] },
+	{ div:[], c: // u:["call_activity_aub","case_activities_notify"] }
+	[
+		{ arg:["",".id",":v:reporters:ca_id"] },
+		{ uv:["call_activity_aub","case_activities"] }
+	]}
 ]};
+
+te["case_vw_id_ca"] = { u:[":v:reporters:ca_id:u:::0:noop:case_vw_id_ca_"] }
 
 te["case_vw_id_menu"] = { c:
 [
@@ -1554,7 +1560,7 @@ te["case_vw_id"] = { c:
 		{ div:["e"] } 
 	]},	
 
-	{ u:["case_vw_id_ca","activities_notify"] },	
+	{ u:["case_vw_id_ca","reporters_uuid"] }, // u:["case_vw_id_ca","activities_notify"] },	
 
 	{ div:[], case_vw_id_tabs:[] }
 ]};

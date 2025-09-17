@@ -76,7 +76,7 @@ var UU =
 "contacts":{ 200:[["contacts","contacts_ctx"]] },
 
 "qa_rpt_vw": 	{ 200:[["rpt_vw","qas_rpt"]] },
-"qa_form":   	{ 201:[["qa_vw_r","qas"]], 412:[["nb","errors","","nb"]] },
+"qa_form":   	{ 201:[/*["call_r","call"],*/["qa_vw_r","qas"]], 412:[["nb","errors","","nb"]] },
 "qa_vw_id":  	{ 200:[["qa_vw_id","qas"]] },
 "qa_list":   	{ 200:[["qa_list","qas_ctx"]] },
 "qa_main":   	{ 200:[["qa_main","qas_ctx"]] },
@@ -675,7 +675,7 @@ te["main"] = { c:
 	[
 		{ div:["d w04_ r25 t01"], s:["abs w04_ t20 zzz",""], c:  // nb: onvw overlap with X
 		[
-			{ div:["ay","va"], ac:["","","_dd"," bd cb",""], c:
+			{ div:["","va"], ac:["","","_dd"," bd cb",""], c:
 			[
 				{ p:["abs g","notif_status"], s:["ml2 x07 y02  h01_ tc gr cw bd16 s",""] },
 				{ s:["w04 y micon h2_ tc","account_circle"] },								

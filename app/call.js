@@ -506,11 +506,23 @@ te["call_vw_id_play"] = { div:[], c:
 
 te["call_vw_id"] = { c:
 [
-	{ div:["x15 y"], c:
+	{ div:["xx y15 h03","vb"], c:
 	[
-		{ div:["c x t"], ac:["ay","","_uvw","h2 x y bd16 gb cw micon","arrow_back"] },	
-		{ s:["c x15 y15 h3 b","Call Details"] },
-		{ ac:["d ay x t","","_uvw","x y01 bd cb",""], c:[ { s:["c h","&Cross;"] }, { s:["c x y g","Close"] }, { div:["e"] } ] },
+		// { div:["c x t"], ac:["ay","","_uvw","h2 x y bd16 gb cw micon","arrow_back"] },	
+		{ s:["c xx y h2 b","Call Details"] },
+		{ div:["d t01 w04 ll r05"], s:["w04 gw abs zzzz",""], c:
+		[
+			{ ac:["ay","","_uvw","cb bd y01",""], c:
+			[
+				{ s:["tc h b","&Cross;"] },
+				// { s:["d x y s","Close"] },
+				{ div:["e"] }
+			]}
+		]},
+		{ div:["d w30 t01 casevwmenu"], s:["abs zzzz w30 h04 gw",""], c:
+		[
+			{ div:["e"] }
+		]},
 		{ div:["e"] }
 	]},
 	{ div:["x25","vb"], c:
@@ -964,7 +976,7 @@ te["call_main"] = { c:
 		{ div:["e"], c:[ { arg:["","","call_list-calls"] }, { arg:["","","0"] }, { arg:["","","-1"] }, { arg:["","",""] } ] }
 	]},
 
-	{ div:["yy","vf"], c:[ { div:["","call_f-calls_f"], c: // ev:["_n_vpf"], c:
+	{ div:["x yy","vf"], c:[ { div:["","call_f-calls_f"], c: // ev:["_n_vpf"], c:
 	[
 		{ call_f_tags_k:[] }
 	]} ]},
@@ -978,22 +990,15 @@ te["call_main"] = { c:
 	
 te["calls"] = { c:
 [
-	{ div:["g"], c:
-	[
-		
+	{ div:[], c:
+	[	
+		{ input:["g","","call_vw_vt","0","radio","1"] }, 		// list
+		{ p:["tabv x20 yy gw bd8","vftab"], call_main:[] } 
 	]},
-	{ form:[], c:
-	[
-		{ div:[], c:
-		[	
-			{ input:["g","","call_vw_vt","0","radio","1"] }, 
-			{ p:["tabv x20 yy gw","vftab"], call_main:[] } 
-		]},
-		{ div:[], c:
-		[	
-			{ input:["g","","call_vw_vt","1","radio"] }, 
-			{ p:["tabv gw yy bd8 mm","vfvw"] }
-		]}
+	{ div:[], c:
+	[	
+		{ input:["g","","call_vw_vt","1","radio"] }, 		// _vw_id | _ed
+		{ p:["tabv bd8 mm gw","vfvw"] }
 	]}
 ]};
 
