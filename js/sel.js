@@ -133,7 +133,11 @@ function dd (b,f)
 	if (f==1)
 	{
 		var b_ = undd (p_);
-		if (b_==b && f==1) { console.log ("undd self"); return; } // self
+		if (b_==b && f==1) 
+		{ 
+			// console.log ("undd self"); 
+			return; // self
+		}
 	}
 	// console.log ("dd ++")
 	b.style.display = "block";

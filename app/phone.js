@@ -1,8 +1,8 @@
 
 te["call_session"] = { /*p:["","sipid(0,10)"],*/ c: 
 [ 
-	{ input:["g","","sbr","%0","radio"] }, // sipid js full
-	{ li:["sbr x15 y","va"], ev:["_call_popup"], c:  
+	{ input:["g","","sbl","%0","radio"] }, // sipid js full
+	{ li:["sbr x15 y bt","va"], ev:["_call_popup"], c:  
 	[ 
 		{ div:["abs w02_ y g"],  c:
 		[ 
@@ -129,7 +129,7 @@ function VOICEAPPS_SESSION (_leg)
 		var p = document.getElementById ("call_sessions");
 		var el_ = document.createElement ("P"); 
 		el_.id = this.ssid.substr (0,20);
-		p.insertBefore (el_, null); //p.firstChild);
+		p.insertBefore (el_, p.firstChild);
 		var el = nd (el_, te["call_session"], [(this.leg==1?"/helpline/images/dialtone.wav":"/helpline/images/earlymedia.mp3"),"noop"], r, [2]);
 		el = el.parentNode.parentNode;
 		this.el = el;

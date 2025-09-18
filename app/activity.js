@@ -630,14 +630,14 @@ te["activity_disposition_r_reporter"] = { c:
 
 te["activity_disposition_r_"] = { c:
 [
-	{ div:["abs t"], s:["x y micon h3 ba gws_ bd16",":v:dispositions:src::case_src:6"] },
-	{ div:["ml1_ mh05 x20 y bl r"], c:
+	{ div:["abs l t"], s:["x y micon h3 ba gws_ bd16",":v:dispositions:src::case_src:6"] },
+	{ div:["ml1_ mh05 l20 r10 y bl r"], c:
 	[
 		{ div:[], c:
 		[
 			{ div:["c x t"], s:["b",""], uval:["",":v:dispositions:disposition"] },	
-			{ u:[":v:dispositions:case_id:u:::0:noop:activity_disposition_rv_case"] },
 			{ u:[":v:dispositions:reporter_contact_id:u:::0:noop:activity_disposition_r_reporter"] },
+			{ u:[":v:dispositions:case_id:u:::0:noop:activity_disposition_rv_case"] },
 			{ div:["e"] }
 		]},
 		{ div:[], c:
@@ -854,13 +854,13 @@ te["activity_list"] = { c:
 	{ div:[] },
      { div:[], c:
      [
-          { div:["d w45"], c:[ { div:["w40 abs","vt"], c:
+          { div:["d w42"], c:[ { div:["w40 abs","vt"], c:
 		[
 			{ u:[":u::4:0:activity_contacts_none:activity_list_contacts"] }
 		]} ]},
 		{ div:["e"] }
      ]},
-     { div:["mr50 mh30","vt"], u:["activity_disposition_list","dispositions_ctx"] }
+     { div:["mr43 mh30","vt"], u:["activity_disposition_list","dispositions_ctx"] }
 ]};
 
 te["activity_main"] = { c: 
@@ -870,7 +870,7 @@ te["activity_main"] = { c:
 		{ div:["e"], c:[ { arg:["","","activity_list-dispositions"] }, { arg:["","","0"] }, { arg:["","","0"] }, { arg:["","",""] } ] }
 	]},
 
-	{ div:["x20" ,"vf"], c:[ { div:["","activity_disposition_f-dispositions_f"], ev:["l__vpf"], c:
+	{ div:["x20 t" ,"vf"], c:[ { div:["","activity_disposition_f-dispositions_f"], ev:["l__vpf"], c:
 	[
 		{ activity_f_tags_k:[] }
 	]} ]},
@@ -963,13 +963,13 @@ te["activity_vw_id_tabs_notify"] = { activity_vw_id_tabs_:["","1",""] };
 
 te["activity_vw_id"] = { c: 
 [
-	{ div:["","vb"], c:
+	{ div:["",":v:activities:src_uid"], c:
 	[
 		{ u:[null] }, // channel menu
 		{ div:["e"], c:[ { p:["g","o"], activity_vw_id_args:[] } ] }
 	]},
 
-	{ div:["xx tt","vb"], c: 
+	{ div:["xx yy","vb"], c: 
 	[
 		{ div:["c l t"], c:
 		[
@@ -994,7 +994,8 @@ te["activity_vw_id"] = { c:
 
 		{ div:["d t w04 ll r05"], s:["w04 gw abs zzzz",""], c:
 		[
-			{ ac:["ay t01 r10","","_uvw","cb bd y01",""], c:
+			{ input:["g","","sbl","0","radio"] },
+			{ ac:["ay t01 r10","","_activity_close","cb bd y01",""], c:
 			[
 				{ s:["tc h b","&Cross;"] },
 				// { s:["d x y s","Close"] },
@@ -1002,51 +1003,9 @@ te["activity_vw_id"] = { c:
 			]}
 		]},
 
-		{ div:["d w50 t casevwmenu"], s:["abs zzzz w50 gw",""], c:
+		{ div:["d w25 t casevwmenu"], s:["abs zzzz w25 h03 gw",""], c:
 		[
-			{ div:["d r10 g"], c:
-			[
-				{ input:["g","","activity_vw_id_t_","2","radio",null] },
-				{ ac:["ao tab y","","_tab"," y bdr cb",""], c:
-				[
-					{ s:["c ll h3_ micon","chat"] },
-					{ s:["c l r10 s","Chat"] },
-					{ div:["e"] }
-				]}
-			]},
-		
-			//{ div:["d"], c:
-			//[
-			//	{ input:["g","","activity_vw_id_t_","0,1","radio",null] },
-			//	{ ac:["ao tab ll y","","","xx y gws_ bd cb",""], c: // todo: show sub ie: [0,1]
-			//	[
-			//		{ s:["c h2 micon","bar_chart"] },
-			//		{ div:["e"] }
-			//	]}
-			//]},
-		
-			{ div:["d g"], c:
-			[
-				{ input:["g","","activity_vw_id_t_","1","radio",null] }, 
-				{ ac:["ao tabb y","","_tab"," y bt bb cb",""], c:
-				[
-					{ s:["c ll h3_ micon","wysiwyg"] },
-					{ s:["c l r10 s","Detail"] },
-					{ div:["e"] }
-				]}
-			]},
-
-			{ div:["d g"], c:
-			[
-				{ input:["g","","activity_vw_id_t_","0","radio",null] }, // [0,0] | [1]
-				{ ac:["ao tabb y","","_tab","y bl bt bb bdl cb",""], c:
-				[
-					{ s:["c ll h3_ micon","list"] },
-					{ s:["c l r10 s","List"] },
-					{ div:["e"] }
-				]}
-			]},
-
+			
 			{ div:["d r10"], c:
 			[
 				{ input:["g","","activity_vw_id_t_","0","radio"] },
@@ -1363,6 +1322,17 @@ function activity_notify_ufn (el, u, a, r, m)
 	// todo: update notification counter on bell ico
 }
 
+// ---
+
+function _activity_close (ev) 
+{
+	document.getElementById ("activity_close").checked = true;;
+	// this.previousSibling.checked = true;
+	var p = __(this,"vfvw");
+	p.parentNode.parentNode.firstChild.firstChild.checked = true;
+	p.innerHTML = "";
+}
+
 function _activity_contact_del ()
 {
 	var p = __(this,"contact")
@@ -1428,6 +1398,7 @@ function _activity_vw_id (ev)
 {
 	var a = {};
 	argv (this, a);
+
 	if (a.src_uid==undefined) // simulate chani 
 	{ 
 		var user_cid = document.getElementById ("user_cid").value;
@@ -1467,12 +1438,12 @@ function _activity_vw_id (ev)
 	u[0] = u_[9];
 	if (a.src=="call")  u = ["activity_vw_id_tabs_call","activities^call"];
 
-	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; // if id>0 the vv,6,1
+	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; 
 	this.previousSibling.checked = true; // hilite call-notif
 	coll[0].parentNode.parentNode.previousSibling.checked = true;
 	coll[0].checked = true;
 	coll[1].innerHTML = "";
-	nd (coll[1], te["activity_vw_id"], ["1","","","noop"], r_, [4]);	
+	nd (coll[1], te["activity_vw_id"], ["noop"], r_, [1]);	
 	url (coll[1].lastChild, u[0], u[1], s);
 
 	boo (ev)

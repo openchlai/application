@@ -431,10 +431,11 @@ ul:hover {background-color:#cee8f0; color:black;}
 .w06 {width:60px; overflow:hidden;}
 .w06_ {width:65px; overflow:hidden;}
 .w07 {width:70px; overflow:hidden;}
+.w07_ {width:70px;}
 .w08 {width:80px; overflow:hidden;}
+.w08_ {width:80px;}
 .w09 {width:90px; overflow:hidden;}
-.w09_ {width:95px; overflow:hidden;}
-.ww09 {width:90px;}
+.w09_ {width:90px;}
 .w10 {width:100px; overflow:hidden;}
 .w11 {width:110px; overflow:hidden;}
 .w12 {width:120px; overflow:hidden;}
@@ -469,6 +470,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 .w26_{width:260px;}
 .w27 {width:270px; overflow:hidden;}
 .w28 {width:280px; overflow:hidden;}
+.w28_ {width:280px;}
 .w29 {width:290px; overflow:hidden;}
 .w30 {width:300px; overflow:hidden;}
 .w30_ {width:300px; }
@@ -684,7 +686,9 @@ ul:hover {background-color:#cee8f0; color:black;}
 .mr38 {margin-right:380px;}
 .mr40 {margin-right:400px;}
 .mr41 {margin-right:410px;}
+.mr43 {margin-right:430px;}
 .mr45 {margin-right:450px;}
+.mr47 {margin-right:470px;}
 .mr50 {margin-right:500px;}
 .mr60 {margin-right:600px;}
 .mb_ {margin-bottom:3px;}

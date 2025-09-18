@@ -16,6 +16,7 @@ echo "var VA_ATI_HOST = \"".$VA_ATI_HOST."\";\r\n";
 echo "var APP_LOGO = \"".$APP_LOGO."\";\r\n";
 echo "var COUNTRY_CODE = \"".$COUNTRY_CODE."\";\r\n";
 echo "var CASE_ID_PREFIX = \"".$CASE_ID_PREFIX."\";\r\n";
+// todo: WRAPUP_DURATION // switch to available in activity_vw_id when wrapup ends 
 
 // --- CATEGORY ROOT IDs ---
 

@@ -677,7 +677,7 @@ te["main"] = { c:
 		[
 			{ div:["","va"], ac:["","","_dd"," bd cb",""], c:
 			[
-				{ p:["abs g","notif_status"], s:["ml2 x07 y02  h01_ tc gr cw bd16 s",""] },
+				{ p:["abs l t g","agent_status_notif"], s:["ml2 x y bd8",""] },
 				{ s:["w04 y micon h2_ tc","account_circle"] },								
 				{ div:["e"], u:["user_cid","auth"] }
 			]},
@@ -815,6 +815,8 @@ te["main"] = { c:
 		{ sbl:["admin_","9","","","dashboard","Wallboard","noop"] },
 
 		// { sbl:["admin_","9","","contacts-contacts","import_contacts","Contacts","noop"] },
+
+		{ input:["g","activity_close","sbl","22","radio"] },
 	]},
 	
 	{ p:["abs zzzzz y op_ga g","vp"], ev:["_uvpd"] }, // popup window	
@@ -924,7 +926,7 @@ function case_prio_chart (el, u, a, r, m)
 	{
 		j = status[rr[i][0]];
 		k = prio[rr[i][1]];
-		console.log ("[prio] ("+rr[i][0]+","+rr[i][1]+") ("+j+","+k+")")
+		// console.log ("[prio] ("+rr[i][0]+","+rr[i][1]+") ("+j+","+k+")")
 		if (j==undefined) continue;
 		if (k==undefined) continue;
 		//console.log ("PRIO] "+j+","+k+" |"+ rr[i][0][0]+","+rr[i][1][0]);
@@ -964,7 +966,7 @@ function loadphone (el, u, a, r, m)
 	if (v) document.getElementById ("vv").className = v[2];
 	console.log ("loadphone: "+ra["auth"][0][7]+" | "+JSON.stringify (v));
 	DetectDevices ();
-	// VOICEAPPS_UA.connect (ra["auth"][0][7]);
+	VOICEAPPS_UA.connect (ra["auth"][0][7]);
 }
 
 function ami_wait (el, u, a, r, m)

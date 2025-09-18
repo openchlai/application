@@ -165,124 +165,46 @@ te["call_add_form_main"] = { div:["w30 ma bd sh__ gw xx yy","vddvw"], ev:["_undd
 	{ div:["","cba"] } // show add-chan status 
 ]};
 
-te["call_btns"] = { c: 
+te["call_toolbar"] = { div:[], c: 
 [	
-//	{ arg:["","",":v:activities:src_callid"] }, // sipid needed to invoke call actions
-//	{ div:["","va"],  c:
-//	[	
-		//{ div:["d w09 call_ended_ g"], c:
-		//[
-		//	{ s:["d x t08 cb tc","Close"] },
-		//	{ input:["g","","sbr","1","radio"] },
-		//	{ ac:["d x t","","_activity_close","x y03 h2 cb bd16","&Cross;"] },
-		//	{ s:["d x t08 cb tc","Close"] },
-		//	{ div:["e"] }
-	//	]},
-		
-		{ div:["d w09 r10 call_hangup_"], c:
+	{ div:["ma w32_","va"], s:["abs w28_ t15",""], c:
+	[
+		{ div:["d w07_ call_hangup_"], c:
 		[
-			{ ac:["d ao","","_hangup","x t b03 w02 h02 h2 ma bd16 gb cw tc",""], c:
-			[
-				{ s:["","&Cross;"] },
-				{ div:["e"] }
-			]},
-			{ s:["d x s cb t tc","Hangup"] },
-			{ div:["e"] }
+			{ ac:["ao","","_hangup","w03 h03 x01 y01 h ma bd32 gb cw tc sh__","&Cross;"]},
+			{ s:["t03 tc cb s","Hangup"] },
 		]}, 
-			
-		{ div:["d w09"], c:
+
+		{ div:["d w07_"], c:
 		[
-			{ div:["d"], c:
-			[
-				{ ac:["ao call_connected_","call_add_form_main-r_","_add_dial_form","x t b03 w02 h02 h2 ma bd16 gb cw tc",""], c:
-				[
-					{ s:["","+"] },
-					{ div:["e"], c:[ { arg:["_uid","",":v:activities:src_uid"] } ] }
-				]},
-				{ div:[] }
-			]},
-			{ s:["d call_connected__ x y w02 ma bd16 gws_ cd_ tc h2","+"] },
-			{ s:["d call_connected_ x t s cb tc","Add"] },
-			//{ s:["d call_connected__ x y w02 ma bd16 gws_ cd_ tc h2","+"] },
-			{ s:["d call_connected__ x t s cd_ tc","Add"] },
+			{ ac:["ao call_connected_","call_add_form_main-r_","_add_dial_form","w03 h03 x01 y01 h ma bd32 gb cw tc sh__","&plus;"] },
+			{ s:["call_connected_ t03 tc cb s","Add"] },
+			{ s:["call_connected__ w03 h03 x01 y01 h ma bd32 cd tc","&plus;"] },
+			{ s:["call_connected__ t03 tc cd s","Add"] },
 			{ div:["e"] }
 		]},
 
-		{ div:["d w09"], c:
+		{ div:["d w07_"], c:
 		[
 			{ input:["g","chanholdstate","","1","checkbox"] },
-			{ div:["w09 btnhold"], c:
+			{ div:["btnhold"], c:
 			[
-				{ ac:["d ao call_connected_","","_hold","x y w02 h2 ma bd16 gb cw tc","||"] },
-				{ s:["d call_connected__ x y w02 ma bd16 gws_ cd_ tc h2","||"] },
-				{ div:["d call_connected_"], s:["x y s cb btnhold_lbl","Hold"] },
-				{ div:["d call_connected_"], s:["x y s cr btnunhold_lbl","UnHold"] },
-				// { s:["d call_connected__ x y w02 ma bd16 gws_ cd_ tc h2","||"] },
-				{ s:["d call_connected__ x y s cd_ btnhold_lbl","Hold"] },
-				{ div:["e"] }
+				{ ac:["ao call_connected_","","_hold","w03 h03 x01 t02 h2 ma bd32 gb cw tc sh__","||"] },
+				{ div:["call_connected_"], s:["t03 tc cb s btnhold_lbl","Hold"] },
+				{ div:["call_connected_"], s:["t03 tc cr s btnunhold_lbl","UnHold"] },
+				{ s:["call_connected__ w03 h03 x01 t02 h2 ma bd32 cd tc","||"] },
+				{ s:["call_connected__ t03 tc cd s btnhold_lbl","Hold"] },
 			]}
 		]},
 		
-		{ div:["d w09 call_connected_"], c: 
-		[
-			{ div:["g"], c: // show only in cbid
-			[
-				{ ac:["d ao","","_answer","x t b03 w02 h02 h2 ma cb tc bd16 gws_ micon","group"] },
-				{ s:["d t08 cb","4"] },
-				{ div:["e"] }
-			]}
-		]},
-			
-		{ div:["d w09"], s:[":v:activities:src_vector::vector:7",""], c:
+		{ div:["d w07_ call_ringing_"], /*s:[":v:activities:src_vector::vector:7",""],*/ c:
 		[ 
-			{ div:["w09 ao call_ringing_"], c:
-			[
-				{ ac:["d ","","_answer","x t b03 w02 h02 h2 ma bd16 gb cw tc micon","call"] },
-				{ s:["d x t s cb tc","Answer"] },
-				{ div:["e"] }
-			]} 
+			{ ac:["ao","","_answer","w03 h03 x01 y01 ma bd32 gb cw tc sh__",""], c:[ { s:["micon h2_ t03","call"] } ] },
+			{ s:["t tc cb s","Answer"] },
 		]},
-				
-//		{ div:["e"] }
-]};
 
-//te["call_toolbar"] = { div:["ma w14",":v:activities:src_uid"], c: //  
-//[
-//	{ input:["g","","sbl","100","radio","1"] },
-//	{ ac:["abs mtn37 ao w14 sbl","","_activity_show","w13 x bd cb gws_",""], c:[ { div:[""], c:
-//	[
-//		{ s:["c w07 l y",""] },
-//		{ s:["d w05 r05 y tr",""] },
-//		{ arg:["ts","",""] }, 
-//		{ div:["e"] }
-//	]} ]},
-//]};
-
-te["call_toolbar"] = { div:["ma w20",":v:activities:src_uid"], c: //  
-[
-	{ input:["g","ati_toolbar","barr","1","radio","1"] },
-	{ li:["abs mtn37 ao w20 bd"], ev:["_activity_show"], s:["w13 bd cw",""], c:[ { div:["gr"], c:
-	[
-		{ s:["c ll y g",":v:activities:src"] },
-		{ s:["c ll y ",""] },
-		{ s:["d xx y ",""] },
-		{ arg:["ts","",":v:activities:src_ts"] }, 
 		{ div:["e"] }
-	]} ]},
-]};
-
-te["call_ringing"] = { div:["w45ma bd sh__ gw xx yy","vddvw"], ev:["_undd"], c:
-[
-	{ div:["g"], c:
-	[
-		{ ac:["d ay","","_vpclose","x y bd_ h2 cb","&Cross;"] },
-		{ div:["e"] }
-	]},
-	{ div:["tt"], s:["w12 ma",""], c:[ { img:["","","/helpline/images/Icon_Call.png","120"] } ] },
-	{ s:["yy tc n co ","::vector:14:9"] },
-	{ s:["yy tc h2 ","%12"] },
-	// list possible contact -- not action 
-	// Answer button
+	]}
 ]};
 
 // --------------------------------------------------------------------
@@ -461,16 +383,6 @@ te["agent_status"] = { div:["y02",null], c:
 
 // -------------------------------------------------------
 
-function _sup ()
-{
-	this.previousSibling.checked = true;
-	var o = {};
-	argv (this, o);
-	url (this.nextSibling, "sup", "sup", "", null, 2, o, "POST");
-}
-
-// -------------------------------------------------------
-
 function users_online_ufn (el, u, a, r, m)
 {
 	var kk = Object.keys (re["peers"]);
@@ -482,6 +394,18 @@ function users_online_ufn (el, u, a, r, m)
 	}
 	el.lastChild.value = v;
 }
+
+// -------------------------------------------------------
+
+function _sup ()
+{
+	this.previousSibling.checked = true;
+	var o = {};
+	argv (this, o);
+	url (this.nextSibling, "sup", "sup", "", null, 2, o, "POST");
+}
+
+// -------------------------------------------------------
 
 function call_popup_end (ts)
 {
@@ -521,7 +445,7 @@ function call_popup_hold_state (el, f)
 
 function call_popup_upd (el)
 {
-	var coll = document.getElementById ("vv").childNodes;	
+	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; 
 	var ss = [
 	["Down","call_ringing","gr cw"],
 	["Dialing","call_ringing","gr cw"],
@@ -545,78 +469,61 @@ function call_popup_upd (el)
 	coll_[2].value = a.src_state_ts;
 	el.parentNode.parentNode.childNodes[1].childNodes[2].innerHTML = ss[a.src_state][0];
 	
-	// toolbar
-	if (coll[1].childNodes.length<1) return -1;
-	if (coll[1].firstChild.id.length<1) return -2;
-	if (coll[1].firstChild.id!=a.src_uid) return -3;
-	
-	coll_ = coll[1].firstChild.childNodes[1].firstChild.firstChild.childNodes;
-	//coll_[0].parentNode.className = ss[a.src_state][2];
-	coll_[1].innerHTML = ss[a.src_state][0];
-	coll_[2].innerHTML = ts_txt;
-	coll_[3].value = a.src_state_ts;
-		
 	// action btns
-	var p_ = coll[6].childNodes[1].childNodes[1].firstChild.firstChild;
-	p_.className = ss[a.src_state][1];
+	if (coll[1].firstChild && coll[1].firstChild.id==a.src_uid)
+	{
+		console.log ("call_toobar: "+ ss[a.src_state][1])
+		var p_ = coll[1].firstChild.firstChild;
+		p_.className = ss[a.src_state][1];
+		// p_.lastChild.firstChild.childNodes[3].value = a.src_uid2; // src_uid2
+	}
 
-	// src_uid2
-	console.log ("src_uid2:"+a.src_uid2+" ("+p_.lastChild.firstChild.childNodes[3].value)
-	p_.lastChild.firstChild.childNodes[3].value = a.src_uid2;
-	
 	return 0;	
 }
 
 function call_popup (el, f=0)
 {
-	var coll = document.getElementById ("vv").childNodes;
+	var k = re["activities_k"];
 	var r_ = re["r_"][0].slice(0);
-	var a = {};
-	var k = re["activities_k"]
+	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; 
 	var el_ = __(el,"va");
-	
-	// todo: show answer call popup
-	
+	var a = {};
+	argv (el_, a);
+
 	if (f==0 && coll[1].childNodes.length>0 && coll[1].firstChild.id.length>0) // vw is occupied
 	{
-		argv (el_, a);
-		console.error ("[popn] "+coll[1].firstChild.id+","+a.src_uid+" | "+el_.previousSibling.value)
-		// notify (el); // create transient notification 
+		// console.log ("[call_popup_not] "+coll[1].firstChild.id+","+a.src_uid+" | "+el_.previousSibling.value)
 		return
 	}
 
 	ra = {};
-	for (var k_ in re) ra[k_]=re[k_];		
-	argv (el_, a);
+	for (var k_ in re) ra[k_]=re[k_];	
+	
 	r_[k["src"][0]] = "call";
 	r_[k["src_uid"][0]] = a.src_uid;
 	r_[k["src_address"][0]] = _phone_fmt (a.src_address);
 	r_[k["src_uid2"][0]] = a.src_uid2;
 	r_[k["src_usr"][0]] = a.usr;
 	r_[k["src_vector"][0]] = a.src_vector;
-	r_[k["src_callid"][0]] = el_.previousSibling.value;
+	r_[k["src_callid"][0]] = el_.previousSibling.value; // full sipid (asterisk only stores first 10 char // el_.parentNode.id)
 	r_[k["src_ts"][0]] = a.src_ts;
 		
-	console.log ("call_popup args:"+JSON.stringify (a)+"|"+JSON.stringify (r_));
+	console.log ("[call_popup] args:"+JSON.stringify (a)+"|"+JSON.stringify (r_));
 	
 	if (a.cid_name=="AgentLogin" || a.cid_name=="Supervisor") return;
 	
-	// todo: get current checkted tab in coll[6]
-	
-	el_.previousSibling.checked = true; 	// hilite call-notif
-	coll[1].innerHTML = ""; 			
-	coll[6].childNodes[1].firstChild.checked = true;
-	coll[6].childNodes[1].childNodes[1].innerHTML = "";
-
 	var s = "-1?src=" + a.src + "&src_uid=" + a.src_uid; 
 	if (r_[k["src_address"][0]].length>0)  
 	{
 		s += "&src_address="+r_[k["src_address"][0]];
 	}
 
-	nd (coll[1], te["call_toolbar"], [], r_, [0]); // show toolbar	
-	nd (coll[6].childNodes[1].childNodes[1], te["activity_vw_id"], ["call_btns","1","",""], r_, [4]);	
-	url (coll[6].childNodes[1].childNodes[1].lastChild, "activity_vw_id_tabs_call", "activities^call", s);
+	el_.previousSibling.checked = true;	// hilite call-notif
+	coll[0].parentNode.parentNode.previousSibling.checked = true;
+	coll[0].checked = true;
+	coll[1].innerHTML = "";
+	nd (coll[1], te["activity_vw_id"], ["call_toolbar"], r_, [1]);	
+	url (coll[1].lastChild, "activity_vw_id_tabs_call", "activities^call", s);
 
 	var isaa = document.getElementById ("is_auto_answer");
 	var sess = CALLS[r_[k["src_callid"][0]]];
@@ -702,7 +609,7 @@ function chani (tp,p,ch,ts,k_=2,top_=0)
 		chan_a[ch[2]] = { "el":el, "ts":ts }; // append chan to chan_a index
 		if (tp=="chan_agent") // query usr details
 		{
-			console.log ("-------------chan_agent")
+			// console.log ("-------------chan_agent")
 			url (el.firstChild.childNodes[1].childNodes[1], "chan_agent_cid_name", "wallonly", ("?exten="+ch[AMI.CHAN_CALLERID_NUM]+"&_c=1"));
 		}
 	}
@@ -896,7 +803,6 @@ function chans (o,k,ts)
 					nd (el_.childNodes[1].childNodes[1].lastChild, te["chan_args"], [], ch, [0]);
 					el = el_.childNodes[1].childNodes[1].lastChild.firstChild;
 					if (!chan_a[ch[2]]) chan_a[ch[2]] = { "ts":ts };
-					// console.log (ch);		
 					call_popup (el);
 				}
 			}
@@ -975,6 +881,7 @@ function chans (o,k,ts)
 
 	var p_agent = document.getElementById ("agent_status");
 	var p_joinq = document.getElementById ("joinq_status");
+	var p_agent_nb = document.getElementById ("agent_status_notif");
 	var p_aa = document.getElementById ("aa_status");
 	var a_ = [];
 	var a__ = [];
@@ -987,16 +894,18 @@ function chans (o,k,ts)
 	if (ch_agent!=null) 
 	{ 
 		a_ = [ch_agent[AMI.CHAN_STATUS_TS_], ch_agent[AMI.CHAN_STATUS_TS_TXT_], ch_agent[AMI.CHAN_STATUS_TXT_], "cb", ("w01 h01 bd "+status_[ch_agent[AMI.CHAN_STATUS_]]), ("a"+ch_agent[AMI.CHAN_STATUS_TXT_]).replace (" ","_")]
-		// console.log ("AGENT_STATUS: "+ch_agent[AMI.CHAN_STATUS_]+":"+ch_agent[AMI.CHAN_STATUS_TXT_]);
 		a__ = ["coffee","break","0","Leave Queue","injoinq"]
-	} 
-	console.log ("-----cti:"+a_[5]);
+	}
+
 	if (p_agent && p_agent.firstChild.id!=a_[5]) 
 	{
 		p_agent.innerHTML = "";
 		p_joinq.innerHTML = "";
-		nd (p_agent, te["agent_status"], a_, [], [6]);
+		nd (p_agent, te["agent_status"], a_.slice(0), [], [6]);
 		nd (p_joinq, te["joinq_status"], a__, [], [5]);
+		p_agent_nb.style.display = ch_agent!=null ? "block" : "none";
+		if (ch_agent!=null) p_agent_nb.firstChild.className = "ml2 x y bd8 "+status_[ch_agent[AMI.CHAN_STATUS_]]
+		// console.log ("[agent] "+JSON.stringify (a_));
 	}
 
 	a_ = ["z","","aa_none"];
@@ -1012,24 +921,23 @@ function chans (o,k,ts)
 	}
 
 	pa.parentNode.firstChild.childNodes[1].innerHTML = c[0];      // agent count
-        pi.previousSibling.childNodes[1].innerHTML = c[5];      // inbound count
-        var cnk = "c x y";
-        var cnv = "d xx y";
-        if (c[1]>0) { cnk = "c x y cr"; cnv="d xx y gr cw bd16";  }
-        pq.previousSibling.childNodes[0].className = cnk;
-        pq.previousSibling.childNodes[1].className = cnv;
-        pq.previousSibling.childNodes[1].innerHTML = c[1];      // waiting
-
+     pi.previousSibling.childNodes[1].innerHTML = c[5];      // inbound count
+     var cnk = "c x y";
+     var cnv = "d xx y";
+     if (c[1]>0) { cnk = "c x y cr"; cnv="d xx y gr cw bd16";  }
+     pq.previousSibling.childNodes[0].className = cnk;
+     pq.previousSibling.childNodes[1].className = cnv;
+     pq.previousSibling.childNodes[1].innerHTML = c[1];      // waiting
 }
 
 function ldami (o,c)
 {
-        console.log (o)
+	// console.log (o)
 	var ts = (Date.now ()/1000);
-        var k = Object.keys (o);
-        re["channels"] = o;
-        chans (o, k, ts);
-        chans_pop (ts);
+	var k = Object.keys (o);
+	re["channels"] = o;
+	chans (o, k, ts);
+	chans_pop (ts);
 }
 
 // depricated te
