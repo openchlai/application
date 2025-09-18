@@ -96,7 +96,7 @@ te["wall_rpt"] = {  c:
 
 te["wall_args_inbound"] = { c:[ { arg:["","vector","1"] } ] };
 
-te["wall_calls"] = { div:["ma x15 y15"], c: // 
+te["wall_calls"] = { div:[""], c: // 
 [
 	
 	{ div:[""], c:
@@ -181,16 +181,16 @@ te["wall_calls"] = { div:["ma x15 y15"], c: //
 
 te["wallboard"] = { c:
 [
-	{ div:[] },
 	{ div:[], c:
-	[
-		{ arg:["","dash_period","today"] }
+	[ 
+		{ input:["g","","tabv","0","radio","1"] }, 
+		{ p:["tabv gw x20 y bd8","vt"], wall_calls:[] } 
 	]},
-	{ div:["gww h100"], c:
-	[
-		{ div:[], c:[ { input:["g","","tabv","0","radio","1"] }, { p:["tabv mt","vt"], wall_calls:[] } ] },
-		{ div:[], c:[ { input:["g","","tabv","1","radio"] }, { p:["tabv","vt"] } ] }, // wall my profile
-	]}
+	{ div:[], c:
+	[ 
+		{ input:["g","","tabv","1","radio"] }, 
+		{ p:["tabv gw","vt"] } 
+	] }, // wall my profile
 ]};
 
 te["wallonly"] = { c:

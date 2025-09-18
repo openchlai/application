@@ -77,7 +77,7 @@ var UU =
 
 "qa_rpt_vw": 	{ 200:[["rpt_vw","qas_rpt"]] },
 "qa_form":   	{ 201:[/*["call_r","call"],*/["qa_vw_r","qas"]], 412:[["nb","errors","","nb"]] },
-"qa_vw_id":  	{ 200:[["qa_vw_id","qas"]] },
+"qa_vw_id":  	{ 200:[["qa_vw_id","calls_vw"]] },
 "qa_list":   	{ 200:[["qa_list","qas_ctx"]] },
 "qa_main":   	{ 200:[["qa_main","qas_ctx"]] },
 "qas":		{ 200:[["qas","qas_ctx"]], 201:[["qas","qas_ctx"]] },
@@ -110,7 +110,7 @@ var UU =
 "activity_contact_vw_id":{ 200:[["case_contact_vw_id","contacts"]] },
 "activity_contact_ls":{ 200:[["activity_contact_ls","dispositions_ctx"]] },
 "activity_contact_main":{ 200:[["activity_contacts","dispositions_ctx"]] },
-"activity_contact":{ 200:[["activity_contact","contacts","contacts","contact"]] },
+"activity_contact":{ 200:[["activity_contact","contacts"]] }, // ,"contacts","contact"
 "activity_contacts":{ 200:[["activity_contacts","dispositions_ctx"]] },
 
 "activity_notify":{ 202:[["notification_lst_r_vw","activities_notify"]] },
@@ -810,9 +810,9 @@ te["main"] = { c:
 
 		{ sbl:["admin_","7","","users-users","manage_accounts","Users","noop"] },
 		
-		{ sbl:["counsellor_","8","","","dashboard","Wallboard","noop"] },
-		{ sbl:["supervisor_","8","","","dashboard","Wallboard","noop"] },
-		{ sbl:["admin_","8","","","dashboard","Wallboard","noop"] },
+		{ sbl:["counsellor_","9","","","dashboard","Wallboard","noop"] },
+		{ sbl:["supervisor_","9","","","dashboard","Wallboard","noop"] },
+		{ sbl:["admin_","9","","","dashboard","Wallboard","noop"] },
 
 		// { sbl:["admin_","9","","contacts-contacts","import_contacts","Contacts","noop"] },
 	]},
@@ -832,7 +832,7 @@ te["main"] = { c:
 		{ div:[], c:[ { input:["g","","mtv","6","radio"] }, { form:["tabv","vftab"] } ] }, // categories
 		{ div:[], c:[ { input:["g","","mtv","7","radio"] }, { form:["tabv","vftab"] } ] }, // users
 		{ div:[], c:[ { input:["g","","mtv","8","radio"] }, { form:["tabv","vftab"] } ] }, // contacts
-		{ div:[], c:[ { input:["g","","mtv","9","radio"] }, { form:["tabv gw mm","vfvwm"], wallboard:[] } ] }, // wallboard
+		{ div:[], c:[ { input:["g","","mtv","9","radio"] }, { form:["tabv","vfvwm"], wallboard:[] } ] }, // wallboard
 		{ div:["g"], c:
 		[
 			{ iframe:["","",VA_AMI_HOST] },

@@ -657,9 +657,15 @@ function valf (r,v)
 	{
 		if (!ra[a[2]]) return ""
 		if (!ra[a[2]][a[3]]) return ""; 
-		v = ra[a[2]][a[3]]
-		if (Array.isArray(v)) v = v[a[4]];
-		a = a.splice (4); 		
+		v = ra[a[2]][a[3]]	
+		if (a.length>5 && a[4]=="" && a[5].length>0)  // uchkargs match
+		{
+			// console.log (a[5]+"|"+r[a[5]]+"|"+JSON.stringify(v))	
+			if (v[r[a[5]]]) return "1";
+			return "";
+		}
+		if (a.length>4 && a[4].length>0 && Array.isArray(v)) v = v[a[4]];
+		a = a.splice (4); 
 	} 
 	else if (a[1]=="v" || a[1]=="V") 		// :v:table_name:col_name::enum:enum_col
 	{ 
@@ -1014,19 +1020,19 @@ function nd (p,o,a,r,m)
 	}
  
 	if (e)
-        {
-                el = document.createElementNS ("http://www.w3.org/1999/xhtml", e);
-                for (j=0; j<o[e].length; j++) val (o[e][j], a, r, m, el, aa[e][j]);
-                p.appendChild (el);
-                if (e=="input" && el.type=="text") { el.setAttribute ("autocomplete","off"); }
-                if (e=="textarea")
-                {
-                        var st = window.getComputedStyle (el);
-                        var h = st.getPropertyValue("height");
-                        // console.log ("TXA: "+el.height+" | "+h+"|"+e);
-                        if (h<100) el.style.height = 100; 
-                }
-        }
+	{
+		el = document.createElementNS ("http://www.w3.org/1999/xhtml", e);
+		for (j=0; j<o[e].length; j++) val (o[e][j], a, r, m, el, aa[e][j]);
+		p.appendChild (el);
+		if (e=="input" && el.type=="text") { el.setAttribute ("autocomplete","off"); }
+		if (e=="textarea")
+		{
+			var st = window.getComputedStyle (el);
+			var h = st.getPropertyValue("height");
+			// console.log ("TXA: "+el.height+" | "+h+"|"+e);
+			if (h<100) el.style.height = 100; 
+		}
+	}
 	
 	if (o.ev)
 	{
@@ -1399,21 +1405,6 @@ function _u (ev)
 	argv (__(this),a);
 	url (p, u[0], u[1], (a[".id"]+a.args));
 	boo(ev);
-} 
-
-function _uve (ev)
-{
-        var u = this.id.split ("-");
-        var v = "v";
-        if (u.length>2 && u[2].length>0) v = u[2];
-        var p = __(this,v); // ascend
-        if (u.length>3 && u[3].length>0) p = _(p, u[3]); // descend
-        var a = {args:"?", ".id":""};
-	   if (this.previousSibling.type === "radio") this.previousSibling.checked = true;
-        argv (__(this),a);
-	   console.log (u+"|"+__(this).id )
-        url (p, u[0], u[1], (a[".id"]+a.args), null, 2);
-        boo(ev);
 }
 
 function _nav (ev) 

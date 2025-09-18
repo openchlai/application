@@ -2102,7 +2102,7 @@ te["case_main"] = { c:
 			[
 				{ input:["g","","cases_t_","0","radio","1"] },
 				{ ac:["c","case_main-cases-vftab","_u","x y cb b h3_","::case_title:5:1"] }, 
-				{ ac:["c t02 x ay","","_dd","h02 w02 gws_ awb",""] },
+				{ ac:["c t x ay","","_dd","h02 w02 gws_ awb",""] },
 				{ div:["e"], arg:["","_title","%5"] }
 			]},
 			{ div:["dd x y gw ba sh nd w14","vdd"], c:
@@ -2123,40 +2123,40 @@ te["case_main"] = { c:
 			]}
 		]},
 
-		{ div:["c l40"], ac:["ay","case_f-cases_f","_vpf","x t01 bd_ cb s",""], c:
+		{ div:["c l20"], ac:["ay","case_f-cases_f","_vpf","x bd_ cb s",""], c:
 		[ 
-			{ s:["c t04 h3_ micon","search"] },
+			{ s:["c t h3_ micon","search"] },
 			{ div:["c x y","","Search"] }, 
 			{ div:["e"] }
 		]},
 
-		{ div:["c l40"], ac:["ay","cases","_download","x t01 bd_ cb s",""], c:
+		{ div:["c l20"], ac:["ay","cases","_download","x bd_ cb s",""], c:
 		[ 
-			{ s:["c t04 h3_ micon","download"] },
+			{ s:["c t h3_ micon","download"] },
 			{ div:["c x y","","Download"] }, 
 			{ div:["e"], arg:["","join","services,referals,clients,perpetrators"] }
 		]},
 		
-		{ div:["c l40"], c: 
+		{ div:["c l20"], c: 
 		[
 			{ arg:["case_list-cases","","0"] },
 			{ input:["g","","cases_t_","0","radio","1"] },
-			{ li:["opto x s cb","case_list-cases"], ev:["_tab"], c:
+			{ li:["opto x s cb bd_","case_list-cases"], ev:["_tab"], c:
 			[
-				{ s:["c l t h3_ micon","list"] },
-				{ div:["c xx y","","List"] }, 
+				{ s:["c y04 h3_ micon","list"] },
+				{ div:["c x y03","","List"] }, 
 				{ div:["e"] }
 			]}
 		]},
 
-		{ div:["c l40"], c: 
+		{ div:["c l20"], c: 
 		[
 			{ arg:["case_rpt_vw-cases-@","","1,0"] },
 			{ input:["g","","cases_t_","1","radio"] },
-			{ li:["opto x gw s cb","case_rpt_main-r_"], ev:["_tab"], c:[ { div:[], c:
+			{ li:["opto x s cb bd_","case_rpt_main-r_"], ev:["_tab"], c:[ { div:[], c:
 			[
-				{ s:["c l t h3_ micon","bar_chart"] },
-				{ s:["c xx y","Reports"] }, 
+				{ s:["c y04 h3_ micon","bar_chart"] },
+				{ s:["c x y03","Reports"] }, 
 				{ div:["e"] }
 			]} ]}
 		]},

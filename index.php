@@ -108,17 +108,8 @@ include "app/phone.js";
 include "app/cti.js";
 include "app/ati.js";
 include "app/call.js";
-//include "app/chanss.js";
+include "app/wallboard.js";
 include "app/msg.js";
-
-include "app/schedule.js";
-//include "app/campaign.js";
-include "app/category.js";
-// include "app/member.js";
-//include "app/voiceprompt.js";
-//include "app/voicemap.js";
-//include "app/voicefile.js";
-
 include "app/activity.js";
 include "app/disposition.js";
 include "app/qa.js";
@@ -129,6 +120,14 @@ include "app/perp.js";
 include "app/attachment.js";
 include "app/case.js";
 include "app/case_activity.js";
+
+//include "app/campaign.js";
+// include "app/member.js";
+//include "app/voiceprompt.js";
+//include "app/voicemap.js";
+//include "app/voicefile.js";
+include "app/schedule.js";
+include "app/category.js";
 
 include "app/safepal.js";
 include "app/aii.js";

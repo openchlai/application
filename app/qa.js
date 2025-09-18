@@ -668,49 +668,47 @@ te["qa_vw_r"] = { c:
 		]}
 ]};
 
-te["qa_vw_id"] = { div:["w100 ma bd sh__ gw","vddvw"], ev:["_undd"], c:
+
+te["qa_vw_id"] = { c:
 [
-	{ div:["x15 tt"], c:
+	{ div:["xx y15 h03","vb"], c:
 	[
-		{ s:["c xx y12 n b","QA Results"] },
-		{ ac:["d","","_uvp","xx y08 h cb","&Cross;"] },
-		{ div:["e"] }
-	]},
-	{ div:["","va"], c:
-	[
-		{ div:["x25 x15 tt n"], c:
+		{ div:["c ll "], ac:["ay","","_uvw","h2 x y bd16 gb cw micon","arrow_back"] },	
+		{ s:["c xx y h2 b","QA Details"] },
+		{ div:["d t01 w04 ll r05"], s:["w04 gw abs zzzz",""], c:
 		[
-			{ s:["c y b",":v:qas:chan_vector::vector:1"] }, 
-			{ s:["c x y b","Call"] },
-			{ s:["c y b",":v:qas:chan_vector::vector:3"] },
-			{ s:["c x y b",":v:qas:chan_phone"] },
-			{ s:["c y b",":v:qas:chan_vector::vector:6"] },
-			{ s:["c x y b",":v:qas:chan_usr"] },		
-			{ s:["c xx y cd",":d:dmyhn:6: "] },
-			{ div:["d"], ac:["ao ","vfile_vw_r-calls-va-play","_u","y03 gws cb",""], c:
-			[ 
-				{ s:["c x h3_ micon","play_arrow"] },
-				{ s:["c y02","Talk Time"] },
-				{ s:["c xx y02",":h:ms:11:"] },	
-				{ div:["e"], c:[ { arg:["",".id",":v:qas:chan_uniqueid"] }, { arg:["","file","wav"] } ] },
-			]},
-			{ div:["e"]}
+			{ ac:["ay","","_uvw","cb bd y01",""], c:
+			[
+				{ s:["tc h b","&Cross;"] },
+				// { s:["d x y s","Close"] },
+				{ div:["e"] }
+			]}
 		]},
-		{ div:["x25"], c:
+		{ div:["d w30 t01 casevwmenu"], s:["abs zzzz w30 h04 gw",""], c:
 		[
-			{ p:["d t02","play"] },
 			{ div:["e"] }
 		]},
+		{ div:["e"] }
 	]},
-	{ div:["x20 tt gw"], c:
+	{ div:["x25","vb"], c:
 	[
-		{ div:["yy r05","vb"], c:
+		{ div:["c w20"], s:["abs w20 gw",""], c:[ { call_vw_r:[] } ] },
+		{ div:["d w35"], s:["abs w35 gw",""], c:[ { div:["","ve"], u:[":u::30:0:qa_ed_r:call_vw_id_qa_vw_r"] } ] }, //qa_ed_r:[] } ] },
+		{ div:["e"] }
+	]},
+	{ div:["ml23 mr38 x40 mh90"], c:
+	[
+		{ s:["x y b","Reporter"] },
+		{ div:[], c:
 		[
-			
-		]}
+			{ arg:["","src","call"] },
+			{ arg:["","src_uid2","%0"] },
+			{ arg:["","group","contact_id"] },
+			{ uv:["call_activity_reporter","reporters"] }
+		]},
+		{ u:["call_activity_r","case_activities"] }
 	]}
 ]};
-
 // ------------------------------------------------------------------------
 
 te["qa_f_tags"] = { c: 
@@ -764,7 +762,8 @@ te["qa_footer"] = { div:["x ba"], c:
 
 te["qa_r"] ={ div:[], c:
 [
-	{ ac:["ay w200","qa_vw_id-qas","_qa_vw_id","cb gw",""], c:
+	{ input:["g","","qavwr","1","radio"] },
+	{ ac:["ay w200 tabh","qa_vw_id-calls^vw","_vw","cb gw",""], c:
 	[
 		{ div:["c w14"], s:["tt b05 h01_  xx",":d:dmyhn:6: "] },
 		{ div:["c w14"], s:["tt b05 h01_  xx",":v:qas:chan_user_name"] },		
@@ -780,7 +779,7 @@ te["qa_r"] ={ div:[], c:
 	
 		{ div:["c w14"], s:["tt b05 h01_  xx",":v:qas:created_by"] },	
 		{ div:["c w14"], s:["tt b05 h01_  xx",":d:dmyhn:1: "] },
-		{ div:["e"], arg:["",".id","%0"] }
+		{ div:["e"], arg:["",".id",":v:qas:chan_uniqueid"] }
 	]},
 	{ div:[] }
 ]};
