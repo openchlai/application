@@ -370,7 +370,7 @@ function ldati (o)
 {
         var ts = (Date.now ()/1000);
         var k = Object.keys (o);
-        re["channels"] = o;
+        re["atis"] = o;
         atis (o, k, ts);        
         atis_pop (ts);
 }
