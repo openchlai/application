@@ -727,7 +727,7 @@ function val (v, a, r, m, el, k, w)
 
 function uredirect (el, u, a, r, m)
 {
-	console.log (u);
+	// console.log (u);
 	window.location.href = (HOME+u[0]+u[1]);
 }
 
@@ -1329,7 +1329,7 @@ function uvpf (el)
 	elvpf = null;
 	jso (p, o);
 	ra[u[1]] = o;
-	console.log(o)
+	// console.log(o)
 	p = document.getElementById ("vp");
 	p.style.display = "none";
 	p.innerHTML = "";

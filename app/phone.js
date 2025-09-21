@@ -179,26 +179,19 @@ function VOICEAPPS_SESSION (_leg)
 			case SIP.SessionState.Terminated:
 				state = 5;
 				console.log ("VOICEAPPS_SESSION: Terminated "+me.session.id);
-			        VOICEAPPS_UA.cleanup_media (me.mediaElement);
+				VOICEAPPS_UA.cleanup_media (me.mediaElement);
 				if (el) 
-				{ 
-					var toolbar = document.getElementById ("vv").childNodes[1].firstChild;
+				{
+					var vw = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes[1]; 
 					var a = {}
 					argv (el, a); 
 					me.hangup_ts = (Math.ceil ((Date.now()/1000)));
-					a.src_ts_end = ""+me.hangup_ts; // duration in seconds
-					a.src_status = a.src_state+"-"+a.src_vector+"-"+a.src_orig;
-					a.src_status_duration = a.src_ts_end-a.src_state_ts;
-					a.src_duration = me.hangup_ts-a.src_ts;	
-					if (toolbar && toolbar.id==a.src_uid) call_popup_end (a.src_ts_end);
-					p.removeChild (el); 
+					if (vw && vw.firstChild && vw.firstChild.id==a.src_uid) call_popup_end (el, a, vw)
+					p.removeChild (el);
 					el=null;
-					CALL_COUNT--;
+					CALL_COUNT--; // console.log ("CALL_COUNT:"+CALL_COUNT)
 					notifs ();
-					// var p_ = document.getElementById ("vt_activity");
-					// url (p_, "activity_call", "activities", "", null, 2, a, "POST"); //depricated
 				}
-				// NB CALLS cleanup happens VOICEAPP_UA.callended
 				break;
 	
 			default:
@@ -365,28 +358,25 @@ VOICEAPPS_UA.on_notify = function (e)
 
 VOICEAPPS_UA.sethold = function (va, hold) 
 {
- 
-     	const sessionDescriptionHandlerOptions = va.session.sessionDescriptionHandlerOptionsReInvite;
-        sessionDescriptionHandlerOptions.hold = hold;
-        va.session.sessionDescriptionHandlerOptionsReInvite = sessionDescriptionHandlerOptions;
-        // Send re-INVITE
-        return va.session.invite (va.options).then (() => 
-        {
-        	var pc = va.session.sessionDescriptionHandler.peerConnection;
+	const sessionDescriptionHandlerOptions = va.session.sessionDescriptionHandlerOptionsReInvite;
+	sessionDescriptionHandlerOptions.hold = hold;
+	va.session.sessionDescriptionHandlerOptionsReInvite = sessionDescriptionHandlerOptions;
+	// Send re-INVITE
+	return va.session.invite (va.options).then (() => 
+	{
+		var pc = va.session.sessionDescriptionHandler.peerConnection;
 		pc.getSenders().forEach ((stream) => 
 		{
-			//console.log (stream)
+			// console.log (stream)
 			stream.track.enabled = !hold;
-			console.log ("Sender TRack Status ("+hold+") "+stream.track.enabled)
-    		});
-    		
+			console.log ("Sender Track Status: "+hold+","+stream.track.enabled)
+		});
 		va.ishold = hold;
 		va.ishold_ts = Date.now ()/1000;
 		console.log ("hold is: "+hold);
 		call_popup_hold_state (va.el, hold); // update hold state in toolbar
 		call_popup_upd (va.el.childNodes[1].childNodes[1].lastChild.firstChild); 
-		
-        })
+	})
 	.catch((error) => 
 	{
 		console.log ("hold errror: "+error);
@@ -534,13 +524,13 @@ function _add_dial (ev)
 	var p = __(this,"ve")
 	var el = _(document.getElementById ("call_sessions"), p.parentNode.id);
 	var o = {}
-	argv (p, o);
 	if (el==null) 
 	{
 		this.parentNode.nextSibling.innerHTML = "<div class='x y'><div class='x08 y gp cr'>Call has already ended</div></div>";
 		return;
 	}
-	argv (__(el,"va"), o);	
+	jso (p, o);  
+	argv (el, o);
 	// if (o.cbid.length>0) o.chan2=""; // unset chan2 to remove it from unnecesary redirect
 	_ami_action (this, o, "2");	
 }
@@ -552,11 +542,11 @@ function _add_dial_form ()
 	var o = {};
 	var r_ = ra[u[1]][0].slice (0)
 	var el = null;
-	argv (this, o, "id");	
-	el = _(document.getElementById ("call_sessions"), o._uid);
-	argv (__(el,"va"), o);	
+	argv (__(this,"vfvw").firstChild.lastChild, o)	
+	el = _(document.getElementById ("call_sessions"), o.src_uid);
+	argv (__(el,"va"), o);
 	console.log ("[_add_dial_form] "+JSON.stringify (o))
-	r_[AMI.CHAN_UNIQUEID] = o._uid;
+	r_[AMI.CHAN_UNIQUEID] = o.src_uid;
 	vp (p);
 	nd (p, te[u[0]], [], r_, [0]);
 	ldami (re["channels"]);
@@ -567,14 +557,13 @@ function _add_dial_form ()
 function phone_hangup (id)
 {
 	var vs = CALLS[id]
-	console.log ("hangup---------------------"+id)
 	VOICEAPPS_UA.endcall (vs.session, vs.leg);
 }
 
 function _hangup (ev)
 {
 	var o = {};
-	argv (__(this,"vb").firstChild.lastChild, o)
+	argv (__(this,"vf").firstChild.lastChild, o)
 	phone_hangup (o["src_callid"])
 	boo (ev);
 }
@@ -582,9 +571,8 @@ function _hangup (ev)
 function _hold (ev)
 {
 	var o = {};
-	argv (__(this,"vb").firstChild.lastChild, o);
-	var vs= CALLS[o["src_callid"]];
-	console.log ("hold("+vs.ishold+")---------------------"+o["src_callid"])
+	argv (__(this,"vf").firstChild.lastChild, o)
+	var vs = CALLS[o["src_callid"]];
 	VOICEAPPS_UA.sethold (vs, !vs.ishold);
 	boo (ev);
 }
@@ -592,9 +580,10 @@ function _hold (ev)
 function _answer (ev)
 {
 	var o = {};
-	argv (__(this,"vb").firstChild.lastChild, o);
+	argv (__(this,"vf").firstChild.lastChild, o)
+	console.log ("answer start ---------------------"+o["src_callid"])
 	CALLS[o["src_callid"]].session.accept ({ sessionDescriptionHandlerOptions: { constraints: { audio: true, video: false } } });
-	console.log ("answer---------------------"+o["src_callid"])
+	console.log ("answer end ---------------------"+o["src_callid"])
 	boo (ev);
 }
 

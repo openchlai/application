@@ -135,16 +135,16 @@ te["call_add_form"] = { div:["","ve"], c:
 		{ div:["c w23","tag-r_--o-call_add_user-%1-user_id-%0-"], c:
 		[
 			{ li:["gws_ b02","va"], c:[ { div:["","user_ls-users"], ev:["_dd"], c: // ls
-                	[
-                        	{ p:["c w20","o"], c:
-                        	[ 
-                        		{ u:["call_add_user","r_"] }, 
-                        		// { uchk:["tag",null,"","^", null,null,null,null,null] } // set if there is a default user
-                        	]},
-                        	{ div:["d w02 x t"],  c:[ { div:["h02 w02 awb"] } ] },
-                        	{ div:["e"], c:[ { arg:["_c","","10"] }, { arg:["exten","",""] }, { ufn:["users_online_ufn"] } ] } // limit to users who are online
-                	]} ]},
-                	{ div:["dd w30 gw ba_b","vdd"], ev:["_undd"] },
+               [
+				{ p:["c w20","o"], c:
+				[ 
+					{ u:["call_add_user","r_"] }, 
+					// { uchk:["tag",null,"","^", null,null,null,null,null] } // set if there is a default user
+				]},
+				{ div:["d w02 x t"],  c:[ { div:["h02 w02 awb"] } ] },
+				{ div:["e"], c:[ { arg:["_c","","10"] }, { arg:["exten","",""] }, { ufn:["users_online_ufn"] } ] } // limit to users who are online
+			]} ]},
+			{ div:["dd w30 gw ba_b","vdd"], ev:["_undd"] },
 		]},
 		
 		// { div:["d x"], c:[ { ac:["ag btn","call_add_ld-chan","_add_dial","x15 y gws cb tc","Invite"] }, { s:["y b savl","..."] } ] },
@@ -163,6 +163,13 @@ te["call_add_form_main"] = { div:["w30 ma bd sh__ gw xx yy","vddvw"], ev:["_undd
 	]},
 	{ div:["",":V:ami:CHAN_UNIQUEID"], c:[ { div:["","init"], s:["x y g","..."] } ] },
 	{ div:["","cba"] } // show add-chan status 
+]};
+
+te["call_wrapup"] = { div:["ma w10"], c: 
+[
+	{},
+	{},
+	{ div:["e"] }
 ]};
 
 te["call_toolbar"] = { div:[], c: 
@@ -197,7 +204,7 @@ te["call_toolbar"] = { div:[], c:
 			]}
 		]},
 		
-		{ div:["d w07_ call_ringing_"], /*s:[":v:activities:src_vector::vector:7",""],*/ c:
+		{ div:["d w07_ call_ringing_"], s:[":v:activities:src_vector::vector:7",""], c:
 		[ 
 			{ ac:["ao","","_answer","w03 h03 x01 y01 ma bd32 gb cw tc sh__",""], c:[ { s:["micon h2_ t03","call"] } ] },
 			{ s:["t tc cb s","Answer"] },
@@ -407,35 +414,26 @@ function _sup ()
 
 // -------------------------------------------------------
 
-function call_popup_end (ts)
+function call_popup_end (el, a, vw)
 {
-	var coll = document.getElementById ("vv").childNodes;
-			
-	// notif --> closed by phone.js (after this function return)
-	
-	// toolbar
-	var coll_ = coll[1].firstChild.childNodes[1].firstChild.firstChild.childNodes;
-	coll_[0].parentNode.className = "cr b gp";
-	coll_[1].innerHTML = "Wrapup";
-	coll_[2].innerHTML = hmst ((ts*1), ["","","","","","",""]); // status-duration;
-	coll_[3].value = ts; // dont stop timer
-	
 	// action btns
-	var p = coll[6].childNodes[1].childNodes[1].firstChild.firstChild;
-	var last_status = p.className;
-	p.className = "call_ended";
+	var last_status = vw.firstChild.firstChild.className;
+	vw.firstChild.firstChild.className = "call_ended";
 	if (last_status!="call_connected")  // auto close popup is call not connected
 	{
-		activity_close (); // clear
-	}	
+		activity_close (vw); // clear
+		return;
+	}
+	// var r = []
+	// nd (vw.firstChild.firstChild, te["call_wrapup"], [], r, [0])l
 }
 
 function call_popup_hold_state (el, f)
 {
-	var p = document.getElementById ("vv").childNodes[6].childNodes[1].childNodes[1].firstChild.firstChild
+	var p = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes[1].firstChild; // toolbar
 	var a = {};
 	var a_ = {};
-	var el_ = _(p, "chanholdstate", "input");
+	var el_ = _(p.firstChild, "chanholdstate", "input");
 	argv (el, a);
 	argv (p.lastChild, a_)
 	console.log ("call_popup_hold_state ("+f+") "+a.src_uid+"=="+a_.src_uid+"|"+el_)
@@ -472,7 +470,7 @@ function call_popup_upd (el)
 	// action btns
 	if (coll[1].firstChild && coll[1].firstChild.id==a.src_uid)
 	{
-		console.log ("call_toobar: "+ ss[a.src_state][1])
+		// console.log ("call_toobar: "+ ss[a.src_state][1])
 		var p_ = coll[1].firstChild.firstChild;
 		p_.className = ss[a.src_state][1];
 		// p_.lastChild.firstChild.childNodes[3].value = a.src_uid2; // src_uid2

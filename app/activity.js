@@ -1324,13 +1324,17 @@ function activity_notify_ufn (el, u, a, r, m)
 
 // ---
 
-function _activity_close (ev) 
+function activity_close (vw) 
 {
 	document.getElementById ("activity_close").checked = true;;
-	// this.previousSibling.checked = true;
-	var p = __(this,"vfvw");
-	p.parentNode.parentNode.firstChild.firstChild.checked = true;
-	p.innerHTML = "";
+	vw.parentNode.parentNode.firstChild.firstChild.checked = true;
+	vw.innerHTML = "";
+}
+
+function _activity_close ()
+{
+	var vw = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes[1]; 
+	activity_close (vw)
 }
 
 function _activity_contact_del ()
@@ -1358,7 +1362,7 @@ function _activity_contact_new ()
 	var r_ = ra[u[1]][0].slice (0)
 	var kk = ra["contacts_k"]
 	var o = {};
-	jso (__(this,"vfvw").firstChild.lastChild, o);		// src
+	jso (__(this,"vfvw").firstChild.lastChild, o);						// src
 	vp (p);
 	r_[kk[re["case_src"][o.src][11]][0]] = o.src_address;
 	// alert (o.src+"|"+re["case_src"][o.src][11]+"|"+JSON.stringify(kk[re["case_src"][o.src][11]]))
@@ -1372,7 +1376,7 @@ function _activity_disposition_r ()
 	this.previousSibling.checked = true;
 	argv (_(__(this,"vt").previousSibling,"contact"), a);
 	argv (this, a);
-	console.log (a)
+	// console.log (a)
 	if (a.contact_id && a.contact_id>0)
 	{
 		var o = {};
