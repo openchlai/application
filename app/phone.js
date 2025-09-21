@@ -548,7 +548,7 @@ function _add_dial_form ()
 	r_[AMI.CHAN_UNIQUEID] = o.src_uid;
 	vp (p);
 	nd (p, te[u[0]], [], r_, [0]);
-	let channels = re["channels"].splice(0)
+	let channels = re["channels"].slice(0)
 	ldami (channels);
 }
 
