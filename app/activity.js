@@ -1003,7 +1003,7 @@ te["activity_vw_id"] = { c:
 			]}
 		]},
 
-		{ div:["d w25 t casevwmenu"], s:["abs zzzz w25 h03 gw",""], c:
+		{ div:["d w25 t casevwmenu"], s:["abs zzzz w25 h04 gw",""], c:
 		[
 			
 			{ div:["d r10"], c:

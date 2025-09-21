@@ -578,7 +578,7 @@ function chan_status (tp, ch)
 		ch[AMI.CHAN_STATUS_] = ""+(st2-10); 				// status id
 		ch[AMI.CHAN_STATUS_TXT_] = ss["chan_call"][(st2-10)];			// status txt
 		ch[AMI.CHAN_STATUS_TS_] = ch2[st2];					// status-ts
-		//ch[AMI.CHAN_STATUS_TS_TXT_] = hmst (ch2[st2], ["","h","hms","0",""]);	// status-duration
+		// ch[AMI.CHAN_STATUS_TS_TXT_] = hmst (ch2[st2], ["","h","hms","0",""]);	// status-duration
 	}
 }
 
@@ -930,7 +930,6 @@ function chans (o,k,ts)
 
 function ldami (o,c)
 {
-	// console.log (o)
 	var ts = (Date.now ()/1000);
 	var k = Object.keys (o);
 	re["channels"] = o;
