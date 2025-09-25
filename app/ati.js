@@ -282,18 +282,13 @@ function atis_pop (ts)
 
 function atis (o,k,ts)
 {
-	var pcoll = document.getElementById ("vv").childNodes;
+	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; 
 	var pu = document.getElementById ("call_sessions");
 	var user_cid = document.getElementById ("user_cid").value;
 	var c = [0,0,0,0,0,0,0];
 	var unread_tot = 0;
 	var ch_agent = null;
 	var activitya = {};
-
-	if (pcoll[1].childNodes.length>0 && pcoll[1].firstChild.id.length>0) 
-	{
-		argv (pcoll[6].childNodes[1].childNodes[1].firstChild.firstChild.lastChild, activitya)
-	}
 
 	for (var i=k.length-1; i>-1; i--)
 	{
@@ -308,7 +303,7 @@ function atis (o,k,ts)
 			//chani ("chan_agent", pa, ch, ts); 
 			continue;
 		}
-		//console.log ("[atis] "+user_cid+"|"+ch[ATI.CHAN_CALLERID_NUM]+","+ch[ATI.CHAN_CONTEXT] +i+"of"+ k.length)
+
 		if (ch[ATI.CHAN_CONTEXT]=="agtk" && ch[ATI.CHAN_CALLERID_NUM]==user_cid)
 		{
 			// console.log ("[ati] "+ch[3])
@@ -339,10 +334,10 @@ function atis (o,k,ts)
 				/*if (el_ !=null)*/ ati_ld_unread (ch);	
 			}
 		}
+		
 		if (ch[ATI.CHAN_SRC]=="aii" && ch[ATI.CHAN_CONTEXT]=="trunk")
 		{
-			// console.log ("ati aii !!!!!!"+ch[ATI.CHAN_BRIDGE_ID]+" "+activitya.src_uid2)
-			if (ch[ATI.CHAN_BRIDGE_ID]==activitya.src_uid2)
+			if (coll[1].firstChild && coll[1].firstChild.id == ch[ATI.CHAN_BRIDGE_ID])
 			{
 				var p_ = _(pcoll[6].childNodes[1].childNodes[1].lastChild, "msgs"); // reload chats
 				url (p_.previousSibling, "activity_messages", "messages", ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30"));
@@ -370,7 +365,7 @@ function ldati (o)
 {
         var ts = (Date.now ()/1000);
         var k = Object.keys (o);
-        re["atis"] = o;
+        re["threads"] = o;
         atis (o, k, ts);        
         atis_pop (ts);
 }

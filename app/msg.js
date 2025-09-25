@@ -472,7 +472,7 @@ te["pmessage_r_"] = { c:
 			//{ s:["c x",":v:pmessages:user_name"] },
 			{ div:["e"] } 
 		]},
-		{ div:["c w15"], s:["xx tt b05 h01_",":v:pmessages:src:case_src:1"] },
+		{ div:["c w15"], s:["xx tt b05 h01_",":v:pmessages:src::case_src:1"] },
 		{ div:["c w15"], s:["xx tt b05 h01_",":v:pmessages:in_count"] },
 		{ div:["c w15"], s:["xx tt b05 h01_",":v:pmessages:out_count"] },
 		

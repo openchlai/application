@@ -113,6 +113,8 @@ var UU =
 "activity_contact":{ 200:[["activity_contact","contacts"]] }, // ,"contacts","contact"
 "activity_contacts":{ 200:[["activity_contacts","dispositions_ctx"]] },
 
+"notification_lst":{ 200:[["notification_lst","activities_notify_ctx"]] },
+
 "activity_notify":{ 202:[["notification_lst_r_vw","activities_notify"]] },
 "activity_reporter":{ 201:[["activity_reporter_ufn","reporters_uuid","","nb"]], 202:[["activity_reporter_ufn","reporters_uuid","","nb"]], 412:[["nb","errors","v","nb"]] },
 "activity_disposition_unk":{ 201:[["activity_disposition_ufn","dispositions_unk"]], 412:[["nb","errors","v","nb"]] },
@@ -248,7 +250,7 @@ re["hangup_reason"] =
 "net":["net","Network"],
 };
 
-rk["hangup_status"] = ["answered","abandoned","dump","missed","ivr","noanswer","busy","networkerror","voicemail","xfer_consult","xfer_noanswer","xfer_offline","xfer_ok"];
+rk["hangup_status"] = ["answered","abandoned","dump","missed","ivr","noanswer","busy","networkerror","voicemail","xfer_consult","xfer_noanswer","xfer_offline","xfer_ok",""];
 re["hangup_status"] = 
 {
 "":["","","","",""],
@@ -311,7 +313,7 @@ re["case_priority"] =
 "3":["3","High","High Priority","","","#ff0000"],
 };
 
-rk["case_status"] = ["1","2","3","0"];
+rk["case_status"] = ["1","2","3","4","0"];
 re["case_status"] =
 {
 "":["","Blank","","","","#ffffff"],
@@ -319,6 +321,7 @@ re["case_status"] =
 "1":["1","Ongoing","Ongoing","","","#ffa500"],
 "2":["2","Closed","Closed","","","#4eb151"],
 "3":["3","Escalated","Escalated to","","","#ff0000"],
+"4":["4","Non Intervention","Non Intervention"]
 };
 
 rk["case_priority_form"] = ["1","2","3"];
@@ -336,36 +339,34 @@ re["case_dept"] =
 };
 
 
-rk["case_src"] = ["walkin","call","sms","email","safepal","chat","whatsApp","FACEBOOK","TWITTER","WENI"];
+rk["case_src"] = ["walkin","call","sms","email","chat","whatsApp","whatsup","FACEBOOK","TWITTER","WENI","safepal","ai","aii"];
 re["case_src"] = 
 {                               
-"":["edit","edit","",                               	"g","", "g","edit","Edit Activity",                             "noop","activity_vw_id_match", "Edit", "", "","",],
-"all":	["all","Total",":k:case_source:total:1",          "g","", "micon hh co","cases","All Cases",                      "noop","noop","","", "", ""],
-"social":	["social","Social Media",":k:case_source:socialmedia:1", "g","", "micon cbl hh","share","Social Media",        "noop","noop","","", "", ""],
-"edit":	["edit","Edit","",                               "g","", "g","edit","Edit Activity",                             "noop","activity_vw_id_tabs", "Edit", "", "", ""],
-"walkin":	["walkin","Walkin",":k:case_source:walkin:1",  "g","", "micon cg hh","directions_walk","Walkin Activity",      "activity_btns","activity_vw_id_tabs","Walk In", "phone", "reporter_phone", ""],
-"call":	["call","Call",":k:case_source:call:1",          "","/helpline/images/bxs-phone-call.png","g","call","Call Activity","cti_btns","activity_vw_id_tabs","Call", 
-"phone", "reporter_phone", ""],
-"sms":	["sms","SMS",":k:case_source:sms:1",              "","/helpline/images/sms.png","g","sms","SMS Activity",            "ati_btns","activity_vw_id_tabs_message","SMS Chat", "phone", "reporter_phone", ""],
-"email":	["email","Email",":k:case_source:email:1",      "","/helpline/images/envelope-fill.png","g","chat","Email Activity","ati_btns","activity_vw_id_tabs_message","Email", "email", "reporter_email", ""],
-"safepal":["safepal","SafePal","",                      "","/helpline/images/safepal_ico.png","g","chat","Safepal Activity","ati_btns","activity_vw_id_tabs_message","Safepal", "phone", "reporter_email", "safepal"],
-"whatsup":["whatsup","Whatsup","",                      "","/helpline/images/watsap_ico.png","g","chat","Whatup Activity", "ati_btns","activity_vw_id_tabs_message","Whatsapp Chat", "phone", "reporter_email", ""],
-"facebook":["facebook","Facebook","",                   "","/helpline/images/fb_ico.png","g","chat","Facebook Activity",   "ati_btns","activity_vw_id_tabs_message","Facebook Posts", "email", "reporter_email", ""],
-"twitter":["twitter","Twitter","",                      "","/helpline/images/twitter_ico.png","g","chat","Twitter Activity","ati_btns","activity_vw_id_tabs_message","Twitter Posts", "email", "reporter_email", ""],
-"chat":	["chat","Chat","",                               "","/helpline/images/chat.png","g","chat","Chat Activity",         "ati_btns","activity_vw_id_tabs_message","Web Chat", "phone", "reporter_email", "safepal"],
-"WENI":	["WENI","Chatbot","",                      	"","/helpline/images/watsap_ico.png","g","chat","Chatbot Activity", "ati_btns","activity_vw_id_tabs_message","Chatbot Chat", "phone", "reporter_email", ""], 
-"whatsApp":["whatsApp","WHATSAPP","",                   "","/helpline/images/watsap_ico.png","g","chat","WhatsApp Activity", "ati_btns","activity_vw_id_tabs_message","Whatsapp Chat", "phone", "reporter_phone", ""],
-"FACEBOOK":["FACEBOOK","FACEBOOK","",                   "","/helpline/images/watsap_ico.png","g","chat","Facebook Activity", "ati_btns","activity_vw_id_tabs_message","Facebook Chat", "email", "reporter_email", ""], 
-"TWITTER":["TWITTER","TWITTER","",                      "","/helpline/images/watsap_ico.png","g","chat","Twitter Activity", "ati_btns","activity_vw_id_tabs_message","Twitter Chat", "email", "reporter_email", ""], 
+"":		["edit","edit","",			"","", "#ff0000","edit","",		"","",	"Edit", "", "","",],
+"all":	["all","Total","",          	"","", "#000000","cases","",		"","",	"","", "", ""],
+"social":	["social","Social Media","", 	"","", "#000000","share","",		"","",	"","", "", ""],
+"edit":	["edit","Edit","",			"","", "#000000","edit","",		"","",	"Edit", "", "", ""],
+"walkin":	["walkin","Walkin","",		"","", "#f0c39bff","directions_walk","","","","Walk In", "phone", "reporter_phone", ""],
+"call":	["call","Call","",			"","", "#fa8a09ff","call","",	"","",	"Call", "phone", "reporter_phone", ""],
+"sms":	["sms","SMS","",			"","", "#000000","sms","",		"","",	"SMS Chat", "phone", "reporter_phone", ""],
+"email":	["email","Email","",		"","", "#000000","chat","",		"","",	"Email", "email", "reporter_email", ""],
+"chat":	["chat","Chat","",			"","", "#17b8ddff","chat","",	"","",	"Web Chat", "phone", "reporter_email", "safepal"],
+"whatsApp":["whatsApp","WHATSAPP","",	"","", "#41ac0fff","chat","",	"","",	"Whatsapp Chat", "phone", "reporter_phone", ""],
+"whatsup":["whatsup","Whatsup","",		"","", "#41ac0fff","chat","",	"","",	"Whatsapp Chat", "phone", "reporter_email", ""],
+"facebook":["facebook","Facebook","",	"","", "#000000","chat","",		"","",	"Facebook Posts", "email", "reporter_email", ""],
+"FACEBOOK":["FACEBOOK","FACEBOOK","",	"","", "#000000","chat","",		"","",	"Facebook Chat", "email", "reporter_email", ""], 
+"twitter":["twitter","Twitter","",		"","", "#000000","chat","",		"","",	"Twitter Posts", "email", "reporter_email", ""],
+"TWITTER":["TWITTER","TWITTER","",		"","", "#000000","chat","",		"","",	"Twitter Chat", "email", "reporter_email", ""], 
 
-"escalation":["escalation","Escalation","",  "g","", "micon cg hh","","",      "activity_btns","activity_vw_id_tabs","Case Escalation", "phone", "reporter_phone", ""],
-"update":	["update","Case Update","",  		"g","", "micon cg hh","","",      "activity_btns","activity_vw_id_tabs","Case Update", "phone", "reporter_phone", ""],
+"escalation":["escalation","Escalation","",  "","", "#880000","","",		"","",	"Case Escalation", "phone", "reporter_phone", ""],
+"update":	["update","Case Update","",  		"","", "#008800","","",		"","",	"Case Update", "phone", "reporter_phone", ""],
+"ai":	["ai","AI","",  				"","", "#000000","","",		"","",	"Case Update", "usn", "usn", ""],
+"aii":	["aii","AI","",  				"","", "#000000","","",		"","",	"Case Update", "usn", "usn", ""],
 
-
-"webform":["webform","Webform",":k:case_source:webform:1",  "g","", "micon cg hh","chat","Webform Activity",      "activity_btns","activity_vw_id_tabs","Web Form", "reporter_phone", ""],
-
-"ceemis":	["ceemis","CEEMIS",":k:case_source:ceemis:1",  "g","", "micon cg hh","chat","CMIS Activity",      "activity_btns","activity_vw_id_tabs","CMIS", "reporter_phone", ""],
-
+"WENI":	["WENI","Chatbot","",		"","", "#dcc00aff","chat","",	"","",	"Chatbot Chat", "phone", "reporter_email", ""], 
+"safepal":["safepal","SafePal","",		"","", "#c8eb04ff","chat","",	"","",	"Safepal", "phone", "reporter_email", "safepal"],
+"webform":["webform","Webform","",		"","", "#5b07ebff","chat","",	"","",	"Web Form", "reporter_phone", ""],
+"ceemis":	["ceemis","CEEMIS","",		"","", "#0da2d4ff","chat","",	"","",	"CMIS", "reporter_phone", ""],
 };
 
 
@@ -769,7 +770,7 @@ te["main"] = { c:
 							{ div:["e"] }
 						]},
 						{ p:["","call_sessions"] }, // el.p.p.p.f.c1.c1
-						{ u:["notification_lst","activities_notify_ctx"] }
+						{ div:["","va"], u:["notification_lst","activities_notify_ctx"] }
 					]}
 				]},
 				{ div:[], c:
@@ -816,6 +817,8 @@ te["main"] = { c:
 
 		// { sbl:["admin_","9","","contacts-contacts","import_contacts","Contacts","noop"] },
 
+		// { sbl:["","10","","","audiotrack","Transcribe","noop"] },
+
 		{ input:["g","activity_close","sbl","22","radio"] },
 	]},
 	
@@ -835,6 +838,7 @@ te["main"] = { c:
 		{ div:[], c:[ { input:["g","","mtv","7","radio"] }, { form:["tabv","vftab"] } ] }, // users
 		{ div:[], c:[ { input:["g","","mtv","8","radio"] }, { form:["tabv","vftab"] } ] }, // contacts
 		{ div:[], c:[ { input:["g","","mtv","9","radio"] }, { form:["tabv","vfvwm"], wallboard:[] } ] }, // wallboard
+		//{ div:[], c:[ { input:["g","","mtv","10","radio"] }, { form:["tabv","vfvwm"], c:[ { iframe:["wp100 h100","","transcription_frontend_template.php"] } ] } ] },
 		{ div:["g"], c:
 		[
 			{ iframe:["","",VA_AMI_HOST] },
@@ -966,7 +970,7 @@ function loadphone (el, u, a, r, m)
 	if (v) document.getElementById ("vv").className = v[2];
 	console.log ("loadphone: "+ra["auth"][0][7]+" | "+JSON.stringify (v));
 	DetectDevices ();
-	VOICEAPPS_UA.connect (ra["auth"][0][7]);
+	// VOICEAPPS_UA.connect (ra["auth"][0][7]);
 }
 
 function ami_wait (el, u, a, r, m)
@@ -995,7 +999,7 @@ function notifs ()
 	var n = 0;
 	var cn = "none";
 	if (p==null) return;
-	n = CALL_COUNT+ATI_COUNT
+	n = CALL_COUNT+ATI_COUNT+ACT_COUNT
 	if (n>0) cn = "block"
 	el.firstChild.innerHTML = n;
 	el.style.display = cn;

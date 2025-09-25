@@ -651,6 +651,53 @@ function chan_sup (pa,ch,ts)
 	coll[2].value = ch[AMI.CHAN_PROMPT_TS0];
 }
 
+function chan_add (vp_add, ch, ch_, ts)
+{
+	var m_ = 0;
+
+	if (ch_ && ch_[AMI.CHAN_STATE_HANGUP].length>0) ch_=null;
+
+	console.log ("[chan_add] "+ch[AMI.CHAN_CBO_TS]+" "+ch[AMI.CHAN_CBO]+"->"+(ch_?ch_[AMI.CHAN_XFER]:""));
+
+	if (vp_add.firstChild.firstChild.id=="add_ld")  // show cbo status b4 chan_add is created
+	{
+		var coll_ = vp_add.firstChild.firstChild.childNodes[1].childNodes;
+		var action_ts = coll_[2].value*1; // todo: adjust for time diff between asterisk and app servers			
+		if (action_ts <= (ch[AMI.CHAN_CBO_TS]*1))
+		{
+			var st_ = re["chan_action"][ch[AMI.CHAN_CBO]];
+			coll_[0].innerHTML = "";
+			coll_[2].id = st_?st_[3]:"";
+			nd (coll_[0], te["call_add_msg"], [], [ch[AMI.CHAN_CBO]], [0]);
+		}
+		m_++;
+	}
+	
+	if (ch_ && (vp_add.firstChild.firstChild.id.substr(0,4)=="add_" || ch_[AMI.CHAN_XFER]=="obc"))
+	{
+		if (vp_add.firstChild.firstChild.id=="add_ld") vp_add.firstChild.innerHTML="<div id='add_ing'></div>"; 
+		var el_ = chani ("chan_add", vp_add.nextSibling, ch_, ts, 2, 1); 
+		if (ch_[AMI.CHAN_XFER]=="obc" && el_.firstChild.lastChild.childNodes.length==0) // set oly during create
+		{
+			nd (el_.firstChild.lastChild, te["chan_add_btns"], [], ch_, [0]);
+			m_++;
+		}
+		if (ch_[AMI.CHAN_XFER]!="obc")
+		{ 
+			r_ = [ch_[1], ch_[AMI.CHAN_XFER]]; 
+			el_.firstChild.lastChild.innerHTML = "";
+			nd (el_.firstChild.lastChild, te["chan_add_done"], [], r_, [0]);
+			m_++;
+		}
+	}
+				
+	if (m_==0 && vp_add.firstChild.id!="ve" && vp_add.nextSibling.childNodes.length==0) // show form
+	{
+		vp_add.innerHTML = "";
+		nd (vp_add, te["call_add_form"], [], ch, [0]);
+	}			
+}
+
 function chans_pop (ts)
 {		
 	var h=0, n=0, trunk=0;
@@ -687,55 +734,6 @@ function chans_pop (ts)
 		// rpt (p_.childNodes[1]);
 	}
 	return h;
-}
-
-function chan_add (vp_add, ch, ch_, ts)
-{
-	var m_ = 0;
-
-	if (ch_ && ch_[AMI.CHAN_STATE_HANGUP].length>0) ch_=null;
-								
-	if (vp_add.firstChild.firstChild.id=="add_ld")  // show cbo status b4 chan_add is created
-	{
-		var coll_ = vp_add.firstChild.firstChild.childNodes[1].childNodes;
-		var action_ts = coll_[2].value*1; // todo: adjust for time diff between asterisk and app servers			
-		console.log ("[add_ld] <"+ch[AMI.CHAN_CBO]+"> "+action_ts +" "+ch[AMI.CHAN_CBO_TS]);
-		if (action_ts < (ch[AMI.CHAN_CBO_TS]*1))
-		{
-			var st_ = re["chan_action"][ch[AMI.CHAN_CBO]];
-			coll_[0].innerHTML = "";
-			coll_[2].id = st_?st_[3]:"";
-			nd (coll_[0], te["call_add_msg"], [], [ch[AMI.CHAN_CBO]], [0]);
-		}
-		m_++;
-	}
-				
-	if (ch_ && (vp_add.firstChild.firstChild.id.substr(0,4)=="add_" || ch_[AMI.CHAN_XFER]=="obc"))
-	{
-		console.log ("[chan_add] "+ch_[AMI.CHAN_XFER]+" | "+vp_add.nextSibling.id);
-		if (vp_add.firstChild.firstChild.id=="add_ld") vp_add.firstChild.innerHTML="<div id='add_ing'></div>"; 
-		var el_ = chani ("chan_add", vp_add.nextSibling, ch_, ts, 2, 1); 
-		if (ch_[AMI.CHAN_XFER]=="obc" && el_.firstChild.lastChild.childNodes.length==0) // set oly during create
-		{
-			nd (el_.firstChild.lastChild, te["chan_add_btns"], [], ch_, [0]);
-			m_++;
-		}
-		if (ch_[AMI.CHAN_XFER]!="obc")
-		{ 
-			r_ = [ch_[1], ch_[AMI.CHAN_XFER]]; 
-			el_.firstChild.lastChild.innerHTML = "";
-			nd (el_.firstChild.lastChild, te["chan_add_done"], [], r_, [0]);
-			m_++;
-		}
-	}
-				
-	if (m_==0 && vp_add.firstChild.id!="ve" && vp_add.nextSibling.childNodes.length==0) // show form
-	{
-		vp_add.innerHTML = "";
-		nd (vp_add, te["call_add_form"], [], ch, [0]);
-	}			
-	
-	console.log ("[vp_add:"+ch[AMI.CHAN_EXTEN_MASQ]+"] ("+ch[AMI.CHAN_CBO]+","+ch[AMI.CHAN_CBO_TS]+","+ ch[AMI.CHAN_CBO_UNIQUEID]+")  => ("+(ch_?ch_[AMI.CHAN_XFER] : "") + ")");
 }
 
 function chans (o,k,ts)
@@ -810,14 +808,14 @@ function chans (o,k,ts)
 				//console.log ("chan-usr "+ch[2]+" | "+ch[6])
 				chan_a[ch[2]].ts=ts;
 				chan_status ("chan_args", ch);
-				el.childNodes[0].value = ch[AMI.CHAN_STATUS_]; // status code
-				el.childNodes[1].value = ch[AMI.CHAN_STATUS_TS_];  // status ts
+				el.childNodes[0].value = ch[AMI.CHAN_STATUS_]; 		// status code
+				el.childNodes[1].value = ch[AMI.CHAN_STATUS_TS_];  	// status ts
 				el.childNodes[2].value = ch[AMI.CHAN_STATUS_TS_TXT_];  // status ts txt
-				el.childNodes[3].value = ch[AMI.CHAN_EXTEN_MASQ]; // update exten_masq
-				el.childNodes[4].value = ch[AMI.CHAN_CHAN_2]; // update last peer chan
-				el.childNodes[5].value = ch[AMI.CHAN_CID_NUM_2]; // update last peer cid
-				el.childNodes[6].value = ch[AMI.CHAN_ORIG]; // autodial status
-				el.childNodes[17].value = ch[AMI.CHAN_UNIQUEID_2]; // update last peer chan
+				el.childNodes[3].value = ch[AMI.CHAN_EXTEN_MASQ]; 	// update exten_masq
+				el.childNodes[4].value = ch[AMI.CHAN_CHAN_2]; 		// update last peer chan
+				el.childNodes[5].value = ch[AMI.CHAN_CID_NUM_2]; 		// update last peer cid
+				el.childNodes[6].value = ch[AMI.CHAN_ORIG]; 			// autodial status
+				el.childNodes[17].value = ch[AMI.CHAN_UNIQUEID_2]; 	// update last peer chan
 				call_popup_upd (el);
 						
 				if (vp_add && vp_add.id==ch[AMI.CHAN_UNIQUEID]) 
@@ -848,20 +846,19 @@ function chans (o,k,ts)
 		if (ch[AMI.CHAN_CONTEXT].substr (0,5)=="trunk") is_trunk=1;
 		if (ch[AMI.CHAN_CONTEXT_MASQ].substr (0,5)=="trunk") is_trunk=1; // debug
 		
-		if (is_trunk && ch[AMI.CHAN_EXTEN]!="s") // inbound
+		if (is_trunk && ch[AMI.CHAN_EXTEN]!="s") 										// inbound
 		{
-		
 			// console.log ("[inbound] "+ch[AMI.CHAN_CONTEXT_MASQ])
 		
 			if (ch[AMI.CHAN_STATE_QUEUE].length>0 && ch[AMI.CHAN_STATE_CONNECT].length==0) 		// inbound waiting
 			{
-				c[1]++; 				// waiting count
-				c[2]+= (ts-ch[AMI.CHAN_STATE_QUEUE]);	// wait-time total
-				if (ch[AMI.CHAN_STATE_QUEUE]<c[3] || c[3]==0) c[3]=ch[AMI.CHAN_STATE_QUEUE]; // wait-time max
+				c[1]++; 															// waiting count
+				// c[2]+= (ts-ch[AMI.CHAN_STATE_QUEUE]);								// wait-time total
+				if (ch[AMI.CHAN_STATE_QUEUE]>c[3] || c[3]==0) c[3]=ch[AMI.CHAN_STATE_QUEUE]; 	// wait-time max
 			}
 			if (ch[AMI.CHAN_STATE_QUEUE].length>0 && ch[AMI.CHAN_STATE_CONNECT].length>0)
 			{
-				c[4]++; 		// inbound connected
+				c[4]++; 															// inbound connected
 				// todo: remove from inbound
 			}
 			c[5]++; 

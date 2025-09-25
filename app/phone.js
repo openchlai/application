@@ -511,8 +511,8 @@ function _add_action (ev)
 	var p = __(this,"ve")
 	var el = _(document.getElementById ("call_sessions"), __(p,"vddvw").childNodes[1].id);
 	var o = {}
-	argv (p, o); console.log ("add_action|"+el.id+"|"+JSON.stringify (o))
-	argv (__(el,"va"), o);	
+	jso (p, o);
+	argv (el, o);	
 	_ami_action (this, o, u[2]);	
 	boo (ev);
 }

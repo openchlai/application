@@ -1144,7 +1144,7 @@ function pivot (el, _u, _a, _r, _m)
 			}
 
 			color__ = "rgb("+COLOR_[0]+","+COLOR_[1]+","+COLOR_[2]+")";
-			if (xn==1 && fmt[0].length>1) color__ = ve ([r[0]], ["","",fmt[0].split (":")[2],"0","5"]); 
+			if (xn==1 && fmt[0].length>1) color__ = venum ([r[0]], ["","",fmt[0].split (":")[2],"0","5"]); 
 			color_.push (color__); 
 			for (var j=0; j<3; j++) 
 			{ 

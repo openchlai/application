@@ -1,3 +1,4 @@
+var ACT_COUNT = 0;
 
 te["dash_case_priority_vw_r"] = { div:["w50 gws mb1 h03"], c: // 
 [
@@ -152,12 +153,12 @@ te["dash"] = { c:
 				{ s:["d t03 h2 micon","directions_walk"] },  // center activity action btns here
 				{ div:["e"], c:[ { arg:["",".id","-1"] }, { arg:["","src","walkin"] }, { arg:["","src_address",""] } ] }
 			]},
-		]}
-	]},
-	{ div:["xx tt b20  mtn1	"], c:
-	[
-		{ s:["c xx y15 h3_ b","OpenCHS"] },
-		{ div:["e"] }
+		]},
+		{ div:["xx tt b20  mtn1	"], c:
+		[
+			{ s:["c xx y15 h3_ b","OpenCHS"] },
+			{ div:["e"] }
+		]},
 	]},
 	{ div:["abs w12 h100 x15","vdf"], c: // filter params
 	[
@@ -875,27 +876,27 @@ te["activity_main"] = { c:
 		{ activity_f_tags_k:[] }
 	]} ]},
 
-	{ div:["ll r50 yy","vb"], c:
+	{ div:["ll r30","vb"], c:
 	[
 		{ div:["c"], c:
 		[
-			{ div:["","va"], s:["",""], c:
+			{ div:["yy","va"], s:["",""], c:
 			[
 				{ input:["g","","cases_t_","0","radio","1"] },
 				{ ac:["c x","activity_match-activities-vftab","___u","xx y b n cb","Contact History"] }, 	
 				{ div:["e"] }
 			]}
+		]},
+		{ div:["d"], c:
+		[
+			{ input:["g","","activity_vw_id_t_","0","radio"] },
+			{ ac:["ay tabb ll","activity_f-dispositions_f","_activity_vpf","x y02 bd8 cb",""], c: // contextual search: dispositions | messages
+			[
+				{ s:["d h2 b micon","search"] },
+				{ div:["d x t01 s","","Search"] }, 
+				{ div:["e"] }
+			]}
 		]},	
-		//{ div:["l15 c"], c:
-		//	[
-		//		{ input:["g","","activity_vw_id_t_","0","radio"] },
-		//		{ ac:["ay tabb","activity_f-dispositions_f","_activity_vpf","x y03 bd8 cb",""], c: 
-		//		[
-		//			{ s:["c h2 b micon","search"] },
-		//			{ div:["c x t01 s","","Search"] }, 
-		//			{ div:["e"] }
-		//		]}
-		//	]},	
 		{ div:["e"] }			
 	]},	
 	
@@ -1006,16 +1007,7 @@ te["activity_vw_id"] = { c:
 		{ div:["d w25 t casevwmenu"], s:["abs zzzz w25 h04 gw",""], c:
 		[
 			
-			{ div:["d r10"], c:
-			[
-				{ input:["g","","activity_vw_id_t_","0","radio"] },
-				{ ac:["ay tabb t03","activity_f-dispositions_f","_activity_vpf","x y bd8 cb",""], c: // contextual search: dispositions | messages
-				[
-					{ s:["c h2 b micon","search"] },
-					{ div:["c x t01 s","","Search"] }, 
-					{ div:["e"] }
-				]}
-			]},
+			
 
 			{ div:["e"] }
 		]},
@@ -1096,7 +1088,8 @@ te["notification_lst_footer"] = { div:["x y mt"], c:
 	{ s:["d x y cd s","%3"] },
 	{ s:["d x y cd s","-"] },
 	{ s:["d x y cd s","%2"] },
-	{ div:["e"] }
+	{ div:["e"] },
+	{ ufn:["notifs_ufn","%4"] }
 ]};
 
 te["notification_lst_r_unread_tag"] = { s:["x07 y02 bd8 gws_ cr","unread"] };
@@ -1117,18 +1110,18 @@ te["notification_lst_r_"] = { div:["x y03 s",""], c:
 		{ s:["d cd",":v:activities:src_address"] },
 		{ div:["e"] }
 	]},
-	{ div:[], arg:["",".id","%0"] }
+	// { div:[], arg:["",".id","%0"] }
 ]};
 
 te["notification_lst_r_vw"] = { c:
 [
 	{ notification_lst_r_:[] },
-	{ ufn:["activity_notify_ufn"] }
+	{ ufn:["case_notify_ufn"] }
 ]};
 
 te["notification_lst_r"] = { div:[], c:
 [
-	{ input:["g","","sbl","1","radio"] },
+	{ input:["g","","sbl","%0","radio"] },
 	{ li:["sbr cb xx bb_","activity_notify-activities^notify"], ev:["_activity_notify"], c:
 	[
 		{ div:[], notification_lst_r_:[] }
@@ -1243,6 +1236,12 @@ function _msg (ev)
 
 // -------------------------------------------------------------
 
+function notifs_ufn (el, u, a, r, m)
+{
+	ACT_COUNT = 1*u[1]
+	notifs();
+}
+
 function activity_case_ufn (el, u, a, r, m)
 {
 	var kk = ra["dispositions_k"];
@@ -1309,17 +1308,6 @@ function activity_contact_ufn (el, u, a, r, m)
 	p = _(p.nextSibling,"vcontactnew")
 	nd (el_, te["activity_contact_r_new"], [], ra["dispositions"][0], [0]);
 	p.insertBefore (el_, p.firstChild);
-}
-
-function activity_notify_ufn (el, u, a, r, m)
-{
-	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes;
-	var coll_ = coll[1].childNodes[1].childNodes; // if id>0 the vv,6,1
-	coll[0].checked = true
-	coll_[0].checked = true;
-	coll_[1].innerHTML = "";
-	nd (coll_[1], te["case_vw_id_activity"], [], ra["reporters_uuid"][0], [0]);
-	// todo: update notification counter on bell ico
 }
 
 // ---
@@ -1456,8 +1444,7 @@ function _activity_vw_id (ev)
 function _activity_notify ()
 {
 	var u = this.id.split ("-");
-	var a = {}
+	if (this.previousSibling.checked == true) return; // dont double click
 	this.previousSibling.checked = true;
-	argv (this, a)
-	url (this.firstChild, u[0], u[1], a[".id"], null, 2, a, "POST");
+	url (this.firstChild, u[0], u[1], this.previousSibling.value, null, 2, {"":""}, "POST");
 }
