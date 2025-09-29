@@ -174,7 +174,7 @@ te["call_wrapup"] = { div:["ma w10"], c:
 
 te["call_toolbar"] = { c:
 [
-	{ div:["w20_ ma t01 mtn1"], s:["w10_ t18 abs",""], c:
+	{ div:["w20_ ma t01 mtn1"], s:["w10_ t15 abs",""], c:
 	[
 		{ div:["xx y gr bd w10 cw"], c:
 		[
@@ -186,7 +186,7 @@ te["call_toolbar"] = { c:
 
 	{ div:[], c:
 	[
-		{ div:["d w05 t01"], s:["abs w05 bd8 t18 b10 gw zzzz",""], c:
+		{ div:["d w05 t01"], s:["abs w05 bd8 t15 b10 gw zzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
 			{ ac:["ay t01 r15","","_activity_close","cb bd y01",""], c:
@@ -197,14 +197,14 @@ te["call_toolbar"] = { c:
 			]}
 		]},
 
-		{ div:["d w10_ t01 call_hangup_"], s:["abs w10_ t18 b10 gw zzzz",""], c:
+		{ div:["d w10_ t01 call_hangup_"], s:["abs w10_ t15 b10 gw zzzz",""], c:
 		[
 			{ ac:["c ao","","_hangup","w03 h03 x01 y01 h ma bd32 gb cw tc","&Cross;"] },
 			{ s:["c l t08 cb s","Hangup"] },
 			{ div:["e"] }
 		]}, 
 
-		{ div:["d w09_ t01"], s:["abs w09_ t18 b10 gw zzzz",""], c:
+		{ div:["d w09_ t01"], s:["abs w09_ t15 b10 gw zzzz",""], c:
 		[
 			{ ac:["c ao call_connected_","call_add_form_main-r_","_add_dial_form","w03 h03 x01 y01 h ma bd32 gb cw tc","&plus;"] },
 			{ s:["c call_connected_ l t08 cb s","Add"] },
@@ -213,12 +213,12 @@ te["call_toolbar"] = { c:
 			{ div:["e"] }
 		]},
 
-		{ div:["d w09_ t01"], s:["abs w09_ t18 b10 gw zzzz",""], c:
+		{ div:["d w09_ t01"], s:["abs w09_ t15 b10 gw zzzz",""], c:
 		[
 			{ input:["g","chanholdstate","","1","checkbox"] },
 			{ div:["btnhold"], c:
 			[
-				{ ac:["c ao call_connected_","","_hold","w03 h03 x01 t02 h2 ma bd32 gb cw tc","||"] },
+				{ ac:["c ao call_connected_","","_hold","w03 h02_ x01 t b03 h2 ma bd32 gb cw tc","||"] },
 				{ div:["c call_connected_"], s:["l t08 cb s btnhold_lbl","Hold"] },
 				{ div:["c call_connected_"], s:["l t08 cb s btnunhold_lbl","UnHold"] },
 				{ s:["c call_connected__ w03 h03 x01 t03 h2 ma bd32 cd tc","||"] },
@@ -226,7 +226,7 @@ te["call_toolbar"] = { c:
 			]}
 		]},
 	
-		{ div:["d w10_ t01 call_ringing_"], s:["abs w10_ t18 b10 gw zzzz",""], c:
+		{ div:["d w10_ t01 call_ringing_"], s:["abs w10_ t15 b10 gw zzzz",""], c:
 		[
 			{ div:[":v:activities:src_vector::vector:7",""], c:
 			[ 
@@ -241,30 +241,31 @@ te["call_toolbar"] = { c:
 ]};
 
 // --------------------------------------------------------------------
-				
+
 te["chan_args"] = { p:["",":V:ami:CHAN_UNIQUEID"], c:
 [
 	{ arg:["","src_state",""] },
 	{ arg:["","src_state_ts",""] },
 	{ arg:["","src_state_ts_txt",""] },
-	
-	{ arg:["","cbid",":V:ami:CHAN_EXTEN_MASQ"] }, // confbridgeid
+
+	{ arg:["","src_address",":V:ami:CHAN_CID_NUM_2"] }, 	// phone = cid2
+	{ arg:["","src_uid2",":V:ami:CHAN_UNIQUEID_2"] },
 	{ arg:["","chan2",":V:ami:CHAN_CHAN_2"] },
-	{ arg:["","phone",":V:ami:CHAN_CID_NUM_2"] }, // phone = cid2
-	{ arg:["","src_orig",":V:ami:CHAN_ORIG"] },
-				
+	{ arg:["","cbid",":V:ami:CHAN_EXTEN_MASQ"] }, 		// confbridgeid
+	{ arg:["","src_orig",":V:ami:CHAN_ORIG"] },	
+
 	{ arg:["","src","call"] },
 	{ arg:["","src_ts",":V:ami:CHAN_TS"] },
 	{ arg:["","src_uid",":V:ami:CHAN_UNIQUEID"] },
+	{ arg:["","src_usr",":V:ami:CHAN_CALLERID_NUM"] },
+	{ arg:["","src_callid",":V:ami:CHAN_SIPCALLID"] },
+	{ arg:["","src_vector",":V:ami:CHAN_VECTOR"] },
 	{ arg:["","src_action_id",":V:ami:CHAN_ACTION_ID"] },
 	{ arg:["","src_campaign_id",":V:ami:CHAN_CAMPAIGN_ID"] },   
-	
+
 	{ arg:["","chan",":V:ami:CHAN_CHAN"] },
-	{ arg:["","usr",":V:ami:CHAN_CALLERID_NUM"] },
-	{ arg:["","_cid_name",":V:ami:CHAN_CALLERID_NAME"] },
-	{ arg:["","callid",":V:ami:CHAN_SIPCALLID"] },
-	{ arg:["","vector",":V:ami:CHAN_VECTOR"] },
-	{ arg:["","src_uid2",":V:ami:CHAN_UNIQUEID_2"] },
+	{ arg:["","exten",":V:ami:CHAN_EXTEN"] },
+
 ]};
 				
 te["chan_add"] = { p:["","%2"], s:["",""], c:
@@ -526,7 +527,7 @@ function call_popup (el, f=0)
 	
 	r_[k["src"][0]] = "call";
 	r_[k["src_uid"][0]] = a.src_uid;
-	r_[k["src_address"][0]] = _phone_fmt (a.phone);
+	r_[k["src_address"][0]] = _phone_fmt (a.src_vector==2?a.src_address:a.exten);
 	r_[k["src_uid2"][0]] = a.src_uid2;
 	r_[k["src_usr"][0]] = a.usr;
 	r_[k["src_vector"][0]] = a.src_vector;
@@ -539,7 +540,7 @@ function call_popup (el, f=0)
 	coll[0].parentNode.parentNode.previousSibling.checked = true;
 	coll[0].checked = true;
 	coll[1].innerHTML = "";
-	nd (coll[1], te["activity_vw_id"], ["call_toolbar"], r_, [1]);	
+	nd (coll[1], te["activity_vw_id"], ["noop","call_toolbar"], r_, [2]);	
 	url (coll[1].lastChild, "activity_vw_id_tabs_call", "activities^call", s);
 
 	var isaa = document.getElementById ("is_auto_answer");
@@ -824,17 +825,17 @@ function chans (o,k,ts)
 			
 			if (el) 
 			{
-				//console.log ("chan-usr "+ch[2]+" | "+ch[6])
+				// console.log ("chan_args("+ch[AMI.CHAN_CHAN]+") -> ("+ch[AMI.CHAN_CHAN_2]+") "+ch[AMI.CHAN_UNIQUEID_2]+" | "+ch[AMI.CHAN_CID_NUM_2])
 				chan_a[ch[2]].ts=ts;
 				chan_status ("chan_args", ch);
 				el.childNodes[0].value = ch[AMI.CHAN_STATUS_]; 		// status code
 				el.childNodes[1].value = ch[AMI.CHAN_STATUS_TS_];  	// status ts
 				el.childNodes[2].value = ch[AMI.CHAN_STATUS_TS_TXT_];  // status ts txt
-				el.childNodes[3].value = ch[AMI.CHAN_EXTEN_MASQ]; 	// update exten_masq
-				el.childNodes[4].value = ch[AMI.CHAN_CHAN_2]; 		// update last peer chan
-				el.childNodes[5].value = ch[AMI.CHAN_CID_NUM_2]; 		// update last peer cid
-				el.childNodes[6].value = ch[AMI.CHAN_ORIG]; 			// autodial status
-				el.childNodes[17].value = ch[AMI.CHAN_UNIQUEID_2]; 	// update last peer chan
+				el.childNodes[3].value = ch[AMI.CHAN_CID_NUM_2]; 		// update last peer cid
+				el.childNodes[4].value = ch[AMI.CHAN_UNIQUEID_2]; 	// update last peer uid
+				el.childNodes[5].value = ch[AMI.CHAN_CHAN_2]; 		// update last peer chan
+				el.childNodes[6].value = ch[AMI.CHAN_EXTEN_MASQ]; 	// update last exten_masq
+				el.childNodes[7].value = ch[AMI.CHAN_ORIG]; 			// autodial status
 				call_popup_upd (el);
 						
 				if (vp_add && vp_add.id==ch[AMI.CHAN_UNIQUEID]) 

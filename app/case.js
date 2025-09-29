@@ -2203,23 +2203,3 @@ function case_vw_id_ufn (el, u, a, r, m)
 	nd (coll[1], te["case_vw_id_activity"], a, r, m);
 }
 
-function case_notify_ufn (el, u, a, r, m)
-{
-	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes;
-	var coll_ = coll[1].childNodes[1].childNodes;
-	coll[0].checked = true
-	coll_[0].checked = true;
-	coll_[1].innerHTML = "";
-	nd (coll_[1], te["case_vw_id_activity"], [], ra["reporters_uuid"][0], [0]);
-	ACT_COUNT--
-	notifs()
-}
-
-function _case_uvw ()
-{
-	var p = __(this,"vfvw");
-	var o = {}
-	p.parentNode.parentNode.firstChild.firstChild.checked = true;
-	jso (p.firstChild, o)
-	case_notif_ls (o)
-}

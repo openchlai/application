@@ -125,7 +125,7 @@ var UU =
 "activity_main":{ 200:[["activity_main","dispositions_ctx"]] },
 "activity_vw_id_tabs":{ 200:[["activity_vw_id_tabs","activities"]] },
 "activity_vw_id_tabs_message":{ 200:[["activity_vw_id_tabs_message","activities"]] },
-"activity_vw_id_tabs_call":{ 200:[["activity_vw_id_tabs_call","activities_call"]] },
+"activity_vw_id_tabs_call":{ 200:[["activity_vw_id_tabs","activities_call"]] },
 "activity_vw_id":{ 200:[["activity_vw_id","activities"]] },
 "activity_call":{ 201:[["activity_call","activities"]], 202:[["activity_call","activities"]], 412:[["nb","errors","","nb"]] },
 "activity_lst":{ 200:[["activity_lst","activities_ctx"]] },
