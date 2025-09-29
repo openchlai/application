@@ -172,42 +172,68 @@ te["call_wrapup"] = { div:["ma w10"], c:
 	{ div:["e"] }
 ]};
 
-te["call_toolbar"] = { div:[], c: 
-[	
-	{ div:["ma w32_","va"], s:["abs w28_ t15",""], c:
+te["call_toolbar"] = { c:
+[
+	{ div:["w20_ ma t01 mtn1"], s:["w10_ t18 abs",""], c:
 	[
-		{ div:["d w07_ call_hangup_"], c:
+		{ div:["xx y gr bd w10 cw"], c:
 		[
-			{ ac:["ao","","_hangup","w03 h03 x01 y01 h ma bd32 gb cw tc sh__","&Cross;"]},
-			{ s:["t03 tc cb s","Hangup"] },
+			{ s:["c","Ringng"] },
+			{ s:["d","0:00"] },
+			{ div:["e"] }
+		]},
+	]},
+
+	{ div:[], c:
+	[
+		{ div:["d w05 t01"], s:["abs w05 bd8 t18 b10 gw zzzz",""], c:
+		[
+			{ input:["g","","sbl","0","radio"] },
+			{ ac:["ay t01 r15","","_activity_close","cb bd y01",""], c:
+			[
+				{ s:["tc h b","&Cross;"] },
+				// { s:["d x y s","Close"] },
+				{ div:["e"] }
+			]}
+		]},
+
+		{ div:["d w10_ t01 call_hangup_"], s:["abs w10_ t18 b10 gw zzzz",""], c:
+		[
+			{ ac:["c ao","","_hangup","w03 h03 x01 y01 h ma bd32 gb cw tc","&Cross;"] },
+			{ s:["c l t08 cb s","Hangup"] },
+			{ div:["e"] }
 		]}, 
 
-		{ div:["d w07_"], c:
+		{ div:["d w09_ t01"], s:["abs w09_ t18 b10 gw zzzz",""], c:
 		[
-			{ ac:["ao call_connected_","call_add_form_main-r_","_add_dial_form","w03 h03 x01 y01 h ma bd32 gb cw tc sh__","&plus;"] },
-			{ s:["call_connected_ t03 tc cb s","Add"] },
-			{ s:["call_connected__ w03 h03 x01 y01 h ma bd32 cd tc","&plus;"] },
-			{ s:["call_connected__ t03 tc cd s","Add"] },
+			{ ac:["c ao call_connected_","call_add_form_main-r_","_add_dial_form","w03 h03 x01 y01 h ma bd32 gb cw tc","&plus;"] },
+			{ s:["c call_connected_ l t08 cb s","Add"] },
+			{ s:["c call_connected__ w03 h03 x01 y01 h ma bd32 cd tc","&plus;"] },
+			{ s:["c call_connected__ l t08 cd s","Add"] },
 			{ div:["e"] }
 		]},
 
-		{ div:["d w07_"], c:
+		{ div:["d w09_ t01"], s:["abs w09_ t18 b10 gw zzzz",""], c:
 		[
 			{ input:["g","chanholdstate","","1","checkbox"] },
 			{ div:["btnhold"], c:
 			[
-				{ ac:["ao call_connected_","","_hold","w03 h03 x01 t02 h2 ma bd32 gb cw tc sh__","||"] },
-				{ div:["call_connected_"], s:["t03 tc cb s btnhold_lbl","Hold"] },
-				{ div:["call_connected_"], s:["t03 tc cr s btnunhold_lbl","UnHold"] },
-				{ s:["call_connected__ w03 h03 x01 t02 h2 ma bd32 cd tc","||"] },
-				{ s:["call_connected__ t03 tc cd s btnhold_lbl","Hold"] },
+				{ ac:["c ao call_connected_","","_hold","w03 h03 x01 t02 h2 ma bd32 gb cw tc","||"] },
+				{ div:["c call_connected_"], s:["l t08 cb s btnhold_lbl","Hold"] },
+				{ div:["c call_connected_"], s:["l t08 cb s btnunhold_lbl","UnHold"] },
+				{ s:["c call_connected__ w03 h03 x01 t03 h2 ma bd32 cd tc","||"] },
+				{ s:["c call_connected__ l t08 cd s btnhold_lbl","Hold"] },
 			]}
 		]},
-		
-		{ div:["d w07_ call_ringing_"], s:[":v:activities:src_vector::vector:7",""], c:
-		[ 
-			{ ac:["ao","","_answer","w03 h03 x01 y01 ma bd32 gb cw tc sh__",""], c:[ { s:["micon h2_ t03","call"] } ] },
-			{ s:["t tc cb s","Answer"] },
+	
+		{ div:["d w10_ t01 call_ringing_"], s:["abs w10_ t18 b10 gw zzzz",""], c:
+		[
+			{ div:[":v:activities:src_vector::vector:7",""], c:
+			[ 
+				{ ac:["c ao","","_answer","w03 h03 x01 y01 ma bd32 gb cw tc",""], c:[ { s:["micon h2_ t03","call"] } ] },
+				{ s:["c l t08 cb s ","Answer"] },
+				{ div:["e"] }
+			]},
 		]},
 
 		{ div:["e"] }
@@ -454,26 +480,23 @@ function call_popup_upd (el)
 	["Call Ended","call_ended","cb"],
 	["On Mute","call_connected","gr cw"],
 	["On Hold","call_connected","gr cw"]];
-	var p = __(el,"va");
-	var vs = CALLS[p.previousSibling.value];
+	var el_ = __(el,"va");
+	var vs = CALLS[el_.previousSibling.value];
 	var a = {};
-	argv (p, a);
+	argv (el, a);
 	if (vs && vs.ishold==true) { a.src_state = 8; a.src_state_ts = vs.ishold_ts; }
-	var ts_txt = hmst (a.src_state_ts, ["","","hms","","","",""]); // a.src_state_ts_txt;
 	
 	// notif (sbr)
-	var coll_ = el.parentNode.parentNode.childNodes[0].childNodes;
-	coll_[1].innerHTML = ts_txt;
+	var coll_ = el_.childNodes[1].childNodes[0].childNodes;
+	coll_[1].innerHTML = hmst (a.src_state_ts, ["","","hms","","","",""]); // ts_txt;
 	coll_[2].value = a.src_state_ts;
-	el.parentNode.parentNode.childNodes[1].childNodes[2].innerHTML = ss[a.src_state][0];
+	el_.childNodes[1].childNodes[2].innerHTML = ss[a.src_state][0];
 	
 	// action btns
 	if (coll[1].firstChild && coll[1].firstChild.id==a.src_uid)
 	{
-		// console.log ("call_toobar: "+ ss[a.src_state][1])
-		var p_ = coll[1].firstChild.firstChild;
-		p_.className = ss[a.src_state][1];
-		// p_.lastChild.firstChild.childNodes[3].value = a.src_uid2; // src_uid2
+		coll[1].firstChild.childNodes[1].className = ss[a.src_state][1];
+		// todo: action bar status
 	}
 
 	return 0;	
@@ -486,7 +509,11 @@ function call_popup (el, f=0)
 	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; 
 	var el_ = __(el,"va");
 	var a = {};
-	argv (el_, a);
+	argv (el, a);
+
+	console.log ("[call_popup] args:"+JSON.stringify (a)+"|"+JSON.stringify (r_));
+	
+	if (a.cid_name=="AgentLogin" || a.cid_name=="Supervisor") return;
 
 	if (f==0 && coll[1].childNodes.length>0 && coll[1].firstChild.id.length>0) // vw is occupied
 	{
@@ -499,23 +526,15 @@ function call_popup (el, f=0)
 	
 	r_[k["src"][0]] = "call";
 	r_[k["src_uid"][0]] = a.src_uid;
-	r_[k["src_address"][0]] = _phone_fmt (a.src_address);
+	r_[k["src_address"][0]] = _phone_fmt (a.phone);
 	r_[k["src_uid2"][0]] = a.src_uid2;
 	r_[k["src_usr"][0]] = a.usr;
 	r_[k["src_vector"][0]] = a.src_vector;
 	r_[k["src_callid"][0]] = el_.previousSibling.value; // full sipid (asterisk only stores first 10 char // el_.parentNode.id)
 	r_[k["src_ts"][0]] = a.src_ts;
-		
-	console.log ("[call_popup] args:"+JSON.stringify (a)+"|"+JSON.stringify (r_));
 	
-	if (a.cid_name=="AgentLogin" || a.cid_name=="Supervisor") return;
+	var s = "-1?src=" + a.src + "&src_uid=" + a.src_uid + "&src_address="+r_[k["src_address"][0]]; 
 	
-	var s = "-1?src=" + a.src + "&src_uid=" + a.src_uid; 
-	if (r_[k["src_address"][0]].length>0)  
-	{
-		s += "&src_address="+r_[k["src_address"][0]];
-	}
-
 	el_.previousSibling.checked = true;	// hilite call-notif
 	coll[0].parentNode.parentNode.previousSibling.checked = true;
 	coll[0].checked = true;
@@ -627,30 +646,6 @@ function chani (tp,p,ch,ts,k_=2,top_=0)
 	return el;
 }
 
-function chan_sup (pa,ch,ts)
-{
-	var el = _(pa, ch[AMI.CHAN_UNIQUEID]); // find sup chan	
-	var el_ = _(pa, ch[AMI.CHAN_EXTEN_MASQ]); // find agent chan
-	if (el_==null) return;
-	if (el && el.parentNode.parentNode.id!=ch[AMI.CHAN_EXTEN_MASQ]) // delete 
-	{
-		var p = el.parentNode;
-		p.removeChild (el);
-		el = null;
-	}
-	if (el==null)
-	{
-		el_.firstChild.lastChild.innerHTML = "";
-		el = nd (el_.firstChild.lastChild, te["chan_sup"], [], ch, [0]);
-		el = el.parentNode.parentNode;
-		chan_a[ch[2]] = { "el":el, "ts":ts }; // append chan to chan_a index
-	}
-	var coll = el.firstChild.childNodes;
-	coll[0].innerHTML = ch[AMI.CHAN_CONTEXT_MASQ];
-	coll[1].innerHTML = hmst (ch[AMI.CHAN_PROMPT_TS0], ["","h","hms","0",""]);	// status-duration
-	coll[2].value = ch[AMI.CHAN_PROMPT_TS0];
-}
-
 function chan_add (vp_add, ch, ch_, ts)
 {
 	var m_ = 0;
@@ -696,6 +691,30 @@ function chan_add (vp_add, ch, ch_, ts)
 		vp_add.innerHTML = "";
 		nd (vp_add, te["call_add_form"], [], ch, [0]);
 	}			
+}
+
+function chan_sup (pa,ch,ts)
+{
+	var el = _(pa, ch[AMI.CHAN_UNIQUEID]); // find sup chan	
+	var el_ = _(pa, ch[AMI.CHAN_EXTEN_MASQ]); // find agent chan
+	if (el_==null) return;
+	if (el && el.parentNode.parentNode.id!=ch[AMI.CHAN_EXTEN_MASQ]) // delete 
+	{
+		var p = el.parentNode;
+		p.removeChild (el);
+		el = null;
+	}
+	if (el==null)
+	{
+		el_.firstChild.lastChild.innerHTML = "";
+		el = nd (el_.firstChild.lastChild, te["chan_sup"], [], ch, [0]);
+		el = el.parentNode.parentNode;
+		chan_a[ch[2]] = { "el":el, "ts":ts }; // append chan to chan_a index
+	}
+	var coll = el.firstChild.childNodes;
+	coll[0].innerHTML = ch[AMI.CHAN_CONTEXT_MASQ];
+	coll[1].innerHTML = hmst (ch[AMI.CHAN_PROMPT_TS0], ["","h","hms","0",""]);	// status-duration
+	coll[2].value = ch[AMI.CHAN_PROMPT_TS0];
 }
 
 function chans_pop (ts)

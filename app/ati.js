@@ -282,7 +282,8 @@ function atis_pop (ts)
 
 function atis (o,k,ts)
 {
-	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; 
+	var coll = document.getElementById ("vv").childNodes;
+	var pv = coll[6].childNodes[0].childNodes[1].childNodes[1].childNodes; 
 	var pu = document.getElementById ("call_sessions");
 	var user_cid = document.getElementById ("user_cid").value;
 	var c = [0,0,0,0,0,0,0];
@@ -334,19 +335,23 @@ function atis (o,k,ts)
 				/*if (el_ !=null)*/ ati_ld_unread (ch);	
 			}
 		}
-		
+
 		if (ch[ATI.CHAN_SRC]=="aii" && ch[ATI.CHAN_CONTEXT]=="trunk")
 		{
-			if (coll[1].firstChild && coll[1].firstChild.id == ch[ATI.CHAN_BRIDGE_ID])
+			if (pv.firstChild && pv.firstChild.id == ch[ATI.CHAN_BRIDGE_ID])
 			{
-				var p_ = _(pcoll[6].childNodes[1].childNodes[1].lastChild, "msgs"); // reload chats
-				url (p_.previousSibling, "activity_messages", "messages", ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30"));
-				pcoll[2].style.display = "block";
-				pcoll[6].style.marginRight = "325px";
-				p_ = pcoll[2].firstChild.firstChild.firstChild.childNodes[2]; // reload aii sidebar
-				p_.childNodes[0].checked = true;
-				p_.childNodes[1].innerHTML = "..."
-				url (p_.childNodes[1], "case_insights","messages",  ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=1&sort=id")); // pick latest
+				var p_ = pv.lastChild.lastChild.childNodes[1].firstChild; 			// reload chats
+				url (p_, "activity_messages", "messages", ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30"));
+
+				var coll_ = coll[2].firstChild.firstChild.firstChild.childNodes; 	// reload aii sidebar
+				// todo: highlight icon
+				coll[2].style.display = "block";
+				coll[6].className = "mmr";
+				coll_[2].firstChild.checked=true;
+				coll_[2].childNodes[1].innerHTML = "...";
+				url (coll_[2].childNodes[1], "case_insights","messages",  ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=1&sort=id")); // pick latest
+
+				// todo: read to remove notification
 			}
 		}
 	}

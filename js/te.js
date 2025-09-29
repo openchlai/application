@@ -1524,9 +1524,7 @@ function _uvp (ev)
 
 function _uvw ()
 {
-	var id = "vfvw";
-	if (this.id.length>0) id="vf"
-	__(this,id).parentNode.parentNode.firstChild.firstChild.checked = true;
+	__(this,"vfvw").parentNode.parentNode.firstChild.firstChild.checked = true;
 }
 
 // ---

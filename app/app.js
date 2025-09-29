@@ -819,7 +819,7 @@ te["main"] = { c:
 
 		// { sbl:["","10","","","audiotrack","Transcribe","noop"] },
 
-		{ input:["g","activity_close","sbl","22","radio"] },
+		{ input:["g","activity_close","sbr","22","radio"] },
 	]},
 	
 	{ p:["abs zzzzz y op_ga g","vp"], ev:["_uvpd"] }, // popup window	

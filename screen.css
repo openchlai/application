@@ -437,7 +437,9 @@ ul:hover {background-color:#cee8f0; color:black;}
 .w09 {width:90px; overflow:hidden;}
 .w09_ {width:90px;}
 .w10 {width:100px; overflow:hidden;}
+.w10_ {width:100px;}
 .w11 {width:110px; overflow:hidden;}
+.w11_ {width:110px;}
 .w12 {width:120px; overflow:hidden;}
 .w12_ {width:120px;}
 .w13 {width:130px; overflow:hidden;}
@@ -448,7 +450,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 .w15 {width:150px; overflow:hidden;}
 .w15_ {width:150px; }
 .w16 {width:160px; overflow:hidden;}
-.w16_ {width:165px; overflow:hidden;}
+.w16_ {width:160px;}
 .w17 {width:170px; overflow:hidden;}
 .w17_{width:175px; overflow:hidden;}
 .w18 {width:180px; overflow:hidden;}
@@ -789,9 +791,6 @@ ul:hover {background-color:#cee8f0; color:black;}
 
 .ml6 .casevwmenu { margin-right:55px;}
 
-.is_activity_ { display:none;}
-.is_activity .is_activity_ { display:block;}
-.is_activity .is_vw_ { display:none;}
 
 #bhv {display:none;}
 #bdv {display:none;}
