@@ -27,7 +27,6 @@ var UU =
 "sup":{ "203":[["noop","action"]] },
 
 "ati_end":{ "201":[["ati_ended","messages"]] }, // ati_ended
-"nti_end":{ "201":[["nti_ended","messages"]] }, // ati_ended
 
 "user_ed":{ 202:[["uvpfn","users","vp"]], 412:[["nb","errors","v","nb"]], 200:[["user_ed","users"]] },
 "user_new":{ 201:[["uvpfn","users","vp"]], 412:[["nb","errors","v","nb"]] },

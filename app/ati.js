@@ -79,6 +79,8 @@ te["ati_session"] = { p:["","%2"], c:
 	]}
 ]};
 
+te["ati_ended"] = { s:["t cd tc","Chat Closed"] };
+
 te["ati_toolbar"] = { c:
 [
 	{ div:["w21 ma t01 mtn1"], s:["w21 t15 abs",""], c:
@@ -112,9 +114,12 @@ te["ati_toolbar"] = { c:
 
 		{ div:["d w12 t01"], s:["abs w12 t17 b05 gw zzzz",""], c:
 		[
-			{ ac:["d ay r20","","_ati_end","w03 h cb tc micon","last_page"] },
-			{ s:["d x t cb s","End Chat"] },
-			{ div:["e"] }
+			{ div:["","ve"], c:
+			[
+				{ ac:["d ay r20 btn","","_ati_end","w03 h cb tc micon","last_page"] },
+				{ s:["d x t cb s","End Chat"] },
+				{ div:["e"] }
+			]}
 		]}, 
 
 		{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
@@ -134,9 +139,7 @@ function _ati_end ()
 	var p = __(this,"vb").lastChild;
 	var o = {"close":"close", "src_msg":"*closed*"};
 	argv (p, o);
-	// bconsole.log (o)
-	// url (this.parentNode, this.id, "msg_end", "", null, 2, o, "POST");
-	url (this.parentNode, this.id, "messages", "", null, 2, o, "POST");
+	url (this.parentNode, "ati_end", "messages", "", null, 2, o, "POST");
 }
 
 function ati_popup_unread (pv, ch)

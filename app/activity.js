@@ -1093,10 +1093,11 @@ te["notification_lst_r_vw"] = { c:
 	{ ufn:["activity_notify_ufn"] }
 ]};
 
-te["notification_lst_r"] = { div:[], c:
+te["notification_lst_r"] = { div:["","ve"], c:
 [
 	{ input:["g","","sbr","%0","radio"] },
-	{ li:["sbr cb xx bb_ ","activity_notify-activities^notify"], ev:["_activity_notify"], c:[ { div:["","ve"], notification_lst_r_:[] } ] }
+	{ li:["sbr cb xx bb_ ","activity_notify-activities^notify"], ev:["_activity_notify"], notification_lst_r_:[] }
+	// todo: place holder for on click
 ]};
 
 te["notification_lst_k"] = { div:["bb_"], c:
@@ -1181,7 +1182,7 @@ function activity_message_sended (el, u, a, r, m)
 function _activity_message_send (ev)
 {
 	var p = __(this,"ve");
-	var p_ = __(this,"vfvwm");
+	var p_ = __(this,"vfvw");
 	var o = {};
 	jso (p_.firstChild, o);   	// channel session details
 	jso (p,o); 			// ve details
@@ -1189,7 +1190,7 @@ function _activity_message_send (ev)
 	boo (ev)
 }
 
-function _msg (ev)
+function _msg (ev) // TODO: send read request -while typing - to keep chat from timimg out
 {
 	// console.error (ev.shiftKey+", "+ev.keyCode)
 	if (ev.shiftKey==false && ev.keyCode==13)
@@ -1421,5 +1422,5 @@ function _activity_notify ()
 	var u = this.id.split ("-");
 	if (this.previousSibling.checked == true) return; // dont double click
 	this.previousSibling.checked = true;
-	url (this.firstChild, u[0], u[1], this.previousSibling.value, null, 2, {"":""}, "POST");
+	url (__(this,"ve"), u[0], u[1], this.previousSibling.value, null, 2, {"":""}, "POST");
 }
