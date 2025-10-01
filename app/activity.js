@@ -240,7 +240,7 @@ te["activity_message_r_"] = { c:
 		[
 			{ div:[":v:messages:src_vector::vector:13"], s:["x bd gr cw m",":v:messages:src_status"] },
 			{ s:[":v:messages:src_vector::vector:13", ":r::1:: : ago:: : ago:"] },
- { arg:["tm","","%1"] },
+ 			{ arg:["tm","","%1"] },
 			{ div:[":v:messages:src_vector::vector:13"], s:[":v:messages:src_vector::vector:14",":v:messages:created_by"] },
 			//{ arg:["tm","","%1"] },
 			{ div:["e"] }
@@ -249,7 +249,7 @@ te["activity_message_r_"] = { c:
 	{ div:["e"] }
 ]};
 
-te["activity_message_r"] = { div:["xx y"], activity_message_r_:[] };
+te["activity_message_r"] = { div:["y"], activity_message_r_:[] };
 
 te["activity_messages_title"] = { c:
 [
@@ -262,9 +262,9 @@ te["activity_messages_title"] = { c:
 te["activity_messages"] = { c:
 [
 	{ div:["x20 y15"], u:["activity_messages_title","activities"] },
-	{ p:["x20","msgs"], c:
+	{ p:["x25","msgs"], c:
 	[
-		{ div:["xx yy oy br scroller"], c:
+		{ div:["xx yy oy scroller"], c:
 		[
 			{ u:["activity_message_r","messages","","","desc"] },
 			{ ufn:["activity_messages_height"] },
@@ -981,10 +981,10 @@ te["activity_vw_id_tabs_case"] = { activity_vw_id_tabs_:["","1","vf",""] };
 
 te["activity_vw_id"] = { c: 
 [
-	{ div:["",":v:activities:src_uid"], c:
+	{ div:["","vb"], c:
 	[
 		{ u:[null] }, // channel menu
-		{ div:["e"], c:[ { p:["g","o"], activity_vw_id_args:[] } ] }
+		{ div:[], c:[ { p:["g","o"], activity_vw_id_args:[] } ] }
 	]}, 
 
 	{ form:[], u:[null] } 		// tabs
@@ -1360,7 +1360,7 @@ function _activity_disposition_r ()
 	var p = document.getElementById ("vp");
 	elvp = this.nextSibling;
 	vp (p)
-	url (p, u[0], u[1], ("-1"+"?contact_id=-1&case_id="+a.case_id));
+	url (p, u[0], u[1], ("-1"+"?contact_id=-1&case_id="+a.case_id)); // todo: load audit trail instead of case
 }
 
 function _activity_vw_id (ev) 

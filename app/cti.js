@@ -460,11 +460,11 @@ function call_popup_hold_state (el, f)
 	var p = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes[1].firstChild; // toolbar
 	var a = {};
 	var a_ = {};
-	var el_ = _(p, "chanholdstate", "input");
 	argv (el, a);
 	argv (p.lastChild, a_)
-	console.log ("call_popup_hold_state ("+f+") "+a.src_uid+"=="+a_.src_uid+"|"+el_)
+	console.log ("call_popup_hold_state ("+f+") "+a.src_uid+","+a_.src_uid)
 	if (a.src_uid!=a_.src_uid) return;
+	var el_ = _(p, "chanholdstate", "input");
 	if (el_) el_.checked = f;
 }
 
@@ -493,11 +493,16 @@ function call_popup_upd (el)
 	coll_[3].value = a.src_state_ts;
 	el_.childNodes[1].childNodes[2].innerHTML = ss[a.src_state][0];
 	
-	// action btns
-	if (coll[1].firstChild && coll[1].firstChild.id==a.src_uid)
+	// vw -> action btns
+	if (coll[1].firstChild && coll[1].firstChild.lastChild)
 	{
-		coll[1].firstChild.childNodes[1].className = ss[a.src_state][1];
-		// todo: action bar status
+		var a_ = {};
+		argv (coll[1].firstChild.lastChild, a_);
+		if (a_.src_uid && a_.src_uid==a.src_uid)
+		{
+			coll[1].firstChild.childNodes[1].className = ss[a.src_state][1]; // action btns
+			// todo: action status
+		}
 	}
 
 	return 0;	
@@ -516,9 +521,8 @@ function call_popup (el, f=0)
 	
 	if (a.cid_name=="AgentLogin" || a.cid_name=="Supervisor") return;
 
-	if (f==0 && coll[1].childNodes.length>0 && coll[1].firstChild.id.length>0) // vw is occupied
+	if (f==0 && coll[1].childNodes.length>0 && coll[1].firstChild.childNodes.length>0) // vw is occupied
 	{
-		// console.log ("[call_popup_not] "+coll[1].firstChild.id+","+a.src_uid+" | "+el_.previousSibling.value)
 		return
 	}
 
@@ -534,8 +538,9 @@ function call_popup (el, f=0)
 	r_[k["src_vector"][0]] = a.src_vector;
 	r_[k["src_ts"][0]] = a.src_ts;
 	
-	var s = "-1?src=" + a.src + "&src_uid=" + a.src_uid + "&src_address="+r_[k["src_address"][0]]; 
-	
+	//var s = "-1?src=" + a.src + "&src_uid=" + a.src_uid + "&src_address="+r_[k["src_address"][0]]; 
+	var s = "-1?src=" + a.src + "&src_uid=" + a.src_uid + "&src_vector="+a.src_vector+"&src_callid="+a.src_callid+"&src_address="+r_[k["src_address"][0]];
+
 	el_.previousSibling.checked = true;	// hilite call-notif
 	coll[0].parentNode.parentNode.previousSibling.checked = true;
 	coll[0].checked = true;

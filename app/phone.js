@@ -170,7 +170,12 @@ function VOICEAPPS_SESSION (_leg)
 					var a = {}
 					argv (el, a); 
 					me.hangup_ts = (Math.ceil ((Date.now()/1000)));
-					if (vw && vw.firstChild && vw.firstChild.id==a.src_uid) call_popup_end (el, a, vw)
+					if (vw && vw.firstChild && vw.firstChild.lastChild) 
+					{
+						var a_ = {}
+						argv (vw.firstChild.lastChild, a_)
+						if (a_.src_uid && a_.src_uid==a.src_uid) call_popup_end (el, a, vw)
+					}
 					p.removeChild (el);
 					el=null;
 					CALL_COUNT--; // console.log ("CALL_COUNT:"+CALL_COUNT)

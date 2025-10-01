@@ -85,8 +85,9 @@ te["ati_toolbar"] = { c:
 	[
 		{ div:["c w10 ba_b bdl"], c:
 		[
-			{ input:["g","","case_vw_id_t","0","radio","1"] },
+			{ input:["g","","case_vw_id_t","2","radio","1"] },
 			{ ac:["ao tab","","_tab","y cb tc s","Chat"] }
+			// todo: unread counter
 		]},
 		{ div:["c w10 bt_b bb_b br_b bdr"], c:
 		[
@@ -101,13 +102,24 @@ te["ati_toolbar"] = { c:
 		{ div:["d w05 t01"], s:["abs w05 bd8 t15 b05 gw zzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
-			{ ac:["ay t01 r15","","_activity_close","cb bd y01",""], c:
+			{ ac:["ay r15 t01","","_activity_close","cb bd",""], c:
 			[
 				{ s:["tc h b","&Cross;"] },
 				// { s:["d x y s","Close"] },
 				{ div:["e"] }
 			]}
 		]},
+
+		{ div:["d w12 t01"], s:["abs w12 t17 b05 gw zzzz",""], c:
+		[
+			{ ac:["d ay r20","","_ati_end","w03 h cb tc micon","last_page"] },
+			{ s:["d x t cb s","End Chat"] },
+			{ div:["e"] }
+		]}, 
+
+		{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+		{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+		{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
 
 		{ div:["e"] }
 	]}
@@ -127,14 +139,18 @@ function _ati_end ()
 	url (this.parentNode, this.id, "messages", "", null, 2, o, "POST");
 }
 
-function ati_ld_unread (ch)
+function ati_popup_unread (pv, ch)
 {
-	var coll = document.getElementById ("vv").childNodes;
-	if (!coll[1].firstChild) { console.log("ati_ld_unread | "+ch[20]); return; }
-	console.log ("ati_ld_unread |"+ch[20]+"|"+coll[1].firstChild.id+"|")
-	if (coll[1].firstChild.id!=ch[20]) return;
-	var p = _(coll[6].childNodes[1].childNodes[1].lastChild, "msgs")
-	if (p && p.previousSibling) url (p.previousSibling, "activity_messages", "messages", ("?src="+ch[7]+"&src_callid="+ch[20]+"&_c=30"));
+	var a_ = {};
+	argv (pv.firstChild.lastChild, a_)
+	console.log ("[ati] ati_popup_unread "+ch[20]+","+a_.src_callid+"|"+pv.lastChild.lastChild)
+	if (ch[20]!=a_.src_callid) return; // not is same session
+	if (pv.lastChild.lastChild && pv.lastChild.lastChild.childNodes.length>1)
+	{
+		var p = _(pv.lastChild.lastChild.childNodes[1], "msgs")
+		if (!p || !p.previousSibling) return; 
+		url (p.previousSibling, "activity_messages", "messages", ("?src="+ch[7]+"&src_callid="+ch[20]+"&_c=30"));
+	}
 }
 
 function ati_popup (el, f=0)
@@ -155,11 +171,11 @@ function ati_popup (el, f=0)
 	r_[k["src_ts"][0]] = a.src_ts;
 	if (re["case_src"][a.src][11]=="phone") r_[k["src_address"][0]] = _phone_fmt (a.src_address);
 	
-	if (f==0 && coll[1].childNodes.length>0 && coll[1].firstChild.id.length>0) // vw is occupied
+	if (f==0 && coll[1].childNodes.length>0 && coll[1].firstChild.childNodes.length>0) // vw is occupied
 	{
 		var a_ = {};
 		argv (coll[1].firstChild.lastChild, a_)
-		console.log ("[ati] activity_vw_id_args "+a.src_callid+" "+a_.src_callid)
+		console.log ("[ati] activity_vw_id_args "+a.src_callid+","+a_.src_callid)
 		if (a.src_callid==a_.src_callid) // is same session -- update src args only and select new ati_session
 		{
 			var p_ = coll[1].firstChild.lastChild;
@@ -223,7 +239,7 @@ function atis_pop (ts)
 function atis (o,k,ts)
 {
 	var coll = document.getElementById ("vv").childNodes;
-	var pv = coll[6].childNodes[0].childNodes[1].childNodes[1].childNodes; 
+	var pv = coll[6].childNodes[0].childNodes[1].childNodes[1].childNodes[1]; 
 	var pu = document.getElementById ("call_sessions");
 	var user_cid = document.getElementById ("user_cid").value;
 	var c = [0,0,0,0,0,0,0];
@@ -271,7 +287,7 @@ function atis (o,k,ts)
 			if (unnotified!=0 || el_==null) 
 			{
 				coll[2].firstChild.play ();
-				// ati_ld_unread (ch);	
+				if (pv.firstChild && pv.firstChild.lastChild) ati_popup_unread (pv,ch);	
 			}
 		}
 
