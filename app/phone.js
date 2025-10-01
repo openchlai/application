@@ -1,41 +1,26 @@
 
 te["call_session"] = { /*p:["","sipid(0,10)"],*/ c: 
 [ 
-	{ input:["g","","sbl","%0","radio"] }, // sipid js full
-	{ li:["sbr x15 y bt","va"], ev:["_call_popup"], c:  
+	{ input:["g","","sbr","%0","radio"] }, // sipid js full
+	{ li:["sbr xx y bt s","va"], ev:["_call_popup"], c:  
 	[ 
-		{ div:["abs w02_ y g"],  c:
-		[ 
-			{ s:["c cr h3 micon","phone_in_talk"] },
-			{ p:["e","o"], c:[ { arg:["","src_address",":v:activities:src_address"] }, { arg:["","src_usr",":v:activities:src_usr"] }, { arg:["","src_vector",":v:activities:src_vector"] }, { arg:["","cid_name","%1"] } ] }
+		{ div:[], c: 
+		[
+			{ s:["c y micon","phone"] },
+			{ s:["c l07 y",":v:activities:src_vector::vector:4"] }, 	// type
+			{ s:["d x y","0:00"] },
+			{ arg:["ts","",":v:activities:src_status"] }, 		// status-ts
+			{ div:["e"] }
+		]},	
+		{ div:["l03"], c:
+		[
+			{ s:["c l15",":v:activities:src_address"] },
+			{ s:["c x n g",":v:activities:src_vector::vector:5"] },
+			{ s:["d x cr","..."] }, // status
+			{ div:["e"] }
 		]},
-		{ div:["ml4nn s"], c:
-		[					
-			{ div:[], c: 
-			[
-				{ s:["c x y",":v:activities:src_vector::vector:4"] },
-				{ s:["d x y","0:00"] },
-				{ arg:["ts","",":v:activities:src_status"] }, 		// status-ts
-				{ div:["e"] }
-			]},
-			
-			{ div:[], c:
-			[
-				{ s:["c x y02",":v:activities:src_address"] }, // phone
-				{ s:["c x y02 n",":v:activities:src_vector::vector:5"] },
-				{ s:["d x y02 gr cw bd","..."] }, // status
-				{ div:["e"] }
-			]},
-		
-			{ div:["g x tt"], u:[null] },  // session-buttons: hold, hangup
-			
-			{ div:["g x","va"] },  // cti-buttons (on connect)
-			{ p:["xx","add"] }, // added chans
-		
-			{ p:["g"], uaudio:[null,"",""] },
-			{ p:["","o"] } // this channel args from ami
-		]},
-		{ div:[] }
+		{ p:["g"], uaudio:[null,"",""] },
+		{ p:["","o"] } // this channel args from ami
 	]} 
 ]};
 
@@ -129,16 +114,16 @@ function VOICEAPPS_SESSION (_leg)
 		var el_ = document.createElement ("P"); 
 		el_.id = this.ssid.substr (0,20);
 		p.insertBefore (el_, p.firstChild);
-		var el = nd (el_, te["call_session"], [(this.leg==1?"/helpline/images/dialtone.wav":"/helpline/images/earlymedia.mp3"),"noop"], r, [2]);
+		var el = nd (el_, te["call_session"], [(this.leg==1?"/helpline/images/dialtone.wav":"/helpline/images/earlymedia.mp3")], r, [1]);
 		el = el.parentNode.parentNode;
 		this.el = el;
-		var coll = el.childNodes[1].childNodes[1].childNodes;
+		var coll = el.childNodes[1].childNodes;
 		var cur_state = 0;
 
 		CALL_COUNT++;
 		notifs ();
 
-		this.mediaElement = coll[5].firstChild; // _(el, "au").firstChild;
+		this.mediaElement = coll[2].firstChild; // _(el, "au").firstChild;
 		this.mediaElement.volume = 0.3; // this.leg==1?0.3:0.9;
 		this.mediaElement.play ();
 		this.mediaElement.loop = true;
@@ -200,8 +185,8 @@ function VOICEAPPS_SESSION (_leg)
 
 			if (cur_state != state) // update ts
 			{
-				coll[0].childNodes[1].innerHTML = "0:00";
-				coll[0].childNodes[2].value = ""+(Date.now ()/1000)-ra_ts;
+				coll[0].childNodes[2].innerHTML = "0:00";
+				coll[0].childNodes[3].value = ""+(Date.now ()/1000)-ra_ts;
 			}
 
 			// coll[1].childNodes[1].innerHTML = VOICEAPPS_CHANSTATE[me.leg][state]; // update status
@@ -213,13 +198,13 @@ function VOICEAPPS_SESSION (_leg)
 				me.mediaElement.loop = true;
 			}
 
-			if (state==3) // change buttons
-			{
-				coll[2].innerHTML = "";
-				// nd (coll[2], te["call_session_btns_connected"], [], [], [0]);	
-				//coll[3].innerHTML = "";
-				//nd (coll[3], te["call_session_actions"], [], [], [0]);	
-			}
+			// if (state==3) // change buttons
+			// {
+			//	// coll[2].innerHTML = "";
+			//	// nd (coll[2], te["call_session_btns_connected"], [], [], [0]);	
+			//	//coll[3].innerHTML = "";
+			//	//nd (coll[3], te["call_session_actions"], [], [], [0]);	
+			// }
 
 			cur_state = state;
 		});
@@ -374,7 +359,7 @@ VOICEAPPS_UA.sethold = function (va, hold)
 		va.ishold_ts = Date.now ()/1000;
 		console.log ("hold is: "+hold);
 		call_popup_hold_state (va.el, hold); // update hold state in toolbar
-		call_popup_upd (va.el.childNodes[1].childNodes[1].lastChild.firstChild); 
+		call_popup_upd (va.el.childNodes[1].lastChild.firstChild); 
 	})
 	.catch((error) => 
 	{

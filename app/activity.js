@@ -249,14 +249,22 @@ te["activity_message_r_"] = { c:
 	{ div:["e"] }
 ]};
 
-te["activity_message_r"] = { div:["y"], activity_message_r_:[] };
+te["activity_message_r"] = { div:["xx y"], activity_message_r_:[] };
+
+te["activity_messages_title"] = { c:
+[
+	{ s:["c ll y h3_ b",":v:activities:src::case_src:1"] },
+	{ s:["c x y h3_","/"] },
+	{ s:["c y h3_ b",":v:activities:src_address"] },
+	{ div:["e"] }
+]};
 
 te["activity_messages"] = { c:
 [
-	{ div:[] }, // inbound nb // todo: display captured fields status
-	{ p:["tt ","msgs"], c:
+	{ div:["x20 y15"], u:["activity_messages_title","activities"] },
+	{ p:["x20","msgs"], c:
 	[
-		{ div:["l30 r40 yy oy scroller"], c:
+		{ div:["xx yy oy br scroller"], c:
 		[
 			{ u:["activity_message_r","messages","","","desc"] },
 			{ ufn:["activity_messages_height"] },
@@ -961,7 +969,7 @@ te["activity_vw_id_tabs_"] = { c: //
 	{ div:[], c:
 	[	
 		{ input:["g","","activity_vw_vt","0","radio",null] }, 		// chat
-		{ p:["tabv mh90","vf"], activity_messages:[] } 
+		{ p:["tabv","vf"], activity_messages:[] } 
 	]}	
 ]};
 
@@ -1057,22 +1065,23 @@ te["notification_lst_footer"] = { div:["x y mt"], c:
 	{ ufn:["notifs_ufn","%4"] }
 ]};
 
-te["notification_lst_r_unread_tag"] = { s:["x07 y02 bd8 gws_ cr","unread"] };
+te["notification_lst_r_unread_tag"] = { s:["x07 y02 bd16 gr cw","unread"] };
 
-te["notification_lst_r_"] = { div:["x y03 s",""], c:
+te["notification_lst_r_"] = { div:["x y s",""], c:
 [
 	{ div:[], c:
 	[  
-		{ s:["c t",":v:activities:src::case_src::1"] },
-		{ div:["c t03 l"], usub:["notification_lst_r_unread_tag","r_",":v:activities:action","notify"] }, 
+		{ s:["c t02",":v:activities:src::case_src::1"] },
+		{ s:["c x t02 cd","from"] },
+		{ s:["c t02 cd",":v:activities:src_address"] },
 		{ s:["d t02",":v:activities:src_ts:r::18:: : ago:: : ago:"] },
 		{ arg:["tm","",":v:activities:src_ts"] },
 		{ div:["e"] }
 	]},
-	{ div:["h02_ oh"], c:
+	{ div:["h02 oh"], c:
 	[	
+		{ div:["d w05 t01 mtn1"], s:["abs",""], usub:["notification_lst_r_unread_tag","r_",":v:activities:action","notify"] }, 
 		{ uval:["",":v:activities:action_detail"] },
-		{ s:["d cd",":v:activities:src_address"] },
 		{ div:["e"] }
 	]},
 	// { div:[], arg:["",".id","%0"] }
@@ -1118,13 +1127,13 @@ te["activities"] = { c:
 	{ div:[], c:
 	[	
 		{ input:["g","","activities_vw","1","radio"] }, 			// _new | _vw | ed
-		{ div:["tabv bd8 gw mm mh70","vfvw"] }
+		{ div:["tabv bd8 gw mm","vfvw"] }
 	]}
 ]};
 
 function activity_messages_height (el, u, a, r, m)
 {
-	el.style.height = window.innerHeight-260;
+	el.style.height = window.innerHeight-210;
 	var h = el.scrollHeight;
 	console.log (" [scroll height ] "+h);
 	el.scroll ({ top: h, left: 0, behavior: 'smooth' }); 

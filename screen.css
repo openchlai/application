@@ -370,7 +370,9 @@ ul:hover {background-color:#cee8f0; color:black;}
 
 .bt_b {border-top:1px solid black;}
 .ba_b {border:1px solid black} 
-.bb_b {border-bottom:1px solid black;} 
+.bb_b {border-bottom:1px solid black;}
+.br_b {border-right:1px solid black;}
+
 .bl2_b {border-left:2px solid black;} 
 .bb2_b {border-bottom:2px solid black;}
 

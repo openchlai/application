@@ -460,7 +460,7 @@ function call_popup_hold_state (el, f)
 	var p = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes[1].firstChild; // toolbar
 	var a = {};
 	var a_ = {};
-	var el_ = _(p.firstChild, "chanholdstate", "input");
+	var el_ = _(p, "chanholdstate", "input");
 	argv (el, a);
 	argv (p.lastChild, a_)
 	console.log ("call_popup_hold_state ("+f+") "+a.src_uid+"=="+a_.src_uid+"|"+el_)
@@ -488,9 +488,9 @@ function call_popup_upd (el)
 	if (vs && vs.ishold==true) { a.src_state = 8; a.src_state_ts = vs.ishold_ts; }
 	
 	// notif (sbr)
-	var coll_ = el_.childNodes[1].childNodes[0].childNodes;
-	coll_[1].innerHTML = hmst (a.src_state_ts, ["","","hms","","","",""]); // ts_txt;
-	coll_[2].value = a.src_state_ts;
+	var coll_ = el_.childNodes[0].childNodes;
+	coll_[2].innerHTML = hmst (a.src_state_ts, ["","","hms","","","",""]); // ts_txt;
+	coll_[3].value = a.src_state_ts;
 	el_.childNodes[1].childNodes[2].innerHTML = ss[a.src_state][0];
 	
 	// action btns
@@ -512,7 +512,7 @@ function call_popup (el, f=0)
 	var a = {};
 	argv (el, a);
 
-	console.log ("[call_popup] args:"+JSON.stringify (a)+"|"+JSON.stringify (r_));
+	console.log ("[call_popup] args:"+JSON.stringify (a));
 	
 	if (a.cid_name=="AgentLogin" || a.cid_name=="Supervisor") return;
 
@@ -527,11 +527,11 @@ function call_popup (el, f=0)
 	
 	r_[k["src"][0]] = "call";
 	r_[k["src_uid"][0]] = a.src_uid;
-	r_[k["src_address"][0]] = _phone_fmt (a.src_vector==2?a.src_address:a.exten);
 	r_[k["src_uid2"][0]] = a.src_uid2;
+	r_[k["src_callid"][0]] = el_.previousSibling.value; // full sipid (asterisk only stores first 10 char // el_.parentNode.id)
+	r_[k["src_address"][0]] = _phone_fmt (a.src_vector==2?a.src_address:a.exten);
 	r_[k["src_usr"][0]] = a.usr;
 	r_[k["src_vector"][0]] = a.src_vector;
-	r_[k["src_callid"][0]] = el_.previousSibling.value; // full sipid (asterisk only stores first 10 char // el_.parentNode.id)
 	r_[k["src_ts"][0]] = a.src_ts;
 	
 	var s = "-1?src=" + a.src + "&src_uid=" + a.src_uid + "&src_address="+r_[k["src_address"][0]]; 
@@ -554,8 +554,8 @@ function call_popup (el, f=0)
 
 function _call_popup () 
 {
-	call_popup (this.childNodes[1].lastChild.firstChild, 1); 
-	call_popup_upd (this.childNodes[1].lastChild.firstChild); 
+	call_popup (this.lastChild.firstChild, 1); 
+	call_popup_upd (this.lastChild.firstChild); 
 	var vs = CALLS[this.previousSibling.value]
 	if (vs && vs.ishold) call_popup_hold_state (this.parentNode, vs.ishold); // load hold state
 }
@@ -816,9 +816,9 @@ function chans (o,k,ts)
 				var el_ = _(pu, ch[AMI.CHAN_SIPCALLID].substr (0,20));
 				if (el_)
 				{
-					nd (el_.childNodes[1].childNodes[1].lastChild, te["chan_args"], [], ch, [0]);
-					el = el_.childNodes[1].childNodes[1].lastChild.firstChild;
-					if (!chan_a[ch[2]]) chan_a[ch[2]] = { "ts":ts };
+					nd (el_.childNodes[1].lastChild, te["chan_args"], [], ch, [0]);
+					el = el_.childNodes[1].lastChild.firstChild;
+					chan_a[ch[2]] = { "ts":ts };
 					call_popup (el);
 				}
 			}
