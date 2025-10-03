@@ -369,9 +369,11 @@ ul:hover {background-color:#cee8f0; color:black;}
 .bt_ {border-top:1px solid #cfd1d4;}
 
 .bt_b {border-top:1px solid black;}
-.ba_b {border:1px solid black} 
+.ba_b {border:1px solid black;} 
 .bb_b {border-bottom:1px solid black;}
 .br_b {border-right:1px solid black;}
+
+.ba_r {border:1px solid pink;} 
 
 .bl2_b {border-left:2px solid black;} 
 .bb2_b {border-bottom:2px solid black;}
@@ -575,6 +577,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 
 .w {width:100%;}
 .wp50 {width:50%; overflow:hidden;}
+.wp65 {width:65%; overflow:hidden;}
 .wp100 {width:100%; overflow:hidden;}
 
 .mh02 {min-height:20px;}

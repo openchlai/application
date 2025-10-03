@@ -171,7 +171,7 @@ te["dash"] = { c:
 				{ div:["e"] },
 				{ s:["x b05 cd s",":d:dmy:3: "] }
 			]},
-			{ div:["dd w13 y ba gw bd","vdd"], c:
+			{ div:["dd w13 y ba bd gw","vdd"], c:
 			[
 				{ div:["c w13"], c:
 				[
@@ -189,7 +189,7 @@ te["dash"] = { c:
 				{ div:["d w02 t04"], c:[ { div:["h02 w02 awb"] } ] },
 				{ div:["e"] }
 			]},
-			{ div:["dd w13 y ba bd","vdd"], c:
+			{ div:["dd w13 y ba bd gw","vdd"], c:
 			[
 				{ uchk:["dash_gbv_r","%1","dash_gbv"] }
 			]},
@@ -367,7 +367,7 @@ te["activity_contact_new"] = { div:["gp mb tt r10 mt bd8"], activity_contact_:["
 
 te["activity_contact_none"] = { c:
 [
-	{ div:["h12 ba bd"], c:
+	{ div:["h12 bd gws_"], c:
 	[
 		{ div:["x y h07 tr cb"], c:
 		[
@@ -861,8 +861,8 @@ te["activity_f"] = { div:["w50 x15 tt b05 ma sh__ gw_ bd8","vddvf"], ev:["_undd"
 
 te["activity_list"] = { c:
 [
-	{ div:["d w40 r20"], u:[":u::4:0:activity_contacts_none:activity_list_contacts"] },
-     { div:["c mh30","vt"], u:["activity_disposition_list","dispositions_ctx"] },
+	{ div:["d w40 b20 r20"], u:[":u::4:0:activity_contacts_none:activity_list_contacts"] },
+     { div:["c wp65 mh30","vt"], u:["activity_disposition_list","dispositions_ctx"] },
 	{ div:["e"] }
 ]};
 
@@ -948,18 +948,21 @@ te["activity_vw_id_args"] = { c:
     { arg:["","src_ts",":v:activities:src_ts"] }
 ]};
 
+te["activity_vw_id_tabs_0_walkin"] = { u:["activity_main","dispositions_ctx"] };
+
+te["activity_vw_id_tabs_0"] = { c:
+[
+	{ arg:["",":v:activities:src::case_src:12",":v:activities:src_address"] },
+	{ arg:["","_c","10"] },
+	{ uv:["activity_main","dispositions"] }
+]};
+
 te["activity_vw_id_tabs_"] = { c: // 
 [
 	{ div:[], c:
 	[	
 		{ input:["g","","activity_vw_vt","0","radio",null] }, 		// activity history list
-		{ p:["tabv","vf"], c:
-		[
-			{ arg:["",":v:activities:src::case_src:12",":v:activities:src_address"] },
-			{ arg:["","_c","10"] },
-			// { arg:["",":v:activities:src_address:z:zz:id","-1"] }, // if src is blank then id=-1
-			{ uv:["activity_main","dispositions"] }
-		]} 
+		{ p:["tabv","vftab"], u:[null] } 
 	]},
 	{ div:[], c:
 	[	
@@ -973,20 +976,21 @@ te["activity_vw_id_tabs_"] = { c: //
 	]}	
 ]};
 
-te["activity_vw_id_tabs"] = { activity_vw_id_tabs_:["1","","vfvw",""] };
+te["activity_vw_id_tabs"] = 			{ activity_vw_id_tabs_:["1","activity_vw_id_tabs_0","","vfvw",""] };
 
-te["activity_vw_id_tabs_message"] = { activity_vw_id_tabs_:["","","vfvw","1"] };
+te["activity_vw_id_tabs_message"] = 	{ activity_vw_id_tabs_:["","activity_vw_id_tabs_0","","vfvw","1"] };
 
-te["activity_vw_id_tabs_case"] = { activity_vw_id_tabs_:["","1","vf",""] };
+te["activity_vw_id_tabs_case"] = 		{ activity_vw_id_tabs_:["","noop","1","vf",""] };
+
+te["activity_vw_id_tabs_walkin"] = 	{ activity_vw_id_tabs_:["1","activity_vw_id_tabs_0_walkin","","vfvw",""] };
 
 te["activity_vw_id"] = { c: 
 [
 	{ div:["","vb"], c:
 	[
-		{ u:[null] }, // channel menu
+		{ u:[null] }, 			// channel menu
 		{ div:[], c:[ { p:["g","o"], activity_vw_id_args:[] } ] }
-	]}, 
-
+	]},
 	{ form:[], u:[null] } 		// tabs
 ]};
 
@@ -1128,7 +1132,7 @@ te["activities"] = { c:
 	{ div:[], c:
 	[	
 		{ input:["g","","activities_vw","1","radio"] }, 			// _new | _vw | ed
-		{ div:["tabv bd8 gw mm","vfvw"] }
+		{ div:["tabv bd8 gw mm","vfvwm"] }
 	]}
 ]};
 
@@ -1217,17 +1221,20 @@ function notifs_ufn (el, u, a, r, m)
 function activity_case_ufn (el, u, a, r, m)
 {
 	var kk = ra["dispositions_k"];
+	el__ = __(el,"vfvw")
 	el_ = __(el,"vf")
 	el_.innerHTML = "";
 	nd (el_, te["case_vw_id"], [], ra["cases"][0], [0]);
 	if (r[kk["src"][0]]=="escalation" || r[kk["src"][0]]=="update")  return;
-	if (el_.previousSibling.name=="case_activity_vw_vt")
+	el_ = el__;
+	console.log ("--->"+el_.previousSibling.name)
+	if (el_.previousSibling.name=="case_vw_vt")
 	{
 		var a={};
 		var b={};
-		var coll = __(el_,"vfvw").parentNode.previousSibling.childNodes
+		var coll = el_.parentNode.parentNode.firstChild.childNodes
 		coll[0].checked = true; // switch tab
-		argv(coll[1].childNodes[2].firstChild.childNodes[1].childNodes[2].childNodes[1], a, "name", null, b)
+		argv(coll[1].lastChild.firstChild.childNodes[1] .childNodes[2].childNodes[1], a, "name", null, b)
 		if (b.casevwr && b.casevwr.length>0)
 		{
 			p = b.casevwr[0].parentNode;
@@ -1236,7 +1243,7 @@ function activity_case_ufn (el, u, a, r, m)
 		}
 		 return;
 	}
-	var coll = el_.parentNode.previousSibling.childNodes;
+	var coll = el_.parentNode.parentNode.firstChild.childNodes
 	var p = _(coll[1],"vdisp"); // load disposition
 	coll[0].checked = true;
 	el_ = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
@@ -1271,13 +1278,15 @@ function activity_contact_ufn (el, u, a, r, m)
 {
 	var el_ = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
 	var p = document.getElementById ("vp");
-	elvp = null;
 	p.style.display = "none";
 	p.innerHTML = "";
 	p = _(__(elvp,"vf"),"contact")
 	p.innerHTML = "";
+	elvp = null;
 	nd (p, te["activity_contact"], [], r, [0]);
+	if (!p.nextSibling) return
 	p = _(p.nextSibling,"vcontactnew")
+	if (!p) return
 	nd (el_, te["activity_contact_r_new"], [], ra["dispositions"][0], [0]); /// ??
 	p.insertBefore (el_, p.firstChild);
 }
@@ -1322,7 +1331,7 @@ function _activity_postj ()
 	var u = this.id.split ("-");
 	var p = __(this,"ve"); 
 	var o = {};
-	jso (__(elvpf?elvpf:(elvp?elvp:p),"vfvw").firstChild.lastChild, o);		// src
+	jso (__(elvpf?elvpf:(elvp?elvp:p),"vfvwm").firstChild.lastChild, o);		// src
 	jso (p, o); 													// form
 	url (p, u[0], u[1], o[".id"], null, 2, o, "POST");
 }
@@ -1334,6 +1343,8 @@ function _activity_contact_new ()
 	var r_ = ra[u[1]][0].slice (0)
 	var kk = ra["contacts_k"]
 	var o = {};
+	ra = {};
+	for (var k_ in re) ra[k_]=re[k_];
 	jso (__(this,"vfvw").firstChild.lastChild, o);						// src
 	r_[kk[re["case_src"][o.src][11]][0]] = o.src_address;
 	elvp = this.nextSibling
@@ -1396,22 +1407,28 @@ function _activity_vw_id (ev)
 	r_[k["src_uid2"][0]] = a.src_uid2;
 	if (re["case_src"][a.src][11]=="phone") r_[k["src_address"][0]] = _phone_fmt (a.src_address);
 
+	ra = {};
+	for (var k_ in re) ra[k_]=re[k_];
+
 	this.previousSibling.checked = true; // hilite call-notif
 	coll[0].parentNode.parentNode.previousSibling.checked = true;
 	coll[0].checked = true;
 	coll[1].innerHTML = "";
-	nd (coll[1], te["activity_vw_id"], ["noop","activity_vw_id_toolbar"], r_, [2]);	
 
 	var s = a[".id"];
 	if ((a[".id"]*1) < 1) 
 	{
 		// todo: load blank walkin form  instead of querying db
 		s+="?src=" + a.src + "&src_uid=" + a.src_uid + "&src_uid2=" + a.src_uid2 + "&src_vector="+a.src_vector+"&src_callid="+a.src_callid;
-		if (r_[k["src_address"][0]].length>0)  
+		if (r_[k["src_address"][0]].length<1)  
 		{
-			s += "&src_address="+r_[k["src_address"][0]];
+			ra["dispositions_ctx"] = [["0","10","0","0","0","",""]]
+			nd (coll[1], te["activity_vw_id"], ["activity_vw_id_tabs_walkin","activity_vw_id_toolbar"], r_, [2]);	
+			return;
 		}
+		s += "&src_address="+r_[k["src_address"][0]];
 	}
+	nd (coll[1], te["activity_vw_id"], ["noop","activity_vw_id_toolbar"], r_, [2]);	
 	url (coll[1].lastChild, u[0], u[1], s);
 
 	boo (ev)

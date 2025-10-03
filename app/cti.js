@@ -174,7 +174,7 @@ te["call_wrapup"] = { div:["ma w10"], c:
 
 te["call_toolbar"] = { c:
 [
-	{ div:["w20_ ma t01 mtn1"], s:["w10_ t15 abs",""], c:
+	{ div:["w20_ ma t01 mtn1 g"], s:["w10_ t15 abs",""], c:
 	[
 		{ div:["xx y gr bd w10 cw"], c:
 		[
@@ -971,23 +971,6 @@ function _postjb (ev)
         jso (p,o);
         url (p, u[0], u[1], o[".id"], null, 3, o, "POST");
         boo(ev);
-}
-
-function _del (ev) // delete record
-{
-	// todo: js confirm
-	var u = this.id.split ("-");
-	var el = __(this,"va");
-	var p = el.parentNode;
-	var o = {};
-	argv (this, o);
-	if (this.id.length<1)
-	{
-		p.removeChild (el);
-		return;
-	}
-	url (el, u[0], u[1], o[".id"], null, 2, o, "POST");
-	boo(ev);
 }
 
 function _nd (ev)

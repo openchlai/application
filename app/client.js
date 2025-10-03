@@ -1,10 +1,10 @@
 
 te["case_client_del"] = { c:
 [
-	{ div:["l cr gp"], c:
+	{ div:["g l cr gp"], c:
 	[
 		{ s:["c x y","Client Deleted"] },
-		{ ac:["d ay ga","","_rm","x y h2","&Cross;"] },
+		{ ac:["d","","_rm","x y h2 cr","&Cross;"] },
 		{ div:["e"] }
 	]},
 	{ ufn:["case_client_del_ufn"] }
@@ -15,19 +15,19 @@ te["case_form_client_r_"] = { c:
 	{ div:["","ve"], c:
 	[
 		{ input:["g","","case_form_a","%0","radio"] },
-		{ li:["x y bd cb gbn","client_ed-clients-^"], ev:["_vp"], c:
+		{ li:["bd cb gbn","client_ed-clients-^"], ev:["_vp"], c:
 		[
 			{ div:[], c:
 			[
-				{ div:["d w03"], ac:["abs w03","client_del-clients^del","_del","cb h2",""], c:
+				{ div:["d w03"], ac:["abs w03 ao","client_del-clients^del","_rm","bd cb h2",""], c:
 				[
 					{ s:["x y h2 tc","&Cross;"] },
 					{ div:[], c:[ { arg:["",".id","%0"] } ] }
 				]},
 				{ div:["e"] }
 			]},
-			{ contact_vw_rv:[":v:clients:contact_fullname", ":v:clients:contact_age_group", ":v:clients:contact_sex", "","", ":v:clients:contact_location", ":v:clients:contact_landmark"] },
-			{ contact_vw_rv_phone:[":v:clients:contact_phone", ":v:clients:contact_email"] },
+			{ div:["x y"], contact_vw_rv:[":v:clients:contact_fullname", ":v:clients:contact_age_group", ":v:clients:contact_sex", "","", ":v:clients:contact_location", ":v:clients:contact_landmark"] },
+			// { contact_vw_rv_phone:[":v:clients:contact_phone", ":v:clients:contact_email"] },
 			{ div:["g"], arg:["",".id","%0"] }
 		]},
 		{ div:["g"], arg:["","","case_form_client_r_-clients-va--@"] },
@@ -227,7 +227,7 @@ te["case_vw_client_r_"] = { div:["","ve"], c:
 	{ li:["xx y bd cb gws_","client_vw_id-clients-^"], ev:["_vp"], s:["",""], c:
 	[
 		{ contact_vw_rv:[":v:clients:contact_fullname", ":v:clients:contact_age_group", ":v:clients:contact_sex", "","", ":v:clients:contact_location", ":v:clients:contact_landmark"] },
-		{ contact_vw_rv_phone:[":v:clients:contact_phone", ":v:clients:contact_email"] },
+		// { contact_vw_rv_phone:[":v:clients:contact_phone", ":v:clients:contact_email"] },
 		{ div:["g"], arg:["",".id","%0"] }
 	]},
 	{ div:["g"], arg:["","","case_vw_client_r_-clients-va--@"] },
@@ -399,7 +399,7 @@ function case_client_del_ufn (el, u, a, r, m)
 	var contact_id = valf (r,":v:clients:contact_id");
 	for (var i=0; i<coll.length; i++)
 	{
-		var el = _(coll[i],"_is_client","input","name");
+		var el = _(coll[i],"is_client_","input","name");
 		if (el && el.value==contact_id) el.checked = false;
 	}
 }

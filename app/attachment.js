@@ -11,7 +11,7 @@ te["case_attachment_"] = { div:["gbn mb"], c:
 [
 	{ div:[], c:
 	[
-		{ div:["d w03"], ac:["ab abs w03","case_attachment_del-attachments^del","_del","cb h2",""], c:
+		{ div:["d w03"], ac:["ab abs w03","case_attachment_del-attachments^del","_rm","cb h2",""], c:
 		[
 			{ s:["x y h2 tc","&Cross;"] },
 			{ div:[], c:[ { arg:["",".id","%0"] } ] }
@@ -57,7 +57,7 @@ te["case_attachment_vw_r"] = { div:["gws_ mb bd","va"], c:
 [
 	{ div:["","va"], ac:["ay","files","_file_download","x cb",""], c:
 	[
-		{ s:["c w28 x y",":v:attachments:file_name"] },
+		{ s:["c w26 x y",":v:attachments:file_name"] },
 		{ s:["d w06 x y s tr",":v:attachments:file_size"] }, 
 		{ div:["e"], c:[ { arg:["",".id",":v:attachments:file_id"] }, { arg:["","file","1"] } ] }
 	]},

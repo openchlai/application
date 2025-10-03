@@ -103,7 +103,7 @@ function _uchkp (ev)
 	var p = el.parentNode;
 	var pv = __(this,"vf");
 	p.removeChild (el);
-	uvpfl (pv.parentNode);
+	uvpftab (pv.parentNode);
 	boo(ev)
 }
 
@@ -114,7 +114,7 @@ function _uchkf (ev)
 	var pv = __(this,"vf");
 	p.removeChild (el);
 	if (p.childNodes.length==0) pv.firstChild.removeChild (p.parentNode);
-	uvpfl (pv.parentNode);
+	uvpftab (pv.parentNode);
 	boo(ev)
 }
 

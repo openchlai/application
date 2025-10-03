@@ -194,9 +194,9 @@ te["case_rpt_"] = { c: // todo: load rpt_hdr params from db //
 	[
 		{ div:["c"], c:
 		[
-			{ div:["ay","va"], ac:["","","_dd","x y04 cb",""], c:
+			{ div:["ay","va"], ac:["","","_dd","cb",""], c:
 			[
-				{ s:["c x b h3",null] },
+				{ s:["c x y04 b",null] },
 				//{ div:["c"], s:["h02 w02 awb",""] },
 				{ div:["e"] }
 			]},
@@ -251,27 +251,11 @@ te["case_rpt_count"] = { case_rpt_:["Count", "status","status","status","status"
 
 te["case_rpt_main"] = { c:
 [
-	{ div:["g xx t15 bb_ s","vb"], c:
+	{ div:[], c:
 	[
-		{ s:["c x y cd","Metric:"] },
-		{ uchk:["case_rpt_metric_tab","count","case_metrics"] },
-		// + add // todo add mutiple metrics to same canvas // then multi-metric with from different resources
-		{ div:["d g"], c:
-		[
-			{ div:["w12 ay","va"], ac:["","","_dd","x cd",""], c:
-			[
-				{ div:["d w02 t04"], s:["h02 w02 awb",""] },
-				{ s:["d x y","Saved Reports"] }, 
-				{ div:["e"] }
-			]},			
-			{ div:["dd mln13 w25 ba sh gw cb","vdd"], ev:["_undd"], c:
-			[
-				{s:["xx y cd","- Saved Reports List -"] }
-			]}
-		]},
-		{ div:["e"] }
+		// todo rpt toolbar: metrics, saved reports
 	]},
-	{ div:["","vrpt"], c:
+	{ div:[], c:
 	[
 		{ div:[], c:[ { input:["g","","case_rptv","0","radio","1"] }, { p:["tabv","vt"], case_rpt_count:[] } ]},
 		{ div:[], c:[ { input:["g","","case_rptv","0","radio"] }, { p:["tabv oh","vt"] } ] },
@@ -894,18 +878,18 @@ te["case_reporter_uuid_arg"] = { arg:["","reporter_uuid_id","%0"] };
 
 te["case_form_col_1"] = { c:
 [
-	{ div:["t15"], c:
+	{ div:[], c:
 	[
 		{ div:["","deptv"], c:
 		[
 			{ div:[], c:
 			[
 				{ div:[], c:
-                        	[
+				[
                                 	{ s:["c x y","Department"] },
                             	    	{ s:["c t cr b h2","*"] },
                                 	{ div:["e"] }
-                        	]},
+				]},
 				{ p:["","o"], c:
                         	[
                                 	{ uchk:["case_yesno_r",":v:cases:dept","case_dept","",   "dept"," %1"] },
@@ -970,7 +954,7 @@ te["case_form_col_1"] = { c:
 
 te["case_form_col_0"] = {  c:   
 [
-	{ div:["t",""], c:
+	{ div:["",""], c:
 	[
 		{ u:[null,"reporters_uuid"] }, 			// caller (reporter_uuid_id)
 		{ u:["case_form_reporter","reporters"] }, 	// reporter_id
@@ -978,11 +962,7 @@ te["case_form_col_0"] = {  c:
 	
 	{ p:["t15","clients_case"], c:
 	[
-		{ div:[], c:
-		[
-			{ s:["xx yy b","Clients"] },
-			{ div:["e"] }
-		]},
+		{ s:["x08 y cb b","Clients"] },
 		{ p:["","a"], u:["case_form_client_r","clients"] },
 		{ div:[], c:
 		[
@@ -1002,11 +982,7 @@ te["case_form_col_0"] = {  c:
 	
 	{ div:["t15","perpetrators_case"], c:
 	[
-		{ div:[], c:
-		[
-			{ s:["xx yy b","Perpetrators"] },
-			{ div:["e"] }
-		]},
+		{ s:["x08 y cb b","Perpetrators"] },
 		{ p:["","a"], u:["case_form_perpetrator_r","perpetrators"] },
 		{ div:[], c:
 		[	
@@ -1026,11 +1002,7 @@ te["case_form_col_0"] = {  c:
 	
 	{ div:["t15","attachments_case"], c:
 	[
-		{ div:[], c:
-		[
-			{ s:["xx yy b","Related Files"] },
-			{ div:["e"] }
-		]},
+		{ s:["x08 y cb b","Related Files"] },
 		{ p:["","a"], u:["case_attachment","attachments"] },
 		{ div:[], c:
 		[
@@ -1086,12 +1058,12 @@ te["case_form_"] = { div:["","ve"], c: // new case
 		{ div:["e"] }
 	]},
 
-	{ div:["x20 t"], c:[ { p:["c w100","nb"], c:[ { u:["nb","cases_nb"] }, { u:["nb","newcase_nb"] } ] }, { div:["e"] } ] },
+	{ div:["x20 y"], c:[ { p:["c w100","nb"], c:[ { u:["nb","cases_nb"] }, { u:["nb","newcase_nb"] } ] }, { div:["e"] } ] },
 					
 	{ div:["x20 w130_"], c:
 	[
-		{ div:["c w45_ r50"], case_form_col_0:[null] },
-		{ div:["c w75_"], case_form_col_1:[] },
+		{ div:["c w35_ r50"], case_form_col_0:[null] },
+		{ div:["c w80_"], case_form_col_1:[] },
 		{ div:["e"] }
 	]},
 		
@@ -1532,7 +1504,7 @@ te["case_vw_id"] = { c:
 
 	{ div:["x20","vb"], c:
 	[ 
-		{ div:["d w13_ r10"], s:["abs w13_",""], c:
+		{ div:["d w13_"], s:["abs w13_",""], c:
 		[
 			{ div:["","va"], s:["",""], c:
 			[
@@ -1560,6 +1532,25 @@ te["case_vw_id"] = { c:
 
 	{ div:[], case_vw_id_tabs:[] }
 ]};
+
+
+te["case_vw_id_activity"] = { c:  // same structure as activity but uses reporter_uuid to retrieve src 
+[
+	{ div:["","vb"], c:
+	[
+		{ activity_vw_id_toolbar:[] }, // channel menu
+		{ div:[], c:[ { p:["g","o"], c:
+		[
+			{ div:[], c:
+			[
+				{ arg:["","src",":v:reporters:src"] },
+				{ arg:["","src_uid",":v:reporters:src_uid"] }
+			]}
+		]} ]}
+	]}, 
+	{ form:[], activity_vw_id_tabs_case:[] } 		// tabs
+]};
+
 
 // ------------------------------------------------------------------------
 
@@ -2095,25 +2086,18 @@ te["case_main"] = { c:
 			]}
 		]},
 
-		{ div:["c l20"], ac:["ay","case_f-cases_f","_vpf","x bd_ cb s",""], c:
+		{ div:["c l30"], ac:["ay","case_f-cases_f","_vpf","x bd_ cb s",""], c:
 		[ 
 			{ s:["c t h3_ micon","search"] },
 			{ div:["c x y","","Search"] }, 
 			{ div:["e"] }
 		]},
-
-		{ div:["c l20"], ac:["ay","cases","_download","x bd_ cb s",""], c:
-		[ 
-			{ s:["c t h3_ micon","download"] },
-			{ div:["c x y","","Download"] }, 
-			{ div:["e"], arg:["","join","services,referals,clients,perpetrators"] }
-		]},
 		
-		{ div:["c l20"], c: 
+		{ div:["c l30"], c: 
 		[
 			{ arg:["case_list-cases","","0"] },
 			{ input:["g","","cases_t_","0","radio","1"] },
-			{ li:["opto x s cb bd_","case_list-cases"], ev:["_tab"], c:
+			{ li:["opto xx s cb bd_","case_list-cases"], ev:["_tab"], c:
 			[
 				{ s:["c y04 h3_ micon","list"] },
 				{ div:["c x y03","","List"] }, 
@@ -2121,16 +2105,23 @@ te["case_main"] = { c:
 			]}
 		]},
 
-		{ div:["c l20"], c: 
+		{ div:["c l30"], c: 
 		[
 			{ arg:["case_rpt_vw-cases-@","","1,0"] },
 			{ input:["g","","cases_t_","1","radio"] },
-			{ li:["opto x s cb bd_","case_rpt_main-r_"], ev:["_tab"], c:[ { div:[], c:
+			{ li:["opto xx s cb bd_","case_rpt_main-r_"], ev:["_tab"], c: // todo: reports quick links (save reports, commmon metrics) ?
 			[
 				{ s:["c y04 h3_ micon","bar_chart"] },
 				{ s:["c x y03","Reports"] }, 
 				{ div:["e"] }
-			]} ]}
+			]}
+		]},
+
+		{ div:["c l30"], ac:["ay","cases","_download","x bd_ cb s",""], c:
+		[ 
+			{ s:["c t h3_ micon","download"] },
+			{ div:["c x y","","Download"] }, 
+			{ div:["e"], arg:["","join","services,referals,clients,perpetrators"] }
 		]},
 
 		{ div:["e"], c:[ { arg:["","","case_list-cases"] }, { arg:["","","0"] }, { arg:["","","100"] }, { arg:["","",""] } ] }

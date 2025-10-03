@@ -1,7 +1,7 @@
 
 te["case_perpetrator_del"] = { c:
 [
-	{ div:["l cr gp"], c:
+	{ div:["l cr gp g"], c:
 	[
 		{ s:["c x y","Perpetrator Deleted"] },
 		{ ac:["d ay ga","","_rm","x y h2","&Cross;"] },
@@ -14,19 +14,19 @@ te["case_form_perpetrator_r_"] = { c:
 	{ div:["","ve"], c:
 	[
 		{ input:["g","","case_form_a","%0","radio"] },
-		{ li:["x y bd cb gbn","perpetrator_ed-perpetrators-^"], ev:["_vp"], c:
+		{ li:["bd cb gbn","perpetrator_ed-perpetrators-^"], ev:["_vp"], c:
 		[
 			{ div:[], c:
 			[
-				{ div:["d w03"], ac:["abs w03","perpetrator_del-perpetrators^del","_del","cb h2",""], c:
+				{ div:["d w03"], ac:["abs w03 ao","perpetrator_del-perpetrators^del","_rm","bd cb h2",""], c:
 				[
 					{ s:["x y h2 tc","&Cross;"] },
 					{ div:[], c:[ { arg:["",".id","%0"] } ] }
 				]},
 				{ div:["e"] }
 			]},
-			{ contact_vw_rv:[":v:perpetrators:contact_fullname", ":v:perpetrators:contact_age_group", ":v:perpetrators:contact_sex", "","", ":v:perpetrators:contact_location", ":v:perpetrators:contact_landmark"] },
-			{ contact_vw_rv_phone:[":v:perpetrators:contact_phone", ":v:perpetrators:contact_email"] },
+			{ div:["x y"], contact_vw_rv:[":v:perpetrators:contact_fullname", ":v:perpetrators:contact_age_group", ":v:perpetrators:contact_sex", "","", ":v:perpetrators:contact_location", ":v:perpetrators:contact_landmark"] },
+			// { contact_vw_rv_phone:[":v:perpetrators:contact_phone", ":v:perpetrators:contact_email"] },
 			{ div:["g"], arg:["",".id","%0"] }
 		]},
 		{ div:["g"], arg:["","","case_form_perpetrator_r_-perpetrators-va--@"] },

@@ -194,35 +194,14 @@ te["pmessage_rpt_count"] = { pmessage_rpt_:["Count", "src","src","src", "src", "
 
 te["pmessage_rpt_main"] = { c:
 [
-	{ div:["g xx t15 bb_ s","vb"], c:
-	[
-		{ s:["c x y cd","Metric:"] },
-		{ div:["d g"], c:
-		[
-			{ div:["w12 ay","va"], ac:["","","_dd","x cd",""], c:
-			[
-				{ div:["d w02 t04"], s:["h02 w02 awb",""] },
-				{ s:["d x y","Saved Reports"] }, 
-				{ div:["e"] }
-			]},			
-			{ div:["dd mln13 w25 ba sh gw cb","vdd"], ev:["_undd"], c:
-			[
-				{s:["xx y cd","- Saved Reports List -"] }
-			]}
-		]},
-		{ div:["e"] }
-	]},
-	{ div:["","vrpt"], c:
-	[
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio","1"] }, { p:["tabv","vt"], pmessage_rpt_count:[] } ]},
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv oh","vt"] } ] },
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-	]}
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio","1"] }, { p:["tabv","vt"], pmessage_rpt_count:[] } ]},
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv oh","vt"] } ] },
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
 ]};
 
 // ---------------------------------------------------------------------------------------------

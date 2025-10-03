@@ -130,10 +130,9 @@ var UU =
 "activity_lst":{ 200:[["activity_lst","activities_ctx"]] },
 
 // ---
-
-"reporter_is_client":{ 202:[["reporter_isclient_ufn","reporters_isclient","va"]],  412:[["nb","errors","v","nb"]] },
+"reporter_uuid_is_client":{ 202:[["case_form_reporter_uuid_r","reporters_isclient","va"]],  412:[["nb","errors","v","nb"]] },
+"reporter_is_client":{ 202:[["case_form_reporter_r","reporters_isclient","va"]],  412:[["nb","errors","v","nb"]] },
 "reporter_ed":{ 200:[["case_reporter_ed","reporters","vp"]], 202:[["uvpfn","reporters","vp"]], 412:[["nb","errors","v","nb"]] },
-"reporter_new":{ 201:[["sasasas","reporters"]], 412:[["nb","errors","v","nb"]] },
 "reporter_vw_id":{ 200:[["case_reporter_vw_id","reporters"]] },
 
 "client_del":{ 202:[["case_client_del","clients_del","va"]], 412:[["nb","errors","v","nb"]] },
@@ -160,7 +159,7 @@ var UU =
 "case_update":{ 202:[["uvpfn","dispositions","vp"]], 412:[["nb","errors","v","nb"]], 200:[["case_update","cases"]] },
 "case_ed":{ 202:[["activity_case_ufn","dispositions"]], 412:[["nb","errors","v","nb"]], 200:[["case_ed","cases"]] },
 "case_new":{ 201:[["activity_case_ufn","dispositions"]], 412:[["nb","errors","v","nb"]] },
-"case_vw_id":{ 200:[["case_vw_id","cases"]] }, // 201:[["case_vw_id_ufn","cases","","nb"]] },
+"case_vw_id":{ 200:[["case_vw_id","cases"]] },
 "case_vw_id_activity":{ 200:[["case_vw_id_activity","reporters_uuid"]], 201:[["case_vw_id_ufn","reporters_uuid","","nb"]] },
 "case_vw":{ 200:[["case_vw","cases"]] },
 "case_list":{ 200:[["case_list","cases_ctx"]] },
@@ -480,10 +479,10 @@ re["reporter_is_client"] =
 
 re["metrics"] = 
 {
-"qa_count":["qa_count", "QA Count","QA Count","",			"qas","","qa_count", 		"","",,"", "0","","",""], 
 "case_count":["case_count", "Case Count","Case Count","",			"cases","","case_count", 		"","",,"", "0","","",""], 
-"pmessage_count":["pmessage_count", "Message Session Count","Message Session Count","",	 "pmessages","","pmessages_count", 	"","",,"", "0","","",""], 
 "call_count":["call_count", "Call Count","Call Count","",			"calls","","call_count", 		"","",,"", "0","","",""], 
+"pmessage_count":["pmessage_count", "Message Session Count","Message Session Count","",	 "pmessages","","pmessages_count", 	"","",,"", "0","","",""], 
+"qa_count":["qa_count", "QA Count","QA Count","",			"qas","","qa_count", 		"","",,"", "0","","",""], 
 };
 
 re["loclev"] = 
@@ -969,7 +968,7 @@ function loadphone (el, u, a, r, m)
 	if (v) document.getElementById ("vv").className = v[2];
 	console.log ("loadphone: "+ra["auth"][0][7]+" | "+JSON.stringify (v));
 	DetectDevices ();
-	VOICEAPPS_UA.connect (ra["auth"][0][7]);
+	// VOICEAPPS_UA.connect (ra["auth"][0][7]);
 }
 
 function ami_wait (el, u, a, r, m)

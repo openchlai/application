@@ -281,7 +281,7 @@ te["sub"] = { u:["%0","%1"] };
 
 te["btnwait"] = { c:[ { s:["%0","%1"] }, { arg:["tso","","12"] } ] };
 
-te["uvpfn"] = { ufn:["uvpr"] };
+te["uvpfn"] = { ufn:["uvpfn"] };
 
 te["ufn_attach"] = { ufn:["ufn_attach"] };
 
@@ -310,12 +310,21 @@ function _element (el, tagname, cn, v)
 	el.appendChild (el_);
 }
 
-function _rm (ev)
+function _rm (ev) 
 {
-	var el = __(this); //,"va");
-	var p = el.parentNode;
-	p.removeChild (el);
-	boo (ev)
+	var u = this.id.split ("-");
+	if (this.id.length<1)
+	{
+		var el = __(this,"va");
+		var p = el.parentNode;
+		p.removeChild (el);
+		boo(ev)
+		return;
+	}
+	var o = {};
+	argv (this, o);
+	url (__(this,"ve"), u[0], u[1], o[".id"], null, 2, o, "POST");
+	boo(ev);
 }
 
 function _mvup ()
@@ -508,7 +517,7 @@ function jso (p, o, k)
 		}
 	}
 
-	console.log ("[jso]  ("+p.id+"/"+p.className+") "+JSON.stringify (o)+" | "+JSON.stringify (b));
+	console.log ("[jso]  (#"+p.id+"."+p.className+") "+JSON.stringify (o)+" | "+JSON.stringify (b));
 }
 
 function rargs (r_, coll)
@@ -1256,7 +1265,7 @@ function urargs (el, p)
 		ra = [];
 		for (var k in re) ra[k]=re[k]; // reset ra
 		var r_ = ra[u[1]][0].slice (0)
-		var coll_ = el.firstChild.lastChild.getElementsByTagName ("input");
+		var coll_ = el.lastChild.getElementsByTagName ("input");
 		rargs (r_, coll_);
 		p.innerHTML = "";
 		nd (p, te[u[0]], [], r_, [0]); 
@@ -1267,17 +1276,41 @@ function urargs (el, p)
 	url (p, u[0], u[1], (a[".id"]+a.args));
 }
 
-function uvpfl (p, m=1)
+function uvpfn (el, u, a, r, m) // uvpnd return
+{
+	el.style.display = "none"; // hide vp
+	el.innerHTML = "";
+	el = elvp;
+	elvp = null;
+	if (!el.firstChild) return;
+	var u_ = el.firstChild.value.split ("-");
+	if (u_.length>2 && u_[2].length>0) el = __(el, u_[2]); 	// ascend
+	if (u_.length>3 && u_[3].length>0) el = _(el, u_[3]); 		// descend
+	if (u_.length>4 && u_[4]=="@") el.innerHTML = "";
+	if (u_.length>4 && u_[4]=="!" && el.childNodes.length>0)
+	{
+		var el_ = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
+		el.insertBefore (el_, el.firstChild);
+		el = el_;
+	}
+	nd (el, te[u_[0]], [], r, [0]);
+}
+
+function uvpftab (p, m=1)
 {
 	var a = {args:"?", ".id":""};
 	var coll = p.firstChild.lastChild.childNodes;
 	var u = coll[0].value.split ("-");
 	var v = coll[1].value.split (",");
-	argv (p.childNodes[1], a);	// filter args 
-	for (var i=0; i<v.length; i++) 	// todo: check if checked ; else find checked
+
+	argv (p.childNodes[1], a);		// filter args 
+
+	for (var i=0; i<v.length; i++) 	// current view
 	{
 		p = p.lastChild.childNodes[v[i]].childNodes[1];
 	}
+
+	// console.log (">>>#"+p+"|"+coll[0].value+"|"+coll[1].value);
 
 	if (m==1) coll[2].value =  Math.floor(Date.now ()/1000); // update filter_ts
 	if (p.previousSibling.value>=coll[2].value) return;	// skip if no change in  filter_ts
@@ -1292,32 +1325,13 @@ function uvpfl (p, m=1)
 		return;
 	}
 
-	if (p.childNodes.length>0)
+	if (p.childNodes.length>0 && p.firstChild.id=="vrpt") // pickup rpt args
 	{
 		argv (p.firstChild, a);
-		if (p.firstChild.id=="vrpt") p = p.childNodes[1];
+		p = p.childNodes[1]
 	}
-	url (p, u[0], u[1], (a[".id"]+a.args));
-}
 
-function uvpr (el, u, a, r, m) // uvp return
-{
-	el.style.display = "none"; // hide vp
-	el.innerHTML = "";
-	if (!elvp.firstChild) { elvp=null; return; }
-	var u_ = elvp.firstChild.value.split ("-");
-	el = elvp;
-	elvp = null;
-	if (u_.length>2 && u_[2].length>0) el = __(el, u_[2]); 	// ascend
-	if (u_.length>3 && u_[3].length>0) el = _(el, u_[3]); 		// descend
-	if (u_.length>4 && u_[4]=="@") el.innerHTML = "";
-	if (u_.length>4 && u_[4]=="!" && el.childNodes.length>0)
-	{
-		var el_ = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
-		el.insertBefore (el_, el.firstChild);
-		el = el_;
-	}
-	nd (el, te[u_[0]], [], r, [0]);
+	url (p, u[0], u[1], (a[".id"]+a.args));
 }
 
 function uvpf (el)
@@ -1329,13 +1343,13 @@ function uvpf (el)
 	elvpf = null;
 	jso (p, o);
 	ra[u[1]] = o;
-	// console.log(o)
+	console.log(o)
 	p = document.getElementById ("vp");
 	p.style.display = "none";
 	p.innerHTML = "";
 	pvf.firstChild.innerHTML = "";
 	nd (pvf.firstChild, te[u[0]], [], [], [0]);
-	uvpfl (pvf.parentNode)
+	uvpftab (pvf.parentNode)
 }
 
 function uvp ()
@@ -1374,7 +1388,7 @@ function vp (p)
 	p.style.width = w
 	p.style.display = "block";
 	p.innerHTML = ""; // todo: doc-fragment	
-	console.log (window.innerHeight+" / "+document.body.scrollHeight+" "+window.scrollY);
+	// console.log (window.innerHeight+" / "+document.body.scrollHeight+" "+window.scrollY);
 	// window.scrollTo(0, 0); 
 	// console.log (p.className)
 } 
@@ -1440,6 +1454,36 @@ function _postj (ev)
 
 // ---
 
+function _uvpd (ev)
+{	
+	if (!this.firstChild) return;
+	if (this.firstChild.id!="vddvw" && this.firstChild.id!="vddvf") return; // block non-vddvw from closing
+	this.style.display = "none";
+	if (this.firstChild.id=="vddvf") uvpf (this.firstChild.lastChild.firstChild.firstChild);
+	if (elvp) uvp ();
+}
+
+function _uvpf () 
+{ 
+	uvpf (this); 
+}
+
+function _uvp (ev)
+{
+	var p = document.getElementById ("vp");
+	p.style.display = "none";
+	p.innerHTML = "";
+	if (elvp) uvp ();
+	boo(ev);	
+}
+
+function _uvw ()
+{
+	__(this,"vfvw").parentNode.parentNode.firstChild.firstChild.checked = true;
+}
+
+// ---
+
 function _vpf ()
 {
 	elvpf = __(this,"vb").nextSibling;
@@ -1475,10 +1519,9 @@ function _vw (ev)
 function _tab (ev) 
 {
 	var u = this.id.split ("-");		
-	var coll = __(this,"vb").parentNode.lastChild.childNodes;
-	var p = coll[this.previousSibling.value];		
+	var coll = __(this,"vb").parentNode.lastChild.childNodes[this.previousSibling.value].childNodes;
 	this.previousSibling.checked = true;
-	p.firstChild.checked = true;
+	coll[0].checked = true;
 	
 	if (this.previousSibling.previousSibling) // set uvpf params
 	{	
@@ -1486,45 +1529,16 @@ function _tab (ev)
 		var coll_ = p_.firstChild.lastChild.childNodes; // uvpf params
 		coll_[0].value = this.previousSibling.previousSibling.id
 		coll_[1].value = this.previousSibling.previousSibling.value;
-		// todo: align rpt_menu top-rigt of vb
-		if (p.childNodes[1].childNodes.length>0)
+		if (coll[1].childNodes.length>0)
 		{
-			uvpfl (p_, 0);
+			uvpftab (p_, 0);
 			return;
 		}
-		// else load normarly
 	}
 	
 	if (u.length<2) return; // skip non-res
-	if (u.length<3 && p.childNodes[1].childNodes.length>0) return; // dont repopulate
-	urargs (this, p.childNodes[1]);
-}
-
-// ---
-
-function _uvpd (ev)
-{	
-	if (!this.firstChild) return;
-	if (this.firstChild.id!="vddvw" && this.firstChild.id!="vddvf") return; // block non-vddvw from closing
-	this.style.display = "none";
-	if (this.firstChild.id=="vddvf") uvpf (this.firstChild.lastChild.firstChild.firstChild);
-	if (elvp) uvp ();
-}
-
-function _uvpf () { uvpf (this); }
-
-function _uvp (ev)
-{
-	var p = document.getElementById ("vp");
-	p.style.display = "none";
-	p.innerHTML = "";
-	if (elvp) uvp ();
-	boo(ev);	
-}
-
-function _uvw ()
-{
-	__(this,"vfvw").parentNode.parentNode.firstChild.firstChild.checked = true;
+	if (u.length<3 && coll[1].childNodes.length>0) return; // dont repopulate
+	urargs (this, coll[1]);
 }
 
 // ---

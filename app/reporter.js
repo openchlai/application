@@ -10,77 +10,59 @@ te["reporter_disposition_vw_r"] = { div:["x y gbn"], c:
 	{ contact_vw_rv_phone:[":v:reporters:contact_phone", ":v:reporters:contact_email"] },
 	{ p:["g","o"], arg:["","reporter_id","%0"] }
 ]}
- 
-te["reporter_not_selected"] = { c:
-[
-	{ div:["x20 t b20","va"], c:
-	[
-		{ div:["c x t02"], ac:["","","_uvw","h2 x y bd16 gb cw micon","arrow_back"] }, // { u:[null] },	
-		{ s:["c x08 tt n cr","Select a Reporter first. Then try again."] },
-		{ div:["e"] }
-	]},
 
-]};
+// ---
 
 te["case_form_reporter_r_"] = { c:
 [
 	{ div:["","ve"], c:
-	[
+	[ 
 		{ input:["g","","case_form_a","1","radio"] },
 		{ li:["x y bd cb gbn","reporter_ed-reporters-^"], ev:["_vp"], c:
 		[
 			{ contact_vw_rv:[":v:reporters:contact_fullname", ":v:reporters:contact_age_group", ":v:reporters:contact_sex", "","", ":v:reporters:contact_location", ":v:reporters:contact_landmark"] },
-			{ contact_vw_rv_phone:[":v:reporters:contact_phone", ":v:reporters:contact_email"] },
-			{ div:["x btn"], c:
+			// { contact_vw_rv_phone:[":v:reporters:contact_phone", ":v:reporters:contact_email"] },
+			{ div:["btn"], c:
 			[
-				{ input:["g","","_is_client",":v:reporters:contact_id","checkbox",":v:reporters:is_client"] },
-				{ ac:["ao r w20","","_reporter_isclient","w20 x y",""], c:
+				{ input:["g","","is_client_",":v:reporters:contact_id","checkbox",":v:reporters:is_client"] },
+				{ ac:["ao r",null,"_reporter_is_client","bd",""], c:
 				[
-					{ div:["c w01_"], s:["chk",""] },
-					{ s:["c xx","Reporter is also a Client"] },
+					{ div:["c x t w01_"], s:["chk",""] },
+					{ s:["c x y04","Reporter is also a Client"] },
 					{ div:["e"] }
 				]}
 			]},
-			{ div:["x savl"], s:["w20 x y go cw bd","..."] },
+			{ div:["x savl"], s:["x y go cw bd","..."] },
 			{ div:[], c:[ { p:["c x","nb"] }, { div:["e"] } ] },
 			{ div:["g"], arg:["",".id","%0"] }
 		]},
-		{ div:["g"], arg:["","",null] } 
+		{ div:["g"], arg:["","",null] }		
 	]},
-	{ p:["","o"], c:
-	[ 
-		{ arg:["",null,"%0"] },
-	]}
+	{ p:["","o"], arg:["",null,"%0"] },
+	{ ufn:["reporter_is_client_ufn"] }
 ]};
+
+te["case_form_reporter_r"] = { case_form_reporter_r_:["reporter_is_client-reporters^isclient","case_form_reporter_r-reporters-va--@","reporter_id"] };
+
+te["case_form_reporter_uuid_r"] = { case_form_reporter_r_:["reporter_uuid_is_client-reporters^isclient","case_form_reporter_uuid_r-reporters-va--@","reporter_uuid_id"] };
 
 te["case_form_reporter_"] = { c:
 [
-	{ div:["t"], c:
-	[
-		{ s:["xx y07 cb b",null] },
-		{ div:["e"] }
-	]},
+	{ s:["x08 y cb b",null] },
 	{ div:["","va"], u:[null] },
-	{ arg:["","",null] }
 ]};
 
+te["case_form_reporter"] = { case_form_reporter_:["Reporter","case_form_reporter_r"] };
 
-te["case_form_reporter_r"] = { case_form_reporter_r_:["case_form_reporter_r-reporters-va--@","reporter_id"] };
+te["case_form_reporter_new_case"] = { case_form_reporter_:["Reporter","case_form_reporter_uuid_r"] };
 
-te["case_form_reporter_new_case_r"] = { case_form_reporter_r_:["case_form_reporter_new_case_r-reporters-va--@","reporter_uuid_id"] };
-
-te["case_form_reporter_followup_r"] = { case_form_reporter_r_:["case_form_reporter_followup_r-reporters-va--@","reporter_uuid_id"] };
-
-
-te["case_form_reporter"] = { case_form_reporter_:["Reporter","case_form_reporter_r","case_form_reporter_r"] };
-
-te["case_form_reporter_new_case"] = { case_form_reporter_:["Reporter","case_form_reporter_new_case_r","case_form_reporter_new_case_r"] };
-
-te["case_form_reporter_followup_"] = { case_form_reporter_:["Followup By","case_form_reporter_followup_r","case_form_reporter_followup_r"] };
+te["case_form_reporter_followup_"] = { case_form_reporter_:["Followup By","case_form_reporter_uuid_r"] };
 
 te["case_form_reporter_followup_arg"] = { p:["","o"], case_reporter_uuid_arg:[] };
 
 te["case_form_reporter_followup"] = { u:[":u::5:0:case_form_reporter_followup_arg:case_form_reporter_followup_"] };
+
+// ---
 
 te["case_reporter_ed_"] = { div:["w68 ma mb sh__ bd8 gw_"], c:
 [	
@@ -189,38 +171,31 @@ te["case_reporter_vw_id"] = { div:["w66 ma bd sh__ y gw_","vddvw"], ev:["_undd"]
 
 // --------------------------------------------------------------------------------------------
 
-te["reporter_isclient_ufn"] = { ufn:["reporter_isclient_ufn"] };
-
-function reporter_isclient_ufn (el, u, a, r, m)
+function reporter_is_client_ufn (el, u, a, r, m)
 {
-	nd (el, te[el.nextSibling.value], [], r, [0]);
-	var p = _(__(el,"ve"), "clients_case").childNodes[1];
-	var coll = p.childNodes;
+	var p = _(__(el,"ve"), "clients_case");
+	if (!p) return;
 	if (ra["clients"].length<1) return;
 	var client_id = ra["clients"][0][0];
 	var case_id_ = valf (ra["clients"][0], ":v:clients:case_id_");
+	var coll = p.childNodes[1].childNodes;
 	for (var i=0; i<coll.length; i++)
 	{
 		var el = coll[i].firstChild;
-		// console.log (">>>>"+el.firstChild.value+","+client_id)
-		if (el && el.id=="ve" && el.firstChild && el.firstChild.value==client_id) p.removeChild (coll[i]);
+		if (el && el.id=="ve" && el.firstChild && el.firstChild.value==client_id) p.childNodes[1].removeChild (coll[i]);
 	}
-	if (case_id_!=-9) var el = nd (p, te["case_form_client_r"], [], ra["clients"][0], [0]);
+	if (case_id_!=-9) var el = nd (p.childNodes[1], te["case_form_client_r"], [], ra["clients"][0], [0]);
 	// todo open vp
 }
 
-function _reporter_isclient (ev)
+function _reporter_is_client (ev)
 {
-	var p = __(this,"ve")
-	var p_ = __(p,"vfvwm");
+	var u = this.id.split ("-");
+	var p = __(this,"ve"); 
 	var o = {};
-	var o_ = {};
-	jso (p_.firstChild, o); 		// channel data
-	jso (__(p.parentNode,"ve"), o_); 	// get case_id 
-	// argv (p.nextSibling, o); 		// get reporter_id 
-	o["case_id_"] = o_[".id"];
-	if (this.previousSibling.checked) { o["case_id_"]="-9"; }
-	url (p, "reporter_is_client", "reporters^isclient", p.nextSibling.firstChild.value, null, 2, o, "POST"); 
-	boo (ev);
+	this.previousSibling.checked = (!this.previousSibling.checked); 
+	jso (__(p,"vfvwm").firstChild.lastChild, o);		// src
+	argv (p, o);								// form
+	url (p, u[0], u[1], o[".id"], null, 2, o, "POST");
+	boo(ev)
 }
-
