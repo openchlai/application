@@ -1186,7 +1186,7 @@ function activity_message_sended (el, u, a, r, m)
 function _activity_message_send (ev)
 {
 	var p = __(this,"ve");
-	var p_ = __(this,"vfvw");
+	var p_ = __(this,"vfvwm");
 	var o = {};
 	jso (p_.firstChild, o);   	// channel session details
 	jso (p,o); 			// ve details
@@ -1345,7 +1345,7 @@ function _activity_contact_new ()
 	var o = {};
 	ra = {};
 	for (var k_ in re) ra[k_]=re[k_];
-	jso (__(this,"vfvw").firstChild.lastChild, o);						// src
+	jso (__(this,"vfvwm").firstChild.lastChild, o);						// src
 	r_[kk[re["case_src"][o.src][11]][0]] = o.src_address;
 	elvp = this.nextSibling
 	vp (p);
@@ -1363,7 +1363,7 @@ function _activity_disposition_r ()
 	if (a.contact_id && a.contact_id>0)
 	{
 		var o = {};
-		jso (__(this,"vfvw").firstChild.lastChild, o);		// src
+		jso (__(this,"vfvwm").firstChild.lastChild, o);		// src
 		o.case_id = a.case_id;
 		o.contact_id = a.contact_id
 		url (this, "activity_reporter", u[1], "", null, 2, o, "POST");

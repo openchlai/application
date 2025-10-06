@@ -564,16 +564,16 @@ te["case_service_sel_sub"] = { div:["","sub"], c:
 	{ arg:["case_ed_sub_other_service-r_-ve-_case_other_service_","",CASE_SERVICE_OTHER_ID] },
 ]};
 
-te["case_service_enum"] = { case_enum_lc:["x y b",null,"","taga-r_--a--%1-category_id-%0-%2", "case_lc_main-subcategories", "services", "c w41",    
+te["case_service_enum"] = { case_enum_lc:["x y b",null,"","taga-r_--a--%1-category_id-%0-%2", "case_lc_main-subcategories", "services", "c w31",    
 null, "service_del-services-case_id"," %1","category_id"," %0"," %2",  
 CASE_SERVICES_ROOT_ID,"noop", 
 "dd w50 ba_b gw_","case_service_sel_sub"] };
 
 // ---
 
-te["case_knowabout116_tag_txa"] = { case_enum_tag_txa_:["w49 xx tt b05","fullname__","","knowabout116_id"] };
+te["case_knowabout116_tag_txa"] = { case_enum_tag_txa_:["w31 xx tt b05","fullname__","","knowabout116_id"] };
 
-te["case_knowabout116_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_knowabout116_tag_txa-%1-knowabout116_id-%0-", "category_ls-subcategories", "c w41", "case_knowabout116_tag_txa","r_", null,"case_knowabout116_tag_txa",null,"knowabout116_id",null,"", CASE_KNOW_ABOUT_116_ROOT_ID, "fullname", "noop", "dd w45 gw_ ba_b", "noop"] };
+te["case_knowabout116_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_knowabout116_tag_txa-%1-knowabout116_id-%0-", "category_ls-subcategories", "c w31", "case_knowabout116_tag_txa","r_", null,"case_knowabout116_tag_txa",null,"knowabout116_id",null,"", CASE_KNOW_ABOUT_116_ROOT_ID, "fullname", "noop", "dd w45 gw_ ba_b", "noop"] };
 
 // ---
 
