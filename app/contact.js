@@ -296,12 +296,12 @@ te["contact_vw_rv"] = { c:
 [
 	{ div:["cb"], c:
 	[
-		//{ ac:["c","","","l t cb u",""], uval:["",null] },
-		{ div:["c l t"], uval:["",null] },
-		//{ s:["c t",","] },
-		{ div:["c l15 t"], uval:["",null] },
-		//{ s:["c t",","] },
-		{ div:["c l15 t"], uval:["",null] },
+		{ div:["c x t"], uval:["",null] },
+		{ div:["c l t"], c:
+		[
+			{ uval:["",null] },
+			{ uval:["",null] },
+		]},
 		{ div:["d g"], s:[null,null] },
 		{ div:["e"] }
 	]},
@@ -309,7 +309,7 @@ te["contact_vw_rv"] = { c:
 	[
 		{ uval:["",null] },
 		// { s:["c x t s cd","Nearest Landmark:"] },
-		{ span:["xx i co m","",null] },
+		{ span:["i co m","",null] },
 		{ div:["e"] }
 	]},
 ]};

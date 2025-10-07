@@ -517,7 +517,7 @@ function jso (p, o, k)
 		}
 	}
 
-	console.log ("[jso]  (#"+p.id+"."+p.className+") "+JSON.stringify (o)+" | "+JSON.stringify (b));
+	// console.log ("[jso]  (#"+p.id+"."+p.className+") "+JSON.stringify (o)+" | "+JSON.stringify (b));
 }
 
 function rargs (r_, coll)
@@ -525,14 +525,14 @@ function rargs (r_, coll)
 	var v = "";
 	for (var i=0; i<coll.length; i++)
 	{
-		console.log ("rarg: "+coll[i].id+"="+coll[i].value);
+		// console.log ("rarg: "+coll[i].id+"="+coll[i].value);
 		if (coll[i].id.length<1) continue;
 		var kk = coll[i].id.split ("-");
 		if (kk.length<2) continue;
 		v = coll[i].value;
 		r_[kk[1]] = v;
 	}
-	console.log ("[rargs] ("+coll.length+") "+JSON.stringify (r_));
+	// console.log ("[rargs] ("+coll.length+") "+JSON.stringify (r_));
 }
 
 function hmsr (t,a) // :r:dmyhn:17: :0:899999999:Remaining :DHm::Expred :DHm::
@@ -800,6 +800,7 @@ function uval_ (el, u, ja, cn)
 		_element (el, "div", "c r15", s);
 	}
 	if (u[0].length>0) _element (el, "div", "e", "");
+	else _element (el, "span", "l", "&nbsp;");
 }
 
 function uval (el, u, a, r, m)
@@ -1262,7 +1263,7 @@ function urargs (el, p)
 	var u = el.id.split("-");
 	if (re[u[1]]!=undefined)
 	{
-		ra = [];
+		ra = {};
 		for (var k in re) ra[k]=re[k]; // reset ra
 		var r_ = ra[u[1]][0].slice (0)
 		var coll_ = el.lastChild.getElementsByTagName ("input");
@@ -1293,7 +1294,11 @@ function uvpfn (el, u, a, r, m) // uvpnd return
 		el.insertBefore (el_, el.firstChild);
 		el = el_;
 	}
-	nd (el, te[u_[0]], [], r, [0]);
+	var el_ = nd (el, te[u_[0]], [], r, [0]);
+	if (el_ && el_.parentNode.id=="veu")
+	{
+		el_.parentNode.childNodes[1].click ();
+	}
 }
 
 function uvpftab (p, m=1)
@@ -1481,8 +1486,6 @@ function _uvw ()
 {
 	__(this,"vfvw").parentNode.parentNode.firstChild.firstChild.checked = true;
 }
-
-// ---
 
 function _vpf ()
 {

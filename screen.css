@@ -10,7 +10,7 @@ div {display:block;}
 a {display:block; text-decoration:none; color:#0d95ff; outline:0; } /*0d95c7*/
 canvas {display:block; cursor:crosshair;}
 form {margin:0;padding:0;}
-span {}
+span {vertical-align:top;}
 p {margin:0; padding:0;}
 input {border:0; padding:0; margin:0; font-size:14px; font-family:Helvetica,sans-serif; display:inline; background: transparent; }
 textarea {border:0; padding:0; margin:0; font-size:14px; line-height:24px; font-family:Helvetica,sans-serif;  overflow-y:scroll; background: transparent; }
@@ -716,6 +716,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 .mt20 {margin-top:20px;}
 .mtn1 {margin-top:-1px;}
 .mtn2 {margin-top:-2px;}
+.mtn3 {margin-top:-3px;}
 .mtn08 {margin-top:-8px;}
 .mtn13 {margin-top:-13px;}
 .mtn30 {margin-top:-30px;}

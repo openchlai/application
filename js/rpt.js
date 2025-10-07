@@ -519,7 +519,7 @@ function uchart_vw (el, lbl, ds, cht, stacked)
 
 function uchart (el, _u, _a, _r, _m)
 {
-	console.log (">>>"+_r)
+	// console.log (">>>"+_r)
 	var xx = ra[(_r[0]+"_x")];
 	var yy = ra[(_r[0]+"_y")];
 	var zz = ra[(_r[0]+"_z")];
@@ -620,7 +620,7 @@ function uchart (el, _u, _a, _r, _m)
 		}
 		lv = v;
 
-		console.log (">>>>"+i);
+		// console.log (">>>>"+i);
 		
 		v = ""
 	 	rs = [];
