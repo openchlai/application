@@ -293,13 +293,144 @@ te["activity_messages"] = { c:
 
 te["activity_case_ufn"] = { ufn:["activity_case_ufn"] };
 
-// te["activity_disposition_ufn"] = { ufn:["activity_disposition_ufn"] };
-
 te["activity_reporter_ufn"] = { ufn:["activity_reporter_ufn"] };
 
-te["activity_contact_ufn"] = { ufn:["activity_contact_ufn"] };
-
 // ------------------------------------------------------------------------------------------------
+
+te["activity_f_tags_"] = { c: 
+[
+	{ f:["Reporter Name",null,	" %0","reporter_fullname",""] },
+	{ f:["Reporter Age",null,	" %1","reporter_age_group_id"," %1"] },
+	{ f:["Reporter Sex",null,	" %1","reporter_sex_id"," %1"] },
+	{ f:["Reporter Phone",null,	" %0","reporter_phone",""] },
+	{ f:["Reporter Email",null,	" %0","reporter_email",""] },
+	{ f:["Reporter Location",null,	" %1","reporter_location_id"," %1"] },
+
+	{ f:["Case ID",null,		" %0","case_id",""] },
+	{ f:["Created On",null,		" :d:dmy:0: ","cases^created_on",""] },
+	{ f:["Created By",null,		" %1","cases^created_by_id"," %1"] },
+	{ f:["Source",null,		" ::case_src:0:1","src",""] },
+	{ f:["Category",null,		" %1","cases^case_category_id"," %1"] },
+	{ f:["GBV Related",null,        " ::yesno:0:2","cases^gbv_related",""] },
+	{ f:["Priority",null,		" ::case_priority:0:1","cases^priority",""] },
+	{ f:["Status",null,		" ::case_status:0:1","cases^status",""] },
+	{ f:["Escalated To",null,	" %1","cases^escalated_to_id"," %1"] },
+	{ f:["Case Assessment",null,	" %1","cases^assessment_id"," %1"] },
+	{ f:["Status in Justice System",null," %1","cases^justice_id"," %1"] },
+	
+	{ p:["g","o"], c:
+	[
+		{ arg:["","disposition_id",null] },
+		{ arg:["","sort","id"] },
+		{ arg:["","group",null] },
+		{ arg:["","_c","10"] }
+	]},
+	{ div:["e"] }
+]};
+	
+te["activity_f_tags_k"] = { activity_f_tags_:
+[
+":k:dispositions_k:reporter_fullname:2",":k:dispositions_k:reporter_age_group_id:2", 	":k:dispositions_k:reporter_sex_id:2", 
+":k:dispositions_k:reporter_phone:2", 	":k:dispositions_k:reporter_email:2", 		":k:dispositions_k:reporter_location_id:2",
+":k:dispositions_k:case_id:2", 		":k:dispositions_k:cases^created_on:2", 	":k:dispositions_k:cases^created_by_id:2", 
+":k:dispositions_k:src:2", 		":k:dispositions_k:cases^case_category_id:2", 	":k:dispositions_k:cases^gbv_related:2",
+":k:dispositions_k:cases^priority:2", 	":k:dispositions_k:cases^status:2", 		":k:dispositions_k:cases^escalated_to_id:2", 
+":k:dispositions_k:cases^assessment_id:2",":k:dispositions_k:cases^justice_id:2",   
+":k:dispositions_k:disposition_id:2",
+""
+]};
+	
+te["activity_f_tags"] = { activity_f_tags_:
+[
+":k:dispositions_f:reporter_fullname", 	":k:dispositions_f:reporter_age_group_id", 	":k:dispositions_f:reporter_sex_id",
+":k:dispositions_f:reporter_phone", 	":k:dispositions_f:reporter_email", 		":k:dispositions_f:reporter_location_id",
+":k:dispositions_f:case_id", 		":k:dispositions_f:cases^created_on", 		":k:dispositions_f:cases^created_by_id", 
+":k:dispositions_f:src", 		":k:dispositions_f:cases^case_category_id", 	":k:dispositions_f:cases^gbv_related", 
+":k:dispositions_f:cases^priority", 	":k:dispositions_f:cases^status", 		":k:dispositions_f:cases^escalated_to_id",  
+":k:dispositions_f:cases^assessment_id",":k:dispositions_f:cases^justice_id",  
+":k:dispositions_f:disposition_id",
+":k:dispositions_f:group"
+]};
+	
+te["activity_cases_f"] = { c:
+[
+	{ div:["l r10 tt"], kf_s:["Case ID","case_id",":k:dispositions_f:case_id"] },			
+			
+	{ div:["l r10 tt"], kf_d:["Created On"," :d:dmy:0: ","cases^created_on",":k:dispositions_f:cases^created_on","cases^created_on",":k:dispositions_f:cases^created_on"] },
+			
+	{ div:["l r10 tt"], kf_l:["Created By","tag_-r_--o--%5-user_id-cases^created_by_id-%0-%5",   "user_lc_main-users",":k:dispositions_f:cases^created_by_id", 
+""," %1","user_id","cases^created_by_id"," %0"," %1",  "noop"] },
+
+	{ div:["l r10 tt"], kf_c:["Source","tag_-r_--o--::case_src:0:1--src-%0-",  	":k:dispositions_f:src",
+""," %0","","src"," %0","", 				":k:dispositions_f:src","case_src", "src"," %0",""] },
+		
+	{ div:["l r10 tt"], kf_l:["Category","tag_-r_--o--%1-category_id-cases^case_category_id-%0-%1",   "case_category_lc_main-subcategories",  ":k:dispositions_f:cases^case_category_id",  
+""," %1","category_id","cases^case_category_id"," %0"," %1", "case_category_root_id"] },
+	
+	{ div:["l r10 tt"], kf_c:["GBV Related", "tag_-r_--o--::yesno:0:2--cases^gbv_related-%0-",  ":k:dispositions_f:cases^gbv_related",
+""," ::yesno:0:2","","cases^gbv_related"," %0","",       ":k:dispositions_f:cases^gbv_related","yesno",  "cases^gbv_related"," ::yesno:0:2",""] },
+
+	{ div:["l r10 tt"], kf_c:["Priority", "tag_-r_--o--::case_priority:0:1--cases^priority-%0-",  ":k:dispositions_f:cases^priority", 
+""," ::case_priority:0:1","","cases^priority"," %0","", 	":k:dispositions_f:cases^priority","case_priority",  "cases^priority"," ::case_priority:0:1",""] },
+				
+	{ div:["l r10 tt"], kf_c:["Status", "tag_-r_--o--::case_status:0:1--cases^status-%0-",  	":k:dispositions_f:cases^status",
+""," ::case_status:0:1","","cases^status"," %0","", 	":k:dispositions_f:cases^status","case_status",  "cases^status"," ::case_status:0:1",""] },
+		
+	{ div:["l r10 tt"], kf_l:["Escalated To","tag_-r_--o--%5-user_id-cases^escalated_to_id-%0-%5",   "user_lc_main-users", ":k:dispositions_f:cases^escalated_to_id", 
+""," %1","user_id","cases^escalated_to_id"," %0"," %1", "noop"] },
+
+	{ div:["l r10 tt"], kf_l:["Case Assessment","tag_-r_--o--%1-category_id-cases^assessment_id-%0-%1",   "case_lc_main-subcategories", ":k:dispositions_f:cases^assessment_id", 
+"", " %1", "category_id", "cases^assessment_id"," %0"," %1", "case_assessment_root_id"] },	
+
+	{ div:["l r10 yy"], kf_l:["Status in Justice System","tag_-r_--o--%1-category_id-cases^justice_id-%0-%1",   "case_lc_main-subcategories", ":k:dispositions_f:cases^justice_id", 
+""," %1","category_id","cases^justice_id"," %0"," %1", "case_justice_root_id"] },		
+					
+]};
+	
+te["activity_contacts_f"] = { c:
+[
+	{ div:["l r10 tt"], kf_s:["Reporter Name","reporter_fullname",":k:dispositions_f:reporter_fullname"] },
+	
+	{ div:["l r10 tt"], kf_l:["Reporter Age","tag_-r_--o--%1-category_id-reporter_age_group_id-%0-%1", "case_lc_main-subcategories", 
+":k:dispositions_f:reporter_age_group_id", ""," %1","category_id","reporter_age_group_id"," %0"," %1", "case_age_group_root_id"] },
+
+	{ div:["l r10 tt"], kf_l:["Reporter Sex","tag_-r_--o--%1-category_id-reporter_sex_id-%0-%1", "case_lc_main-subcategories",  
+":k:dispositions_f:reporter_sex_id", ""," %1","category_id","reporter_sex_id"," %0"," %1", "case_sex_root_id"] },
+
+	{ div:["l r10 tt"], kf_s:["Reporter Phone","reporter_phone",":k:dispositions_f:reporter_phone"] },
+	
+	{ div:["l r10 tt"], kf_s:["Reporter Email","reporter_email",":k:dispositions_f:reporter_email"] },
+	
+	{ div:["l r10 tt"], kf_l:["Reporter Location","tag_-r_--o--%1-category_id-reporter_location_id-%0-%1", "case_location_lc_main-subcategories",  ":k:dispositions_f:reporter_location_id", ""," %1","category_id","reporter_location_id"," %0"," %1", "case_location_root_id"] },
+
+	{ div:["l r10 yy"], kf_s:["Passport/ID Number","reporter_national_id",":k:dispositions_f:reporter_national_id"] },
+
+]};
+	
+te["activity_f"] = { div:["w50 x15 tt b05 ma sh__ gw_ bd8","vddvf"], ev:["_undd"], c: 
+[
+	{ div:[], c:
+	[
+		{ div:["t","vb"], c:
+		[
+			{ div:["c"], s:["x y b h3","Search"] },
+			{ div:["d xx"], c:[ { input:["g","","case_f_vw_t","2","radio"] }, { ac:["ay tabu","","_tab","x03 y cb s","Activities"] } ] },
+			{ div:["d xx"], c:[ { input:["g","","case_f_vw_t","1","radio"] }, { ac:["ay tabu","","_tab","x03 y cb s","Cases"] } ] },
+			{ div:["d xx"], c:[ { input:["g","","case_f_vw_t","0","radio","1"] }, { ac:["ay tabu","","_tab","x03 y cb s","Contacts"] } ] },
+			{ div:["e"] }
+		]},
+		{ div:["tt"], c:
+		[
+			{ div:[], c:[ { input:["g","","case_f_vw_tv","0","radio","1"] }, { div:["tabv"], activity_contacts_f:[] } ] },
+			{ div:[], c:[ { input:["g","","case_f_vw_tv","1","radio"] }, { div:["tabv"], activity_cases_f:[] } ] },		
+			{ div:[], c:[ { input:["g","","case_f_vw_tv","1","radio"] }, { div:["tabv"] } ] },	
+		]}
+	]},
+	{ p:["","o"], arg:["","disposition_id",":k:dispositions_f:disposition_id"] },
+	{ vp_apply:["activity_f_tags-dispositions_f"] }
+]};
+
+// -------------------------------------------------------------------------------------------------
 
 te["activity_contact_disposition_btn"] = { div:["c"], c:
 [
@@ -355,7 +486,7 @@ te["activity_contact_"] = { c:
 	{ p:["","o"], arg:["","contact_id","%0"] }
 ]};
 
-te["activity_contact"] = { div:["ba_b bd"], c:
+te["activity_contact"] = { div:["ba_b bd gw"], c:
 [ 
 	{ div:["","ve"], c:
 	[
@@ -408,14 +539,6 @@ te["activity_contact_none"] = { c:
 
 // ---
 
-te["activity_contact_f"] = { div:["","ve"], c:
-[
-        { div:[], activity_f_:["y b","Search"] },
-        { vp_apply_:["activity_contact_main-dispositions_f","_activity_uvpf","","_uvw"] }
-]};
-
-// ---
-
 te["activity_contact_footer"] = { div:["b05"], c:
 [
 	{ div:["d t"], c:[ { ac:["nav","activity_contact_ls-dispositions","_nav","dh bd",""], c:[ { div:["da_w dr bd"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
@@ -433,10 +556,10 @@ te["activity_contact_no_data"] = { c:
 	{ s:["xx yy gy","No matching contacts found."] }
 ]};
 
-te["activity_contact_r_"] = { div:["","veu"], c:
+te["activity_contact_r_"] = { div:[], c:
 [
 	{ input:["g","",".id",":v:dispositions:reporter_contact_id","radio",null] },
-	{ div:["r bd gws_ mb","activity_contact-contacts-contacts-contact"], ev:["_u"], c:
+	{ div:["r bd gws_ mb",""], ev:["_activity_contact_sel"], c:
 	[
 		{ p:["","nb"] }, 
 		{ li:["x t02  oh cb rg bd"], c:
@@ -445,8 +568,7 @@ te["activity_contact_r_"] = { div:["","veu"], c:
 			{ div:["c w35"], contact_vw_rv:[":v:dispositions:reporter_fullname", ":v:dispositions:reporter_age_group", ":v:dispositions:reporter_sex", "d x t cd s",":v:dispositions:created_on:d:dmyhnr", ":v:dispositions:reporter_location",":v:dispositions:reporter_landmark"] },
 			{ div:["e"] } // , arg:["",".id",":v:dispositions:reporter_conntact_id"] }
 		]} 
-	]},
-	{ div:[] }
+	]}
 ]};
 
 te["activity_contact_r_new"] = { div:["gh"], activity_contact_r_:["1"] };
@@ -480,7 +602,7 @@ te["activity_contacts"] = { div:["xx","contacts"], c:
 			{ s:["c xx y cd","Matching Reporters"] },
 			{ div:["e"] }
 		]},
-		{ div:["","vt"], c:
+		{ div:["","vt"], c: // 
 		[
 			{ u:["activity_contact_ls","dispositions_ctx"] }
 		]}
@@ -683,7 +805,7 @@ te["activity_disposition_r_"] = { c:
 te["activity_disposition_r_case_"] = { div:["l20","va"], c:
 [
      { input:["g","","advwt","%0","radio"] },
-	{ li:[null,"activity_disposition_vw-reporters^uuid"], ev:["_activity_disposition_r"], activity_disposition_r_:[""] },
+	{ li:[null,"activity_disposition_vw-cases"], ev:["_activity_disposition_r"], activity_disposition_r_:[""] },
      { div:["g"], arg:["","","activity_disposition_r-dispositions-va--@"] }, // vp return anchor
 ]};
 
@@ -740,147 +862,12 @@ te["activity_disposition_nb"] = { div:[""], u:["activity_disposition_no_data","d
 
 te["activity_disposition_title"] = { div:[], c:[ { p:["","vdisp"] } ] };
 
-te["activity_disposition_list"] = { list:["activity_disposition_title", "activity_disposition_nb", "", "activity_disposition_k", "activity_disposition_r", "dispositions", "activity_disposition_footer"] };
-
-// ------------------------------------------------------------------------------------------------
-
-te["activity_f_tags_"] = { c: 
-[
-	{ f:["Reporter Name",null,	" %0","reporter_fullname",""] },
-	{ f:["Reporter Age",null,	" %1","reporter_age_group_id"," %1"] },
-	{ f:["Reporter Sex",null,	" %1","reporter_sex_id"," %1"] },
-	{ f:["Reporter Phone",null,	" %0","reporter_phone",""] },
-	{ f:["Reporter Email",null,	" %0","reporter_email",""] },
-	{ f:["Reporter Location",null,	" %1","reporter_location_id"," %1"] },
-
-	{ f:["Case ID",null,		" %0","case_id",""] },
-	{ f:["Created On",null,		" :d:dmy:0: ","cases^created_on",""] },
-	{ f:["Created By",null,		" %1","cases^created_by_id"," %1"] },
-	{ f:["Source",null,		" ::case_src:0:1","src",""] },
-	{ f:["Category",null,		" %1","cases^case_category_id"," %1"] },
-	{ f:["GBV Related",null,        " ::yesno:0:2","cases^gbv_related",""] },
-	{ f:["Priority",null,		" ::case_priority:0:1","cases^priority",""] },
-	{ f:["Status",null,		" ::case_status:0:1","cases^status",""] },
-	{ f:["Escalated To",null,	" %1","cases^escalated_to_id"," %1"] },
-	{ f:["Case Assessment",null,	" %1","cases^assessment_id"," %1"] },
-	{ f:["Status in Justice System",null," %1","cases^justice_id"," %1"] },
-	
-	{ p:["g","o"], c:
-	[
-		{ arg:["","disposition_id",null] },
-		{ arg:["","sort","id"] },
-		{ arg:["","group",null] },
-		{ arg:["","_c","10"] }
-	]},
-	{ div:["e"] }
-]};
-	
-te["activity_f_tags_k"] = { activity_f_tags_:
-[
-":k:dispositions_k:reporter_fullname:2",":k:dispositions_k:reporter_age_group_id:2", 	":k:dispositions_k:reporter_sex_id:2", 
-":k:dispositions_k:reporter_phone:2", 	":k:dispositions_k:reporter_email:2", 		":k:dispositions_k:reporter_location_id:2",
-":k:dispositions_k:case_id:2", 		":k:dispositions_k:cases^created_on:2", 	":k:dispositions_k:cases^created_by_id:2", 
-":k:dispositions_k:src:2", 		":k:dispositions_k:cases^case_category_id:2", 	":k:dispositions_k:cases^gbv_related:2",
-":k:dispositions_k:cases^priority:2", 	":k:dispositions_k:cases^status:2", 		":k:dispositions_k:cases^escalated_to_id:2", 
-":k:dispositions_k:cases^assessment_id:2",":k:dispositions_k:cases^justice_id:2",   
-":k:dispositions_k:disposition_id:2",
-""
-]};
-	
-te["activity_f_tags"] = { activity_f_tags_:
-[
-":k:dispositions_f:reporter_fullname", 	":k:dispositions_f:reporter_age_group_id", 	":k:dispositions_f:reporter_sex_id",
-":k:dispositions_f:reporter_phone", 	":k:dispositions_f:reporter_email", 		":k:dispositions_f:reporter_location_id",
-":k:dispositions_f:case_id", 		":k:dispositions_f:cases^created_on", 		":k:dispositions_f:cases^created_by_id", 
-":k:dispositions_f:src", 		":k:dispositions_f:cases^case_category_id", 	":k:dispositions_f:cases^gbv_related", 
-":k:dispositions_f:cases^priority", 	":k:dispositions_f:cases^status", 		":k:dispositions_f:cases^escalated_to_id",  
-":k:dispositions_f:cases^assessment_id",":k:dispositions_f:cases^justice_id",  
-":k:dispositions_f:disposition_id",
-":k:dispositions_f:group"
-]};
-	
-te["activity_cases_f"] = { c:
-[
-	{ div:["l r10 tt"], kf_s:["Case ID","case_id",":k:dispositions_f:case_id"] },			
-			
-	{ div:["l r10 tt"], kf_d:["Created On"," :d:dmy:0: ","cases^created_on",":k:dispositions_f:cases^created_on","cases^created_on",":k:dispositions_f:cases^created_on"] },
-			
-	{ div:["l r10 tt"], kf_l:["Created By","tag_-r_--o--%5-user_id-cases^created_by_id-%0-%5",   "user_lc_main-users",":k:dispositions_f:cases^created_by_id", 
-""," %1","user_id","cases^created_by_id"," %0"," %1",  "noop"] },
-
-	{ div:["l r10 tt"], kf_c:["Source","tag_-r_--o--::case_src:0:1--src-%0-",  	":k:dispositions_f:src",
-""," %0","","src"," %0","", 				":k:dispositions_f:src","case_src", "src"," %0",""] },
-		
-	{ div:["l r10 tt"], kf_l:["Category","tag_-r_--o--%1-category_id-cases^case_category_id-%0-%1",   "case_category_lc_main-subcategories",  ":k:dispositions_f:cases^case_category_id",  
-""," %1","category_id","cases^case_category_id"," %0"," %1", "case_category_root_id"] },
-	
-	{ div:["l r10 tt"], kf_c:["GBV Related", "tag_-r_--o--::yesno:0:2--cases^gbv_related-%0-",  ":k:dispositions_f:cases^gbv_related",
-""," ::yesno:0:2","","cases^gbv_related"," %0","",       ":k:dispositions_f:cases^gbv_related","yesno",  "cases^gbv_related"," ::yesno:0:2",""] },
-
-	{ div:["l r10 tt"], kf_c:["Priority", "tag_-r_--o--::case_priority:0:1--cases^priority-%0-",  ":k:dispositions_f:cases^priority", 
-""," ::case_priority:0:1","","cases^priority"," %0","", 	":k:dispositions_f:cases^priority","case_priority",  "cases^priority"," ::case_priority:0:1",""] },
-				
-	{ div:["l r10 tt"], kf_c:["Status", "tag_-r_--o--::case_status:0:1--cases^status-%0-",  	":k:dispositions_f:cases^status",
-""," ::case_status:0:1","","cases^status"," %0","", 	":k:dispositions_f:cases^status","case_status",  "cases^status"," ::case_status:0:1",""] },
-		
-	{ div:["l r10 tt"], kf_l:["Escalated To","tag_-r_--o--%5-user_id-cases^escalated_to_id-%0-%5",   "user_lc_main-users", ":k:dispositions_f:cases^escalated_to_id", 
-""," %1","user_id","cases^escalated_to_id"," %0"," %1", "noop"] },
-
-	{ div:["l r10 tt"], kf_l:["Case Assessment","tag_-r_--o--%1-category_id-cases^assessment_id-%0-%1",   "case_lc_main-subcategories", ":k:dispositions_f:cases^assessment_id", 
-"", " %1", "category_id", "cases^assessment_id"," %0"," %1", "case_assessment_root_id"] },	
-
-	{ div:["l r10 yy"], kf_l:["Status in Justice System","tag_-r_--o--%1-category_id-cases^justice_id-%0-%1",   "case_lc_main-subcategories", ":k:dispositions_f:cases^justice_id", 
-""," %1","category_id","cases^justice_id"," %0"," %1", "case_justice_root_id"] },		
-					
-]};
-	
-te["activity_contacts_f"] = { c:
-[
-	{ div:["l r10 tt"], kf_s:["Reporter Name","reporter_fullname",":k:dispositions_f:reporter_fullname"] },
-	
-	{ div:["l r10 tt"], kf_l:["Reporter Age","tag_-r_--o--%1-category_id-reporter_age_group_id-%0-%1", "case_lc_main-subcategories", 
-":k:dispositions_f:reporter_age_group_id", ""," %1","category_id","reporter_age_group_id"," %0"," %1", "case_age_group_root_id"] },
-
-	{ div:["l r10 tt"], kf_l:["Reporter Sex","tag_-r_--o--%1-category_id-reporter_sex_id-%0-%1", "case_lc_main-subcategories",  
-":k:dispositions_f:reporter_sex_id", ""," %1","category_id","reporter_sex_id"," %0"," %1", "case_sex_root_id"] },
-
-	{ div:["l r10 tt"], kf_s:["Reporter Phone","reporter_phone",":k:dispositions_f:reporter_phone"] },
-	
-	{ div:["l r10 tt"], kf_s:["Reporter Email","reporter_email",":k:dispositions_f:reporter_email"] },
-	
-	{ div:["l r10 tt"], kf_l:["Reporter Location","tag_-r_--o--%1-category_id-reporter_location_id-%0-%1", "case_location_lc_main-subcategories",  ":k:dispositions_f:reporter_location_id", ""," %1","category_id","reporter_location_id"," %0"," %1", "case_location_root_id"] },
-
-	{ div:["l r10 yy"], kf_s:["Passport/ID Number","reporter_national_id",":k:dispositions_f:reporter_national_id"] },
-
-]};
-	
-te["activity_f"] = { div:["w50 x15 tt b05 ma sh__ gw_ bd8","vddvf"], ev:["_undd"], c: 
-[
-	{ div:[], c:
-	[
-		{ div:["t","vb"], c:
-		[
-			{ div:["c"], s:["x y b h3","Search"] },
-			{ div:["d xx"], c:[ { input:["g","","case_f_vw_t","2","radio"] }, { ac:["ay tabu","","_tab","x03 y cb s","Activities"] } ] },
-			{ div:["d xx"], c:[ { input:["g","","case_f_vw_t","1","radio"] }, { ac:["ay tabu","","_tab","x03 y cb s","Cases"] } ] },
-			{ div:["d xx"], c:[ { input:["g","","case_f_vw_t","0","radio","1"] }, { ac:["ay tabu","","_tab","x03 y cb s","Contacts"] } ] },
-			{ div:["e"] }
-		]},
-		{ div:["tt"], c:
-		[
-			{ div:[], c:[ { input:["g","","case_f_vw_tv","0","radio","1"] }, { div:["tabv"], activity_contacts_f:[] } ] },
-			{ div:[], c:[ { input:["g","","case_f_vw_tv","1","radio"] }, { div:["tabv"], activity_cases_f:[] } ] },		
-			{ div:[], c:[ { input:["g","","case_f_vw_tv","1","radio"] }, { div:["tabv"] } ] },	
-		]}
-	]},
-	{ p:["","o"], arg:["","disposition_id",":k:dispositions_f:disposition_id"] },
-	{ vp_apply:["activity_f_tags-dispositions_f"] }
-]};
+te["activity_disposition_list"] = { list:["activity_disposition_title", "activity_disposition_nb", "", "activity_disposition_k", "activity_disposition_r", "dispositions", ":u::4:0:noop:activity_disposition_footer"] };
 
 te["activity_list"] = { c:
 [
-	{ div:["d w40 b20 r20"], u:[":u::4:0:activity_contacts_none:activity_list_contacts"] },
-     { div:["c wp65 mh30","vt"], u:["activity_disposition_list","dispositions_ctx"] },
+	{ div:["d w40 r15 t01"], s:["abs w40 b20",""], u:[":u::4:0:activity_contacts_none:activity_list_contacts"] },
+     { div:["mh30 mr43","vt"], u:["activity_disposition_list","dispositions_ctx"] },
 	{ div:["e"] }
 ]};
 
@@ -963,7 +950,8 @@ te["activity_vw_id_args"] = { c:
     { arg:["","src_usr",":v:activities:src_usr"] },
     { arg:["","src_vector",":v:activities:src_vector"] },
     { arg:["","src_callid",":v:activities:src_callid"] },
-    { arg:["","src_ts",":v:activities:src_ts"] }
+    { arg:["","src_ts",":v:activities:src_ts"] },
+    { arg:["","contact_uuid_id","-1"] },
 ]};
 
 te["activity_vw_id_tabs_0_walkin"] = { u:["activity_main","dispositions_ctx"] };
@@ -1031,7 +1019,7 @@ te["activity_lst_disposition_r"] = { div:["d ll t02 s cr"], uval:["","%0"] };
 te["activity_lst_r"] = { div:[], c:
 [
 	{ input:["g","","sbr","1","radio"] },
-	{ li:["sbr cb xx bt_",""], ev:["_activity_vw_id"], s:["x y03 s",""], c: 
+	{ li:["sbr cb x15 y03 bt_ s",""], ev:["_activity_vw_id"], c: 
 	[
 		{ div:[], c:
 		[  
@@ -1051,7 +1039,8 @@ te["activity_lst_r"] = { div:[], c:
 		]},
 		{ div:["g"], c:
 		[ 
-			{ arg:["",".id","%0"] }, { arg:["","src",":v:activities:src"] },
+			{ arg:["",".id","%0"] }, 
+			{ arg:["","src",":v:activities:src"] },
 			{ arg:["","src_uid",":v:activities:src_uid"] }, { arg:["","src_uid2",":v:activities:src_uid2"] }, 
 			{ arg:["","src_address",":v:activities:src_address"] }, { arg:["","src_usr",":v:activities:src_usr"] }, 
 			{ arg:["","src_vector",":v:activities:src_vector"] },  { arg:["","src_ts",":v:activities:src_ts"] }, 
@@ -1105,21 +1094,37 @@ te["notification_lst_r_"] = { div:["x y s",""], c:
 		{ div:["d w05 t01 mtn1"], s:["abs",""], usub:["notification_lst_r_unread_tag","r_",":v:activities:action","notify"] }, 
 		{ uval:["",":v:activities:action_detail"] },
 		{ div:["e"] }
-	]},
-	// { div:[], arg:["",".id","%0"] }
+	]}
 ]};
 
-te["notification_lst_r_vw"] = { c:
+te["notification_lst_r_vw"] = { div:["h05 bb_"], c:
 [
-	{ notification_lst_r_:[] },
+	{ input:["g","","sbr","%0","radio","1"] },
+	{ li:["sbr cb xx bb_ ","activity_notify-activities^notify"], ev:["_activity_vw_id"], c:
+	[
+		{ notification_lst_r_:[] },
+		{ div:["g"], c:
+		[ 
+			{ arg:["",".id","%0"] }, 
+			{ arg:["","src",":v:activities:src"] },
+			{ arg:["","src_uid",":v:activities:src_uid"] }, { arg:["","src_uid2",":v:activities:src_uid2"] }, 
+			{ arg:["","src_address",":v:activities:src_address"] }, { arg:["","src_usr",":v:activities:src_usr"] }, 
+			{ arg:["","src_vector",":v:activities:src_vector"] },  { arg:["","src_ts",":v:activities:src_ts"] }, 
+			{ arg:["","src_callid",":v:activities:src_callid"] } 
+		]}
+	]},
 	{ ufn:["activity_notify_ufn"] }
 ]};
 
 te["notification_lst_r"] = { div:["","ve"], c:
 [
-	{ input:["g","","sbr","%0","radio"] },
-	{ li:["sbr cb xx bb_ ","activity_notify-activities^notify"], ev:["_activity_notify"], notification_lst_r_:[] }
-	// todo: place holder for on click
+	{ div:["btn h05 bb_"], c:
+	[
+		{ input:["g","","sbr","%0","radio"] },
+		{ li:["sbr cb xx ","activity_notify-activities^notify"], ev:["_postj"], notification_lst_r_:[] },
+		{ p:["","o"], arg:["",".id","%0"] }
+	]},
+	{ s:["savl xx y h04 bb_","..."] }// place holder for on click
 ]};
 
 te["notification_lst_k"] = { div:["bb_"], c:
@@ -1248,7 +1253,8 @@ function activity_case_ufn (el, u, a, r, m)
 	var p = null;
 	var coll = el_.parentNode.parentNode.firstChild.childNodes
 	coll[0].checked = true; // switch tab
-	// console.log ("--->"+el_.previousSibling.name)
+	console.log ("--->"+el_.previousSibling.name)
+	// return;
 	if (el_.previousSibling.name=="case_vw_vt")
 	{
 		var a={};
@@ -1305,6 +1311,17 @@ function _activity_close ()
 	activity_close (vw)
 }
 
+function _activity_postj ()
+{
+	var u = this.id.split ("-");
+	var p = __(this,"ve"); 
+	var o = {};
+	jso (__(elvpf?elvpf:(elvp?elvp:p),"vfvwm").firstChild.lastChild, o);		// src
+	jso (p, o); 													// form
+	if (u.length>2) elvp = this.nextSibling
+	url (p, u[0], u[1], o[".id"], null, 2, o, "POST");
+}
+
 function _activity_contact_del ()
 {
 	var p = __(this,"contact")
@@ -1313,42 +1330,39 @@ function _activity_contact_del ()
 	nd (p, te["activity_contact_none"], [], [], [0])
 }
 
-function _activity_postj ()
+function _activity_contact_sel ()
 {
-	var u = this.id.split ("-");
-	var p = __(this,"ve"); 
-	var o = {};
-	jso (__(elvpf?elvpf:(elvp?elvp:p),"vfvwm").firstChild.lastChild, o);		// src
-	jso (p, o); 													// form
-	url (p, u[0], u[1], o[".id"], null, 2, o, "POST");
+	var p = __(this,"contacts").firstChild
+	this.previousSibling.checked = true;
+	p.innerHTML = ""
+	// nd (p, te["activity_contact"], [], [], [0])
 }
 
 function _activity_disposition_r ()
 {
 	var u = this.id.split ("-");
-	var a = {};
+	var o = {};
 	this.previousSibling.checked = true;
-	argv (_(__(this,"vt").previousSibling,"contact"), a);
-	argv (this, a);
-	// console.log (a)
-	if (a.contact_id && a.contact_id>0)
+	jso (__(this,"vfvwm").firstChild.lastChild, o);		// src
+	argv (this, o);
+	if (o.contact_id && o.contact_id>0)
 	{
-		var o = {};
-		jso (__(this,"vfvwm").firstChild.lastChild, o);		// src
-		o.case_id = a.case_id;
-		o.contact_id = a.contact_id
-		url (this, "activity_reporter", u[1], "", null, 2, o, "POST");
+		var coll = __(this,"vf").parentNode.nextSibling.childNodes;
+		coll[0].checked = true
+		coll[1].innerHTML = ""
+		url (coll[1], "case_vw_id", u[1], o.case_id); 
 		return
 	}
 	var p = document.getElementById ("vp");
 	elvp = this.nextSibling;
 	vp (p)
-	url (p, u[0], u[1], ("-1"+"?contact_id=-1&case_id="+a.case_id)); // todo: load audit trail instead of case
+	url (p, u[0], u[1], o.case_id); 					// todo: load audit trail instead of case
 }
 
 function _activity_vw_id (ev) 
 {
-	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; 
+	var i =0; if (this.id.length>0) i=1*this.id;
+	var coll = document.getElementById ("vv").childNodes[6].childNodes[i].childNodes[1].childNodes[1].childNodes; 
 	var u = ["activity_vw_id_tabs","activities"];
 	var k = re["activities_k"];
 	var r_ = re["r_"][0].slice(0);
@@ -1379,7 +1393,7 @@ function _activity_vw_id (ev)
 	if (re["case_src"][a.src][11]=="phone") r_[k["src_address"][0]] = _phone_fmt (a.src_address);
 
 	// cache src_address as a contact
-	re["src_address"] = [[ re["case_src"][a.src][11], re["case_src"][a.src][11]+"-"+ra["contacts_k"][re["case_src"][a.src][11]][0], r_[k["src_address"][0]] ]];
+	re["src_address"] = [[ re["case_src"][a.src][11], re["case_src"][a.src][11]+"-"+re["contacts_k"][re["case_src"][a.src][11]][0], r_[k["src_address"][0]] ]];
 
 	ra = {};
 	for (var k_ in re) ra[k_]=re[k_];
@@ -1392,26 +1406,19 @@ function _activity_vw_id (ev)
 	var s = a[".id"];
 	if ((a[".id"]*1) < 1) 
 	{
-		// todo: load blank walkin form  instead of querying db
-		s+="?src=" + a.src + "&src_uid=" + a.src_uid + "&src_uid2=" + a.src_uid2 + "&src_vector="+a.src_vector+"&src_callid="+a.src_callid;
-		if (r_[k["src_address"][0]].length<1)  
+		if (a.src=="walkin")  
 		{
 			ra["dispositions_ctx"] = [["0","10","0","0","0","",""]]
 			nd (coll[1], te["activity_vw_id"], ["activity_vw_id_tabs_walkin","activity_vw_id_toolbar"], r_, [2]);	
 			return;
 		}
-		s += "&src_address="+r_[k["src_address"][0]];
+		s +="?src=" + a.src + "&src_uid=" + a.src_uid + "&src_uid2=" + a.src_uid2 + "&src_vector="+a.src_vector+"&src_callid="+a.src_callid;
+		s += "&src_usr="+a.src_usr;
+		if (a.src_address && a.src_address.length>0) s += "&src_address="+r_[k["src_address"][0]];
+		if (a.case_id && a.case_id.length>0) s += "&case_id="+a.case_id;
 	}
 	nd (coll[1], te["activity_vw_id"], ["noop","activity_vw_id_toolbar"], r_, [2]);	
-	url (coll[1].lastChild, u[0], u[1], s);
+	url (coll[1].lastChild, (u[0]+re["case_src"][a.src][10]), u[1], s);
 
 	boo (ev)
-}
-
-function _activity_notify ()
-{
-	var u = this.id.split ("-");
-	if (this.previousSibling.checked == true) return; // dont double click
-	this.previousSibling.checked = true;
-	url (__(this,"ve"), u[0], u[1], this.previousSibling.value, null, 2, {"":""}, "POST");
 }

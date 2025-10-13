@@ -800,7 +800,7 @@ function uval_ (el, u, ja, cn)
 		_element (el, "div", "c r15", s);
 	}
 	if (u[0].length>0) _element (el, "div", "e", "");
-	else _element (el, "span", "l", "&nbsp;");
+	else if (cn.length<1) _element (el, "span", "l", "&nbsp;");
 }
 
 function uval (el, u, a, r, m)
@@ -866,6 +866,7 @@ function uhilite (el, u, a, r, m)
 		var m = null;
 		while ((m = expr.exec (u[0])) !== null)
 		{
+			//console.log ("->"+i+"-->"+JSON.stringify(m))
 			var pi = expr.lastIndex-m[0].length;
 			pos[pi] = expr.lastIndex;
 			pk[pk.length] = pi;
@@ -873,7 +874,7 @@ function uhilite (el, u, a, r, m)
 		}
 	}
 	pk.sort ((a,b)=>{ return a-b }); // todo: check for overlap (remove overlaped pos'es)
-	//console.log ("[uhilite] "+JSON.stringify (pk)+" | "+JSON.stringify (pos))
+	console.log ("[uhilite] "+u[0].length+" | "+JSON.stringify (pk)+" | "+JSON.stringify (pos))
  
  	var v = u[0];
  	var v_ = "";
@@ -883,9 +884,10 @@ function uhilite (el, u, a, r, m)
 	var el_ = null;
 	while (a<v.length)
 	{
+		if (c>0 && pk[c]==pk[c-1]) { c++; continue; } // skip duplicates
 		if (c<pk.length) b = pk[c];
 		v_ = v.substring(a,b);
-		uval_ (el, ["",v_], (a==0?1:0), "");
+		uval_ (el, ["",v_], (a==0?1:0), " ");
 		
 		if (c<pk.length)
 		{
@@ -1132,7 +1134,15 @@ function ld (p, m, http_status)
 		if (u_.length>2 && u_[2].length>0 && p_.id.substr (0,u_[2].length)!=u_[2])
 		{
 			// console.log ("ascend "+p_.id+"("+p_.className+") -> "+u_[2]);
-			p_ = __(p_, u_[2]);  // ascend 
+			if (u_[2]=="^vp")
+			{
+				p_ = document.getElementById ("vp");
+				vp (p_)
+			}
+			else
+			{
+				p_ = __(p_, u_[2]);  // ascend 
+			}
 			// console.log ("ascend: "+p_.id+" -> "+u_[2]);
 		}
 		if (u_.length>3 && u_[3].length>0) 
@@ -1295,10 +1305,6 @@ function uvpfn (el, u, a, r, m) // uvpnd return
 		el = el_;
 	}
 	var el_ = nd (el, te[u_[0]], [], r, [0]);
-	if (el_ && el_.parentNode.id=="veu")
-	{
-		el_.parentNode.childNodes[1].click ();
-	}
 }
 
 function uvpftab (p, m=1)

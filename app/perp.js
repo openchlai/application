@@ -141,7 +141,7 @@ te["case_vw_perpetrator_r_"] = {  c: //
 	{ li:["xx y bd cb gws_","perpetrator_vw_id-perpetrators-^"], ev:["_vp"], s:["",""], c:
 	[
 		{ contact_vw_rv:[":v:perpetrators:contact_fullname", ":v:perpetrators:contact_age_group", ":v:perpetrators:contact_sex", "","", ":v:perpetrators:contact_location", ":v:perpetrators:contact_landmark"] },
-		{ contact_vw_rv_phone:[":v:perpetrators:contact_phone", ":v:perpetrators:contact_email"] },
+		//{ contact_vw_rv_phone:[":v:perpetrators:contact_phone", ":v:perpetrators:contact_email"] },
 		{ div:["g"], arg:["",".id","%0"] }
 	]},
 	{ div:["g"], arg:["","","case_vw_perpetrator_r_-perpetrators-va--@"] },

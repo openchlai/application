@@ -114,7 +114,7 @@ te["case_vw_reporter_r_"] = {  c:
 			{ div:["e"] }
 		]},
 		{ contact_vw_rv:[":v:reporters:contact_fullname", ":v:reporters:contact_age_group", ":v:reporters:contact_sex", "","", ":v:reporters:contact_location",":v:reporters:contact_landmark"] },
-		{ contact_vw_rv_phone:[":v:reporters:contact_phone", ":v:reporters:contact_email"] },
+		//{ contact_vw_rv_phone:[":v:reporters:contact_phone", ":v:reporters:contact_email"] },
 		
 		{ div:["g"], arg:["",".id","%0"] }
 	]},
@@ -122,20 +122,6 @@ te["case_vw_reporter_r_"] = {  c:
 ]};
 
 te["case_vw_reporter_r"] = { div:["mb","va"], case_vw_reporter_r_:["xx y bd cb gws_"] };
-
-te["case_vw_reporter_uuid_r"] = { div:["mb1","va"], case_vw_reporter_r_:["xx y bd cb gbn"] };
-
-te["case_vw_reporter_uuid_"] = { c:
-[
-	{ div:[], c:
-	[
-		{ s:["xx y cd","Followup By"] },
-		{ div:["e"] }
-	]},
-	{ u:["case_vw_reporter_uuid_r"] },
-]};
-
-te["case_vw_reporter_uuid"] = { u:[":v:reporters:contact_id:u::0:0:noop:case_vw_reporter_uuid_"] };
 
 te["case_reporter_vw_id_"] = { c:
 [
