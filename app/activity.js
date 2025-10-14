@@ -482,27 +482,24 @@ te["activity_contact_"] = { c:
 		{ u:[null] },
 		{ ac:["d ab r05",null,"_activity_postj","xx y tr gr cw bd16",null] },
 		{ p:["e","nb"] }
-	]},
-	{ p:["","o"], arg:["","contact_id","%0"] }
+	]}
 ]};
 
-te["activity_contact"] = { div:["ba_b bd gw"], c:
+te["activity_contact"] = { div:["ba_b bd gw"], c: 
 [ 
+	{ ufn:["activity_contact_uuid_ufn"] },
 	{ div:["","ve"], c:
 	[
-		{ activity_contact_:["","activity_contact_disposition_btn","activity_reporter-reporters^uuid","New Case"] },
+		{ activity_contact_:["","activity_contact_disposition_btn","case_new-reporters^uuid-vw","New Case"] },
 		{ p:["","o"], arg:["","case_id","-1"] }
 	]} 
 ]};
 
-te["activity_contact_followup"] = { div:["gp mb tt r10 mt bd8"], activity_contact_:["g","noop","activity_reporter-reporters^uuid","Follow Up"] };
-
-te["activity_contact_new"] = { div:["gp mb tt r10 mt bd8"], activity_contact_:["g","noop","activity_reporter-reporters^uuid","New Case"] };
-
-te["activity_contact_src_address"] = { arg:["%1","","%2"] };
+te["activity_contact_src_address"] = { arg:["%1","","%2"] }; 
 
 te["activity_contact_none"] = { c:
 [
+	{ ufn:["activity_contact_uuid_ufn"] },
 	{ div:["bd gws_"], c:
 	[
 		{ div:["x y h07"], c:
@@ -556,10 +553,10 @@ te["activity_contact_no_data"] = { c:
 	{ s:["xx yy gy","No matching contacts found."] }
 ]};
 
-te["activity_contact_r_"] = { div:[], c:
+te["activity_contact_r_"] = { div:["","va"], c:
 [
 	{ input:["g","",".id",":v:dispositions:reporter_contact_id","radio",null] },
-	{ div:["r bd gws_ mb",""], ev:["_activity_contact_sel"], c:
+	{ div:["r bd gws_ mb","activity_contact-contacts-contacts-contact"], ev:["_u"], c:
 	[
 		{ p:["","nb"] }, 
 		{ li:["x t02  oh cb rg bd"], c:
@@ -571,7 +568,11 @@ te["activity_contact_r_"] = { div:[], c:
 	]}
 ]};
 
-te["activity_contact_r_new"] = { div:["gh"], activity_contact_r_:["1"] };
+te["activity_contact_r_new"] = { div:["gh"], c:
+[
+	{ activity_contact_r_:["1"] },
+	{ div:["","nxfn"], arg:["","",""] } // cascading uvpfn .... mmmhhahahaha
+]},
 
 te["activity_contact_r"] = { div:[], activity_contact_r_:[""] };
 
@@ -1241,6 +1242,18 @@ function notifs_ufn (el, u, a, r, m)
 	notifs();
 }
 
+function activity_notify_ufn (el, u, a, r, m)
+{
+	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes;
+	var coll_ = coll[1].childNodes[1].childNodes;
+	coll[0].checked = true
+	coll_[0].checked = true;
+	coll_[1].innerHTML = "";
+	nd (coll_[1], te["activity_vw_id"], ["activity_vw_id_tabs_case","activity_vw_id_toolbar"], r, [2]);	
+	ACT_COUNT--
+	notifs()
+}
+
 function activity_case_ufn (el, u, a, r, m)
 {
 	var kk = ra["dispositions_k"];
@@ -1274,26 +1287,11 @@ function activity_case_ufn (el, u, a, r, m)
 	p.insertBefore (el_, p.firstChild);
 }
 
-function activity_reporter_ufn (el, u, a, r, m) // convert to vwa/uvwa
+function activity_contact_uuid_ufn (el, u, a, r, m)
 {
-	var r = ra["cases"][0]; 
-	var t = r[0]>0 ? "case_vw_id" : "case_new";
-	var coll = __(el,"vf").parentNode.nextSibling.childNodes
-	coll[0].checked = true; // switch tab
-	coll[1].innerHTML = "";
-	nd (coll[1], te[t], [], r, [0]);
-}
-
-function activity_notify_ufn (el, u, a, r, m)
-{
-	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes;
-	var coll_ = coll[1].childNodes[1].childNodes;
-	coll[0].checked = true
-	coll_[0].checked = true;
-	coll_[1].innerHTML = "";
-	nd (coll_[1], te["activity_vw_id"], ["activity_vw_id_tabs_case","activity_vw_id_toolbar"], r, [2]);	
-	ACT_COUNT--
-	notifs()
+	var o = { contact_uuid_id:null };
+	argv (__(el,"vfvwm").firstChild.lastChild, o);						// src
+	o.contact_uuid_id_.value = r[0];
 }
 
 // ---
@@ -1318,7 +1316,19 @@ function _activity_postj ()
 	var o = {};
 	jso (__(elvpf?elvpf:(elvp?elvp:p),"vfvwm").firstChild.lastChild, o);		// src
 	jso (p, o); 													// form
-	if (u.length>2) elvp = this.nextSibling
+	if (u.length>2 && u[2]=="vp")
+	{
+		p = document.getElementById ("vp");
+		elvp = this.nextSibling
+		vp (p)
+		p.innerHTML = "<div id='ve'></div>"
+		p = p.firstChild
+	}
+	if (u.length>2 && u[2]=="vw")
+	{
+		p = __(this,"vf").parentNode.nextSibling.childNodes[1]
+		p.previousSibling.checked = true
+	}
 	url (p, u[0], u[1], o[".id"], null, 2, o, "POST");
 }
 
@@ -1327,15 +1337,7 @@ function _activity_contact_del ()
 	var p = __(this,"contact")
 	this.previousSibling.checked = true;
 	p.innerHTML = ""
-	nd (p, te["activity_contact_none"], [], [], [0])
-}
-
-function _activity_contact_sel ()
-{
-	var p = __(this,"contacts").firstChild
-	this.previousSibling.checked = true;
-	p.innerHTML = ""
-	// nd (p, te["activity_contact"], [], [], [0])
+	nd (p, te["activity_contact_none"], [], ["-1"], [0])
 }
 
 function _activity_disposition_r ()
@@ -1345,7 +1347,7 @@ function _activity_disposition_r ()
 	this.previousSibling.checked = true;
 	jso (__(this,"vfvwm").firstChild.lastChild, o);		// src
 	argv (this, o);
-	if (o.contact_id && o.contact_id>0)
+	if (o.contact_uuid_id && o.contact_uuid_id>0)
 	{
 		var coll = __(this,"vf").parentNode.nextSibling.childNodes;
 		coll[0].checked = true

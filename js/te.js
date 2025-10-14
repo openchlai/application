@@ -1130,27 +1130,13 @@ function ld (p, m, http_status)
 		var u_ = uu[i];
 		var p_ = p;
 
-		// if (!ra[u_[1]]) continue;
 		if (u_.length>2 && u_[2].length>0 && p_.id.substr (0,u_[2].length)!=u_[2])
 		{
-			// console.log ("ascend "+p_.id+"("+p_.className+") -> "+u_[2]);
-			if (u_[2]=="^vp")
-			{
-				p_ = document.getElementById ("vp");
-				vp (p_)
-			}
-			else
-			{
-				p_ = __(p_, u_[2]);  // ascend 
-			}
-			// console.log ("ascend: "+p_.id+" -> "+u_[2]);
+			p_ = __(p_, u_[2]);  // ascend 
 		}
 		if (u_.length>3 && u_[3].length>0) 
 		{
-			// console.log ("descend "+p_.id+"("+p_.className+") -> "+u_[3]);
 			p_ = _(p_, u_[3]); // descend
-			if (u_[3]=="vp" && u_[0]!="noop") vp (p_);
-			if (u_[3]=="vp" && u_[0]=="noop") document.getElementById ("vp").style.display = "none";
 		}
 		if (p.id=="vs0")
 		{
@@ -1160,18 +1146,14 @@ function ld (p, m, http_status)
 			p_ = p.parentNode.firstChild;
 			setTimeout (tso, 10000); // wait ten seconds for ami update, else show button for user to try 
 		}
-		 // console.log ("ld::nd: "+p_.id+" |"+JSON.stringify (u_));
 		p_.innerHTML = ""; // clear 
 		var a_ = [];
 		var m_ = [0];
-		// for (var j=ra.a[i].length-1; j>-1; j--) { a_[m_[0]]=ra.a[i][j]; m_[0]++; }
-		// console.log (p_.id+" | "+u_[0]+" "+u_[1]);
 		nd (p_, {u:[u_[0],u_[1]]}, a_, [], m_);
 
 		if (p_.id=="vp"  && p_.childNodes.length>0) 
 		{
 			p_.firstChild.style.marginTop = window.scrollY+"px";
-			// console.log ("[LDvp] "+p_.id+"|"+window.scrollY)
 		}
 	}
 
@@ -1374,7 +1356,7 @@ function uvp ()
 
 	//console.log ("uvp ("+elvp.id+") " + p )
 	
-        if (re[u[1]]!=undefined)
+	if (re[u[1]]!=undefined)
 	{
 		nd (p, te[u[0]], [], [], [0]);
 		return;

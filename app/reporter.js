@@ -115,10 +115,8 @@ te["case_vw_reporter_r_"] = {  c:
 		]},
 		{ contact_vw_rv:[":v:reporters:contact_fullname", ":v:reporters:contact_age_group", ":v:reporters:contact_sex", "","", ":v:reporters:contact_location",":v:reporters:contact_landmark"] },
 		//{ contact_vw_rv_phone:[":v:reporters:contact_phone", ":v:reporters:contact_email"] },
-		
 		{ div:["g"], arg:["",".id","%0"] }
 	]},
-	{ div:["g"], arg:["","","case_vw_reporter_r_-reporters-va--@"] },
 ]};
 
 te["case_vw_reporter_r"] = { div:["mb","va"], case_vw_reporter_r_:["xx y bd cb gws_"] };

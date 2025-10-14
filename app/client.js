@@ -221,22 +221,6 @@ te["case_client_new"] = { case_client_ed_:["New Client","client_new-clients","_a
 
 // --------------------------------------------------------------------------------------------
 
-te["case_vw_client_r_"] = { div:["","ve"], c: 
-[
-	{ input:["g","","case_vw_a","%0","radio",""] },
-	{ li:["xx y bd cb gws_","client_vw_id-clients-^"], ev:["_vp"], s:["",""], c:
-	[
-		{ contact_vw_rv:[":v:clients:contact_fullname", ":v:clients:contact_age_group", ":v:clients:contact_sex", "","", ":v:clients:contact_location", ":v:clients:contact_landmark"] },
-		// { contact_vw_rv_phone:[":v:clients:contact_phone", ":v:clients:contact_email"] },
-		{ div:["g"], arg:["",".id","%0"] }
-	]},
-	{ div:["g"], arg:["","","case_vw_client_r_-clients-va--@"] },
-]};
-
-te["case_vw_client_r"] = { div:["mb","va"], case_vw_client_r_:[] };
-
-// -----------------------------
-
 te["case_client_vw_disabiliy_services"] = { div:[""], c:
 [
 	{ s:["x tt cd","Referals"] },
@@ -377,6 +361,22 @@ te["case_client_vw_id"] = { div:["w66 ma bd sh__ y gw_","vddvw"], ev:["_undd"], 
 	]},
 	{ case_client_vw_id_:[] }
 ]};
+
+// ---
+
+te["case_vw_client_r_"] = { div:["","ve"], c: 
+[
+	{ input:["g","","case_vw_a","%0","radio",""] },
+	{ li:["xx y bd cb gws_","client_vw_id-clients-^"], ev:["_vp"], s:["",""], c:
+	[
+		{ contact_vw_rv:[":v:clients:contact_fullname", ":v:clients:contact_age_group", ":v:clients:contact_sex", "","", ":v:clients:contact_location", ":v:clients:contact_landmark"] },
+		// { contact_vw_rv_phone:[":v:clients:contact_phone", ":v:clients:contact_email"] },
+		{ div:["g"], arg:["",".id","%0"] }
+	]},
+	{ div:["g"], arg:["","","case_vw_client_r_-clients-va--@"] },
+]};
+
+te["case_vw_client_r"] = { div:["mb","va"], case_vw_client_r_:[] };
 
 // -----------------------------
 

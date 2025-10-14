@@ -309,7 +309,7 @@ te["contact_vw_rv"] = { c:
 	[
 		{ uval:["",null] },
 		// { s:["c x t s cd","Nearest Landmark:"] },
-		{ span:["i co m","",null] },
+		{ span:["i cr m","",null] },
 		{ div:["e"] }
 	]},
 ]};
