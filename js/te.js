@@ -313,11 +313,13 @@ function _element (el, tagname, cn, v)
 function _rm (ev) 
 {
 	var u = this.id.split ("-");
-	if (this.id.length<1)
+	if (this.id.length<1 || re[u[1]]!=undefined)
 	{
 		var el = __(this,"va");
 		var p = el.parentNode;
+		if (this.previousSibling) this.previousSibling.checked = true;
 		p.removeChild (el);
+		if (u.length>1) nd (p, te[u[0]], [], re[u[1]][0].slice(0), [0])
 		boo(ev)
 		return;
 	}

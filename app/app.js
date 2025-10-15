@@ -107,11 +107,9 @@ var UU =
 "activity_disposition_list":{ 200:[["activity_disposition_list","dispositions_ctx"]] },
 "activity_list":{ 200:[["activity_list","dispositions_ctx"]] },
 "activity_main":{ 200:[["activity_main","dispositions_ctx"]] },
-"activity_vw_id_tabs":		{ 200:[["activity_vw_id_tabs","activities"]] },
-"activity_vw_id_tabs_case":	{ 200:[["activity_vw_id_tabs_case","activities"]] },
-"activity_vw_id_tabs_message":{ 200:[["activity_vw_id_tabs_message","activities"]] },
-"activity_vw_id_tabs_call":	{ 200:[["activity_vw_id_tabs","activities_call"]] },
-"activity_vw_id":{ 200:[["activity_vw_id","activities"]] },
+"activity_vw_id_chat":	{ 200:[["activity_vw_id_chat","activities"]] },
+"activity_vw_id_case":	{ 200:[["activity_vw_id_case","activities"]] },
+"activity_vw_id":		{ 200:[["activity_vw_id","activities"]] },
 "activity_call":{ 201:[["activity_call","activities"]], 202:[["activity_call","activities"]], 412:[["nb","errors","","nb"]] },
 "activity_lst":{ 200:[["activity_lst","activities_ctx"]] },
 
@@ -169,7 +167,7 @@ re["categories_age_group"] = [];
 re["callfile_"] = [["","","","","","","","","","", "","","","","","","","","","", "/helpline/api/calls/","?file=wav"]];
 re["vfile_"] = [["","","","","","","","","","", "","","","","","","","","","", "/helpline/api/vfiles/","?file=wav"]];
 re["qa_"] = [["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]];
-re["activity_"] = [["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]];
+re["activity_"] = [["-1","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]];
 re["task_"] = [["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]];
 re["call_"] = [["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]];
 re["category_"] = [["","","","","","","","","","","","","","","","","","",""]];
@@ -337,27 +335,27 @@ re["case_src"] =
 "social":	["social","Social Media","", 	"","", "#000000","share","",		"","",	"", "","",""],
 
 "edit":	["edit","Edit","",			"","", "#000000","edit","",		"","",	"_case", 		"created_by", "created_by", ""],
-"walkin":	["walkin","Walkin","",		"","", "#f0c39bff","directions_walk","","","","_walkin", 	"phone", "reporter_phone", ""],
+"walkin":	["walkin","Walkin","",		"","", "#f0c39bff","directions_walk","","","","", 	"phone", "reporter_phone", ""],
 "call":	["call","Call","",			"","", "#fa8a09ff","call","",	"","",	"", 			"phone", "reporter_phone", ""],
-"sms":	["sms","SMS","",			"","", "#000000","sms","",		"","",	"_message", 	"phone", "reporter_phone", ""],
-"email":	["email","Email","",		"","", "#000000","chat","",		"","",	"_message", 	"email", "reporter_email", ""],
-"chat":	["chat","Chat","",			"","", "#17b8ddff","chat","",	"","",	"_message", 	"phone", "reporter_email", "safepal"],
-"whatsApp":["whatsApp","WHATSAPP","",	"","", "#41ac0fff","chat","",	"","",	"_message", 	"phone", "reporter_phone", ""],
-"whatsup":["whatsup","Whatsup","",		"","", "#41ac0fff","chat","",	"","",	"_message", 	"phone", "reporter_email", ""],
-"facebook":["facebook","Facebook","",	"","", "#000000","chat","",		"","",	"_message", 	"email", "reporter_email", ""],
-"FACEBOOK":["FACEBOOK","FACEBOOK","",	"","", "#000000","chat","",		"","",	"_message", 	"email", "reporter_email", ""], 
-"twitter":["twitter","Twitter","",		"","", "#000000","chat","",		"","",	"_message", 	"email", "reporter_email", ""],
-"TWITTER":["TWITTER","TWITTER","",		"","", "#000000","chat","",		"","",	"_message", 	"email", "reporter_email", ""], 
+"sms":	["sms","SMS","",			"","", "#000000","sms","",		"","",	"_chat", 	"phone", "reporter_phone", ""],
+"email":	["email","Email","",		"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""],
+"chat":	["chat","Chat","",			"","", "#17b8ddff","chat","",	"","",	"_chat", 	"phone", "reporter_email", "safepal"],
+"whatsApp":["whatsApp","WHATSAPP","",	"","", "#41ac0fff","chat","",	"","",	"_chat", 	"phone", "reporter_phone", ""],
+"whatsup":["whatsup","Whatsup","",		"","", "#41ac0fff","chat","",	"","",	"_chat", 	"phone", "reporter_email", ""],
+"facebook":["facebook","Facebook","",	"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""],
+"FACEBOOK":["FACEBOOK","FACEBOOK","",	"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""], 
+"twitter":["twitter","Twitter","",		"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""],
+"TWITTER":["TWITTER","TWITTER","",		"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""], 
 
 "escalation":["escalation","Escalation","",  "","", "#880000","","",		"","",	"_case", "phone", "reporter_phone", ""],
 "update":	["update","Case Update","",  		"","", "#008800","","",		"","",	"_case", "phone", "reporter_phone", ""],
-"ai":	["ai","AI","",  				"","", "#000000","","",		"","",	"_message", "usn", "usn", ""],
-"aii":	["aii","AI","",  				"","", "#000000","","",		"","",	"_message", "usn", "usn", ""],
+"ai":	["ai","AI","",  				"","", "#000000","","",		"","",	"_chat", "usn", "usn", ""],
+"aii":	["aii","AI","",  				"","", "#000000","","",		"","",	"_chat", "usn", "usn", ""],
 
-"WENI":	["WENI","Chatbot","",		"","", "#dcc00aff","chat","",	"","",	"_message", "phone", "reporter_email", ""], 
-"safepal":["safepal","SafePal","",		"","", "#c8eb04ff","chat","",	"","",	"_message", 	"phone", "reporter_email", "safepal"],
+"WENI":	["WENI","Chatbot","",		"","", "#dcc00aff","chat","",	"","",	"_chat", "phone", "reporter_email", ""], 
+"safepal":["safepal","SafePal","",		"","", "#c8eb04ff","chat","",	"","",	"_casee", 	"phone", "reporter_email", "safepal"],
 "webform":["webform","Webform","",		"","", "#5b07ebff","chat","",	"","",	"_case", 	"phone", "reporter_phone", ""],
-"ceemis":	["ceemis","CEEMIS","",		"","", "#0da2d4ff","chat","",	"","",	"_message", 		"phone","reporter_phone", ""],
+"ceemis":	["ceemis","CEEMIS","",		"","", "#0da2d4ff","chat","",	"","",	"_case", 		"phone","reporter_phone", ""],
 };
 
 

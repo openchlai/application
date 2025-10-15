@@ -1432,6 +1432,16 @@ te["case_vw_id_tabs"] = { c:
 	]}	
 ]};
 
+te["case_vw_id_ca"] = { div:["x yy gy bd mb2"], c:
+[
+	{ s:["x y h3 cr",":v:activities:src::case_src::1"] },
+	{ div:[], c:
+	[
+		{ arg:["",".id",":v:activities:ca_id"] },
+		{ uv:["call_activity_aub","case_activities"] }
+	]}
+]};
+
 te["case_vw_id"] = { c: 
 [
 	{ div:["l15 y15","vb"], c:
@@ -1442,7 +1452,7 @@ te["case_vw_id"] = { c:
 		{ div:["d w05 t01"], s:["abs w05 bd8  b10 gw zzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
-			{ ac:["ay t01 r15","","_uvw","cb bd y01",""], c:
+			{ ac:["ay t01 r15","","_activity_close","cb bd y01",""], c:
 			[
 				{ s:["tc h b","&Cross;"] },
 				// { s:["d x y s","Close"] },
@@ -1463,7 +1473,7 @@ te["case_vw_id"] = { c:
 		{ div:["e"] } 
 	]},	
 
-	// { u:["case_vw_id_ca","reporters_uuid"] }, // activities_notify
+	{ div:["l15 r25"], ufn:["case_vw_id_ca_ufn"] }, // activities_notify
 
 	{ div:["x20","vb"], c:
 	[ 
@@ -2140,6 +2150,18 @@ te["cases"] = { c:
 ]};
 
 // ---
+
+function case_vw_id_ca_ufn (el, u, a, r, m)
+{
+	var k = re["activities_k"];
+	var r_ = re["r_"][0].slice(0);
+	var o = {};
+	jso (__(el,"vfvwm").firstChild.lastChild, o);			// src
+	if (o.src!="escalation" && o.src!="update") { return; }
+	r_[k["src"][0]] = o.src;
+	r_[k["ca_id"][0]] = o.ca_id;
+	nd (el, te["case_vw_id_ca"], [], r_, [0]);	
+}
 
 function case_vw_contact_uuid_ufn (el, u, a, r, m)
 {
