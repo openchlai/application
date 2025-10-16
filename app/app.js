@@ -109,6 +109,7 @@ var UU =
 "activity_main":{ 200:[["activity_main","dispositions_ctx"]] },
 "activity_vw_id_chat":	{ 200:[["activity_vw_id_chat","activities"]] },
 "activity_vw_id_case":	{ 200:[["activity_vw_id_case","activities"]] },
+"activity_vw_id_call":	{ 200:[["activity_vw_id_call","activities_call"]] },
 "activity_vw_id":		{ 200:[["activity_vw_id","activities"]] },
 "activity_call":{ 201:[["activity_call","activities"]], 202:[["activity_call","activities"]], 412:[["nb","errors","","nb"]] },
 "activity_lst":{ 200:[["activity_lst","activities_ctx"]] },
@@ -334,9 +335,9 @@ re["case_src"] =
 "all":	["all","Total","",          	"","", "#000000","cases","",		"","",	"", "","",""],
 "social":	["social","Social Media","", 	"","", "#000000","share","",		"","",	"", "","",""],
 
-"edit":	["edit","Edit","",			"","", "#000000","edit","",		"","",	"_case", 		"created_by", "created_by", ""],
+"edit":	["edit","Edit","",			"","", "#000000","edit","",		"","",	"_case", 	"created_by", "created_by", ""],
 "walkin":	["walkin","Walkin","",		"","", "#f0c39bff","directions_walk","","","","", 	"phone", "reporter_phone", ""],
-"call":	["call","Call","",			"","", "#fa8a09ff","call","",	"","",	"", 			"phone", "reporter_phone", ""],
+"call":	["call","Call","",			"","", "#fa8a09ff","call","",	"","",	"", 		"phone", "reporter_phone", ""],
 "sms":	["sms","SMS","",			"","", "#000000","sms","",		"","",	"_chat", 	"phone", "reporter_phone", ""],
 "email":	["email","Email","",		"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""],
 "chat":	["chat","Chat","",			"","", "#17b8ddff","chat","",	"","",	"_chat", 	"phone", "reporter_email", "safepal"],
@@ -347,15 +348,15 @@ re["case_src"] =
 "twitter":["twitter","Twitter","",		"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""],
 "TWITTER":["TWITTER","TWITTER","",		"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""], 
 
-"escalation":["escalation","Escalation","",  "","", "#880000","","",		"","",	"_case", "phone", "reporter_phone", ""],
-"update":	["update","Case Update","",  		"","", "#008800","","",		"","",	"_case", "phone", "reporter_phone", ""],
+"escalation":["escalation","Escalation","",  "","", "#880000","warning","",		"","",	"_case", "phone", "reporter_phone", ""],
+"update":	["update","Case Update","",  		"","", "#008800","asterisk","",		"","",	"_case", "phone", "reporter_phone", ""],
 "ai":	["ai","AI","",  				"","", "#000000","","",		"","",	"_chat", "usn", "usn", ""],
 "aii":	["aii","AI","",  				"","", "#000000","","",		"","",	"_chat", "usn", "usn", ""],
 
 "WENI":	["WENI","Chatbot","",		"","", "#dcc00aff","chat","",	"","",	"_chat", "phone", "reporter_email", ""], 
-"safepal":["safepal","SafePal","",		"","", "#c8eb04ff","chat","",	"","",	"_casee", 	"phone", "reporter_email", "safepal"],
+"safepal":["safepal","SafePal","",		"","", "#c8eb04ff","chat","",	"","",	"_casee", "phone", "reporter_email", "safepal"],
 "webform":["webform","Webform","",		"","", "#5b07ebff","chat","",	"","",	"_case", 	"phone", "reporter_phone", ""],
-"ceemis":	["ceemis","CEEMIS","",		"","", "#0da2d4ff","chat","",	"","",	"_case", 		"phone","reporter_phone", ""],
+"ceemis":	["ceemis","CEEMIS","",		"","", "#0da2d4ff","chat","",	"","",	"_case", 	"phone","reporter_phone", ""],
 };
 
 
@@ -671,7 +672,7 @@ te["main"] = { c:
 				{ s:["w04 y micon h2_ tc","account_circle"] },								
 				{ div:["e"], u:["user_cid","auth"] }
 			]},
-			{ div:["g w17 mln13 mt zzz gw ba sh__ bd","vdd"], s:["xx yy",""], c:
+			{ div:["g w20 mln15 mt zzz gw ba sh__ bd","vdd"], s:["xx yy",""], c:
 			[	
 				{ div:[""], u:["user_usn","auth"] },
 				
@@ -831,7 +832,7 @@ te["main"] = { c:
 		{ div:["g"], c:
 		[
 			{ iframe:["","",VA_AMI_HOST] },
-			{ iframe:["","",VA_ATI_HOST] },
+			// { iframe:["","",VA_ATI_HOST] },
 		]},
 	]}
 ]};
@@ -959,7 +960,7 @@ function loadphone (el, u, a, r, m)
 	if (v) document.getElementById ("vv").className = v[2];
 	console.log ("loadphone: "+ra["auth"][0][7]+" | "+JSON.stringify (v));
 	DetectDevices ();
-	// VOICEAPPS_UA.connect (ra["auth"][0][7]);
+	VOICEAPPS_UA.connect (ra["auth"][0][7]);
 }
 
 function ami_wait (el, u, a, r, m)

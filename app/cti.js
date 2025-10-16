@@ -510,46 +510,35 @@ function call_popup_upd (el)
 
 function call_popup (el, f=0)
 {
-	var k = re["activities_k"];
-	var r_ = re["r_"][0].slice(0);
 	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; 
-	var el_ = __(el,"va");
 	var a = {};
 	argv (el, a);
+	if (a.exten!="s") a.src_address = a.exten
+	a.src_address = _phone_fmt (a.src_address);
 
 	console.log ("[call_popup] args:"+JSON.stringify (a));
 	
-	if (a.cid_name=="AgentLogin" || a.cid_name=="Supervisor") return;
+	if (a.cid_name=="AgentLogin" || a.cid_name=="Supervisor") 
+	{
+		return;
+	}
 
 	if (f==0 && coll[1].childNodes.length>0 && coll[1].firstChild.childNodes.length>0) // vw is occupied
 	{
 		return
 	}
 
-	ra = {};
-	for (var k_ in re) ra[k_]=re[k_];	
+	var s = "-1?src=" + a.src + "&src_uid=" + a.src_uid + "&src_uid2=" + a.src_uid2 +"&src_callid="+a.src_callid + "&src_vector="+a.src_vector;
+	s += "&src_address="+a.src_address;
+	s += "&src_usr="+a.src_usr;
 	
-	r_[k["src"][0]] = "call";
-	r_[k["src_uid"][0]] = a.src_uid;
-	r_[k["src_uid2"][0]] = a.src_uid2;
-	r_[k["src_callid"][0]] = el_.previousSibling.value; // full sipid (asterisk only stores first 10 char // el_.parentNode.id)
-	r_[k["src_address"][0]] = _phone_fmt (a.src_vector==2?a.src_address:a.exten);
-	r_[k["src_usr"][0]] = a.usr;
-	r_[k["src_vector"][0]] = a.src_vector;
-	r_[k["src_ts"][0]] = a.src_ts;
-	
-	//var s = "-1?src=" + a.src + "&src_uid=" + a.src_uid + "&src_address="+r_[k["src_address"][0]]; 
-	var s = "-1?src=" + a.src + "&src_uid=" + a.src_uid + "&src_vector="+a.src_vector+"&src_callid="+a.src_callid+"&src_address="+r_[k["src_address"][0]];
-
-	el_.previousSibling.checked = true;	// hilite call-notif
+	__(el,"va").previousSibling.checked = true;	// hilite call-notif
 	coll[0].parentNode.parentNode.previousSibling.checked = true;
 	coll[0].checked = true;
-	coll[1].innerHTML = "";
-	nd (coll[1], te["activity_vw_id"], ["noop","call_toolbar"], r_, [2]);	
-	url (coll[1].lastChild, "activity_vw_id_tabs_call", "activities^call", s);
+	url (coll[1], "activity_vw_id_call", "activities^call", s);
 
 	var isaa = document.getElementById ("is_auto_answer");
-	var sess = CALLS[r_[k["src_callid"][0]]];
+	var sess = CALLS[a.src_callid];
 	if (a.src_vector=="2" && isaa.checked==true && a.src_address.length>3)
 	{
 		console.log ("AUTO ANSWER "+a.src_address+"|"+r_[k["src_callid"][0]])
@@ -560,9 +549,9 @@ function call_popup (el, f=0)
 function _call_popup () 
 {
 	call_popup (this.lastChild.firstChild, 1); 
-	call_popup_upd (this.lastChild.firstChild); 
-	var vs = CALLS[this.previousSibling.value]
-	if (vs && vs.ishold) call_popup_hold_state (this.parentNode, vs.ishold); // load hold state
+	//call_popup_upd (this.lastChild.firstChild); 
+	//var vs = CALLS[this.previousSibling.value]
+	//if (vs && vs.ishold) call_popup_hold_state (this.parentNode, vs.ishold); // load hold state
 }
 
 // ------------------------------------------

@@ -2149,7 +2149,7 @@ te["cases"] = { c:
 	]}
 ]};
 
-// ---
+// 
 
 function case_vw_id_ca_ufn (el, u, a, r, m)
 {
@@ -2159,7 +2159,7 @@ function case_vw_id_ca_ufn (el, u, a, r, m)
 	jso (__(el,"vfvwm").firstChild.lastChild, o);			// src
 	if (o.src!="escalation" && o.src!="update") { return; }
 	r_[k["src"][0]] = o.src;
-	r_[k["ca_id"][0]] = o.ca_id;
+	r_[k["ca_id"][0]] = o.activity_ca_id;
 	nd (el, te["case_vw_id_ca"], [], r_, [0]);	
 }
 

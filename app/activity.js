@@ -554,10 +554,10 @@ te["activity_contact_no_data"] = { c:
 te["activity_contact_r_"] = { div:["","va"], c:
 [
 	{ input:["g","",".id",":v:dispositions:reporter_contact_id","radio",null] },
-	{ div:["r bd gws_ mb","activity_contact-contacts-contacts-contact"], ev:["_u"], c:
+	{ div:[null,"activity_contact-contacts-contacts-contact"], ev:["_u"], c:
 	[
 		{ p:["","nb"] }, 
-		{ li:["x t02  oh cb rg bd"], c:
+		{ li:["x t02  oh cb r bd"], c:
 		[
 			{ div:["c l w01_ t08"], s:["opt",""] },
 			{ div:["c w35"], contact_vw_rv:[":v:dispositions:reporter_fullname", ":v:dispositions:reporter_age_group", ":v:dispositions:reporter_sex", "d x t cd s",":v:dispositions:created_on:d:dmyhnr", ":v:dispositions:reporter_location",":v:dispositions:reporter_landmark"] },
@@ -566,13 +566,13 @@ te["activity_contact_r_"] = { div:["","va"], c:
 	]}
 ]};
 
-te["activity_contact_r_new"] = { div:["gh"], c:
+te["activity_contact_r_new"] = { div:[], c:
 [
-	{ activity_contact_r_:["1"] },
-	{ div:["","nxfn"], arg:["","",""] } // cascading uvpfn
+	{ activity_contact_r_:["1","r bd gh mb"] },
+	{ div:["","nxfn"], arg:["","","activity_contact-contacts_disposition-contacts-contact"] } // cascading uvpfn
 ]},
 
-te["activity_contact_r"] = { div:[], activity_contact_r_:[""] };
+te["activity_contact_r"] = { div:[], activity_contact_r_:["","r bd gws_ mb"] };
 
 te["activity_contact_k"] = { div:["g"], c:
 [
@@ -996,17 +996,19 @@ te["activity_vw_id_"] = { c:
 			{ activity_vw_id_args:[] }, 
 			{ arg:["","activity_id",":v:activities:id"] },
 			{ arg:["","contact_uuid_id","-1"] },
-			{ arg:["","ca_id",":v:activities:ca_id"] },
+			{ arg:["","activity_ca_id",":v:activities:ca_id"] },
 		]} ]}
 	]},
 	{ form:[], u:[null] } 		// tabs
 ]};
 
-te["activity_vw_id_chat"] = { activity_vw_id_:["activity_vw_id_toolbar","activity_vw_id_tabs_chat"] }; 
+te["activity_vw_id"] = { activity_vw_id_:["activity_vw_id_toolbar","activity_vw_id_tabs"] }; 
 
 te["activity_vw_id_case"] = { activity_vw_id_:["activity_vw_id_toolbar","activity_vw_id_tabs_case"] }; 
 
-te["activity_vw_id"] = { activity_vw_id_:["activity_vw_id_toolbar","activity_vw_id_tabs"] }; 
+te["activity_vw_id_chat"] = { activity_vw_id_:["activity_vw_id_toolbar","activity_vw_id_tabs_chat"] }; 
+
+te["activity_vw_id_call"] = { activity_vw_id_:["call_toolbar","activity_vw_id_tabs"] }; 
 
 // -----------------------------------------------------------------------------------------
 
@@ -1357,7 +1359,7 @@ function _activity_vw_id (ev)
 	}
 	if (re["case_src"][a.src][11]=="phone") a.src_address = _phone_fmt (a.src_address);
 
-	// cache src_address as a contact -- used to populate new reporter phone/emmail field
+	// copy src_address as a contact -- used to populate new reporter phone/emmail field
 	re["src_address"] = [[ re["case_src"][a.src][11], re["case_src"][a.src][11]+"-"+re["contacts_k"][re["case_src"][a.src][11]][0], a.src_address ]];
 
 	var i =0; if (this.id.length>0) i=1*this.id;
@@ -1391,7 +1393,7 @@ function _activity_vw_id (ev)
 	{
 		s +="?src=" + a.src + "&src_uid=" + a.src_uid + "&src_uid2=" + a.src_uid2 + "&src_vector="+a.src_vector+"&src_callid="+a.src_callid;
 		s += "&src_usr="+a.src_usr;
-		if (a.src_address && a.src_address.length>0) s += "&src_address="+r_[k["src_address"][0]];
+		if (a.src_address && a.src_address.length>0) s += "&src_address="+a.src_address;
 		if (a.case_id && a.case_id.length>0) s += "&case_id="+a.case_id;
 	}
 	url (coll[1], ("activity_vw_id"+re["case_src"][a.src][10]), "activities", s);

@@ -1289,6 +1289,15 @@ function uvpfn (el, u, a, r, m) // uvpnd return
 		el = el_;
 	}
 	var el_ = nd (el, te[u_[0]], [], r, [0]);
+	if (el_ && el_.parentNode.id=="nxfn")
+	{
+		u_ = el_.value.split ("-");
+		if (u_.length>2 && u_[2].length>0) el = __(el, u_[2]); 	// ascend
+		if (u_.length>3 && u_[3].length>0) el = _(el, u_[3]); 		// descend
+		var r_ = ra[u_[1]][0]
+		el.innerHTML = ""
+		nd (el, te[u_[0]], [], r_, [0]);
+	}
 }
 
 function uvpftab (p, m=1)
