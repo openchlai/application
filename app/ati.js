@@ -184,7 +184,7 @@ function ati_popup (el, f=0)
 	coll[0].parentNode.parentNode.previousSibling.checked = true;
 	coll[0].checked = true;
 	var s = "-1?src="+a.src + "&src_uid="+a.src_uid + "&src_callid="+a.src_callid + "&src_address="+a.src_address + "&src_vector="+a.src_vector;
-	url (coll[1].lastChild, "activity_vw_id_chat", "activities", s);
+	url (coll[1], "activity_vw_id_chat", "activities", s);
 }
 
 function _ati_popup ()

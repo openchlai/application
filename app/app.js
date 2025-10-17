@@ -832,7 +832,7 @@ te["main"] = { c:
 		{ div:["g"], c:
 		[
 			{ iframe:["","",VA_AMI_HOST] },
-			// { iframe:["","",VA_ATI_HOST] },
+			{ iframe:["","",VA_ATI_HOST] },
 		]},
 	]}
 ]};
