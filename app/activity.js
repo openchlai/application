@@ -495,8 +495,6 @@ te["activity_contact"] = { div:["ba_b bd gw","va"], c:
 	]} 
 ]};
 
-te["activity_contact_src_address"] = { arg:["%1","","%2"] }; 
-
 te["activity_contact_none"] = { c:
 [
 	{ ufn:["activity_contact_uuid_ufn"] },
@@ -523,7 +521,7 @@ te["activity_contact_none"] = { c:
 				{ ac:["ax x y02","case_contact_new-r_-^","_vp","x y03 bd cr",""], c:
 				[
 					{ s:["","+ New Reporter"] },
-					{ div:["e"], u:["activity_contact_src_address","src_address"] }
+					{ div:["e"], c:[ { arg:["","",""], ufn:["activity_src_address_ufn"] } ] }
 				]},
 				{ div:["g"], arg:["","","activity_contact_r_new-dispositions-vf-vcontactnew-!"] } 
 			]},
@@ -1269,6 +1267,15 @@ function activity_contact_uuid_ufn (el, u, a, r, m)
 	o.contact_uuid_id_.value = r[0];
 }
 
+function activity_src_address_ufn (el, u, a, r, m)
+{
+	var o = {};
+	argv (__(el,"vfvwm").firstChild.lastChild, o);						// src
+	// console.error (o.src+","+o.src_address+"|"+el.tagName)
+	el.id = "contacts-"+re["contacts_k"][re["case_src"][o.src][11]][0]
+	el.value = o.src_address
+}
+
 function activity_notify_ufn (el, u, a, r, m)
 {
 	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes;
@@ -1358,9 +1365,6 @@ function _activity_vw_id (ev)
 		a.src_vector = 2;
 	}
 	if (re["case_src"][a.src][11]=="phone") a.src_address = _phone_fmt (a.src_address);
-
-	// copy src_address as a contact -- used to populate new reporter phone/emmail field
-	re["src_address"] = [[ re["case_src"][a.src][11], re["case_src"][a.src][11]+"-"+re["contacts_k"][re["case_src"][a.src][11]][0], a.src_address ]];
 
 	var i =0; if (this.id.length>0) i=1*this.id;
 	var coll = document.getElementById ("vv").childNodes[6].childNodes[i].childNodes[1].childNodes[1].childNodes; 

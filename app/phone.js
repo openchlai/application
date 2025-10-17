@@ -438,7 +438,7 @@ VOICEAPPS_UA.on_invite = function (session)
 	vs.handleSessionState ();
 	CALLS[vs.ssid] = vs ;
 	
-	console.log ("[on_invite] "+ dn+" | "+JSON.stringify (session.remoteIdentity))
+	console.log ("VOICEAPPS_UA: invite "+ dn+" | "+JSON.stringify (session.remoteIdentity)+"|"+vs.ssid)
 		
 	if (dn=="Autodial" || dn=="AgentLogin" || dn=="Supervisor")
 	{
@@ -457,16 +457,13 @@ VOICEAPPS_UA.dial = function (dial_str)
 		console.error ("VOICEAPPS:  dial failed: makeURI failed.");
 		return;
     	}
-	
-	console.log ("VOICEAPPS:   dial start"); // INVITE sent
 			
 	var vs = new VOICEAPPS_SESSION (1);
 	vs.session = new SIP.Inviter (this.UA, target, { sessionDescriptionHandlerOptions: { constraints: { audio: true, video: false } } } );
-	console.log ("VOICEAPPS:   dial new session created"); // INVITE sent
     	vs.handleSessionState ();
-    	
-    	console.log ("VOICEAPPS:   dial: state handled"); // INVITE sent
-    	
+
+	console.log ("VOICEAPPS_UA:   dial new session created | "+ vs.ssid); // INVITE sent
+    	    	
 	CALLS[vs.ssid] = vs;
 	vs.session.invite().then (function () 
 	{
@@ -552,7 +549,7 @@ function phone_hangup (id)
 function _hangup (ev)
 {
 	var o = {};
-	argv (__(this,"vf").firstChild.lastChild, o)
+	argv (__(this,"vf").firstChild.lastChild, o); console.log ("[vf] "+JSON.stringify(o))
 	phone_hangup (o["src_callid"])
 	boo (ev);
 }

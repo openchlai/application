@@ -186,7 +186,7 @@ te["call_toolbar"] = { c:
 
 	{ div:[], c:
 	[
-		{ div:["d w05 t01"], s:["abs w05 bd8 t15 b10 gw zzzz",""], c:
+		{ div:["d w05 t01"], s:["abs w05 bdr8 t15 b10 gw zzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
 			{ ac:["ay t01 r15","","_activity_close","cb bd y01",""], c:
@@ -206,15 +206,6 @@ te["call_toolbar"] = { c:
 
 		{ div:["d w09_ t01"], s:["abs w09_ t15 b10 gw zzzz",""], c:
 		[
-			{ ac:["c ao call_connected_","call_add_form_main-r_","_add_dial_form","w03 h03 x01 y01 h ma bd32 gb cw tc","&plus;"] },
-			{ s:["c call_connected_ l t08 cb s","Add"] },
-			{ s:["c call_connected__ w03 h03 x01 y01 h ma bd32 cd tc","&plus;"] },
-			{ s:["c call_connected__ l t08 cd s","Add"] },
-			{ div:["e"] }
-		]},
-
-		{ div:["d w09_ t01"], s:["abs w09_ t15 b10 gw zzzz",""], c:
-		[
 			{ input:["g","chanholdstate","","1","checkbox"] },
 			{ div:["btnhold"], c:
 			[
@@ -224,6 +215,15 @@ te["call_toolbar"] = { c:
 				{ s:["c call_connected__ w03 h03 x01 t03 h2 ma bd32 cd tc","||"] },
 				{ s:["c call_connected__ l t08 cd s btnhold_lbl","Hold"] },
 			]}
+		]},
+
+		{ div:["d w09_ t01 call_connected_"], s:["abs w09_ t15 b10 gw zzzz",""], c:
+		[
+			{ ac:["c ao call_connected_","call_add_form_main-r_","_add_dial_form","w03 h03 x01 y01 h ma bd32 gb cw tc","&plus;"] },
+			{ s:["c call_connected_ l t08 cb s","Add"] },
+			{ s:["c call_connected__ w03 h03 x01 y01 h ma bd32 cd tc","&plus;"] },
+			{ s:["c call_connected__ l t08 cd s","Add"] },
+			{ div:["e"] }
 		]},
 	
 		{ div:["d w10_ t01 call_ringing_"], s:["abs w10_ t15 b10 gw zzzz",""], c:
@@ -236,8 +236,8 @@ te["call_toolbar"] = { c:
 			]},
 		]},
 
-		{ div:["e"] }
-	]}
+		{ div:["e"], ufn:["call_popup_ufn",":v:activities:src_uid"] }
+	]},
 ]};
 
 // --------------------------------------------------------------------
@@ -415,6 +415,18 @@ te["agent_status"] = { div:["y02",null], c:
 	{ div:["e"] },
 ]};
 
+re["call_state"] = 
+[
+	["Down","call_ringing","gr cw"],
+	["Dialing","call_ringing","gr cw"],
+	["Ringing","call_ringing","gr cw"],
+	["Waiting","call_connected","gr cw"],
+	["Waiting","call_connected","gr cw"],
+	["Connected","call_connected","gg cw"],
+	["Call Ended","call_ended","cb"],
+	["On Mute","call_connected","gr cw"],
+	["On Hold","call_connected","gr cw"]
+];
 // -------------------------------------------------------
 
 function users_online_ufn (el, u, a, r, m)
@@ -445,10 +457,13 @@ function call_popup_end (el, a, vw)
 {
 	// action btns
 	var last_status = vw.firstChild.firstChild.className;
-	vw.firstChild.firstChild.className = "call_ended";
+	// vw.firstChild.firstChild.className = "call_ended";
 	if (last_status!="call_connected")  // auto close popup is call not connected
 	{
-		activity_close (vw); // clear
+		// activity_close (vw); // clear
+		document.getElementById ("activity_close").checked = true; // unhilite sbr
+		vw.parentNode.parentNode.firstChild.firstChild.checked = true; // switch tabs
+		vw.innerHTML = "";
 		return;
 	}
 	// var r = []
@@ -471,16 +486,6 @@ function call_popup_hold_state (el, f)
 function call_popup_upd (el)
 {
 	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; 
-	var ss = [
-	["Down","call_ringing","gr cw"],
-	["Dialing","call_ringing","gr cw"],
-	["Ringing","call_ringing","gr cw"],
-	["Waiting","call_connected","gr cw"],
-	["Waiting","call_connected","gr cw"],
-	["Connected","call_connected","gg cw"],
-	["Call Ended","call_ended","cb"],
-	["On Mute","call_connected","gr cw"],
-	["On Hold","call_connected","gr cw"]];
 	var el_ = __(el,"va");
 	var vs = CALLS[el_.previousSibling.value];
 	var a = {};
@@ -491,7 +496,7 @@ function call_popup_upd (el)
 	var coll_ = el_.childNodes[0].childNodes;
 	coll_[2].innerHTML = hmst (a.src_state_ts, ["","","hms","","","",""]); // ts_txt;
 	coll_[3].value = a.src_state_ts;
-	el_.childNodes[1].childNodes[2].innerHTML = ss[a.src_state][0];
+	el_.childNodes[1].childNodes[2].innerHTML = re["call_state"][a.src_state][0];
 	
 	// vw -> action btns
 	if (coll[1].firstChild && coll[1].firstChild.lastChild)
@@ -500,7 +505,7 @@ function call_popup_upd (el)
 		argv (coll[1].firstChild.lastChild, a_);
 		if (a_.src_uid && a_.src_uid==a.src_uid)
 		{
-			coll[1].firstChild.childNodes[1].className = ss[a.src_state][1]; // action btns
+			coll[1].firstChild.childNodes[1].className = re["call_state"][a.src_state][1]; // action btns
 			// todo: action status
 		}
 	}
@@ -508,12 +513,13 @@ function call_popup_upd (el)
 	return 0;	
 }
 
-function call_popup (el, f=0)
+function call_popup (el, f=0) 
 {
 	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; 
 	var a = {};
 	argv (el, a);
-	if (a.exten!="s") a.src_address = a.exten
+	a.src_callid = __(el,"va").previousSibling.value;
+	if (a.src_address.length<1 && a.exten!="s") a.src_address = a.exten
 	a.src_address = _phone_fmt (a.src_address);
 
 	console.log ("[call_popup] args:"+JSON.stringify (a));
@@ -533,6 +539,7 @@ function call_popup (el, f=0)
 	s += "&src_usr="+a.src_usr;
 	
 	__(el,"va").previousSibling.checked = true;	// hilite call-notif
+	// todo switch tabs
 	coll[0].parentNode.parentNode.previousSibling.checked = true;
 	coll[0].checked = true;
 	url (coll[1], "activity_vw_id_call", "activities^call", s);
@@ -541,17 +548,33 @@ function call_popup (el, f=0)
 	var sess = CALLS[a.src_callid];
 	if (a.src_vector=="2" && isaa.checked==true && a.src_address.length>3)
 	{
-		console.log ("AUTO ANSWER "+a.src_address+"|"+r_[k["src_callid"][0]])
+		console.log ("AUTO ANSWER "+a.src_address+"|"+a.src_callid)
 		if (sess && sess.session) sess.session.accept ({ sessionDescriptionHandlerOptions: { constraints: { audio: true, video: false } } });
 	}
+}
+
+function call_popup_ufn (el, u, a, r, m) 
+{
+	var p = __(el,"vb"); 
+	var el_ = _(document.getElementById ("call_sessions"), u[1])
+	if (!el_) return;
+	var vs = CALLS[__(el_,"va").previousSibling.value];
+	var a = {};
+	argv (el_, a);
+	if (vs && vs.ishold==true) 
+	{ 
+		a.src_state = 8; 
+		a.src_state_ts = vs.ishold_ts;
+		var elh_ = _(p, "chanholdstate", "input");
+		if (elh_) elh_.checked = true;
+	}
+	p.childNodes[1].className = re["call_state"][a.src_state][1]; // action btns
+	// todo: action status
 }
 
 function _call_popup () 
 {
 	call_popup (this.lastChild.firstChild, 1); 
-	//call_popup_upd (this.lastChild.firstChild); 
-	//var vs = CALLS[this.previousSibling.value]
-	//if (vs && vs.ishold) call_popup_hold_state (this.parentNode, vs.ishold); // load hold state
 }
 
 // ------------------------------------------
@@ -802,7 +825,13 @@ function chans (o,k,ts)
 		}
 
 		if (ch[6].substr(0,4)=="DLPN" && ch[AMI.CHAN_SIPCALLID].length>0 && (ch[3].substr(6,4)==(user_cid+"-") || ch[3].substr(6,5)==("0"+user_cid+"-")))  
-		{		
+		{	
+			if (ch[AMI.CHAN_EXTEN]=="s" && ch[AMI.CHAN_VECTOR]*1<1)  // skip until src_address appears
+			{ 
+				console.error ("wait for src_address "+ch[2]+","+ch[AMI.CHAN_VECTOR]+","+ch[AMI.CHAN_CID_NUM_2]); 
+				continue; 
+			} 
+
 			var el = _(pu, ch[2]); // find matching call	
 			
 			if (el==null)
