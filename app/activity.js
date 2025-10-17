@@ -1004,7 +1004,7 @@ te["activity_vw_id"] = { activity_vw_id_:["activity_vw_id_toolbar","activity_vw_
 
 te["activity_vw_id_case"] = { activity_vw_id_:["activity_vw_id_toolbar","activity_vw_id_tabs_case"] }; 
 
-te["activity_vw_id_chat"] = { activity_vw_id_:["activity_vw_id_toolbar","activity_vw_id_tabs_chat"] }; 
+te["activity_vw_id_chat"] = { activity_vw_id_:["ati_toolbar","activity_vw_id_tabs_chat"] }; 
 
 te["activity_vw_id_call"] = { activity_vw_id_:["call_toolbar","activity_vw_id_tabs"] }; 
 
