@@ -807,7 +807,7 @@ te["main"] = { c:
 
 		// { sbl:["admin_","9","","contacts-contacts","import_contacts","Contacts","noop"] },
 
-		// { sbl:["","10","","","audiotrack","Transcribe","noop"] },
+		{ sbl:["","10","","","audiotrack","Transcribe","noop"] },
 
 		{ input:["g","activity_close","sbr","22","radio"] },
 	]},
@@ -828,7 +828,7 @@ te["main"] = { c:
 		{ div:[], c:[ { input:["g","","mtv","7","radio"] }, { form:["tabv","vftab"] } ] }, // users
 		{ div:[], c:[ { input:["g","","mtv","8","radio"] }, { form:["tabv","vftab"] } ] }, // contacts
 		{ div:[], c:[ { input:["g","","mtv","9","radio"] }, { form:["tabv","vfvwm"], wallboard:[] } ] }, // wallboard
-		//{ div:[], c:[ { input:["g","","mtv","10","radio"] }, { form:["tabv","vfvwm"], c:[ { iframe:["wp100 h100","","transcription_frontend_template.php"] } ] } ] },
+		{ div:[], c:[ { input:["g","","mtv","10","radio"] }, { form:["tabv","vfvwm"], c:[ { iframe:["wp100 h100","","transcription_frontend_template.php"] } ] } ] },
 		{ div:["g"], c:
 		[
 			{ iframe:["","",VA_AMI_HOST] },
