@@ -171,6 +171,15 @@ function ati_popup (el, f=0)
 		if (a.src_callid==a_.src_callid) // is same session -- update src args only and select new ati_session
 		{
 			var p_ = coll[1].firstChild.lastChild;
+			var r_ = re["r_"][0].slice(0);
+			r_[k["src"][0]] = a.src;
+			r_[k["src_ts"][0]] = a.src_ts;
+			r_[k["src_uid"][0]] = a.src_uid;
+			r_[k["src_callid"][0]] = a.src_callid;
+			r_[k["src_address"][0]] = a.src_address;
+			r_[k["src_usr"][0]] = a.src_usr;
+			r_[k["src_vector"][0]] = a.src_vector;
+			r_[k["src_uid2"][0]] = a.src_uid2;
 			p_.firstChild.innerHTML = "";
 			nd (p_.firstChild, te["activity_vw_id_args"], [], r_, [0]);
 			el.firstChild.checked = true; 					// hilite call-notif			
@@ -256,7 +265,7 @@ function atis (o,k,ts)
 				el = nd (pu, te["ati_session"], [], ch, [0]);
 				el = __(el,"va").parentNode;
 				chan_t[ch[2]] = { "el":el, "ts":ts };
-				console.log ("[ati] new "+ch[2]+" "+ch[4]+","+ch[6]+" |"+el) 
+				console.log ("[ati] new "+ch[2]+","+ch[4]+","+ch[6]+" | "+el) 
 				ati_popup (el);
 			}
 			chan_t[ch[2]].ts=ts;
