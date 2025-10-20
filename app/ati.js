@@ -172,6 +172,7 @@ function ati_popup (el, f=0)
 		{
 			var p_ = coll[1].firstChild.lastChild;
 			var r_ = re["r_"][0].slice(0);
+			var k = re["activities_k"];
 			r_[k["src"][0]] = a.src;
 			r_[k["src_ts"][0]] = a.src_ts;
 			r_[k["src_uid"][0]] = a.src_uid;
