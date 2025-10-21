@@ -1198,7 +1198,7 @@ function activity_message_sended (el, u, a, r, m)
 	var k = ra["messages_k"]
 	var el = nd (el, te["activity_messages_txt"], [], [], [0]);
 	el.focus (); // console.error (el.tagName)
-	url (p.parentNode.firstChild, "activity_messages", "messages", ("?src="+r[k["src"][0]]+"&src_callid="+r[k["src_callid"][0]]+"&"));
+	url (p.parentNode.childNodes[1], "activity_messages", "messages", ("?src="+r[k["src"][0]]+"&src_callid="+r[k["src_callid"][0]]+"&"));
 }
 
 function _activity_message_send (ev)
@@ -1221,8 +1221,8 @@ function _msg (ev) // TODO: send read request -while typing - to keep chat from 
 		var p = __(this,"ve");
 		var p_ = __(this,"vfvwm");
 		var o = {};
-		jso (p_.firstChild, o);   	// channel session details
-		jso (p,o); 			// ve details
+		jso (p_.firstChild.lastChild, o);   	// channel session details
+		jso (p,o); 						// ve details
 		url (p, "activity_message_send", "messages", "", null, 2, o, "POST");
 		return false;
 	}
