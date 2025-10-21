@@ -262,6 +262,7 @@ te["activity_messages_title"] = { c:
 te["activity_messages"] = { c:
 [
 	{ div:["x20 y15"], u:["activity_messages_title","activities"] },
+	{ div:[] }, // message reload ctx
 	{ p:["x25","msgs"], c:
 	[
 		{ div:["xx yy oy scroller"], c:
@@ -1151,6 +1152,8 @@ te["activities"] = { c:
 	]}
 ]};
 
+// -------------------------------------------------------------
+
 function activity_messages_height (el, u, a, r, m)
 {
 	el.style.height = window.innerHeight-210;
@@ -1174,18 +1177,18 @@ function activity_messages_ufn (el, u, a, r, m)
 		nd (p, te["activity_message_r"], [], r, [0]); // append new messages 
 	}
 	//console.log (" ---> "+el);
-	for (var i=0; i<n; i++)	// update read status
-	{
-		var r = rr[i];
-		//console.log (" ---> "+r[0]+","+el.firstChild.value + "|"+i+" of "+n)
-		if (!el) break;
-		if ((r[0]*1) > (el.firstChild.value*1)) continue;
-		if ((r[0]*1) == (el.firstChild.value*1)) 
-		{
-			_(el,"tm","input").parentNode.firstChild.firstChild.innerHTML = r[15];
-			el = el.previousSibling
-		}
-	}
+	//for (var i=0; i<n; i++)	// update read status
+	//{
+	//	var r = rr[i];
+	//	//console.log (" ---> "+r[0]+","+el.firstChild.value + "|"+i+" of "+n)
+	//	if (!el) break;
+	//	if ((r[0]*1) > (el.firstChild.value*1)) continue;
+	//	if ((r[0]*1) == (el.firstChild.value*1)) 
+	//	{
+	//		_(el,"tm","input").parentNode.firstChild.firstChild.innerHTML = r[15];
+	//		el = el.previousSibling
+	//	}
+	//}
 	activity_messages_height (p, u, a, r, m);
 }
 
