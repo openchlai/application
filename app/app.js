@@ -340,9 +340,9 @@ re["case_src"] =
 "call":	["call","Call","",			"","", "#fa8a09ff","call","",	"","",	"", 		"phone", "reporter_phone", ""],
 "sms":	["sms","SMS","",			"","", "#000000","sms","",		"","",	"_chat", 	"phone", "reporter_phone", ""],
 "email":	["email","Email","",		"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""],
-"chat":	["chat","Chat","",			"","", "#17b8ddff","chat","",	"","",	"_chat", 	"phone", "reporter_email", "safepal"],
+"chat":	["chat","Chat","",			"","", "#17b8ddff","chat","",	"","",	"_chat", 	"phone", "reporter_phone", "safepal"],
 "whatsApp":["whatsApp","WHATSAPP","",	"","", "#41ac0fff","chat","",	"","",	"_chat", 	"phone", "reporter_phone", ""],
-"whatsup":["whatsup","Whatsup","",		"","", "#41ac0fff","chat","",	"","",	"_chat", 	"phone", "reporter_email", ""],
+"whatsup":["whatsup","Whatsup","",		"","", "#41ac0fff","chat","",	"","",	"_chat", 	"phone", "reporter_phone", ""],
 "facebook":["facebook","Facebook","",	"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""],
 "FACEBOOK":["FACEBOOK","FACEBOOK","",	"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""], 
 "twitter":["twitter","Twitter","",		"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""],
@@ -353,8 +353,8 @@ re["case_src"] =
 "ai":	["ai","AI","",  				"","", "#000000","","",		"","",	"_chat", "usn", "usn", ""],
 "aii":	["aii","AI","",  				"","", "#000000","","",		"","",	"_chat", "usn", "usn", ""],
 
-"WENI":	["WENI","Chatbot","",		"","", "#dcc00aff","chat","",	"","",	"_chat", "phone", "reporter_email", ""], 
-"safepal":["safepal","SafePal","",		"","", "#c8eb04ff","chat","",	"","",	"_casee", "phone", "reporter_email", "safepal"],
+"WENI":	["WENI","Chatbot","",		"","", "#dcc00aff","chat","",	"","",	"_chat", "email", "reporter_email", ""], 
+"safepal":["safepal","SafePal","",		"","", "#c8eb04ff","chat","",	"","",	"_casee", "phone", "reporter_phone", "safepal"],
 "webform":["webform","Webform","",		"","", "#5b07ebff","chat","",	"","",	"_case", 	"phone", "reporter_phone", ""],
 "ceemis":	["ceemis","CEEMIS","",		"","", "#0da2d4ff","chat","",	"","",	"_case", 	"phone","reporter_phone", ""],
 };

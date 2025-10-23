@@ -581,6 +581,8 @@ ul:hover {background-color:#cee8f0; color:black;}
 .wp100 {width:100%; overflow:hidden;}
 
 .mh02 {min-height:20px;}
+.mh08 {min-height:80px;}
+.mh10 {min-height:100px;}
 .mh15 {min-height:150px;}
 .mh20 {min-height:200px;}
 .mh30 {min-height:300px;}

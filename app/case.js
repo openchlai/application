@@ -1067,7 +1067,7 @@ te["case_form_"] = { div:["","ve"], c: // new case
 		{ div:["e"] }
 	]},
 		
-	{ div:["x20 tt b30 w110"], c:
+	{ div:["x20 tt b30 w100"], c:
 	[
 		{ div:["d w12"], c:
 		[
@@ -1460,9 +1460,7 @@ te["case_vw_id"] = { c:
 			]}
 		]},
 
-		{ div:["d w06 t01"], s:["abs w06 h03 gw t18 zzzz",""] },
-		{ div:["d w06 t01"], s:["abs w06 h03 gw t18 zzzz",""] },
-		{ div:["d w06 t01"], s:["abs w06 h03 gw t18 zzzz",""] },
+		// always in context of activity -- activity btn will mask app btns -- no need for masking here
 
 		{ div:["e"] }
 	]},
@@ -2144,7 +2142,7 @@ te["cases"] = { c:
 	]},
 	{ div:[], c:
 	[	
-		{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
+		{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id 
 		{ p:["tabv bd8 mm gw","vfvwm"] }
 	]}
 ]};

@@ -1148,7 +1148,7 @@ te["activities"] = { c:
 	{ div:[], c:
 	[	
 		{ input:["g","","activities_vw","1","radio"] }, 			// _new | _vw | ed
-		{ div:["tabv bd8 gw mm","vfvwm"] }
+		{ div:["tabv bd8 gw mm mh08","vfvwm"] }
 	]}
 ]};
 
@@ -1313,6 +1313,7 @@ function _activity_postj ()
 	var u = this.id.split ("-");
 	var p = __(this,"ve"); 
 	var o = {};
+	var ld = 2
 	jso (__(elvpf?elvpf:(elvp?elvp:p),"vfvwm").firstChild.lastChild, o);		// src
 	jso (p, o); 													// form
 	if (u.length>2 && u[2]=="vp")
@@ -1322,13 +1323,15 @@ function _activity_postj ()
 		vp (p)
 		p.innerHTML = "<div id='ve'></div>"
 		p = p.firstChild
+		ld = 0
 	}
 	if (u.length>2 && u[2]=="vw")
 	{
 		p = __(this,"vf").parentNode.nextSibling.childNodes[1]
 		p.previousSibling.checked = true
+		ld = 0
 	}
-	url (p, u[0], u[1], o[".id"], null, 2, o, "POST");
+	url (p, u[0], u[1], o[".id"], null, ld, o, "POST");
 }
 
 function _activity_disposition_r ()
@@ -1354,6 +1357,9 @@ function _activity_disposition_r ()
 
 function _activity_vw_id (ev) 
 {
+	ra = {};
+	for (var k_ in re) ra[k_]=re[k_];
+
 	var a = {};
 	argv (this, a); 
 	if (a.src_uid==undefined) // simulate chani 
@@ -1387,8 +1393,7 @@ function _activity_vw_id (ev)
 		r_[k["src_usr"][0]] = a.src_usr;
 		r_[k["src_vector"][0]] = a.src_vector;
 		r_[k["src_uid2"][0]] = a.src_uid2;
-		ra = {};
-		for (var k_ in re) ra[k_]=re[k_];
+		
 		ra["dispositions_ctx"] = [["0","10","0","0","0","",""]];
 		coll[1].innerHTML = "";
 		nd (coll[1], te["activity_vw_id_"], ["activity_vw_id_tabs_walkin","activity_vw_id_toolbar"], r_, [2]);	
