@@ -240,19 +240,8 @@ li {display:block; list-style-type:none; padding:0; margin:0; cursor:pointer; }
 .dl_ {border-right:5px solid gray; border-left:0;}
 .dr_ {border-left:5px solid gray; border-right:0;}
 
-
-.sb { width:200px; overflow:hidden;}
-.sb_ { width:60px; } 
-.sbgsubh { display:none; }
-.sbgv { display:none; }
-.sbiv { display:none; }
 .tabv { display:none; }
 .tabiv { display:none; }
-
-.sb_ .apph { display:none; }
-.sb_ .sbgsubh { display:block; }
-.sb_ .sbglbl { display:none; }
-.sb_ .sbgsub { display:none; position:absolute; margin-left:40px; margin-top:-40px; width:140px; border:1px solid #c5cad3; box-shadow:1px 1px 6px silver; }
 
 .chk {position:relative; border:1px solid dimgray;  height:12px; width:12px; top:0; left:0; }
 .chk_ {position:relative;   height:12px; width:12px; top:0; left:0; }
@@ -433,7 +422,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 .w05 {width:50px; overflow:hidden;}
 .w05_ {width:50px; }
 .w06 {width:60px; overflow:hidden;}
-.w06_ {width:65px; overflow:hidden;}
+.w06_ {width:60px; }
 .w07 {width:70px; overflow:hidden;}
 .w07_ {width:70px;}
 .w08 {width:80px; overflow:hidden;}
@@ -594,7 +583,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 .mw110 {min-width:1100px;}
 .mw120 {min-width:1200px;}
 
-.wx60 {max-width:600px;}
+.wx58 {max-width:580px;}
 
 .h01 {height:10px;}
 .h01_ {height:15px;}

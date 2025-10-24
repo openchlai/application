@@ -1,212 +1,5 @@
 var ACT_COUNT = 0;
 
-te["dash_case_priority_vw_r"] = { div:["w50 gws mb1 h03"], c: // 
-[
-	{ s:["abs w50",""], c:
-	[
-		{ div:[null] },
-		{ div:[null] },
-		{ div:[null] },
-		{ div:["e"] }
-	]},
-	{ div:["abs w55 t08 cw"], c:
-	[
-		{ s:["c xx w48 cw",null] },
-		{ s:["d xx cb",""] },
-		{ div:["e"] }
-	]}
-]};
-
-te["dash_case_priority_vw"] = { c:
-[
-	//{ div:["xx g"], c:
-	//[
-	//	{ div:["c w17 cd"], c:
-	//	[
-	//		{ s:["c x02 y02 w01 h01 bd32 gg",""] },
-	//		{ s:["c x","Closed Cases"] },
-	//		{ div:["e"] }
-	//	]},
-	//	{ div:["c w16 cd mr"], c:
-	//	[
-	//		{ s:["c x02 y02 w01 h01 bd32 go",""] },
-	//		{ s:["c x","Ongoing Cases"] },
-	//		{ div:["e"] }
-	//	]},
-	//	{ div:["c w16 cd mr"], c:
-	//	[
-	//		{ s:["c x02 y02 w01 h01 bd32 gbl",""] },
-	//		{ s:["c x","Escalated Cases"] },
-	//		{ div:["e"] }
-	//	]},
-	//				
-	//	{ div:["e"] }
-	//]},
-	
-	{ div:[] }, 
-				
-	{ div:["x"], c:  // 
-	[
-		{ dash_case_priority_vw_r:["c h02 y gg bb3_y","c h02 y gg bb3_p","c h02 y gg bb3_r","Closed Cases"] },
-		{ dash_case_priority_vw_r:["c h02 y go bb3_y","c h02 y go bb3_p","c h02 y go bb3_r","Ongoing Cases"] },
-		{ dash_case_priority_vw_r:["c h02 y gbl bb3_y","c h02 y gbl bb3_p","c h02 y gbl bb3_r","Escalated Cases"] },
-	]},
-				
-	{ div:["x y"], c: 
-	[
-		{ ac:["c w11 ao mr1","","","xx y cb bd gws bb3_y",""], c:[ { s:["y tc n","Low Priority"] }, { s:["y b tc h","0"] }] },
-		{ ac:["c w12 ao mr1","","","xx y cb bd gws bb3_p",""], c:[ { s:["y tc n","Medium Priority"] }, { s:["y b tc h","0"] }] },
-		{ ac:["c w12 ao mr1","","","xx y cb bd gws bb3_r",""], c:[ { s:["y tc n","High Priority"] }, { s:["y b tc h","0"] }] },				
-		{ ac:["c w12 ao","","","xx yy gb cw bd ",""], c:[ { s:["tc h3","Total"] }, { s:["y b tc h","0"] }] },
-		{ div:["e"]}
-	]}
-]};		
-
-te["dash_case_priority"] = { c:
-[
-	{ pivot:[] },
-	{ dash_case_priority_vw:[] },
-	{ ufn:["case_prio_chart"] }
-]};
-
-te["dash_rpt_line"] = { c:
-[
-	{ pivot:[] }, 
-	{ div:["w55"], s:["",""], c:[ { canvas:["","","",""], uchart:[] } ] },
-	{ div:["w55 yy"], s:["",""], utable:[] },
-	{ div:["e"] }
-]};
-
-te["dash_rpt_pie"] = { c:
-[
-	{ pivot:[] }, 
-	{ div:["c w22"], s:["",""], c:[ { canvas:["","","",""], uchart:[] } ] },
-	{ div:["d ll"], s:["",""], utable:[] },
-	{ div:["e"] }
-]};
-
-te["dash_rpt"] = { c: // dash_rpt:["Case Categories","bar","stacked","case_category_root_id","-","count","0","dash_rpt_pie-cases"]
-[ 
-	{ form:["yy","vrpt"], c:
-	[
-		{ s:["x15 y h3",null] },
-		{ arg:["","type",null] }, 
-		{ arg:["","stacked",null] },
-		{ arg:["","xaxis",null] },
-		{ arg:["","yaxis",null] },
-		//{ arg:["","metrics",null] },
-		{ input:["g","","rpt",null,"checkbox","1"] },
-		{ arg:["","sortrpt","1"] }
-	]},
-	{ div:["xx yy",null], urpt:[] } 
-]};
-
-te["dash_src_r"] = { div:[], c:
-[
-	{ input:["g","","dash_src","%0","radio","%9"] },
-	{ ac:["opti_","","_dash","x y gw cb bd ",""], c:
-	[
-		{ s:["x y tc","%1"] },
-		{ div:["x y w03 ma"], s:["%2",""], c:[ { img:["","","%3","30"] } ] },
-		{ s:["x y b tc h3 h02","%4"] }
-	]}
-]};
-
-te["dash_gbv_r"] = { div:[], c:
-[
-	{ input:["g","","dash_gbv","%0","radio","%9"] },
-	{ ac:["opti_","","_dash","x15 y cb","%1"] }
-]};
-
-te["dash_period_r"] = { div:[], c:
-[
-	{ input:["g","","dash_period","%0","radio","%9"] },
-	{ ac:["opti_","","_dash","x15 y cb","%1"] }
-]};
-
-te["dash_view"] = { c:
-[
-	{ div:["c wp50 gw"], s:["",""], c:
-	[
-		{ div:["xx h50","vc"], dash_rpt:["Case Categories","bar","stacked","cat_0","-","case_count","dash_rpt_pie-cases"] },	
-		{ div:["xx h50","vc"], dash_rpt:["Case per Location","bar","stacked","reporter_location_0","-","case_count","dash_rpt_pie-cases"] },
-	]},
-	{ div:["c wp50 gw"], s:["ml",""], c:
-	[
-		{ div:["xx h50","vc"], dash_rpt:["Daily Cases","line","","src","dt","case_count","dash_rpt_line-cases"] },		
-		{ div:["xx h50","vc"], dash_rpt:["Case Status","bar","stacked","final_status,priority","-","case_count","dash_case_priority-cases"] },			
-	]},
-	{ div:["e"] }	
-]}
-
-te["dash"] = { c:
-[
-	{ div:["","vb"], c:
-	[
-		{ div:["ma w19 t01"], c:
-		[
-			{ input:["g","","sbl_","1","radio","1"] },
-			{ input:["g","","sbr_","1","radio"] },
-			{ ac:["abs ao mt17 w15 sh__ bd gg","","_activity_vw_id","xx bd gg cw",""], c:
-			[
-				{ s:["c y","Walk In"] }, // todo : change to new activity to allow outboud calls and messages  new activiy| walkin_ico|call_ico|msg_ico
-				{ s:["d t03 h2 micon","directions_walk"] },  // center activity action btns here
-				{ div:["e"], c:[ { arg:["",".id","-1"] }, { arg:["","src","walkin"] }, { arg:["","src_address",""] } ] }
-			]},
-		]},
-		{ div:["xx tt b20  mtn1	"], c:
-		[
-			{ s:["c xx y15 h3_ b","OpenCHS"] },
-			{ div:["e"] }
-		]},
-	]},
-	{ div:["abs w12 h100 x15","vdf"], c: // filter params
-	[
-		{ div:[" "], c:
-		[
-			{ div:["ay","va"], ac:["","","_dd","x  cb ba bd",""], c:
-			[
-				{ s:["c l y","::dash_period:0:1"] },
-				{ div:["d w02 t04"], c:[ { div:["h02 w02 awb"] } ] },
-				{ div:["e"] },
-				{ s:["x b05 cd s",":d:dmy:3: "] }
-			]},
-			{ div:["dd w13 y ba bd gw","vdd"], c:
-			[
-				{ div:["c w13"], c:
-				[
-					{ uchk:["dash_period_r","%0","dash_period"] }
-				]},
-				{ div:["e"] }
-			]},
-		]},
-		
-		{ div:[" yy"], c:
-		[
-			{ div:["ay","va"], ac:["","","_dd","x bd cb bd ba",""], c:
-			[
-				{ s:["c l y","::dash_gbv:1:1"] },
-				{ div:["d w02 t04"], c:[ { div:["h02 w02 awb"] } ] },
-				{ div:["e"] }
-			]},
-			{ div:["dd w13 y ba bd gw","vdd"], c:
-			[
-				{ uchk:["dash_gbv_r","%1","dash_gbv"] }
-			]},
-		]},							 
-
-		{ uchk:["dash_src_r","%2","dash_src"] },
-		
-		{ arg:["","created_on","%3"] },
-		{ arg:["","gbv_related","%4"] },
-		{ arg:["","src","%5"] }
-		
-	]},
-	{ div:["ml15 gw"], dash_view:[] }
-]};
-
-// ---------------------------------------------------------------------
-
 te["activity_message_sended"] = { ufn:["activity_message_sended"] };
 
 te["activity_messages_ufn"] = { ufn:["activity_messages_ufn"] };
@@ -977,13 +770,13 @@ te["activity_vw_id_tabs_"] = { c: //
 	]}	
 ]};
 
-te["activity_vw_id_tabs"] = 			{ activity_vw_id_tabs_:["1","activity_vw_id_tabs_0","","vfvwc",""] };
+te["activity_vw_id_tabs"] = 			{ activity_vw_id_tabs_:["1","activity_vw_id_tabs_0","","vfvw",""] };
 
-te["activity_vw_id_tabs_chat"] = 		{ activity_vw_id_tabs_:["","activity_vw_id_tabs_0","","vfvwc","1"] };
+te["activity_vw_id_tabs_chat"] = 		{ activity_vw_id_tabs_:["","activity_vw_id_tabs_0","","vfvw","1"] };
+
+te["activity_vw_id_tabs_walkin"] = 	{ activity_vw_id_tabs_:["1","activity_vw_id_tabs_0_walkin","","vfvw",""] };
 
 te["activity_vw_id_tabs_case"] = 		{ activity_vw_id_tabs_:["","noop","1","vf",""] };
-
-te["activity_vw_id_tabs_walkin"] = 	{ activity_vw_id_tabs_:["1","activity_vw_id_tabs_0_walkin","","vfvwc",""] };
 
 te["activity_vw_id_"] = { c: 
 [
@@ -1004,6 +797,8 @@ te["activity_vw_id_"] = { c:
 te["activity_vw_id"] = { activity_vw_id_:["activity_vw_id_toolbar","activity_vw_id_tabs"] }; 
 
 te["activity_vw_id_case"] = { activity_vw_id_:["activity_vw_id_toolbar","activity_vw_id_tabs_case"] }; 
+
+te["activity_vw_id_notif"] = { activity_vw_id_:["notification_toolbar","activity_vw_id_tabs_case"] }; 
 
 te["activity_vw_id_chat"] = { activity_vw_id_:["ati_toolbar","activity_vw_id_tabs_chat"] }; 
 
@@ -1064,6 +859,26 @@ te["activity_lst"] = { list:["activity_lst_title","end","","activity_lst_k","act
 
 // -------------------------------------------------------------
 
+te["notification_toolbar"] = { div:[], c:
+[
+	{ div:["d w05 t01"], s:["abs w05 bd8 y15 gw zzzzz",""], c:
+	[
+		{ input:["g","","sbl","0","radio"] },
+		{ ac:["ay t01 r15","","_activity_close","cb bd y01",""], c:
+		[
+			{ s:["tc h b","&Cross;"] },
+			// { s:["d x y s","Close"] },
+			{ div:["e"] }
+		]}
+	]},
+
+	{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+	{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+	{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+
+	{ div:["e"] }
+]};
+
 te["notification_lst_footer"] = { div:["x y mt"], c:
 [
 	{ div:["d t03 r05"], c:[ { ac:["nav","activity_lst-activities","_nav","dh",""], c:[ { div:["da dr_"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
@@ -1117,7 +932,7 @@ te["notification_lst_r"] = { div:["","ve"], c:
 		{ li:["sbr cb xx ","activity_notify-activities^notify"], ev:["_postj"], notification_lst_r_:[] },
 		{ p:["","o"], arg:["",".id","%0"] }
 	]},
-	{ s:["savl xx y h04 bb_","..."] }// place holder for on click
+	{ s:["savl xx y h04 bb_","..."] } // place holder for on click
 ]};
 
 te["notification_lst_k"] = { div:["bb_"], c:
@@ -1135,22 +950,6 @@ te["notification_lst_title"] = { div:["g x y bb_"], c:
 ]};
 
 te["notification_lst"] = { list:["notification_lst_title","end","","notification_lst_k","notification_lst_r","activities_notify","notification_lst_footer"] };
-
-// -------------------------------------------------------------
-
-te["activities"] = { c:
-[
-	{ div:[], c:
-	[	
-		{ input:["g","","activities_vw","0","radio","1"] }, 		// dash
-		{ div:["tabv bd8 gw","vftab"], u:["dash","dash"] } 
-	]},
-	{ div:[], c:
-	[	
-		{ input:["g","","activities_vw","1","radio"] }, 			// _new | _vw | ed
-		{ div:["tabv bd8 gw mm mh08","vfvwm"] }
-	]}
-]};
 
 // -------------------------------------------------------------
 
@@ -1301,11 +1100,12 @@ function activity_notifs_ufn (el, u, a, r, m)
 
 function _activity_close ()
 {
-	var p = __(this,"vf");
-	if (p.id!="vfvwc") document.getElementById ("activity_close").checked = true; // unhilite sbr
-	p = __(this,"vfvw")
-	p.parentNode.parentNode.firstChild.firstChild.checked = true; // switch tabs
-	p.innerHTML = "";
+	var coll = document.getElementById ("vv").childNodes;
+	var a = {}
+	argv (coll[3], a)
+	coll[6].childNodes[a.sbl].firstChild.checked = true;
+	coll[2].lastChild.firstChild.checked = true;
+	__(this,"vfvwm").innerHTML = ""
 }
 
 function _activity_postj ()
@@ -1375,9 +1175,10 @@ function _activity_vw_id (ev)
 	}
 	if (re["case_src"][a.src][11]=="phone") a.src_address = _phone_fmt (a.src_address);
 
-	var i =0; if (this.id.length>0) i=1*this.id;
-	var coll = document.getElementById ("vv").childNodes[6].childNodes[i].childNodes[1].childNodes[1].childNodes; 
 	this.previousSibling.checked = true; // hilite call-notif
+	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes;
+	if (this.id.length>0) coll = __(this,"vftab").parentNode.nextSibling.childNodes;
+
 	coll[0].parentNode.parentNode.previousSibling.checked = true;
 	coll[0].checked = true;
 

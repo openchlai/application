@@ -634,12 +634,12 @@ te["case_category_sel_sub"] = { div:["","sub"], c:
 	{ arg:["case_ed_sub_justice-r_-ve-_case_justice_","",CASE_CATEGORY_ABUSE_ID] },
 ]};
 
-te["case_category_tag_txa"] = { case_enum_tag_txa_:["w57 xx tt b05","fullname__","Select Category","case_category_id"] };
+te["case_category_tag_txa"] = { case_enum_tag_txa_:["w53 xx tt b05","fullname__","Select Category","case_category_id"] };
 
 te["case_category_dd"] = { c:[ { arg:["",".id",CASE_CATEGORY_ROOT_ID] }, { uv:["category_lsh_main","categories"] } ] };
 
 te["case_category_enum"] = { case_enum_lsh:["x y","Case Category","*",
-"tag-r_--o-case_category_tag_txa-%1-case_category_id-%0-%2", "category_ls-subcategories-h", "c w56",  // todo: category_lsh
+"tag-r_--o-case_category_tag_txa-%1-case_category_id-%0-%2", "category_ls-subcategories-h", "c w53",  // todo: category_lsh
 "case_category_tag_txa","r_", 
 ":v:cases:case_category_id", "case_category_tag_txa",":v:cases:case_category","case_category_id",":v:cases:case_category_id",":v:cases:case_category_fullname_id",   
 CASE_CATEGORY_ROOT_ID, "", "fullname", "noop",
@@ -898,8 +898,8 @@ te["case_form_col_1"] = { c:
 			]},
 			{ p:["","dept_labor"], usub:["case_ed_sub_dept_labor","r_",":v:cases:dept","1"]},
 		]},
-		{ div:["t25 w60 _ba_"], case_category_enum:[] },
-		{ div:["t25"], c:
+		{ div:["t15 w57 _ba_"], case_category_enum:[] },
+		{ div:["t15"], c:
 		[
 			{ div:[], c:
 			[
@@ -927,7 +927,7 @@ te["case_form_col_1"] = { c:
 			{ s:["c t h2 cr b","*"] },
 			{ div:["e"] }
 		]},
-		{ p:["","o"], c:[ { textarea:["w60 wx60 mh15 xx yy ba","","narrative",":v:cases:narrative","What Really Happened?"] } ] }
+		{ p:["","o"], c:[ { textarea:["w57 wx58 mh15 xx yy ba","","narrative",":v:cases:narrative","What Really Happened?"] } ] }
 	]},
 	
 	{ div:["t15"], c:
@@ -938,15 +938,15 @@ te["case_form_col_1"] = { c:
 			{ s:["c t h2 cr b",""] },
 			{ div:["e"] }
 		]},
-		{ p:["","o"], c:[ { textarea:["w60 wx60 mh15 xx yy ba","","plan",":v:cases:plan","Enter Case Plan"] } ] }
+		{ p:["","o"], c:[ { textarea:["w57 wx58 mh15 xx yy ba","","plan",":v:cases:plan","Enter Case Plan"] } ] }
 	]},
 	
 	{ p:["_ba_","_case_justice_"], usub:["case_ed_sub_justice","r_",":v:cases:case_category_fullname_id",CASE_CATEGORY_ABUSE_ID] },
 	
-	{ div:["t15 b30"], c:
+	{ div:["t15"], c:
 	[
-		{ div:["c w17 r20 _ba_"], case_priority_enum:["Priority","*",":v:cases:priority"] },
-		{ div:["c w17 r20 _ba_"], case_status_enum:["Status","*",":v:cases:status"] },
+		{ div:["c w15 r20 _ba_"], case_priority_enum:["Priority","*",":v:cases:priority"] },
+		{ div:["c w16 r20 _ba_"], case_status_enum:["Status","*",":v:cases:status"] },
 		{ div:["c w22 _ba_"], case_escalated_to_enum:["Escalated To",":v:cases:escalated_to_id",":v:cases:escalated_to"," %0"] },
 		{ div:["e"] }
 	]}
@@ -1027,7 +1027,7 @@ te["case_form_col_0"] = {  c:
 		{ p:["bl2_b","_case_other_service_"], usub:["case_ed_sub_other_service","r_",":v:cases:services",CASE_SERVICE_OTHER_ID] },
 	]},
 		
-	{ div:["y15"], c:
+	{ div:["t15"], c:
 	[
 		{ div:["_ba_"], case_knowabout116_enum:["How did you know about 116?",":v:cases:knowabout116_id",":v:cases:knowabout116"," %0"] }
 	]},
@@ -1067,9 +1067,9 @@ te["case_form_"] = { div:["","ve"], c: // new case
 		{ div:["e"] }
 	]},
 		
-	{ div:["x20 tt b30 w100"], c:
+	{ div:["t30 b15 w100"], c:
 	[
-		{ div:["d w12"], c:
+		{ div:["d w12 xx"], c:
 		[
 			{ ac:["btn ao",null,"_activity_postj","y bd gb b tc cw",null] },
 			{ div:["savl"], s:["y bd go b tc cw","Saving..."] }
@@ -1452,7 +1452,7 @@ te["case_vw_id"] = { c:
 		{ div:["d w05 t01"], s:["abs w05 bd8  b10 gw zzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
-			{ ac:["ay t01 r15","","_activity_close","cb bd y01",""], c:
+			{ ac:["ay t01 r15","","_uvw","cb bd y01",""], c:
 			[
 				{ s:["tc h b","&Cross;"] },
 				// { s:["d x y s","Close"] },
@@ -1931,7 +1931,7 @@ te["case_footer"] = { div:["x gw ba"], c:
 te["case_r_"] = { c: 
 [
 	{ input:["g","","casevwr","%0","radio",null] },
-	{ ac:["tabh ay w300","2","_activity_vw_id",null,""], c:
+	{ ac:["tabh ay w300","rel","_activity_vw_id",null,""], c:
 	[
 		{ div:["c w07"], s:["tt b05 h01_  xx","%0"] },
 		{ div:["c w10"], s:["tt b05 h01_  xx","%2"] },
@@ -2132,7 +2132,7 @@ te["case_main"] = { c:
 		]},				
 	]}
 ]};
-	
+
 te["cases"] = { c:
 [
 	{ div:[], c:
@@ -2142,12 +2142,12 @@ te["cases"] = { c:
 	]},
 	{ div:[], c:
 	[	
-		{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id 
+		{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
 		{ p:["tabv bd8 mm gw","vfvwm"] }
 	]}
 ]};
 
-// 
+// -------------------------------------------
 
 function case_vw_id_ca_ufn (el, u, a, r, m)
 {

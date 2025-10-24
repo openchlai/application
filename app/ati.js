@@ -94,7 +94,7 @@ te["ati_toolbar"] = { c:
 		{ div:["c w10 bt_b bb_b br_b bdr"], c:
 		[
 			{ input:["g","","case_vw_id_t","0","radio"] },
-			{ ac:["ao tab","","_tab","y cb tc s","Contact History"] }
+			{ ac:["ao tab","","_ati_tab","y cb tc s","Contact History"] }
 		]},
 		{ div:["e"] }
 	]},
