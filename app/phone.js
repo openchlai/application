@@ -166,7 +166,7 @@ function VOICEAPPS_SESSION (_leg)
 				VOICEAPPS_UA.cleanup_media (me.mediaElement);
 				if (el) 
 				{
-					var vw = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes[1]; 
+					var vw = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1]; 
 					var a = {}
 					argv (el, a); 
 					me.hangup_ts = (Math.ceil ((Date.now()/1000)));

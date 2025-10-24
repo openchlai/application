@@ -1051,9 +1051,7 @@ te["case_form_"] = { div:["","ve"], c: // new case
 			]}
 		]},
 
-		{ div:["d w06 t01"], s:["abs w06 h03 gw t18 zzzz",""] },
-		{ div:["d w06 t01"], s:["abs w06 h03 gw t18 zzzz",""] },
-		{ div:["d w06 t01"], s:["abs w06 h03 gw t18 zzzz",""] },
+		// always in context of activity -- activity btn will mask app btns -- no need for masking here
 
 		{ div:["e"] }
 	]},
@@ -2135,15 +2133,18 @@ te["case_main"] = { c:
 
 te["cases"] = { c:
 [
-	{ div:[], c:
-	[	
-		{ input:["g","","case_vw_vt","0","radio","1"] }, 		// list
-		{ p:["tabv x20 yy gw bd8","vftab"], case_main:[] } 
-	]},
-	{ div:[], c:
-	[	
-		{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
-		{ p:["tabv bd8 mm gw","vfvwm"] }
+	{ form:[], c:
+	[
+		{ div:[], c:
+		[	
+			{ input:["g","","case_vw_vt","0","radio","1"] }, 		// list
+			{ p:["tabv x20 yy gw bd8","vftab"], case_main:[] } 
+		]},
+		{ div:[], c:
+		[	
+			{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
+			{ p:["tabv bd8 mm gw","vfvwm"] }
+		]}
 	]}
 ]};
 

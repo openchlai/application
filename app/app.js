@@ -1017,9 +1017,9 @@ te["main"] = { c:
 
 	{ div:["ml6"], c:
 	[
-		{ div:[], c:[ { input:["g","","mtv","0","radio"] }, { form:["tabv bd8 gw mh08 mm","vfvwm"] } ] }, // activity_vw_id
-		{ div:[], c:[ { input:["g","","mtv","1","radio","1"] }, { form:["tabv bd8 gw","vftab"], u:["dash","dash"] } ] }, // dash aka realtime-activities
-		{ div:[], c:[ { input:["g","","mtv","2","radio"] }, { form:["tabv","vftab"] } ] }, // cases
+		{ div:[], c:[ { input:["g","","mtv","0","radio"] }, { div:["tabv bd8 gw mh08 mm","vfvwm"] } ] }, // activity_vw_id
+		{ div:[], c:[ { input:["g","","mtv","1","radio","1"] }, { div:["tabv bd8 gw","vftab"], u:["dash","dash"] } ] }, // dash aka realtime-activities
+		{ div:[], c:[ { input:["g","","mtv","2","radio"] }, { div:["tabv","vftab"] } ] }, // cases
 		{ div:[], c:[ { input:["g","","mtv","3","radio"] }, { form:["tabv","vftab"] } ] }, // calls
 		{ div:[], c:[ { input:["g","","mtv","4","radio"] }, { form:["tabv","vftab"] } ] }, // text (non-call) channels
 		{ div:[], c:[ { input:["g","","mtv","5","radio"] }, { form:["tabv","vftab"] } ] }, // qa
@@ -1031,7 +1031,7 @@ te["main"] = { c:
 		{ div:["g"], c:
 		[
 			{ iframe:["","",VA_AMI_HOST] },
-			{ iframe:["","",VA_ATI_HOST] },
+			// { iframe:["","",VA_ATI_HOST] },
 		]},
 	]}
 ]};
@@ -1159,7 +1159,7 @@ function loadphone (el, u, a, r, m)
 	if (v) document.getElementById ("vv").className = v[2];
 	console.log ("loadphone: "+ra["auth"][0][7]+" | "+JSON.stringify (v));
 	DetectDevices ();
-	// VOICEAPPS_UA.connect (ra["auth"][0][7]);
+	VOICEAPPS_UA.connect (ra["auth"][0][7]);
 }
 
 function ami_wait (el, u, a, r, m)

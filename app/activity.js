@@ -1081,11 +1081,9 @@ function activity_src_address_ufn (el, u, a, r, m)
 function activity_notify_ufn (el, u, a, r, m)
 {
 	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes;
-	var coll_ = coll[1].childNodes[1].childNodes;
-	coll[0].checked = true
-	coll_[0].checked = true;
-	coll_[1].innerHTML = "";
-	nd (coll_[1], te["activity_vw_id_case"], [], r, [0]);	
+	coll[0].checked = true;
+	coll[1].innerHTML = ""
+	nd (coll[1], te["activity_vw_id_case"], [], r, [0]);	
 	ACT_COUNT--
 	notifs()
 }

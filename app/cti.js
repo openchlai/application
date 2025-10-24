@@ -472,7 +472,7 @@ function call_popup_end (el, a, vw)
 
 function call_popup_hold_state (el, f)
 {
-	var p = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes[1].firstChild; // toolbar
+	var p = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].firstChild; // toolbar
 	var a = {};
 	var a_ = {};
 	argv (el, a);
@@ -485,7 +485,7 @@ function call_popup_hold_state (el, f)
 
 function call_popup_upd (el)
 {
-	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; 
+	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes; 
 	var el_ = __(el,"va");
 	var vs = CALLS[el_.previousSibling.value];
 	var a = {};
@@ -515,7 +515,7 @@ function call_popup_upd (el)
 
 function call_popup (el, f=0) 
 {
-	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; 
+	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes; 
 	var a = {};
 	argv (el, a);
 	a.src_callid = __(el,"va").previousSibling.value;
@@ -539,8 +539,6 @@ function call_popup (el, f=0)
 	s += "&src_usr="+a.src_usr;
 	
 	__(el,"va").previousSibling.checked = true;	// hilite call-notif
-	// todo switch tabs
-	coll[0].parentNode.parentNode.previousSibling.checked = true;
 	coll[0].checked = true;
 	url (coll[1], "activity_vw_id_call", "activities^call", s);
 
@@ -828,7 +826,7 @@ function chans (o,k,ts)
 		{	
 			if (ch[AMI.CHAN_EXTEN]=="s" && ch[AMI.CHAN_VECTOR]*1<1)  // skip until src_address appears
 			{ 
-				console.error ("wait for src_address "+ch[2]+","+ch[AMI.CHAN_VECTOR]+","+ch[AMI.CHAN_CID_NUM_2]); 
+				// console.error ("wait for src_address "+ch[2]+","+ch[AMI.CHAN_VECTOR]+","+ch[AMI.CHAN_CID_NUM_2]); 
 				continue; 
 			} 
 
