@@ -465,7 +465,7 @@ function call_popup_end (el, a, vw)
 	vw.firstChild.childNodes[1].className = "call_ended";
 	if (last_status!="call_connected")  // auto close popup is call not connected
 	{
-		// activity_close (vw); // clear
+		_activity_close ();
 		return;
 	}
 	coll_ = vw.firstChild.firstChild.firstChild.firstChild.childNodes
