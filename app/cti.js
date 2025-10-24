@@ -178,15 +178,16 @@ te["call_toolbar"] = { c:
 	[
 		{ div:["xx y gr bd w10 cw"], c:
 		[
-			{ s:["c","Ringng"] },
-			{ s:["d","0:00"] },
+			{ s:["c",""] },
+			{ s:["d",""] },
+			{ arg:["ts","",":v:activities:src_status"] }, 
 			{ div:["e"] }
 		]},
 	]},
 
 	{ div:[], c:
 	[
-		{ div:["d w05 t01"], s:["abs w05 bdr8 t15 b10 gw zzzz",""], c:
+		{ div:["d w05 t01"], s:["abs w05 bdr8 t17 b10 gw zzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
 			{ ac:["ay t01 r15","","_activity_close","cb bd y01",""], c:
@@ -197,14 +198,14 @@ te["call_toolbar"] = { c:
 			]}
 		]},
 
-		{ div:["d w10_ t01 call_hangup_"], s:["abs w10_ t15 b10 gw zzzz",""], c:
+		{ div:["d w10_ t01 call_hangup_"], s:["abs w10_ t17 b10 gw zzzz",""], c:
 		[
 			{ ac:["c ao","","_hangup","w03 h03 x01 y01 h ma bd32 gb cw tc","&Cross;"] },
 			{ s:["c l t08 cb s","Hangup"] },
 			{ div:["e"] }
 		]}, 
 
-		{ div:["d w09_ t01"], s:["abs w09_ t15 b10 gw zzzz",""], c:
+		{ div:["d w09_ t01 call_connected_"], s:["abs w09_ t17 b10 gw zzzz",""], c:
 		[
 			{ input:["g","chanholdstate","","1","checkbox"] },
 			{ div:["btnhold"], c:
@@ -217,7 +218,7 @@ te["call_toolbar"] = { c:
 			]}
 		]},
 
-		{ div:["d w09_ t01 call_connected_"], s:["abs w09_ t15 b10 gw zzzz",""], c:
+		{ div:["d w09_ t01 call_connected_"], s:["abs w09_ t17 b10 gw zzzz",""], c:
 		[
 			{ ac:["c ao call_connected_","call_add_form_main-r_","_add_dial_form","w03 h03 x01 y01 h ma bd32 gb cw tc","&plus;"] },
 			{ s:["c call_connected_ l t08 cb s","Add"] },
@@ -226,7 +227,7 @@ te["call_toolbar"] = { c:
 			{ div:["e"] }
 		]},
 	
-		{ div:["d w10_ t01 call_ringing_"], s:["abs w10_ t15 b10 gw zzzz",""], c:
+		{ div:["d w10_ t01 call_ringing_"], s:["abs w10_ t17 b10 gw zzzz",""], c:
 		[
 			{ div:[":v:activities:src_vector::vector:7",""], c:
 			[ 
@@ -235,6 +236,10 @@ te["call_toolbar"] = { c:
 				{ div:["e"] }
 			]},
 		]},
+
+		{ div:["d w06 t01 call_ended_"], s:["abs w06 h03 gw t15 zzzz",""] },
+		{ div:["d w06 t01 call_ended_"], s:["abs w06 h03 gw t15 zzzz",""] },
+		{ div:["d w06 t01 call_ended_"], s:["abs w06 h03 gw t15 zzzz",""] },
 
 		{ div:["e"], ufn:["call_popup_ufn",":v:activities:src_uid"] }
 	]},
@@ -456,14 +461,11 @@ function _sup ()
 function call_popup_end (el, a, vw)
 {
 	// action btns
-	var last_status = vw.firstChild.firstChild.className;
-	// vw.firstChild.firstChild.className = "call_ended";
+	var last_status = vw.firstChild.childNodes[1].className;
+	vw.firstChild.childNodes[1].className = "call_ended";
 	if (last_status!="call_connected")  // auto close popup is call not connected
 	{
 		// activity_close (vw); // clear
-		document.getElementById ("activity_close").checked = true; // unhilite sbr
-		vw.parentNode.parentNode.firstChild.firstChild.checked = true; // switch tabs
-		vw.innerHTML = "";
 		return;
 	}
 	// var r = []

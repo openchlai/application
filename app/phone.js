@@ -24,7 +24,7 @@ te["call_session"] = { /*p:["","sipid(0,10)"],*/ c:
 	]} 
 ]};
 
-// -----------------------------
+// ------------------------------------------------------------------------
 
 function DetectDevices()
 {
@@ -475,20 +475,19 @@ VOICEAPPS_UA.dial = function (dial_str)
 	});
 }
 
-// ----------------------------
+// ------------------------------------------------------------------------
 
-function _ami_action (el, o, action)
+function ami_action (el, o, action)
 {
 	var u = el.id.split ("-")
 	o.action = action;
-	console.log ("[ami_action] "+JSON.stringify (o)+" | "+el);
 	url (__(el), u[0], u[1], "", null, 2, o, "POST");
 }
 
 function _kickout (ev)
 {
 	var o = {};
-	_ami_action (this, o, "6");	
+	ami_action (this, o, "6");	
 	// boo (ev)
 }
 
@@ -500,7 +499,7 @@ function _add_action (ev)
 	var o = {}
 	jso (p, o);
 	argv (el, o);	
-	_ami_action (this, o, u[2]);	
+	ami_action (this, o, u[2]);	
 	boo (ev);
 }
 
@@ -518,7 +517,7 @@ function _add_dial (ev)
 	jso (p, o);  
 	argv (el, o);
 	// if (o.cbid.length>0) o.chan2=""; // unset chan2 to remove it from unnecesary redirect
-	_ami_action (this, o, "2");	
+	ami_action (this, o, "2");	
 }
 
 function _add_dial_form ()
@@ -538,19 +537,12 @@ function _add_dial_form ()
 	ldami (re["channels"]);
 }
 
-// ------------------------------------
-
-function phone_hangup (id)
-{
-	var vs = CALLS[id]
-	VOICEAPPS_UA.endcall (vs.session, vs.leg);
-}
-
 function _hangup (ev)
 {
 	var o = {};
-	argv (__(this,"vf").firstChild.lastChild, o); console.log ("[vf] "+JSON.stringify(o))
-	phone_hangup (o["src_callid"])
+	argv (__(this,"vf").firstChild.lastChild, o);
+	var vs = CALLS[o["src_callid"]]
+	VOICEAPPS_UA.endcall (vs.session, vs.leg);
 	boo (ev);
 }
 
@@ -567,9 +559,7 @@ function _answer (ev)
 {
 	var o = {};
 	argv (__(this,"vf").firstChild.lastChild, o)
-	console.log ("answer start ---------------------"+o["src_callid"])
 	CALLS[o["src_callid"]].session.accept ({ sessionDescriptionHandlerOptions: { constraints: { audio: true, video: false } } });
-	console.log ("answer end ---------------------"+o["src_callid"])
 	boo (ev);
 }
 

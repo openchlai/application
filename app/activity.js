@@ -390,7 +390,7 @@ te["activity_contacts"] = { div:["xx","contacts"], c:
 	[
 		{ div:["tt"], c:
 		[
-			{ s:["c xx y cd","Matching Reporters"] },
+			{ s:["d xx y cd","Matching Reporters"] },
 			{ div:["e"] }
 		]},
 		{ div:["","vt"], c: // 
