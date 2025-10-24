@@ -174,13 +174,13 @@ te["call_wrapup"] = { div:["ma w10"], c:
 
 te["call_toolbar"] = { c:
 [
-	{ div:["w20_ ma t01 mtn1 g"], s:["w10_ t15 abs",""], c:
+	{ div:["w16 ma t01"], s:["w12 t20 abs",""], c:
 	[
-		{ div:["xx y gr bd w10 cw"], c:
+		{ div:["xx y bd w10 cr gws_ s"], c:
 		[
-			{ s:["c",""] },
+			{ s:["c","&nbsp;"] },
 			{ s:["d",""] },
-			{ arg:["ts","",":v:activities:src_status"] }, 
+			{ arg:["ts","","0"] }, 
 			{ div:["e"] }
 		]},
 	]},
@@ -468,8 +468,10 @@ function call_popup_end (el, a, vw)
 		// activity_close (vw); // clear
 		return;
 	}
-	// var r = []
-	// nd (vw.firstChild.firstChild, te["call_wrapup"], [], r, [0])l
+	coll_ = vw.firstChild.firstChild.firstChild.firstChild.childNodes
+	coll_[0].innerHTML = "Wrapup";
+	coll_[1].innerHTML = hmst (a.hangup_ts, ["","","hms","","","",""]); // ts_txt;
+	coll_[2].value = a.hangup_ts;
 }
 
 function call_popup_hold_state (el, f)
@@ -487,7 +489,7 @@ function call_popup_hold_state (el, f)
 
 function call_popup_upd (el)
 {
-	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes; 
+	var p = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1]; 
 	var el_ = __(el,"va");
 	var vs = CALLS[el_.previousSibling.value];
 	var a = {};
@@ -501,18 +503,20 @@ function call_popup_upd (el)
 	el_.childNodes[1].childNodes[2].innerHTML = re["call_state"][a.src_state][0];
 	
 	// vw -> action btns
-	if (coll[1].firstChild && coll[1].firstChild.lastChild)
+	if (p.firstChild && p.firstChild.lastChild)
 	{
 		var a_ = {};
-		argv (coll[1].firstChild.lastChild, a_);
+		argv (p.firstChild.lastChild, a_);
 		if (a_.src_uid && a_.src_uid==a.src_uid)
 		{
-			coll[1].firstChild.childNodes[1].className = re["call_state"][a.src_state][1]; // action btns
-			// todo: action status
+			p.firstChild.childNodes[1].className = re["call_state"][a.src_state][1]; // action btns
+			// vw - toolbar
+			coll_ = p.firstChild.firstChild.firstChild.firstChild.childNodes
+			coll_[0].innerHTML = re["call_state"][a.src_state][0];
+			coll_[1].innerHTML = hmst (a.src_state_ts, ["","","hms","","","",""]); // ts_txt;
+			coll_[2].value = a.src_state_ts;
 		}
 	}
-
-	return 0;	
 }
 
 function call_popup (el, f=0) 
@@ -569,7 +573,10 @@ function call_popup_ufn (el, u, a, r, m)
 		if (elh_) elh_.checked = true;
 	}
 	p.childNodes[1].className = re["call_state"][a.src_state][1]; // action btns
-	// todo: action status
+	var coll_ = p.firstChild.firstChild.firstChild.childNodes
+	coll_[0].innerHTML = re["call_state"][a.src_state][0];
+	coll_[1].innerHTML = hmst (a.src_state_ts, ["","","hms","","","",""]); // ts_txt;
+	coll_[2].value = a.src_state_ts;
 }
 
 function _call_popup () 

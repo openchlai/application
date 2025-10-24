@@ -9,14 +9,14 @@ te["call_session"] = { /*p:["","sipid(0,10)"],*/ c:
 			{ s:["c y micon","phone"] },
 			{ s:["c l07 y",":v:activities:src_vector::vector:4"] }, 	// type
 			{ s:["d x y","0:00"] },
-			{ arg:["ts","",":v:activities:src_status"] }, 		// status-ts
+			{ arg:["ts","",":v:activities:src_status"] }, 			// status-ts
 			{ div:["e"] }
 		]},	
 		{ div:["l03"], c:
 		[
 			{ s:["c l15",":v:activities:src_address"] },
 			{ s:["c x n g",":v:activities:src_vector::vector:5"] },
-			{ s:["d x cr","..."] }, // status
+			{ s:["d x cr","..."] }, 								// status
 			{ div:["e"] }
 		]},
 		{ p:["g"], uaudio:[null,"",""] },
@@ -169,7 +169,7 @@ function VOICEAPPS_SESSION (_leg)
 					var vw = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1]; 
 					var a = {}
 					argv (el, a); 
-					me.hangup_ts = (Math.ceil ((Date.now()/1000)));
+					a.hangup_ts = me.hangup_ts = (Math.ceil ((Date.now()/1000)));
 					if (vw && vw.firstChild && vw.firstChild.lastChild) 
 					{
 						var a_ = {}
