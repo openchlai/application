@@ -1253,6 +1253,7 @@ function url (p, u, m, a="", data=null, l=0, o=null, meth="GET")
         //      // window.alert ("Error: " + ev.target.status);
         };
 	   var cc = document.getElementById ("vv").childNodes;
+	   console.log ("vv:"+cc.length)
 	   if (cc.length>1) cc[1].innerHTML = ""; // clear network error
         // todo: progress bar (useful for file upload)
         x.send (data);
