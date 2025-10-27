@@ -1245,6 +1245,7 @@ function url (p, u, m, a="", data=null, l=0, o=null, meth="GET")
         };
         x.onerror = function (error)
         {
+			p.innerHTML = "";
                console.error (error)
 			var p = document.getElementById ("vv").childNodes[1];
 			p.parentNode.scroll ({ top: 0, left: 0, behavior: 'smooth' });
