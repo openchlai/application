@@ -1251,7 +1251,8 @@ function url (p, u, m, a="", data=null, l=0, o=null, meth="GET")
 			p.innerHTML = "<div class='x15 yy gr'>Request failed due to Network Error.</div>";
         //      // window.alert ("Error: " + ev.target.status);
         };
-	   document.getElementById ("vv").childNodes[1].innerHTML = ""; // clear network error
+	   var cc = document.getElementById ("vv").childNodes;
+	   if (cc.length>0) cc[1].innerHTML = ""; // clear network error
         // todo: progress bar (useful for file upload)
         x.send (data);
 }
