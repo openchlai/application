@@ -158,7 +158,7 @@ function ati_popup_unread (pv, ch)
 
 function ati_popup (el, f=0)
 {
-	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].childNodes[1].childNodes; 
+	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes 
 	var a = {};
 	argv (el, a);
 	if (re["case_src"][a.src][11]=="phone") a.src_address = _phone_fmt (a.src_address);
@@ -191,7 +191,7 @@ function ati_popup (el, f=0)
 	if (f==0 && (a.src=="escalation" || a.src=="update")) return; 	// dont auto-bobup coz notif will clear on activity fetch
 
 	el.firstChild.checked = true; 							// hilite call-notif			
-	coll[0].parentNode.parentNode.previousSibling.checked = true;
+	// coll[0].parentNode.parentNode.previousSibling.checked = true;
 	coll[0].checked = true;
 	var s = "-1?src="+a.src + "&src_uid="+a.src_uid + "&src_callid="+a.src_callid + "&src_address="+a.src_address + "&src_vector="+a.src_vector;
 	url (coll[1], "activity_vw_id_chat", "activities", s);
