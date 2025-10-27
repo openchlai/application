@@ -780,7 +780,6 @@ te["dash"] = { c:
 	[
 		{ div:["ma w19 t01"], c:
 		[
-			{ input:["g","","sbl_","1","radio","1"] },
 			{ input:["g","","sbr_","1","radio"] },
 			{ ac:["abs ao mt17 w15 sh__ bd gg","","_activity_vw_id","xx bd gg cw",""], c:
 			[
@@ -1159,7 +1158,7 @@ function loadphone (el, u, a, r, m)
 	if (v) document.getElementById ("vv").className = v[2];
 	console.log ("loadphone: "+ra["auth"][0][7]+" | "+JSON.stringify (v));
 	DetectDevices ();
-	VOICEAPPS_UA.connect (ra["auth"][0][7]);
+	// VOICEAPPS_UA.connect (ra["auth"][0][7]);
 }
 
 function ami_wait (el, u, a, r, m)
