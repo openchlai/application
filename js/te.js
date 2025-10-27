@@ -1180,7 +1180,8 @@ function url_progress (ev)
 
 function url (p, u, m, a="", data=null, l=0, o=null, meth="GET")
 {
-        if (l==0)
+     console.log ("url > "+p)
+	if (l==0)
         {
                 var le = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
                 le.className = "xx t02 s go sh'";
@@ -1245,11 +1246,12 @@ function url (p, u, m, a="", data=null, l=0, o=null, meth="GET")
         };
         x.onerror = function (error)
         {
+			console.log ("url error > "+p)
 			p.innerHTML = "";
                console.error (error)
-			var p = document.getElementById ("vv").childNodes[1];
-			p.parentNode.scroll ({ top: 0, left: 0, behavior: 'smooth' });
-			p.innerHTML = "<div class='x15 yy gr'>Request failed due to Network Error.</div>";
+			var p_ = document.getElementById ("vv").childNodes[1];
+			p_.parentNode.scroll ({ top: 0, left: 0, behavior: 'smooth' });
+			p_.innerHTML = "<div class='x15 yy gr cw'>Request failed due to Network Error.</div>";
         //      // window.alert ("Error: " + ev.target.status);
         };
 	   var cc = document.getElementById ("vv").childNodes;
