@@ -1248,11 +1248,11 @@ function url (p, u, m, a="", data=null, l=0, o=null, meth="GET")
         {
 			var p_ = document.getElementById ("vv").childNodes[1];
 			console.log ("url error > "+p+" "+p_)
-			p.innerHTML = "";
+			// p.innerHTML = "";
 			p_.parentNode.scroll ({ top: 0, left: 0, behavior: 'smooth' });
 			p_.innerHTML = "<div class='x15 yy gr cw'>Request failed due to Network Error.</div>";
 			 console.error (error)
-        //      // window.alert ("Error: " + ev.target.status);
+			window.alert ("Request failed due to Network Error");
         };
 	   var cc = document.getElementById ("vv").childNodes;
 	   console.log ("vv:"+cc.length)
