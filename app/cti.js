@@ -165,13 +165,6 @@ te["call_add_form_main"] = { div:["w30 ma bd sh__ gw xx yy","vddvw"], ev:["_undd
 	{ div:["","cba"] } // show add-chan status 
 ]};
 
-te["call_wrapup"] = { div:["ma w10"], c: 
-[
-	{},
-	{},
-	{ div:["e"] }
-]};
-
 te["call_toolbar"] = { c:
 [
 	{ div:["w16 ma t01"], s:["w12 t20 abs",""], c:

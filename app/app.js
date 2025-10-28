@@ -778,15 +778,28 @@ te["dash"] = { c:
 [
 	{ div:["","vb"], c:
 	[
-		{ div:["ma w19 t01"], c:
+		{ div:["ma w19_ t01"], c:
 		[
-			{ input:["g","","sbr_","1","radio"] },
-			{ ac:["abs ao mt17 w15 sh__ bd gg","","_activity_vw_id","xx bd gg cw",""], c:
+			{ div:["c w13_ t01 "], s:["abs mt17 w13_",""], c:
 			[
-				{ s:["c y","Walk In"] }, // todo : change to new activity to allow outboud calls and messages  new activiy| walkin_ico|call_ico|msg_ico
-				{ s:["d t03 h2 micon","directions_walk"] },  // center activity action btns here
-				{ div:["e"], c:[ { arg:["",".id","-1"] }, { arg:["","src","walkin"] }, { arg:["","src_address",""] } ] }
+				{ input:["g","","sbr","1","radio"] },
+				{ ac:["ao  sh__ bd gg","","_activity_vw_id","xx bd gg cw h03",""], c:
+				[
+					{ s:["c y","Walk In"] },
+					{ s:["d t03 h2 micon","directions_walk"] },
+					{ div:["e"], c:[ { arg:["",".id","-1"] }, { arg:["","src","walkin"] }, { arg:["","src_address",""] } ] }
+				]}
 			]},
+			{ div:["c w03_ t01 l"], s:["abs mt17 w03_",""], c:
+			[
+				{ input:["g","","sbr","1","radio"] },
+				{ ac:["ao  sh__ bd gg","activity_new-r_","_vp","bd gg cw h03",""], c:
+				[
+					{ s:["t h2 tc","&plus;"] },
+					{ div:["e"] }
+				]}
+			]},
+			{ div:["e"] }
 		]},
 		{ div:["xx tt b20  mtn1	"], c:
 		[
@@ -1030,7 +1043,7 @@ te["main"] = { c:
 		{ div:["g"], c:
 		[
 			{ iframe:["","",VA_AMI_HOST] },
-			// { iframe:["","",VA_ATI_HOST] },
+			{ iframe:["","",VA_ATI_HOST] },
 		]},
 	]}
 ]};

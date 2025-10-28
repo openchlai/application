@@ -1,5 +1,28 @@
 var ACT_COUNT = 0;
 
+te["activity_new"] = { div:["w30 ma bd sh__ gw xx y","vddvw"], ev:["_undd"], c:
+[
+	{ div:[], c:
+	[
+		{ s:["c x yy n","New Activity"] },
+		{ div:["d x"], ac:["","","_uvp","x y h cb","&Cross;"] },
+		{ div:["e"] }
+	]},
+	{ div:[], c:
+	[
+		{ s:["x t cd","Enter Phone Number"] },
+		{ div:["x y"], c:[ { input:["w29 ba x y","","src_address","","text",""] } ] }
+	]},
+	{ div:[], c:
+	[
+		{ div:["c x y"], c:[ { ac:["ao btn","chan_add_ld-chan-4","_activity_call","x y w13 gws_ cb tc","Call"] }, { s:["y bd b savl","..."] } ] },
+		{ div:["c x y"], c:[ { ac:["ao btn","chan_add_ld-chan-5","_activity_msg","x y w13 gws_ cb tc","Text"] }, { s:["y bd b savl","..."] } ] },
+		{ p:["e","o"] }
+	]}
+]};
+
+// ---------------------------------------------------------------------
+
 te["activity_message_sended"] = { ufn:["activity_message_sended"] };
 
 te["activity_messages_ufn"] = { ufn:["activity_messages_ufn"] };
@@ -1209,4 +1232,15 @@ function _activity_vw_id (ev)
 	}
 	url (coll[1], ("activity_vw_id"+re["case_src"][a.src][10]), "activities", s);
 	boo (ev)
+}
+
+function _activity_call ()
+{
+	var a = {};
+	argv (__(this), a);
+	var p = document.getElementById ("vp");
+	p.style.display = "none";
+	p.innerHTML = "";
+	VOICEAPPS_UA.dial(a.src_address)
+
 }

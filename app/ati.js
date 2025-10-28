@@ -235,7 +235,7 @@ function atis_pop (ts)
 function atis (o,k,ts)
 {
 	var coll = document.getElementById ("vv").childNodes;
-	var pv = coll[6].childNodes[0].childNodes[1].childNodes[1].childNodes[1]; 
+	var pv = coll[6].childNodes[0].childNodes[1]; 
 	var pu = document.getElementById ("call_sessions");
 	var user_cid = document.getElementById ("user_cid").value;
 	var c = [0,0,0,0,0,0,0];
@@ -271,18 +271,18 @@ function atis (o,k,ts)
 			}
 			chan_t[ch[2]].ts=ts;
 			var st = ati_status (ch);
-			var coll = el.childNodes[1].childNodes;
-			var unnotified = (ch[22]*1) - (coll[1].childNodes[1].firstChild.innerHTML*1) //
+			var coll_ = el.childNodes[1].childNodes;
+			var unnotified = (ch[22]*1) - (coll_[1].childNodes[1].firstChild.innerHTML*1) //
 			unread_tot += (ch[22]*1)
 			console.log ("[ati] status="+st+" unread="+ch[22] +" unnotified="+unnotified+"|"+el_)
-			coll[0].childNodes[2].innerHTML = hmst (ch[st], ["","","hms","","","",""]);;
-			coll[0].childNodes[3].value = ch[st];
-			// coll[1].childNodes[0].innerHTML = ch[27]; //src_msg
-			coll[1].childNodes[1].firstChild.innerHTML = ch[22];
-			coll[1].childNodes[1].style.display = (ch[22]*1)>0?"block":"none";
+			coll_[0].childNodes[2].innerHTML = hmst (ch[st], ["","","hms","","","",""]);;
+			coll_[0].childNodes[3].value = ch[st];
+			// coll_[1].childNodes[0].innerHTML = ch[27]; //src_msg
+			coll_[1].childNodes[1].firstChild.innerHTML = ch[22];
+			coll_[1].childNodes[1].style.display = (ch[22]*1)>0?"block":"none";
 			if (unnotified!=0 || el_==null) 
 			{
-				coll[2].firstChild.play ();
+				coll_[2].firstChild.play ();
 				if (pv.firstChild && pv.firstChild.lastChild) ati_popup_unread (pv,ch);	
 			}
 		}
@@ -291,20 +291,22 @@ function atis (o,k,ts)
 		{
 			if (pv.firstChild && pv.firstChild.id == ch[ATI.CHAN_BRIDGE_ID])
 			{
-				var p_ = pv.lastChild.lastChild.childNodes[1].firstChild; 			// reload chats
-				url (p_, "activity_messages", "messages", ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30"));
+			//	var p_ = pv.lastChild.lastChild.childNodes[1].firstChild; 			// reload chats
+			//	url (p_, "activity_messages", "messages", ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30"));
 
-				var coll_ = coll[2].firstChild.firstChild.firstChild.childNodes; 	// reload aii sidebar
-				// todo: highlight icon
-				coll[2].style.display = "block";
-				coll[6].className = "mmr";
-				coll_[2].firstChild.checked=true;
-				coll_[2].childNodes[1].innerHTML = "...";
-				url (coll_[2].childNodes[1], "case_insights","messages",  ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=1&sort=id")); // pick latest
+			//	var coll_ = coll[2].firstChild.firstChild.firstChild.childNodes; 	// reload aii sidebar
+			//	// todo: highlight icon
+			//	coll[2].style.display = "block";
+			//	coll[6].className = "mmr";
+			//	coll_[2].firstChild.checked=true;
+			//	coll_[2].childNodes[1].innerHTML = "...";
+			//	url (coll_[2].childNodes[1], "case_insights","messages",  ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=1&sort=id")); // pick latest
 
 				// todo: read to remove notification
 			}
 		}
+
+		// todo: propagate new notification to recepient
 	}
 
 	var p_ = document.getElementById ("ati_status");
