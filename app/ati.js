@@ -114,9 +114,9 @@ te["ati_toolbar"] = { c:
 
 		{ div:["d w12 t01"], s:["abs w12 t17 b05 gw zzzz",""], c:
 		[
-			{ div:["","ve"], c:
+			{ ac:["ay btn","","_ati_end","cb",""], c: 
 			[
-				{ ac:["d ay r20 btn","","_ati_end","w03 h cb tc micon","last_page"] },
+				{ ac:["d r20 w03 h cb tc micon","last_page"] },
 				{ s:["d x t cb s","End Chat"] },
 				{ div:["e"] }
 			]}
