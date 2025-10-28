@@ -5,7 +5,9 @@
 <script>
 <?php
 include "config.php";
- 
+
+echo "var APIPATH = \"".$API_PATH."\";\r\n";
+
 echo "var VA_SIP_USER_PREFIX = \"".$VA_SIP_USER_PREFIX."\";\r\n";
 echo "var VA_SIP_PASS_PREFIX = \"".$VA_SIP_PASS_PREFIX."\";\r\n";
 echo "var VA_SIP_HOST = \"".$VA_SIP_HOST."\";\r\n";

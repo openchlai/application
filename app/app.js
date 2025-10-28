@@ -2,8 +2,6 @@
 // "maybe the solution is ai. (how can AI be the solution?) Thats the first question we will ask Ai"
 // 
 
-var APIPATH = "/helpline/api/";  
-
 var UU = 
 {
 "login":{ 200:[["loadphone","ss"],["main","ss","vv"]], 401:[["login","user_","vv"]], 412:[["nb","errors","v","nb"]] },
