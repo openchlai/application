@@ -1228,7 +1228,7 @@ function rxmsg (ev)
 {
         if (document.getElementById ("user_cid")==null) return;
 
-        // console.error (ev.data)
+        // console.debug (ev.data)
         
         var o = JSON.parse (ev.data);
 

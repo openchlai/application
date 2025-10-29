@@ -186,19 +186,15 @@ function ati_popup (el, f=0)
 		console.log ("[ati] activity_vw_id_args "+a.src_callid+","+a_.src_callid)
 		if (a.src_callid==a_.src_callid) // is same session -- update src args only and select new ati_session
 		{
-			var p_ = coll[1].firstChild.lastChild;
-			var r_ = re["r_"][0].slice(0);
-			var k = re["activities_k"];
-			r_[k["src"][0]] = a.src;
-			r_[k["src_ts"][0]] = a.src_ts;
-			r_[k["src_uid"][0]] = a.src_uid;
-			r_[k["src_callid"][0]] = a.src_callid;
-			r_[k["src_address"][0]] = a.src_address;
-			r_[k["src_usr"][0]] = a.src_usr;
-			r_[k["src_vector"][0]] = a.src_vector;
-			r_[k["src_uid2"][0]] = a.src_uid2;
-			p_.firstChild.innerHTML = "";
-			nd (p_.firstChild, te["activity_vw_id_args"], [], r_, [0]);
+			var z = coll[1].firstChild.lastChild.firstChild.childNodes;
+			for (var j; j<z.length; j++)
+			{
+				if (z[j].name && z[j].name.length>0 && a[z[j].name]!==undefined) 
+				{
+					console.log (z[j].name+": "+a[z[j].name]);
+					z[j].value = a[z[j].name];
+				}
+			}
 			el.firstChild.checked = true; 					// hilite call-notif			
 		}
 		return

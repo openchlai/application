@@ -1356,7 +1356,7 @@ function uvpf (el)
 	elvpf = null;
 	jso (p, o);
 	ra[u[1]] = o;
-	console.log(o)
+	// console.log(o)
 	p = document.getElementById ("vp");
 	p.style.display = "none";
 	p.innerHTML = "";
@@ -1413,7 +1413,7 @@ function vpf (el)
 	var o = {}; 
 	jso (elvpf, o);
 	ra[u[1]] = o;
-	console.log (o)
+	// console.log (o)
 	vp (p);
 	nd (p, te[u[0]], [], [], [0]);
 }
