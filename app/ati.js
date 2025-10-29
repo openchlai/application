@@ -88,7 +88,7 @@ te["ati_toolbar"] = { c:
 		{ div:["c w10 ba_b bdl"], c:
 		[
 			{ input:["g","","case_vw_id_t","2","radio","1"] },
-			{ ac:["ao tab","","_tab","y cb tc s","Chat"] }
+			{ ac:["ao tab","","_ati_tab","y cb tc s","Chat"] }
 			// todo: unread counter
 		]},
 		{ div:["c w10 bt_b bb_b br_b bdr"], c:
@@ -143,6 +143,19 @@ function _ati_end ()
 	var o = {"close":"close", "src_msg":"*closed*"};
 	argv (p, o);
 	url (this.parentNode, "ati_end", "messages", "", null, 2, o, "POST");
+}
+
+function _ati_tab ()
+{
+	var coll = __(this,"vb").parentNode.lastChild.childNodes;
+	if (this.previousSibling.value==2)
+	{
+		var i_ = 0;
+		for (var i=0; i<2; i++) if (coll[i].firstChild.checked==true) { i_=i; break; }
+		this.parentNode.nextSibling.firstChild.value = i_; 
+	}
+	this.previousSibling.checked = true;
+	coll[this.previousSibling.value].firstChild.checked = true;
 }
 
 function ati_popup_unread (pv, ch)

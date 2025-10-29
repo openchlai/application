@@ -1180,49 +1180,49 @@ function url_progress (ev)
 
 function url (p, u, m, a="", data=null, l=0, o=null, meth="GET")
 {
-    // console.log ("url > "+p)
+	// console.log ("url > "+p)
 	if (l==0)
-        {
-                var le = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
-                le.className = "xx t02 s go sh'";
-                le.id = "loadn";
-                le.innerHTML = "";
-                p.insertBefore (le, p.firstChild); // todo: ajax loader on p or el?
-        }
-        if (l==2 || l==3)
-        {
-                p.className="savn";
-                var nb = _(p,"nb");
-                if (nb) nb.innerHTML = "";
-        }
-        var x = new XMLHttpRequest ();
-        if (l==4)
-        {
-                p.className="savn";
-                x.addEventListener('loadstart', url_progress);
-                x.addEventListener('load', url_progress);
-                x.addEventListener('loadend', url_progress);
-                x.addEventListener('progress', url_progress);
-                x.addEventListener('error', url_progress);
-                x.addEventListener('abort', url_progress);
-        }
-        if (m.length>0) m+="/";
-        x.open (meth, (APIPATH+m+a), true);
-        x.responseType = 'blob';
-        if (o && u=="login")
-        {
-                var s = btoa (o.user+":"+o.pass);
-                x.setRequestHeader('Authorization','Basic ' + s);
-                o = null;
-        }
-	 if (o)
-        {
-                // console.log ("-------JJ");
-                x.setRequestHeader('Content-Type','application/json');
-                data = JSON.stringify (o);
-        }
-        x.onload = function (ev)
-        {
+	{
+		var le = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
+		le.className = "xx t02 s go sh'";
+		le.id = "loadn";
+		le.innerHTML = "";
+		p.insertBefore (le, p.firstChild); // todo: ajax loader on p or el?
+	}
+	if (l==2 || l==3)
+	{
+		p.className="savn";
+		var nb = _(p,"nb");
+		if (nb) nb.innerHTML = "";
+	}
+	var x = new XMLHttpRequest ();
+	if (l==4)
+	{
+		p.className="savn";
+		x.addEventListener('loadstart', url_progress);
+		x.addEventListener('load', url_progress);
+		x.addEventListener('loadend', url_progress);
+		x.addEventListener('progress', url_progress);
+		x.addEventListener('error', url_progress);
+		x.addEventListener('abort', url_progress);
+	}
+	if (m.length>0) m+="/";
+	x.open (meth, (APIPATH+m+a), true);
+	x.responseType = 'blob';
+	if (o && u=="login")
+	{
+		var s = btoa (o.user+":"+o.pass);
+		x.setRequestHeader('Authorization','Basic ' + s);
+		o = null;
+	}
+	if (o)
+	{
+		// console.log ("-------JJ");
+		x.setRequestHeader('Content-Type','application/json');
+		data = JSON.stringify (o);
+	}
+	x.onload = function (ev)
+	{
                 // console.log ("XHR content-type: "+x.getResponseHeader("Content-Type"))
 
                 if (x.getResponseHeader("Content-Type").substr (0,6)=="audio/")
@@ -1236,7 +1236,7 @@ function url (p, u, m, a="", data=null, l=0, o=null, meth="GET")
                 {
 				ra={};
 				// console.log (Object.keys(ra))
-				try{ ra = JSON.parse (text); } catch (e) { console.error("feelings"); ra={}; }
+				try{ ra = JSON.parse (text); } catch (e) { console.error("feelings:"+text); ra={}; }
 				// console.log (Object.keys(ra))
                     if (l==2 || l==3 || l==4) p.className="";
                     // if (l==4) ; // set timeout 
@@ -1255,7 +1255,7 @@ function url (p, u, m, a="", data=null, l=0, o=null, meth="GET")
 			window.alert ("Request failed due to Network Error");
         };
 	   var cc = document.getElementById ("vv").childNodes;
-	   console.log ("vv:"+cc.length)
+	  // console.log ("vv:"+cc.length)
 	   if (cc.length>1) cc[1].innerHTML = ""; // clear network error
         // todo: progress bar (useful for file upload)
         x.send (data);
