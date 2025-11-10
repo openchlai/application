@@ -85,7 +85,7 @@ function uchkargs (el, u_, a_, r_, m_)
 		if (a[k]===undefined) a[k]={};
 		a[k][o.value] = "1";
 	}
-	// console.log ("[uchkargs] "+u_[0]+" | "+JSON.stringify (a))
+	console.log ("[uchkargs] "+u_[0]+" | "+JSON.stringify (a))
 	ra[u_[0]] = a;
 }
 

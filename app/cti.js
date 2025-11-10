@@ -234,7 +234,7 @@ te["call_toolbar"] = { c:
 		{ div:["d w06 t01 call_ended_"], s:["abs w06 h03 gw t15 zzzz",""] },
 		{ div:["d w06 t01 call_ended_"], s:["abs w06 h03 gw t15 zzzz",""] },
 
-		{ div:["e"], ufn:["call_popup_ufn",":v:activities:src_uid"] }
+		{ div:["e"] }
 	]},
 ]};
 
@@ -383,10 +383,11 @@ te["aa_status"] = { div:["",null], c:[ { div:["","ve"], c:
 	{ div:["b05 btn"], c:
 	[
 		{ input:["g","is_auto_answer","","1","checkbox",null] },
-		{ ac:["r ay w21","agent-agent","_postjb","h01_ xx y07 cb",""], c:
+		{ ac:["r ay","agent-agent","_postjb","h01_ xx y07 cb",""], c:
 		[ 
-			{ div:["c t02 w01_"], s:["chk",""] },
-			{ s:["c x h02","Auto Answer "] },
+			
+			{ s:["d x h02","Auto Answer "] },
+			{ div:["d t02 w01_"], s:["chk",""] },
 			{ p:["e","o"], arg:["","action",null] }
 		]},
 	]},
@@ -398,7 +399,7 @@ te["joinq_status"] = { div:["",null], c:[ { div:["","ve"], c: //
 [
 	{ ac:["btn aa","agent-agent","_postjb","xx y cb ",""], c:
 	[
-		{ s:["",null] },
+		{ s:["tr",null] },
 		{ p:["","o"], c:[ { arg:["","action",null] }, { arg:["",null,null] }  ] } 
 	]},
 	{ s:["x y go cw savl","..."] }
@@ -425,6 +426,42 @@ re["call_state"] =
 	["On Mute","call_connected","gr cw"],
 	["On Hold","call_connected","gr cw"]
 ];
+
+// -------------------------------------------------------
+
+// depricated te
+
+function _postjb (ev)
+{
+	var id = "v"
+        var u = this.id.split ("-");
+        if (u.length>2) id=u[2]
+        var p = __(this,id);
+        var o = {}; // console.log (k+"|"+id+"|"+p.id);
+        jso (p,o);
+        url (p, u[0], u[1], o[".id"], null, 3, o, "POST");
+        boo(ev);
+}
+
+function _nd (ev)
+{
+	ra = [];
+	for (var k in re) ra[k]=re[k]; // reset ra
+
+	var u = this.id.split("-");
+	var p = this;
+	if (u.length>2 && u[2].length>0) p = __(p,u[2]);
+	if (u.length>3 && u[3].length>0) p = _(p,u[3]);
+	if (u.length>4 && u[4].length>0) p.innerHTML = ""; // todo: doc-fragment
+
+	var r_ = ra[u[1]][0].slice(0); // get a copy
+	rargs (r_, this.firstChild.lastChild.childNodes, r_);
+
+	//console.log ("[nd] "+u[0]+" "+u[1]+" | "+JSON.stringify (r_));
+	nd (p, te[u[0]], [], r_, [0]);
+	boo(ev);
+}
+
 // -------------------------------------------------------
 
 function users_online_ufn (el, u, a, r, m)
@@ -539,7 +576,7 @@ function call_popup (el, f=0)
 	
 	__(el,"va").previousSibling.checked = true;	// hilite call-notif
 	coll[0].checked = true;
-	url (coll[1], "activity_vw_id_call", "activities^call", s);
+	//url (coll[1], "activity_vw_id_call", "activities^call", s);
 
 	var isaa = document.getElementById ("is_auto_answer");
 	var sess = CALLS[a.src_callid];
@@ -548,28 +585,6 @@ function call_popup (el, f=0)
 		console.log ("AUTO ANSWER "+a.src_address+"|"+a.src_callid)
 		if (sess && sess.session) sess.session.accept ({ sessionDescriptionHandlerOptions: { constraints: { audio: true, video: false } } });
 	}
-}
-
-function call_popup_ufn (el, u, a, r, m) 
-{
-	var p = __(el,"vb"); 
-	var el_ = _(document.getElementById ("call_sessions"), u[1])
-	if (!el_) return;
-	var vs = CALLS[__(el_,"va").previousSibling.value];
-	var a = {};
-	argv (el_, a);
-	if (vs && vs.ishold==true) 
-	{ 
-		a.src_state = 8; 
-		a.src_state_ts = vs.ishold_ts;
-		var elh_ = _(p, "chanholdstate", "input");
-		if (elh_) elh_.checked = true;
-	}
-	p.childNodes[1].className = re["call_state"][a.src_state][1]; // action btns
-	var coll_ = p.firstChild.firstChild.firstChild.childNodes
-	coll_[0].innerHTML = re["call_state"][a.src_state][0];
-	coll_[1].innerHTML = hmst (a.src_state_ts, ["","","hms","","","",""]); // ts_txt;
-	coll_[2].value = a.src_state_ts;
 }
 
 function _call_popup () 
@@ -664,6 +679,30 @@ function chani (tp,p,ch,ts,k_=2,top_=0)
 	return el;
 }
 
+function chan_sup (pa,ch,ts)
+{
+	var el = _(pa, ch[AMI.CHAN_UNIQUEID]); // find sup chan	
+	var el_ = _(pa, ch[AMI.CHAN_EXTEN_MASQ]); // find agent chan
+	if (el_==null) return;
+	if (el && el.parentNode.parentNode.id!=ch[AMI.CHAN_EXTEN_MASQ]) // delete 
+	{
+		var p = el.parentNode;
+		p.removeChild (el);
+		el = null;
+	}
+	if (el==null)
+	{
+		el_.firstChild.lastChild.innerHTML = "";
+		el = nd (el_.firstChild.lastChild, te["chan_sup"], [], ch, [0]);
+		el = el.parentNode.parentNode;
+		chan_a[ch[2]] = { "el":el, "ts":ts }; // append chan to chan_a index
+	}
+	var coll = el.firstChild.childNodes;
+	coll[0].innerHTML = ch[AMI.CHAN_CONTEXT_MASQ];
+	coll[1].innerHTML = hmst (ch[AMI.CHAN_PROMPT_TS0], ["","h","hms","0",""]);	// status-duration
+	coll[2].value = ch[AMI.CHAN_PROMPT_TS0];
+}
+
 function chan_add (vp_add, ch, ch_, ts)
 {
 	var m_ = 0;
@@ -711,39 +750,23 @@ function chan_add (vp_add, ch, ch_, ts)
 	}			
 }
 
-function chan_sup (pa,ch,ts)
+function chan_agtk (el,ch,ts)
 {
-	var el = _(pa, ch[AMI.CHAN_UNIQUEID]); // find sup chan	
-	var el_ = _(pa, ch[AMI.CHAN_EXTEN_MASQ]); // find agent chan
-	if (el_==null) return;
-	if (el && el.parentNode.parentNode.id!=ch[AMI.CHAN_EXTEN_MASQ]) // delete 
-	{
-		var p = el.parentNode;
-		p.removeChild (el);
-		el = null;
-	}
-	if (el==null)
-	{
-		el_.firstChild.lastChild.innerHTML = "";
-		el = nd (el_.firstChild.lastChild, te["chan_sup"], [], ch, [0]);
-		el = el.parentNode.parentNode;
-		chan_a[ch[2]] = { "el":el, "ts":ts }; // append chan to chan_a index
-	}
-	var coll = el.firstChild.childNodes;
-	coll[0].innerHTML = ch[AMI.CHAN_CONTEXT_MASQ];
-	coll[1].innerHTML = hmst (ch[AMI.CHAN_PROMPT_TS0], ["","h","hms","0",""]);	// status-duration
-	coll[2].value = ch[AMI.CHAN_PROMPT_TS0];
+	var coll = el.childNodes[1].childNodes
+	coll[0].childNodes[1].innerHTML = ch[AMI.CHAN_CID_NUM_2]
 }
 
 function chans_pop (ts)
-{		
+{	
+		var pu = document.getElementById ("vt_activity");
+	
 	var h=0, n=0, trunk=0;
 	var k = Object.keys (chan_a);
 	for (var i=0; i<k.length; i++)  // remove closed, hangup channels
 	{
 		var id = k[i];
 		if (chan_a[id].ts==ts) continue;
-		console.log ("[pop] "+id+" "+chan_a[id].el +" | "+ts)
+		console.log ("[pop] "+id+" | "+ts+","+chan_a[id].el)
 		if (chan_a[id].el && chan_a[id].el.parentNode) 
 		{
 			var pe = chan_a[id].el.parentNode;
@@ -760,6 +783,19 @@ function chans_pop (ts)
 				var ch = re["channels"][pe.previousSibling.id];
 				if (ch && el_removed) { nd (pe, te["call_add_ld"], [], [a.chan_ts, ch[AMI.CHAN_CBO], a.cid], [0]); }
 			}
+		}
+		if (chan_a[id].agtk)
+		{
+			let o_ = chan_a[id];
+			o_["src"] = "call";
+			o_["src_uid"] = id;
+			o_["src_status"] = o_["status"]+"-"+o_["src_vector"]+"-"; // orig
+			o_["src_end_ts"] = ""+ts;
+			o_["src_status_duration"] = ""+((ts*1)-(o_["src_status_ts"]*1));
+			o_["src_duration"] = ""+((ts*1)-(o_["src_ts"]*1));
+			if (!(o_["src_vector"]=="2" && (o_["status"]*1)<3)) o_["action"] = "complete";
+			// console.log ("call ended -----------------"+ JSON.stringify (o_));
+			url (pu, "activity_new", "activities", "", null, 0, o_, "POST");
 		}
 		delete chan_a[id];
 		h++;
@@ -779,8 +815,8 @@ function chans (o,k,ts)
 	var pq = document.getElementById ("vqueued");
 	var pi = document.getElementById ("vinbound");
 	var po = document.getElementById ("voutbound");
-	var ps = document.getElementById ("vstats");
-	var pu = document.getElementById ("call_sessions");
+	var pu = document.getElementById ("vt_activity");
+	var pvp = document.getElementById ("vp");
 	var user_cid = document.getElementById ("user_cid").value;
 	var vp_add = null
 	var vp_members = null;
@@ -789,22 +825,17 @@ function chans (o,k,ts)
 	var c = [0,0,0,0,0,0,0];
 	var cn = ["","","",""];
 	
-	var pvp = document.getElementById ("vp");
 	if (pvp && pvp.firstChild && pvp.firstChild.firstChild)
 	{
 		if (pvp.firstChild.firstChild.id=="vp_add") vp_add = pvp.firstChild.childNodes[1];
 		if (pvp.firstChild.firstChild.id=="vp_members") vp_members = pvp.firstChild;
 	}
 	
-	//console.log ("[ldami] "+JSON.stringify (k)+ " | "+ts)
-	//console.log (o)
-	                
-	// k.sort ();
 	for (var i=k.length-1; i>-1; i--)
 	{
 		var ch = o[k[i]];
 		
-		if (!ch) { console.log ("[undefined chan] "+i+": "+k[i]); continue; }	
+		if (!ch) { console.error ("[undefined chan] "+i+": "+k[i]+"|"+JSON.stringify(o)); continue; }	
 		if (ch[AMI.CHAN_STATE_HANGUP].length>0) continue; // skip hangup'ed channels
 		// if (ch[AMI.CHAN_SIPCALLID].length<1) continue; // skip setup channels --skips agent chan
 
@@ -825,51 +856,42 @@ function chans (o,k,ts)
 		}
 
 		if (ch[6].substr(0,4)=="DLPN" && ch[AMI.CHAN_SIPCALLID].length>0 && (ch[3].substr(6,4)==(user_cid+"-") || ch[3].substr(6,5)==("0"+user_cid+"-")))  
-		{	
-			if (ch[AMI.CHAN_EXTEN]=="s" && ch[AMI.CHAN_VECTOR]*1<1)  // skip until src_address appears
-			{ 
-				// console.error ("wait for src_address "+ch[2]+","+ch[AMI.CHAN_VECTOR]+","+ch[AMI.CHAN_CID_NUM_2]); 
-				continue; 
-			} 
+		{
+			if (ch[AMI.CHAN_VECTOR]*1<1)  // set vector based in exten
+			{
+				ch[AMI.CHAN_VECTOR] = ch[AMI.CHAN_EXTEN]=="s" ? "2" : "1" 
+			}
 
-			var el = _(pu, ch[2]); // find matching call	
+			chan_status ("chan_args", ch);
+
+			if (!chan_a[ch[2]]) chan_a[ch[2]] = { "src_ts":ch[AMI.CHAN_TS], "src_vector":ch[AMI.CHAN_VECTOR], "agtk":1 };
+			chan_a[ch[2]]["ts"] = ts;
+			chan_a[ch[2]]["status"] 			= ch[AMI.CHAN_STATUS_];
+			chan_a[ch[2]]["status_txt"] 		= ch[AMI.CHAN_STATUS_TXT_];
+			chan_a[ch[2]]["src_status_ts"] 	= ch[AMI.CHAN_STATUS_TS_];
+			if (ch[AMI.CHAN_CID_NUM_2].length>0 && !chan_a[ch[2]]["src_address"]) chan_a[ch[2]]["src_address"] = ch[AMI.CHAN_CID_NUM_2];
+
+			var el = _(pu, ch[2]); // find matching call
+
+			// console.log ("[agtk] "+ch[2]+","+chan_a[ch[2]]["src_callid"]+" | "+el)
 			
 			if (el==null)
 			{
-				var el_ = _(pu, ch[AMI.CHAN_SIPCALLID].substr (0,20));
-				if (el_)
-				{
-					nd (el_.childNodes[1].lastChild, te["chan_args"], [], ch, [0]);
-					el = el_.childNodes[1].lastChild.firstChild;
-					chan_a[ch[2]] = { "ts":ts };
-					call_popup (el);
-				}
+				var o_ = {"src":"call", "src_uid":ch[AMI.CHAN_UNIQUEID], "src_usr":ch[AMI.CHAN_CALLERID_NUM], "src_ts":ch[AMI.CHAN_TS], "src_vector":ch[AMI.CHAN_VECTOR], "action":"notify"}
+        			if (chan_a[ch[2]]["src_callid"]==undefined) url (pu, "activity_new", "activities", "", null, 0, o_, "POST");
+				chan_a[ch[2]]["src_callid"] = ch[AMI.CHAN_SIPCALLID]
 			}
 			
-			if (el) 
+			if (el) chan_agtk (el, ch, ts); 
+
+			if (vp_add && vp_add.id==ch[AMI.CHAN_UNIQUEID]) 
 			{
-				// console.log ("chan_args("+ch[AMI.CHAN_CHAN]+") -> ("+ch[AMI.CHAN_CHAN_2]+") "+ch[AMI.CHAN_UNIQUEID_2]+" | "+ch[AMI.CHAN_CID_NUM_2])
-				chan_a[ch[2]].ts=ts;
-				chan_status ("chan_args", ch);
-				el.childNodes[0].value = ch[AMI.CHAN_STATUS_]; 		// status code
-				el.childNodes[1].value = ch[AMI.CHAN_STATUS_TS_];  	// status ts
-				el.childNodes[2].value = ch[AMI.CHAN_STATUS_TS_TXT_];  // status ts txt
-				el.childNodes[3].value = ch[AMI.CHAN_CID_NUM_2]; 		// update last peer cid
-				el.childNodes[4].value = ch[AMI.CHAN_UNIQUEID_2]; 	// update last peer uid
-				el.childNodes[5].value = ch[AMI.CHAN_CHAN_2]; 		// update last peer chan
-				el.childNodes[6].value = ch[AMI.CHAN_EXTEN_MASQ]; 	// update last exten_masq
-				el.childNodes[7].value = ch[AMI.CHAN_ORIG]; 			// autodial status
-				call_popup_upd (el);
-						
-				if (vp_add && vp_add.id==ch[AMI.CHAN_UNIQUEID]) 
-				{
-					chan_add (vp_add, ch, o[ch[AMI.CHAN_CBO_UNIQUEID]], ts);
-				}
+				chan_add (vp_add, ch, o[ch[AMI.CHAN_CBO_UNIQUEID]], ts);
 			}
-			
+
 			if (ch[AMI.CHAN_CONTEXT_MASQ].substr (0,11)=="supervisor_") // my supervising chan
 			{
-				chan_sup (pa, ch, ts)
+				chan_sup (pa, ch, ts);
 			}
 
 			continue;
@@ -976,37 +998,3 @@ function ldami (o,c)
 	chans (o, k, ts);
 	chans_pop (ts);
 }
-
-// depricated te
-
-function _postjb (ev)
-{
-	var id = "v"
-        var u = this.id.split ("-");
-        if (u.length>2) id=u[2]
-        var p = __(this,id);
-        var o = {}; // console.log (k+"|"+id+"|"+p.id);
-        jso (p,o);
-        url (p, u[0], u[1], o[".id"], null, 3, o, "POST");
-        boo(ev);
-}
-
-function _nd (ev)
-{
-	ra = [];
-	for (var k in re) ra[k]=re[k]; // reset ra
-
-	var u = this.id.split("-");
-	var p = this;
-	if (u.length>2 && u[2].length>0) p = __(p,u[2]);
-	if (u.length>3 && u[3].length>0) p = _(p,u[3]);
-	if (u.length>4 && u[4].length>0) p.innerHTML = ""; // todo: doc-fragment
-
-	var r_ = ra[u[1]][0].slice(0); // get a copy
-	rargs (r_, this.firstChild.lastChild.childNodes, r_);
-
-	//console.log ("[nd] "+u[0]+" "+u[1]+" | "+JSON.stringify (r_));
-	nd (p, te[u[0]], [], r_, [0]);
-	boo(ev);
-}
-

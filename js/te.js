@@ -671,7 +671,7 @@ function valf (r,v)
 		v = ra[a[2]][a[3]]	
 		if (a.length>5 && a[4]=="" && a[5].length>0)  // uchkargs match
 		{
-			// console.log (a[5]+"|"+r[a[5]]+"|"+JSON.stringify(v))	
+			// console.log ("[k-args] "+JSON.stringify(v))	
 			if (v[r[a[5]]]) return "1";
 			return "";
 		}
@@ -751,12 +751,6 @@ function uv (el, u, a, r, m)
 {
 	var a = {args:"?", ".id":""};
 	argv (el, a);
-	//console.log ("[uv] "+JSON.stringify (u)+"|"+JSON.stringify(a));
-	//if (u.length>2 && u[2]<1)
-	//{
-	//	el.innerHTML = "";
-	//	return
-	// }
 	url (el, u[0], u[1], (a[".id"]+a.args));
 }
 
@@ -876,7 +870,7 @@ function uhilite (el, u, a, r, m)
 		}
 	}
 	pk.sort ((a,b)=>{ return a-b }); // todo: check for overlap (remove overlaped pos'es)
-	console.log ("[uhilite] "+u[0].length+" | "+JSON.stringify (pk)+" | "+JSON.stringify (pos))
+	// console.log ("[uhilite] "+u[0].length+" | "+JSON.stringify (pk)+" | "+JSON.stringify (pos))
  
  	var v = u[0];
  	var v_ = "";

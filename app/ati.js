@@ -247,7 +247,7 @@ function atis (o,k,ts)
 {
 	var coll = document.getElementById ("vv").childNodes;
 	var pv = coll[6].childNodes[0].childNodes[1]; 
-	var pu = document.getElementById ("call_sessions");
+	// var pu = document.getElementById ("call_sessions");
 	var user_cid = document.getElementById ("user_cid").value;
 	var c = [0,0,0,0,0,0,0];
 	var unread_tot = 0;
@@ -269,6 +269,7 @@ function atis (o,k,ts)
 
 		if (ch[ATI.CHAN_CONTEXT]=="agtk" && ch[ATI.CHAN_CALLERID_NUM]==user_cid)
 		{
+			continue
 			// console.log ("[ati] "+ch[3])
 			var el = _(pu, ch[2]); // find matching activity
 			var el_ = el;	
@@ -298,10 +299,23 @@ function atis (o,k,ts)
 			}
 		}
 
-		if (ch[ATI.CHAN_SRC]=="aii" && ch[ATI.CHAN_CONTEXT]=="trunk")
+		// console.log ("["+ch[ATI.CHAN_SRC]+"] "+ch[ATI.CHAN_EXTEN]+","+user_cid)
+
+		if (ch[ATI.CHAN_SRC]=="notify" && ch[ATI.CHAN_CONTEXT]=="trunk" && ch[ATI.CHAN_EXTEN]==user_cid)
 		{
-			if (pv.firstChild && pv.firstChild.id == ch[ATI.CHAN_BRIDGE_ID])
-			{
+			var p = coll[2].firstChild.firstChild.childNodes[0].childNodes[1]; // reload notifications
+			var a = {};
+			argv (p.childNodes[2].childNodes[1], a);
+			re["activities_chk"] = { "src_uid": {} };
+			if (a.sbr) re["activities_chk"]["src_uid"][a.sbr] = 1;
+			a = {args:"?"}
+			argv (p.childNodes[2].firstChild, a);
+			url (p, "activity_lst", "activities", a.args);
+			continue;
+		}
+
+		if (ch[ATI.CHAN_SRC]=="aii" && ch[ATI.CHAN_CONTEXT]=="trunk" && pv.firstChild && pv.firstChild.id == ch[ATI.CHAN_BRIDGE_ID])
+		{
 			//	var p_ = pv.lastChild.lastChild.childNodes[1].firstChild; 			// reload chats
 			//	url (p_, "activity_messages", "messages", ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30"));
 
@@ -312,9 +326,6 @@ function atis (o,k,ts)
 			//	coll_[2].firstChild.checked=true;
 			//	coll_[2].childNodes[1].innerHTML = "...";
 			//	url (coll_[2].childNodes[1], "case_insights","messages",  ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=1&sort=id")); // pick latest
-
-				// todo: read to remove notification
-			}
 		}
 
 		// todo: propagate new notification to recepient
@@ -334,6 +345,7 @@ function ldati (o)
 {
         var ts = (Date.now ()/1000);
         var k = Object.keys (o);
+	  // console.log ("atis-------------------------"+JSON.stringify(o))
         re["atis"] = o;
         atis (o, k, ts);        
         atis_pop (ts);

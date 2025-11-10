@@ -26,195 +26,9 @@ te["call_session"] = { /*p:["","sipid(0,10)"],*/ c:
 
 // ------------------------------------------------------------------------
 
-function DetectDevices()
-{
-    	if (!navigator.mediaDevices) { console.log ("VOICEAPPS: navigator.mediaDevices Failed!");  return; }
-    	navigator.mediaDevices.enumerateDevices().then ( function (dev) 
-    	{
-        	// deviceInfos will not have a populated lable unless to accept the permission
-        	// during getUserMedia. This normally happens at startup/setup
-        	// so from then on these devices will be with lables.
-		console.log (dev)
-        	for (var i = 0; i<dev.length; i++) 
-		{
-			console.log ("[DEVICE] Type: "+dev[i].kind+" "+JSON.stringify (dev[i]))
-        	}
-    	}).catch(function (e)
-    	{
-        	console.error("Error enumerating devices", e);
-    	});
-}
-
 var CALLS = {};
 
 var CALL_COUNT = 0;
-
-var WSHOST = "wss://"+VA_SIP_HOST+"/ws/";
-
-var VOICEAPPS_CHANSTATE = [
-[],
-["","Outgoing Call","Dialing","Connected","Call Ended","Call Ended",""],
-["","Incoming Call","Ringing","Connected","Call Ended","Call Ended",""]
-];
-
-function VOICEAPPS_SESSION (_leg)
-{
-	this.session = null;
-	this.leg = _leg;
-	this.remoteStream = null;
-	this.mediaElement = null;
-	this.el = null;
-	this.ssid = null;
-	this.ishold = false;
-	this.ishold_ts = 0;
-	this.hangup_ts = 0;
-
-	const options = {
-            requestDelegate: {
-                onAccept: () => {
-			console.log ("Hold accepted");
-                   // this.held = hold;
-                   // this.enableReceiverTracks(!this.held);
-                   // this.enableSenderTracks(!this.held && !this.muted);
-                   // if (this.delegate && this.delegate.onCallHold) {
-                   //     this.delegate.onCallHold(this.held);
-                   // }
-                },
-                onReject: () => {
-			console.log ("Hold rejected");
-                   // this.logger.warn(`[${this.id}] re-invite request was rejected`);
-                   // this.enableReceiverTracks(!this.held);
-                   // this.enableSenderTracks(!this.held && !this.muted);
-                   // if (this.delegate && this.delegate.onCallHold) {
-                   //     this.delegate.onCallHold(this.held);
-                   // }
-                }
-            }
-        };
-
-	this.handleSessionState = function () 
-	{
-		console.log ("VOICEAPPS_SESSION handleSessionState: "+this.session.id+" leg:"+this.leg);
-		// console.log ("displayName: "+this.session.remoteIdentity.displayName);
-		// console.log (this.session);
-
-		this.session.delegate = { onCallHold: function (h) { console.log ("[OnCallHold] "); } };
-
-		var k = re["activities_k"]
-		var r = re["r_"][0].slice(0);
-		this.ssid = this.session.id;
-		r[0] = this.ssid;
-		r[k["src_address"][0]] = this.session.remoteIdentity.uri.user;
-		r[k["src_usr"][0]] = VOICEAPPS_UA.uao.cid_num;
-		r[k["src_vector"][0]] = this.leg;
-		r[k["src_ts"][0]] = ""+((Date.now ()/1000)-ra_ts);
-		r[k["src_callid"][0]] = this.ssid.substr (0,20);
-		if (this.session.remoteIdentity.displayName) r[1]=this.session.remoteIdentity.displayName;
-		var p = document.getElementById ("call_sessions");
-		var el_ = document.createElement ("P"); 
-		el_.id = this.ssid.substr (0,20);
-		p.insertBefore (el_, p.firstChild);
-		var el = nd (el_, te["call_session"], [(this.leg==1?"/helpline/images/dialtone.wav":"/helpline/images/earlymedia.mp3")], r, [1]);
-		el = el.parentNode.parentNode;
-		this.el = el;
-		var coll = el.childNodes[1].childNodes;
-		var cur_state = 0;
-
-		CALL_COUNT++;
-		notifs ();
-
-		this.mediaElement = coll[2].firstChild; // _(el, "au").firstChild;
-		this.mediaElement.volume = 0.3; // this.leg==1?0.3:0.9;
-		this.mediaElement.play ();
-		this.mediaElement.loop = true;
-
-		var me = this;
-
-		this.session.stateChange.addListener (function (new_state)
-		{
-
-			console.log ("VOICEAPPS_SESSION stateChange: "+new_state);
-			// console.log (me.session)
-
-			var state = cur_state;
-
-			switch (new_state) 
-			{
-			case SIP.SessionState.Initial:
-				state = 1;
-				break;
-	
-			case SIP.SessionState.Establishing:
-				state = 2;
-				console.log ("VOICEAPPS_SESSION: establishing..."+me.session.id); // Session is establishing
-				break;
-	
-			case SIP.SessionState.Established:
-				state = 3;
-				console.log ("VOICEAPPS_SESSION: established");
-				me.mediaElement.volume = 1; // this.leg==1?0.3:0.9;
-				VOICEAPPS_UA.connect_media (me.session, me.mediaElement);
-				break;
-	
-			case SIP.SessionState.Terminating:
-				state = 4;
-				console.log ("VOICEAPPS_SESSION: Terminating");
-	
-			case SIP.SessionState.Terminated:
-				state = 5;
-				console.log ("VOICEAPPS_SESSION: Terminated "+me.session.id);
-				VOICEAPPS_UA.cleanup_media (me.mediaElement);
-				if (el) 
-				{
-					var vw = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1]; 
-					var a = {}
-					argv (el, a); 
-					a.hangup_ts = me.hangup_ts = (Math.ceil ((Date.now()/1000)));
-					if (vw && vw.firstChild && vw.firstChild.lastChild) 
-					{
-						var a_ = {}
-						argv (vw.firstChild.lastChild, a_)
-						if (a_.src_uid && a_.src_uid==a.src_uid) call_popup_end (el, a, vw)
-					}
-					p.removeChild (el);
-					el=null;
-					CALL_COUNT--; // console.log ("CALL_COUNT:"+CALL_COUNT)
-					notifs ();
-				}
-				break;
-	
-			default:
-				console.error ("VOICEAPPS_SESSION: Unknown state");
-				break;
-			}
-
-			if (cur_state != state) // update ts
-			{
-				coll[0].childNodes[2].innerHTML = "0:00";
-				coll[0].childNodes[3].value = ""+(Date.now ()/1000)-ra_ts;
-			}
-
-			// coll[1].childNodes[1].innerHTML = VOICEAPPS_CHANSTATE[me.leg][state]; // update status
-
-			if (state<3) // update ring tone
-			{
-				me.mediaElement.src = "/helpline/images/earlymedia.mp3";
-				me.mediaElement.play ();
-				me.mediaElement.loop = true;
-			}
-
-			// if (state==3) // change buttons
-			// {
-			//	// coll[2].innerHTML = "";
-			//	// nd (coll[2], te["call_session_btns_connected"], [], [], [0]);	
-			//	//coll[3].innerHTML = "";
-			//	//nd (coll[3], te["call_session_actions"], [], [], [0]);	
-			// }
-
-			cur_state = state;
-		});
-	}
-}
 
 var VOICEAPPS_UA =
 {
@@ -231,12 +45,30 @@ var VOICEAPPS_UA =
 		delegate: { onInvite: null },
 	    	transportOptions: 
 		{
-			server : WSHOST,
+			server : "wss://"+VA_SIP_HOST+"/ws/",
 			//traceSip: true,
 			log: { level:"log" },
 		},
 		log: { level:"log" },
 	}
+}
+
+VOICEAPPS_UA.DetectDevices = function ()
+{
+    	if (!navigator.mediaDevices) { console.log ("phone.js: navigator.mediaDevices Failed!");  return; }
+    	navigator.mediaDevices.enumerateDevices().then ( function (dev) 
+    	{
+        	// deviceInfos will not have a populated lable unless to accept the permission
+        	// during getUserMedia. This normally happens at startup/setup
+        	// so from then on these devices will be with lables.
+        	for (var i = 0; i<dev.length; i++) 
+		{
+			console.log ("phone.js: DEVICES Type: "+dev[i].kind+" "+JSON.stringify (dev[i]))
+        	}
+    	}).catch(function (e)
+    	{
+        	console.error("phone.js: Error enumerating devices", e);
+    	});
 }
 
 VOICEAPPS_UA.connect = function (exten)
@@ -258,7 +90,7 @@ VOICEAPPS_UA.connect = function (exten)
 	VOICEAPPS_UA.UA.start()
 	.catch((error) =>
 	{
-		console.log ("[UA start failed] "+error);
+		console.log ("phone.js: [UA start failed] "+error);
 	 	VOICEAPPS_UA.re_connect (["xx y gp cr","Cannot connect to server. Check if server is online."])
         });
 }
@@ -287,14 +119,14 @@ VOICEAPPS_UA.re_connect = function (nbr, t=1)
       
 		VOICEAPPS_UA.UA.reconnect().then(() => 
 		{
-			console.log ("[UA.reconnect successful] "+VOICEAPPS_UA.uao.displayName);
+			console.log ("phone.js: [UA.reconnect successful] "+VOICEAPPS_UA.uao.displayName);
 			// Reconnect attempt succeeded
 			VOICEAPPS_UA.attemptingReconnection = false;
 			VOICEAPPS_UA.re_connect (["xx y",("Extension "+VOICEAPPS_UA.uao.displayName)], 0)
            	})
            	.catch ((error) => 
 		{
-			console.log ("[UA.reconnect failed] "+error);
+			console.log ("phone.js: [UA.reconnect failed] "+error);
 			// Reconnect attempt failed
 			VOICEAPPS_UA.attemptingReconnection = false;
 			VOICEAPPS_UA.re_connect (["xx y gp cr","Reconnect Failed. Retrying in 3sec"])
@@ -305,15 +137,15 @@ VOICEAPPS_UA.re_connect = function (nbr, t=1)
 
 VOICEAPPS_UA.on_connect = function ()
 {
-	console.log ("[send registeration] "+ JSON.stringify (VOICEAPPS_UA.uao));
+	console.log ("phone.js: [send registeration] "+ JSON.stringify (VOICEAPPS_UA.uao));
 	VOICEAPPS_UA.REG.register()
 	.then (() =>
 	{
-		VOICEAPPS_UA.re_connect (["xx y cd",("Extension "+VOICEAPPS_UA.uao.displayName)], 0);
+		VOICEAPPS_UA.re_connect (["xx y cd ",("Extension "+VOICEAPPS_UA.uao.displayName)], 0);
 	})
 	.catch ((error) => 
 	{
-		console.log ("[Registration Failed] "+error)
+		console.log ("phone.js: [Registration Failed] "+error)
 	 	VOICEAPPS_UA.re_connect (["xx y gp cr",e], 0)
 		return;
 	})
@@ -321,11 +153,11 @@ VOICEAPPS_UA.on_connect = function ()
 
 VOICEAPPS_UA.on_disconnect = function (e)
 {
-	console.log ("[disconnected] "+JSON.stringify (e))
+	console.log ("phone.js: [disconnected] "+JSON.stringify (e))
 	VOICEAPPS_UA.REG.unregister()
 	.catch((error) =>
 	{
-              console.log ("[Unregister Error] "+error);
+              console.log ("phone.js: [Unregister Error] "+error);
         });
 
 	// Only attempt to reconnect if network/server dropped the connection (if there is an error)
@@ -333,90 +165,6 @@ VOICEAPPS_UA.on_disconnect = function (e)
 	{
 	    	 VOICEAPPS_UA.re_connect (["xx y gp cr","Disconnected"])
   	}
-}
-
-VOICEAPPS_UA.on_msg = function (e)
-{
-	console.log ("ON__MSG: "+JSON.stringify (e))
-}
-
-VOICEAPPS_UA.on_notify = function (e)
-{
-	console.log ("ON__NOTIFY: "+JSON.stringify (e))
-}
-
-VOICEAPPS_UA.sethold = function (va, hold) 
-{
-	const sessionDescriptionHandlerOptions = va.session.sessionDescriptionHandlerOptionsReInvite;
-	sessionDescriptionHandlerOptions.hold = hold;
-	va.session.sessionDescriptionHandlerOptionsReInvite = sessionDescriptionHandlerOptions;
-	// Send re-INVITE
-	return va.session.invite (va.options).then (() => 
-	{
-		var pc = va.session.sessionDescriptionHandler.peerConnection;
-		pc.getSenders().forEach ((stream) => 
-		{
-			// console.log (stream)
-			stream.track.enabled = !hold;
-			console.log ("Sender Track Status: "+hold+","+stream.track.enabled)
-		});
-		va.ishold = hold;
-		va.ishold_ts = Date.now ()/1000;
-		console.log ("hold is: "+hold);
-		call_popup_hold_state (va.el, hold); // update hold state in toolbar
-		call_popup_upd (va.el.childNodes[1].lastChild.firstChild); 
-	})
-	.catch((error) => 
-	{
-		console.log ("hold errror: "+error);
-	});
-}
-
-VOICEAPPS_UA.endcall = function (session, leg) 
-{
-	switch (session.state) 
-	{
-	case SIP.SessionState.Initial:
-	case SIP.SessionState.Establishing:
-
-	     	 if (leg==1) //session instanceOf SIP.Inviter) 
-		 {
-     		   session.cancel(); // outgoing session
-     		 } else {
-     		    session.reject();  // incoming session
-     		}
-     		break;
-
-    	case SIP.SessionState.Established:
-    		 session.bye();
-		break;
-
-	case SIP.SessionState.Terminating:
-	case SIP.SessionState.Terminated:
-      		break;
-   	} 
-}
-
-VOICEAPPS_UA.cleanup_media = function (mediaElement)
-{
-	mediaElement.srcObject = null;
-	mediaElement.pause();
-}
-
-VOICEAPPS_UA.connect_media = function (session, mediaElement) 
-{
-	var remoteStream = new MediaStream ();
-	session.sessionDescriptionHandler.peerConnection.getReceivers().forEach (function (receiver) 
-	{
-	        if (receiver.track) 
-		{
-			// console.log (" + add track "+remoteStream + " " + mediaElement)
-	            remoteStream.addTrack (receiver.track);
-	        }
-	});
-	mediaElement.loop = false;
-	mediaElement.srcObject = remoteStream;
-	mediaElement.play ();
 }
 
 VOICEAPPS_UA.vs_cleanup = function () 
@@ -429,6 +177,66 @@ VOICEAPPS_UA.vs_cleanup = function ()
 	CALL_COUNT = Object.keys (CALLS).length;
 }
 
+VOICEAPPS_UA.endcall = function (session, leg) 
+{
+	switch (session.state) 
+	{
+	case SIP.SessionState.Initial:
+	case SIP.SessionState.Establishing:
+		if (leg==1) //session instanceOf SIP.Inviter) 
+		{
+			session.cancel(); // outgoing session
+		} else {
+			session.reject();  // incoming session
+		}
+		break;
+
+    	case SIP.SessionState.Established:
+		session.bye();
+		break;
+
+	case SIP.SessionState.Terminating:
+	case SIP.SessionState.Terminated:
+      		break;
+   	} 
+}
+
+VOICEAPPS_UA.sethold = function (vs, hold) 
+{
+	const sessionDescriptionHandlerOptions = vs.session.sessionDescriptionHandlerOptionsReInvite;
+	sessionDescriptionHandlerOptions.hold = hold;
+	vs.session.sessionDescriptionHandlerOptionsReInvite = sessionDescriptionHandlerOptions;
+	// Send re-INVITE
+	return vs.session.invite (vs.options).then (() => 
+	{
+		var pc = vs.session.sessionDescriptionHandler.peerConnection;
+		pc.getSenders().forEach ((stream) => 
+		{
+			stream.track.enabled = !hold;
+			console.log ("phone.js: Sender Track Status:"+hold+","+stream.track.enabled)
+		});
+		vs.ishold = hold;
+		vs.ishold_ts = Date.now ()/1000;
+
+		// call_popup_hold_state (vs.el, hold); // update hold state in toolbar
+		// call_popup_upd (vs.el.childNodes[1].lastChild.firstChild); 
+	})
+	.catch((error) => 
+	{
+		console.error ("phone.js: hold errror: "+error);
+	});
+}
+
+VOICEAPPS_UA.on_msg = function (e)
+{
+	console.log ("phone.js: MSG: "+JSON.stringify (e))
+}
+
+VOICEAPPS_UA.on_notify = function (e)
+{
+	console.log ("phone.js: NOTIFY: "+JSON.stringify (e))
+}
+
 VOICEAPPS_UA.on_invite = function (session) 
 {
 	VOICEAPPS_UA.vs_cleanup ();
@@ -438,7 +246,7 @@ VOICEAPPS_UA.on_invite = function (session)
 	vs.handleSessionState ();
 	CALLS[vs.ssid] = vs ;
 	
-	console.log ("VOICEAPPS_UA: invite "+ dn+" | "+JSON.stringify (session.remoteIdentity)+"|"+vs.ssid)
+	console.log ("phone.js: INVITE received "+ dn+" | "+vs.ssid) // JSON.stringify (session.remoteIdentity)+"|"+
 		
 	if (dn=="Autodial" || dn=="AgentLogin" || dn=="Supervisor")
 	{
@@ -454,7 +262,7 @@ VOICEAPPS_UA.dial = function (dial_str)
 	var target = SIP.UserAgent.makeURI (("sip:"+dial_str+"@"+VA_SIP_HOST));   
 	if (!target) 
 	{
-		console.error ("VOICEAPPS:  dial failed: makeURI failed.");
+		console.error ("phone.js: dial failed: makeURI failed.");
 		return;
     	}
 			
@@ -462,17 +270,155 @@ VOICEAPPS_UA.dial = function (dial_str)
 	vs.session = new SIP.Inviter (this.UA, target, { sessionDescriptionHandlerOptions: { constraints: { audio: true, video: false } } } );
     	vs.handleSessionState ();
 
-	console.log ("VOICEAPPS_UA:   dial new session created | "+ vs.ssid); // INVITE sent
+	console.log ("phone.js: dial  | "+ vs.ssid); // INVITE sent
     	    	
 	CALLS[vs.ssid] = vs;
 	vs.session.invite().then (function () 
 	{
-		console.log ("VOICEAPPS:   Invite sent"); // INVITE sent
+		console.log ("phone.js: INVITE sent | "+vs.ssid); // INVITE sent
 	})["catch"](function (error) 
 	{
-		console.error ("VOICEAPPS:  Invite failed "+error);
+		console.error ("phone.js: INVITE send failed "+error+" | "+vs.ssid);
 		// INVITE did not send
 	});
+}
+
+// ------------------------------------------------------------------------
+
+function VOICEAPPS_SESSION (_leg)
+{
+	this.session = null;
+	this.leg = _leg;
+	this.remoteStream = null;
+	this.mediaElement = null;
+	this.el = null;
+	this.ssid = null;
+	this.ishold = false;
+	this.ishold_ts = 0;
+	this.hangup_ts = 0;
+
+	const options = {
+            requestDelegate: {
+                onAccept: () => {
+			console.log ("phone.js: Hold accepted");
+                   // this.held = hold;
+                   // this.enableReceiverTracks(!this.held);
+                   // this.enableSenderTracks(!this.held && !this.muted);
+                   // if (this.delegate && this.delegate.onCallHold) {
+                   //     this.delegate.onCallHold(this.held);
+                   // }
+                },
+                onReject: () => {
+			console.log ("phone.js: Hold rejected");
+                   // this.logger.warn(`[${this.id}] re-invite request was rejected`);
+                   // this.enableReceiverTracks(!this.held);
+                   // this.enableSenderTracks(!this.held && !this.muted);
+                   // if (this.delegate && this.delegate.onCallHold) {
+                   //     this.delegate.onCallHold(this.held);
+                   // }
+                }
+            }
+        };
+
+	this.handleSessionState = function () 
+	{
+		var cur_state = 0;	
+		this.ssid = this.session.id;
+
+		var k = re["activities_k"]
+		var r = re["r_"][0].slice(0);
+		r[0] = this.ssid;
+		r[k["src_address"][0]] = this.session.remoteIdentity.uri.user;
+		r[k["src_usr"][0]] = VOICEAPPS_UA.uao.cid_num;
+		r[k["src_vector"][0]] = this.leg;
+		r[k["src_ts"][0]] = ""+((Date.now ()/1000)-ra_ts);
+		r[k["src_callid"][0]] = this.ssid.substr (0,20);
+		if (this.session.remoteIdentity.displayName) r[k["src_address"][0]] = this.session.remoteIdentity.displayName;
+
+		var p = document.getElementById ("call_sessions");
+		var el_ = document.createElement ("P"); 
+		el_.id = this.ssid.substr (0,20);
+		p.insertBefore (el_, p.firstChild);
+		var el = nd (el_, te["call_session"], [(this.leg==1?"/helpline/images/dialtone.wav":"/helpline/images/earlymedia.mp3")], r, [1]);
+		el = el.parentNode.parentNode;
+		this.el = el;
+		var coll = el.childNodes[1].childNodes;
+
+		this.mediaElement = coll[2].firstChild;
+		this.mediaElement.volume = 0.3;
+		this.mediaElement.play ();
+		this.mediaElement.loop = true;
+
+		var me = this;
+
+		this.session.delegate = { onCallHold: function (h) { console.log ("phone.js: [OnCallHold] "); } };
+
+		this.session.stateChange.addListener (function (new_state)
+		{
+			console.log ("phone.js: state:"+new_state+" | "+me.ssid);
+
+			// todo: update vw bts state here not in ami
+
+			var state = cur_state;
+
+			switch (new_state) 
+			{
+			case SIP.SessionState.Initial:
+				state = 1;
+				break;
+	
+			case SIP.SessionState.Establishing:
+				state = 2;
+				break;
+	
+			case SIP.SessionState.Established:
+				state = 3;
+				me.mediaElement.volume = 1;
+				var remoteStream = new MediaStream ();
+				me.session.sessionDescriptionHandler.peerConnection.getReceivers().forEach (function (receiver) 
+				{
+					if (receiver.track) 
+					{
+						// console.log (" + add track "+remoteStream + " " + mediaElement)
+						remoteStream.addTrack (receiver.track);
+	        			}
+				});
+				me.mediaElement.loop = false;
+				me.mediaElement.srcObject = remoteStream;
+				me.mediaElement.play ();
+				break;
+	
+			case SIP.SessionState.Terminating:
+				state = 4;
+	
+			case SIP.SessionState.Terminated:
+				state = 5;
+				me.mediaElement.srcObject = null;
+				me.mediaElement.pause();
+				p.removeChild (el);
+				el=null;
+				break;
+	
+			default:
+				break;
+			}
+
+			if (cur_state != state) // update ts
+			{
+				coll[0].childNodes[2].innerHTML = "0:00";
+				coll[0].childNodes[3].value = ""+(Date.now ()/1000)-ra_ts;
+			}
+
+			if (state<3) // update ring tone
+			{
+				me.mediaElement.src = "/helpline/images/earlymedia.mp3";
+				me.mediaElement.play ();
+				me.mediaElement.loop = true;
+			}
+
+			cur_state = state;
+		});
+	}
 }
 
 // ------------------------------------------------------------------------
@@ -530,7 +476,7 @@ function _add_dial_form ()
 	argv (__(this,"vfvw").firstChild.lastChild, o)	
 	el = _(document.getElementById ("call_sessions"), o.src_uid);
 	argv (__(el,"va"), o);
-	console.log ("[_add_dial_form] "+JSON.stringify (o))
+	console.log ("phone.js: [_add_dial_form] "+JSON.stringify (o))
 	r_[AMI.CHAN_UNIQUEID] = o.src_uid;
 	vp (p);
 	nd (p, te[u[0]], [], r_, [0]);

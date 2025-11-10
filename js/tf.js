@@ -26,7 +26,7 @@ te["list_rr"] = { c:
 	{ u:[null] }		// footer
 ]};
 
-te["list"] = { c:
+te["list"] = { c: // 2.f
 [
 	{ u:[null] }, // title
 	{ u:[null] }, // nb
