@@ -668,7 +668,7 @@ te["activity_disposition_k"] = { div:["g"], c:
 	{ div:["e"] }
 ]};
 
-te["activity_disposition_no_data"] = { div:[""], s:["x30 yy cd","Search Contact History"] };
+te["activity_disposition_no_data"] = { div:[""], s:["x30 yy cd","No Records"] };
 
 te["activity_disposition_nb"] = { div:[""], u:["activity_disposition_no_data","dispositions_no_data"] };
 
@@ -885,30 +885,28 @@ te["activity_lst_footer"] = { div:["y bt_ mr2"], c:
 	{ div:["e"] }
 ]};
 
-te["activity_lst_r_disposition"] = { div:["d ll t02 s cr"], uval:["","%0"] };
+te["activity_lst_r_disposition"] = { div:["c r05 t02 s cr"], uval:["","%0"] };
 
-te["activity_lst_r_vector"] = { s:["t",":v:activities:src_vector::vector:5"] };
+te["activity_lst_r_vector"] = { s:["l t",":v:activities:src_vector::vector:6"] };
 
 te["activity_lst_r"] = { p:["",":v:activities:src_uid"], c:
 [
 	{ input:["g","","sbr",":v:activities:src_uid","radio",":k:activities_chk:src_uid::14"] },
-	{ li:["sbr mr2 mb x15 y03 ba bd sh__ gw s cb",""], ev:["_activity_vw_id"], c: 
+	{ li:["sbr mr2 mb xx y03 ba bd sh__ gw cb s"], ev:["_activity_vw_id"], c: 
 	[
 		{ div:[], c:
 		[  
 			{ s:["c t",":v:activities:src::case_src:1"] },
-			{ s:["c t x",":v:activities:src_address"] },
 			{ div:["c"], usub:["activity_lst_r_vector","r_",":v:activities:src","call"] },
-			{ s:["d t",":v:activities:src_status_duration:h:ms::"] },
-			{ arg:["tm","",""] },
+			{ s:["c l t",":v:activities:src_address"] },
+			{ s:["d t",":v:activities:src_status::activity_status:1"] },
 			{ div:["e"] }
 		]},
 		{ div:["h02_ "], c:
 		[	
-			{ s:["c t02",":v:activities:src_ts:r:::: : ago:: : ago:"] },
+			{ s:["d t",":v:activities:src_ts:r:::: : ago:: : ago:"] },
 			{ arg:["tm","",":v:activities:src_ts"] },
-			{ uchk:["activity_lst_r_disposition",":v:activities:dispositions"] },
-			{ s:["d t02",":v:activities:src_status::activity_status:1"] }, 
+			{ uchk:["activity_lst_r_disposition",":v:activities:dispositions"] }, 
 			{ div:["e"] }
 		]},
 		{ div:["g"], c:
@@ -1062,7 +1060,16 @@ function activity_src_address_ufn (el, u, a, r, m)
 
 function activity_agtk_ufn (el, u, a, r, m)
 {
-
+	let src = r[re["activities_k"]["src"][0]] 
+	let id = r[re["activities_k"]["src_uid"][0]];
+	let ch = re["channels"][id]
+	// console.log ("agtk("+src+") "+id+" "+(ch?"ch"+ch[AMI.CHAN_STATE_HANGUP]:"null")+"--------------------")
+	if (src=="call" && ch && ch[AMI.CHAN_STATE_HANGUP].length==0)
+	{
+		
+		chan_status ("chan_args", ch);
+		chan_agtk (el.parentNode.parentNode.parentNode, ch, r[0]) //  
+	}
 }
 
 // ---
@@ -1130,6 +1137,7 @@ function _activity_vw_id (ev)
 	var a = { ".id":0};
 	var s = "";
 	argv (this, a); 
+	console.log("activity_vw_id("+this.id+") "+re["case_src"][a.src][10]+"|"+JSON.stringify(a))
 	if ((a[".id"]*1)<1) 
 	{ 
 		var user_cid = document.getElementById ("user_cid").value;

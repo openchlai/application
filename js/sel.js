@@ -7,7 +7,7 @@ function _ro () { return false; }
 
 function sub (el, u, r, v, v_, f)
 {
-	console.log ("    [sub-check] ("+u[0]+") " + v +"==" + v_ + " | "+f); 
+	// console.log ("    [sub-check] ("+u[0]+") " + v +"==" + v_ + " | "+f); 
 	var vv = v.split (",");
 	var vv_ = v_.split (",");
 	for (var j=0; j<vv.length; j++)
@@ -20,7 +20,7 @@ function sub (el, u, r, v, v_, f)
 			{	
 				if (id==vv_[j_] || (vv_[j_]=="*" && id.length>0))
 				{
-					console.log ("    [sub] ("+u[0]+") "+vvv[k]+"=="+vv_[j_]+"  | "+j+","+j_);
+					// console.log ("    [sub] ("+u[0]+") "+vvv[k]+"=="+vv_[j_]+"  | "+j+","+j_);
 					if (f==true && el.firstChild && el.firstChild.id==u[0]) { console.log("sub-skip"); continue; } // skip if already set
 					el.innerHTML = "";
 					if (f==false) continue;

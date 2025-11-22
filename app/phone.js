@@ -47,9 +47,9 @@ var VOICEAPPS_UA =
 		{
 			server : "wss://"+VA_SIP_HOST+"/ws/",
 			//traceSip: true,
-			log: { level:"log" },
+			//log: { level:"log" },
 		},
-		log: { level:"log" },
+		//log: { level:"log" },
 	}
 }
 
@@ -244,7 +244,7 @@ VOICEAPPS_UA.on_invite = function (session)
 	var vs = new VOICEAPPS_SESSION (dn=="Autodial"?1:2);
 	vs.session = session;
 	vs.handleSessionState ();
-	CALLS[vs.ssid] = vs ;
+	CALLS[vs.ssid.substr (0,20)] = vs ;
 	
 	console.log ("phone.js: INVITE received "+ dn+" | "+vs.ssid) // JSON.stringify (session.remoteIdentity)+"|"+
 		
@@ -272,7 +272,7 @@ VOICEAPPS_UA.dial = function (dial_str)
 
 	console.log ("phone.js: dial  | "+ vs.ssid); // INVITE sent
     	    	
-	CALLS[vs.ssid] = vs;
+	CALLS[vs.ssid.substr (0,20)] = vs;
 	vs.session.invite().then (function () 
 	{
 		console.log ("phone.js: INVITE sent | "+vs.ssid); // INVITE sent

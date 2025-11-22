@@ -121,6 +121,59 @@ te["aii_classification_final"] = { c:
  	{ div:[""], c:[ { uo:["aiik","Priority","aiiv","aii","result","classification","priority"] }, { div:["e"] } ] },
 ]};
 
+te["aii_qa"] = { c:
+[
+	
+	{ div:["tt"], s:["x y b","QA Opening"] },
+	{ div:[""], c:
+	[ 
+		{ div:["c"], uo:["noop","",       	"aiirv","aii","payload","qa_scores","opening","submetric"] },
+		{ div:["c"], uo:["noop","",       	"aiirv","aii","payload","qa_scores","opening","score"] }, 
+		{ div:["e"] } 
+	]},
+
+	{ s:["x y b","QA Listening"] },
+	{ div:[""], c:
+	[ 
+		{ div:["c"], uo:["noop","",       	"aiirv","aii","payload","qa_scores","listening","submetric"] },
+		{ div:["c"], uo:["noop","",       	"aiirv","aii","payload","qa_scores","listening","score"] }, 
+		{ div:["e"] } 
+	]},
+
+	{ s:["x y b","QA Proactiveness"] },
+	{ div:[""], c:
+	[ 
+		{ div:["c"], uo:["noop","",       	"aiirv","aii","payload","qa_scores","proactiveness","submetric"] },
+		{ div:["c"], uo:["noop","",       	"aiirv","aii","payload","qa_scores","proactiveness","score"] }, 
+		{ div:["e"] } 
+	]},
+
+	{ s:["x y b","QA Resolution"] },
+	{ div:[""], c:
+	[ 
+		{ div:["c"], uo:["noop","",       	"aiirv","aii","payload","qa_scores","resolution","submetric"] },
+		{ div:["c"], uo:["noop","",       	"aiirv","aii","payload","qa_scores","resolution","score"] }, 
+		{ div:["e"] } 
+	]},
+
+	{ s:["x y b","QA Hold"] },
+	{ div:[""], c:
+	[ 
+		{ div:["c"], uo:["noop","",       	"aiirv","aii","payload","qa_scores","hold","submetric"] },
+		{ div:["c"], uo:["noop","",       	"aiirv","aii","payload","qa_scores","hold","score"] }, 
+		{ div:["e"] } 
+	]},
+
+	{ s:["x y b","QA Closing"] },
+	{ div:[""], c:
+	[ 
+		{ div:["c"], uo:["noop","",       	"aiirv","aii","payload","qa_scores","closing","submetric"] },
+		{ div:["c"], uo:["noop","",       	"aiirv","aii","payload","qa_scores","closing","score"] }, 
+		{ div:["e"] } 
+	]},
+
+]};
+
 te["aii_entity_extraction"] = { c:
 [
 	{ s:["x y b","Entities"] },
