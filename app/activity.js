@@ -349,7 +349,7 @@ te["activity_contact_none"] = { c:
 
 // ---
 
-te["activity_contact_footer"] = { div:["b05"], c:
+te["activity_contact_footer"] = { div:["bt_ b05"], c:
 [
 	{ div:["d t"], c:[ { ac:["nav","activity_contact_ls-dispositions","_nav","dh bd",""], c:[ { div:["da_w dr bd"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
 	{ div:["d t"], c:[ { aci:["nav","activity_contact_ls-dispositions","_nav","dh bd","prev",""], c:[ { div:["da_w dl bd"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
@@ -372,7 +372,7 @@ te["activity_contact_r_"] = { div:["","va"], c:
 	{ div:[null,"activity_contact-contacts-contacts-contact"], ev:["_u"], c:
 	[
 		{ p:["","nb"] }, 
-		{ li:["x t02  oh cb r bd"], c:
+		{ li:["x y oh cb r"], c:
 		[
 			{ div:["c l w01_ t08"], s:["opt",""] },
 			{ div:["c w35"], contact_vw_rv:[":v:dispositions:reporter_fullname", ":v:dispositions:reporter_age_group", ":v:dispositions:reporter_sex", "d x t cd s",":v:dispositions:created_on:d:dmyhnr", ":v:dispositions:reporter_location",":v:dispositions:reporter_landmark"] },
@@ -387,7 +387,7 @@ te["activity_contact_r_new"] = { div:[], c:
 	{ div:["","nxfn"], arg:["","","activity_contact-contacts_disposition-contacts-contact"] } // cascading uvpfn
 ]},
 
-te["activity_contact_r"] = { div:[], activity_contact_r_:["","r bd gws_ mb"] };
+te["activity_contact_r"] = { div:[], activity_contact_r_:["","r bt_"] };
 
 te["activity_contact_k"] = { div:["g"], c:
 [
@@ -746,9 +746,9 @@ te["activity_vw_id_toolbar_notif"] = { div:[], c:
 		]}
 	]},
 
-	{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
-	{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
-	{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+	//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+	//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+	//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
 
 	{ div:["e"] }
 ]};
@@ -773,9 +773,9 @@ te["activity_vw_id_toolbar_walkin"] = { div:[], c:
 			{ input:["g","","sbl","0","radio"] },
 			{ ac:["ay t01 r15","","_uvw","cb bd y01 tc h b","&Cross;"] }
 		]},
-		{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
-		{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
-		{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+		//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+		//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+		//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
 		{ div:["e"] }
 	]}
 ]};
@@ -793,9 +793,9 @@ te["activity_vw_id_toolbar"] = { div:[], c:
 		]}
 	]},
 
-	{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
-	{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
-	{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+	//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+	//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+	//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
 
 	{ div:["e"] }
 ]};
@@ -859,7 +859,7 @@ te["activity_vw_id_"] = { c:
 	]}
 ]};
 
-te["activity_vw_id"] = { activity_vw_id_:["activity_vw_id_toolbar","1","activity_vw_id_tabs_0","","vfvw",""] }; 
+// te["activity_vw_id"] = { activity_vw_id_:["activity_vw_id_toolbar","1","activity_vw_id_tabs_0","","vfvw",""] }; 
 
 te["activity_vw_id_walkin"] = { activity_vw_id_:["activity_vw_id_toolbar_walkin","1","activity_vw_id_tabs_0_walkin","","vfvw",""] }; 
 
@@ -892,7 +892,7 @@ te["activity_lst_r_vector"] = { s:["l t",":v:activities:src_vector::vector:6"] }
 te["activity_lst_r"] = { p:["",":v:activities:src_uid"], c:
 [
 	{ input:["g","","sbr",":v:activities:src_uid","radio",":k:activities_chk:src_uid::14"] },
-	{ li:["sbr mr2 mb xx y03 ba bd sh__ gw cb s"], ev:["_activity_vw_id"], c: 
+	{ li:["sbr xx y03 bt bl br gw cb s"], ev:["_activity_vw_id"], c: 
 	[
 		{ div:[], c:
 		[  
@@ -927,9 +927,9 @@ te["activity_lst_title"] = { div:[""], c:
 [
 	// { s:["c x y b","Notifications"] }, // Activity History
 	{ div:["e"] }
-]};
+]}; 
 
-te["activity_lst"] = { list:["activity_lst_title","end","","activity_lst_k","activity_lst_r","activities_notify","activity_lst_footer"] }; // sbr panel
+te["activity_lst"] = { list:["activity_lst_title","end","mr1 sh__ ","activity_lst_k","activity_lst_r","activities_notify","activity_lst_footer"] }; // sbr panel
 
 // -------------------------------------------------------------
 
@@ -1063,12 +1063,14 @@ function activity_agtk_ufn (el, u, a, r, m)
 	let src = r[re["activities_k"]["src"][0]] 
 	let id = r[re["activities_k"]["src_uid"][0]];
 	let ch = re["channels"][id]
+	let pcoll = document.getElementById ("vv").childNodes
 	// console.log ("agtk("+src+") "+id+" "+(ch?"ch"+ch[AMI.CHAN_STATE_HANGUP]:"null")+"--------------------")
 	if (src=="call" && ch && ch[AMI.CHAN_STATE_HANGUP].length==0)
 	{
 		
 		chan_status ("chan_args", ch);
-		chan_agtk (el.parentNode.parentNode.parentNode, ch, r[0]) //  
+		//chan_agtk (el.parentNode.parentNode.parentNode, ch, r[0]) //  
+		chan_agtk (el.parentNode.parentNode.parentNode, ch, (pcoll.length>6 ? pcoll[6].childNodes[0].childNodes[1] : null))
 	}
 }
 

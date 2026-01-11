@@ -180,7 +180,7 @@ te["call_toolbar"] = { c:
 
 	{ div:[], c:
 	[
-		{ div:["d w05 t01"], s:["abs w05 bdr8 t17 b10 gw zzzz",""], c:
+		{ div:["d w05 t01"], s:["abs w05 bd8 y15 gw zzzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
 			{ ac:["ay t01 r15","","_activity_close","cb bd y01",""], c:
@@ -191,14 +191,14 @@ te["call_toolbar"] = { c:
 			]}
 		]},
 
-		{ div:["d w10_ t01 call_hangup_"], s:["abs w10_ t17 b10 gw zzzz",""], c:
+		{ div:["d w10_ t01 mr7 "], s:["abs call_hangup_ w10_ t17 b10 gw zzzz",""], c:
 		[
 			{ ac:["c ao","","_hangup","w03 h03 x01 y01 h ma bd32 gb cw tc","&Cross;"] },
 			{ s:["c l t08 cb s","Hangup"] },
 			{ div:["e"] }
 		]}, 
 
-		{ div:["d w09_ t01 call_connected_"], s:["abs w09_ t17 b10 gw zzzz",""], c:
+		{ div:["d w09_ t01"], s:["abs w09_ t17 b10 gw zzzz",""], c:
 		[
 			{ input:["g","chanholdstate","","1","checkbox"] },
 			{ div:["btnhold"], c:
@@ -211,7 +211,7 @@ te["call_toolbar"] = { c:
 			]}
 		]},
 
-		{ div:["d w09_ t01 call_connected_"], s:["abs w09_ t17 b10 gw zzzz",""], c:
+		{ div:["d w09_ t01"], s:["abs w09_ t17 b10 gw zzzz",""], c:
 		[
 			{ ac:["c ao call_connected_","call_add_form_main-r_","_add_dial_form","w03 h03 x01 y01 h ma bd32 gb cw tc","&plus;"] },
 			{ s:["c call_connected_ l t08 cb s","Add"] },
@@ -234,7 +234,7 @@ te["call_toolbar"] = { c:
 		{ div:["d w06 t01 call_ended_"], s:["abs w06 h03 gw t15 zzzz",""] },
 		{ div:["d w06 t01 call_ended_"], s:["abs w06 h03 gw t15 zzzz",""] },
 
-		{ div:["e"] }
+		{ div:["e"], ufn:["chan_agtk_vw_ufn"] }
 	]},
 ]};
 
@@ -474,6 +474,11 @@ function users_online_ufn (el, u, a, r, m)
 	el.lastChild.value = v;
 }
 
+function chan_agtk_vw_ufn (el, u, a, r, m)
+{
+
+}
+
 function ch_status (ch)
 {
 	var st = 10;
@@ -630,10 +635,21 @@ function chan_add (vp_add, ch, ch_, ts)
 	}			
 }
 
-function chan_agtk (el,ch,id)
+function chan_agtk_vw (el,ch,p)
+{
+	// action btns
+		p.firstChild.childNodes[1].className = re["call_state"][ch[AMI.CHAN_STATUS_]][1];
+		// vw status bar
+		coll_ = p.firstChild.firstChild.firstChild.firstChild.childNodes
+		coll_[0].innerHTML 	= ch[AMI.CHAN_STATUS_TXT_];
+		coll_[1].innerHTML 	= ch[AMI.CHAN_STATUS_TS_TXT_];
+		coll_[2].value 	= ch[AMI.CHAN_STATUS_TS_];
+}
+
+function chan_agtk (el,ch,pvw)
 {
 	var coll = el.childNodes[1].childNodes
-	// coll[0].childNodes[2].innerHTML = ch[AMI.CHAN_CID_NUM_2];
+	coll[0].childNodes[2].innerHTML = ch[AMI.CHAN_CID_NUM_2];
 	var el = coll[0].childNodes[3];
 	el.innerHTML = ch[AMI.CHAN_STATUS_TXT_];
 	el.className = "d x y02 gr cw bd mt";
@@ -641,50 +657,30 @@ function chan_agtk (el,ch,id)
 	el.id = "ts";
 	el.value = ch[AMI.CHAN_STATUS_TS_];
 	el.previousSibling.innerHTML = ch[AMI.CHAN_STATUS_TS_TXT_];
-	if (id) chan_a[ch[2]].id = id
 
-	var pcoll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes; 
-	var f = pcoll[1].childNodes.length;
+	if (!pvw || (ch[AMI.CHAN_STATUS_]*1)<2) return;			// evaluate vw for ringing and above (not dialing and below)
+	
+	var f = pvw.childNodes.length;
 	var a = {};
 
-	// console.log ("agtk(call) "+ch[2]+" ("+f+","+ch[AMI.CHAN_STATUS_]+")---------------"+ch[AMI.CHAN_CALLERID_NAME]+","+ch[AMI.CHAN_CONTEXT]+","+ch[AMI.CHAN_CONTEXT_MASQ]+","+chan_a[ch[2]].vw)
-
-	if ((ch[AMI.CHAN_STATUS_]*1)<2) return;			// evaluate vw for ringing and above (not dialing and below)
-
-	if (ch[AMI.CHAN_CONTEXT_MASQ]=="agentlogin" || ch[AMI.CHAN_CONTEXT_MASQ]=="supervisor") // use context_masq instead of cid - set during originate b4 cid
+	if (f>0) 	// vw is occupied // close if idle
 	{
-		if (!chan_a[ch[2]].vw && chan_a[ch[2]].id)
-		{
-			// auto answer
-			chan_a[ch[2]].vw = ch[AMI.CHAN_STATUS_TS_]
-		}
-		return;
-	}
-
-	if (f>0) 	// if vw is occupied is needed
-	{
-		argv (pcoll[1].firstChild.lastChild, a)
+		argv (pvw.firstChild.lastChild, a)
 		//if (a.src && a.src_uid && a.src=="call" && a.src_uid!=ch[AMI.CHAN_UNIQUEID]
 		//	/* && not oncall && wrapup done && caseform closed && vp closed */
 		//	) f=0;
 	}
 
-	if (f==0 && !chan_a[ch[2]].vw) // auto-popup
+	if (f==0) //  && !chan_a[ch[2]].vw) // auto-popup
 	{
-		pcoll[0].checked = true;
-		url (pcoll[1], "activity_vw_id_call", "activities", chan_a[ch[2]].id);
+		pvw.previousSibling.checked = true;
+		url (pvw, "activity_vw_id_call", "activities", coll[2].firstChild.value);
 		return;
 	}
 
 	if (f>0 && a.src && a.src_uid && a.src=="call" && a.src_uid==ch[AMI.CHAN_UNIQUEID]) // update vw
 	{
-		// action btns
-		p.firstChild.childNodes[1].className = re["call_state"][a.src_state][1];
-		// vw status bar
-		coll_ = p.firstChild.firstChild.firstChild.firstChild.childNodes
-		coll_[0].innerHTML = re["call_state"][a.src_state][0];
-		coll_[1].innerHTML = hmst (a.src_state_ts, ["","","hms","","","",""]); // ts_txt;
-		coll_[2].value = a.src_state_ts;
+		chan_agtk_vw (el, ch, pvw)
 	}
 }
 
@@ -747,8 +743,10 @@ function chans (o,k,ts)
 	var pi = document.getElementById ("vinbound");
 	var po = document.getElementById ("voutbound");
 	var pu = document.getElementById ("vt_activity");
+	var pvw = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1]; 
 	var pvp = document.getElementById ("vp");
 	var user_cid = document.getElementById ("user_cid").value;
+	var aa = document.getElementById ("is_auto_answer");
 	var vp_add = null
 	var vp_members = null;
 	var ch_agent = null;
@@ -788,47 +786,49 @@ function chans (o,k,ts)
 
 		if (ch[6].substr(0,4)=="DLPN" && ch[AMI.CHAN_SIPCALLID].length>0 && (ch[3].substr(6,4)==(user_cid+"-") || ch[3].substr(6,5)==("0"+user_cid+"-")))  
 		{
-			if (ch[AMI.CHAN_VECTOR]*1<1)  // set vector based in exten
-			{
-				ch[AMI.CHAN_VECTOR] = ch[AMI.CHAN_EXTEN]=="s" ? "2" : "1" ; // NB orig also has exten=s
-			}
+			var vs_ = CALLS[ch[AMI.CHAN_SIPCALLID].substr (0,20)]
 
 			chan_status ("chan_args", ch);
 
-			if (!chan_a[ch[2]]) chan_a[ch[2]] = { "src_ts":ch[AMI.CHAN_TS], "src_vector":ch[AMI.CHAN_VECTOR], "agtk":1 };
+			if (!chan_a[ch[2]]) 
+			{
+				chan_a[ch[2]] = { "src_ts":ch[AMI.CHAN_TS], "src_address":"" };
+				chan_a[ch[2]]["src_vector"] = ch[AMI.CHAN_EXTEN]=="s" ? "2" : "1" ; // NB orig also has exten=s
+				if (vs_) ch[AMI.CHAN_CID_NUM_2] = vs_.session.remoteIdentity.uri.user
+				if (ch[AMI.CHAN_EXTEN]!="s" && ch[AMI.CHAN_EXTEN].length>0) ch[AMI.CHAN_CID_NUM_2] = ch[AMI.CHAN_EXTEN];
+			}
+
 			chan_a[ch[2]]["ts"] = ts;
 			chan_a[ch[2]]["status"] 			= ch[AMI.CHAN_STATUS_];
 			chan_a[ch[2]]["status_txt"] 		= ch[AMI.CHAN_STATUS_TXT_];
 			chan_a[ch[2]]["src_status_ts"] 	= ch[AMI.CHAN_STATUS_TS_];
-			if (ch[AMI.CHAN_CID_NUM_2].length>0 && !chan_a[ch[2]]["src_address"]) chan_a[ch[2]]["src_address"] = ch[AMI.CHAN_CID_NUM_2];
-
-			var el = _(pu, ch[2]); // find matching call
-
-			// console.log ("[agtk] "+ch[2]+","+chan_a[ch[2]]["src_callid"]+" | "+el)
+			if (ch[AMI.CHAN_CID_NUM_2].length>0) chan_a[ch[2]]["src_address"] = ch[AMI.CHAN_CID_NUM_2];
 			
-			if (el==null && chan_a[ch[2]]["src_callid"]==undefined)
+			if (chan_a[ch[2]]["src_vector"]=="2" && !chan_a[ch[2]]["aa"] && vs_ && vs_.session && 
+			   (aa.checked || ch[AMI.CHAN_CONTEXT_MASQ]=="agentlogin" || ch[AMI.CHAN_CONTEXT_MASQ]=="supervisor")) // aa
 			{
-				if (ch[AMI.CHAN_CID_NUM_2].length<1)
-				{
-					var vs_ = CALLS[ch[AMI.CHAN_SIPCALLID].substr (0,20)]
-					if (ch[AMI.CHAN_EXTEN]!="s") ch[AMI.CHAN_CID_NUM_2] = ch[AMI.CHAN_EXTEN];
-					if (vs_) ch[AMI.CHAN_CID_NUM_2] = vs_.session.remoteIdentity.uri.user
-					console.log ("cid2:"+ch[AMI.CHAN_VECTOR]+"|"+ch[AMI.CHAN_EXTEN]+"|"+ch[AMI.CHAN_SIPCALLID].substr (0,20)+"|"+vs_);//+"|"+Object.keys(CALLS));
-				}
-			
-				if (ch[AMI.CHAN_CID_NUM_2].length<1) { console.error ("no cid2 on chan "+ch[AMI.CHAN_SIPCALLID]); continue; }
+				chan_a[ch[2]]["aa"] = ts;
+				console.log ("AUTO ANSWER "+chan_a[ch[2]]["src_address"]+"|"+ch[AMI.CHAN_SIPCALLID])
+				vs_.session.accept (); // ({ sessionDescriptionHandlerOptions: { constraints: { audio: true, video: false } } });
+			}
 
+			if (!chan_a[ch[2]]["src_callid"])
+			{
+				chan_a[ch[2]]["src_callid"] = ch[AMI.CHAN_SIPCALLID]
 				var o_ = 
 				{
 					"src":"call", "src_uid":ch[AMI.CHAN_UNIQUEID], "src_callid":ch[AMI.CHAN_SIPCALLID], 
-					"src_usr":ch[AMI.CHAN_CALLERID_NUM], "src_address":ch[AMI.CHAN_CID_NUM_2], 
-					"src_ts":ch[AMI.CHAN_TS], "src_vector":ch[AMI.CHAN_VECTOR], "action":"notify"
+					"src_usr":ch[AMI.CHAN_CALLERID_NUM], "src_address":chan_a[ch[2]]["src_address"], 
+					"src_ts":ch[AMI.CHAN_TS], "src_vector":chan_a[ch[2]]["src_vector"], "action":"notify"
 				};
         			url (pu, "activity_new", "activities", "", null, 0, o_, "POST");
-				chan_a[ch[2]]["src_callid"] = ch[AMI.CHAN_SIPCALLID]
 			}
-			
-			if (el) chan_agtk (el, ch); 
+
+			var el = _(pu, ch[2]); // find matching call
+			if (el) 
+			{
+				chan_agtk (el, ch, pvw); 
+			}
 
 			if (vp_add && vp_add.id==ch[AMI.CHAN_UNIQUEID]) 
 			{

@@ -945,7 +945,7 @@ te["main"] = { c:
 			{ input:["g","","rtab","0","radio"] },
 			{ ac:["ay tab","","_mtabr","bd cb",""], c:
 			[
-				{ p:["abs","notif_count"], s:["ml2 x07 y02  h01_ tc gr cw bd16 s","112"] },
+				{ p:["abs","notif_count"], s:["ml2 x07 y02  h01_ tc gr cw bd16 s","0"] },
 				{ s:["w04 y micon h tc","notifications"] }				
 			]},
 		]},
@@ -955,9 +955,9 @@ te["main"] = { c:
 	
 	{ div:[] },		// network error - incomplete request
 
-	{ div:["g r05"], c: 
+	{ div:["g r20"], c: 
 	[
-		{ div:["d w32_"], s:["abs zz w32_ mt bd8",""], c:
+		{ div:["d w33_"], s:["abs zz w33_ mt bd8",""], c:
 		[
 			{ div:[], c:
 			[

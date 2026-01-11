@@ -308,7 +308,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 :checked + .ol .aj:after { position:absolute; height:1px; width:1px; top:1px; left:1px; background-color:black; border:4px solid dodgerblue; border-radius:4px; content:" ";}
 
 :checked + .sbl a { background-color:orange; color:white; }
-:checked + .sbr { background-color:orange; } 
+:checked + .sbr { background-color:silver; } 
 
 
 :checked + .tab a { background-color:black; color:white; }
@@ -674,6 +674,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 .mr3 {margin-right:30px;}
 .mr4 {margin-right:40px;}
 .mr5 {margin-right:50px;}
+.mr7 {margin-right:70px;}
 .mr10 {margin-right:100px;}
 .mr12 {margin-right:120px;}
 .mr20 {margin-right:200px;}
@@ -891,18 +892,20 @@ a:hover .aw {color:white;}
 .content-shown .content-shown_ { display:block;}
 .content-shown .content-hidden_ { display:none;}
 
-.clk_client .clk { display:none; }
-
 .call_ringing_ { display:none; }
 .call_connected_ { display:none; }
+.call_connected__ { display:none; }
+.call_hangup_ { display:none; }
 .call_ended_ { display:none; }
+
 .call_ringing .call_ringing_ { display:block; }
+.call_ringing .call_hangup_ { display:block; }
+.call_ringing .call_connected__ { display:block; }
+
 .call_connected .call_connected_ { display:block; }
-.call_connected .call_connected__ { display:none; }
-/*.call_ended { background-color:whitesmoke; }*/
+.call_connected .call_hangup_ { display:block; }
+
 .call_ended .call_ended_ { display:block; }
-.call_ended .call_hangup_ { display:none; }
-.call_ended .call_connected__ { display:none; }
 
 .btnunhold_lbl { display:none; }
 :checked + .btnhold .gws { background-color:red; color:white; font-weight:bold; }
@@ -956,6 +959,9 @@ a:hover .aw {color:white;}
 .peer_oncall .gws { background-color:red; }
 
 #aa_none { display:none; }
+
+.clk_client .clk { display:none; }
+
 
 .print-only { display:none; }
 
