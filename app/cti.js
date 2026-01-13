@@ -135,16 +135,16 @@ te["call_add_form"] = { div:["","ve"], c:
 		{ div:["c w23","tag-r_--o-call_add_user-%1-user_id-%0-"], c:
 		[
 			{ li:["gws_ b02","va"], c:[ { div:["","user_ls-users"], ev:["_dd"], c: // ls
-                	[
-                        	{ p:["c w20","o"], c:
-                        	[ 
-                        		{ u:["call_add_user","r_"] }, 
-                        		// { uchk:["tag",null,"","^", null,null,null,null,null] } // set if there is a default user
-                        	]},
-                        	{ div:["d w02 x t"],  c:[ { div:["h02 w02 awb"] } ] },
-                        	{ div:["e"], c:[ { arg:["_c","","10"] }, { arg:["exten","",""] }, { ufn:["users_online_ufn"] } ] } // limit to users who are online
-                	]} ]},
-                	{ div:["dd w30 gw ba_b","vdd"], ev:["_undd"] },
+               [
+				{ p:["c w20","o"], c:
+				[ 
+					{ u:["call_add_user","r_"] }, 
+					// { uchk:["tag",null,"","^", null,null,null,null,null] } // set if there is a default user
+				]},
+				{ div:["d w02 x t"],  c:[ { div:["h02 w02 awb"] } ] },
+				{ div:["e"], c:[ { arg:["_c","","10"] }, { arg:["exten","",""] }, { ufn:["users_online_ufn"] } ] } // limit to users who are online
+			]} ]},
+			{ div:["dd w30 gw ba_b","vdd"], ev:["_undd"] },
 		]},
 		
 		// { div:["d x"], c:[ { ac:["ag btn","call_add_ld-chan","_add_dial","x15 y gws cb tc","Invite"] }, { s:["y b savl","..."] } ] },
@@ -165,148 +165,105 @@ te["call_add_form_main"] = { div:["w30 ma bd sh__ gw xx yy","vddvw"], ev:["_undd
 	{ div:["","cba"] } // show add-chan status 
 ]};
 
-te["call_btns"] = { c: 
-[	
-	{ arg:["","",":v:activities:src_callid"] }, // sipid needed to invoke call actions
-	{ div:["","va"],  c:
-	[	
-		{ div:["d w09 gnws x call_ended_"], c:
+te["call_toolbar"] = { c:
+[
+	{ div:["w16 ma t01"], s:["w12 t20 abs",""], c:
+	[
+		{ div:["xx y bd w10 cr gws_ s"], c:
 		[
-			{ input:["g","","sbr","1","radio"] },
-			{ ac:["d x t","","_activity_close","x y03 h2 cb bd16","&Cross;"] },
-			{ s:["d x t08 cb tc","Close"] },
+			{ s:["c","&nbsp;"] },
+			{ s:["d",""] },
+			{ arg:["ts","","0"] }, 
 			{ div:["e"] }
 		]},
-		
-		{ div:["d w09 gnws x call_hangup_"], c:
+	]},
+
+	{ div:[], c:
+	[
+		{ div:["d w05 t01"], s:["abs w05 bdr8 t17 b10 gw zzzz",""], c:
 		[
-			{ ac:["c ao","","_hangup","x t b03 w02 h02 h2 ma bd16 gb cw tc",""], c:
+			{ input:["g","","sbl","0","radio"] },
+			{ ac:["ay t01 r15","","_activity_close","cb bd y01",""], c:
 			[
-				{ s:["","&Cross;"] },
+				{ s:["tc h b","&Cross;"] },
+				// { s:["d x y s","Close"] },
 				{ div:["e"] }
-			]},
-			{ s:["c x s cb t tc","Hangup"] },
+			]}
+		]},
+
+		{ div:["d w10_ t01 call_hangup_"], s:["abs w10_ t17 b10 gw zzzz",""], c:
+		[
+			{ ac:["c ao","","_hangup","w03 h03 x01 y01 h ma bd32 gb cw tc","&Cross;"] },
+			{ s:["c l t08 cb s","Hangup"] },
 			{ div:["e"] }
 		]}, 
-			
-		{ div:["d w09 gnws x"], c:
-		[
-			{ div:["c"], c:
-			[
-				{ ac:["ao call_connected_","call_add_form_main-r_","_add_dial_form","x t b03 w02 h02 h2 ma bd16 gb cw tc",""], c:
-				[
-					{ s:["","+"] },
-					{ div:["e"], c:[ { arg:["_uid","",":v:activities:src_uid"] } ] }
-				]},
-				{ div:[] }
-			]},
-			{ s:["c call_connected_ x t s cb tc","Add"] },
-			{ s:["c call_connected__ x y w02 ma bd16 cd_ tc h2","+"] },
-			{ s:["c call_connected__ x t s cd_ tc","Add"] },
-			{ div:["e"] }
-		]},
-		{ div:["d w09 gnws x"], c:
+
+		{ div:["d w09_ t01 call_connected_"], s:["abs w09_ t17 b10 gw zzzz",""], c:
 		[
 			{ input:["g","chanholdstate","","1","checkbox"] },
-			{ div:["w10 btnhold"], c:
+			{ div:["btnhold"], c:
 			[
-				{ ac:["c ao call_connected_","","_hold","x y w02 h2 ma bd16 gb cw tc","||"] },
-				{ div:["c call_connected_"], s:["x y s cb btnhold_lbl","Hold"] },
-				{ div:["c call_connected_"], s:["x y s cr btnunhold_lbl","UnHold"] },
-				{ s:["c call_connected__ x y w02 ma bd16 cd_ tc h2","||"] },
-				{ s:["c call_connected__ x y s cd_ btnhold_lbl","Hold"] },
-				{ div:["e"] }
+				{ ac:["c ao call_connected_","","_hold","w03 h02_ x01 t b03 h2 ma bd32 gb cw tc","||"] },
+				{ div:["c call_connected_"], s:["l t08 cb s btnhold_lbl","Hold"] },
+				{ div:["c call_connected_"], s:["l t08 cb s btnunhold_lbl","UnHold"] },
+				{ s:["c call_connected__ w03 h03 x01 t03 h2 ma bd32 cd tc","||"] },
+				{ s:["c call_connected__ l t08 cd s btnhold_lbl","Hold"] },
 			]}
 		]},
-		
-		{ div:["d w09 call_connected_"], c: 
+
+		{ div:["d w09_ t01 call_connected_"], s:["abs w09_ t17 b10 gw zzzz",""], c:
 		[
-			{ div:["g"], c: // show only in cbid
-			[
-				{ ac:["c ao","","_answer","x t b03 w02 h02 h2 ma cb tc micon","group"] },
-				{ s:["c t08 cb","4"] },
-				{ div:["e"] }
-			]}
+			{ ac:["c ao call_connected_","call_add_form_main-r_","_add_dial_form","w03 h03 x01 y01 h ma bd32 gb cw tc","&plus;"] },
+			{ s:["c call_connected_ l t08 cb s","Add"] },
+			{ s:["c call_connected__ w03 h03 x01 y01 h ma bd32 cd tc","&plus;"] },
+			{ s:["c call_connected__ l t08 cd s","Add"] },
+			{ div:["e"] }
 		]},
-			
-		{ div:["d w09 gnws"], s:[":v:activities:src_vector::vector:7",""], c:
-		[ 
-			{ div:["w09 x ao call_ringing_"], c:
-			[
-				{ ac:["c ","","_answer","x t b03 w02 h02 h2 ma bd16 gb cw tc micon","call"] },
-				{ s:["c x t s cb tc","Answer"] },
+	
+		{ div:["d w10_ t01 call_ringing_"], s:["abs w10_ t17 b10 gw zzzz",""], c:
+		[
+			{ div:[":v:activities:src_vector::vector:7",""], c:
+			[ 
+				{ ac:["c ao","","_answer","w03 h03 x01 y01 ma bd32 gb cw tc",""], c:[ { s:["micon h2_ t03","call"] } ] },
+				{ s:["c l t08 cb s ","Answer"] },
 				{ div:["e"] }
-			]} 
+			]},
 		]},
-				
-		{ div:["e"] }
-	]}
-]};
 
-//te["call_toolbar"] = { div:["ma w14",":v:activities:src_uid"], c: //  
-//[
-//	{ input:["g","","sbl","100","radio","1"] },
-//	{ ac:["abs mtn37 ao w14 sbl","","_activity_show","w13 x bd cb gws_",""], c:[ { div:[""], c:
-//	[
-//		{ s:["c w07 l y",""] },
-//		{ s:["d w05 r05 y tr",""] },
-//		{ arg:["ts","",""] }, 
-//		{ div:["e"] }
-//	]} ]},
-//]};
+		{ div:["d w06 t01 call_ended_"], s:["abs w06 h03 gw t15 zzzz",""] },
+		{ div:["d w06 t01 call_ended_"], s:["abs w06 h03 gw t15 zzzz",""] },
+		{ div:["d w06 t01 call_ended_"], s:["abs w06 h03 gw t15 zzzz",""] },
 
-te["call_toolbar"] = { div:["ma w20",":v:activities:src_uid"], c: //  
-[
-	{ input:["g","ati_toolbar","barr","1","radio","1"] },
-	{ li:["abs mtn37 ao w20 bd"], ev:["_activity_show"], s:["w20 bd cw",""], c:[ { div:["gr"], c:
-	[
-		{ s:["c x y ",":v:activities:src_address"] },
-		{ s:["c x y ",""] },
-		{ s:["d xx y ",""] },
-		{ arg:["ts","",":v:activities:src_ts"] }, 
-		{ div:["e"] }
-	]} ]},
-]};
-
-te["call_ringing"] = { div:["w45ma bd sh__ gw xx yy","vddvw"], ev:["_undd"], c:
-[
-	{ div:["g"], c:
-	[
-		{ ac:["d ay","","_vpclose","x y bd_ h2 cb","&Cross;"] },
-		{ div:["e"] }
+		{ div:["e"], ufn:["call_popup_ufn",":v:activities:src_uid"] }
 	]},
-	{ div:["tt"], s:["w12 ma",""], c:[ { img:["","","/helpline/images/Icon_Call.png","120"] } ] },
-	{ s:["yy tc n co ","::vector:14:9"] },
-	{ s:["yy tc h2 ","%12"] },
-	// list possible contact -- not action 
-	// Answer button
 ]};
 
 // --------------------------------------------------------------------
-				
+
 te["chan_args"] = { p:["",":V:ami:CHAN_UNIQUEID"], c:
 [
 	{ arg:["","src_state",""] },
 	{ arg:["","src_state_ts",""] },
 	{ arg:["","src_state_ts_txt",""] },
-	
-	{ arg:["","cbid",":V:ami:CHAN_EXTEN_MASQ"] }, // confbridgeid
+
+	{ arg:["","src_address",":V:ami:CHAN_CID_NUM_2"] }, 	// phone = cid2
+	{ arg:["","src_uid2",":V:ami:CHAN_UNIQUEID_2"] },
 	{ arg:["","chan2",":V:ami:CHAN_CHAN_2"] },
-	{ arg:["","phone",":V:ami:CHAN_CID_NUM_2"] }, // phone = cid2
-	{ arg:["","src_orig",":V:ami:CHAN_ORIG"] },
-				
+	{ arg:["","cbid",":V:ami:CHAN_EXTEN_MASQ"] }, 		// confbridgeid
+	{ arg:["","src_orig",":V:ami:CHAN_ORIG"] },	
+
 	{ arg:["","src","call"] },
 	{ arg:["","src_ts",":V:ami:CHAN_TS"] },
 	{ arg:["","src_uid",":V:ami:CHAN_UNIQUEID"] },
+	{ arg:["","src_usr",":V:ami:CHAN_CALLERID_NUM"] },
+	{ arg:["","src_callid",":V:ami:CHAN_SIPCALLID"] },
+	{ arg:["","src_vector",":V:ami:CHAN_VECTOR"] },
 	{ arg:["","src_action_id",":V:ami:CHAN_ACTION_ID"] },
 	{ arg:["","src_campaign_id",":V:ami:CHAN_CAMPAIGN_ID"] },   
-	
+
 	{ arg:["","chan",":V:ami:CHAN_CHAN"] },
-	{ arg:["","usr",":V:ami:CHAN_CALLERID_NUM"] },
-	{ arg:["","_cid_name",":V:ami:CHAN_CALLERID_NAME"] },
-	{ arg:["","callid",":V:ami:CHAN_SIPCALLID"] },
-	{ arg:["","vector",":V:ami:CHAN_VECTOR"] },
-	{ arg:["","src_uid2",":V:ami:CHAN_UNIQUEID_2"] },
+	{ arg:["","exten",":V:ami:CHAN_EXTEN"] },
+
 ]};
 				
 te["chan_add"] = { p:["","%2"], s:["",""], c:
@@ -397,28 +354,28 @@ te["chan_agent_cid_name"] = { s:["","%1"] };
 
 te["chan_agent"] = { p:["","%2"], c:[ { div:[], c:
 [
-        { input:["g","optc","chvw0","%2","radio",""] },
-        { li:["y02 gws_ mtn1"], c: // x y02 gw bl_ br_ bb_
-        [
-                { s:["c w03 ll y cb",""] },      // cid_num
-                { s:["c w08 x y cb",null] },    // cid_name
-                { s:["c w02 x y cb",""] },      // vector
-                { s:["c w12 x y s",""] },   	// cid2
+	{ input:["g","optc","chvw0","%2","radio",""] },
+	{ li:["y02 gws_ mtn1"], c: // x y02 gw bl_ br_ bb_
+	[
+		{ s:["c w03 ll y cb",""] },      // cid_num
+		{ s:["c w08 x y cb",null] },    // cid_name
+		{ s:["c w02 x y cb",""] },      // vector
+		{ s:["c w12 x y s",""] },   	// cid2
 		{ div:[] },
 
 		{ div:["d l "], c:
 		[
-			{ div:["admin_"], chan_agent_sup:[] },
-			{ div:["supervisor_"], chan_agent_sup:[] }
+			{ div:["admin_ supervisor_"], chan_agent_sup:[] },
+			// { div:["supervisor_"], chan_agent_sup:[] }
 		]},
 
-                { s:["d x y w08 tr b",""] },    // status-duration
-                { arg:["ts","",""] },           // status-ts
-                { s:["d x y w08 tr s",""] },    // status-text
+		{ s:["d x y w08 tr b",""] },    // status-duration
+		{ arg:["ts","",""] },           // status-ts
+		{ s:["d x y w08 tr s",""] },    // status-text
                            
-                { div:["e"] }
-        ]},
-        { div:["mb"] }
+		{ div:["e"] }
+	]},
+     { div:["mb"] }
 ]} ]};
 
 te["aa_status"] = { div:["",null], c:[ { div:["","ve"], c:
@@ -456,16 +413,18 @@ te["agent_status"] = { div:["y02",null], c:
 	{ div:["e"] },
 ]};
 
-// -------------------------------------------------------
-
-function _sup ()
-{
-	this.previousSibling.checked = true;
-	var o = {};
-	argv (this, o);
-	url (this.nextSibling, "sup", "sup", "", null, 2, o, "POST");
-}
-
+re["call_state"] = 
+[
+	["Down","call_ringing","gr cw"],
+	["Dialing","call_ringing","gr cw"],
+	["Ringing","call_ringing","gr cw"],
+	["Waiting","call_connected","gr cw"],
+	["Waiting","call_connected","gr cw"],
+	["Connected","call_connected","gg cw"],
+	["Call Ended","call_ended","cb"],
+	["On Mute","call_connected","gr cw"],
+	["On Hold","call_connected","gr cw"]
+];
 // -------------------------------------------------------
 
 function users_online_ufn (el, u, a, r, m)
@@ -480,149 +439,142 @@ function users_online_ufn (el, u, a, r, m)
 	el.lastChild.value = v;
 }
 
-function call_popup_end (ts)
+// -------------------------------------------------------
+
+function _sup ()
 {
-	var coll = document.getElementById ("vv").childNodes;
-			
-	// notif --> closed by phone.js (after this function return)
-	
-	// toolbar
-	var coll_ = coll[1].firstChild.childNodes[1].firstChild.firstChild.childNodes;
-	coll_[0].parentNode.className = "cr b gp";
-	coll_[0].innerHTML = "Wrapup";
-	coll_[1].innerHTML = hmst ((ts*1), ["","","","","","",""]); // status-duration;
-	coll_[2].value = ts; // dont stop timer
-	
+	this.previousSibling.checked = true;
+	var o = {};
+	argv (this, o);
+	url (this.nextSibling, "sup", "sup", "", null, 2, o, "POST");
+}
+
+// -------------------------------------------------------
+
+function call_popup_end (el, a, vw)
+{
 	// action btns
-	var p = _(coll[6].childNodes[1].childNodes[1].firstChild,"src_btns")
-	var last_status = p.firstChild.childNodes[1].className;
-	p.firstChild.childNodes[1].className = "call_ended";
+	var last_status = vw.firstChild.childNodes[1].className;
+	vw.firstChild.childNodes[1].className = "call_ended";
 	if (last_status!="call_connected")  // auto close popup is call not connected
 	{
-		activity_close (); // clear
-	}	
+		_activity_close ();
+		return;
+	}
+	coll_ = vw.firstChild.firstChild.firstChild.firstChild.childNodes
+	coll_[0].innerHTML = "Wrapup";
+	coll_[1].innerHTML = hmst (a.hangup_ts, ["","","hms","","","",""]); // ts_txt;
+	coll_[2].value = a.hangup_ts;
 }
 
 function call_popup_hold_state (el, f)
 {
-	var p = _(document.getElementById ("vv").childNodes[6].childNodes[1].childNodes[1].firstChild,"src_btns")
+	var p = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1].firstChild; // toolbar
 	var a = {};
+	var a_ = {};
 	argv (el, a);
-	console.log ("call_popup_hold_state ("+f+") "+p.id+"=="+a.src_uid)
-	if (p.firstChild.id!=a.src_uid) return;
-	var el_ = _(p.firstChild, "chanholdstate", "input");
+	argv (p.lastChild, a_)
+	console.log ("call_popup_hold_state ("+f+") "+a.src_uid+","+a_.src_uid)
+	if (a.src_uid!=a_.src_uid) return;
+	var el_ = _(p, "chanholdstate", "input");
 	if (el_) el_.checked = f;
 }
 
 function call_popup_upd (el)
 {
-	var coll = document.getElementById ("vv").childNodes;	
-	var ss = [
-	["Down","call_ringing","gr cw"],
-	["Dialing","call_ringing","gr cw"],
-	["Ringing","call_ringing","gr cw"],
-	["Waiting","call_connected","gr cw"],
-	["Waiting","call_connected","gr cw"],
-	["Connected","call_connected","gg cw"],
-	["Call Ended","call_ended","cb"],
-	["On Mute","call_connected","gr cw"],
-	["On Hold","call_connected","gr cw"]];
-	var p = __(el,"va");
-	var vs = CALLS[p.previousSibling.value];
+	var p = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1]; 
+	var el_ = __(el,"va");
+	var vs = CALLS[el_.previousSibling.value];
 	var a = {};
-	argv (p, a);
+	argv (el, a);
 	if (vs && vs.ishold==true) { a.src_state = 8; a.src_state_ts = vs.ishold_ts; }
-	var ts_txt = hmst (a.src_state_ts, ["","","hms","","","",""]); // a.src_state_ts_txt;
 	
 	// notif (sbr)
-	var coll_ = el.parentNode.parentNode.childNodes[0].childNodes;
-	coll_[1].innerHTML = ts_txt;
-	coll_[2].value = a.src_state_ts;
-	el.parentNode.parentNode.childNodes[1].childNodes[2].innerHTML = ss[a.src_state][0];
+	var coll_ = el_.childNodes[0].childNodes;
+	coll_[2].innerHTML = hmst (a.src_state_ts, ["","","hms","","","",""]); // ts_txt;
+	coll_[3].value = a.src_state_ts;
+	el_.childNodes[1].childNodes[2].innerHTML = re["call_state"][a.src_state][0];
 	
-	// toolbar
-	if (coll[1].childNodes.length<1) return -1;
-	if (coll[1].firstChild.id.length<1) return -2;
-	if (coll[1].firstChild.id!=a.src_uid) return -3;
-	
-	coll_ = coll[1].firstChild.childNodes[1].firstChild.firstChild.childNodes;
-	//coll_[0].parentNode.className = ss[a.src_state][2];
-	coll_[0].innerHTML = ss[a.src_state][0];
-	coll_[1].innerHTML = ts_txt;
-	coll_[2].value = a.src_state_ts;
-		
-	// action btns
-	_(coll[6].childNodes[1].childNodes[1].firstChild,"src_btns").firstChild.childNodes[1].className = ss[a.src_state][1];
-	
-	return 0;	
+	// vw -> action btns
+	if (p.firstChild && p.firstChild.lastChild)
+	{
+		var a_ = {};
+		argv (p.firstChild.lastChild, a_);
+		if (a_.src_uid && a_.src_uid==a.src_uid)
+		{
+			p.firstChild.childNodes[1].className = re["call_state"][a.src_state][1]; // action btns
+			// vw - toolbar
+			coll_ = p.firstChild.firstChild.firstChild.firstChild.childNodes
+			coll_[0].innerHTML = re["call_state"][a.src_state][0];
+			coll_[1].innerHTML = hmst (a.src_state_ts, ["","","hms","","","",""]); // ts_txt;
+			coll_[2].value = a.src_state_ts;
+		}
+	}
 }
 
-function call_popup (el, f=0)
+function call_popup (el, f=0) 
 {
-	var coll = document.getElementById ("vv").childNodes;
-	var r_ = re["r_"][0].slice(0);
+	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes; 
 	var a = {};
-	var k = re["activities_k"]
-	var el_ = __(el,"va");
+	argv (el, a);
+	a.src_callid = __(el,"va").previousSibling.value;
+	if (a.src_address.length<1 && a.exten!="s") a.src_address = a.exten
+	a.src_address = _phone_fmt (a.src_address);
+
+	console.log ("[call_popup] args:"+JSON.stringify (a));
 	
-	// todo: show answer call popup
-	
-	if (f==0 && coll[1].childNodes.length>0 && coll[1].firstChild.id.length>0) // vw is occupied
+	if (a.cid_name=="AgentLogin" || a.cid_name=="Supervisor") 
 	{
-		argv (el_, a);
-		console.error ("[popn] "+coll[1].firstChild.id+","+a.src_uid+" | "+el_.previousSibling.value)
-		// notify (el); // create transient notification 
+		return;
+	}
+
+	if (f==0 && coll[1].childNodes.length>0 && coll[1].firstChild.childNodes.length>0) // vw is occupied
+	{
 		return
 	}
 
-	ra = {};
-	for (var k_ in re) ra[k_]=re[k_];		
-	argv (el_, a);
-	r_[k["src"][0]] = "call";
-	r_[k["src_uid"][0]] = a.src_uid;
-	r_[k["src_address"][0]] = _phone_fmt (a.src_address);
-	r_[k["src_uid2"][0]] = a.src_uid2;
-	r_[k["src_usr"][0]] = a.usr;
-	r_[k["src_vector"][0]] = a.src_vector;
-	r_[k["src_callid"][0]] = el_.previousSibling.value;
-	r_[k["src_ts"][0]] = a.src_ts;
-		
-	console.log ("call_popup args:"+JSON.stringify (a)+"|"+JSON.stringify (r_));
+	var s = "-1?src=" + a.src + "&src_uid=" + a.src_uid + "&src_uid2=" + a.src_uid2 +"&src_callid="+a.src_callid + "&src_vector="+a.src_vector;
+	s += "&src_address="+a.src_address;
+	s += "&src_usr="+a.src_usr;
 	
-	if (a.cid_name=="AgentLogin" || a.cid_name=="Supervisor") return;
-	
-	// todo: get current checkted tab in coll[6]
-	
-	el_.previousSibling.checked = true; 	// hilite call-notif
-	coll[1].innerHTML = ""; 			
-	coll[6].childNodes[1].firstChild.checked = true;
-	coll[6].childNodes[1].childNodes[1].innerHTML = "";
-
-	var s = "-1?src=" + a.src + "&src_uid=" + a.src_uid; 
-	if (r_[k["src_address"][0]].length>0)  
-	{
-		s += "&src_address="+r_[k["src_address"][0]];
-	}
-
-	nd (coll[1], te["call_toolbar"], [], r_, [0]); // show toolbar	
-	nd (coll[6].childNodes[1].childNodes[1], te["activity_vw_id"], ["call_btns","","1"], r_, [3]);	
-	url (coll[6].childNodes[1].childNodes[1].lastChild, "activity_vw_id_match", "activities", s);
+	__(el,"va").previousSibling.checked = true;	// hilite call-notif
+	coll[0].checked = true;
+	url (coll[1], "activity_vw_id_call", "activities^call", s);
 
 	var isaa = document.getElementById ("is_auto_answer");
-	var sess = CALLS[r_[k["src_callid"][0]]];
+	var sess = CALLS[a.src_callid];
 	if (a.src_vector=="2" && isaa.checked==true && a.src_address.length>3)
 	{
-		console.log ("AUTO ANSWER "+a.src_address+"|"+r_[k["src_callid"][0]])
+		console.log ("AUTO ANSWER "+a.src_address+"|"+a.src_callid)
 		if (sess && sess.session) sess.session.accept ({ sessionDescriptionHandlerOptions: { constraints: { audio: true, video: false } } });
 	}
 }
 
+function call_popup_ufn (el, u, a, r, m) 
+{
+	var p = __(el,"vb"); 
+	var el_ = _(document.getElementById ("call_sessions"), u[1])
+	if (!el_) return;
+	var vs = CALLS[__(el_,"va").previousSibling.value];
+	var a = {};
+	argv (el_, a);
+	if (vs && vs.ishold==true) 
+	{ 
+		a.src_state = 8; 
+		a.src_state_ts = vs.ishold_ts;
+		var elh_ = _(p, "chanholdstate", "input");
+		if (elh_) elh_.checked = true;
+	}
+	p.childNodes[1].className = re["call_state"][a.src_state][1]; // action btns
+	var coll_ = p.firstChild.firstChild.firstChild.childNodes
+	coll_[0].innerHTML = re["call_state"][a.src_state][0];
+	coll_[1].innerHTML = hmst (a.src_state_ts, ["","","hms","","","",""]); // ts_txt;
+	coll_[2].value = a.src_state_ts;
+}
+
 function _call_popup () 
 {
-	call_popup (this.childNodes[1].lastChild.firstChild, 1); 
-	call_popup_upd (this.childNodes[1].lastChild.firstChild); 
-	var vs = CALLS[this.previousSibling.value]
-	if (vs && vs.ishold) call_popup_hold_state (this.parentNode, vs.ishold); // load hold state
+	call_popup (this.lastChild.firstChild, 1); 
 }
 
 // ------------------------------------------
@@ -663,7 +615,7 @@ function chan_status (tp, ch)
 		ch[AMI.CHAN_STATUS_] = ""+(st2-10); 				// status id
 		ch[AMI.CHAN_STATUS_TXT_] = ss["chan_call"][(st2-10)];			// status txt
 		ch[AMI.CHAN_STATUS_TS_] = ch2[st2];					// status-ts
-		//ch[AMI.CHAN_STATUS_TS_TXT_] = hmst (ch2[st2], ["","h","hms","0",""]);	// status-duration
+		// ch[AMI.CHAN_STATUS_TS_TXT_] = hmst (ch2[st2], ["","h","hms","0",""]);	// status-duration
 	}
 }
 
@@ -692,7 +644,7 @@ function chani (tp,p,ch,ts,k_=2,top_=0)
 		chan_a[ch[2]] = { "el":el, "ts":ts }; // append chan to chan_a index
 		if (tp=="chan_agent") // query usr details
 		{
-			console.log ("-------------chan_agent")
+			// console.log ("-------------chan_agent")
 			url (el.firstChild.childNodes[1].childNodes[1], "chan_agent_cid_name", "wallonly", ("?exten="+ch[AMI.CHAN_CALLERID_NUM]+"&_c=1"));
 		}
 	}
@@ -710,6 +662,53 @@ function chani (tp,p,ch,ts,k_=2,top_=0)
 	}
 	el.firstChild.className = status[ch[AMI.CHAN_STATUS_]];
 	return el;
+}
+
+function chan_add (vp_add, ch, ch_, ts)
+{
+	var m_ = 0;
+
+	if (ch_ && ch_[AMI.CHAN_STATE_HANGUP].length>0) ch_=null;
+
+	console.log ("[chan_add] "+ch[AMI.CHAN_CBO_TS]+" "+ch[AMI.CHAN_CBO]+"->"+(ch_?ch_[AMI.CHAN_XFER]:""));
+
+	if (vp_add.firstChild.firstChild.id=="add_ld")  // show cbo status b4 chan_add is created
+	{
+		var coll_ = vp_add.firstChild.firstChild.childNodes[1].childNodes;
+		var action_ts = coll_[2].value*1; // todo: adjust for time diff between asterisk and app servers			
+		if (action_ts <= (ch[AMI.CHAN_CBO_TS]*1))
+		{
+			var st_ = re["chan_action"][ch[AMI.CHAN_CBO]];
+			coll_[0].innerHTML = "";
+			coll_[2].id = st_?st_[3]:"";
+			nd (coll_[0], te["call_add_msg"], [], [ch[AMI.CHAN_CBO]], [0]);
+		}
+		m_++;
+	}
+	
+	if (ch_ && (vp_add.firstChild.firstChild.id.substr(0,4)=="add_" || ch_[AMI.CHAN_XFER]=="obc"))
+	{
+		if (vp_add.firstChild.firstChild.id=="add_ld") vp_add.firstChild.innerHTML="<div id='add_ing'></div>"; 
+		var el_ = chani ("chan_add", vp_add.nextSibling, ch_, ts, 2, 1); 
+		if (ch_[AMI.CHAN_XFER]=="obc" && el_.firstChild.lastChild.childNodes.length==0) // set oly during create
+		{
+			nd (el_.firstChild.lastChild, te["chan_add_btns"], [], ch_, [0]);
+			m_++;
+		}
+		if (ch_[AMI.CHAN_XFER]!="obc")
+		{ 
+			r_ = [ch_[1], ch_[AMI.CHAN_XFER]]; 
+			el_.firstChild.lastChild.innerHTML = "";
+			nd (el_.firstChild.lastChild, te["chan_add_done"], [], r_, [0]);
+			m_++;
+		}
+	}
+				
+	if (m_==0 && vp_add.firstChild.id!="ve" && vp_add.nextSibling.childNodes.length==0) // show form
+	{
+		vp_add.innerHTML = "";
+		nd (vp_add, te["call_add_form"], [], ch, [0]);
+	}			
 }
 
 function chan_sup (pa,ch,ts)
@@ -774,55 +773,6 @@ function chans_pop (ts)
 	return h;
 }
 
-function chan_add (vp_add, ch, ch_, ts)
-{
-	var m_ = 0;
-
-	if (ch_ && ch_[AMI.CHAN_STATE_HANGUP].length>0) ch_=null;
-								
-	if (vp_add.firstChild.firstChild.id=="add_ld")  // show cbo status b4 chan_add is created
-	{
-		var coll_ = vp_add.firstChild.firstChild.childNodes[1].childNodes;
-		var action_ts = coll_[2].value*1; // todo: adjust for time diff between asterisk and app servers			
-		console.log ("[add_ld] <"+ch[AMI.CHAN_CBO]+"> "+action_ts +" "+ch[AMI.CHAN_CBO_TS]);
-		if (action_ts < (ch[AMI.CHAN_CBO_TS]*1))
-		{
-			var st_ = re["chan_action"][ch[AMI.CHAN_CBO]];
-			coll_[0].innerHTML = "";
-			coll_[2].id = st_?st_[3]:"";
-			nd (coll_[0], te["call_add_msg"], [], [ch[AMI.CHAN_CBO]], [0]);
-		}
-		m_++;
-	}
-				
-	if (ch_ && (vp_add.firstChild.firstChild.id.substr(0,4)=="add_" || ch_[AMI.CHAN_XFER]=="obc"))
-	{
-		console.log ("[chan_add] "+ch_[AMI.CHAN_XFER]+" | "+vp_add.nextSibling.id);
-		if (vp_add.firstChild.firstChild.id=="add_ld") vp_add.firstChild.innerHTML="<div id='add_ing'></div>"; 
-		var el_ = chani ("chan_add", vp_add.nextSibling, ch_, ts, 2, 1); 
-		if (ch_[AMI.CHAN_XFER]=="obc" && el_.firstChild.lastChild.childNodes.length==0) // set oly during create
-		{
-			nd (el_.firstChild.lastChild, te["chan_add_btns"], [], ch_, [0]);
-			m_++;
-		}
-		if (ch_[AMI.CHAN_XFER]!="obc")
-		{ 
-			r_ = [ch_[1], ch_[AMI.CHAN_XFER]]; 
-			el_.firstChild.lastChild.innerHTML = "";
-			nd (el_.firstChild.lastChild, te["chan_add_done"], [], r_, [0]);
-			m_++;
-		}
-	}
-				
-	if (m_==0 && vp_add.firstChild.id!="ve" && vp_add.nextSibling.childNodes.length==0) // show form
-	{
-		vp_add.innerHTML = "";
-		nd (vp_add, te["call_add_form"], [], ch, [0]);
-	}			
-	
-	console.log ("[vp_add:"+ch[AMI.CHAN_EXTEN_MASQ]+"] ("+ch[AMI.CHAN_CBO]+","+ch[AMI.CHAN_CBO_TS]+","+ ch[AMI.CHAN_CBO_UNIQUEID]+")  => ("+(ch_?ch_[AMI.CHAN_XFER] : "") + ")");
-}
-
 function chans (o,k,ts)
 {
 	var pa = document.getElementById ("vagents");
@@ -846,7 +796,7 @@ function chans (o,k,ts)
 		if (pvp.firstChild.firstChild.id=="vp_members") vp_members = pvp.firstChild;
 	}
 	
-	//console.log ("[ldami] "+JSON.stringify (k)+ " | "+ts)
+	console.log ("[ldami] "+JSON.stringify (k)+ " | "+ts)
 	//console.log (o)
 	                
 	// k.sort ();
@@ -875,7 +825,15 @@ function chans (o,k,ts)
 		}
 
 		if (ch[6].substr(0,4)=="DLPN" && ch[AMI.CHAN_SIPCALLID].length>0 && (ch[3].substr(6,4)==(user_cid+"-") || ch[3].substr(6,5)==("0"+user_cid+"-")))  
-		{		
+		{
+			console.log ("DLPN"+user_cid+" "+ch[AMI.CHAN_SIPCALLID]+" |"+ch[AMI.CHAN_CONTEXT_MASQ]);
+
+			if (ch[AMI.CHAN_EXTEN]=="s" && ch[AMI.CHAN_VECTOR]*1<1)  // skip until src_address appears
+			{ 
+				// console.error ("wait for src_address "+ch[2]+","+ch[AMI.CHAN_VECTOR]+","+ch[AMI.CHAN_CID_NUM_2]); 
+				// continue; 
+			} 
+
 			var el = _(pu, ch[2]); // find matching call	
 			
 			if (el==null)
@@ -883,32 +841,44 @@ function chans (o,k,ts)
 				var el_ = _(pu, ch[AMI.CHAN_SIPCALLID].substr (0,20));
 				if (el_)
 				{
-					nd (el_.childNodes[1].childNodes[1].lastChild, te["chan_args"], [], ch, [0]);
-					el = el_.childNodes[1].childNodes[1].lastChild.firstChild;
-					if (!chan_a[ch[2]]) chan_a[ch[2]] = { "ts":ts };
-					// console.log (ch);		
+					nd (el_.childNodes[1].lastChild, te["chan_args"], [], ch, [0]);
+					el = el_.childNodes[1].lastChild.firstChild;
+					chan_a[ch[2]] = { "ts":ts };
 					call_popup (el);
 				}
 			}
-			
+
 			if (el) 
 			{
-				//console.log ("chan-usr "+ch[2]+" | "+ch[6])
+				// console.log ("chan_args("+ch[AMI.CHAN_CHAN]+") -> ("+ch[AMI.CHAN_CHAN_2]+") "+ch[AMI.CHAN_UNIQUEID_2]+" | "+ch[AMI.CHAN_CID_NUM_2])
 				chan_a[ch[2]].ts=ts;
 				chan_status ("chan_args", ch);
-				el.childNodes[0].value = ch[AMI.CHAN_STATUS_]; // status code
-				el.childNodes[1].value = ch[AMI.CHAN_STATUS_TS_];  // status ts
+				el.childNodes[0].value = ch[AMI.CHAN_STATUS_]; 		// status code
+				el.childNodes[1].value = ch[AMI.CHAN_STATUS_TS_];  	// status ts
 				el.childNodes[2].value = ch[AMI.CHAN_STATUS_TS_TXT_];  // status ts txt
-				el.childNodes[3].value = ch[AMI.CHAN_EXTEN_MASQ]; // update exten_masq
-				el.childNodes[4].value = ch[AMI.CHAN_CHAN_2]; // update last peer chan
-				el.childNodes[5].value = ch[AMI.CHAN_CID_NUM_2]; // update last peer cid
-				el.childNodes[6].value = ch[AMI.CHAN_ORIG]; // autodial status
+				el.childNodes[3].value = ch[AMI.CHAN_CID_NUM_2]; 		// update last peer cid
+				el.childNodes[4].value = ch[AMI.CHAN_UNIQUEID_2]; 	// update last peer uid
+				el.childNodes[5].value = ch[AMI.CHAN_CHAN_2]; 		// update last peer chan
+				el.childNodes[6].value = ch[AMI.CHAN_EXTEN_MASQ]; 	// update last exten_masq
+				el.childNodes[7].value = ch[AMI.CHAN_ORIG]; 			// autodial status
 				call_popup_upd (el);
 						
 				if (vp_add && vp_add.id==ch[AMI.CHAN_UNIQUEID]) 
 				{
 					chan_add (vp_add, ch, o[ch[AMI.CHAN_CBO_UNIQUEID]], ts);
 				}
+			}
+
+			if (el && ch[AMI.CHAN_CONTEXT_MASQ]=="agentlogin" && !chan_a[ch[2]]["answered"])
+                        {
+                                
+				let callid = __(el).previousSibling.value
+                                console.log ("DLPN"+callid)
+				if (CALLS[callid]) 
+				{ 
+					CALLS[callid].session.accept()
+                      		           chan_a[ch[2]]["answered"] = ts
+                        	}
 			}
 			
 			if (ch[AMI.CHAN_CONTEXT_MASQ].substr (0,11)=="supervisor_") // my supervising chan
@@ -933,20 +903,19 @@ function chans (o,k,ts)
 		if (ch[AMI.CHAN_CONTEXT].substr (0,5)=="trunk") is_trunk=1;
 		if (ch[AMI.CHAN_CONTEXT_MASQ].substr (0,5)=="trunk") is_trunk=1; // debug
 		
-		if (is_trunk && ch[AMI.CHAN_EXTEN]!="s") // inbound
+		if (is_trunk && ch[AMI.CHAN_EXTEN]!="s") 										// inbound
 		{
-		
 			// console.log ("[inbound] "+ch[AMI.CHAN_CONTEXT_MASQ])
 		
 			if (ch[AMI.CHAN_STATE_QUEUE].length>0 && ch[AMI.CHAN_STATE_CONNECT].length==0) 		// inbound waiting
 			{
-				c[1]++; 				// waiting count
-				c[2]+= (ts-ch[AMI.CHAN_STATE_QUEUE]);	// wait-time total
-				if (ch[AMI.CHAN_STATE_QUEUE]<c[3] || c[3]==0) c[3]=ch[AMI.CHAN_STATE_QUEUE]; // wait-time max
+				c[1]++; 															// waiting count
+				// c[2]+= (ts-ch[AMI.CHAN_STATE_QUEUE]);								// wait-time total
+				if (ch[AMI.CHAN_STATE_QUEUE]>c[3] || c[3]==0) c[3]=ch[AMI.CHAN_STATE_QUEUE]; 	// wait-time max
 			}
 			if (ch[AMI.CHAN_STATE_QUEUE].length>0 && ch[AMI.CHAN_STATE_CONNECT].length>0)
 			{
-				c[4]++; 		// inbound connected
+				c[4]++; 															// inbound connected
 				// todo: remove from inbound
 			}
 			c[5]++; 
@@ -964,6 +933,7 @@ function chans (o,k,ts)
 
 	var p_agent = document.getElementById ("agent_status");
 	var p_joinq = document.getElementById ("joinq_status");
+	var p_agent_nb = document.getElementById ("agent_status_notif");
 	var p_aa = document.getElementById ("aa_status");
 	var a_ = [];
 	var a__ = [];
@@ -976,16 +946,18 @@ function chans (o,k,ts)
 	if (ch_agent!=null) 
 	{ 
 		a_ = [ch_agent[AMI.CHAN_STATUS_TS_], ch_agent[AMI.CHAN_STATUS_TS_TXT_], ch_agent[AMI.CHAN_STATUS_TXT_], "cb", ("w01 h01 bd "+status_[ch_agent[AMI.CHAN_STATUS_]]), ("a"+ch_agent[AMI.CHAN_STATUS_TXT_]).replace (" ","_")]
-		// console.log ("AGENT_STATUS: "+ch_agent[AMI.CHAN_STATUS_]+":"+ch_agent[AMI.CHAN_STATUS_TXT_]);
 		a__ = ["coffee","break","0","Leave Queue","injoinq"]
-	} 
-	console.log ("-----cti:"+a_[5]);
+	}
+
 	if (p_agent && p_agent.firstChild.id!=a_[5]) 
 	{
 		p_agent.innerHTML = "";
 		p_joinq.innerHTML = "";
-		nd (p_agent, te["agent_status"], a_, [], [6]);
+		nd (p_agent, te["agent_status"], a_.slice(0), [], [6]);
 		nd (p_joinq, te["joinq_status"], a__, [], [5]);
+		p_agent_nb.style.display = ch_agent!=null ? "block" : "none";
+		if (ch_agent!=null) p_agent_nb.firstChild.className = "ml2 x y bd8 "+status_[ch_agent[AMI.CHAN_STATUS_]]
+		// console.log ("[agent] "+JSON.stringify (a_));
 	}
 
 	a_ = ["z","","aa_none"];
@@ -1001,22 +973,54 @@ function chans (o,k,ts)
 	}
 
 	pa.parentNode.firstChild.childNodes[1].innerHTML = c[0];      // agent count
-        pi.previousSibling.childNodes[1].innerHTML = c[5];      // inbound count
-        var cnk = "c x y";
-        var cnv = "d xx y";
-        if (c[1]>0) { cnk = "c x y cr"; cnv="d xx y gr cw bd16";  }
-        pq.previousSibling.childNodes[0].className = cnk;
-        pq.previousSibling.childNodes[1].className = cnv;
-        pq.previousSibling.childNodes[1].innerHTML = c[1];      // waiting
-
+     pi.previousSibling.childNodes[1].innerHTML = c[5];      // inbound count
+     var cnk = "c x y";
+     var cnv = "d xx y";
+     if (c[1]>0) { cnk = "c x y cr"; cnv="d xx y gr cw bd16";  }
+     pq.previousSibling.childNodes[0].className = cnk;
+     pq.previousSibling.childNodes[1].className = cnv;
+     pq.previousSibling.childNodes[1].innerHTML = c[1];      // waiting
 }
 
 function ldami (o,c)
 {
-        var ts = (Date.now ()/1000);
-        var k = Object.keys (o);
-        re["channels"] = o;
-        chans (o, k, ts);
-        chans_pop (ts);
+	var ts = (Date.now ()/1000);
+	var k = Object.keys (o);
+	re["channels"] = o;
+	chans (o, k, ts);
+	chans_pop (ts);
+}
+
+// depricated te
+
+function _postjb (ev)
+{
+	var id = "v"
+        var u = this.id.split ("-");
+        if (u.length>2) id=u[2]
+        var p = __(this,id);
+        var o = {}; // console.log (k+"|"+id+"|"+p.id);
+        jso (p,o);
+        url (p, u[0], u[1], o[".id"], null, 3, o, "POST");
+        boo(ev);
+}
+
+function _nd (ev)
+{
+	ra = [];
+	for (var k in re) ra[k]=re[k]; // reset ra
+
+	var u = this.id.split("-");
+	var p = this;
+	if (u.length>2 && u[2].length>0) p = __(p,u[2]);
+	if (u.length>3 && u[3].length>0) p = _(p,u[3]);
+	if (u.length>4 && u[4].length>0) p.innerHTML = ""; // todo: doc-fragment
+
+	var r_ = ra[u[1]][0].slice(0); // get a copy
+	rargs (r_, this.firstChild.lastChild.childNodes, r_);
+
+	//console.log ("[nd] "+u[0]+" "+u[1]+" | "+JSON.stringify (r_));
+	nd (p, te[u[0]], [], r_, [0]);
+	boo(ev);
 }
 

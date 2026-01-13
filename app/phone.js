@@ -1,45 +1,30 @@
 
 te["call_session"] = { /*p:["","sipid(0,10)"],*/ c: 
 [ 
-	{ input:["g","","sbl","%0","radio"] }, // sipid js full
-	{ li:["sbr x15 y","va"], ev:["_call_popup"], c:  
+	{ input:["g","","sbr","%0","radio"] }, // sipid js full
+	{ li:["sbr xx y bt s","va"], ev:["_call_popup"], c:  
 	[ 
-		{ div:["abs w02_ y g"],  c:
-		[ 
-			{ s:["c cr h3 micon","phone_in_talk"] },
-			{ p:["e","o"], c:[ { arg:["","src_address",":v:activities:src_address"] }, { arg:["","src_usr",":v:activities:src_usr"] }, { arg:["","src_vector",":v:activities:src_vector"] }, { arg:["","cid_name","%1"] } ] }
+		{ div:[], c: 
+		[
+			{ s:["c y micon","phone"] },
+			{ s:["c l07 y",":v:activities:src_vector::vector:4"] }, 	// type
+			{ s:["d x y","0:00"] },
+			{ arg:["ts","",":v:activities:src_status"] }, 			// status-ts
+			{ div:["e"] }
+		]},	
+		{ div:["l03"], c:
+		[
+			{ s:["c l15",":v:activities:src_address"] },
+			{ s:["c x n g",":v:activities:src_vector::vector:5"] },
+			{ s:["d x cr","..."] }, 								// status
+			{ div:["e"] }
 		]},
-		{ div:["ml4nn s"], c:
-		[					
-			{ div:[], c: 
-			[
-				{ s:["c x y",":v:activities:src_vector::vector:4"] },
-				{ s:["d x y","0:00"] },
-				{ arg:["ts","",":v:activities:src_status"] }, 		// status-ts
-				{ div:["e"] }
-			]},
-			
-			{ div:[], c:
-			[
-				{ s:["c x y02",":v:activities:src_address"] }, // phone
-				{ s:["c x y02 n",":v:activities:src_vector::vector:5"] },
-				{ s:["d x y02 gr cw bd","..."] }, // status
-				{ div:["e"] }
-			]},
-		
-			{ div:["g x tt"], u:[null] },  // session-buttons: hold, hangup
-			
-			{ div:["g x","va"] },  // cti-buttons (on connect)
-			{ p:["xx","add"] }, // added chans
-		
-			{ p:["g"], uaudio:[null,"",""] },
-			{ p:["","o"] } // this channel args from ami
-		]},
-		{ div:[] }
+		{ p:["g"], uaudio:[null,"",""] },
+		{ p:["","o"] } // this channel args from ami
 	]} 
 ]};
 
-// -----------------------------
+// ------------------------------------------------------------------------
 
 function DetectDevices()
 {
@@ -64,8 +49,7 @@ var CALLS = {};
 
 var CALL_COUNT = 0;
 
-var WSHOST = "wss://"+VA_SIP_HOST+":8089/ws";
-
+var WSHOST = "wss://"+VA_SIP_HOST+"/ws/";
 
 var VOICEAPPS_CHANSTATE = [
 [],
@@ -129,17 +113,17 @@ function VOICEAPPS_SESSION (_leg)
 		var p = document.getElementById ("call_sessions");
 		var el_ = document.createElement ("P"); 
 		el_.id = this.ssid.substr (0,20);
-		p.insertBefore (el_, null); //p.firstChild);
-		var el = nd (el_, te["call_session"], [(this.leg==1?"/helpline/images/dialtone.wav":"/helpline/images/earlymedia.mp3"),"noop"], r, [2]);
+		p.insertBefore (el_, p.firstChild);
+		var el = nd (el_, te["call_session"], [(this.leg==1?"/helpline/images/dialtone.wav":"/helpline/images/earlymedia.mp3")], r, [1]);
 		el = el.parentNode.parentNode;
 		this.el = el;
-		var coll = el.childNodes[1].childNodes[1].childNodes;
+		var coll = el.childNodes[1].childNodes;
 		var cur_state = 0;
 
 		CALL_COUNT++;
 		notifs ();
 
-		this.mediaElement = coll[5].firstChild; // _(el, "au").firstChild;
+		this.mediaElement = coll[2].firstChild; // _(el, "au").firstChild;
 		this.mediaElement.volume = 0.3; // this.leg==1?0.3:0.9;
 		this.mediaElement.play ();
 		this.mediaElement.loop = true;
@@ -179,26 +163,24 @@ function VOICEAPPS_SESSION (_leg)
 			case SIP.SessionState.Terminated:
 				state = 5;
 				console.log ("VOICEAPPS_SESSION: Terminated "+me.session.id);
-			        VOICEAPPS_UA.cleanup_media (me.mediaElement);
+				VOICEAPPS_UA.cleanup_media (me.mediaElement);
 				if (el) 
-				{ 
-					var toolbar = document.getElementById ("vv").childNodes[1].firstChild;
+				{
+					var vw = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1]; 
 					var a = {}
 					argv (el, a); 
-					me.hangup_ts = (Math.ceil ((Date.now()/1000)));
-					a.src_ts_end = ""+me.hangup_ts; // duration in seconds
-					a.src_status = a.src_state+"-"+a.src_vector+"-"+a.src_orig;
-					a.src_status_duration = a.src_ts_end-a.src_state_ts;
-					a.src_duration = me.hangup_ts-a.src_ts;	
-					if (toolbar && toolbar.id==a.src_uid) call_popup_end (a.src_ts_end);
-					p.removeChild (el); 
+					a.hangup_ts = me.hangup_ts = (Math.ceil ((Date.now()/1000)));
+					if (vw && vw.firstChild && vw.firstChild.lastChild) 
+					{
+						var a_ = {}
+						argv (vw.firstChild.lastChild, a_)
+						if (a_.src_uid && a_.src_uid==a.src_uid) call_popup_end (el, a, vw)
+					}
+					p.removeChild (el);
 					el=null;
-					CALL_COUNT--;
+					CALL_COUNT--; // console.log ("CALL_COUNT:"+CALL_COUNT)
 					notifs ();
-					// var p_ = document.getElementById ("vt_activity");
-					// url (p_, "activity_call", "activities", "", null, 2, a, "POST"); //depricated
 				}
-				// NB CALLS cleanup happens VOICEAPP_UA.callended
 				break;
 	
 			default:
@@ -208,8 +190,8 @@ function VOICEAPPS_SESSION (_leg)
 
 			if (cur_state != state) // update ts
 			{
-				coll[0].childNodes[1].innerHTML = "0:00";
-				coll[0].childNodes[2].value = ""+(Date.now ()/1000)-ra_ts;
+				coll[0].childNodes[2].innerHTML = "0:00";
+				coll[0].childNodes[3].value = ""+(Date.now ()/1000)-ra_ts;
 			}
 
 			// coll[1].childNodes[1].innerHTML = VOICEAPPS_CHANSTATE[me.leg][state]; // update status
@@ -221,13 +203,13 @@ function VOICEAPPS_SESSION (_leg)
 				me.mediaElement.loop = true;
 			}
 
-			if (state==3) // change buttons
-			{
-				coll[2].innerHTML = "";
-				// nd (coll[2], te["call_session_btns_connected"], [], [], [0]);	
-				//coll[3].innerHTML = "";
-				//nd (coll[3], te["call_session_actions"], [], [], [0]);	
-			}
+			// if (state==3) // change buttons
+			// {
+			//	// coll[2].innerHTML = "";
+			//	// nd (coll[2], te["call_session_btns_connected"], [], [], [0]);	
+			//	//coll[3].innerHTML = "";
+			//	//nd (coll[3], te["call_session_actions"], [], [], [0]);	
+			// }
 
 			cur_state = state;
 		});
@@ -365,28 +347,25 @@ VOICEAPPS_UA.on_notify = function (e)
 
 VOICEAPPS_UA.sethold = function (va, hold) 
 {
- 
-     	const sessionDescriptionHandlerOptions = va.session.sessionDescriptionHandlerOptionsReInvite;
-        sessionDescriptionHandlerOptions.hold = hold;
-        va.session.sessionDescriptionHandlerOptionsReInvite = sessionDescriptionHandlerOptions;
-        // Send re-INVITE
-        return va.session.invite (va.options).then (() => 
-        {
-        	var pc = va.session.sessionDescriptionHandler.peerConnection;
+	const sessionDescriptionHandlerOptions = va.session.sessionDescriptionHandlerOptionsReInvite;
+	sessionDescriptionHandlerOptions.hold = hold;
+	va.session.sessionDescriptionHandlerOptionsReInvite = sessionDescriptionHandlerOptions;
+	// Send re-INVITE
+	return va.session.invite (va.options).then (() => 
+	{
+		var pc = va.session.sessionDescriptionHandler.peerConnection;
 		pc.getSenders().forEach ((stream) => 
 		{
-			//console.log (stream)
+			// console.log (stream)
 			stream.track.enabled = !hold;
-			console.log ("Sender TRack Status ("+hold+") "+stream.track.enabled)
-    		});
-    		
+			console.log ("Sender Track Status: "+hold+","+stream.track.enabled)
+		});
 		va.ishold = hold;
 		va.ishold_ts = Date.now ()/1000;
 		console.log ("hold is: "+hold);
 		call_popup_hold_state (va.el, hold); // update hold state in toolbar
-		call_popup_upd (va.el.childNodes[1].childNodes[1].lastChild.firstChild); 
-		
-        })
+		call_popup_upd (va.el.childNodes[1].lastChild.firstChild); 
+	})
 	.catch((error) => 
 	{
 		console.log ("hold errror: "+error);
@@ -459,7 +438,7 @@ VOICEAPPS_UA.on_invite = function (session)
 	vs.handleSessionState ();
 	CALLS[vs.ssid] = vs ;
 	
-	console.log ("[on_invite] "+ dn+" | "+JSON.stringify (session.remoteIdentity))
+	console.log ("VOICEAPPS_UA: invite "+ dn+" | "+JSON.stringify (session.remoteIdentity)+"|"+vs.ssid)
 		
 	if (dn=="Autodial" || dn=="AgentLogin" || dn=="Supervisor")
 	{
@@ -478,16 +457,13 @@ VOICEAPPS_UA.dial = function (dial_str)
 		console.error ("VOICEAPPS:  dial failed: makeURI failed.");
 		return;
     	}
-	
-	console.log ("VOICEAPPS:   dial start"); // INVITE sent
 			
 	var vs = new VOICEAPPS_SESSION (1);
 	vs.session = new SIP.Inviter (this.UA, target, { sessionDescriptionHandlerOptions: { constraints: { audio: true, video: false } } } );
-	console.log ("VOICEAPPS:   dial new session created"); // INVITE sent
     	vs.handleSessionState ();
-    	
-    	console.log ("VOICEAPPS:   dial: state handled"); // INVITE sent
-    	
+
+	console.log ("VOICEAPPS_UA:   dial new session created | "+ vs.ssid); // INVITE sent
+    	    	
 	CALLS[vs.ssid] = vs;
 	vs.session.invite().then (function () 
 	{
@@ -499,20 +475,19 @@ VOICEAPPS_UA.dial = function (dial_str)
 	});
 }
 
-// ----------------------------
+// ------------------------------------------------------------------------
 
-function _ami_action (el, o, action)
+function ami_action (el, o, action)
 {
 	var u = el.id.split ("-")
 	o.action = action;
-	console.log ("[ami_action] "+JSON.stringify (o)+" | "+el);
 	url (__(el), u[0], u[1], "", null, 2, o, "POST");
 }
 
 function _kickout (ev)
 {
 	var o = {};
-	_ami_action (this, o, "6");	
+	ami_action (this, o, "6");	
 	// boo (ev)
 }
 
@@ -522,9 +497,9 @@ function _add_action (ev)
 	var p = __(this,"ve")
 	var el = _(document.getElementById ("call_sessions"), __(p,"vddvw").childNodes[1].id);
 	var o = {}
-	argv (p, o); console.log ("add_action|"+el.id+"|"+JSON.stringify (o))
-	argv (__(el,"va"), o);	
-	_ami_action (this, o, u[2]);	
+	jso (p, o);
+	argv (el, o);	
+	ami_action (this, o, u[2]);	
 	boo (ev);
 }
 
@@ -534,15 +509,15 @@ function _add_dial (ev)
 	var p = __(this,"ve")
 	var el = _(document.getElementById ("call_sessions"), p.parentNode.id);
 	var o = {}
-	argv (p, o);
 	if (el==null) 
 	{
 		this.parentNode.nextSibling.innerHTML = "<div class='x y'><div class='x08 y gp cr'>Call has already ended</div></div>";
 		return;
 	}
-	argv (__(el,"va"), o);	
+	jso (p, o);  
+	argv (el, o);
 	// if (o.cbid.length>0) o.chan2=""; // unset chan2 to remove it from unnecesary redirect
-	_ami_action (this, o, "2");	
+	ami_action (this, o, "2");	
 }
 
 function _add_dial_form ()
@@ -552,46 +527,39 @@ function _add_dial_form ()
 	var o = {};
 	var r_ = ra[u[1]][0].slice (0)
 	var el = null;
-	argv (this, o, "id");	
-	el = _(document.getElementById ("call_sessions"), o._uid);
-	argv (__(el,"va"), o);	
+	argv (__(this,"vfvw").firstChild.lastChild, o)	
+	el = _(document.getElementById ("call_sessions"), o.src_uid);
+	argv (__(el,"va"), o);
 	console.log ("[_add_dial_form] "+JSON.stringify (o))
-	r_[AMI.CHAN_UNIQUEID] = o._uid;
+	r_[AMI.CHAN_UNIQUEID] = o.src_uid;
 	vp (p);
 	nd (p, te[u[0]], [], r_, [0]);
 	ldami (re["channels"]);
 }
 
-// ------------------------------------
-
-function phone_hangup (id)
-{
-	var vs = CALLS[id]
-	console.log ("hangup---------------------"+id)
-	VOICEAPPS_UA.endcall (vs.session, vs.leg);
-}
-
 function _hangup (ev)
 {
-	var id = __(this,"va").previousSibling.value;
-	phone_hangup (id)
+	var o = {};
+	argv (__(this,"vf").firstChild.lastChild, o);
+	var vs = CALLS[o["src_callid"]]
+	VOICEAPPS_UA.endcall (vs.session, vs.leg);
 	boo (ev);
 }
 
 function _hold (ev)
 {
-	var id = __(this,"va").previousSibling.value;
-	var vs= CALLS[id]
-	console.log ("hold("+vs.ishold+")---------------------"+id)
+	var o = {};
+	argv (__(this,"vf").firstChild.lastChild, o)
+	var vs = CALLS[o["src_callid"]];
 	VOICEAPPS_UA.sethold (vs, !vs.ishold);
 	boo (ev);
 }
 
 function _answer (ev)
 {
-	var id = __(this,"va").previousSibling.value;
-	CALLS[id].session.accept ({ sessionDescriptionHandlerOptions: { constraints: { audio: true, video: false } } });
-	console.log ("answer---------------------"+id)
+	var o = {};
+	argv (__(this,"vf").firstChild.lastChild, o)
+	CALLS[o["src_callid"]].session.accept ({ sessionDescriptionHandlerOptions: { constraints: { audio: true, video: false } } });
 	boo (ev);
 }
 

@@ -20,7 +20,7 @@ var rz = {};
 
 var FILE_UPLOAD_COUNT = 0;
 
-var ND = ["u","uchk","uhilite","umime","uval","ufn","uaudio","ucolor","uerror","usub","uchkargs","ucal","ucalv","utime", "urpt", "pivot", "uchart", "utable", "usummary", "uv", "uredirect"];
+var ND = ["u","uchk","uhilite","umime","uval","ufn","uaudio","ucolor","uerror","usub","uchkargs","ucal","ucalv","utime", "urpt", "pivot", "uchart", "utable", "usummary", "uv", "uredirect", "uo"];
 
 aa["div"] = 	["className","id","innerHTML"];
 aa["span"] = 	["className","id","innerHTML"];
@@ -38,8 +38,6 @@ aa["label"] = 	["className","id","innerHTML","for"];
 aa["pre"] = 	["className","id","innerHTML"];
 
 te["noop"] = {};
-
-
 
 te["ur"] = { u:[null,null] };
 
@@ -83,23 +81,23 @@ te["branch_footer"] = { s:["mln2 mtn13 x y15 abs gws_",""] };
 
 te["pgto2"] = { c:
 [
-	{ div:["c x t03"], s:["cgr","-"] },
-	{ div:["c x t03"], s:["","%3"] }
+	{ div:["c x"], s:["cgr","-"] },
+	{ div:["c x"], s:["","%3"] }
 ]};
 
 te["pgto"] = { c:
 [
-	{ div:["c x t03"], s:["cgr","-"] },
-	{ div:["c x t03"], s:["","%3"] }
+	{ div:["c x"], s:["cgr","-"] },
+	{ div:["c x"], s:["","%3"] }
 ]};
 
 te["pg"] = { c: 
 [
-	{ div:["c"], s:["x t03","%2"] },
+	{ div:["c"], s:["x","%2"] },
 	{ u:[null] },
-	{ div:["c"], s:["x t03","of"] },
-	{ div:["c"], s:["x t03","%4"] },
-	{ div:["c l"], c:[ { aci:["nav",null,"_nav",null,"prev",""], c:[ { div:[null] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
+	{ div:["c"], s:["x","of"] },
+	{ div:["c"], s:["x","%4"] },
+	{ div:["c"], c:[ { aci:["nav",null,"_nav",null,"prev",""], c:[ { div:[null] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
 	{ div:["c"], c:[ { ac:["nav",null,"_nav",null,""], c:[ { div:[null] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] }
 ]};
 
@@ -124,14 +122,14 @@ te["argf"] = { arg:["","%3","%1"] };
 
 te["kf_n"] = { p:["","o"], c: // 	
 [
-	{ s:["c w15 y08 cb",null] }, 
+	{ s:["c w14 y08 cb",null] }, 
 	{ li:["d"], txt:[" ba w30"," w30 x y07","",null,null] },
 	{ div:["e"] }
 ]};
 
 te["kf_d"] = { c:   // 		
 [
-	{ s:["c w15 y08 cb",null] }, 
+	{ s:["c w14 y08 cb",null] }, 
 	{ div:["d","calw"], c:
 	[
 		{ li:["w30 ba gw_ cb","va"], c:[ { div:[""], ev:["_dd"], c:
@@ -158,7 +156,7 @@ te["kf_d"] = { c:   //
 
 te["kf_l"] = { c:
 [
-	{ s:["c w15 y08 cb",null] }, 
+	{ s:["c w14 y08 cb",null] }, 
 	{ div:["d",null], c:
 	[
 		{ li:["w30 ba gw_ cb","va"], c:[ { div:["",null], ev:["_dd"], c: // 
@@ -178,7 +176,7 @@ te["kf_l"] = { c:
 
 te["kf_c"] = { c: 
 [
-	{ s:["c w15 y08 cb",null] }, 
+	{ s:["c w14 y08 cb",null] }, 
 	{ div:["d",null], c:
 	[
 		{ li:["w30 ba gw_ cb","va"], c:[ { div:[""], ev:["_dd"], c:
@@ -199,7 +197,7 @@ te["kf_c"] = { c:
 
 te["kf_s"] = { p:["","o"], c: // 	
 [
-	{ s:["c w15 y08 cb",null] }, 
+	{ s:["c w14 y08 cb",null] }, 
 	{ li:["d"], txt:[" ba w30"," w30 x y07","",null,null] },
 	{ div:["e"] }
 ]};
@@ -289,6 +287,17 @@ te["ufn_attach"] = { ufn:["ufn_attach"] };
 
 // -------------------------
 
+function formatFileSize(bytes, decimals = 2) {
+  if (bytes === 0) return "0 B";
+
+  const k = 1024; // use 1000 if you prefer decimal units
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ["B", "KB", "MB", "GB", "TB", "PB"];
+
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+}
+
 function op(){}
 
 function _ID(id){ return  document.getElementById(id); }
@@ -301,12 +310,23 @@ function _element (el, tagname, cn, v)
 	el.appendChild (el_);
 }
 
-function _rm (ev)
+function _rm (ev) 
 {
-	var el = __(this); //,"va");
-	var p = el.parentNode;
-	p.removeChild (el);
-	boo (ev)
+	var u = this.id.split ("-");
+	if (this.id.length<1 || re[u[1]]!=undefined)
+	{
+		var el = __(this,"va");
+		var p = el.parentNode;
+		if (this.previousSibling) this.previousSibling.checked = true;
+		p.removeChild (el);
+		if (u.length>1) nd (p, te[u[0]], [], re[u[1]][0].slice(0), [0])
+		boo(ev)
+		return;
+	}
+	var o = {};
+	argv (this, o);
+	url (__(this,"ve"), u[0], u[1], o[".id"], null, 2, o, "POST");
+	boo(ev);
 }
 
 function _mvup ()
@@ -413,14 +433,14 @@ function argv (p,a,k="name",skipid=null,b={})
 	{
 		var o = coll[i];
 		if (o[k].length<1) continue;
-		if (skipid!=null && o.id!=skipid) continue;
+		if (skipid!=null && o.id!=skipid) continue;					// ???
 		v = o.value;
 		if (o.type=="radio" || o.type=="checkbox")
 		{
 			if (!o.checked) continue; 
 			// console.log (" >> "+o[k]+" | "+ b[o[k]]);
 			if (a[o[k]]===undefined) { a[o[k]]=""; b[o[k]]=[]; }
-			if (b[o[k]]===undefined) { b[o[k]]=[]; } // just incase
+			if (b[o[k]]===undefined) { b[o[k]]=[]; } // just incase	// ???
 			b[o[k]][b[o[k]].length] = o; 
 			if (a[o[k]].length>0) a[o[k]]+=",";
 			a[o[k]]+=v;
@@ -493,10 +513,13 @@ function jso (p, o, k)
 			}
 			continue;
 		}
-		if (coll[i].id=="o") argv (coll[i], o, k, null, b);
+		if (coll[i].id=="o") 
+		{
+			argv (coll[i], o, k, null, b);
+		}
 	}
 
-	console.log ("[jso]  ("+p.id+"/"+p.className+") "+JSON.stringify (o)+" | "+JSON.stringify (b));
+	// console.log ("[jso]  (#"+p.id+"."+p.className+") "+JSON.stringify (o)+" | "+JSON.stringify (b));
 }
 
 function rargs (r_, coll)
@@ -504,14 +527,14 @@ function rargs (r_, coll)
 	var v = "";
 	for (var i=0; i<coll.length; i++)
 	{
-		// console.log ("  rarg: "+coll[i].id+"="+coll[i].value);
+		// console.log ("rarg: "+coll[i].id+"="+coll[i].value);
 		if (coll[i].id.length<1) continue;
 		var kk = coll[i].id.split ("-");
 		if (kk.length<2) continue;
 		v = coll[i].value;
 		r_[kk[1]] = v;
 	}
-	// console.log ("[rargs] "+JSON.stringify (r_));
+	// console.log ("[rargs] ("+coll.length+") "+JSON.stringify (r_));
 }
 
 function hmsr (t,a) // :r:dmyhn:17: :0:899999999:Remaining :DHm::Expred :DHm::
@@ -584,8 +607,8 @@ function hmst (t,a)
 function vdt (x,a)
 {
 	// var x = r[a[3]];
-        if (x.length<1) return ""; // :d:dmyhm:1:
-	var vv = x.split (";");	// console.log (a);
+        if (x.length<1) return ""; 	// :d:dmyhm:1:
+	var vv = x.split (";");		// console.log (a);
 	var na = a[2].length; 
 	var kk = {"d":0, "m":1, "y":2, "h":3, "n":4, "s":5, "r":6, "x":7};
 	var c = 0;
@@ -613,55 +636,23 @@ function vdt (x,a)
 	return s;
 }
 
-function vu (r,a) // ":u:f:3:4:5:6"
+function vu (v,a,r) // ":u:f:3:4:5:6"
 {
 	var f = 0;
 	if (a[2].length>0) f = window[a[2]] (r,a); 
-	if (a[2].length<1) f = (r[a[3]]*1)>(a[4]*1) ? 1 : 0;
-	//console.log ("[VU] "+r[a[3]]+"|"+f+"|"+JSON.stringify (a));
+	if (a[2].length<1) f = (v*1)>(a[4]*1) ? 1 : 0;
+	// console.log("[vu]"+JSON.stringify(a)+"|"+v+"=>"+f);
 	return a[5+(f*1)];
 }
 
-function vel (r,a) // :v:table_name:col_name::enum:enum_col
+function venum (v,a) // ::yesno:25:2 
 {
-	// console.log ("vel: "+JSON.stringify (a))
-
-	var kk = ra[(a[2]+"_k")];
-	if (kk==undefined)
-	{
-		if (a.length<5)  return "";
-		return ra[a[4]][""][a[5]];
-	}
-	var k = kk[a[3]];
-	if (k==undefined) return "";
-	if (a[1]=="v") k = kk[a[3]][0];
-	var v = r[k];
-	// console.log (a[2]+":"+a[3]+" | "+JSON.stringify (r))
-	if (a.length<5) return v;
-	if (a[4]=="") 
-	{
-		if (a.length>7) v = a[7]+v; // prefix
-		var o = ra[a[5]];
-		if (o===undefined) return v;	
-		var v_ = o[v];
-		if (v_===undefined) return v;
-		return v_[a[6]];
-	};
-	if (a[4]=="d") // date
-	{
-		return  vdt (v,["","d","dmy","0"," "]);
-	}
-	return v;
-}
-
-function ve (r,a) // ::yesno:25:2 
-{
-	var v = r[a[3]];
 	var o = ra[a[2]];
 	if (o===undefined) return "!";	
 	var v_ = o[v];
 	if (v_===undefined) return v;
-	return v_[a[4]];
+	if (a[4]) return v_[a[4]];
+	return v_[a[3]]
 }
 
 function valf (r,v)
@@ -669,38 +660,52 @@ function valf (r,v)
 	if (v.length<2 || !r) return v;
 	if (v.substr(0,1)=="%") return r[(1*v.substr(1))]; 
 	if (v.substr(0,1)!=":") return v;
+
 	var a = v.split (":");
+	var v = null;
 	
-	if (a[1]=="k") // return k value
+	if (a[1]=="k") 					// :k:users_k:usn:2:: // ::role:
 	{
 		if (!ra[a[2]]) return ""
 		if (!ra[a[2]][a[3]]) return ""; 
-		if (a.length==4) return ra[a[2]][a[3]]; // used by applyf
-		if (a.length==5 && a[4]=="p") return hmsp ([ra[a[2]][a[3]]], [,,,0,]);
-		if (a.length==5 && a[4]=="h") return hmsf ([ra[a[2]][a[3]]], ["","h","hms","0",""]);
-		if (a.length==5) return ra[a[2]][a[3]][a[4]]; 
-		if (a.length==6) 
+		v = ra[a[2]][a[3]]	
+		if (a.length>5 && a[4]=="" && a[5].length>0)  // uchkargs match
 		{
-			var v_=  ra[a[2]][a[3]][r[a[5]]]; 
-			// console.log (" valf-k: "+JSON.stringify (ra[a[2]][a[3]])+" |"+r[a[5]]+" | "+v_)
-			if (v_==undefined) return "";
-			return v_;
+			// console.log (a[5]+"|"+r[a[5]]+"|"+JSON.stringify(v))	
+			if (v[r[a[5]]]) return "1";
+			return "";
 		}
-		return "";
+		if (a.length>4 && a[4].length>0 && Array.isArray(v)) v = v[a[4]];
+		a = a.splice (4); 
 	} 
-	if (a[1]=="v") return vel (r,a);
-	if (a[1]=="V") return vel (r,a);
-	if (a[1]=="u") return vu (r,a)
-	if (a.length<4) return v;
-	if (r[a[3]]===undefined) return "?.";
-	if (a[1]=="f") return "" + ( (r[a[3]]*1).toFixed (a[2]*1) ); 
-	if (a[1]=="d") return vdt (r[a[3]],a);
-	if (a[1]=="h") return hmsf (r[a[3]],a);
-	if (a[1]=="t") return hmst (r[a[3]],a);
-	if (a[1]=="p") return hmsp (r[a[3]],a);
-	if (a[1]=="r") return hmsr (r[a[3]],a);
+	else if (a[1]=="v" || a[1]=="V") 		// :v:table_name:col_name::enum:enum_col
+	{ 
+		var kk = ra[(a[2]+"_k")];
+		if (kk==undefined) return "";
+		var k = kk[a[3]];
+		if (k==undefined) return "";
+		if (a[1]=="v") k = kk[a[3]][0];
+		v = r[k];
+		a = a.splice (3)
+	}
+	else
+	{
+		v = r[a[3]]
+	}
 
-	return ve (r,a);
+	if (v===undefined || v===null) { console.log("[err]"+JSON.stringify(a)); return "?."; }
+
+	if (a.length<4) return v;
+
+	if (a[1]=="f") return "" +  ( (v*1).toFixed (a[2]*1) ); 
+	if (a[1]=="h") return hmsf  (v,a);
+	if (a[1]=="t") return hmst  (v,a);
+	if (a[1]=="p") return hmsp  (v,a);
+	if (a[1]=="r") return hmsr  (v,a);
+	if (a[1]=="d") return vdt   (v,a);
+	if (a[1]=="u") return vu    (v,a,r);
+	if (a[1]=="")  return venum (v,a);
+	return v;
 }
 
 function val (v, a, r, m, el, k, w)
@@ -708,14 +713,15 @@ function val (v, a, r, m, el, k, w)
 	var v_ = v;
 	if (v===null) { v_ = a[(m[0]-1)]; m[0]--; } // pop a stack
 	if (v_===null) return null;
+	// console.log ("v:"+v_+"|"+m[0])
 	if (v_.length<1) return v_;
 	if (v_.length>1 && r) v_ = valf (r,v_);
 	if (el && k && w!=1) 
 	{
 		if (k=="innerHTML") 
 		{
-			//v_ = v_.replace (/>/gm,"&gt;"); 
-			//v_ = v_.replace (/</gm,"&lt;"); 
+			v_ = v_.replace (/>/gm,"&gt;"); 
+			v_ = v_.replace (/</gm,"&lt;"); 
 			//v_ = v_.replace (/\n/gm,""); // line break
 		}
 		el[k] = v_; 
@@ -732,7 +738,7 @@ function val (v, a, r, m, el, k, w)
 
 function uredirect (el, u, a, r, m)
 {
-	console.log (u);
+	// console.log (u);
 	window.location.href = (HOME+u[0]+u[1]);
 }
 
@@ -745,7 +751,12 @@ function uv (el, u, a, r, m)
 {
 	var a = {args:"?", ".id":""};
 	argv (el, a);
-	//console.log (JSON.stringify (u)+"|"+JSON.stringify(a))
+	//console.log ("[uv] "+JSON.stringify (u)+"|"+JSON.stringify(a));
+	//if (u.length>2 && u[2]<1)
+	//{
+	//	el.innerHTML = "";
+	//	return
+	// }
 	url (el, u[0], u[1], (a[".id"]+a.args));
 }
 
@@ -791,6 +802,7 @@ function uval_ (el, u, ja, cn)
 		_element (el, "div", "c r15", s);
 	}
 	if (u[0].length>0) _element (el, "div", "e", "");
+	else if (cn.length<1) _element (el, "span", "l", "&nbsp;");
 }
 
 function uval (el, u, a, r, m)
@@ -801,36 +813,36 @@ function uval (el, u, a, r, m)
 
 function umime (el, u, a, r, m)
 {
-	var v = u[2];
+	var v = u[1];
 	
-	if (u[1]=="application/json")
+	if (u[2]=="text/plain")
 	{
-		v = atob (u[2]); 
-		if (u.length>3 && u[3].length>0 && re[u[3]]) 
+		v = u[1];
+		try { v=atob (u[1]); } catch (e) {}
+		nd (el, te[u[0]], [v], r, [1]);
+		return ;
+	}
+
+	if (u[2]=="application/json")
+	{
+		v = atob (u[1]); 
+		var vo = null;
+		try 
 		{
-			var ko = re[u[3]]
-			var vo = null;
-			try 
-			{
-				vo = JSON.parse (v)
-			}
-			catch (e)
-			{
-				console.error (v)
-			}
-			v = "Invalid Payload Received!";
-			if (vo)
-			{ 
-				var kk = rk[u[3]]
-				for (var k=0; k<kk.length; k++)
-				{
-					if (!vo[kk[k]]) continue;
-					nd (el, te[(u[0]+"_o")], [vo[kk[k]], ko[kk[k]][1]], r, [2]); // 
-//					console.log ("[umime] "+u[3]+"|"+ kk[k]+" => " + ko[kk[k]][1])
-				}
-				return;	
-			}
-		} 
+			vo = JSON.parse (v)
+		}
+		catch (e)
+		{
+			console.error (e)
+		}
+		if (vo)
+		{
+			console.log ("[umime]"+v);
+			ra[u[3]] = vo;
+			nd (el, te[u[3]], [], r, [0]);
+			return;
+		}
+		v = "Invalid Payload Received!"; 
 	}
 	
 	nd (el, te[u[0]], [v], r, [1]);
@@ -856,6 +868,7 @@ function uhilite (el, u, a, r, m)
 		var m = null;
 		while ((m = expr.exec (u[0])) !== null)
 		{
+			//console.log ("->"+i+"-->"+JSON.stringify(m))
 			var pi = expr.lastIndex-m[0].length;
 			pos[pi] = expr.lastIndex;
 			pk[pk.length] = pi;
@@ -863,7 +876,7 @@ function uhilite (el, u, a, r, m)
 		}
 	}
 	pk.sort ((a,b)=>{ return a-b }); // todo: check for overlap (remove overlaped pos'es)
-	//console.log ("[uhilite] "+JSON.stringify (pk)+" | "+JSON.stringify (pos))
+	console.log ("[uhilite] "+u[0].length+" | "+JSON.stringify (pk)+" | "+JSON.stringify (pos))
  
  	var v = u[0];
  	var v_ = "";
@@ -873,9 +886,10 @@ function uhilite (el, u, a, r, m)
 	var el_ = null;
 	while (a<v.length)
 	{
+		if (c>0 && pk[c]==pk[c-1]) { c++; continue; } // skip duplicates
 		if (c<pk.length) b = pk[c];
 		v_ = v.substring(a,b);
-		uval_ (el, ["",v_], (a==0?1:0), "");
+		uval_ (el, ["",v_], (a==0?1:0), " ");
 		
 		if (c<pk.length)
 		{
@@ -1020,19 +1034,19 @@ function nd (p,o,a,r,m)
 	}
  
 	if (e)
-        {
-                el = document.createElementNS ("http://www.w3.org/1999/xhtml", e);
-                for (j=0; j<o[e].length; j++) val (o[e][j], a, r, m, el, aa[e][j]);
-                p.appendChild (el);
-                if (e=="input" && el.type=="text") { el.setAttribute ("autocomplete","off"); }
-                if (e=="textarea")
-                {
-                        var st = window.getComputedStyle (el);
-                        var h = st.getPropertyValue("height");
-                        // console.log ("TXA: "+el.height+" | "+h+"|"+e);
-                        if (h<100) el.style.height = 100; 
-                }
-        }
+	{
+		el = document.createElementNS ("http://www.w3.org/1999/xhtml", e);
+		for (j=0; j<o[e].length; j++) val (o[e][j], a, r, m, el, aa[e][j]);
+		p.appendChild (el);
+		if (e=="input" && el.type=="text") { el.setAttribute ("autocomplete","off"); }
+		if (e=="textarea")
+		{
+			var st = window.getComputedStyle (el);
+			var h = st.getPropertyValue("height");
+			// console.log ("TXA: "+el.height+" | "+h+"|"+e);
+			if (h<100) el.style.height = 100; 
+		}
+	}
 	
 	if (o.ev)
 	{
@@ -1114,22 +1128,17 @@ function ld (p, m, http_status)
 	console.log (http_status+" -> "+m+":"+JSON.stringify (uu)+" @"+p.id)
 
 	for (var i=0; i<uu.length; i++)
-	{		
+	{	
 		var u_ = uu[i];
 		var p_ = p;
-		// if (!ra[u_[1]]) continue;
+
 		if (u_.length>2 && u_[2].length>0 && p_.id.substr (0,u_[2].length)!=u_[2])
 		{
-			// console.log ("ascend "+p_.id+"("+p_.className+") -> "+u_[2]);
 			p_ = __(p_, u_[2]);  // ascend 
-			// console.log ("ascend: "+p_.id+" -> "+u_[2]);
 		}
 		if (u_.length>3 && u_[3].length>0) 
 		{
-			// console.log ("descend "+p_.id+"("+p_.className+") -> "+u_[3]);
 			p_ = _(p_, u_[3]); // descend
-			if (u_[3]=="vp" && u_[0]!="noop") vp (p_);
-			if (u_[3]=="vp" && u_[0]=="noop") document.getElementById ("vp").style.display = "none";
 		}
 		if (p.id=="vs0")
 		{
@@ -1139,13 +1148,15 @@ function ld (p, m, http_status)
 			p_ = p.parentNode.firstChild;
 			setTimeout (tso, 10000); // wait ten seconds for ami update, else show button for user to try 
 		}
-		 // console.log ("ld::nd: "+p_.id+" |"+JSON.stringify (u_));
 		p_.innerHTML = ""; // clear 
 		var a_ = [];
 		var m_ = [0];
-		// for (var j=ra.a[i].length-1; j>-1; j--) { a_[m_[0]]=ra.a[i][j]; m_[0]++; }
-		// console.log (p_.id+" | "+u_[0]+" "+u_[1]);
 		nd (p_, {u:[u_[0],u_[1]]}, a_, [], m_);
+
+		if (p_.id=="vp"  && p_.childNodes.length>0) 
+		{
+			p_.firstChild.style.marginTop = window.scrollY+"px";
+		}
 	}
 
 	ra["auth_nb"] = [];
@@ -1169,48 +1180,49 @@ function url_progress (ev)
 
 function url (p, u, m, a="", data=null, l=0, o=null, meth="GET")
 {
-        if (l==0)
-        {
-                var le = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
-                le.className = "xx t02 s go sh'";
-                le.id = "loadn";
-                le.innerHTML = "";
-                p.insertBefore (le, p.firstChild); // todo: ajax loader on p or el?
-        }
-        if (l==2 || l==3)
-        {
-                p.className="savn";
-                var nb = _(p,"nb");
-                if (nb) nb.innerHTML = "";
-        }
-        var x = new XMLHttpRequest ();
-        if (l==4)
-        {
-                p.className="savn";
-                x.addEventListener('loadstart', url_progress);
-                x.addEventListener('load', url_progress);
-                x.addEventListener('loadend', url_progress);
-                x.addEventListener('progress', url_progress);
-                x.addEventListener('error', url_progress);
-                x.addEventListener('abort', url_progress);
-        }
-        if (m.length>0) m+="/";
-        x.open (meth, (APIPATH+m+a), true);
-        x.responseType = 'blob';
-        if (o && u=="login")
-        {
-                var s = btoa (o.user+":"+o.pass);
-                x.setRequestHeader('Authorization','Basic ' + s);
-                o = null;
-        }
-	 if (o)
-        {
-                // console.log ("-------JJ");
-                x.setRequestHeader('Content-Type','application/json');
-                data = JSON.stringify (o);
-        }
-        x.onload = function (ev)
-        {
+	// console.log ("url > "+p)
+	if (l==0)
+	{
+		var le = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
+		le.className = "xx t02 s go sh'";
+		le.id = "loadn";
+		le.innerHTML = "";
+		p.insertBefore (le, p.firstChild); // todo: ajax loader on p or el?
+	}
+	if (l==2 || l==3)
+	{
+		p.className="savn";
+		var nb = _(p,"nb");
+		if (nb) nb.innerHTML = "";
+	}
+	var x = new XMLHttpRequest ();
+	if (l==4)
+	{
+		p.className="savn";
+		x.addEventListener('loadstart', url_progress);
+		x.addEventListener('load', url_progress);
+		x.addEventListener('loadend', url_progress);
+		x.addEventListener('progress', url_progress);
+		x.addEventListener('error', url_progress);
+		x.addEventListener('abort', url_progress);
+	}
+	if (m.length>0) m+="/";
+	x.open (meth, (APIPATH+m+a), true);
+	x.responseType = 'blob';
+	if (o && u=="login")
+	{
+		var s = btoa (o.user+":"+o.pass);
+		x.setRequestHeader('Authorization','Basic ' + s);
+		o = null;
+	}
+	if (o)
+	{
+		// console.log ("-------JJ");
+		x.setRequestHeader('Content-Type','application/json');
+		data = JSON.stringify (o);
+	}
+	x.onload = function (ev)
+	{
                 // console.log ("XHR content-type: "+x.getResponseHeader("Content-Type"))
 
                 if (x.getResponseHeader("Content-Type").substr (0,6)=="audio/")
@@ -1222,70 +1234,98 @@ function url (p, u, m, a="", data=null, l=0, o=null, meth="GET")
                 }
                 x.response.text().then (text =>
                 {
-                        ra = JSON.parse (text);
-                        if (l==2 || l==4) p.className="";
-                        // if (l==4) ; // set timeout 
-                        ld (p,u,x.status);
-
+				ra={};
+				// console.log (Object.keys(ra))
+				try{ ra = JSON.parse (text); } catch (e) { console.error("feelings:"+text); ra={}; }
+				// console.log (Object.keys(ra))
+                    if (l==2 || l==3 || l==4) p.className="";
+                    // if (l==4) ; // set timeout 
+                    ld (p,u,x.status);
 			// todo: if l==1 and loadn.count>1 then append n-1 loaders for pending queries
                 });
         };
         x.onerror = function (error)
         {
-                console.error (error)
-        //      // window.alert ("Error: " + ev.target.status);
+			var p_ = document.getElementById ("vv").childNodes[1];
+		//	console.log ("url error > "+p+" "+p_)
+			// p.innerHTML = "";
+			p_.parentNode.scroll ({ top: 0, left: 0, behavior: 'smooth' });
+			p_.innerHTML = "<div class='x15 yy gr cw'>Request failed due to Network Error.</div>";
+			 console.error (error)
+			window.alert ("Request failed due to Network Error");
         };
+	   var cc = document.getElementById ("vv").childNodes;
+	  // console.log ("vv:"+cc.length)
+	   if (cc.length>1) cc[1].innerHTML = ""; // clear network error
         // todo: progress bar (useful for file upload)
         x.send (data);
 }
 
-function postj (el,k,mode=2) 
-{
-        var id = "v"
-        var u = el.id.split ("-");
-        if (u.length>2) id=u[2] 
-        var p = __(el,id);
-        var o = {}; 
-        jso (p,o,k);
-        url (p, u[0], u[1], o[".id"], null, mode, o, "POST");
-}
-
 function urargs (el, p)
 {
-	//console.log ("urargs("+el.id+")----------------------------")
 	var u = el.id.split("-");
-
 	if (re[u[1]]!=undefined)
 	{
-		ra = [];
+		ra = {};
 		for (var k in re) ra[k]=re[k]; // reset ra
 		var r_ = ra[u[1]][0].slice (0)
-		var coll_ = el.firstChild.lastChild.getElementsByTagName ("input");
+		var coll_ = el.lastChild.getElementsByTagName ("input");
 		rargs (r_, coll_);
 		p.innerHTML = "";
 		nd (p, te[u[0]], [], r_, [0]); 
 		return;
 	}
-
 	var a = {args:"?", ".id":""};	
 	argv (el.lastChild,a);
 	url (p, u[0], u[1], (a[".id"]+a.args));
 }
 
-function uvpfl (p, m=1)
+function uvpfn (el, u, a, r, m) // uvpnd return
+{
+	el.style.display = "none"; // hide vp
+	el.innerHTML = "";
+	el = elvp;
+	elvp = null;
+	if (!el.firstChild) return;
+	var u_ = el.firstChild.value.split ("-");
+	if (u_.length>2 && u_[2].length>0) el = __(el, u_[2]); 	// ascend
+	if (u_.length>3 && u_[3].length>0) el = _(el, u_[3]); 		// descend
+	if (u_.length>4 && u_[4]=="@") el.innerHTML = "";
+	if (u_.length>4 && u_[4]=="!" && el.childNodes.length>0)
+	{
+		var el_ = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
+		el.insertBefore (el_, el.firstChild);
+		el = el_;
+	}
+	var el_ = nd (el, te[u_[0]], [], r, [0]);
+	if (el_ && el_.parentNode.id=="nxfn")
+	{
+		u_ = el_.value.split ("-");
+		if (u_.length>2 && u_[2].length>0) el = __(el, u_[2]); 	// ascend
+		if (u_.length>3 && u_[3].length>0) el = _(el, u_[3]); 		// descend
+		var r_ = ra[u_[1]][0]
+		el.innerHTML = ""
+		nd (el, te[u_[0]], [], r_, [0]);
+	}
+}
+
+function uvpftab (p, m=1)
 {
 	var a = {args:"?", ".id":""};
 	var coll = p.firstChild.lastChild.childNodes;
 	var u = coll[0].value.split ("-");
 	var v = coll[1].value.split (",");
-	argv (p.childNodes[1], a);	// filter args 
-	for (var i=0; i<v.length; i++) 	// todo: check if checked ; else find checked
+
+	argv (p.childNodes[1], a);		// filter args 
+
+	for (var i=0; i<v.length; i++) 	// current view
 	{
 		p = p.lastChild.childNodes[v[i]].childNodes[1];
 	}
 
+	// console.log (">>>#"+p+"|"+coll[0].value+"|"+coll[1].value);
+
 	if (m==1) coll[2].value =  Math.floor(Date.now ()/1000); // update filter_ts
-	//console.log ("uvpfl("+coll[0].value+")----------------------------"+p.previousSibling.value+","+coll[2].value)
 	if (p.previousSibling.value>=coll[2].value) return;	// skip if no change in  filter_ts
 	p.previousSibling.value = coll[2].value;
 
@@ -1298,11 +1338,12 @@ function uvpfl (p, m=1)
 		return;
 	}
 
-	if (p.childNodes.length>0)
+	if (p.childNodes.length>0 && p.firstChild.id=="vrpt") // pickup rpt args
 	{
 		argv (p.firstChild, a);
-		if (p.firstChild.id=="vrpt") p = p.childNodes[1];
+		p = p.childNodes[1]
 	}
+
 	url (p, u[0], u[1], (a[".id"]+a.args));
 }
 
@@ -1315,34 +1356,13 @@ function uvpf (el)
 	elvpf = null;
 	jso (p, o);
 	ra[u[1]] = o;
+	// console.log(o)
 	p = document.getElementById ("vp");
 	p.style.display = "none";
 	p.innerHTML = "";
 	pvf.firstChild.innerHTML = "";
-console.log (el.id);
 	nd (pvf.firstChild, te[u[0]], [], [], [0]);
-	uvpfl (pvf.parentNode)
-}
-
-function uvpfn (el, u, a, r, m)
-{
-	el.style.display = "none"; // hide vp
-	el.innerHTML = "";
-	if (!elvp.firstChild) { elvp=null; return; }
-	var u_ = elvp.firstChild.value.split ("-");
-	el = elvp;
-	elvp = null;
-	//console.log ("uvpfn: "+u_)
-	if (u_.length>2 && u_[2].length>0) el = __(el, u_[2]); 	// ascend
-	if (u_.length>3 && u_[3].length>0) el = _(el, u_[3]); 	// descend
-	if (u_.length>4 && u_[4]!="!") el.innerHTML = "";
-        if (u_.length>4 && u_[4]=="!" && el.childNodes.length>0)
-        {
-                var el_ = document.createElementNS ("http://www.w3.org/1999/xhtml", "div");
-                el.insertBefore (el_, el.firstChild);
-                el = el_;
-        }
-	nd (el, te[u_[0]], [], r, [0]);
+	uvpftab (pvf.parentNode)
 }
 
 function uvp ()
@@ -1356,7 +1376,7 @@ function uvp ()
 
 	//console.log ("uvp ("+elvp.id+") " + p )
 	
-        if (re[u[1]]!=undefined)
+	if (re[u[1]]!=undefined)
 	{
 		nd (p, te[u[0]], [], [], [0]);
 		return;
@@ -1381,30 +1401,24 @@ function vp (p)
 	p.style.width = w
 	p.style.display = "block";
 	p.innerHTML = ""; // todo: doc-fragment	
- 	window.scrollTo(0, 0); 
+	// console.log (window.innerHeight+" / "+document.body.scrollHeight+" "+window.scrollY);
+	// window.scrollTo(0, 0); 
 	// console.log (p.className)
 } 
 
-// ---
-
-function _nd (ev)
+function vpf (el)
 {
-	ra = [];
-	for (var k in re) ra[k]=re[k]; // reset ra
-
-	var u = this.id.split("-");
-	var p = this;
-	if (u.length>2 && u[2].length>0) p = __(p,u[2]);
-	if (u.length>3 && u[3].length>0) p = _(p,u[3]);
-	if (u.length>4 && u[4].length>0) p.innerHTML = ""; // todo: doc-fragment
-	
-	var r_ = ra[u[1]][0].slice(0); // get a copy
-	rargs (r_, this.firstChild.lastChild.childNodes, r_);
-	
-	//console.log ("[nd] "+u[0]+" "+u[1]+" | "+JSON.stringify (r_));
-	nd (p, te[u[0]], [], r_, [0]);
-	boo(ev);
+	var p = document.getElementById ("vp");
+	var u = el.id.split ("-"); 
+	var o = {}; 
+	jso (elvpf, o);
+	ra[u[1]] = o;
+	// console.log (o)
+	vp (p);
+	nd (p, te[u[0]], [], [], [0]);
 }
+
+// ---
 
 function _u (ev) 
 {
@@ -1414,10 +1428,11 @@ function _u (ev)
 	var p = __(this,v); // ascend
 	if (u.length>3 && u[3].length>0) p = _(p, u[3]); // descend
 	var a = {args:"?", ".id":""};
+	if (this.previousSibling && this.previousSibling.type === "radio") this.previousSibling.checked = true;
 	argv (__(this),a);
 	url (p, u[0], u[1], (a[".id"]+a.args));
 	boo(ev);
-} 
+}
 
 function _nav (ev) 
 {
@@ -1440,42 +1455,17 @@ function _nav (ev)
 	boo(ev)
 }
 
-function _del (ev) // delete record
-{
-	// todo: js confirm
-	var u = this.id.split ("-");
-	var el = __(this,"va");
-	var p = el.parentNode;
-	var o = {};
-	argv (this, o);
-	if (this.id.length<1) 
-	{
-		p.removeChild (el);
-		return;
-	}
-	url (el, u[0], u[1], o[".id"], null, 2, o, "POST");
-	boo(ev);
-}
-
 function _postj (ev)
 {
-	postj (this,"name");
-	// boo(ev);
+	var u = this.id.split ("-");
+	var id = "v"; if (u.length>2) id=u[2]
+	var p = __(this,id);
+     var o = {}; 
+     jso (p,o); 
+     url (p, u[0], u[1], o[".id"], null, 2, o, "POST");
 }
 
-function _postji (ev) 
-{
-	postj (this,"id");
-	boo(ev);
-}
-
-function _postjb (ev) 
-{       
-        postj (this,"name",3);
-        boo(ev);
-}
-
-function _uvpf () { uvpf (this); }
+// ---
 
 function _uvpd (ev)
 {	
@@ -1484,6 +1474,11 @@ function _uvpd (ev)
 	this.style.display = "none";
 	if (this.firstChild.id=="vddvf") uvpf (this.firstChild.lastChild.firstChild.firstChild);
 	if (elvp) uvp ();
+}
+
+function _uvpf () 
+{ 
+	uvpf (this); 
 }
 
 function _uvp (ev)
@@ -1497,52 +1492,47 @@ function _uvp (ev)
 
 function _uvw ()
 {
-	var p = __(this,"vfvw");
-	p.parentNode.previousSibling.firstChild.checked = true;
+	__(this,"vfvw").parentNode.parentNode.firstChild.firstChild.checked = true;
 }
 
 function _vpf ()
 {
-	var p = document.getElementById ("vp");
-	var u = this.id.split ("-"); 
-	var o = {}; 
 	elvpf = __(this,"vb").nextSibling;
-	jso (elvpf, o);
-	ra[u[1]] = o;
-	vp (p);
-	nd (p, te[u[0]], [], [], [0]);
+	vpf (this);
 }
 
 function _vp (ev)
 {
 	var p = document.getElementById ("vp");
 	var u = this.id.split ("-");
+	if (this.previousSibling) this.previousSibling.checked=true;
 	elvp = null;
 	if (u.length>2) elvp = this.nextSibling;
 	vp (p);
 	urargs (this, p);
 	boo(ev);
 }
-
+ 
 function _vw (ev)
 {
 	var u = this.id.split ("-");
-	var p = __(this,"vftab").parentNode.nextSibling;
+	var p = __(this,"vf").parentNode.parentNode.childNodes[this.previousSibling.value];
 	this.previousSibling.checked=true;
 	p.firstChild.checked = true;
-	// if (u.length<3 && p.childNodes[1].childNodes.length>0) return; // dont repopulate
-	p.childNodes[1].innerHTML = ""
-	urargs (this, p.childNodes[1]);
+	if (u.length>1)
+	{
+		p.childNodes[1].innerHTML = ""
+		urargs (this, p.childNodes[1]);
+	}
 	boo (ev)
 }
 
 function _tab (ev) 
 {
 	var u = this.id.split ("-");		
-	var coll = __(this,"vb").parentNode.lastChild.childNodes;
-	var p = coll[this.previousSibling.value];		
+	var coll = __(this,"vb").parentNode.lastChild.childNodes[this.previousSibling.value].childNodes;
 	this.previousSibling.checked = true;
-	p.firstChild.checked = true;
+	coll[0].checked = true;
 	
 	if (this.previousSibling.previousSibling) // set uvpf params
 	{	
@@ -1550,21 +1540,19 @@ function _tab (ev)
 		var coll_ = p_.firstChild.lastChild.childNodes; // uvpf params
 		coll_[0].value = this.previousSibling.previousSibling.id
 		coll_[1].value = this.previousSibling.previousSibling.value;
-		// todo: align rpt_menu top-rigt of vb
-		if (p.childNodes[1].childNodes.length>0)
+		if (coll[1].childNodes.length>0)
 		{
-			uvpfl (p_, 0);
+			uvpftab (p_, 0);
 			return;
 		}
-		// else load normarly
 	}
 	
 	if (u.length<2) return; // skip non-res
-	if (u.length<3 && p.childNodes[1].childNodes.length>0) return; // dont repopulate
-	urargs (this, p.childNodes[1]);
+	if (u.length<3 && coll[1].childNodes.length>0) return; // dont repopulate
+	urargs (this, coll[1]);
 }
 
-// --------------------
+// ---
 
 function _print ()
 {
@@ -1636,11 +1624,11 @@ function _file_download ()
 
 function ufn_attach (el, u, a, r, m)
 {
-	var u = el.parentNode.nextSibling.id.split ("-");
 	var p = __(el)
 	var o = {};
+	var u = p.lastChild.id.split ("-");
 	o["file_id"] = r[0];
-	jso (el.parentNode.nextSibling, o);
+	jso (p.lastChild, o);
 	// console.log (JSON.stringify (o));
 	url (p, u[0], u[1], "", null, 2, o, "POST");
 }
@@ -1648,7 +1636,8 @@ function ufn_attach (el, u, a, r, m)
 function ufile (el,f)
 {
 	console.log("Name: " +f.name+" Type: " + f.type +"Size: " + f.size);
-	el.nextSibling.innerHTML = f.name; // todo: mutliple files
+	el.nextSibling.innerHTML = f.name; 
+	el.nextSibling.nextSibling.nextSibling.innerHTML = formatFileSize(f.size);
 	var u = el.id.split ("-");
 	var data = new FormData ();
 	argv (el.parentNode, data);

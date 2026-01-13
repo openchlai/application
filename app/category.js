@@ -364,7 +364,7 @@ te["category_list_"] = { c:
 [
 	{ div:[null,"va"], c:
 	[
-		{ div:["c","va"], ac:["","category_list-categories-vftab","_u","x y cb b h3","Categories"], c:[ { arg:["",".id","0"] } ] },
+		{ div:["c","va"], ac:["","category_list-categories-vftab","_u","x yy cb b h3","Categories"], c:[ { arg:["",".id","0"] } ] },
 		{ u:["category_h","categories"] },
 		{ div:["e"] }
 	]},
@@ -387,29 +387,16 @@ te["category_list"] = { category_list_:["x y","0","category_list-subcategories",
 
 te["categories"] = { c:
 [
-       	{ div:["g"], c:
-	[
-		{ div:[] },
-		{ div:[] },
-		{ div:[] },
-		{ div:[] },
-		{ div:[] },
-		{ div:[] },
-		{ div:[] },
-		{ div:[] }, // blank src
+
+	{ div:[], c:
+	[	
+		{ input:["g","","category_vw_vt","0","radio","1"] }, 		// list
+		{ p:["tabv x20 yy gw bd8","vftab"], u:["category_list","subcategories_ctx"] } 
 	]},
-	{ form:[], c:
-	[
-		{ div:[], c:
-		[	
-			{ input:["g","","user_vw_vt","0","radio","1"] }, 
-			{ p:["tabv x20 y20 gw mm","vftab"], u:["category_list","subcategories_ctx"] } 
-		]},
-		{ div:[], c:
-		[	
-			{ input:["g","","user_vw_vt","1","radio"] }, 
-			{ p:["tabv gw yy mm","vfvw"] }
-		]}
+	{ div:[], c:
+	[	
+		{ input:["g","","category_vw_vt","1","radio"] }, 		// _vw_id | _ed
+		{ p:["tabv bd8 mm gw","vfvw"] }
 	]}
 ]};
 
