@@ -6,6 +6,8 @@
 <?php
 include "config.php";
 
+echo "var APIPATH = \"".$API_PATH."\";\r\n";
+
 echo "var VA_SIP_USER_PREFIX = \"".$VA_SIP_USER_PREFIX."\";\r\n";
 echo "var VA_SIP_PASS_PREFIX = \"".$VA_SIP_PASS_PREFIX."\";\r\n";
 echo "var VA_SIP_HOST = \"".$VA_SIP_HOST."\";\r\n";
@@ -16,6 +18,7 @@ echo "var VA_ATI_HOST = \"".$VA_ATI_HOST."\";\r\n";
 echo "var APP_LOGO = \"".$APP_LOGO."\";\r\n";
 echo "var COUNTRY_CODE = \"".$COUNTRY_CODE."\";\r\n";
 echo "var CASE_ID_PREFIX = \"".$CASE_ID_PREFIX."\";\r\n";
+// todo: WRAPUP_DURATION // switch to available in activity_vw_id when wrapup ends 
 
 // --- CATEGORY ROOT IDs ---
 
@@ -108,17 +111,8 @@ include "app/phone.js";
 include "app/cti.js";
 include "app/ati.js";
 include "app/call.js";
-//include "app/chanss.js";
+include "app/wallboard.js";
 include "app/msg.js";
-
-include "app/schedule.js";
-//include "app/campaign.js";
-include "app/category.js";
-// include "app/member.js";
-//include "app/voiceprompt.js";
-//include "app/voicemap.js";
-//include "app/voicefile.js";
-
 include "app/activity.js";
 include "app/disposition.js";
 include "app/qa.js";
@@ -130,10 +124,21 @@ include "app/attachment.js";
 include "app/case.js";
 include "app/case_activity.js";
 
+//include "app/campaign.js";
+// include "app/member.js";
+//include "app/voiceprompt.js";
+//include "app/voicemap.js";
+//include "app/voicefile.js";
+include "app/schedule.js";
+include "app/category.js";
+
+include "app/safepal.js";
+include "app/aii.js";
+
 echo "\r\nrz[\"location\"]=[".$LOCATION_HIERARCHY."];\r\n";
 
 include "app/app.js";
-
+include "app/feedback.js";
 
 echo "</script>
 ";

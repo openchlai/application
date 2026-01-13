@@ -194,63 +194,63 @@ te["pmessage_rpt_count"] = { pmessage_rpt_:["Count", "src","src","src", "src", "
 
 te["pmessage_rpt_main"] = { c:
 [
-	{ div:["g xx t15 bb_ s","vb"], c:
-	[
-		{ s:["c x y cd","Metric:"] },
-		{ div:["d g"], c:
-		[
-			{ div:["w12 ay","va"], ac:["","","_dd","x cd",""], c:
-			[
-				{ div:["d w02 t04"], s:["h02 w02 awb",""] },
-				{ s:["d x y","Saved Reports"] }, 
-				{ div:["e"] }
-			]},			
-			{ div:["dd mln13 w25 ba sh gw cb","vdd"], ev:["_undd"], c:
-			[
-				{s:["xx y cd","- Saved Reports List -"] }
-			]}
-		]},
-		{ div:["e"] }
-	]},
-	{ div:["","vrpt"], c:
-	[
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio","1"] }, { p:["tabv","vt"], pmessage_rpt_count:[] } ]},
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv oh","vt"] } ] },
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-	]}
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio","1"] }, { p:["tabv","vt"], pmessage_rpt_count:[] } ]},
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv oh","vt"] } ] },
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
 ]};
 
 // ---------------------------------------------------------------------------------------------
 
-te["pmessage_vw_id"] = { div:["section-to-print tt","ve"], c: 
+te["pmessage_vw_id"] = { div:["","ve"], c: 
 [	
-	{ div:["x20 y","vb"], c:
+	/*{ div:["x20 y","vb"], c:
 	[		
 		{ div:["c x t02"], ac:["ay","","_uvw","h2 x y bd16 gb cw micon","arrow_back"] },	
 		{ s:["c x08 tt h2 b",":v:pmessages:src::case_src:1"] },
 		{ s:["c tt h2 b w40",":v:pmessages:src_address"] },
-	 	{ div:["d xx y"], c:
+	 	
+		{ div:["e"] }
+	]},*/
+
+	{ div:["xx y15 h03","vb"], c:
+	[
+		{ div:["c x"], ac:["ay","","_uvw","h2 x y bd16 gb cw micon","arrow_back"] },	
+		{ s:["c xx y h2 b",":v:pmessages:src::case_src:1"] },
+		{ s:["c y h2 b",":v:pmessages:src_address"] },
+		{ div:["d t01 w04 ll r05"], s:["w04 gw abs zzzz",""], c:
 		[
-			{ input:["g","","sbli_","1","radio","1"] },
-			{ input:["g","","sbri__","1","radio"] },
-			{ ac:["ao","","_activity_vw","xx bd gg cw",""], c:
+			{ ac:["ay","","_uvw","cb bd y01",""], c:
 			[
-				{ s:["c y","Menu"]},
-				// { s:["d t03 h2 micon","directions_walk"] },
-				{ div:["e"], c:
-				[ 
-					{ arg:["",".id","-1"] }, 
-					{ arg:["","src",":v:pmessages:src"] }, 
-					{ arg:["","src_address",":v:pmessages:src_address"] },
-					{ arg:["","src_callid",":v:pmessages:src_callid"] }, 
-				]}
-			]},
-		]},	
+				{ s:["tc h b","&Cross;"] },
+				// { s:["d x y s","Close"] },
+				{ div:["e"] }
+			]}
+		]},
+		{ div:["d w30 t01 casevwmenu"], s:["abs zzzz w30 h04 gw",""], c:
+		[
+			{ div:["d xx"], c:
+			[
+				{ input:["g","","sbli_","1","radio","1"] },
+				{ input:["g","","sbri__","1","radio"] },
+				{ ac:["ao","","_activity_vw_id","xx bd ba_b cb",""], c:
+				[
+					{ s:["c y","Edit"]},
+					{ div:["e"], c:
+					[ 
+						{ arg:["",".id","-1"] }, 
+						{ arg:["","src",":v:pmessages:src"] }, 
+						{ arg:["","src_address",":v:pmessages:src_address"] },
+						{ arg:["","src_callid",":v:pmessages:src_callid"] }, 
+					]}
+				]},
+			]},	
+			{ div:["e"] }
+		]},
 		{ div:["e"] }
 	]},
 
@@ -267,10 +267,10 @@ te["pmessage_vw_id"] = { div:["section-to-print tt","ve"], c:
 te["pmessage_f_tags_"] = { c: 
 [
 	{ f:["Date",null,		" :d:dmy:0: ","src_ts"," "] },
-	{ f:["Direction",null,		" ::vector:0:1","src_vector"," "] },
+	{ f:["Direction",null,	" ::vector:0:1","src_vector"," "] },
 	{ f:["Phone",null,		" %0","src_address"," "] },
-	{ f:["Extension",null,		" %1","user_id"," %1"] },
-	{ f:["Source",null,		" %0","src",""] },
+	{ f:["Extension",null,	" %1","user_id"," %1"] },
+	{ f:["Source",null,		" ::case_src:0:1","src",""] },
 	{ f:["Disposition",null,	" %1","dispositions^disposition_id"," %1"] },
 
 	{ f:["Case ID",null,		" %0","dispositions^case_id"," "] },
@@ -389,7 +389,7 @@ te["pmessage_pmessages_f"] = { c:
 ""," %1","user_id","user_id"," %0"," %1", "noop"] },
 
 	{ div:["xx yy"], kf_c:["Source","tag_-r_--o--::case_src:0:1--src-%0-",  	":k:pmessages_f:src",
-""," %0","","src"," %0","", 				":k:pmessages_f:src","case_src", "src"," %0",""] },
+""," ::case_src:0:1","","src"," %0","", 				":k:pmessages_f:src","case_src", "src"," ::case_src:0:1",""] },
 		
 	// { div:["xx yy"], kf_s:["CaseID","dispositions^case_id",":k:pmessages_f:dispositions^case_id"] },			
 
@@ -442,7 +442,7 @@ te["pmessage_r_"] = { c:
 	{ input:["g","","pmessagevwr","1","radio",""] },
 	{ ac:["ay w300","pmessage_vw_id-pmessages-@","_vw","cb gw",""], c:
 	[
-		{ div:["c w17"], s:["xx y08",":d:dmyhnr:6: "] },
+		{ div:["c w17"], s:["xx y08",":d:dmyhnr:1: "] },
 		{ div:["c w13"], s:["xx tt b05 h01_",":v:pmessages:src_vector::vector:1"] },
 		{ div:["c w15"], s:["xx tt b05 h01_",":v:pmessages:src_address"] },
 		{ div:["c w15"], s:["tt b05 h01_  xx",""], c:
@@ -451,7 +451,7 @@ te["pmessage_r_"] = { c:
 			//{ s:["c x",":v:pmessages:user_name"] },
 			{ div:["e"] } 
 		]},
-		{ div:["c w15"], s:["xx tt b05 h01_",":v:pmessages:src"] },
+		{ div:["c w15"], s:["xx tt b05 h01_",":v:pmessages:src::case_src:1"] },
 		{ div:["c w15"], s:["xx tt b05 h01_",":v:pmessages:in_count"] },
 		{ div:["c w15"], s:["xx tt b05 h01_",":v:pmessages:out_count"] },
 		
@@ -518,30 +518,6 @@ te["pmessage_main"] = { c:
 			
 			]}
 		]},
-		
-		{ div:["c l40"], c: 
-		[
-			{ arg:["pmessage_list-pmessages","","0"] },
-			{ input:["g","","pmessages_t_","0","radio","1"] },
-			{ li:["opto x bl bt bb gw s cb","pmessage_list-pmessages"], ev:["_tab"], c:
-			[
-				{ s:["c l t h3_ micon","list"] },
-				{ div:["c xx y","","List"] }, 
-				{ div:["e"] }
-			]}
-		]},
-
-		{ div:["c"], c: 
-		[
-			{ arg:["pmessage_rpt_vw-pmessages-@","","1,0"] },
-			{ input:["g","","pmessages_t_","1","radio"] },
-			{ li:["opto x ba gw s cb","pmessage_rpt_main-r_"], ev:["_tab"], c:[ { div:[], c:
-			[
-				{ s:["c l t h3_ micon","bar_chart"] },
-				{ s:["c xx y","Reports"] }, 
-				{ div:["e"] }
-			]} ]}
-		]},
 
 		{ div:["c l40"], ac:["ay","pmessage_f-pmessages_f","_vpf","x t01 bd_ cb s",""], c:
 		[ 
@@ -557,6 +533,30 @@ te["pmessage_main"] = { c:
 			{ div:["e"] }
 		]},
 		
+		{ div:["c l40"], c: 
+		[
+			{ arg:["pmessage_list-pmessages","","0"] },
+			{ input:["g","","pmessages_t_","0","radio","1"] },
+			{ li:["opto x gw s cb","pmessage_list-pmessages"], ev:["_tab"], c:
+			[
+				{ s:["c l t h3_ micon","list"] },
+				{ div:["c xx y","","List"] }, 
+				{ div:["e"] }
+			]}
+		]},
+
+		{ div:["c l40"], c: 
+		[
+			{ arg:["pmessage_rpt_vw-pmessages-@","","1,0"] },
+			{ input:["g","","pmessages_t_","1","radio"] },
+			{ li:["opto x gw s cb","pmessage_rpt_main-r_"], ev:["_tab"], c:[ { div:[], c:
+			[
+				{ s:["c l t h3_ micon","bar_chart"] },
+				{ s:["c xx y","Reports"] }, 
+				{ div:["e"] }
+			]} ]}
+		]},
+
 		{ div:["e"], c:[ { arg:["","","pmessage_list-pmessages"] }, { arg:["","","0"] }, { arg:["","","-1"] }, { arg:["","",""] } ] }
 	]},
 
@@ -574,22 +574,15 @@ te["pmessage_main"] = { c:
 	
 te["pmessages"] = { c:
 [
-	{ div:["g"], c:
-	[
-		
+	{ div:[], c:
+	[	
+		{ input:["g","","pmessage_vw_vt","0","radio","1"] }, 		// list
+		{ p:["tabv x20 yy gw bd8","vftab"], pmessage_main:[] } 
 	]},
-	{ form:[], c:
-	[
-		{ div:[], c:
-		[	
-			{ input:["g","","pmessage_vw_vt","0","radio","1"] }, 
-			{ p:["tabv x20 y20 gw mm","vftab"], pmessage_main:[] } 
-		]},
-		{ div:[], c:
-		[	
-			{ input:["g","","pmessage_vw_vt","1","radio"] }, 
-			{ p:["tabv gw yy mm","vfvw"] }
-		]}
+	{ div:[], c:
+	[	
+		{ input:["g","","pmessage_vw_vt","1","radio"] }, 		// _vw_id | _ed
+		{ p:["tabv bd8 mm gw","vfvw"] }
 	]}
 ]};
 

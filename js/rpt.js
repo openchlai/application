@@ -326,12 +326,14 @@ var CHARTS = {};
 
 function rpt_val (j, r, r_, tot, a, m, fmt=1)
 {
-        var v = r[j][0]*1;
+	var v = r[j][0]*1;
 	var v_ = 0;
 	var vtot = tot[j][0]*1;
 	if (r_!=null) v_ = r_[j][0]*1;
 
-        if (m[12]=="avg") 
+	// console.log ("[rpt_val] "+JSON.stringify (m))
+
+     if (m[12]=="avg") 
 	{
 		v = ((r[j][1]*1)/(r[j][0]*1)); 
 		vtot = ((tot[j][1]*1)/(tot[j][0]*1)); 
@@ -362,7 +364,8 @@ function rpt_download_text (p)
 {
 	var a = {}
 	argv (p.previousSibling, a);
-	console.log (" [rpt-args] "+JSON.stringify (a))
+	
+	// console.log (" [rpt-args] "+JSON.stringify (a))
 
 	var v = "";
 	var f = 0;
@@ -516,6 +519,7 @@ function uchart_vw (el, lbl, ds, cht, stacked)
 
 function uchart (el, _u, _a, _r, _m)
 {
+	// console.log (">>>"+_r)
 	var xx = ra[(_r[0]+"_x")];
 	var yy = ra[(_r[0]+"_y")];
 	var zz = ra[(_r[0]+"_z")];
@@ -610,11 +614,13 @@ function uchart (el, _u, _a, _r, _m)
 		{ 
 			if (j>0) v+="/"; 
 			var v_ = r_[j][0]; 
-                        if (fmt[j].length>0) v_ = valf ([v_], fmt[j]);
-                        if (v_.length<1) v_ = "(blank)"
-                        v += v_;
+			if (fmt[j].length>0) v_ = valf ([v_], fmt[j]);
+			if (v_.length<1) v_ = "(blank)"
+			v += v_;
 		}
 		lv = v;
+
+		// console.log (">>>>"+i);
 		
 		v = ""
 	 	rs = [];
@@ -1144,7 +1150,7 @@ function pivot (el, _u, _a, _r, _m)
 			}
 
 			color__ = "rgb("+COLOR_[0]+","+COLOR_[1]+","+COLOR_[2]+")";
-			if (xn==1 && fmt[0].length>1) color__ = ve ([r[0]], ["","",fmt[0].split (":")[2],"0","5"]); 
+			if (xn==1 && fmt[0].length>1) color__ = venum ([r[0]], ["","",fmt[0].split (":")[2],"0","5"]); 
 			color_.push (color__); 
 			for (var j=0; j<3; j++) 
 			{ 

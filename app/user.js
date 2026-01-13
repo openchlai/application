@@ -404,21 +404,21 @@ te["user_list"] = { list:["user_title","user_nb","bl br ox","user_k","user_r","u
 
 te["user_main"] = { c:
 [
-	{ div:["tt","vb"], c:
+	{ div:["t","vb"], c:
 	[
-		{ div:["c t03"], c:
+		{ div:["c"], c:
 		[
 			{ div:["","va"], s:["",""], c:
 			[
 				// { input:["g","","users_t_","0","radio","1"] },
-				{ ac:["c","user_main-users-vftab","_u","x y cb b h2","System Users"] }, 
+				{ ac:["c","user_main-users-vftab","_u","x yy cb b h3","System Users"] }, 
 				//{ ac:["c t02 x ay","","_dd","h02 w02 gws_ awb",""] },
 				{ div:["e"], arg:["","_title","%5"] }
 			]},
 			// { div:["dd x y gw ba sh nd w14","vdd"] }
 		]},
 
-		{ div:["c l40"], ac:["ay","user_f-users_f","_vpf","x t01 bd_ cb s",""], c:
+		{ div:["c l40"], ac:["ay","user_f-users_f","_vpf","x t bd_ cb s",""], c:
 		[ 
 			{ s:["c t04 h3_ micon","search"] },
 			{ div:["c x y","","Search"] }, 
@@ -427,7 +427,7 @@ te["user_main"] = { c:
 
 		{ div:["c l40"], c:
 		[
-			{ ac:["ay","user_new-user_-^","_vp","x t01 bd_ cb s",""], c:
+			{ ac:["ay","user_new-user_-^","_vp","x t bd_ cb s",""], c:
 			[ 
 				{ s:["c l t h2 b","+"] },
 				{ div:["c x y","","New"] }, 
@@ -451,29 +451,15 @@ te["user_main"] = { c:
 
 te["users"] = { c:
 [
-       	{ div:["g"], c:
-	[
-		{ div:[] },
-		{ div:[] },
-		{ div:[] },
-		{ div:[] },
-		{ div:[] },
-		{ div:[] },
-		{ div:[] },
-		{ div:[] }, // blank src
+	{ div:[], c:
+	[	
+		{ input:["g","","user_vw_vt","0","radio","1"] }, 		// list
+		{ p:["tabv x20 yy gw bd8","vftab"], user_main:[] } 
 	]},
-	{ form:[], c:
-	[
-		{ div:[], c:
-		[	
-			{ input:["g","","user_vw_vt","0","radio","1"] }, 
-			{ p:["tabv x20 y20 gw mm","vftab"], user_main:[] } 
-		]},
-		{ div:[], c:
-		[	
-			{ input:["g","","user_vw_vt","1","radio"] }, 
-			{ p:["tabv gw yy mm","vfvw"] }
-		]}
+	{ div:[], c:
+	[	
+		{ input:["g","","user_vw_vt","1","radio"] }, 		// _vw_id | _ed
+		{ p:["tabv bd8 mm gw","vfvw"] }
 	]}
 ]};
 

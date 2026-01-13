@@ -1,31 +1,39 @@
 
-te["tagv"] = { div:["c mtag"], s:[null,""], uval:["",null] };
 
-te["taga"] = { div:["c","va"], s:["mtag gb cw",""], c: // .f.f.f
+te["tag"] = { div:["c","va"], s:["mtag gb cw bd",""], c: 
 [
-	{ div:["d w02_"], ac:["abs w02_ ao",null,"_uchk","x y04 cs n tc","&Cross;"] },
-	{ div:["x y04 mr3"], uval:["",null] },
-	{ div:["e"], c:[ { input:["g","o",null,null,"checkbox","1"] }, { arg:["fullname_id-2","",null] } ] }
-]}; 
-
-te["tag"] = { div:["c","va"], s:["mtag gb cw",""], c: 
-[
-	{ div:["d w02_"], ac:["abs w02_ ao",null,"_usel","x y04 cs n tc","&Cross;"] },
+	{ div:["d w02_"], ac:["abs w02_ ao",null,"_usel","x y04 bdr8 cws n tc","&Cross;"] },
 	{ div:["x y04 mr3"], uval:["",null] },
 	{ div:["e"], c:[ { input:["g","",null,null,"checkbox","1"] }, { arg:["fullname_id-2","",null] } ] }
 ]};
 
-te["tag_"] = { div:["c","va"], s:["mtag gb cw",""], c:
+te["tagnm"] = { div:["c","va"], s:["mtag gb cw bd",""], c: 
 [
-	{ div:["d w02_"], ac:["abs w02_ ao",null,"_uchk","x y04 cs tc","&Cross;"] },
+	{ div:["d w02_"], ac:["abs w02_ ao",null,"_usel","x y04 bdr8 cws n tc","&Cross;"] },
 	{ div:["x y04 mr3"], uval:["",null] },
+	{ div:["e"], c:[ { input:["g","",null,null,"checkbox","1"] }, { arg:["fullname_id-2",null,null] } ] }
+]};
+	
+te["tagv"] = { div:["c mtag"], s:[null,""], uval:["",null] };
+
+te["taga"] = { div:["c","va"], s:["mtag gb cw",""], c: // .f.f.f
+[
+	{ div:["d w02_"], ac:["abs w02_ ao",null,"_uchk","x y04 bdr8 cws n tc","&Cross;"] },
+	{ div:["x y04 mr3"], uval:["",null] },
+	{ div:["e"], c:[ { input:["g","o",null,null,"checkbox","1"] }, { arg:["fullname_id-2","",null] } ] }
+]}; 
+
+te["tag_"] = { div:["c","va"], s:["mtag bd8 gb cw",""], c: // taga in f
+[
+	{ div:["d w02_"], ac:["abs w02_ ao",null,"_uchk","x y04 bdr8 cws n tc","&Cross;"] },
+	{ div:["l08 y04 mr3"], uval:["",null] },
 	{ div:["e",null], c:[ { input:["g","_",null,null,"checkbox","1"] }, { arg:["","",null] } ] }
 ]}; 
 
-te["tagf"] = { div:["c ml mt mb ba_b cb","va"], c: 
+te["tagf"] = { div:["c ml mt mb bd8 gb cw","va"], c: 
 [
-	{ div:["c x07 y"], uval:["",null] },
-	{ ac:["c l ab","","_uchkf","x y n cd","&Cross;"] },
+	{ div:["c l08 y"], uval:["",null] },
+	{ ac:["c l ao","","_uchkf","x y n bdr8 cws","&Cross;"] },
 	{ input:["g","_",null,"%0","checkbox","1"] },
 	{ arg:["","",null] },
 	{ div:["e"] } 
@@ -77,7 +85,7 @@ function uchkargs (el, u_, a_, r_, m_)
 		if (a[k]===undefined) a[k]={};
 		a[k][o.value] = "1";
 	}
-	console.log ("[uchkargs] "+u_[0]+" | "+JSON.stringify (a))
+	// console.log ("[uchkargs] "+u_[0]+" | "+JSON.stringify (a))
 	ra[u_[0]] = a;
 }
 
@@ -95,7 +103,7 @@ function _uchkp (ev)
 	var p = el.parentNode;
 	var pv = __(this,"vf");
 	p.removeChild (el);
-	uvpfl (pv.parentNode);
+	uvpftab (pv.parentNode);
 	boo(ev)
 }
 
@@ -106,7 +114,7 @@ function _uchkf (ev)
 	var pv = __(this,"vf");
 	p.removeChild (el);
 	if (p.childNodes.length==0) pv.firstChild.removeChild (p.parentNode);
-	uvpfl (pv.parentNode);
+	uvpftab (pv.parentNode);
 	boo(ev)
 }
 
@@ -215,3 +223,7 @@ function _chk ()
 	nd (p_, te[u_[0]], a_, r_, [a_.length]);	
 }
 
+function _chk_ ()
+{
+        chk (this.previousSibling);
+}

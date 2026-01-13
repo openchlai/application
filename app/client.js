@@ -1,10 +1,10 @@
 
 te["case_client_del"] = { c:
 [
-	{ div:["l cr gp"], c:
+	{ div:["g l cr gp"], c:
 	[
 		{ s:["c x y","Client Deleted"] },
-		{ ac:["d ay ga","","_rm","x y h2","&Cross;"] },
+		{ ac:["d","","_rm","x y h2 cr","&Cross;"] },
 		{ div:["e"] }
 	]},
 	{ ufn:["case_client_del_ufn"] }
@@ -15,19 +15,19 @@ te["case_form_client_r_"] = { c:
 	{ div:["","ve"], c:
 	[
 		{ input:["g","","case_form_a","%0","radio"] },
-		{ li:["x y bd cb gbn","client_ed-clients-^"], ev:["_vp"], c:
+		{ li:["bd cb gbn","client_ed-clients-^"], ev:["_vp"], c:
 		[
 			{ div:[], c:
 			[
-				{ div:["d w03"], ac:["abs w03","client_del-clients^del","_del","cb h2",""], c:
+				{ div:["d w03"], ac:["abs w03 ao","client_del-clients^del","_rm","bd cb h2",""], c:
 				[
 					{ s:["x y h2 tc","&Cross;"] },
 					{ div:[], c:[ { arg:["",".id","%0"] } ] }
 				]},
 				{ div:["e"] }
 			]},
-			{ contact_vw_rv:[":v:clients:contact_fullname", ":v:clients:contact_age_group", ":v:clients:contact_sex", ":v:clients:contact_location", ":v:clients:contact_landmark"] },
-			{ contact_vw_rv_phone:[":v:clients:contact_phone", ":v:clients:contact_email"] },
+			{ div:["x y"], contact_vw_rv:[":v:clients:contact_fullname", ":v:clients:contact_age_group", ":v:clients:contact_sex", "","", ":v:clients:contact_location", ":v:clients:contact_landmark"] },
+			// { contact_vw_rv_phone:[":v:clients:contact_phone", ":v:clients:contact_email"] },
 			{ div:["g"], arg:["",".id","%0"] }
 		]},
 		{ div:["g"], arg:["","","case_form_client_r_-clients-va--@"] },
@@ -46,7 +46,7 @@ te["case_client_marital_sel_sub"] = { div:["","sub"], c:
 
 te["case_client_marital_tag_txa"] = { case_enum_tag_txa_:["w21 xx tt b05","fullname__","Select Marital Status","marital_id"] };
 
-te["case_client_marital_enum"] = { case_enum_ls:["x y",null,"", "tag-r_--o-case_client_marital_tag_txa-%1-marital_id-%0-%2", "category_ls-subcategories", "c w17", 
+te["case_client_marital_enum"] = { case_enum_ls:["x y cd",null,"", "tag-r_--o-case_client_marital_tag_txa-%1-marital_id-%0-%2", "category_ls-subcategories", "c w17", 
 "case_client_marital_tag_txa","r_", 
 null, "case_client_marital_tag_txa",null,"marital_id",null," %2", 
 MARITAL_STATUS_ROOT_ID, "fullname", "noop", 
@@ -115,17 +115,19 @@ te["case_client_ed_sub_spouse"] = { div:["t15 b20"], c:
 
 // ---
 
-te["case_client_ed_"] = { div:["w68 ma mb sh__ gw_"], c:
+te["case_client_ed_"] = { div:["w68 ma mb sh__ bd8 gw_"], c:
 [
 	{ div:["x15 tt"], c:
 	[
-		{ s:["c xx y12 n b",null] },
-		{ ac:["d","","_uvp","xx y08 h cb","&Cross;"] },
+		{ s:["c xx y12 h3 b",null] },
+		{ ac:["d","","_uvp","xx y h cb","&Cross;"] },
 		{ div:["e"] }
 	]},
 			
-	{ div:["","ve"], c:
+	{ div:["","ve"], s:["",""], c:
 	[
+		{ ufn:["client_case_ctx_ufn"] },
+
 		{ div:["x25 t"], c:[ { p:["c w55","nb"], u:["nb","clients_nb"] }, { div:["e"] } ] },
 
 		{ p:["x25 clk_client","contact"], case_contact_ed_r_:
@@ -146,35 +148,35 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ gw_"], c:
 ":v:clients:contact_email", 
 		]},	
 		
-		{ div:["x25 t15"], c:
+		{ div:["x25 t15 not_dept_of_labor"], c:
                 [
-                        { div:["c w20"], case_rela_enum:["Reporter's Relationship with Client",":v:clients:relationship_id",":v:clients:relationship"," %0"] },
-                        { div:["c w42 ll"], case_txt_:["Relationship <br/>Comment","gws w42 x yy","relationship_comment",":v:clients:relationship_comment","Enter Comments about the relationship"] },
+                        { div:["c w20"], case_rela_enum:["Reporter's Relationship with","Client",":v:clients:relationship_id",":v:clients:relationship"," %0"] },
+                        { div:["c w42 ll"], case_txt2_:["Relationship","Comment","gws w42 x yy","relationship_comment",":v:clients:relationship_comment","Enter Comments about the relationship"] },
                         { div:["e"] }
                 ]},
 
-		{ div:["x25 tt"], c:
+		{ div:["x25 tt not_dept_of_labor"], c:
 		[
-			{ div:["c w20"], case_txt_:["Number of Adult<br/> in Household","gws w20 x tt b05","household_adults",":v:clients:household_adults",""] },			
-			{ div:["c w20 ll"], case_household_enum:["Household <br/> Type",":v:clients:household_id",":v:clients:household"," %0"] },
-			{ div:["c w21 ll"], case_household_head_employment_enum:["Head of Household<br/> Occupation", ":v:clients:household_head_occupation_id",":v:clients:household_head_occupation"," %0"] },
+			{ div:["c w20"], case_txt2_:["Number of Adult","in Household","gws w20 x tt b05","household_adults",":v:clients:household_adults",""] },			
+			{ div:["c w20 ll"], case_household_enum:["Household","Type",":v:clients:household_id",":v:clients:household"," %0"] },
+			{ div:["c w21 ll"], case_household_head_employment_enum:["Head of Household","Occupation", ":v:clients:household_head_occupation_id",":v:clients:household_head_occupation"," %0"] },
 			{ div:["e"] }
 		]},
 
-		{ div:["x25 t15"], c:
+		{ div:["x25 t15 not_dept_of_labor"], c:
 		[
 			{ div:["c w41"], case_txt_:["Parent/Guardian's Name","gws w41 x tt b05","guardian_fullname",":v:clients:guardian_fullname",""] },
 			{ div:["c w21 ll"], case_guardian_marital_enum:["Parent/Guardian's Marital Status",":v:clients:guardian_marital_id",":v:clients:guardian_marital"," %0"] },
 			{ div:["e"] }
 		]},
 
-		{ div:["x25 tt"], c:
+		{ div:["x25 tt not_dept_of_labor"], c:
 		[
 			{ div:["c w20"], case_txt_:["Parent/Guardian's Identification Number","gws w20 x tt b05", "guardian_national_id", ":v:clients:guardian_national_id", ""] },
 			{ div:["e"] }
 		]},
 		
-		{ div:["x25 t15 "], c:
+		{ div:["x25 t15 not_dept_of_labor"], c:
 		[	
 			{ div:["c w20"], case_health_enum:["Client's Health Status",":v:clients:health_id",":v:clients:health"," %0"] },
 			{ div:["c w20 ll"], case_hiv_enum:["Client's HIV Status",":v:clients:hiv_id",":v:clients:hiv"," %0"] },
@@ -182,12 +184,12 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ gw_"], c:
 			{ div:["e"] }
 		]},
 		
-		{ p:["x25","_case_client_spouse_"], usub:["case_client_ed_sub_spouse,case_client_ed_sub_spouse,case_client_ed_sub_spouse,case_client_ed_sub_spouse,case_client_ed_sub_spouse", "r_", ":v:clients:marital_id", MARITAL_STATUS_WITH_SPOUSE_ID] },
+		{ p:["x25 not_dept_of_labor","_case_client_spouse_"], usub:["case_client_ed_sub_spouse,case_client_ed_sub_spouse,case_client_ed_sub_spouse,case_client_ed_sub_spouse,case_client_ed_sub_spouse", "r_", ":v:clients:marital_id", MARITAL_STATUS_WITH_SPOUSE_ID] },
 
 
-		{ div:["x25 t15","va"], c:
+		{ div:["x25 t15 not_dept_of_labor","va"], c:
 		[
-			{ s:["x t","Is the Client Attending School?"] },
+			{ s:["x t cd","Is the Client Attending School?"] },
 			{ p:["","o"], c:
 			[
 				{ uchk:["case_yesno_r",":v:clients:in_school","yesno","",  "in_school"," %2"] },
@@ -195,11 +197,11 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ gw_"], c:
 			]},
 		]},
 
-		{ p:["x25","_case_client_inschool_"], usub:["case_client_ed_sub_inschool_no,case_client_ed_sub_inschool_yes","r_",":v:clients:in_school","0,1"] },
+		{ p:["x25 not_dept_of_labor","_case_client_inschool_"], usub:["case_client_ed_sub_inschool_no,case_client_ed_sub_inschool_yes","r_",":v:clients:in_school","0,1"] },
 		
-		{ div:["x25 t15","va"], c:
+		{ div:["x25 t15 not_dept_of_labor","va"], c:
 		[
-			{ s:["x t","Is the Client Disabled?"] },
+			{ s:["x t cd","Is the Client Disabled?"] },
 			{ p:["","o"], c:
 			[
 				{ uchk:["case_yesno_r",":v:clients:is_disabled","yesno","",  "is_disabled", " %2"] },
@@ -207,33 +209,17 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ gw_"], c:
 			]}
 		]},
 
-		{ p:["x25","_case_client_disabled_"], usub:["case_client_ed_sub_disabled","r_",":v:clients:is_disabled","1"] },
+		{ p:["x25 not_dept_of_labor","_case_client_disabled_"], usub:["case_client_ed_sub_disabled","r_",":v:clients:is_disabled","1"] },
 
 		{ div:["x25 t30 b20"], vp_sav:[null,null,null,null,null,null,null] }
 	]}
 ]};	
 
-te["case_client_ed"] = { case_client_ed_:["Edit Client Details","client_ed-clients","_activity_case_postj","Update","Updating...","client_vw_id-clients-vp","_u","Cancel"] };
+te["case_client_ed"] = { case_client_ed_:["Edit Client Details","client_ed-clients","_activity_postj","Update","Updating...","","_uvp","Cancel"] };
 
-te["case_client_new"] = { case_client_ed_:["New Client","client_new-clients","_activity_case_postj","Create","Creating...","","_uvp","Cancel"] };
+te["case_client_new"] = { case_client_ed_:["New Client","client_new-clients","_activity_postj","Create","Creating...","","_uvp","Cancel"] };
 
 // --------------------------------------------------------------------------------------------
-
-te["case_vw_client_r_"] = { div:["","ve"], c: 
-[
-	{ input:["g","","case_vw_a","%0","radio",""] },
-	{ li:["xx y bd cb gws_","client_vw_id-clients-^"], ev:["_vp"], s:["",""], c:
-	[
-		{ contact_vw_rv:[":v:clients:contact_fullname", ":v:clients:contact_age_group", ":v:clients:contact_sex", ":v:clients:contact_location", ":v:clients:contact_landmark"] },
-		{ contact_vw_rv_phone:[":v:clients:contact_phone", ":v:clients:contact_email"] },
-		{ div:["g"], arg:["",".id","%0"] }
-	]},
-	{ div:["g"], arg:["","","case_vw_client_r_-clients-va--@"] },
-]};
-
-te["case_vw_client_r"] = { div:["mb","va"], case_vw_client_r_:[] };
-
-// -----------------------------
 
 te["case_client_vw_disabiliy_services"] = { div:[""], c:
 [
@@ -312,9 +298,9 @@ te["case_client_vw_id_"] = { c:
         
 	{ div:["x15 bt_ mt t"], c:
 	[	
-		{ div:["c w20"], case_vw_val_cat:["Number of Adult <br/>in Household","",":v:clients:household_adults"] },
-		{ div:["c w20 ll"], case_vw_val_cat:["Household<br/>Type","",":v:clients:household"] },
-		{ div:["c w21 ll"], case_vw_val_cat:["Head of Household<br/>Occupation","",":v:clients:household_head_occupation"] },
+		{ div:["c w20"], case_vw_val_cat2:["Number of Adult"," in Household","",":v:clients:household_adults"] },
+		{ div:["c w20 ll"], case_vw_val_cat2:["Household", "Type","",":v:clients:household"] },
+		{ div:["c w21 ll"], case_vw_val_cat2:["Head of Household", "Occupation","",":v:clients:household_head_occupation"] },
 		{ div:["e"] }
 	]},
 	
@@ -376,7 +362,36 @@ te["case_client_vw_id"] = { div:["w66 ma bd sh__ y gw_","vddvw"], ev:["_undd"], 
 	{ case_client_vw_id_:[] }
 ]};
 
+// ---
+
+te["case_vw_client_r_"] = { div:["","ve"], c: 
+[
+	{ input:["g","","case_vw_a","%0","radio",""] },
+	{ li:["xx y bd cb gws_","client_vw_id-clients-^"], ev:["_vp"], s:["",""], c:
+	[
+		{ contact_vw_rv:[":v:clients:contact_fullname", ":v:clients:contact_age_group", ":v:clients:contact_sex", "","", ":v:clients:contact_location", ":v:clients:contact_landmark"] },
+		// { contact_vw_rv_phone:[":v:clients:contact_phone", ":v:clients:contact_email"] },
+		{ div:["g"], arg:["",".id","%0"] }
+	]},
+	{ div:["g"], arg:["","","case_vw_client_r_-clients-va--@"] },
+]};
+
+te["case_vw_client_r"] = { div:["mb","va"], case_vw_client_r_:[] };
+
 // -----------------------------
+
+function client_case_ctx_ufn (el, u, a, r, m)
+{
+	var o = {}
+	var p = __(elvp,"ve")
+	// var cn =
+	jso(p,o)
+	if (o.dept==1)
+	{
+		el.className = "dept_of_labor"
+	}
+	console.log ("client case ctx:"+JSON.stringify(o))
+}
 
 function case_client_del_ufn (el, u, a, r, m)
 {
@@ -384,7 +399,7 @@ function case_client_del_ufn (el, u, a, r, m)
 	var contact_id = valf (r,":v:clients:contact_id");
 	for (var i=0; i<coll.length; i++)
 	{
-		var el = _(coll[i],"_is_client","input","name");
+		var el = _(coll[i],"is_client_","input","name");
 		if (el && el.value==contact_id) el.checked = false;
 	}
 }

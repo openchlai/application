@@ -3,9 +3,9 @@ te["case_contact_ed_age"] = { c:
 [
 	{ div:["","vb"], c:[ { p:["","o"], c:
 	[
-		{ div:[], c:[ { input:["g","","age_t","0","radio","1"] }, { ac:["c w07 rc_","","_tab","x03 y","Age"] } ] },
-		{ div:[], c:[ { input:["g","","age_t","1","radio"] }, { ac:["c w07 rc_","","_tab","xx y ","DOB"] } ] },
-		{ div:[], c:[ { input:["g","","age_t","2","radio"] }, { ac:["d w07 rc_","","_tab","y tr","Age Group"] } ] }, 
+		{ div:[], c:[ { input:["g","","age_t","0","radio","1"] }, { ac:["c w07 rc_","","_tab","x03 y cd","Age"] } ] },
+		{ div:[], c:[ { input:["g","","age_t","1","radio"] }, { ac:["c w07 rc_","","_tab","xx y cd","DOB"] } ] },
+		{ div:[], c:[ { input:["g","","age_t","2","radio"] }, { ac:["d w07 rc_","","_tab","y cd tr","Age Group"] } ] }, 
 		{ div:["e"] }
 	]} ]},
 	{ div:["","vaa"], c: 
@@ -13,7 +13,7 @@ te["case_contact_ed_age"] = { c:
         	{ div:[], c:
         	[
         		{ input:["g","","age_vw","0","radio","1"] },
-	        	{ p:["tabiv gws h03 b05","o"], c:[ { input:["w21 x tt b05 gws","","age",null,"",""], ev:["","_contact_age"] } ] },
+	        	{ p:["tabiv gws h03 b05 x02","o"], c:[ { input:["w20 x07 y08 gws","","age",null,"",""], ev:["","_contact_age"] } ] },
 	        ]},
 	        { div:[], c:
 	        [
@@ -41,7 +41,7 @@ te["case_contact_ed_age"] = { c:
         	{ div:[], c:
 		[
 			{ input:["g","","age_vw","1","radio"] },
-			{ div:["tabiv","tag-r_--o-case_age_tag_txa-%1-age_group_id-%0-noop"], c: 
+			{ div:["tabiv","tagnm-r_--o-case_age_tag_txa-%1-age_group_id-%0-age_group-%1"], c: 
         		[
         	        	{ li:["gws b05","va"], c:[ { div:["","category_ls-subcategories"], ev:["_dd"], c: // ls
         	        	[
@@ -90,18 +90,18 @@ te["case_contact_ed_r_"] = { c:  //
 		{ div:["e"] }
 	]},
 	
-	{ div:["tt"], c:
+	{ div:["tt not_dept_of_labor"], c:
 	[
-		{ div:["c"], c:
+		{ div:["c w41"], c:
 		[
-			{ s:["x y",null] },
+			{ s:["x y cd",null] },
 			{ p:["","o"], c:
 			[
 				{ uchk:["case_yesno_r",null,"yesno","",  "is_refugee"," %2"] },
 				{ div:["e"] }
 			]}, 
 		]},
-		{ div:["d w21"], case_tribe_enum:["Tribe",null,null,null] },
+		{ div:["c w21 ll"], case_tribe_enum:["Tribe",null,null,null] },
 		{ div:["e"] }
 	]},
 	
@@ -114,20 +114,20 @@ te["case_contact_ed_r_"] = { c:  //
 	]},
 ]};
 
-te["case_contact_ed_"] = { div:["w68 ma sh__ gw_"], c:
+te["case_contact_ed_"] = { c: // div:["w68 ma sh__ gw_"], c:
 [	
-	{ div:["x15 tt"], c:
+	{ div:[], c:
 	[
-		{ s:["c xx y12 n b",null] },
+		{ s:["c x y15 b h3",null] },
 		{ ac:["d","","_uvp","xx y08 h cb","&Cross;"] },
 		{ div:["e"] }
 	]},
 
-	{ div:["","ve"], c:
+	{ form:["","ve"], c:
 	[
-		{ div:["x25 t"], c:[ { p:["c w55","nb"], u:["nb","contacts_nb"] }, { div:["e"] } ] },
+		{ div:["gp"], c:[ { p:["","nb"], u:["nb","contacts_nb"] }, { div:["e"] } ] },
 
-		{ p:["x25","contact"], case_contact_ed_r_:
+		{ p:["w64","contact"], case_contact_ed_r_:
 		[
 "Name",":v:contacts:fullname","Enter Contact's Names",
 ":v:contacts:age",":v:contacts:dob",":v:contacts:dob",":v:contacts:age_group_id",":v:contacts:age_group"," %0", 
@@ -145,15 +145,71 @@ te["case_contact_ed_"] = { div:["w68 ma sh__ gw_"], c:
 ":v:contacts:email"
 		]},
 		
-                { p:["g","o"], arg:["","disposition_id",null] },		
-				
-		{ div:["w63 x25 t40 b20"], vp_sav:[null,null,null,null,null,null,null] }
+          { p:["g","o"], c:
+		[
+			{ arg:["","disposition_id",null] },		
+		]},
+
+		{ div:["w63 t25 b05"], vp_sav:[null,null,null,null,null,null,null] }
 	]}
 ]};
 
-te["case_contact_ed"] = { case_contact_ed_:["Edit Contact",DISPOSITION_ID_CONTACT_EDIT, "case_contact_ed-contacts","_activity_postj","Update","Updating...","","_uvp", "Cancel"] };
+te["case_contact_ed"] = { div:["w64 x15 yy ma sh__ gw_ bd8"], ev:["_undd"], c:
+[
+	{ case_contact_ed_:["Edit Reporter", DISPOSITION_ID_CONTACT_EDIT, "activity_contact_ed-contacts^disposition","_activity_postj","Update","Updating...","","_uvp", "Cancel"] }
+]};
 
-te["case_contact_new"] = { case_contact_ed_:["New Contact", DISPOSITION_ID_CONTACT_NEW, "case_contact_new-contacts^disposition", "_activity_postj", "Create", "Creating...", "", "_uvp", "Cancel"] };
+te["case_contact_new"] = { div:["w64 x15 yy ma sh__ gw_ bd8"], ev:["_undd"], c:
+[
+	{ case_contact_ed_:["New Reporter", DISPOSITION_ID_CONTACT_NEW, "activity_contact_new-contacts^disposition", "_activity_postj", "Create", "Creating...", "", "_uvp", "Cancel"] }
+]}
+
+te["contact_ed_r_"] = { div:["","ve"], c:
+[
+	{ div:["x"], c:[ { p:["c w40","nb"], u:["nb","contacts_nb"] }, { div:["e"] } ] },
+	{ p:["","o"], c:
+	[
+		{ div:["t15"], c:
+		[
+			{ s:["c w13 y","First Name"] }, { txt:["c w25 gw ba","w25 x y","","fname","%8"] }, { div:["e"] }
+		]},
+		{ div:["t15"], c:
+		[
+			{ s:["c w13 y","Last Name"] }, { txt:["c w25 gw ba","w25 x y","","lname","%9"] }, { div:["e"] }
+		]},
+		{ div:["t15"], c:
+		[
+			{ s:["c w13 y","Phone"] }, { txt:["c w25 gw ba","w25 x y","","phone","%10"] }, { div:["e"] }
+		]},
+		{ div:["t15"], c:
+		[
+			{ s:["c w13 y","Email"] }, { txt:["c w25 gw ba","w25 x y","","email","%11"] }, { div:["e"] }
+		]},
+		{ div:["t15"], c:
+		[
+			{ s:["c w13 y","Membership"] }, { txt:["c w25 gw ba","w25 x y","","membership","%13"] }, { div:["e"] }
+		]},
+		{ div:["t15"], c:
+		[
+			{ s:["c w13 y","DNC Status"] }, { txt:["c w25 gw ba","w25 x y","","dnc","%13"] }, { div:["e"] }
+		]},
+		
+	]},
+	{ div:["t35"], c:
+	[
+		{ div:["c w06 r02"], c:[ { ac:["aa btn",null,"_postj","x y04 w05 gbl cw tc","Save"] }, { s:["y07 bd b savl","..."] } ] },
+		{ div:["c l20","va"], ac:["ay",null,null,"x y04 w05 gwd tc cbr","Cancel"], c:[ { p:["g","o"], arg:["",".id","%0"] } ] },
+		{ div:["e"] }
+	]}
+]};
+
+te["contact_ed_r"] = { contact_ed_r_:["contact_ed-contacts","contact_vw_id-contacts-vp","_u"] };
+
+te["contact_new_r"] = { contact_ed_r_:["contact_new-contacts","","_vpclose"] };
+
+te["contact_ed"] = { vped:["w60 ma bd sh__ gw","Edit Contact","contact_ed_r"] };
+
+te["contact_new"] = { vped:["w60 ma bd sh__ gw","New Contact","contact_new_r"] };
 
 // ---
 
@@ -213,56 +269,16 @@ te["case_contact_vw_id_"] = { c:
 	
 ]};
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-te["contact_ed_r_"] = { div:["","ve"], c:
+te["case_contact_vw_id"] = { div:["w64 x15 yy ma sh__ gw_ bd8","vddvw"], ev:["_undd"], c:
 [
-	{ div:["x"], c:[ { p:["c w40","nb"], u:["nb","contacts_nb"] }, { div:["e"] } ] },
-	{ p:["","o"], c:
-	[
-		{ div:["t15"], c:
-		[
-			{ s:["c w13 y","First Name"] }, { txt:["c w25 gw ba","w25 x y","","fname","%8"] }, { div:["e"] }
-		]},
-		{ div:["t15"], c:
-		[
-			{ s:["c w13 y","Last Name"] }, { txt:["c w25 gw ba","w25 x y","","lname","%9"] }, { div:["e"] }
-		]},
-		{ div:["t15"], c:
-		[
-			{ s:["c w13 y","Phone"] }, { txt:["c w25 gw ba","w25 x y","","phone","%10"] }, { div:["e"] }
-		]},
-		{ div:["t15"], c:
-		[
-			{ s:["c w13 y","Email"] }, { txt:["c w25 gw ba","w25 x y","","email","%11"] }, { div:["e"] }
-		]},
-		{ div:["t15"], c:
-		[
-			{ s:["c w13 y","Membership"] }, { txt:["c w25 gw ba","w25 x y","","membership","%13"] }, { div:["e"] }
-		]},
-		{ div:["t15"], c:
-		[
-			{ s:["c w13 y","DNC Status"] }, { txt:["c w25 gw ba","w25 x y","","dnc","%13"] }, { div:["e"] }
-		]},
-		
-	]},
-	{ div:["t35"], c:
-	[
-		{ div:["c w06 r02"], c:[ { ac:["aa btn",null,"_postj","x y04 w05 gbl cw tc","Save"] }, { s:["y07 bd b savl","..."] } ] },
-		{ div:["c l20","va"], ac:["ay",null,null,"x y04 w05 gwd tc cbr","Cancel"], c:[ { p:["g","o"], arg:["",".id","%0"] } ] },
-		{ div:["e"] }
-	]}
+	{ case_contact_vw_id_:[
+":v:contacts:fullname",":v:contacts:age",":v:contacts:age_group",":v:contacts:dob",
+":v:contacts:location",":v:contacts:sex",
+":v:contacts:landmark",":v:contacts:nationality",
+":v:contacts:national_id_type",":v:contacts:national_id", ":v:contacts:lang",
+":v:contacts:is_refugee::yesno:2", ":v:contacts:tribe",
+":v:contacts:phone",":v:contacts:phone2",":v:contacts:email"] }
 ]};
-
-te["contact_ed_r"] = { contact_ed_r_:["contact_ed-contacts","contact_vw_id-contacts-vp","_u"] };
-
-te["contact_new_r"] = { contact_ed_r_:["contact_new-contacts","","_vpclose"] };
-
-te["contact_ed"] = { vped:["w60 ma bd sh__ gw","Edit Contact","contact_ed_r"] };
-
-te["contact_new"] = { vped:["w60 ma bd sh__ gw","New Contact","contact_new_r"] };
-
-// ------------------------------------------
 
 te["contact_vw_rv_phone"] = { c:
 [
@@ -275,23 +291,25 @@ te["contact_vw_rv_phone"] = { c:
 		{ div:["e"] }
 	]}
 ]};
-
+ 
 te["contact_vw_rv"] = { c:
 [
-	{ div:["x t"], c:
+	{ div:["cb"], c:
 	[
-		{ div:["c l t"], uval:["",null] },
-		{ s:["c t",","] },
-		{ div:["c ll t"], uval:["",null] },
-		{ s:["c t",","] },
-		{ div:["c ll t"], uval:["",null] },
+		{ div:["c x t"], uval:["",null] },
+		{ div:["c l t"], c:
+		[
+			{ uval:["",null] },
+			{ uval:["",null] },
+		]},
+		{ div:["d g"], s:[null,null] },
 		{ div:["e"] }
 	]},
-	{ div:["x s"], c:
+	{ div:["y03 s l"], c:
 	[
-		{ div:[" x t"], uval:["",null] },
-		{ s:["c x t s cd","Nearest Landmark:"] },
-		{ s:["c t i",null] },
+		{ uval:["",null] },
+		// { s:["c x t s cd","Nearest Landmark:"] },
+		{ span:["i cr m","",null] },
 		{ div:["e"] }
 	]},
 ]};
@@ -639,7 +657,7 @@ function contact_age_group (p, v)
 		if (!Number.isInteger (vv[0]*1)) 
 		{
 			vv = aa[i][5].split (" ");
-			console.log ("[agegroup]"+vv[0]+","+vv[1]+",")
+			// console.log ("[agegroup]"+vv[0]+","+vv[1]+",")
 			if (vv[0]=="Above" && (vv[1]*1)<=(v*1))
 			{
 				m[0]=i;
@@ -653,15 +671,15 @@ function contact_age_group (p, v)
 		}
 		if ((vv[0]*1)<=v) m[1]=i;
 	}
-	
-	//console.log ("AGEGROUP: '"+v+"' ["+m[0]+","+m[1]+"]")
 		
 	i=-1;
 	if (m[1]>-1) i=m[1]
 	if (m[0]>-1) i=m[0]
 	if (i<0) return;
+
+	console.log ("AGEGROUP: '"+i+": ["+aa[i])
 		
-	nd (el, te["tag"], ["noop","%0","age_group_id","%6","case_age_tag_txa"], aa[i], [5]);
+	nd (el, te["tagnm"], ["%5","age_group","%0","age_group_id","%6","case_age_tag_txa"], aa[i], [6]);
 }
 
 function contact_age (p, v)
