@@ -184,7 +184,7 @@ te["wallboard"] = { c:
 	{ div:[], c:
 	[ 
 		{ input:["g","","tabv","0","radio","1"] }, 
-		{ p:["tabv gw x20 y bd8","vt"], wall_calls:[] } 
+		{ p:["tabv gw x20 y ","vt"], wall_calls:[] } 
 	]},
 	{ div:[], c:
 	[ 

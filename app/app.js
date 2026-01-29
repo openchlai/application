@@ -860,12 +860,12 @@ te["dash"] = { c:
 		{ div:[], c:
 		[	
 			{ input:["g","","case_vw_vt","0","radio","1"] }, 		// list
-			{ p:["tabv gw bd8","vftab"], dash_main:[] } 
+			{ p:["tabv gw ","vftab"], dash_main:[] } 
 		]},
 		{ div:[], c:
 		[	
 			{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
-			{ p:["tabv bd8 mm gw","vfvwm"] }
+			{ p:["tabv  mm gw","vfvwm"] }
 		]}
 	]}
 ]};
@@ -1017,7 +1017,7 @@ te["main"] = { c:
 
 	{ div:["ml6"], c:
 	[
-		{ div:[], c:[ { input:["g","","mtv","0","radio"] }, 	{ div:["tabv bd8 gw mh50 mm","vfvwm"] } ] }, // sbr->activity_vw_id
+		{ div:[], c:[ { input:["g","","mtv","0","radio"] }, 	{ div:["tabv gw mh50 mm","vfvwm"] } ] }, // sbr->activity_vw_id
 		{ div:[], c:[ { input:["g","","mtv","1","radio","1"] },{ div:["tabv","vftab"], u:["dash","dash"] } ] }, // dash aka realtime-activities
 		{ div:[], c:[ { input:["g","","mtv","2","radio"] }, 	{ div:["tabv","vftab"] } ] }, // cases
 		{ div:[], c:[ { input:["g","","mtv","3","radio"] }, { form:["tabv","vftab"] } ] }, // calls

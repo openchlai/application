@@ -1067,9 +1067,7 @@ function activity_agtk_ufn (el, u, a, r, m)
 	// console.log ("agtk("+src+") "+id+" "+(ch?"ch"+ch[AMI.CHAN_STATE_HANGUP]:"null")+"--------------------")
 	if (src=="call" && ch && ch[AMI.CHAN_STATE_HANGUP].length==0)
 	{
-		
 		chan_status ("chan_args", ch);
-		//chan_agtk (el.parentNode.parentNode.parentNode, ch, r[0]) //  
 		chan_agtk (el.parentNode.parentNode.parentNode, ch, (pcoll.length>6 ? pcoll[6].childNodes[0].childNodes[1] : null))
 	}
 }

@@ -180,7 +180,7 @@ te["call_toolbar"] = { c:
 
 	{ div:[], c:
 	[
-		{ div:["d w05 t01"], s:["abs w05 bd8 y15 gw zzzzz",""], c:
+		{ div:["d w06 t01"], s:["abs w05 bd8 y20 gw zzzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
 			{ ac:["ay t01 r15","","_activity_close","cb bd y01",""], c:
@@ -476,16 +476,21 @@ function users_online_ufn (el, u, a, r, m)
 
 function chan_agtk_vw_ufn (el, u, a, r, m)
 {
-
+	let id = r[re["activities_k"]["src_uid"][0]];
+	let ch = re["channels"][id]
+	if (ch && ch[AMI.CHAN_STATE_HANGUP].length==0)
+	{
+		chan_agtk_vw (el.parentNode, ch)
+	}
 }
 
 function ch_status (ch)
 {
 	var st = 10;
-	ch[10] = ch[1];
+	// ch[10] = ch[1];
 	for (var i=10; i<19; i++) 
 	{
-		if (ch[i].length<1) continue; 
+		if (!ch[i] || ch[i].length<1) continue; 
 		st = i;
 		if (i==AMI.CHAN_STATE_HANGUP) break; // chan hangup
 	}
@@ -496,6 +501,7 @@ function chan_status (tp, ch)
 {
 	var ss = 
 	{
+		"chan_agtk":["Down","Dialing","Ringing","Up","Waiting","OnCall","Wrapup","On Mute","On Hold"],
 		"chan_args":["Down","Dialing","Ringing","Available","Waiting","OnCall","Call Ended","On Mute","On Hold"],
 		"chan_agent_start":["Down","Dialing","Ringing","Waiting","Dialing...","OnCall","Call Ended","On Mute","On Hold"],
 		"chan_agent":["Down","Dialing","Ringing","Available","Ringing","OnCall","CallEnded","Wrapup","OnHold"],
@@ -503,12 +509,12 @@ function chan_status (tp, ch)
 		"chan_add":["Down","Dialing","Ringing","IVR","In Queue","Connected","Call Ended","On Mute","On Hold"],
 	};
 	var st = ch_status (ch);
-	ch[AMI.CHAN_STATUS_] = ""+(st-10); 				// status id
-	ch[AMI.CHAN_STATUS_TXT_] = ss[tp][(st-10)];			// status txt
-	ch[AMI.CHAN_STATUS_TS_] = ch[st];					// status-ts
-	ch[AMI.CHAN_STATUS_TS_TXT_] = hmst (ch[st], ["","h","hms","0",""]);	// status-duration
+	ch[AMI.CHAN_STATUS_] 		= ""+(st-10); 				// status id
+	ch[AMI.CHAN_STATUS_TXT_] 	= ss[tp][(st-10)];			// status txt
+	ch[AMI.CHAN_STATUS_TS_] 		= ch[st];					// status-ts
+	ch[AMI.CHAN_STATUS_TS_TXT_] 	= hmst (ch[st], ["","h","hms","0",""]);	// status-duration
 	var ch2 = null;
-	if (ch[AMI.CHAN_UNIQUEID_2].length>0) ch2 = re["channels"][ch[AMI.CHAN_UNIQUEID_2]];
+	if (ch[AMI.CHAN_UNIQUEID_2] && ch[AMI.CHAN_UNIQUEID_2].length>0) ch2 = re["channels"][ch[AMI.CHAN_UNIQUEID_2]];
 	if (ch2!=null && ch[AMI.CHAN_ORIG].length>0 && ch[AMI.CHAN_VECTOR]!="2") // use status of peer when autodialing
 	{
 		var st2 = ch_status (ch2);
@@ -635,15 +641,15 @@ function chan_add (vp_add, ch, ch_, ts)
 	}			
 }
 
-function chan_agtk_vw (el,ch,p)
+function chan_agtk_vw (p,ch)
 {
 	// action btns
-		p.firstChild.childNodes[1].className = re["call_state"][ch[AMI.CHAN_STATUS_]][1];
-		// vw status bar
-		coll_ = p.firstChild.firstChild.firstChild.firstChild.childNodes
-		coll_[0].innerHTML 	= ch[AMI.CHAN_STATUS_TXT_];
-		coll_[1].innerHTML 	= ch[AMI.CHAN_STATUS_TS_TXT_];
-		coll_[2].value 	= ch[AMI.CHAN_STATUS_TS_];
+	p.className = re["call_state"][ch[AMI.CHAN_STATUS_]][1];
+	// vw status bar
+	coll = p.previousSibling.firstChild.firstChild.childNodes
+	coll[0].innerHTML 	= ch[AMI.CHAN_STATUS_TXT_];
+	coll[1].innerHTML 	= ch[AMI.CHAN_STATUS_TS_TXT_];
+	coll[2].value 		= ch[AMI.CHAN_STATUS_TS_];
 }
 
 function chan_agtk (el,ch,pvw)
@@ -658,12 +664,16 @@ function chan_agtk (el,ch,pvw)
 	el.value = ch[AMI.CHAN_STATUS_TS_];
 	el.previousSibling.innerHTML = ch[AMI.CHAN_STATUS_TS_TXT_];
 
-	if (!pvw || (ch[AMI.CHAN_STATUS_]*1)<2) return;			// evaluate vw for ringing and above (not dialing and below)
-	
+	if (!pvw || (ch[AMI.CHAN_STATUS_]*1)<2) 	// evaluate vw for ringing and above (not dialing and below)
+	{
+		//console.log ("no pvw "+pvw+"|"+ch[AMI.CHAN_STATUS_]);
+		return;
+	}
+
 	var f = pvw.childNodes.length;
 	var a = {};
 
-	if (f>0) 	// vw is occupied // close if idle
+	if (f>0 && pvw.firstChild && pvw.firstChild.lastChild) 	// vw is occupied // todo: close if idle(no popup/no caseform)
 	{
 		argv (pvw.firstChild.lastChild, a)
 		//if (a.src && a.src_uid && a.src=="call" && a.src_uid!=ch[AMI.CHAN_UNIQUEID]
@@ -671,21 +681,24 @@ function chan_agtk (el,ch,pvw)
 		//	) f=0;
 	}
 
-	if (f==0) //  && !chan_a[ch[2]].vw) // auto-popup
+	if (f==0 && !chan_a[ch[2]].vw && !chan_a[ch[2]].src_end_ts) // auto-popup 
 	{
+		chan_a[ch[2]].vw = Date.now();
 		pvw.previousSibling.checked = true;
+		// if () return; // todo: wait for src_uid2 -> dont popup calls without caller number
 		url (pvw, "activity_vw_id_call", "activities", coll[2].firstChild.value);
 		return;
 	}
-
+	//console.log (a);
 	if (f>0 && a.src && a.src_uid && a.src=="call" && a.src_uid==ch[AMI.CHAN_UNIQUEID]) // update vw
 	{
-		chan_agtk_vw (el, ch, pvw)
+		chan_agtk_vw (pvw.firstChild.childNodes[1], ch)
 	}
 }
 
 function chans_pop (ts)
-{	
+{
+	var pvw = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1]; 	
 	var pu = document.getElementById ("vt_activity");
 	var h=0, n=0, trunk=0;
 	var k = Object.keys (chan_a);
@@ -713,16 +726,21 @@ function chans_pop (ts)
 		}
 		if (chan_a[id].agtk)
 		{
+			let el_ = _(pu,id)
 			let o_ = chan_a[id];
-			o_["src"] = "call";
-			o_["src_uid"] = id;
-			o_["src_status"] = o_["status"]+"-"+o_["src_vector"]+"-"; // orig
-			o_["src_end_ts"] = ""+ts;
-			o_["src_status_duration"] = ""+((ts*1)-(o_["src_status_ts"]*1));
-			o_["src_duration"] = ""+((ts*1)-(o_["src_ts"]*1));
-			/*if (!(o_["src_vector"]=="2" && (o_["status"]*1)<3))*/ o_["action"] = "complete";
-			// console.log ("call ended -----------------"+ JSON.stringify (o_));
-			url (pu, "activity_new", "activities", "", null, 0, o_, "POST");
+			let ch_ = [];
+			ch_[AMI.CHAN_UNIQUEID] = id;
+			ch_[AMI.CHAN_CID_NUM_2] = o_["src_address"];
+			ch_[AMI.CHAN_STATE_HANGUP] = ts;
+			chan_status ("chan_agtk", ch_);
+			o_["src_status"] 		= o_["status"]+"-"+o_["src_vector"]+"-"; // orig
+			o_["src_status_ts"] 	= ""+o_["status_ts"];
+			o_["src_status_duration"]= ""+((ts*1)-(o_["src_status_ts"]*1));
+			o_["src_end_ts"] 		= ""+ts;
+			o_["src_duration"] 		= ""+((ts*1)-(o_["src_ts"]*1));
+			o_["action"] 			= "complete";
+			if (el_) chan_agtk (el_, ch_, pvw);
+			// url (pu, "activity_new", "activities", "", null, 0, o_, "POST");
 		}
 		delete chan_a[id];
 		h++;
@@ -788,21 +806,31 @@ function chans (o,k,ts)
 		{
 			var vs_ = CALLS[ch[AMI.CHAN_SIPCALLID].substr (0,20)]
 
-			chan_status ("chan_args", ch);
+			chan_status ("chan_agtk", ch);
 
-			if (!chan_a[ch[2]]) 
+			if (chan_a[ch[2]]===undefined) 
 			{
-				chan_a[ch[2]] = { "src_ts":ch[AMI.CHAN_TS], "src_address":"" };
-				chan_a[ch[2]]["src_vector"] = ch[AMI.CHAN_EXTEN]=="s" ? "2" : "1" ; // NB orig also has exten=s
+				// console.log ("DLPN("+ch[AMI.CHAN_UNIQUEID]+") "+vs_+","+ch[AMI.CHAN_EXTEN]+" | "+ch[AMI.CHAN_CID_NUM_2]); // ch[AMI.CHAN_VECTOR]+","+ch[AMI.CHAN_UNIQUEID]+","+ch[AMI.CHAN_SIPCALLID])
 				if (vs_) ch[AMI.CHAN_CID_NUM_2] = vs_.session.remoteIdentity.uri.user
 				if (ch[AMI.CHAN_EXTEN]!="s" && ch[AMI.CHAN_EXTEN].length>0) ch[AMI.CHAN_CID_NUM_2] = ch[AMI.CHAN_EXTEN];
+				chan_a[ch[2]] = 
+				{ 
+					"src":"call", 
+					"src_uid":ch[AMI.CHAN_UNIQUEID], 
+					"src_callid":ch[AMI.CHAN_SIPCALLID], 
+					"src_usr":ch[AMI.CHAN_CALLERID_NUM], 
+					"src_address":ch[AMI.CHAN_CID_NUM_2], 
+					"src_ts":ch[AMI.CHAN_TS], 
+					"src_vector": (ch[AMI.CHAN_EXTEN]=="s" ? "2" : "1"),   // NB orig also has exten=s
+					"action":"notify"
+				};
 			}
 
-			chan_a[ch[2]]["ts"] = ts;
-			chan_a[ch[2]]["status"] 			= ch[AMI.CHAN_STATUS_];
-			chan_a[ch[2]]["status_txt"] 		= ch[AMI.CHAN_STATUS_TXT_];
-			chan_a[ch[2]]["src_status_ts"] 	= ch[AMI.CHAN_STATUS_TS_];
-			if (ch[AMI.CHAN_CID_NUM_2].length>0) chan_a[ch[2]]["src_address"] = ch[AMI.CHAN_CID_NUM_2];
+			chan_a[ch[2]]["ts"] 		= ts;
+			chan_a[ch[2]]["status"] 		= ch[AMI.CHAN_STATUS_];
+			chan_a[ch[2]]["status_txt"] 	= ch[AMI.CHAN_STATUS_TXT_];
+			chan_a[ch[2]]["status_ts"] 	= ch[AMI.CHAN_STATUS_TS_];
+			if (ch[AMI.CHAN_CID_NUM_2].length>0 && chan_a[ch[2]]["src_address"].length<1) chan_a[ch[2]]["src_address"] = ch[AMI.CHAN_CID_NUM_2];
 			
 			if (chan_a[ch[2]]["src_vector"]=="2" && !chan_a[ch[2]]["aa"] && vs_ && vs_.session && 
 			   (aa.checked || ch[AMI.CHAN_CONTEXT_MASQ]=="agentlogin" || ch[AMI.CHAN_CONTEXT_MASQ]=="supervisor")) // aa
@@ -812,19 +840,14 @@ function chans (o,k,ts)
 				vs_.session.accept (); // ({ sessionDescriptionHandlerOptions: { constraints: { audio: true, video: false } } });
 			}
 
-			if (!chan_a[ch[2]]["src_callid"])
+			if (!chan_a[ch[2]]["agtk"] && ch[AMI.CHAN_SIPCALLID].length>1)
 			{
+				chan_a[ch[2]]["agtk"] = ch[AMI.CHAN_SIPCALLID];
 				chan_a[ch[2]]["src_callid"] = ch[AMI.CHAN_SIPCALLID]
-				var o_ = 
-				{
-					"src":"call", "src_uid":ch[AMI.CHAN_UNIQUEID], "src_callid":ch[AMI.CHAN_SIPCALLID], 
-					"src_usr":ch[AMI.CHAN_CALLERID_NUM], "src_address":chan_a[ch[2]]["src_address"], 
-					"src_ts":ch[AMI.CHAN_TS], "src_vector":chan_a[ch[2]]["src_vector"], "action":"notify"
-				};
-        			url (pu, "activity_new", "activities", "", null, 0, o_, "POST");
+				url (pu, "activity_new", "activities", "", null, 0, chan_a[ch[2]], "POST");
 			}
 
-			var el = _(pu, ch[2]); // find matching call
+			var el = _(pu, ch[2]); // find matching call notification
 			if (el) 
 			{
 				chan_agtk (el, ch, pvw); 

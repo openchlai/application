@@ -1289,8 +1289,8 @@ te["case_vw_col_1"] = { c:
 	[
 		{ div:[], c:
 		[
-			{ div:[""], case_vw_val:["Department",":v:cases:dept::case_dept:1"] },
-			{ div:["tt"], case_vw_val_cat:["Case Category","",":v:cases:case_category"] },
+			{ div:[""], case_vw_val_cat:["Case Category","",":v:cases:case_category"] },
+			{ div:["tt"], case_vw_val:["Department",":v:cases:dept::case_dept:1"] },
 			{ div:["tt"], case_vw_val:["Is Case GBV Related?",":v:cases:gbv_related::yesno:2"] },
 		]},
 		{ div:[], usub:["case_vw_sub_medical_exam,case_vw_sub_medical_exam","r_",":v:cases:case_category_fullname_id", CASE_CATEGORY_PHYSICAL_N_SEXUAL_ABUSE_ID] },
