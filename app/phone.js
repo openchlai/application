@@ -201,6 +201,13 @@ VOICEAPPS_UA.endcall = function (session, leg)
    	} 
 }
 
+VOICEAPPS_UA.btnholdstate = function (vs, hold) 
+{
+	var pvw = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1]; 	
+	var el_ = _(pvw.firstChild, "chanholdstate", "input");
+	if (el_) el_.checked = vs.ishold;
+}
+
 VOICEAPPS_UA.sethold = function (vs, hold) 
 {
 	const sessionDescriptionHandlerOptions = vs.session.sessionDescriptionHandlerOptionsReInvite;
@@ -217,7 +224,7 @@ VOICEAPPS_UA.sethold = function (vs, hold)
 		});
 		vs.ishold = hold;
 		vs.ishold_ts = Date.now ()/1000;
-
+		VOICEAPPS_UA.btnholdstate (vs)
 		// call_popup_hold_state (vs.el, hold); // update hold state in toolbar
 		// call_popup_upd (vs.el.childNodes[1].lastChild.firstChild); 
 	})
@@ -487,7 +494,7 @@ function _hangup (ev)
 {
 	var o = {};
 	argv (__(this,"vf").firstChild.lastChild, o);
-	var vs = CALLS[o["src_callid"]]
+	var vs = CALLS[o["src_callid"].substr(0,20)]
 	VOICEAPPS_UA.endcall (vs.session, vs.leg);
 	boo (ev);
 }
@@ -496,7 +503,7 @@ function _hold (ev)
 {
 	var o = {};
 	argv (__(this,"vf").firstChild.lastChild, o)
-	var vs = CALLS[o["src_callid"]];
+	var vs = CALLS[o["src_callid"].substr(0,20)]
 	VOICEAPPS_UA.sethold (vs, !vs.ishold);
 	boo (ev);
 }
@@ -505,7 +512,8 @@ function _answer (ev)
 {
 	var o = {};
 	argv (__(this,"vf").firstChild.lastChild, o)
-	CALLS[o["src_callid"]].session.accept ({ sessionDescriptionHandlerOptions: { constraints: { audio: true, video: false } } });
+	var vs = CALLS[o["src_callid"].substr(0,20)]
+	vs.session.accept ({ sessionDescriptionHandlerOptions: { constraints: { audio: true, video: false } } });
 	boo (ev);
 }
 
