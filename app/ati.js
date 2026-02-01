@@ -246,8 +246,7 @@ function atis_pop (ts)
 function atis (o,k,ts)
 {
 	var coll = document.getElementById ("vv").childNodes;
-	var pv = coll[6].childNodes[0].childNodes[1]; 
-	// var pu = document.getElementById ("call_sessions");
+	var pv = coll[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1]; 
 	var user_cid = document.getElementById ("user_cid").value;
 	var c = [0,0,0,0,0,0,0];
 	var unread_tot = 0;
@@ -299,36 +298,41 @@ function atis (o,k,ts)
 			}
 		}
 
-		// console.log ("["+ch[ATI.CHAN_SRC]+"] "+ch[ATI.CHAN_EXTEN]+","+user_cid)
-
 		if (ch[ATI.CHAN_SRC]=="notify" && ch[ATI.CHAN_CONTEXT]=="trunk" && ch[ATI.CHAN_EXTEN]==user_cid)
 		{
-			var p = coll[2].firstChild.firstChild.childNodes[0].childNodes[1]; // reload notifications
+			var coll_ = coll[2].firstChild.firstChild.childNodes[0].childNodes; 		// reload notifications
 			var a = {};
-			argv (p.childNodes[2].childNodes[1], a);
+			argv (coll_[1].childNodes[2].childNodes[1], a);						// retrieve clicked/loaded record
 			re["activities_chk"] = { "src_uid": {} };
 			if (a.sbr) re["activities_chk"]["src_uid"][a.sbr] = 1;
 			a = {args:"?"}
-			argv (p.childNodes[2].firstChild, a);
-			url (p, "activity_lst", "activities", a.args);
+			argv (coll_[1].childNodes[2].firstChild, a);
+			console.error (a);
+			url (coll_[1], "activity_lst", "activities^notify", a.args);
 			continue;
 		}
 
-		if (ch[ATI.CHAN_SRC]=="aii" && ch[ATI.CHAN_CONTEXT]=="trunk" && pv.firstChild && pv.firstChild.id == ch[ATI.CHAN_BRIDGE_ID])
+		if (ch[ATI.CHAN_SRC]=="aii" && ch[ATI.CHAN_CONTEXT]=="trunk")// && pv.firstChild && pv.firstChild.id == ch[ATI.CHAN_BRIDGE_ID])
 		{
-			//	var p_ = pv.lastChild.lastChild.childNodes[1].firstChild; 			// reload chats
-			//	url (p_, "activity_messages", "messages", ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30"));
-
-			//	var coll_ = coll[2].firstChild.firstChild.firstChild.childNodes; 	// reload aii sidebar
-			//	// todo: highlight icon
-			//	coll[2].style.display = "block";
-			//	coll[6].className = "mmr";
-			//	coll_[2].firstChild.checked=true;
-			//	coll_[2].childNodes[1].innerHTML = "...";
-			//	url (coll_[2].childNodes[1], "case_insights","messages",  ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=1&sort=id")); // pick latest
+			var coll_ = coll[2].firstChild.firstChild.childNodes[3].childNodes; 	// reload aii sidebar
+			var a_ = {};
+			if (pv.firstChild) argv(pv.firstChild, a_);
+			if (a_.src_uid2 && a_.src_uid2==ch[ATI.CHAN_BRIDGE_ID])
+			{
+				console.log ("AI PANEL MATCHED - Displaying on agent side")
+				// todo: highlight icon
+				coll[2].style.display = "block";
+				coll[6].className = "mmr";
+				coll_[0].checked=true;
+				coll_[1].innerHTML = "...";
+				// Use case_insights_aii template which properly renders AI content with sorting and feedback forms
+				url (coll_[1], "case_insights_aii","messages",  ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30&sort=id")); // pick latest
+			}
+			else
+			{
+				console.log ("âœ— AI PANEL NOT MATCHED - bridge_id("+ch[ATI.CHAN_BRIDGE_ID]+") does not match src_uid2("+a_.src_uid2+")");
+			}
 		}
-
-		// todo: propagate new notification to recepient
 	}
 
 	var p_ = document.getElementById ("ati_status");

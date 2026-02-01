@@ -390,6 +390,7 @@ re["activity_status"] =
 "6-2-":["","Answered"],
 "7-2-":["","Answered"],
 "8-2-":["","Answered"],
+
 "0-2-0":["","Error"],
 "1-2-0":["","Busy"],
 "2-2-0":["","Missed"],
@@ -409,6 +410,9 @@ re["activity_status"] =
 "6-2-1":["","Answered"],
 "7-2-1":["","Answered"],
 "8-2-1":["","Answered"],
+
+"0-2-2":["","Unread"], // notification
+"1-2-2":["",""],
 
 // todo: read/unread/reassigned
 
@@ -855,8 +859,6 @@ te["dash_main"] = { c:
 
 te["dash"] = { c:
 [
-	{ form:[], c:
-	[
 		{ div:[], c:
 		[	
 			{ input:["g","","case_vw_vt","0","radio","1"] }, 		// list
@@ -867,7 +869,6 @@ te["dash"] = { c:
 			{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
 			{ p:["tabv  mm gw","vfvwm"] }
 		]}
-	]}
 ]};
 
 // --------------------------------------------------------------------	
@@ -973,6 +974,11 @@ te["main"] = { c:
 			[
 				{ input:["g","","ntabv","2","radio"] },
 				{ div:["g","call_sessions"] }
+			]},
+			{ div:[], c:
+			[
+				{ input:["g","","ntabv","2","radio"] },
+				{ div:["g","call_aii_panel"] }
 			]}
 		]},
 		{ div:["e"], c:[ { input:["g","","sbr","","radio"] } ] } 
@@ -1017,7 +1023,7 @@ te["main"] = { c:
 
 	{ div:["ml6"], c:
 	[
-		{ div:[], c:[ { input:["g","","mtv","0","radio"] }, 	{ div:["tabv gw mh50 mm","vfvwm"] } ] }, // sbr->activity_vw_id
+		{ div:[], c:[ { input:["g","","mtv","0","radio"] }, 	{ div:["tabv gw mh50 mm","vfvwm"] } ] },       // ?
 		{ div:[], c:[ { input:["g","","mtv","1","radio","1"] },{ div:["tabv","vftab"], u:["dash","dash"] } ] }, // dash aka realtime-activities
 		{ div:[], c:[ { input:["g","","mtv","2","radio"] }, 	{ div:["tabv","vftab"] } ] }, // cases
 		{ div:[], c:[ { input:["g","","mtv","3","radio"] }, { form:["tabv","vftab"] } ] }, // calls

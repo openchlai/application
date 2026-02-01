@@ -811,7 +811,7 @@ function chans_pop (ts)
 			o_["src_status_duration"]= ""+((ts*1)-(o_["src_status_ts"]*1));
 			o_["src_end_ts"] 		= ""+ts;
 			o_["src_duration"] 		= ""+((ts*1)-(o_["src_ts"]*1));
-			// o_["action"] 			= "complete";
+			o_["action"] 			= "complete";
 			if (el_) chan_agtk (el_, ch_, pvw);
 			url (pu, "activity_new", "activities", "", null, 0, o_, "POST");
 		}
@@ -834,7 +834,7 @@ function chans (o,k,ts)
 	var pi = document.getElementById ("vinbound");
 	var po = document.getElementById ("voutbound");
 	var pu = document.getElementById ("vt_activity");
-	var pvw = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1]; 
+	var pvw = document.getElementById ("vv").childNodes[6].childNodes[1].childNodes[1]; 
 	var pvp = document.getElementById ("vp");
 	var user_cid = document.getElementById ("user_cid").value;
 	var aa = document.getElementById ("is_auto_answer");

@@ -2133,18 +2133,15 @@ te["case_main"] = { c:
 
 te["cases"] = { c:
 [
-	{ form:[], c:
-	[
-		{ div:[], c:
-		[	
-			{ input:["g","","case_vw_vt","0","radio","1"] }, 		// list
-			{ p:["tabv x20 yy gw bd8","vftab"], case_main:[] } 
-		]},
-		{ div:[], c:
-		[	
-			{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
-			{ p:["tabv bd8 mm gw","vfvwm"] }
-		]}
+	{ div:[], c:
+	[	
+		{ input:["g","","case_vw_vt","0","radio","1"] }, 		// list
+		{ p:["tabv x20 yy gw bd8","vftab"], case_main:[] } 
+	]},
+	{ div:[], c:
+	[	
+		{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
+		{ p:["tabv bd8 mm gw","vfvwm"] }
 	]}
 ]};
 
