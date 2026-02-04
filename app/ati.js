@@ -158,96 +158,75 @@ function _ati_tab ()
 	coll[this.previousSibling.value].firstChild.checked = true;
 }
 
-function ati_popup_unread (pv, ch)
+function ati_agtk_vw (ch, p)
 {
-	var a_ = {};
-	argv (pv.firstChild.lastChild, a_)
-	console.log ("[ati] ati_popup_unread "+ch[20]+","+a_.src_callid+"|"+pv.lastChild.lastChild)
-	if (ch[20]!=a_.src_callid) return; // not is same session
-	if (pv.lastChild.lastChild && pv.lastChild.lastChild.childNodes.length>1)
-	{
-		var p = _(pv.lastChild.lastChild.childNodes[1], "msgs")
-		if (!p || !p.previousSibling) return; 
-		url (p.previousSibling, "activity_messages", "messages", ("?src="+ch[7]+"&src_callid="+ch[20]+"&_c=30"));
-	}
+	var p = _(p, "msgs")
+	if (!p || !p.previousSibling) return; 
+	url (p.previousSibling, "activity_messages", "messages", ("?src="+ch[CHAN_EXTEN]+"&src_callid="+ch[CHAN_BRIDGE_ID]+"&_c=30"));
 }
 
-function ati_popup (el, f=0)
+function ati_agtk (el,ch,pv)
 {
-	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes 
+	var coll = el.childNodes[1].childNodes
+	var unnotified = 1; // (ch[CHAN_UNREAD]*1) - (coll[0].childNodes[4].innerHTML*1)
+	coll[0].childNodes[2].innerHTML = ch[ATI.CHAN_CID_NUM_2];
+	var el_ = coll[0].childNodes[3];
+	el_.innerHTML = ch[ATI.CHAN_STATUS_TXT_];
+	el_.className = "d x y02 gr cw bd mt";
+	el_ = coll[1].childNodes[1];
+	el_.id = "ts";
+	el_.value = ch[ATI.CHAN_STATUS_TS_];
+	el_.previousSibling.innerHTML = ch[ATI.CHAN_STATUS_TS_TXT_];
+	// coll[0].childNodes[4].innerHTML = ch[CHAN_UNREAD];	// todo: msg count
+	// coll[0].childNodes[4].style.display = (ch[CHAN_UNREAD]*1)>0?"block":"none";
+
+	if (!pv) return;									// happens when loading main - sidepanel loads before vw
+	var f = pv.childNodes.length;
 	var a = {};
-	argv (el, a);
-	if (re["case_src"][a.src][11]=="phone") a.src_address = _phone_fmt (a.src_address);
-	
-	if (f==0 && coll[1].childNodes.length>0 && coll[1].firstChild.childNodes.length>0) // vw is occupied
+	if (pv.firstChild && pv.firstChild.lastChild) 			// vw is occupied
 	{
-		var a_ = {};
-		argv (coll[1].firstChild.lastChild, a_)
-		console.log ("[ati] activity_vw_id_args "+a.src_callid+","+a_.src_callid)
-		if (a.src_callid==a_.src_callid) // is same session -- update src args only and select new ati_session
-		{
-			var z = coll[1].firstChild.lastChild.firstChild.childNodes;
-			for (var j; j<z.length; j++)
-			{
-				if (z[j].name && z[j].name.length>0 && a[z[j].name]!==undefined) 
-				{
-					console.log (z[j].name+": "+a[z[j].name]);
-					z[j].value = a[z[j].name];
-				}
-			}
-			el.firstChild.checked = true; 					// hilite call-notif			
-		}
-		return
+		argv (pv.firstChild.lastChild, a)
 	}
-	
-	if (f==0 && (a.src=="escalation" || a.src=="update")) return; 	// dont auto-bobup coz notif will clear on activity fetch
 
-	el.firstChild.checked = true; 							// hilite call-notif			
-	coll[0].checked = true;
-	var s = "-1?src="+a.src + "&src_uid="+a.src_uid + "&src_callid="+a.src_callid + "&src_address="+a.src_address + "&src_vector="+a.src_vector;
-	url (coll[1], "activity_vw_id_chat", "activities", s);
-}
+	// if (f>0 && no form && no popup and wrapup ended)		// todo: auto-close 
 
-function _ati_popup ()
-{
-	ati_popup (this.parentNode.parentNode, 1)
-}
-
-function ati_status (ch)  // down, dial(earliest unread ts), ring(latest unread ts), up(last assigned), que (latest assigned), connect
-{
-	var st = 10;
-	for (var i=10; i<19; i++) 
+	if (f==0 && !chan_a[ch[2]].vw && !chan_a[ch[2]].src_end_ts)	// auto-popup 
 	{
-		if (ch[i].length<1) continue; 
-		st = i;
-		if (i==ATI.CHAN_STATE_HANGUP) break; // chan hangup
+		chan_a[ch[2]].vw = Date.now();
+		pv.parentNode.parentNode.previousSibling.previousSibling.checked = true;
+		pv.previousSibling.checked = true;
+		url (pv, "activity_vw_id_chat", "activities", coll[2].firstChild.value);
+		return;
 	}
-	return st;
+
+	if (f>0 && a.src && a.src_uid && a.src==ch[ATI.CHAN_SRC] && a.src_callid==ch[ATI.CHAN_BRIDGE_ID]) // update vw
+	{
+		// todo: update args if same session but diff agtk
+		if (unnotified>0) ati_agtk_vw (ch, pv.childNodes[1].childNodes[2].childNodes[1])
+	}
 }
 
 function atis_pop (ts)
 {
+	var pv = document.getElementById ("vv").childNodes[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1]; 
+	var pu = document.getElementById ("vt_activity");
 	var k = Object.keys (chan_t);
-	for (var i=0; i<k.length; i++)  // remove closed, hangup channels
+	for (var i=0; i<k.length; i++)  			// remove closed, hangup channels
 	{
 		var id = k[i];
 		if (chan_t[id].ts==ts) continue;
 		console.log  ("[ati] pop "+id+" "+chan_t[id].ts+","+ts+" | "+chan_t[id].el)
-		if (chan_t[id].el && chan_t[id].el.parentNode) 
-		{
-			var pe = chan_t[id].el.parentNode;
-			var el = chan_t[id].el;
-			pe.removeChild (chan_t[id].el); 
-		}
+		// todo: upd activity
 		delete chan_t[id];
 	}
 }
 
 function atis (o,k,ts)
 {
-	var coll = document.getElementById ("vv").childNodes;
-	var pv = coll[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1]; 
 	var user_cid = document.getElementById ("user_cid").value;
+	var coll = document.getElementById ("vv").childNodes;
+	var pu = document.getElementById ("vt_activity");
+	var pv = coll[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1]; 
 	var c = [0,0,0,0,0,0,0];
 	var unread_tot = 0;
 	var ch_agent = null;
@@ -268,33 +247,32 @@ function atis (o,k,ts)
 
 		if (ch[ATI.CHAN_CONTEXT]=="agtk" && ch[ATI.CHAN_CALLERID_NUM]==user_cid)
 		{
-			continue
-			// console.log ("[ati] "+ch[3])
-			var el = _(pu, ch[2]); // find matching activity
-			var el_ = el;	
-			if (el==null)
+			chan_status ("ati_agtk",ch);
+			if (chan_t[ch[2]]===undefined) 
 			{
-				el = nd (pu, te["ati_session"], [], ch, [0]);
-				el = __(el,"va").parentNode;
-				chan_t[ch[2]] = { "el":el, "ts":ts };
-				console.log ("[ati] new "+ch[2]+","+ch[4]+","+ch[6]+" | "+el) 
-				ati_popup (el);
+				chan_t[ch[2]] = 
+				{
+					"src":ch[ATI.CHAN_SRC], 
+					"src_uid":ch[ATI.CHAN_UNIQUEID], 
+					"src_callid":ch[ATI.CHAN_SIPCALLID], 
+					"src_usr":ch[ATI.CHAN_CALLERID_NUM], 
+					"src_address":ch[ATI.CHAN_CID_NUM_2], 
+					"src_ts":ch[ATI.CHAN_TS], 
+					"src_vector": (ch[ATI.CHAN_EXTEN]=="s" ? "2" : "1"),   // NB orig also has exten=s
+					"action":"notify"
+				}
+				url (pu, "activity_new", "activities", "", null, 0, chan_t[ch[2]], "POST");
 			}
-			chan_t[ch[2]].ts=ts;
-			var st = ati_status (ch);
-			var coll_ = el.childNodes[1].childNodes;
-			var unnotified = (ch[22]*1) - (coll_[1].childNodes[1].firstChild.innerHTML*1) //
-			unread_tot += (ch[22]*1)
-			console.log ("[ati] status="+st+" unread="+ch[22] +" unnotified="+unnotified+"|"+el_)
-			coll_[0].childNodes[2].innerHTML = hmst (ch[st], ["","","hms","","","",""]);;
-			coll_[0].childNodes[3].value = ch[st];
-			// coll_[1].childNodes[0].innerHTML = ch[27]; //src_msg
-			coll_[1].childNodes[1].firstChild.innerHTML = ch[22];
-			coll_[1].childNodes[1].style.display = (ch[22]*1)>0?"block":"none";
-			if (unnotified!=0 || el_==null) 
+			chan_t[ch[2]]["ts"] 		= ts;
+			chan_t[ch[2]]["status"] 		= ch[ATI.CHAN_STATUS_];
+			chan_t[ch[2]]["status_txt"] 	= ch[ATI.CHAN_STATUS_TXT_];
+			chan_t[ch[2]]["status_ts"] 	= ch[ATI.CHAN_STATUS_TS_];
+			if (re["case_src"][ch[ATI.CHAN_SRC]][11]=="phone") chan_t[ch[2]]["src_address"] = _phone_fmt (ch[ATI.CHAN_CID_NUM_2]);
+
+			var el = _(pu, ch[2]); // find matching notification
+			if (el) 
 			{
-				coll_[2].firstChild.play ();
-				if (pv.firstChild && pv.firstChild.lastChild) ati_popup_unread (pv,ch);	
+				ati_agtk (el, ch, pv); 
 			}
 		}
 
@@ -330,19 +308,18 @@ function atis (o,k,ts)
 			}
 			else
 			{
-				console.log ("âœ— AI PANEL NOT MATCHED - bridge_id("+ch[ATI.CHAN_BRIDGE_ID]+") does not match src_uid2("+a_.src_uid2+")");
+				console.log ("AI PANEL NOT MATCHED - bridge_id("+ch[ATI.CHAN_BRIDGE_ID]+") does not match src_uid2("+a_.src_uid2+")");
 			}
 		}
 	}
 
+	// coll_[2].firstChild.play (); // if increase in tot unread -> play sound
 	var p_ = document.getElementById ("ati_status");
 	var id_ = "noop";
 	var r_ = [];
 	if (ch_agent!=null) { id_ = "ati_available"; r_=ch_agent; }
 	p_.innerHTML = "";
 	nd (p_, te[id_], [], r_, [0]);
-	ATI_COUNT = unread_tot;
-	notifs ();
 }
 
 function ldati (o)

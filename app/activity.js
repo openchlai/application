@@ -839,7 +839,7 @@ te["activity_vw_id_"] = { c:
 			{ arg:["","activity_ca_id",":v:activities:ca_id"] },
 		]} ]}
 	]},
-	{ form:[], c:
+	{ form:[], c: // 1/2/1
 	[
 		{ div:[], c:
 		[	
@@ -900,6 +900,7 @@ te["activity_lst_r"] = { p:["",":v:activities:src_uid"], c:
 			{ div:["c"], usub:["activity_lst_r_vector","r_",":v:activities:src","call"] },
 			{ s:["c l t",":v:activities:src_address"] },
 			{ s:["d t",":v:activities:src_status::activity_status:1"] },
+			{ s:["d t",""] }, // count
 			{ div:["e"] }
 		]},
 		{ div:["h02_ "], c:
@@ -913,7 +914,7 @@ te["activity_lst_r"] = { p:["",":v:activities:src_uid"], c:
 		[ 
 			{ arg:["",".id","%0"] }, 
 			{ arg:["","src",":v:activities:src"] }, 
-			{ div:[], ufn:["activity_agtk_ufn"] }
+			{ div:[], usub:["activity_agtk_call,activity_agtk_chat","r_",":v:activities:src","call,whatsApp"] } 
 		]},
 	]}
 ]};
@@ -930,6 +931,40 @@ te["activity_lst_title"] = { div:[""], c:
 ]}; 
 
 te["activity_lst"] = { list:["activity_lst_title","end","mr1 sh__ ","activity_lst_k","activity_lst_r","activities_notify","activity_lst_footer"] }; // sbr panel
+
+// -------------------------------------------------------------
+
+te["activity_agtk_chat"] =  { ufn:["activity_agtk_chat_ufn"] };
+
+te["activity_agtk_call"] =  { ufn:["activity_agtk_call_ufn"] };
+
+// -------------------------------------------------------------
+
+function activity_agtk_chat_ufn (el, u, a, r, m)
+{
+	let src_uid = r[re["activities_k"]["src_uid"][0]];
+	let ch = re["atis"][src_uid]
+	let pcoll = document.getElementById ("vv").childNodes
+	// console.log ("agtk("+src+") "+id+" "+(ch?"ch"+ch[AMI.CHAN_STATE_HANGUP]:"null")+"--------------------")
+	if (ch && ch[ATI.CHAN_STATE_HANGUP].length==0)
+	{
+		ati_status (ch);
+		ati_agtk (el.parentNode.parentNode.parentNode, ch, (pcoll.length>6 ? pcoll[6].childNodes[1].childNodes[1] : null))
+	}
+}
+
+function activity_agtk_call_ufn (el, u, a, r, m)
+{
+	let src_uid = r[re["activities_k"]["src_uid"][0]];
+	let ch = re["channels"][src_uid]
+	let pcoll = document.getElementById ("vv").childNodes
+	// console.log ("agtk("+src+") "+id+" "+(ch?"ch"+ch[AMI.CHAN_STATE_HANGUP]:"null")+"--------------------")
+	if (ch && ch[AMI.CHAN_STATE_HANGUP].length==0)
+	{
+		chan_status ("chan_args", ch);
+		chan_agtk (el.parentNode.parentNode.parentNode, ch, (pcoll.length>6 ? pcoll[6].childNodes[1].childNodes[1] : null))
+	}
+}
 
 // -------------------------------------------------------------
 
@@ -1056,20 +1091,6 @@ function activity_src_address_ufn (el, u, a, r, m)
 	// console.error (o.src+","+o.src_address+"|"+el.tagName)
 	el.id = "contacts-"+re["contacts_k"][re["case_src"][o.src][11]][0]
 	el.value = o.src_address
-}
-
-function activity_agtk_ufn (el, u, a, r, m)
-{
-	let src = r[re["activities_k"]["src"][0]] 
-	let id = r[re["activities_k"]["src_uid"][0]];
-	let ch = re["channels"][id]
-	let pcoll = document.getElementById ("vv").childNodes
-	// console.log ("agtk("+src+") "+id+" "+(ch?"ch"+ch[AMI.CHAN_STATE_HANGUP]:"null")+"--------------------")
-	if (src=="call" && ch && ch[AMI.CHAN_STATE_HANGUP].length==0)
-	{
-		chan_status ("chan_args", ch);
-		chan_agtk (el.parentNode.parentNode.parentNode, ch, (pcoll.length>6 ? pcoll[6].childNodes[0].childNodes[1] : null))
-	}
 }
 
 // ---

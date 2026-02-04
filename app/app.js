@@ -1023,7 +1023,7 @@ te["main"] = { c:
 
 	{ div:["ml6"], c:
 	[
-		{ div:[], c:[ { input:["g","","mtv","0","radio"] }, 	{ div:["tabv gw mh50 mm","vfvwm"] } ] },       // ?
+		{ div:[], c:[ { input:["g","","mtv","0","radio"] }, 	{ div:["tabv","vfvwm"] } ] }, // ?
 		{ div:[], c:[ { input:["g","","mtv","1","radio","1"] },{ div:["tabv","vftab"], u:["dash","dash"] } ] }, // dash aka realtime-activities
 		{ div:[], c:[ { input:["g","","mtv","2","radio"] }, 	{ div:["tabv","vftab"] } ] }, // cases
 		{ div:[], c:[ { input:["g","","mtv","3","radio"] }, { form:["tabv","vftab"] } ] }, // calls
@@ -1185,19 +1185,6 @@ function _phone_fmt (s)
 	}
 	if (n-a==9) return COUNTRY_CODE+s.substr (a,(n-a));
 	return s.substr (a,(n-a));
-}
-
-function notifs ()
-{
-	var p = document.getElementById ("call_sessions");
-	var el = document.getElementById ("notif_count");
-	var n = 0;
-	var cn = "none";
-	if (p==null) return;
-	n = CALL_COUNT+ATI_COUNT+ACT_COUNT
-	if (n>0) cn = "block"
-	el.firstChild.innerHTML = n;
-	el.style.display = cn;
 }
 
 function _mtabr ()
