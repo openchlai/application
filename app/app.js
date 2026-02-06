@@ -859,16 +859,16 @@ te["dash_main"] = { c:
 
 te["dash"] = { c:
 [
-		{ div:[], c:
-		[	
-			{ input:["g","","case_vw_vt","0","radio","1"] }, 		// list
-			{ p:["tabv gw ","vftab"], dash_main:[] } 
-		]},
-		{ div:[], c:
-		[	
-			{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
-			{ p:["tabv  mm gw","vfvwm"] }
-		]}
+	{ div:[], c:
+	[	
+		{ input:["g","","case_vw_vt","0","radio","1"] }, 		// list
+		{ p:["tabv gw ","vftab"], dash_main:[] } 
+	]},
+	{ div:[], c:
+	[	
+		{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
+		{ p:["tabv  mm gw","vfvwm"] }
+	]}
 ]};
 
 // --------------------------------------------------------------------	
@@ -1023,17 +1023,17 @@ te["main"] = { c:
 
 	{ div:["ml6"], c:
 	[
-		{ div:[], c:[ { input:["g","","mtv","0","radio"] }, 	{ div:["tabv","vfvwm"] } ] }, // ?
-		{ div:[], c:[ { input:["g","","mtv","1","radio","1"] },{ div:["tabv","vftab"], u:["dash","dash"] } ] }, // dash aka realtime-activities
-		{ div:[], c:[ { input:["g","","mtv","2","radio"] }, 	{ div:["tabv","vftab"] } ] }, // cases
-		{ div:[], c:[ { input:["g","","mtv","3","radio"] }, { form:["tabv","vftab"] } ] }, // calls
-		{ div:[], c:[ { input:["g","","mtv","4","radio"] }, { form:["tabv","vftab"] } ] }, // text (non-call) channels
-		{ div:[], c:[ { input:["g","","mtv","5","radio"] }, { form:["tabv","vftab"] } ] }, // qa
-		{ div:[], c:[ { input:["g","","mtv","6","radio"] }, { form:["tabv","vftab"] } ] }, // categories
-		{ div:[], c:[ { input:["g","","mtv","7","radio"] }, { form:["tabv","vftab"] } ] }, // users
-		{ div:[], c:[ { input:["g","","mtv","8","radio"] }, { form:["tabv","vftab"] } ] }, // contacts
-		{ div:[], c:[ { input:["g","","mtv","9","radio"] }, { form:["tabv","vfvwm"], wallboard:[] } ] }, // wallboard
-		{ div:[], c:[ { input:["g","","mtv","10","radio"] }, { form:["tabv","vfvwm"], c:[ { iframe:["wp100 h100","","transcription_frontend_template.php"] } ] } ] },
+		{ div:[], c:[ { input:["g","","mtv","0","radio"] }, 	{ form:["tabv","vfvwm"] } ] }, // ?
+		{ div:[], c:[ { input:["g","","mtv","1","radio","1"] },{ form:["tabv","vftab"], u:["dash","dash"] } ] }, // dash aka realtime-activities
+		{ div:[], c:[ { input:["g","","mtv","2","radio"] }, 	{ form:["tabv","vftab"] } ] }, // cases
+		{ div:[], c:[ { input:["g","","mtv","3","radio"] }, 	{ form:["tabv","vftab"] } ] }, // calls
+		{ div:[], c:[ { input:["g","","mtv","4","radio"] }, 	{ form:["tabv","vftab"] } ] }, // text (non-call) channels
+		{ div:[], c:[ { input:["g","","mtv","5","radio"] }, 	{ form:["tabv","vftab"] } ] }, // qa
+		{ div:[], c:[ { input:["g","","mtv","6","radio"] }, 	{ form:["tabv","vftab"] } ] }, // categories
+		{ div:[], c:[ { input:["g","","mtv","7","radio"] }, 	{ form:["tabv","vftab"] } ] }, // users
+		{ div:[], c:[ { input:["g","","mtv","8","radio"] }, 	{ form:["tabv","vftab"] } ] }, // contacts
+		{ div:[], c:[ { input:["g","","mtv","9","radio"] }, 	{ form:["tabv","vfvwm"], wallboard:[] } ] }, // wallboard
+		{ div:[], c:[ { input:["g","","mtv","10","radio"] }, 	{ form:["tabv","vfvwm"], c:[ { iframe:["wp100 h100","","transcription_frontend_template.php"] } ] } ] },
 		{ div:["g"], c:
 		[
 			{ iframe:["","",VA_AMI_HOST] },

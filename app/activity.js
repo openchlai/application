@@ -735,20 +735,16 @@ te["activity_main"] = { c:
 
 te["activity_vw_id_toolbar_notif"] = { div:[], c:
 [
-	{ div:["d w05 t01"], s:["abs w05 bd8 y15 gw zzzzz",""], c:
-	[
-		{ input:["g","","sbl","0","radio"] },
-		{ ac:["ay t01 r15","","_activity_close","cb bd y01",""], c:
+	{ div:["d w08 t01"], s:["abs w08 bd8 y20 gw zzzzz",""], c:
 		[
-			{ s:["tc h b","&Cross;"] },
-			// { s:["d x y s","Close"] },
-			{ div:["e"] }
-		]}
-	]},
-
-	//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
-	//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
-	//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+			{ input:["g","","sbl","0","radio"] },
+			{ ac:["ay t01 r15 w03 ma","","_activity_close","cb bd y01",""], c:
+			[
+				{ s:["tc h b","&Cross;"] },
+				// { s:["d x y s","Close"] },
+				{ div:["e"] }
+			]}
+		]},
 
 	{ div:["e"] }
 ]};
@@ -768,34 +764,32 @@ te["activity_vw_id_toolbar_walkin"] = { div:[], c:
 
 	{ div:[], c:
 	[
-		{ div:["d w05 t01"], s:["abs w05 bd8 y15 gw zzzz",""], c:
+		{ div:["d w08 t01"], s:["abs w08 bd8 y20 gw zzzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
-			{ ac:["ay t01 r15","","_uvw","cb bd y01 tc h b","&Cross;"] }
+			{ ac:["ay t01 r15 w03 ma","","_activity_close","cb bd y01",""], c:
+			[
+				{ s:["tc h b","&Cross;"] },
+				// { s:["d x y s","Close"] },
+				{ div:["e"] }
+			]}
 		]},
-		//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
-		//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
-		//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
 		{ div:["e"] }
 	]}
 ]};
 
 te["activity_vw_id_toolbar"] = { div:[], c:
 [
-	{ div:["d w05 t01"], s:["abs w05 bd8 y15 gw zzzz",""], c:
-	[
-		{ input:["g","","sbl","0","radio"] },
-		{ ac:["ay t01 r15","","_activity_close","cb bd y01",""], c:
+	{ div:["d w08 t01"], s:["abs w08 bd8 y20 gw zzzzz",""], c:
 		[
-			{ s:["tc h b","&Cross;"] },
-			// { s:["d x y s","Close"] },
-			{ div:["e"] }
-		]}
-	]},
-
-	//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
-	//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
-	//{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
+			{ input:["g","","sbl","0","radio"] },
+			{ ac:["ay t01 r15 w03 ma","","_activity_close","cb bd y01",""], c:
+			[
+				{ s:["tc h b","&Cross;"] },
+				// { s:["d x y s","Close"] },
+				{ div:["e"] }
+			]}
+		]},
 
 	{ div:["e"] }
 ]};
@@ -859,13 +853,11 @@ te["activity_vw_id_"] = { c:
 	]}
 ]};
 
-// te["activity_vw_id"] = { activity_vw_id_:["activity_vw_id_toolbar","1","activity_vw_id_tabs_0","","vfvw",""] }; 
-
 te["activity_vw_id_walkin"] = { activity_vw_id_:["activity_vw_id_toolbar_walkin","1","activity_vw_id_tabs_0_walkin","","vfvw",""] }; 
 
-te["activity_vw_id_notif"] = { activity_vw_id_:["activity_vw_id_toolbar_notif","","noop","1","vf",""] }; 
-
 te["activity_vw_id_case"] = { activity_vw_id_:["activity_vw_id_toolbar","","noop","1","vf",""] }; 
+
+te["activity_vw_id_notif"] = { activity_vw_id_:["activity_vw_id_toolbar_notif","","noop","1","vf",""] }; 
 
 te["activity_vw_id_chat"] = { activity_vw_id_:["ati_toolbar","","activity_vw_id_tabs_0","","vfvw","1"] }; 
 
@@ -937,34 +929,6 @@ te["activity_lst"] = { list:["activity_lst_title","end","mr1 sh__ ","activity_ls
 te["activity_agtk_chat"] =  { ufn:["activity_agtk_chat_ufn"] };
 
 te["activity_agtk_call"] =  { ufn:["activity_agtk_call_ufn"] };
-
-// -------------------------------------------------------------
-
-function activity_agtk_chat_ufn (el, u, a, r, m)
-{
-	let src_uid = r[re["activities_k"]["src_uid"][0]];
-	let ch = re["atis"][src_uid]
-	let pcoll = document.getElementById ("vv").childNodes
-	// console.log ("agtk("+src+") "+id+" "+(ch?"ch"+ch[AMI.CHAN_STATE_HANGUP]:"null")+"--------------------")
-	if (ch && ch[ATI.CHAN_STATE_HANGUP].length==0)
-	{
-		ati_status (ch);
-		ati_agtk (el.parentNode.parentNode.parentNode, ch, (pcoll.length>6 ? pcoll[6].childNodes[1].childNodes[1] : null))
-	}
-}
-
-function activity_agtk_call_ufn (el, u, a, r, m)
-{
-	let src_uid = r[re["activities_k"]["src_uid"][0]];
-	let ch = re["channels"][src_uid]
-	let pcoll = document.getElementById ("vv").childNodes
-	// console.log ("agtk("+src+") "+id+" "+(ch?"ch"+ch[AMI.CHAN_STATE_HANGUP]:"null")+"--------------------")
-	if (ch && ch[AMI.CHAN_STATE_HANGUP].length==0)
-	{
-		chan_status ("chan_args", ch);
-		chan_agtk (el.parentNode.parentNode.parentNode, ch, (pcoll.length>6 ? pcoll[6].childNodes[1].childNodes[1] : null))
-	}
-}
 
 // -------------------------------------------------------------
 
@@ -1044,6 +1008,32 @@ function _msg (ev) // TODO: send read request -while typing - to keep chat from 
 
 // -------------------------------------------------------------
 
+function activity_agtk_chat_ufn (el, u, a, r, m)
+{
+	let src_uid = r[re["activities_k"]["src_uid"][0]];
+	let ch = re["atis"][src_uid]
+	let pcoll = document.getElementById ("vv").childNodes
+	// console.log ("agtk("+src+") "+id+" "+(ch?"ch"+ch[AMI.CHAN_STATE_HANGUP]:"null")+"--------------------")
+	if (ch && ch[ATI.CHAN_STATE_HANGUP].length==0)
+	{
+		ati_status (ch);
+		ati_agtk (el.parentNode.parentNode.parentNode, ch, (pcoll.length>6 ? pcoll[6].childNodes[1].childNodes[1] : null))
+	}
+}
+
+function activity_agtk_call_ufn (el, u, a, r, m)
+{
+	let src_uid = r[re["activities_k"]["src_uid"][0]];
+	let ch = re["channels"][src_uid]
+	let pcoll = document.getElementById ("vv").childNodes
+	// console.log ("agtk("+src+") "+id+" "+(ch?"ch"+ch[AMI.CHAN_STATE_HANGUP]:"null")+"--------------------")
+	if (ch && ch[AMI.CHAN_STATE_HANGUP].length==0)
+	{
+		chan_status ("chan_args", ch);
+		chan_agtk (el.parentNode.parentNode.parentNode, ch, (pcoll.length>6 ? pcoll[6].childNodes[1].childNodes[1] : null))
+	}
+}
+
 function activity_case_ufn (el, u, a, r, m)
 {
 	var kk = ra["dispositions_k"];
@@ -1097,12 +1087,10 @@ function activity_src_address_ufn (el, u, a, r, m)
 
 function _activity_close ()
 {
-	var coll = document.getElementById ("vv").childNodes;
-	var a = {}
-	argv (coll[3], a)
-	coll[2].lastChild.firstChild.checked = true;
-	coll[6].childNodes[a.sbl].firstChild.checked = true;
-	__(this,"vfvwm").innerHTML = ""
+	var p = __(this,"vf")
+	p.innerHTML = ""
+	p.parentNode.previousSibling.firstChild.checked = true;
+	document.getElementById ("vv").childNodes[2].lastChild.firstChild.checked = true; // uncheck sbr
 }
 
 function _activity_postj ()
@@ -1154,11 +1142,11 @@ function _activity_disposition_r ()
 
 function _activity_vw_id (ev) 
 {
-	var coll = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes;
-	var a = { ".id":0};
+	var pcoll = document.getElementById ("vv").childNodes
+	var coll = pcoll[6].childNodes[1].childNodes[1].childNodes[1].childNodes;
+	var a = {".id":0};
 	var s = "";
 	argv (this, a); 
-	console.log("activity_vw_id("+this.id+") "+re["case_src"][a.src][10]+"|"+JSON.stringify(a))
 	if ((a[".id"]*1)<1) 
 	{ 
 		var user_cid = document.getElementById ("user_cid").value;
@@ -1166,30 +1154,33 @@ function _activity_vw_id (ev)
 		a.src_uid = a.src+"-"+user_cid+"-"+Date.now ();
 		if (a.src_uid2==undefined) a.src_uid2 = a.src_uid+"-1";
 		if (a.src_callid==undefined) a.src_callid = a.src_uid2;
-		a.src_address =  ""; 
 		a.src_usr = user_cid
 		a.src_vector = 2;
 		a[".id"] = -1;
 		s ="?src=" + a.src + "&src_uid=" + a.src_uid + "&src_uid2=" + a.src_uid2 + "&src_callid="+a.src_callid + "&src_vector=" + a.src_vector;
 		s += "&src_usr="+a.src_usr;
-		if (a.src_address && a.src_address.length>0) s += "&src_address="+a.src_address;
 		if (a.case_id && a.case_id.length>0) s += "&case_id="+a.case_id;
 	}
-	if (re["case_src"][a.src][11]=="phone" && a.src_address!=undefined) a.src_address = _phone_fmt (a.src_address);
-	if (this.id.length>0) coll = __(this,"vftab").parentNode.nextSibling.childNodes;
+	if (this.id.length>0)
+	{ 
+		coll = __(this,"vftab").parentNode.nextSibling.childNodes;
+	}
+	else
+	{
+		pcoll[3].childNodes[1].firstChild.checked = true;
+		pcoll[6].childNodes[1].firstChild.checked = true;
+	}
 	this.previousSibling.checked = true; // hilite call-notif
 	coll[0].checked = true;
 	url (coll[1], ("activity_vw_id"+re["case_src"][a.src][10]), "activities", a[".id"]+s);
-	boo (ev)
 }
 
 function _activity_call () // outbound call popup
 {
+	var p = document.getElementById ("vp");
 	var a = {};
 	argv (__(this), a);
-	var p = document.getElementById ("vp");
 	p.style.display = "none";
 	p.innerHTML = "";
 	VOICEAPPS_UA.dial(a.src_address)
-
 }

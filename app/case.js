@@ -1447,7 +1447,18 @@ te["case_vw_id"] = { c:
 		{ s:["c xx yy h2 b",CASE_ID_PREFIX] },
 		{ s:["c yy h2 b","%0"] },
 		
-		{ div:["d w05 t01"], s:["abs w05 bd8  b10 gw zzzz",""], c:
+		{ div:["d w08 t01"], s:["abs w08 bd8 t04 b10 gw zzzzz",""], c:
+		[
+			{ input:["g","","sbl","0","radio"] },
+			{ ac:["ay t01 r15 w03 ma","","_uvw","cb bd y01",""], c:
+			[
+				{ s:["tc h b","&Cross;"] },
+				// { s:["d x y s","Close"] },
+				{ div:["e"] }
+			]}
+		]},
+
+		/*{ div:["d w05 t01"], s:["abs w05 bd8  b10 gw zzzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
 			{ ac:["ay t01 r15","","_uvw","cb bd y01",""], c:
@@ -1456,9 +1467,8 @@ te["case_vw_id"] = { c:
 				// { s:["d x y s","Close"] },
 				{ div:["e"] }
 			]}
-		]},
+		]},*/
 
-		// always in context of activity -- activity btn will mask app btns -- no need for masking here
 
 		{ div:["e"] }
 	]},
