@@ -224,9 +224,9 @@ function atis_pop (ts)
 function atis (o,k,ts)
 {
 	var user_cid = document.getElementById ("user_cid").value;
-	var coll = document.getElementById ("vv").childNodes;
+	var pcoll = document.getElementById ("vv").childNodes;
 	var pu = document.getElementById ("vt_activity");
-	var pv = coll[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1]; 
+	var pv = pcoll[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1]; 
 	var c = [0,0,0,0,0,0,0];
 	var unread_tot = 0;
 	var ch_agent = null;
@@ -235,9 +235,9 @@ function atis (o,k,ts)
 	{
 		var ch = o[k[i]];
 		
-		if (ch[ATI.CHAN_STATE_HANGUP].length>0) continue; // skip hangup'ed channels
+		if (ch[ATI.CHAN_STATE_HANGUP].length>0) continue; 			// skip hangup'ed channels
 		
-		if (ch[0].length>0) 		 // agent session chan
+		if (ch[0].length>0) 		 							// agent session chan
 		{
 			c[0]++; 
 			if (user_cid.length>0 && user_cid==ch[0]) ch_agent = ch;
@@ -269,7 +269,7 @@ function atis (o,k,ts)
 			chan_t[ch[2]]["status_ts"] 	= ch[ATI.CHAN_STATUS_TS_];
 			if (re["case_src"][ch[ATI.CHAN_SRC]][11]=="phone") chan_t[ch[2]]["src_address"] = _phone_fmt (ch[ATI.CHAN_CID_NUM_2]);
 
-			var el = _(pu, ch[2]); // find matching notification
+			var el = _(pu, ch[2]); 									// find matching notification
 			if (el) 
 			{
 				ati_agtk (el, ch, pv); 
@@ -278,33 +278,33 @@ function atis (o,k,ts)
 
 		if (ch[ATI.CHAN_SRC]=="notify" && ch[ATI.CHAN_CONTEXT]=="trunk" && ch[ATI.CHAN_EXTEN]==user_cid)
 		{
-			var coll_ = coll[2].firstChild.firstChild.childNodes[0].childNodes; 		// reload notifications
+			var coll = pcoll[2].firstChild.firstChild.childNodes[0].childNodes; 		// reload notifications
 			var a = {};
-			argv (coll_[1].childNodes[2].childNodes[1], a);						// retrieve clicked/loaded record
+			argv (coll[1].childNodes[2].childNodes[1], a);						// retrieve clicked/loaded record
 			re["activities_chk"] = { "src_uid": {} };
 			if (a.sbr) re["activities_chk"]["src_uid"][a.sbr] = 1;
 			a = {args:"?"}
-			argv (coll_[1].childNodes[2].firstChild, a);
+			argv (coll[1].childNodes[2].firstChild, a);
 			console.error (a);
-			url (coll_[1], "activity_lst", "activities^notify", a.args);
+			url (coll[1], "activity_lst", "activities^notify", a.args);
 			continue;
 		}
 
 		if (ch[ATI.CHAN_SRC]=="aii" && ch[ATI.CHAN_CONTEXT]=="trunk")// && pv.firstChild && pv.firstChild.id == ch[ATI.CHAN_BRIDGE_ID])
 		{
-			var coll_ = coll[2].firstChild.firstChild.childNodes[3].childNodes; 	// reload aii sidebar
+			var coll = pcoll[2].firstChild.firstChild.childNodes[3].childNodes; 	// reload aii sidebar
 			var a_ = {};
 			if (pv.firstChild) argv(pv.firstChild, a_);
 			if (a_.src_uid2 && a_.src_uid2==ch[ATI.CHAN_BRIDGE_ID])
 			{
 				console.log ("AI PANEL MATCHED - Displaying on agent side")
 				// todo: highlight icon
-				coll[2].style.display = "block";
-				coll[6].className = "mmr";
-				coll_[0].checked=true;
-				coll_[1].innerHTML = "...";
+				pcoll[2].style.display = "block";
+				pcoll[6].className = "mmr";
+				coll[0].checked=true;
+				coll[1].innerHTML = "...";
 				// Use case_insights_aii template which properly renders AI content with sorting and feedback forms
-				url (coll_[1], "case_insights_aii","messages",  ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30&sort=id")); // pick latest
+				url (coll[1], "case_insights_aii","messages",  ("?src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30&sort=id")); // pick latest
 			}
 			else
 			{
@@ -313,7 +313,7 @@ function atis (o,k,ts)
 		}
 	}
 
-	// coll_[2].firstChild.play (); // if increase in tot unread -> play sound
+	// ?.firstChild.play (); // if increase in tot unread -> play sound
 	var p_ = document.getElementById ("ati_status");
 	var id_ = "noop";
 	var r_ = [];
@@ -331,4 +331,3 @@ function ldati (o)
         atis (o, k, ts);        
         atis_pop (ts);
 }
-

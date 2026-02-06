@@ -1017,7 +1017,7 @@ te["main"] = { c:
 		{ sbl:["","10","","","audiotrack","Transcribe","noop"] },
 	]},
 	
-	{ p:["abs zzzzz y op_ga g","vp"], ev:["_uvpd"] }, // popup window	
+	{ p:["abs zzzzzzz y op_ga g","vp"], ev:["_uvpd"] }, // popup window	
 	
 	{ p:["abs zzzzz y op_ga g","vip"], ev:["_uvpd"] }, // incoming call popup	
 
