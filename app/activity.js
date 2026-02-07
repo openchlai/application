@@ -69,15 +69,15 @@ te["activity_message_r"] = { div:["y"], activity_message_r_:[] };
 
 te["activity_messages_title"] = { c:
 [
-	{ s:["c ll y h3_ b",":v:activities:src::case_src:1"] },
-	{ s:["c x y h3_","/"] },
-	{ s:["c y h3_ b",":v:activities:src_address"] },
+	{ s:["c ll t08 h3 b",":v:activities:src::case_src:1"] },
+	{ s:["c x t08 h3","/"] },
+	{ s:["c t08 h3 b",":v:activities:src_address"] },
 	{ div:["e"] }
 ]};
 
 te["activity_messages"] = { c:
 [
-	{ div:["x20 y15"], u:["activity_messages_title","activities"] },
+	{ div:["x20 t20 b15"], u:["activity_messages_title","activities"] },
 	{ div:[] }, // message reload ctx
 	{ p:["x25","msgs"], c:
 	[
@@ -735,7 +735,7 @@ te["activity_main"] = { c:
 
 te["activity_vw_id_toolbar_notif"] = { div:[], c:
 [
-	{ div:["d w08 t01"], s:["abs w08 bd8 y20 gw zzzzz",""], c:
+	{ div:["d w08 t01"], s:["abs w08 bd8 t20 b10 gw zzzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
 			{ ac:["ay t01 r15 w03 ma","","_activity_close","cb bd y01",""], c:
@@ -751,7 +751,7 @@ te["activity_vw_id_toolbar_notif"] = { div:[], c:
 
 te["activity_vw_id_toolbar_walkin"] = { div:[], c:
 [
-	{ div:["w16 ma t01"], s:["w12 t20 abs",""], c:
+	{ div:["w16 ma t01"], s:["w12 t20 b10 abs",""], c:
 	[
 		{ div:["xx y w10 bd cb s"], c:
 		[
@@ -780,7 +780,7 @@ te["activity_vw_id_toolbar_walkin"] = { div:[], c:
 
 te["activity_vw_id_toolbar"] = { div:[], c:
 [
-	{ div:["d w08 t01"], s:["abs w08 bd8 y20 gw zzzzz",""], c:
+	{ div:["d w08 t01"], s:["abs w08 bd8 t20 b10 gw zzzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
 			{ ac:["ay t01 r15 w03 ma","","_activity_close","cb bd y01",""], c:
@@ -813,11 +813,6 @@ te["activity_vw_id_tabs_0"] = { c:
 	{ arg:["",":v:activities:src::case_src:12",":v:activities:src_address"] },
 	{ arg:["","_c","10"] },
 	{ uv:["activity_main","dispositions"] }
-]};
-
-te["activity_vw_id_tabs_"] = { c: // 
-[
-	
 ]};
 
 te["activity_vw_id_"] = { c: 
@@ -865,7 +860,7 @@ te["activity_vw_id_call"] = { activity_vw_id_:["call_toolbar","1","activity_vw_i
 
 // -----------------------------------------------------------------------------------------
 
-te["activity_lst_footer"] = { div:["y bt_ mr2"], c:
+te["activity_lst_footer"] = { div:["y bt_"], c:
 [
 	{ div:["d t03"], c:[ { ac:["nav","activity_lst-activities^notify","_nav","dh",""], c:[ { div:["da dr_"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
 	{ div:["d t03"], c:[ { aci:["nav","activity_lst-activities^notify","_nav","dh","prev",""], c:[ { div:["da dl_"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
@@ -884,7 +879,7 @@ te["activity_lst_r_vector"] = { s:["l t",":v:activities:src_vector::vector:6"] }
 te["activity_lst_r"] = { p:["",":v:activities:src_uid"], c:
 [
 	{ input:["g","","sbr",":v:activities:src_uid","radio",":k:activities_chk:src_uid::14"] },
-	{ li:["sbr xx y03 bt bl br gw cb s"], ev:["_activity_vw_id"], c: 
+	{ li:["sbr xx y03 bt_ gw cb s"], ev:["_activity_vw_id"], c: 
 	[
 		{ div:[], c:
 		[  
@@ -906,7 +901,7 @@ te["activity_lst_r"] = { p:["",":v:activities:src_uid"], c:
 		[ 
 			{ arg:["",".id","%0"] }, 
 			{ arg:["","src",":v:activities:src"] }, 
-			{ div:[], usub:["activity_agtk_call,activity_agtk_chat","r_",":v:activities:src","call,whatsApp"] } 
+			{ div:[], usub:["activity_agtk_call,activity_agtk_chat,activity_agtk_chat","r_",":v:activities:src","call,chat,whatsApp"] } 
 		]},
 	]}
 ]};
@@ -918,11 +913,11 @@ te["activity_lst_k"] = { div:["g"], c:
 
 te["activity_lst_title"] = { div:[""], c:
 [
-	// { s:["c x y b","Notifications"] }, // Activity History
+	{ s:["c xx yy b","Notifications"] }, // Activity History
 	{ div:["e"] }
 ]}; 
 
-te["activity_lst"] = { list:["activity_lst_title","end","mr1 sh__ ","activity_lst_k","activity_lst_r","activities_notify","activity_lst_footer"] }; // sbr panel
+te["activity_lst"] = { list:["activity_lst_title","end","","activity_lst_k","activity_lst_r","activities_notify","activity_lst_footer"] }; // sbr panel
 
 // -------------------------------------------------------------
 
@@ -1010,6 +1005,7 @@ function _msg (ev) // TODO: send read request -while typing - to keep chat from 
 
 function activity_agtk_chat_ufn (el, u, a, r, m)
 {
+	console.log (">>agtk>chat")
 	let src_uid = r[re["activities_k"]["src_uid"][0]];
 	let ch = re["atis"][src_uid]
 	let pcoll = document.getElementById ("vv").childNodes
@@ -1023,6 +1019,7 @@ function activity_agtk_chat_ufn (el, u, a, r, m)
 
 function activity_agtk_call_ufn (el, u, a, r, m)
 {
+	console.log (">>agtk>call")
 	let src_uid = r[re["activities_k"]["src_uid"][0]];
 	let ch = re["channels"][src_uid]
 	let pcoll = document.getElementById ("vv").childNodes

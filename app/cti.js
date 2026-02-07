@@ -58,6 +58,8 @@ var AMI =
 	
 };
 
+re["channels"] = {};
+
 re["ami_k"] = AMI;
 
 re["chan_action"] = 
@@ -181,7 +183,7 @@ te["call_toolbar"] = { c:
 
 	{ div:[], c:
 	[
-		{ div:["d w08 t01"], s:["abs w08 bd8 y20 gw zzzzz",""], c:
+		{ div:["d w08 t01"], s:["abs w08 bd8 t20 b10 gw zzzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
 			{ ac:["ay t01 r15 w03 ma","","_activity_close","cb bd y01",""], c:
@@ -738,6 +740,7 @@ function chans_pop (ts)
 			o_["src_duration"] 		= ""+((ts*1)-(o_["src_ts"]*1));
 			o_["action"] 			= "complete";
 			if (el_) chan_agtk (el_, ch_, pv);
+			
 			url (pu, "activity_new", "activities", "", null, 0, o_, "POST");
 		}
 		delete chan_a[id];
@@ -819,7 +822,7 @@ function chans (o,k,ts)
 					"src_uid":ch[AMI.CHAN_UNIQUEID], 
 					"src_callid":ch[AMI.CHAN_SIPCALLID], 
 					"src_usr":ch[AMI.CHAN_CALLERID_NUM], 
-					"src_address":ch[AMI.CHAN_CID_NUM_2], 
+					"src_address": _phone_fmt(ch[AMI.CHAN_CID_NUM_2]), 
 					"src_ts":ch[AMI.CHAN_TS], 
 					"src_vector": (ch[AMI.CHAN_EXTEN]=="s" ? "2" : "1"),   // NB orig also has exten=s
 					"action":"notify"
@@ -829,7 +832,7 @@ function chans (o,k,ts)
 			chan_a[ch[2]]["status"] 		= ch[AMI.CHAN_STATUS_];
 			chan_a[ch[2]]["status_txt"] 	= ch[AMI.CHAN_STATUS_TXT_];
 			chan_a[ch[2]]["status_ts"] 	= ch[AMI.CHAN_STATUS_TS_];
-			if (ch[AMI.CHAN_CID_NUM_2].length>0 && chan_a[ch[2]]["src_address"].length<1) chan_a[ch[2]]["src_address"] = ch[AMI.CHAN_CID_NUM_2];
+			if (ch[AMI.CHAN_CID_NUM_2].length>0 && chan_a[ch[2]]["src_address"].length<1) chan_a[ch[2]]["src_address"] = _phone_fmt (ch[AMI.CHAN_CID_NUM_2]);
 			
 			if (chan_a[ch[2]]["src_vector"]=="2" && !chan_a[ch[2]]["aa"] && vs_ && vs_.session && 
 			   (aa.checked || ch[AMI.CHAN_CONTEXT_MASQ]=="agentlogin" || ch[AMI.CHAN_CONTEXT_MASQ]=="supervisor")) // aa
@@ -847,10 +850,7 @@ function chans (o,k,ts)
 			}
 
 			var el = _(pu, ch[2]); // find matching notification
-			if (el) 
-			{
-				chan_agtk (el, ch, pv); 
-			}
+			if (el) chan_agtk (el, ch, pv); 
 
 			if (vp_add && vp_add.id==ch[AMI.CHAN_UNIQUEID]) 
 			{

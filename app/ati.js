@@ -44,6 +44,8 @@ var ATI =
 	"CHAN_STATUS_TS_TXT_":34
 };
 
+re["atis"] = {};
+
 te["ati_session"] = { p:["","%2"], c: 
 [
 	{ input:["g","","sbr","%2","radio"] },
@@ -83,28 +85,27 @@ te["ati_ended"] = { s:["t cd tc","Chat Closed"] };
 
 te["ati_toolbar"] = { c:
 [
-	{ div:["w21 ma t01 mtn1"], s:["w21 t15 abs",""], c:
+	{ div:["w21 ma t03 mtn1"], s:["w21 t20 abs",""], c:
 	[
 		{ div:["c w10 ba_b bdl"], c:
 		[
-			{ input:["g","","case_vw_id_t","2","radio","1"] },
-			{ ac:["ao tab","","_ati_tab","y cb tc s","Chat"] }
-			// todo: unread counter
+			{ input:["g","","ati_vw_id_t","0","radio"] },
+			{ ac:["ao tab","","_ati_tab","y cb tc s","Contact History"] }
 		]},
 		{ div:["c w10 bt_b bb_b br_b bdr"], c:
 		[
-			{ input:["g","","case_vw_id_t","0","radio"] },
-			{ ac:["ao tab","","_ati_tab","y cb tc s","Contact History"] }
+			{ input:["g","","ati_vw_id_t","2","radio","1"] },
+			{ ac:["ao tab","","_ati_tab","y cb tc s","Chat"] }
 		]},
 		{ div:["e"] }
 	]},
 
 	{ div:[], c:
 	[
-		{ div:["d w05 t01"], s:["abs w05 bd8 t15 b05 gw zzzz",""], c:
+		{ div:["d w08 t01"], s:["abs w08 bd8 t20 b10 gw zzzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
-			{ ac:["ay r15 t01","","_activity_close","cb bd",""], c:
+			{ ac:["ay t01 r15 w03 ma","","_activity_close","cb bd y01",""], c:
 			[
 				{ s:["tc h b","&Cross;"] },
 				// { s:["d x y s","Close"] },
@@ -112,11 +113,11 @@ te["ati_toolbar"] = { c:
 			]}
 		]},
 
-		{ div:["d w12 t01"], s:["abs w12 t17 b05 gw zzzz",""], c:
+		{ div:["d w10 t01 mr6"], s:["abs w10 t20 gw zzzz",""], c:
 		[
 			{ div:["","ve"], c:
 			[
-				{ ac:["ay btn w09","","_ati_end","cb",""], c: 
+				{ ac:["ay btn w09 t","","_ati_end","bd8 cb",""], c: 
 				[
 					{ s:["c x t cb s","End Chat"] },
 					{ s:["c w03 h cb tc micon","last_page"] },
@@ -148,12 +149,12 @@ function _ati_end ()
 function _ati_tab ()
 {
 	var coll = __(this,"vb").parentNode.lastChild.childNodes;
-	if (this.previousSibling.value==2)
-	{
-		var i_ = 0;
-		for (var i=0; i<2; i++) if (coll[i].firstChild.checked==true) { i_=i; break; }
-		this.parentNode.nextSibling.firstChild.value = i_; 
-	}
+	//if (this.previousSibling.value==2)
+	//{
+	//	var i_ = 0;
+	//	for (var i=0; i<2; i++) if (coll[i].firstChild.checked==true) { i_=i; break; }
+	//	this.parentNode.nextSibling.firstChild.value = i_; 
+	//}
 	this.previousSibling.checked = true;
 	coll[this.previousSibling.value].firstChild.checked = true;
 }
@@ -169,7 +170,7 @@ function ati_agtk (el,ch,pv)
 {
 	var coll = el.childNodes[1].childNodes
 	var unnotified = 1; // (ch[CHAN_UNREAD]*1) - (coll[0].childNodes[4].innerHTML*1)
-	coll[0].childNodes[2].innerHTML = ch[ATI.CHAN_CID_NUM_2];
+	coll[0].childNodes[2].innerHTML = ch[ATI.CHAN_CID_2];
 	var el_ = coll[0].childNodes[3];
 	el_.innerHTML = ch[ATI.CHAN_STATUS_TXT_];
 	el_.className = "d x y02 gr cw bd mt";
@@ -190,12 +191,16 @@ function ati_agtk (el,ch,pv)
 
 	// if (f>0 && no form && no popup and wrapup ended)		// todo: auto-close 
 
-	if (f==0 && !chan_a[ch[2]].vw && !chan_a[ch[2]].src_end_ts)	// auto-popup 
+	if (f==0 && !chan_t[ch[2]].vw && !chan_t[ch[2]].src_end_ts) // auto-popup 
 	{
-		chan_a[ch[2]].vw = Date.now();
-		pv.parentNode.parentNode.previousSibling.previousSibling.checked = true;
+		if (ch[ATI.CHAN_UID_2].length<1) return; 		// wait for src_uid2 -> activity args are not updated in realtime 
+		chan_t[ch[2]].vw = Date.now();
+		var pcoll = document.getElementById ("vv").childNodes
+		pcoll[3].childNodes[1].firstChild.checked = true;
+		pcoll[6].childNodes[1].firstChild.checked = true;	
+		el.firstChild.checked = true;	
 		pv.previousSibling.checked = true;
-		url (pv, "activity_vw_id_chat", "activities", coll[2].firstChild.value);
+		url (pv, "activity_vw_id_call", "activities", coll[2].firstChild.value);
 		return;
 	}
 
@@ -208,15 +213,29 @@ function ati_agtk (el,ch,pv)
 
 function atis_pop (ts)
 {
-	var pv = document.getElementById ("vv").childNodes[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1]; 
 	var pu = document.getElementById ("vt_activity");
+	var pv = document.getElementById ("vv").childNodes[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1]; 
 	var k = Object.keys (chan_t);
 	for (var i=0; i<k.length; i++)  			// remove closed, hangup channels
 	{
 		var id = k[i];
 		if (chan_t[id].ts==ts) continue;
 		console.log  ("[ati] pop "+id+" "+chan_t[id].ts+","+ts+" | "+chan_t[id].el)
-		// todo: upd activity
+		let el = _(pu,id)
+		let o = chan_t[id];
+		let ch = [];
+		ch[ATI.CHAN_UNIQUEID] = id;
+		ch[ATI.CHAN_CID_2] = o["src_address"];
+		ch[ATI.CHAN_STATE_HANGUP] = ts;
+		chan_status ("ati_agtk", ch);
+		o["src_status"] 		= o["status"]+"-"+o["src_vector"]+"-"; // orig
+		o["src_status_ts"] 		= ""+o["status_ts"];
+		o["src_status_duration"]	= ""+((ts*1)-(o["src_status_ts"]*1));
+		o["src_end_ts"] 		= ""+ts;
+		o["src_duration"] 		= ""+((ts*1)-(o["src_ts"]*1));
+		o["action"] 			= "complete";
+		if (el) ati_agtk (el, ch, pv);
+		url (pu, "activity_new", "activities", "", null, 0, o, "POST");
 		delete chan_t[id];
 	}
 }
@@ -248,6 +267,7 @@ function atis (o,k,ts)
 		if (ch[ATI.CHAN_CONTEXT]=="agtk" && ch[ATI.CHAN_CALLERID_NUM]==user_cid)
 		{
 			chan_status ("ati_agtk",ch);
+			if (re["case_src"][ch[ATI.CHAN_SRC]][11]=="phone") ch[ATI.CHAN_CID_2] = _phone_fmt (ch[ATI.CHAN_CID_2]);
 			if (chan_t[ch[2]]===undefined) 
 			{
 				chan_t[ch[2]] = 
@@ -256,7 +276,7 @@ function atis (o,k,ts)
 					"src_uid":ch[ATI.CHAN_UNIQUEID], 
 					"src_callid":ch[ATI.CHAN_SIPCALLID], 
 					"src_usr":ch[ATI.CHAN_CALLERID_NUM], 
-					"src_address":ch[ATI.CHAN_CID_NUM_2], 
+					"src_address":ch[ATI.CHAN_CID_2], 
 					"src_ts":ch[ATI.CHAN_TS], 
 					"src_vector": (ch[ATI.CHAN_EXTEN]=="s" ? "2" : "1"),   // NB orig also has exten=s
 					"action":"notify"
@@ -267,13 +287,8 @@ function atis (o,k,ts)
 			chan_t[ch[2]]["status"] 		= ch[ATI.CHAN_STATUS_];
 			chan_t[ch[2]]["status_txt"] 	= ch[ATI.CHAN_STATUS_TXT_];
 			chan_t[ch[2]]["status_ts"] 	= ch[ATI.CHAN_STATUS_TS_];
-			if (re["case_src"][ch[ATI.CHAN_SRC]][11]=="phone") chan_t[ch[2]]["src_address"] = _phone_fmt (ch[ATI.CHAN_CID_NUM_2]);
-
 			var el = _(pu, ch[2]); 									// find matching notification
-			if (el) 
-			{
-				ati_agtk (el, ch, pv); 
-			}
+			if (el) ati_agtk (el, ch, pv); 
 		}
 
 		if (ch[ATI.CHAN_SRC]=="notify" && ch[ATI.CHAN_CONTEXT]=="trunk" && ch[ATI.CHAN_EXTEN]==user_cid)

@@ -935,7 +935,7 @@ te["main"] = { c:
 		{ div:["d w04_ t01 r25"], s:["abs w04_ t20 zzz",""], c:
 		[
 			{ input:["g","","rtab","1","radio"] },
-			{ ac:["ay tab","","_mtabr","bd cb",""], c:
+			{ ac:["ay tab","","_mtabr","bd32 cb",""], c:
 			[
 				{ s:["w04 y micon h tc","account_circle"] }			
 			]},
@@ -944,7 +944,7 @@ te["main"] = { c:
 		{ div:["d w04_ t01 r20 "], s:["abs w04_ t20 zzz",""], c:
 		[
 			{ input:["g","","rtab","0","radio"] },
-			{ ac:["ay tab","","_mtabr","bd cb",""], c:
+			{ ac:["ay tab","","_mtabr","bd32 cb",""], c:
 			[
 				{ p:["abs","notif_count"], s:["ml2 x07 y02  h01_ tc gr cw bd16 s","0"] },
 				{ s:["w04 y micon h tc","notifications"] }				
@@ -956,19 +956,19 @@ te["main"] = { c:
 	
 	{ div:[] },		// network error - incomplete request
 
-	{ div:["g r20"], c: 
+	{ div:["g r05"], c: 
 	[
-		{ div:["d w33_"], s:["abs zz w33_ mt bd8",""], c:
+		{ div:["d w30_ mr1"], s:["abs zz mt70 sh__ w30_ bd8 gw ",""], c:
 		[
 			{ div:[], c:
 			[
 				{ input:["g","","ntabv","0","radio"] },
-				{ div:["tabv t70","vt_activity"], u:["activity_lst","activities_notify_ctx"] }
+				{ div:["tabv","vt_activity"], u:["activity_lst","activities_notify_ctx"] }
 			]},
 			{ div:[], c:
 			[
 				{ input:["g","","ntabv","2","radio","1"] },
-				{ div:["tabv xx b10 t70 gw","vt_usn"], user_menu:[] }
+				{ div:["tabv","vt_usn"], user_menu:[] }
                ]},
 			{ div:[], c:
 			[
