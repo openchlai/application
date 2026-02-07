@@ -149,12 +149,12 @@ function _ati_end ()
 function _ati_tab ()
 {
 	var coll = __(this,"vb").parentNode.lastChild.childNodes;
-	//if (this.previousSibling.value==2)
-	//{
-	//	var i_ = 0;
-	//	for (var i=0; i<2; i++) if (coll[i].firstChild.checked==true) { i_=i; break; }
-	//	this.parentNode.nextSibling.firstChild.value = i_; 
-	//}
+	if (this.previousSibling.value==2)
+	{
+		var i_ = 0;
+		for (var i=0; i<2; i++) if (coll[i].firstChild.checked==true) { i_=i; break; }
+		this.parentNode.previousSibling.firstChild.value = i_; 
+	}
 	this.previousSibling.checked = true;
 	coll[this.previousSibling.value].firstChild.checked = true;
 }
@@ -274,11 +274,11 @@ function atis (o,k,ts)
 				{
 					"src":ch[ATI.CHAN_SRC], 
 					"src_uid":ch[ATI.CHAN_UNIQUEID], 
-					"src_callid":ch[ATI.CHAN_SIPCALLID], 
+					"src_callid":ch[ATI.CHAN_BRIDGE_ID], 
 					"src_usr":ch[ATI.CHAN_CALLERID_NUM], 
 					"src_address":ch[ATI.CHAN_CID_2], 
 					"src_ts":ch[ATI.CHAN_TS], 
-					"src_vector": (ch[ATI.CHAN_EXTEN]=="s" ? "2" : "1"),   // NB orig also has exten=s
+					"src_vector": ch[ATI.CHAN_VECTOR],
 					"action":"notify"
 				}
 				url (pu, "activity_new", "activities", "", null, 0, chan_t[ch[2]], "POST");

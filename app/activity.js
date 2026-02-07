@@ -1005,21 +1005,21 @@ function _msg (ev) // TODO: send read request -while typing - to keep chat from 
 
 function activity_agtk_chat_ufn (el, u, a, r, m)
 {
-	console.log (">>agtk>chat")
+	//console.log (">>agtk>chat")
 	let src_uid = r[re["activities_k"]["src_uid"][0]];
 	let ch = re["atis"][src_uid]
 	let pcoll = document.getElementById ("vv").childNodes
 	// console.log ("agtk("+src+") "+id+" "+(ch?"ch"+ch[AMI.CHAN_STATE_HANGUP]:"null")+"--------------------")
 	if (ch && ch[ATI.CHAN_STATE_HANGUP].length==0)
 	{
-		ati_status (ch);
+		chan_status ("chan_args", ch);
 		ati_agtk (el.parentNode.parentNode.parentNode, ch, (pcoll.length>6 ? pcoll[6].childNodes[1].childNodes[1] : null))
 	}
 }
 
 function activity_agtk_call_ufn (el, u, a, r, m)
 {
-	console.log (">>agtk>call")
+	//console.log (">>agtk>call")
 	let src_uid = r[re["activities_k"]["src_uid"][0]];
 	let ch = re["channels"][src_uid]
 	let pcoll = document.getElementById ("vv").childNodes
