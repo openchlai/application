@@ -38,10 +38,11 @@ var ATI =
 	"CHAN_BREAK_REASON":28,
 	"CHAN_VECTOR":29,
 
-	"CHAN_STATUS_":31,
-	"CHAN_STATUS_TXT_":32,
-	"CHAN_STATUS_TS_":33,
-	"CHAN_STATUS_TS_TXT_":34
+	"CHAN_STATUS_":81,
+	"CHAN_STATUS_TXT_":82,
+	"CHAN_STATUS_TS_":83,
+	"CHAN_STATUS_TS_TXT_":84	
+
 };
 
 re["atis"] = {};
@@ -163,13 +164,12 @@ function ati_agtk_vw (ch, p)
 {
 	var p = _(p, "msgs")
 	if (!p || !p.previousSibling) return; 
-	url (p.previousSibling, "activity_messages", "messages", ("?src="+ch[CHAN_EXTEN]+"&src_callid="+ch[CHAN_BRIDGE_ID]+"&_c=30"));
+	url (p.previousSibling, "activity_messages", "messages", ("?src="+ch[ATI.CHAN_SRC]+"&src_callid="+ch[ATI.CHAN_BRIDGE_ID]+"&_c=30"));
 }
 
-function ati_agtk (el,ch,pv)
+function ati_agtk (el,ch,pcoll,pv,pva)
 {
 	var coll = el.childNodes[1].childNodes
-	var unnotified = 1; // (ch[CHAN_UNREAD]*1) - (coll[0].childNodes[4].innerHTML*1)
 	coll[0].childNodes[2].innerHTML = ch[ATI.CHAN_CID_2];
 	var el_ = coll[0].childNodes[3];
 	el_.innerHTML = ch[ATI.CHAN_STATUS_TXT_];
@@ -183,38 +183,24 @@ function ati_agtk (el,ch,pv)
 
 	if (!pv) return;									// happens when loading main - sidepanel loads before vw
 	var f = pv.childNodes.length;
-	var a = {};
-	if (pv.firstChild && pv.firstChild.lastChild) 			// vw is occupied
-	{
-		argv (pv.firstChild.lastChild, a)
-	}
 
 	// if (f>0 && no form && no popup and wrapup ended)		// todo: auto-close 
-
+	// console.log ("ati_vw: "+JSON.stringify(chan_t[ch[2]]))
 	if (f==0 && !chan_t[ch[2]].vw && !chan_t[ch[2]].src_end_ts) // auto-popup 
 	{
-		if (ch[ATI.CHAN_UID_2].length<1) return; 		// wait for src_uid2 -> activity args are not updated in realtime 
+		if (ch[ATI.CHAN_UID_2].length<1) return; 			// wait for src_uid2 -> activity args are not updated in realtime 
 		chan_t[ch[2]].vw = Date.now();
-		var pcoll = document.getElementById ("vv").childNodes
 		pcoll[3].childNodes[1].firstChild.checked = true;
 		pcoll[6].childNodes[1].firstChild.checked = true;	
 		el.firstChild.checked = true;	
 		pv.previousSibling.checked = true;
-		url (pv, "activity_vw_id_call", "activities", coll[2].firstChild.value);
-		return;
-	}
-
-	if (f>0 && a.src && a.src_uid && a.src==ch[ATI.CHAN_SRC] && a.src_callid==ch[ATI.CHAN_BRIDGE_ID]) // update vw
-	{
-		// todo: update args if same session but diff agtk
-		if (unnotified>0) ati_agtk_vw (ch, pv.childNodes[1].childNodes[2].childNodes[1])
+		url (pv, "activity_vw_id_chat", "activities", coll[2].firstChild.value);
 	}
 }
 
-function atis_pop (ts)
+function atis_pop (ts, pv, pva)
 {
 	var pu = document.getElementById ("vt_activity");
-	var pv = document.getElementById ("vv").childNodes[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1]; 
 	var k = Object.keys (chan_t);
 	for (var i=0; i<k.length; i++)  			// remove closed, hangup channels
 	{
@@ -234,18 +220,19 @@ function atis_pop (ts)
 		o["src_end_ts"] 		= ""+ts;
 		o["src_duration"] 		= ""+((ts*1)-(o["src_ts"]*1));
 		o["action"] 			= "complete";
-		if (el) ati_agtk (el, ch, pv);
+		if (el) 
+		{
+			ati_agtk (el, ch, pcoll, pv, pva);
+		}
 		url (pu, "activity_new", "activities", "", null, 0, o, "POST");
 		delete chan_t[id];
 	}
 }
 
-function atis (o,k,ts)
+function atis (o, k, ts, pcoll, pv, pva)
 {
 	var user_cid = document.getElementById ("user_cid").value;
-	var pcoll = document.getElementById ("vv").childNodes;
 	var pu = document.getElementById ("vt_activity");
-	var pv = pcoll[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1]; 
 	var c = [0,0,0,0,0,0,0];
 	var unread_tot = 0;
 	var ch_agent = null;
@@ -287,8 +274,17 @@ function atis (o,k,ts)
 			chan_t[ch[2]]["status"] 		= ch[ATI.CHAN_STATUS_];
 			chan_t[ch[2]]["status_txt"] 	= ch[ATI.CHAN_STATUS_TXT_];
 			chan_t[ch[2]]["status_ts"] 	= ch[ATI.CHAN_STATUS_TS_];
-			var el = _(pu, ch[2]); 									// find matching notification
-			if (el) ati_agtk (el, ch, pv); 
+			var el = _(pu, ch[2]); 											// find matching notification
+			if (el) 
+			{
+				ati_agtk (el, ch, pcoll, pv, pva);
+			}
+			if (pva.src && pva.src_uid && pva.src==ch[ATI.CHAN_SRC] && pva.src_callid==ch[ATI.CHAN_BRIDGE_ID]) // update vw
+			{
+				// todo: update args if same session but diff agtk
+				// var unnotified = 1; // (ch[CHAN_UNREAD]*1) - (coll[0].childNodes[4].innerHTML*1)
+				/*if (unnotified>0)*/ ati_agtk_vw (ch, pv.childNodes[1].childNodes[2].childNodes[1])
+			}
 		}
 
 		if (ch[ATI.CHAN_SRC]=="notify" && ch[ATI.CHAN_CONTEXT]=="trunk" && ch[ATI.CHAN_EXTEN]==user_cid)
@@ -337,12 +333,15 @@ function atis (o,k,ts)
 	nd (p_, te[id_], [], r_, [0]);
 }
 
-function ldati (o)
+function ldati (o,c)
 {
-        var ts = (Date.now ()/1000);
-        var k = Object.keys (o);
-	  // console.log ("atis-------------------------"+JSON.stringify(o))
-        re["atis"] = o;
-        atis (o, k, ts);        
-        atis_pop (ts);
+	var pcoll = document.getElementById ("vv").childNodes;
+	var pv 	= pcoll[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1];
+	var pva 	= {}; 
+	var ts 	= (Date.now ()/1000);
+	var k 	= Object.keys (o);
+	re["atis"] = o;
+	if (pv.firstChild && pv.firstChild.lastChild) argv (pv.firstChild.lastChild, pva)
+	atis (o, k, ts, pcoll, pv, pva);
+	atis_pop (ts, pv, pva);
 }

@@ -958,7 +958,7 @@ te["main"] = { c:
 
 	{ div:["g r05"], c: 
 	[
-		{ div:["d w30_ mr1"], s:["abs zz mt70 sh__ w30_ bd8 gw ",""], c:
+		{ div:["d w30_ mr1"], s:["abs zzzzz mt70 sh__ w30_ bd8 gw ",""], c:
 		[
 			{ div:[], c:
 			[
@@ -968,7 +968,7 @@ te["main"] = { c:
 			{ div:[], c:
 			[
 				{ input:["g","","ntabv","2","radio","1"] },
-				{ div:["tabv","vt_usn"], user_menu:[] }
+				{ div:["tabv xx yy","vt_usn"], user_menu:[] }
                ]},
 			{ div:[], c:
 			[

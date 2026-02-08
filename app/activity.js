@@ -901,7 +901,13 @@ te["activity_lst_r"] = { p:["",":v:activities:src_uid"], c:
 		[ 
 			{ arg:["",".id","%0"] }, 
 			{ arg:["","src",":v:activities:src"] }, 
-			{ div:[], usub:["activity_agtk_call,activity_agtk_chat,activity_agtk_chat","r_",":v:activities:src","call,chat,whatsApp"] } 
+			{ div:[], usub:
+			[
+				"activity_agtk_call,activity_agtk_chat,activity_agtk_chat",
+				"r_",
+				":v:activities:src",
+				"call,chat,whatsApp,escalation,update"
+			]} 
 		]},
 	]}
 ]};
@@ -1012,7 +1018,7 @@ function activity_agtk_chat_ufn (el, u, a, r, m)
 	// console.log ("agtk("+src+") "+id+" "+(ch?"ch"+ch[AMI.CHAN_STATE_HANGUP]:"null")+"--------------------")
 	if (ch && ch[ATI.CHAN_STATE_HANGUP].length==0)
 	{
-		chan_status ("chan_args", ch);
+		chan_status ("ati_agtk", ch);
 		ati_agtk (el.parentNode.parentNode.parentNode, ch, (pcoll.length>6 ? pcoll[6].childNodes[1].childNodes[1] : null))
 	}
 }
@@ -1169,6 +1175,11 @@ function _activity_vw_id (ev)
 	}
 	this.previousSibling.checked = true; // hilite call-notif
 	coll[0].checked = true;
+	// if (update|escalation && action=="notify") // read
+	// {
+	//	url ("POST")
+	// 	return;
+	// }
 	url (coll[1], ("activity_vw_id"+re["case_src"][a.src][10]), "activities", a[".id"]+s);
 }
 

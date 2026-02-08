@@ -49,13 +49,10 @@ var AMI =
 	"CHAN_EVENT":76,
 	"CHAN_EVENT_N":77,
 
-	"CHAN_SIPID_JS_":80,
 	"CHAN_STATUS_":81,
 	"CHAN_STATUS_TXT_":82,
 	"CHAN_STATUS_TS_":83,
-	"CHAN_STATUS_TS_TXT_":84
-	
-	
+	"CHAN_STATUS_TS_TXT_":84	
 };
 
 re["channels"] = {};
@@ -643,17 +640,18 @@ function chan_add (vp_add, ch, ch_, ts)
 
 function chan_agtk_vw (ch, p)
 {
-	// action btns
-	p.className = re["call_state"][ch[AMI.CHAN_STATUS_]][1];
 	// vw status bar
-	p.previousSibling.firstChild.firstChild.className = "xx y bd w10 cr gws_ s"
-	coll = p.previousSibling.firstChild.firstChild.childNodes
+	var coll = p.previousSibling.firstChild.firstChild.childNodes
 	coll[0].innerHTML 	= ch[AMI.CHAN_STATUS_TXT_];
 	coll[1].innerHTML 	= ch[AMI.CHAN_STATUS_TS_TXT_];
 	coll[2].value 		= ch[AMI.CHAN_STATUS_TS_];
+	p.previousSibling.firstChild.firstChild.className = "xx y bd w10 cr gws_ s"
+	
+	// action btns
+	p.className = re["call_state"][ch[AMI.CHAN_STATUS_]][1];
 }
 
-function chan_agtk (el,ch,pv)
+function chan_agtk (el, ch, pcoll, pv, pva)
 {
 	var coll = el.childNodes[1].childNodes
 	coll[0].childNodes[2].innerHTML = ch[AMI.CHAN_CID_NUM_2];
@@ -667,39 +665,24 @@ function chan_agtk (el,ch,pv)
 
 	if (!pv) return;									// happens when loading main - sidepanel loads before vw
 	var f = pv.childNodes.length;
-	var a = {};
-	if (pv.firstChild && pv.firstChild.lastChild) 			// vw is occupied
-	{
-		argv (pv.firstChild.lastChild, a)
-	}
-
+	
 	// if (f>0 && no form && no popup and wrapup ended)		// todo: auto-close 
-
-	console.log ("[agtk] "+f+" | "+ JSON.stringify(chan_a[ch[2]]))
 
 	if (f==0 && !chan_a[ch[2]].vw && !chan_a[ch[2]].src_end_ts) // auto-popup 
 	{
 		if (ch[AMI.CHAN_UNIQUEID_2].length<1) return; 		// wait for src_uid2 -> activity args are not updated in realtime 
 		chan_a[ch[2]].vw = Date.now();
-		var pcoll = document.getElementById ("vv").childNodes
 		pcoll[3].childNodes[1].firstChild.checked = true;
 		pcoll[6].childNodes[1].firstChild.checked = true;	
 		el.firstChild.checked = true;	
 		pv.previousSibling.checked = true;
 		url (pv, "activity_vw_id_call", "activities", coll[2].firstChild.value);
-		return;
-	}
-
-	if (f>0 && a.src && a.src_uid && a.src=="call" && a.src_uid==ch[AMI.CHAN_UNIQUEID]) // update vw
-	{
-		chan_agtk_vw (ch, pv.firstChild.childNodes[1])
 	}
 }
 
-function chans_pop (ts)
+function chans_pop (ts, pv, pva)
 {
 	var pu = document.getElementById ("vt_activity");
-	var pv = document.getElementById ("vv").childNodes[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1]; 	
 	var h=0, n=0, trunk=0;
 	var k = Object.keys (chan_a);
 	for (var i=0; i<k.length; i++)  // remove closed, hangup channels
@@ -726,22 +709,29 @@ function chans_pop (ts)
 		}
 		if (chan_a[id].agtk)
 		{
-			let el_ = _(pu,id)
-			let o_ = chan_a[id];
-			let ch_ = [];
-			ch_[AMI.CHAN_UNIQUEID] = id;
-			ch_[AMI.CHAN_CID_NUM_2] = o_["src_address"];
-			ch_[AMI.CHAN_STATE_HANGUP] = ts;
-			chan_status ("chan_agtk", ch_);
-			o_["src_status"] 		= o_["status"]+"-"+o_["src_vector"]+"-"; // orig
-			o_["src_status_ts"] 	= ""+o_["status_ts"];
-			o_["src_status_duration"]= ""+((ts*1)-(o_["src_status_ts"]*1));
-			o_["src_end_ts"] 		= ""+ts;
-			o_["src_duration"] 		= ""+((ts*1)-(o_["src_ts"]*1));
-			o_["action"] 			= "complete";
-			if (el_) chan_agtk (el_, ch_, pv);
-			
-			url (pu, "activity_new", "activities", "", null, 0, o_, "POST");
+			let el = _(pu,id)
+			let o = chan_a[id];
+			let ch = [];
+			ch[AMI.CHAN_UNIQUEID] = id;
+			ch[AMI.CHAN_CID_NUM_2] = o["src_address"];
+			ch[AMI.CHAN_STATE_HANGUP] = ts;
+			chan_status ("chan_agtk", ch);
+			o["src_status"] 		= o["status"]+"-"+o["src_vector"]+"-"; // orig
+			o["src_status_ts"] 		= ""+o["status_ts"];
+			o["src_status_duration"]	= ""+((ts*1)-(o["src_status_ts"]*1));
+			o["src_end_ts"] 		= ""+ts;
+			o["src_duration"] 		= ""+((ts*1)-(o["src_ts"]*1));
+			o["action"] 			= "complete";
+			if (el) 
+			{
+				chan_agtk (el, ch, null, null, {});
+			}
+			if (pva.src && pva.src_uid && pva.src=="call" && pva.src_uid==ch[AMI.CHAN_UNIQUEID]) // matching vw
+			{
+				chan_agtk_vw (ch, pv.firstChild.childNodes[1])
+				// todo: autoclose vw if not answered
+			}
+			url (pu, "activity_new", "activities", "", null, 0, o, "POST");
 		}
 		delete chan_a[id];
 		h++;
@@ -755,16 +745,14 @@ function chans_pop (ts)
 	return h;
 }
 
-function chans (o,k,ts)
+function chans (o, k, ts, pcoll, pv, pva)
 {
 	var user_cid = document.getElementById ("user_cid").value;
-	var pcoll = document.getElementById ("vv").childNodes;
 	var pa = document.getElementById ("vagents");
 	var pq = document.getElementById ("vqueued");
 	var pi = document.getElementById ("vinbound");
 	var po = document.getElementById ("voutbound");
 	var pu = document.getElementById ("vt_activity");
-	var pv = pcoll[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1]; 
 	var pvp = document.getElementById ("vp");
 	var aa = document.getElementById ("is_auto_answer");
 	var vp_add = null
@@ -849,15 +837,23 @@ function chans (o,k,ts)
 				url (pu, "activity_new", "activities", "", null, 0, chan_a[ch[2]], "POST");
 			}
 
-			var el = _(pu, ch[2]); // find matching notification
-			if (el) chan_agtk (el, ch, pv); 
+			var el = _(pu, ch[2]); 													// matching notification
+			if (el) 
+			{
+				chan_agtk (el, ch, pcoll, pv, pva);
+			} 
 
-			if (vp_add && vp_add.id==ch[AMI.CHAN_UNIQUEID]) 
+			if (pva.src && pva.src_uid && pva.src=="call" && pva.src_uid==ch[AMI.CHAN_UNIQUEID]) // matching vw
+			{
+				chan_agtk_vw (ch, pv.firstChild.childNodes[1])
+			}
+
+			if (vp_add && vp_add.id==ch[AMI.CHAN_UNIQUEID]) 								//
 			{
 				chan_add (vp_add, ch, o[ch[AMI.CHAN_CBO_UNIQUEID]], ts);
 			}
 
-			if (ch[AMI.CHAN_CONTEXT_MASQ].substr (0,11)=="supervisor_") // my supervising chan
+			if (ch[AMI.CHAN_CONTEXT_MASQ].substr (0,11)=="supervisor_") 					// my supervising chan
 			{
 				chan_sup (pa, ch, ts);
 			}
@@ -958,13 +954,17 @@ function chans (o,k,ts)
      pq.previousSibling.childNodes[1].innerHTML = c[1];      // waiting
 }
 
-function ldami (o,c)
+function ldami (o, c)
 {
-	var ts = (Date.now ()/1000);
-	var k = Object.keys (o);
+	var pcoll = document.getElementById ("vv").childNodes;
+	var pv 	= pcoll[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1];
+	var pva 	= {}; 
+	var ts 	= (Date.now ()/1000);
+	var k 	= Object.keys (o);
 	re["channels"] = o;
-	chans (o, k, ts);
-	chans_pop (ts);
+	if (pv.firstChild && pv.firstChild.lastChild) argv (pv.firstChild.lastChild, pva)
+	chans (o, k, ts, pcoll, pv, pva);
+	chans_pop (ts, pv, pva);
 }
 
 function _sup ()
