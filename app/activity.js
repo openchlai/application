@@ -1141,9 +1141,10 @@ function activity_close (p)
 	document.getElementById ("vv").childNodes[2].lastChild.firstChild.checked = true; // uncheck sbr
 }
 
-function _activity_close ()
+function _activity_close (ev)
 {
 	activity_close (__(this,"vf"));
+	boo(ev)
 }
 
 function _activity_postj ()

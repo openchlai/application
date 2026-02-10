@@ -169,18 +169,24 @@ function ati_agtk_vw (ch, p)
 
 function ati_agtk (el,ch,pcoll,pv,pva)
 {
+	var el_=null
 	var coll = el.childNodes[1].childNodes
 	coll[0].childNodes[2].innerHTML = ch[ATI.CHAN_CID_2];
-	var el_ = coll[0].childNodes[3];
-	el_.innerHTML = ch[ATI.CHAN_STATUS_TXT_];
-	el_.className = "d x y02 gr cw bd mt";
+
+	//el_ = coll[0].childNodes[3];
+	//el_.innerHTML = ch[ATI.CHAN_STATUS_TXT_];
+	//el_.className = "d x y02 gr cw bd mt";
+
+	el_ = coll[0].childNodes[3]
+	el_.innerHTML = ch[ATI.CHAN_UNREAD];
+	el_.className = "d gr cw bd32 x y02 mt3"
+	el_.style.display = (ch[ATI.CHAN_UNREAD]*1)>0?"block":"none";
+
 	el_ = coll[1].childNodes[1];
 	el_.id = "ts";
 	el_.value = ch[ATI.CHAN_STATUS_TS_];
 	el_.previousSibling.innerHTML = ch[ATI.CHAN_STATUS_TS_TXT_];
-	// coll[0].childNodes[4].innerHTML = ch[CHAN_UNREAD];	// todo: msg count
-	// coll[0].childNodes[4].style.display = (ch[CHAN_UNREAD]*1)>0?"block":"none";
-
+	
 	if (!pv) return;									// happens when loading main - sidepanel loads before vw
 	var f = pv.childNodes.length;
 
@@ -223,7 +229,7 @@ function atis_pop (ts, pv, pva)
 		o["action"] 			= "complete";
 		if (el) 
 		{
-			ati_agtk (el, ch, pcoll, pv, pva);
+			ati_agtk (el, ch, null, null, {});
 		}
 		url (pn, "activity_new", "activities", "", null, 0, o, "POST");
 		delete chan_t[id];
