@@ -100,7 +100,8 @@ var UU =
 "activity_disposition":{ 200:[["activity_disposition","contacts_disposition"]], 201:[["uvpfn","dispositions","vp"]], 412:[["nb","errors","v","nb"]] },
 "activity_disposition_vw":{ 200:[["activity_disposition_vw","cases"]] },
 "activity_disposition_list":{ 200:[["activity_disposition_list","dispositions_ctx"]] },
-"activity_new": 		{ 201:[["activity_lst","activities_notify_ctx"]] },
+"activity_new": 		{ 201:[["notif_count","activities_notify_ctx"], ["activity_lst_ufn","activities_notify_ctx","","ld"]], 200:[["notif_count","activities_notify_ctx"]] },
+"activity_upd": 		{ 202:[["notif_count","activities_notify_ctx"], ["activity_lst_ufn","activities_notify_ctx","","ld"], ["activity_vw_id_ufn","activities","","ld"]] },
 "activity_list":		{ 200:[["activity_list","dispositions_ctx"]] },
 "activity_main":		{ 200:[["activity_main","dispositions_ctx"]] },
 "activity_vw_id_walkin":	{ 200:[["activity_vw_id_walkin","activities"]] },
@@ -109,7 +110,7 @@ var UU =
 "activity_vw_id_chat":	{ 200:[["activity_vw_id_chat","activities"]] },
 "activity_vw_id_call":	{ 200:[["activity_vw_id_call","activities"]] },
 "activity_vw_id":		{ 200:[["activity_vw_id","activities"]] },
-"activity_lst":		{ 200:[["activity_lst","activities_notify_ctx"]] },
+"activity_lst":		{ 200:[["activity_lst","activities_ctx"]] },
 
 "reporter_uuid_is_client":{ 202:[["case_form_reporter_uuid_r","reporters_isclient","va"]],  412:[["nb","errors","v","nb"]] },
 "reporter_is_client":{ 202:[["case_form_reporter_r","reporters_isclient","va"]],  412:[["nb","errors","v","nb"]] },
@@ -346,8 +347,8 @@ re["case_src"] =
 "twitter":["twitter","Twitter","",		"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""],
 "TWITTER":["TWITTER","TWITTER","",		"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""], 
 
-"escalation":["escalation","Escalation","",  "","", "#880000","warning","","","",	"_notif", "phone", "reporter_phone", ""],
-"update":	["update","Case Update","",  		"","", "#008800","asterisk","","","",	"_notif", "phone", "reporter_phone", ""],
+"escalation":["escalation","Escalation","escalated by",  "","", "#880000","warning","","","",	"_notif", "phone", "reporter_phone", ""],
+"update":	["update","Update","updated by",  		"","", "#008800","asterisk","","","",	"_notif", "phone", "reporter_phone", ""],
 "ai":	["ai","AI","",  				"","", "#000000","","",		"","",	"_chat", "usn", "usn", ""],
 "aii":	["aii","AI","",  				"","", "#000000","","",		"","",	"_chat", "usn", "usn", ""],
 
@@ -416,6 +417,12 @@ re["activity_status"] =
 
 // todo: read/unread/reassigned
 
+};
+
+re["activity_action"] =
+{
+	"notify":["notify","Notify","Unread","x y02 gr cw bd"],
+	"complete":["complete","Complete","","g"],
 };
 
 rk["qa_done"] = ["-1","0","1"];
@@ -906,16 +913,20 @@ te["user_menu"] = { c:
 								
 	{ p:["","joinq_status"] },
 				
-	{ div:["","va"], ac:["ao","myprofile-r_","_vp","xx y cb bd tr","Activity History"] },
-
 	{ div:["","va"], ac:["ao","myprofile-r_","_vp","xx y cb bd tr","My Profile"] },
 						
 	{ div:["","va"], ac:["ao","logout-","_u","xx y cb bd tr","Logout"], c:[ { arg:["","logout","1"] } ] },
 ]};
-			
+		
+te["notif_count"] = { c:
+[
+	{ div:[":u::4:0:g:"], s:["ml2 x07 y02 h01_ tc gr cw bd16 s","%4"] },
+	{ p:["","ld"] } // context for subsequent lds
+]},
+
 te["main"] = { c: 
 [
-	{ div:[], c:
+	{ form:[], c:
 	[
 		{ div:["d g w04_ r25 t01"], s:["abs w04_ t20 zzz",""], c:  // nb: onvw overlap with X
 		[
@@ -946,24 +957,26 @@ te["main"] = { c:
 			{ input:["g","","rtab","0","radio"] },
 			{ ac:["ay tab","","_mtabr","bd32 cb",""], c:
 			[
-				{ p:["abs","notif_count"], s:["ml2 x07 y02  h01_ tc gr cw bd16 s","0"] },
+				{ p:["abs","notif_count"], c:[ { div:["","ve"], u:["notif_count","activities_notify_ctx"] } ] },
 				{ s:["w04 y micon h tc","notifications"] }				
 			]},
 		]},
-		
-		{ div:["e"] }
+
+		{ div:["e"] },
+
+		{ div:["g jkkj"], c:[ { input:["g","","rtab","0","radio"] } ] }
 	]},
 	
 	{ div:[] },		// network error - incomplete request
 
-	{ div:["g r05"], c: 
+	{ div:["g r05"], ev:["boo"], c: 
 	[
 		{ div:["d w30_ mr1"], s:["abs zzzzz mt70 sh__ w30_ bd8 gw ",""], c:
 		[
 			{ div:[], c:
 			[
 				{ input:["g","","ntabv","0","radio"] },
-				{ div:["tabv","vt_activity"], u:["activity_lst","activities_notify_ctx"] }
+				{ div:["tabv","vt_activity"], u:["activity_lst","activities_ctx"] }
 			]},
 			{ div:[], c:
 			[
@@ -1187,7 +1200,7 @@ function _phone_fmt (s)
 	return s.substr (a,(n-a));
 }
 
-function _mtabr ()
+function _mtabr (ev)
 {
 	var coll = document.getElementById ("vv").childNodes;
 	var coll_ = coll[2].firstChild.firstChild.childNodes; 
@@ -1197,7 +1210,7 @@ function _mtabr ()
 		this.previousSibling.checked = false;
 		coll[2].style.display = "none";
 		// coll[6].style.marginRight = "";	
-		coll[6].className = "ml6";
+		// coll[6].className = "ml6";
 		return
 	}
 	this.previousSibling.checked = true;
@@ -1205,6 +1218,12 @@ function _mtabr ()
 	coll[2].style.display = "block";
 	// coll[6].style.marginRight = "327px";
 	// coll[6].className = "mmr";
+
+	var p_ = __(coll[2],"vdd");
+	var i=0;
+	for (i=0; i<dda.length; i++) if (dda[i][0]==p_) break;
+	dda[i] = [p_,coll[2]];
+	boo(ev)
 }
 
 function rxmsg (ev)

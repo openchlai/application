@@ -122,6 +122,11 @@ function undd (p_)
 				// console.log ("vdd_rpt");
 				rpt (__(b,"vrpt").nextSibling);
 			}
+
+			if (b.parentNode.id=="vv") // uncheck icon
+			{
+				b.parentNode.firstChild.lastChild.firstChild.checked = true
+			}
 			break; 
 		}
 	}

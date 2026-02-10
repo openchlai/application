@@ -200,6 +200,7 @@ function ati_agtk (el,ch,pcoll,pv,pva)
 
 function atis_pop (ts, pv, pva)
 {
+	var pn = document.getElementById ("notif_count").firstChild;
 	var pu = document.getElementById ("vt_activity");
 	var k = Object.keys (chan_t);
 	for (var i=0; i<k.length; i++)  			// remove closed, hangup channels
@@ -224,7 +225,7 @@ function atis_pop (ts, pv, pva)
 		{
 			ati_agtk (el, ch, pcoll, pv, pva);
 		}
-		url (pu, "activity_new", "activities", "", null, 0, o, "POST");
+		url (pn, "activity_new", "activities", "", null, 0, o, "POST");
 		delete chan_t[id];
 	}
 }
@@ -232,6 +233,7 @@ function atis_pop (ts, pv, pva)
 function atis (o, k, ts, pcoll, pv, pva)
 {
 	var user_cid = document.getElementById ("user_cid").value;
+	var pn = document.getElementById ("notif_count").firstChild;
 	var pu = document.getElementById ("vt_activity");
 	var c = [0,0,0,0,0,0,0];
 	var unread_tot = 0;
@@ -268,7 +270,7 @@ function atis (o, k, ts, pcoll, pv, pva)
 					"src_vector": ch[ATI.CHAN_VECTOR],
 					"action":"notify"
 				}
-				url (pu, "activity_new", "activities", "", null, 0, chan_t[ch[2]], "POST");
+				url (pn, "activity_new", "activities", "", null, 0, chan_t[ch[2]], "POST");
 			}
 			chan_t[ch[2]]["ts"] 		= ts;
 			chan_t[ch[2]]["status"] 		= ch[ATI.CHAN_STATUS_];
@@ -289,15 +291,8 @@ function atis (o, k, ts, pcoll, pv, pva)
 
 		if (ch[ATI.CHAN_SRC]=="notify" && ch[ATI.CHAN_CONTEXT]=="trunk" && ch[ATI.CHAN_EXTEN]==user_cid)
 		{
-			var coll = pcoll[2].firstChild.firstChild.childNodes[0].childNodes; 		// reload notifications
-			var a = {};
-			argv (coll[1].childNodes[2].childNodes[1], a);						// retrieve clicked/loaded record
-			re["activities_chk"] = { "src_uid": {} };
-			if (a.sbr) re["activities_chk"]["src_uid"][a.sbr] = 1;
-			a = {args:"?"}
-			argv (coll[1].childNodes[2].firstChild, a);
-			console.error (a);
-			url (coll[1], "activity_lst", "activities^notify", a.args);
+			url (pn, "activity_new", "activities", "-1"); // update counter
+			activity_lst  ();
 			continue;
 		}
 

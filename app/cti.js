@@ -682,9 +682,10 @@ function chan_agtk (el, ch, pcoll, pv, pva)
 
 function chans_pop (ts, pv, pva)
 {
+	var pn = document.getElementById ("notif_count").firstChild;
 	var pu = document.getElementById ("vt_activity");
-	var h=0, n=0, trunk=0;
 	var k = Object.keys (chan_a);
+	var h=0, n=0, trunk=0;
 	for (var i=0; i<k.length; i++)  // remove closed, hangup channels
 	{
 		var id = k[i];
@@ -729,9 +730,9 @@ function chans_pop (ts, pv, pva)
 			if (pva.src && pva.src_uid && pva.src=="call" && pva.src_uid==ch[AMI.CHAN_UNIQUEID]) // matching vw
 			{
 				chan_agtk_vw (ch, pv.firstChild.childNodes[1])
-				// todo: autoclose vw if not answered
+				if ((chan_a[ch[2]]["status"]*1) < 15) activity_close (pv); // autoclose vw if not answered
 			}
-			url (pu, "activity_new", "activities", "", null, 0, o, "POST");
+			url (pn, "activity_new", "activities", "", null, 2, o, "POST");
 		}
 		delete chan_a[id];
 		h++;
@@ -752,6 +753,7 @@ function chans (o, k, ts, pcoll, pv, pva)
 	var pq = document.getElementById ("vqueued");
 	var pi = document.getElementById ("vinbound");
 	var po = document.getElementById ("voutbound");
+	var pn = document.getElementById ("notif_count").firstChild;
 	var pu = document.getElementById ("vt_activity");
 	var pvp = document.getElementById ("vp");
 	var aa = document.getElementById ("is_auto_answer");
@@ -834,7 +836,7 @@ function chans (o, k, ts, pcoll, pv, pva)
 			{
 				chan_a[ch[2]]["agtk"] = ch[AMI.CHAN_SIPCALLID];
 				chan_a[ch[2]]["src_callid"] = ch[AMI.CHAN_SIPCALLID]
-				url (pu, "activity_new", "activities", "", null, 0, chan_a[ch[2]], "POST");
+				url (pn, "activity_new", "activities", "", null, 2, chan_a[ch[2]], "POST");
 			}
 
 			var el = _(pu, ch[2]); 													// matching notification

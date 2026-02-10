@@ -860,11 +860,11 @@ te["activity_vw_id_call"] = { activity_vw_id_:["call_toolbar","1","activity_vw_i
 
 // -----------------------------------------------------------------------------------------
 
-te["activity_lst_footer"] = { div:["y bt_"], c:
+te["activity_lst_footer"] = { div:["xx y bt_"], c:
 [
-	{ div:["d t03"], c:[ { ac:["nav","activity_lst-activities^notify","_nav","dh",""], c:[ { div:["da dr_"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
-	{ div:["d t03"], c:[ { aci:["nav","activity_lst-activities^notify","_nav","dh","prev",""], c:[ { div:["da dl_"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
-	{ s:["d l r15 y cd s","%4"] },
+	{ div:["d t"], c:[ { ac:["nav","activity_lst-activities","_nav","dh",""], c:[ { div:["da dr_"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
+	{ div:["d t l"], c:[ { aci:["nav","activity_lst-activities","_nav","dh","prev",""], c:[ { div:["da dl_"] }, { arg:["","_a","%0"] } ] }, { s:["navl","..."] } ] },
+	{ s:["d x y cd s","%4"] },
 	{ s:["d  y cd s","of"] }, 
 	{ s:["d x y cd s","%3"] },
 	{ s:["d x y cd s","-"] },
@@ -874,20 +874,34 @@ te["activity_lst_footer"] = { div:["y bt_"], c:
 
 te["activity_lst_r_disposition"] = { div:["c r05 t02 s cr"], uval:["","%0"] };
 
-te["activity_lst_r_vector"] = { s:["l t",":v:activities:src_vector::vector:6"] };
+te["activity_lst_r_case_id"] = { c:
+[
+	{ s:["c t","#"] },
+	{ s:["c t",":v:activities:case_id"] },
+	{ s:["c l t",":v:activities:src::case_src:2"] },
+	{ s:["c l t",":v:activities:src_address"] },
+	{ div:["d mt"], s:[":v:activities:action::activity_action:3",":v:activities:action::activity_action:2"] },
+]};
 
 te["activity_lst_r"] = { p:["",":v:activities:src_uid"], c:
 [
 	{ input:["g","","sbr",":v:activities:src_uid","radio",":k:activities_chk:src_uid::14"] },
-	{ li:["sbr xx y03 bt_ gw cb s"], ev:["_activity_vw_id"], c: 
+	{ li:["sbr xx t03 bt_ s oh h05"], ev:["_activity_vw_id"], c: 
 	[
 		{ div:[], c:
 		[  
 			{ s:["c t",":v:activities:src::case_src:1"] },
-			{ div:["c"], usub:["activity_lst_r_vector","r_",":v:activities:src","call"] },
+			{ s:["c l t",":v:activities:src_vector::vector:6"] },
 			{ s:["c l t",":v:activities:src_address"] },
 			{ s:["d t",":v:activities:src_status::activity_status:1"] },
 			{ s:["d t",""] }, // count
+			{ usub:
+			[
+				"activity_lst_r_case_id,activity_lst_r_case_id",
+				"r_",
+				":v:activities:src",
+				"update,escalation"
+			]},
 			{ div:["e"] }
 		]},
 		{ div:["h02_ "], c:
@@ -901,20 +915,22 @@ te["activity_lst_r"] = { p:["",":v:activities:src_uid"], c:
 		[ 
 			{ arg:["",".id","%0"] }, 
 			{ arg:["","src",":v:activities:src"] }, 
+			{ arg:["","action",":v:activities:action"] }, 
 			{ div:[], usub:
 			[
 				"activity_agtk_call,activity_agtk_chat,activity_agtk_chat",
 				"r_",
 				":v:activities:src",
-				"call,chat,whatsApp,escalation,update"
-			]} 
+				"call,chat,whatsApp"
+			]}
 		]},
 	]}
 ]};
 
-te["activity_lst_k"] = { div:["g"], c:
+te["activity_lst_k"] = { c:
 [
-	{ p:["","e"], c:[ { arg:["","_c","%1"] } ] }
+	// todo: filter args here
+	{ arg:["","_aa","%0"] } // remember current start offset of current page
 ]};
 
 te["activity_lst_title"] = { div:[""], c:
@@ -923,13 +939,17 @@ te["activity_lst_title"] = { div:[""], c:
 	{ div:["e"] }
 ]}; 
 
-te["activity_lst"] = { list:["activity_lst_title","end","","activity_lst_k","activity_lst_r","activities_notify","activity_lst_footer"] }; // sbr panel
+te["activity_lst"] = { list:["activity_lst_title","end","","activity_lst_k","activity_lst_r","activities","activity_lst_footer"] }; // sbr panel
 
 // -------------------------------------------------------------
 
-te["activity_agtk_chat"] =  { ufn:["activity_agtk_chat_ufn"] };
+te["activity_vw_id_ufn"] = 	{ ufn:["activity_vw_id_ufn"] };
 
-te["activity_agtk_call"] =  { ufn:["activity_agtk_call_ufn"] };
+te["activity_lst_ufn"] = 	{ ufn:["activity_lst_ufn"] };
+
+te["activity_agtk_chat"] =  	{ ufn:["activity_agtk_chat_ufn"] };
+
+te["activity_agtk_call"] =  	{ ufn:["activity_agtk_call_ufn"] };
 
 // -------------------------------------------------------------
 
@@ -1009,6 +1029,32 @@ function _msg (ev) // TODO: send read request -while typing - to keep chat from 
 
 // -------------------------------------------------------------
 
+function activity_lst ()
+{
+	var pu = document.getElementById ("vt_activity");
+	var a = {};
+	// console.log ("pu:"+pu.childNodes.length+"------------------------------------")
+	argv (pu.childNodes[2].childNodes[1], a);						// retrieve clicked/loaded record
+	re["activities_chk"] = { "src_uid": {} };
+	if (a.sbr) re["activities_chk"]["src_uid"][a.sbr] = 1;
+	a = {args:"?", "_aa":null};
+	argv (pu.childNodes[2].firstChild, a);
+	url (pu, "activity_lst", "activities", a.args+"&_a="+a["_aa_"].value, null, 1); // maintain context
+}
+
+function activity_lst_ufn (el, u, a, r, m)
+{
+	activity_lst ();
+}
+
+function activity_vw_id_ufn  (el, u, a, r, m)
+{
+	let src = r[re["activities_k"]["src"][0]];
+	let p = document.getElementById ("vv").childNodes[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1];
+	p.innerHTML = "";
+	nd (p, te[ ("activity_vw_id"+re["case_src"][src][10])], [], r, [0])
+}
+
 function activity_agtk_chat_ufn (el, u, a, r, m)
 {
 	//console.log (">>agtk>chat")
@@ -1049,7 +1095,7 @@ function activity_case_ufn (el, u, a, r, m)
 	var p = null;
 	var coll = el_.parentNode.parentNode.firstChild.childNodes
 	coll[0].checked = true; // switch tab
-	console.log ("--->"+el_.previousSibling.name)
+	// console.log ("--->"+el_.previousSibling.name)
 	// return;
 	if (el_.previousSibling.name=="case_vw_vt")
 	{
@@ -1088,12 +1134,16 @@ function activity_src_address_ufn (el, u, a, r, m)
 
 // ---
 
-function _activity_close ()
+function activity_close (p)
 {
-	var p = __(this,"vf")
 	p.innerHTML = ""
 	p.parentNode.previousSibling.firstChild.checked = true;
 	document.getElementById ("vv").childNodes[2].lastChild.firstChild.checked = true; // uncheck sbr
+}
+
+function _activity_close ()
+{
+	activity_close (__(this,"vf"));
 }
 
 function _activity_postj ()
@@ -1150,6 +1200,7 @@ function _activity_vw_id (ev)
 	var a = {".id":0};
 	var s = "";
 	argv (this, a); 
+	
 	if ((a[".id"]*1)<1) 
 	{ 
 		var user_cid = document.getElementById ("user_cid").value;
@@ -1164,6 +1215,7 @@ function _activity_vw_id (ev)
 		s += "&src_usr="+a.src_usr;
 		if (a.case_id && a.case_id.length>0) s += "&case_id="+a.case_id;
 	}
+
 	if (this.id.length>0)
 	{ 
 		coll = __(this,"vftab").parentNode.nextSibling.childNodes;
@@ -1175,12 +1227,19 @@ function _activity_vw_id (ev)
 	}
 	this.previousSibling.checked = true; // hilite call-notif
 	coll[0].checked = true;
-	// if (update|escalation && action=="notify") // read
-	// {
-	//	url ("POST")
-	// 	return;
-	// }
+
+	if (a.src && a.action && (a.src=="update" || a.src=="escalation") && a.action=="notify") // read
+	{
+		// todo: set to loading state
+		var pn = document.getElementById ("notif_count").firstChild;
+		var o = { "action":"complete" }
+		url (pn, "activity_upd", "activities", a[".id"], null, 2, o, "POST");
+		boo (ev);
+		return;
+	}
+
 	url (coll[1], ("activity_vw_id"+re["case_src"][a.src][10]), "activities", a[".id"]+s);
+	boo(ev)
 }
 
 function _activity_call () // outbound call popup
