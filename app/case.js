@@ -2157,6 +2157,17 @@ te["cases"] = { c:
 
 // -------------------------------------------
 
+function case_client_passport_ufn (el, u, a, r, m)
+{
+	var p = document.getElementById ("vp");
+	elvp = _(__(el,"vf"),"clients_case").lastChild.firstChild.lastChild; // todo elvp to clients list
+	console.log ("passport elvp:"+elvp)
+	vp(p)
+	r[0]="";
+	p.innerHTML = ""
+	nd (p, te["case_client_new"], [], r, [0])
+}
+
 function case_vw_id_ca_ufn (el, u, a, r, m)
 {
 	var k = re["activities_k"];
@@ -2174,25 +2185,4 @@ function case_vw_contact_uuid_ufn (el, u, a, r, m)
 	var o = { };
 	argv (__(el,"vfvwm").firstChild.lastChild, o);						// src
 	if (o.contact_uuid_id>0) url (el, "case_vw_contact_uuid", "contacts", o.contact_uuid_id);
-}
-
-function case_client_passport_ufn (el, u, a, r, m)
-{
-	var p = document.getElementById ("vp");
-	elvp = _(__(el,"vf"),"clients_case").lastChild.firstChild.lastChild; // todo elvp to clients list
-	console.log ("passport elvp:"+elvp)
-	vp(p)
-	r[0]="";
-	p.innerHTML = ""
-	nd (p, te["case_client_new"], [], r, [0])
-}
-
-function case_notif_ls (o)
-{
-	var pa = document.getElementById ("call_sessions").nextSibling;
-	if (o.src=="escalation" || o.src=="update")
-	{
-		pa.innerHTML = "";
-		url (pa, "notification_lst", "activities^notify", "?_c=10&action=notify&");
-	}
 }

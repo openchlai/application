@@ -9,7 +9,7 @@ var UU =
 "change_passwd":{ 202:[["change_passwd_vw","user_","vp"]], 412:[["nb","errors","v","nb"]] },
 "reset_passwd":{ 202:[["nb","auth_nb","v","nb"]], 412:[["nb","errors","v","nb"]] },
 
-"dash":{ 200:[["dash","dash"]] },
+"dash":{ 200:[["dash_main","dash"]] },
 "dash_rpt_pie":{ 200:[["dash_rpt_pie","cases_rpt"]] },
 "dash_rpt_line":{ 200:[["dash_rpt_line","cases_rpt"]] },
 "dash_case_priority":{ 200:[["dash_case_priority","cases_rpt"]] },
@@ -336,6 +336,7 @@ re["case_src"] =
 
 "edit":	["edit","Edit","",			"","", "#000000","edit","",		"","",	"_case", 	"created_by", "created_by", ""],
 "walkin":	["walkin","Walkin","",		"","", "#f0c39bff","directions_walk","", "","", "_walkin", 	"phone", "reporter_phone", ""],
+
 "call":	["call","Call","",			"","", "#fa8a09ff","call","",	"","",	"_call", 		"phone", "reporter_phone", ""],
 "sms":	["sms","SMS","",			"","", "#000000","sms","",		"","",	"_chat", 	"phone", "reporter_phone", ""],
 "email":	["email","Email","",		"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""],
