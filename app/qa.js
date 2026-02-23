@@ -866,12 +866,12 @@ te["qas"] = { c:
 	{ div:[], c:
 	[	
 		{ input:["g","","qa_vw_vt","0","radio","1"] }, 		// list
-		{ p:["tabv x20 yy gw bd8","vftab"], qa_main:[] } 
+		{ p:["tabv x20 yy gw","vftab"], qa_main:[] } 
 	]},
 	{ div:[], c:
 	[	
 		{ input:["g","","qa_vw_vt","1","radio"] }, 		// _vw_id | _ed
-		{ p:["tabv bd8 mm gw","vfvw"] }
+		{ p:["tabv gw","vfvw"] }
 	]}
 ]};
 

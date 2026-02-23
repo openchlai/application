@@ -611,7 +611,7 @@ te["case_priority_r"] = { div:[], ac:["ay","","_sel","xx tt b05 cb",""], c:
 	{ div:["e"], c:[ { arg:["id-0","","%0"] } ] }
 ]};
 
-te["case_priority_enum"] = { case_enum_sel:["x y",null,null, "tag-r_--o--::case_priority:0:1-priority-%0-", "c w13",  null," ::case_priority:0:1","priority"," %0","", 
+te["case_priority_enum"] = { case_enum_sel:["x y",null,null, "tag-r_--o--::case_priority:0:1-priority-%0-", "c w12",  null," ::case_priority:0:1","priority"," %0","", 
 "dd w17 ba_b gw_ cb","case_priority_r","case_priority_form"] };
 
 // ---
@@ -622,7 +622,7 @@ te["case_status_r"] = { div:[], ac:["ay","","_sel","xx tt b05 cb",""], c: //
 	{ div:["e"], c:[ { arg:["id-0","","%0"] } ] }
 ]};
 
-te["case_status_enum"] = { case_enum_sel:["x y",null,null, "tag-r_--o--::case_status:0:1-status-%0-", "c w13",  null," ::case_status:0:1","status"," %0","", 
+te["case_status_enum"] = { case_enum_sel:["x y",null,null, "tag-r_--o--::case_status:0:1-status-%0-", "c w12",  null," ::case_status:0:1","status"," %0","", 
 "dd w17 ba_b gw_ cb","case_status_r","case_status_form"] };
 
 // ---
@@ -830,46 +830,6 @@ te["case_ed_sub_justice"] = { div:["mt15"],  c:
 	{ div:["e"] }
 ]};
 
-te["case_passport_num_tag"] = { c:
-[
-	{ tag:["case_passport_num_tag_txa",":v:clients:contact_national_id","national_id_",":v:clients:contact_national_id",""] },
-	{ ufn:["case_client_passport_ufn"] }
-]};
-
-te["case_passport_num_tag_txa"] = { p:["","txa"], c: // [nb] id(txa) used by uhilite
-[ 
-	{ input:["w28 x t08 b07","","national_id_","","text","","Enter Client's passport / national-id number "] }, // ev:["","_ky","","_uky"] }, 
-	// { arg:["",null,null] }, // placeholder for upd
-]};
-
-te["case_passport_num_no_match"] = { s:["xx y gr cw","No Match"] };
-
-te["case_passport_num"] = { div:["ba w34"], c:
-[
-	{ li:[""], c:
-	[
-		{ p:["c","o"], c:
-		[
-			{ u:["case_passport_num_tag_txa","r_"] },
-			{ u:["case_passport_num_tag","clients","","clients"] } 
-		]},
-		{ div:["d y02 r03"], c:
-		[
-			{ ac:["ao btn ","case_passport_num-clients","_activity_postj","w05 y04 bd gb cw tc s","Search"] },
-			{ s:["savl w04 y04 bd go cw tc","..."] }
-		]},
-		{ div:["e"], arg:["","_c","1"] }
-	]},
-	{ p:["","nb"], u:["case_passport_num_no_match","clients_no_data"] }
-]};
-
-te["case_ed_sub_dept_labor"] = { div:["t15"], c:
-[
-	{ s:["x y","Client's Passport Number"] },
-	{ div:["","va"], c:[ { p:["","national_reg_search"], u:["case_passport_num","r_"] } ] },
-	{ div:[] }
-]};
-
 // ---
 
 te["case_reporter_uuid_id_arg"] = { arg:["",".id","%0"] };
@@ -880,24 +840,6 @@ te["case_form_col_1"] = { c:
 [
 	{ div:[], c:
 	[
-		{ div:["","deptv"], c:
-		[
-			{ div:[], c:
-			[
-				{ div:[], c:
-				[
-                                	{ s:["c x y","Department"] },
-                            	    	{ s:["c t cr b h2","*"] },
-                                	{ div:["e"] }
-				]},
-				{ p:["","o"], c:
-                        	[
-                                	{ uchk:["case_yesno_r",":v:cases:dept","case_dept","",   "dept"," %1"] },
-                                	{ div:["e","sub"], arg:["case_ed_sub_dept_labor-r_-deptv-dept_labor-0","","1"] }
-                        	]}
-			]},
-			{ p:["","dept_labor"], usub:["case_ed_sub_dept_labor","r_",":v:cases:dept","1"]},
-		]},
 		{ div:["t15 w57 _ba_"], case_category_enum:[] },
 		{ div:["t15"], c:
 		[
@@ -1034,25 +976,19 @@ te["case_form_col_0"] = {  c:
 ]};
 
 te["case_form_"] = { div:["","ve"], c: // new case 
-[	
+[
 	{ div:["l15 t15","vb"], c:
 	[	
 		{ s:["c xx yy h2 b",CASE_ID_PREFIX] },
 		{ s:["c yy h2 b",null] },
-		
-		{ div:["d w05 t01"], s:["abs w05 bd8  b10 gw zzzz",""], c:
+		{ div:["d w08 t01"], s:["abs w08 t b10 gw zzzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
-			{ ac:["ay t01 r15","","_uvw","cb bd y01",""], c:
+			{ ac:["ao w03 ma r15","","_activity_close","y01 gws_ bd32 cb",""], c:
 			[
 				{ s:["tc h b","&Cross;"] },
-				// { s:["d x y s","Close"] },
-				{ div:["e"] }
 			]}
 		]},
-
-		// always in context of activity -- activity btn will mask app btns -- no need for masking here
-
 		{ div:["e"] }
 	]},
 
@@ -1290,7 +1226,6 @@ te["case_vw_col_1"] = { c:
 		{ div:[], c:
 		[
 			{ div:[""], case_vw_val_cat:["Case Category","",":v:cases:case_category"] },
-			{ div:["tt"], case_vw_val:["Department",":v:cases:dept::case_dept:1"] },
 			{ div:["tt"], case_vw_val:["Is Case GBV Related?",":v:cases:gbv_related::yesno:2"] },
 		]},
 		{ div:[], usub:["case_vw_sub_medical_exam,case_vw_sub_medical_exam","r_",":v:cases:case_category_fullname_id", CASE_CATEGORY_PHYSICAL_N_SEXUAL_ABUSE_ID] },
@@ -1445,31 +1380,16 @@ te["case_vw_id"] = { c:
 	{ div:["l15 y15","vb"], c:
 	[	
 		{ s:["c xx yy h2 b",CASE_ID_PREFIX] },
-		{ s:["c yy h2 b","%0"] },
-		
-		{ div:["d w08 t01"], s:["abs w08 bd8 t04 b10 gw zzzzz",""], c:
+		{ s:["c yy h2 b","%0"] },	
+		{ div:["d w08 t01"], s:["abs w08 t b10 gw zzzzz",""], c:
 		[
 			{ input:["g","","sbl","0","radio"] },
-			{ ac:["ay t01 r15 w03 ma","","_uvw","cb bd y01",""], c:
+			{ ac:["ay w03 ma r15","","_activity_close","cb bd y01 gws_ bd32",""], c:
 			[
 				{ s:["tc h b","&Cross;"] },
-				// { s:["d x y s","Close"] },
 				{ div:["e"] }
 			]}
 		]},
-
-		/*{ div:["d w05 t01"], s:["abs w05 bd8  b10 gw zzzzz",""], c:
-		[
-			{ input:["g","","sbl","0","radio"] },
-			{ ac:["ay t01 r15","","_uvw","cb bd y01",""], c:
-			[
-				{ s:["tc h b","&Cross;"] },
-				// { s:["d x y s","Close"] },
-				{ div:["e"] }
-			]}
-		]},*/
-
-
 		{ div:["e"] }
 	]},
 
@@ -1939,7 +1859,7 @@ te["case_footer"] = { div:["x gw ba"], c:
 te["case_r_"] = { c: 
 [
 	{ input:["g","","casevwr","%0","radio",null] },
-	{ ac:["tabh ay w300","rel","_activity_vw_id",null,""], c:
+	{ ac:["tabh ay w300","case","_activity_vw_id",null,""], c:
 	[
 		{ div:["c w07"], s:["tt b05 h01_  xx","%0"] },
 		{ div:["c w10"], s:["tt b05 h01_  xx","%2"] },

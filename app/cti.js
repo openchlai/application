@@ -92,14 +92,12 @@ te["chan_add_ld"] = { div:["gw","action"], c:
 
 te["chan_add_btns"] = { c:
 [
-	{ div:["c x y"], c:[ { ac:["ao btn","chan_add_ld-chan-4","_add_action","x y w08 gws cb s tc","Transfer"] }, { s:["y bd b savl","..."] } ] },
-	{ div:["c x y"], c:[ { ac:["ao btn","chan_add_ld-chan-5","_add_action","x y w08 gws cb s tc","Conference"] }, { s:["y bd b savl","..."] } ] },
+	{ div:["c x y"], c:[ { ac:["ao btn","chan_add_ld-chan-4","_add_action","x y04 w08 ba cb s tc","Transfer"] }, { s:["y bd b savl","..."] } ] },
+	{ div:["c x y"], c:[ { ac:["ao btn","chan_add_ld-chan-5","_add_action","x y04 w08 ba cb s tc","Conference"] }, { s:["y bd b savl","..."] } ] },
 	{ div:["c l y"], c:[ { ac:["ao btn","chan_add_ld-chan-3","_add_action","x y04 w08 ba cb s tc","Resume"] }, { s:["y bd b savl","..."] } ] },
-	{ p:["e","o"], c:[ { arg:["","chan3",":V:ami:CHAN_CHAN"] }, { arg:["","exten",":V:ami:CHAN_EXTEN_MASQ"] }, { arg:["","chan_ts",":V:ami:CHAN_TS"] } ] },
+	{ div:["e"], arg:["","chan_uniqueid",":V:ami:CHAN_UNIQUEID"] },
 	{ p:["x","nb"] }
 ]};
-
-// ---
 
 te["call_add_msg"] = { s:["::chan_action:0:2","::chan_action:0:1"] };
 					
@@ -134,9 +132,9 @@ te["call_add_form"] = { div:["","ve"], c:
 
 		{ div:["c w23","tag-r_--o-call_add_user-%1-user_id-%0-"], c:
 		[
-			{ li:["gws_ b02","va"], c:[ { div:["","user_ls-users"], ev:["_dd"], c: // ls
+			{ li:["b02 ba","va"], c:[ { div:["","user_ls-users"], ev:["_dd"], c: // ls
                [
-				{ p:["c w20","o"], c:
+				{ p:["c w19","o"], c:
 				[ 
 					{ u:["call_add_user","r_"] }, 
 					// { uchk:["tag",null,"","^", null,null,null,null,null] } // set if there is a default user
@@ -162,7 +160,7 @@ te["call_add_form_main"] = { div:["w30 ma bd sh__ gw xx yy","vddvw"], ev:["_undd
 		{ div:["e"] }
 	]},
 	{ div:["",":V:ami:CHAN_UNIQUEID"], c:[ { div:["","init"], s:["x y g","..."] } ] },
-	{ div:["","cba"] } // show add-chan status 
+	{ div:["","cba"] } // show add-chan here 
 ]};
 
 te["call_toolbar"] = { c:
@@ -274,7 +272,7 @@ te["chan_add"] = { p:["","%2"], s:["",""], c:
 		{ s:["d x t",""] },		// status-duration
 		{ arg:["ts","",""] }, 		// status-ts
 		{ s:["d x t",""] }, 		// status-text
-		{ div:["e"], c:[ { arg:["","chan3","%3"] }, { arg:["","exten","%4"] }, { arg:["","chan_ts","%1"] }, { arg:["","cid","%4"] }, { arg:["","ctx",":V:ami:CHAN_CONTEXT_MASQ"] } ] }
+		{ div:["e"] }
 	]},
 	{ div:["t","ve"] }
 ]};
@@ -393,20 +391,20 @@ te["aa_status"] = { div:["",null], c:[ { div:["","ve"], c:
 
 te["joinq_status"] = { div:["",null], c:[ { div:["","ve"], c: // 
 [
-	{ ac:["btn aa","agent-agent","_postjb","xx y cb ",""], c:
+	{ ac:["btn ao","agent-agent","_postjb","xx y cb bd",""], c:
 	[
 		{ s:["tr",null] },
 		{ p:["","o"], c:[ { arg:["","action",null] }, { arg:["",null,null] }  ] } 
 	]},
-	{ s:["x y go cw savl","..."] }
+	{ s:["x y go tc bd cw savl","..."] }
 ]} ]};
 
 te["agent_status"] = { div:["y02",null], c: 
 [
-	{ div:["c xx t08"], s:[null,""] },
-	{ div:["c y"], s:[null,null] },
-	{ s:["d r10 y cb tr",null] },		// status-duration
-	{ arg:["ts","",null] }, 		// status-ts
+	{ s:[null,null] },		// status-duration
+	{ arg:["ts","",null] }, 				// status-ts
+	{ div:["d y"], s:[null,null] },
+	{ div:["d x02 t09"], s:[null,""] },
 	{ div:["e"] },
 ]};
 
@@ -544,10 +542,10 @@ function chani (tp,p,ch,ts,k_=2,top_=0)
 		if (tp=="chan_agent") { a_=[""]; } // { a_=[p.nextSibling.value]; }
 		el = nd (p, te[tp], a_, ch, [a_.length]);
 		el = el.parentNode.parentNode;
-		chan_a[ch[2]] = { "el":el, "ts":ts }; // append chan to chan_a index
-		if (tp=="chan_agent") // query usr details
+		if (!chan_a[ch[2]]) chan_a[ch[2]] = {}; 
+		chan_a[ch[2]]["el"] = el; 
+		if (tp=="chan_agent") 
 		{
-			// console.log ("-------------chan_agent")
 			url (el.firstChild.childNodes[1].childNodes[1], "chan_agent_cid_name", "wallonly", ("?exten="+ch[AMI.CHAN_CALLERID_NUM]+"&_c=1"));
 		}
 	}
@@ -597,7 +595,7 @@ function chan_add (vp_add, ch, ch_, ts)
 
 	if (ch_ && ch_[AMI.CHAN_STATE_HANGUP].length>0) ch_=null;
 
-	console.log ("[chan_add] "+ch[AMI.CHAN_CBO_TS]+" "+ch[AMI.CHAN_CBO]+"->"+(ch_?ch_[AMI.CHAN_XFER]:""));
+	console.log ("[chan_add] "+ ch[AMI.CHAN_CBO_UNIQUEID] +","+ch[AMI.CHAN_CBO_TS]+","+ch[AMI.CHAN_CBO]+"->"+(ch_?ch_[AMI.CHAN_XFER]:""));
 
 	if (vp_add.firstChild.firstChild.id=="add_ld")  // show cbo status b4 chan_add is created
 	{
@@ -613,22 +611,15 @@ function chan_add (vp_add, ch, ch_, ts)
 		m_++;
 	}
 	
-	if (ch_ && (vp_add.firstChild.firstChild.id.substr(0,4)=="add_" || ch_[AMI.CHAN_XFER]=="obc"))
+	if (ch_)	// nb: ch_matches current cbo
 	{
-		if (vp_add.firstChild.firstChild.id=="add_ld") vp_add.firstChild.innerHTML="<div id='add_ing'></div>"; 
-		var el_ = chani ("chan_add", vp_add.nextSibling, ch_, ts, 2, 1); 
+		if (vp_add.firstChild.firstChild.id=="add_ld") vp_add.firstChild.innerHTML="<div id='add_ed'></div>"; 
+		var el_ = chani ("chan_add", vp_add.nextSibling, ch_, ts); 
 		if (ch_[AMI.CHAN_XFER]=="obc" && el_.firstChild.lastChild.childNodes.length==0) // set oly during create
 		{
 			nd (el_.firstChild.lastChild, te["chan_add_btns"], [], ch_, [0]);
-			m_++;
 		}
-		if (ch_[AMI.CHAN_XFER]!="obc")
-		{ 
-			r_ = [ch_[1], ch_[AMI.CHAN_XFER]]; 
-			el_.firstChild.lastChild.innerHTML = "";
-			nd (el_.firstChild.lastChild, te["chan_add_done"], [], r_, [0]);
-			m_++;
-		}
+		m_++; 
 	}
 				
 	if (m_==0 && vp_add.firstChild.id!="ve" && vp_add.nextSibling.childNodes.length==0) // show form
@@ -649,6 +640,11 @@ function chan_agtk_vw (ch, p)
 	
 	// action btns
 	p.className = re["call_state"][ch[AMI.CHAN_STATUS_]][1];
+
+	// hold btn status 
+	var vs = null;
+	if (ch && ch[AMI.CHAN_SIPCALLID] && ch[AMI.CHAN_SIPCALLID].length>19) vs = CALLS[ch[AMI.CHAN_SIPCALLID].substr (0,20)]
+	if (vs) VOICEAPPS_UA.btnholdstate (vs)
 }
 
 function chan_agtk (el, ch, pcoll, pv, pva)
@@ -690,7 +686,7 @@ function chans_pop (ts, pv, pva)
 	{
 		var id = k[i];
 		if (chan_a[id].ts==ts) continue;
-		console.log ("[pop] "+id+" | "+ts+","+chan_a[id].el)
+		console.log ("[pop] ("+id+") "+ts+","+chan_a[id].el+" | dlpn")
 		if (chan_a[id].el && chan_a[id].el.parentNode) 
 		{
 			var pe = chan_a[id].el.parentNode;
@@ -703,9 +699,10 @@ function chans_pop (ts, pv, pva)
 
 			if (pe.id=="cba")
 			{
-				console.log ("pop cba removed | "+pe.previousSibling.id+" | "+el_removed)
-				var ch = re["channels"][pe.previousSibling.id];
-				if (ch && el_removed) { nd (pe, te["call_add_ld"], [], [a.chan_ts, ch[AMI.CHAN_CBO], a.cid], [0]); }
+				//console.log ("pop cba removed | "+pe.previousSibling.id+" | "+el_removed)
+				//var ch = re["channels"][pe.previousSibling.id];
+				// if (ch && el_removed) { nd (pe, te["call_add_ld"], [], [a.chan_ts, ch[AMI.CHAN_CBO], a.cid], [0]); }
+				// todo: some msg
 			}
 		}
 		if (chan_a[id].agtk)
@@ -796,8 +793,6 @@ function chans (o, k, ts, pcoll, pv, pva)
 
 		if (ch[6].substr(0,4)=="DLPN" && ch[AMI.CHAN_SIPCALLID].length>0 && (ch[3].substr(6,4)==(user_cid+"-") || ch[3].substr(6,5)==("0"+user_cid+"-")))  
 		{
-			// console.log ("DLPN("+ch[AMI.CHAN_UNIQUEID]+")"+ch[AMI.CHAN_CALLERID_NUM]+","+ch[AMI.CHAN_CALLERID_NUM_MASQ]+"->"+ch[AMI.CHAN_EXTEN]+"|"+ch[AMI.CHAN_UNIQUEID_2]);
-
 			var vs_ = CALLS[ch[AMI.CHAN_SIPCALLID].substr (0,20)]
 
 			chan_status ("chan_agtk", ch);
@@ -913,13 +908,13 @@ function chans (o, k, ts, pcoll, pv, pva)
 	var a__ = [];
 	var status_ = ["go","go","go","gg","go","gg","gr","go","gr"];
 
-	a_= ["","","On Break","cb","w01 h01 bd go","aonbreak"];
+	a_= ["w01 h01 bd go","On Break","x co","","","d y","aonbreak"];
 	a__ = ["","","1","Join Queue","outjoinq"];
 	cn_ = document.getElementById("vv").className;
-	if (cn_!="counsellor" && cn_!="supervisor" && cn_!="media") { a_[2]="My Account";  a_[4]=""; } // non agent
+	// if (cn_!="counsellor" && cn_!="supervisor" && cn_!="media") { a_[2]="My Account";  a_[4]=""; } // non agent
 	if (ch_agent!=null) 
-	{ 
-		a_ = [ch_agent[AMI.CHAN_STATUS_TS_], ch_agent[AMI.CHAN_STATUS_TS_TXT_], ch_agent[AMI.CHAN_STATUS_TXT_], "cb", ("w01 h01 bd "+status_[ch_agent[AMI.CHAN_STATUS_]]), ("a"+ch_agent[AMI.CHAN_STATUS_TXT_]).replace (" ","_")]
+	{
+		a_  = [("w01 h01 bd "+status_[ch_agent[AMI.CHAN_STATUS_]]), ch_agent[AMI.CHAN_STATUS_TXT_], "x cg" , ch_agent[AMI.CHAN_STATUS_TS_], ch_agent[AMI.CHAN_STATUS_TS_TXT_], "d y x cg", ("a"+ch_agent[AMI.CHAN_STATUS_TXT_]).replace (" ","_")]
 		a__ = ["coffee","break","0","Leave Queue","injoinq"]
 	}
 
@@ -927,7 +922,7 @@ function chans (o, k, ts, pcoll, pv, pva)
 	{
 		p_agent.innerHTML = "";
 		p_joinq.innerHTML = "";
-		nd (p_agent, te["agent_status"], a_.slice(0), [], [6]);
+		nd (p_agent, te["agent_status"], a_.slice(0), [], [7]);
 		nd (p_joinq, te["joinq_status"], a__, [], [5]);
 		p_agent_nb.style.display = ch_agent!=null ? "block" : "none";
 		if (ch_agent!=null) p_agent_nb.firstChild.className = "ml2 x y bd8 "+status_[ch_agent[AMI.CHAN_STATUS_]]

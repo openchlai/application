@@ -1119,6 +1119,22 @@ function ld (p, m, http_status)
 		return;
 	}
 
+	if (m=="login") // load sub-page
+	{
+		var vv = window.location.href.split ("/");
+		var nn = vv.length;
+		if (vv[nn-1].length<1) nn--;
+		console.log ("[href] "+vv.length+" | "+JSON.stringify (vv));
+		if (nn>4)
+		{
+			p = document.getElementById ("vv"); 
+			p.innerHTML = "";
+			nd (p, te[vv[4]], [], vv, [0]);  
+			return;
+		}
+		
+	}
+
 	console.log (http_status+" -> "+m+":"+JSON.stringify (uu)+" @"+p.id)
 
 	for (var i=0; i<uu.length; i++)
@@ -1142,6 +1158,7 @@ function ld (p, m, http_status)
 			p_ = p.parentNode.firstChild;
 			setTimeout (tso, 10000); // wait ten seconds for ami update, else show button for user to try 
 		}
+		// console.log (" -->> "+p_.id)
 		p_.innerHTML = ""; // clear 
 		var a_ = [];
 		var m_ = [0];
@@ -1486,7 +1503,7 @@ function _uvp (ev)
 
 function _uvw ()
 {
-	__(this,"vfvw").parentNode.parentNode.firstChild.firstChild.checked = true;
+	__(this,"vf").parentNode.parentNode.firstChild.firstChild.checked = true;
 }
 
 function _vpf ()

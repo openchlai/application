@@ -4,8 +4,9 @@
 <title>Helpline</title>
 <script>
 <?php
-include "config.php";
+include "/var/www/html/helpline/config.php";
 
+echo "var APP_NAME = \"".$APP_NAME."\";\r\n";
 echo "var APIPATH = \"".$API_PATH."\";\r\n";
 
 echo "var VA_SIP_USER_PREFIX = \"".$VA_SIP_USER_PREFIX."\";\r\n";

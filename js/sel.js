@@ -177,6 +177,7 @@ function _undd (ev)
 
 function _dd (ev) 
 { 
+	console.log (" >>>> dd")
 	var p = __(this,"va");
 	var b = p.nextSibling;
 	dd (b,1); 
@@ -189,7 +190,7 @@ function _dd (ev)
 			p = p.lastChild; // select different parameters if lsh
 			u = p.id.split ("-");
 		}
-		argv (p,a,"id");
+		argv (p,a,"id"); // alert (a.args)
 		url (b, u[0], u[1], (a[".id"]+a.args+"&_c=10"));
 	}
 	boo (ev); 
@@ -225,6 +226,7 @@ function _uky (ev)
 
 function _ky (ev) // autocomplete query -- todo: handle arrow-keys
 {
+	console.log (" >>>> ky")
 	var p = __(this,"va");
 	var b = p.nextSibling
 	var u = p.firstChild.id.split ("-");

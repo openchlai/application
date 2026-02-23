@@ -8,6 +8,7 @@ var UU =
 "logout":{ 401:[["unloadphone","user_"],["login","user_","vv"]] },
 "change_passwd":{ 202:[["change_passwd_vw","user_","vp"]], 412:[["nb","errors","v","nb"]] },
 "reset_passwd":{ 202:[["nb","auth_nb","v","nb"]], 412:[["nb","errors","v","nb"]] },
+"activate_passwd":{ 202:[["activate_passwd_vw","user_","ve"]], 412:[["nb","errors","v","nb"]] },
 
 "dash":{ 200:[["dash_main","dash"]] },
 "dash_rpt_pie":{ 200:[["dash_rpt_pie","cases_rpt"]] },
@@ -87,6 +88,7 @@ var UU =
  
 "activity_message_send":{ 201:[["activity_message_sended","messages","","sended"]] },
 "activity_messages":{ 200:[["activity_messages_ufn","messages_ctx"]] },
+"activity_messages_main":{ 200:[["activity_messages","activities"]] },
 
 "activity_contact_ed":{  202:[["activity_contact_updated","contacts_disposition"]], 412:[["nb","errors","v","nb"]] , 200:[["case_contact_ed","contacts"]], },
 "activity_contact_new":{ 201:[["uvpfn","dispositions","vp"]], 412:[["nb","errors","v","nb"]] },
@@ -107,6 +109,7 @@ var UU =
 "activity_vw_id_walkin":	{ 200:[["activity_vw_id_walkin","activities"]] },
 "activity_vw_id_notif":	{ 200:[["activity_vw_id_notif","activities"]] },
 "activity_vw_id_case":	{ 200:[["activity_vw_id_case","activities"]] },
+"activity_vw_id_msg":	{ 200:[["activity_vw_id_msg","activities"]] },
 "activity_vw_id_chat":	{ 200:[["activity_vw_id_chat","activities"]] },
 "activity_vw_id_call":	{ 200:[["activity_vw_id_call","activities"]] },
 "activity_vw_id":		{ 200:[["activity_vw_id","activities"]] },
@@ -291,6 +294,15 @@ re["onbreak"] =
 "FX":["FX","On Break"],
 };
 
+rk["case_refered_to"] = ["0","1","2"];
+re["case_refered_to"] = 
+{
+"":["","","",""],
+"0":["0","None","",""],
+"1":["1","Department","",""],
+"2":["2","Person","",""],
+};
+
 rk["case_priority"] = ["1","2","3","0"];
 re["case_priority"] =
 {
@@ -319,14 +331,6 @@ rk["case_status_form"] = ["1","2"];
 re["case_status_form"] = re["case_status"];
 
 
-rk["case_dept"] = ["0","1"];
-re["case_dept"] =
-{
-"0":["0","116","","","",""],
-"1":["1","Labor","","","",""]
-};
-
-
 rk["case_src"] = ["walkin","call","sms","email","chat","whatsApp","whatsup","FACEBOOK","TWITTER","WENI","safepal","ai","aii"];
 re["case_src"] = 
 {                               
@@ -337,7 +341,7 @@ re["case_src"] =
 "edit":	["edit","Edit","",			"","", "#000000","edit","",		"","",	"_case", 	"created_by", "created_by", ""],
 "walkin":	["walkin","Walkin","",		"","", "#f0c39bff","directions_walk","", "","", "_walkin", 	"phone", "reporter_phone", ""],
 
-"call":	["call","Call","",			"","", "#fa8a09ff","call","",	"","",	"_call", 		"phone", "reporter_phone", ""],
+"call":	["call","Call","",			"","", "#fa8a09ff","call","",	"","",	"_call", 	"phone", "reporter_phone", ""],
 "sms":	["sms","SMS","",			"","", "#000000","sms","",		"","",	"_chat", 	"phone", "reporter_phone", ""],
 "email":	["email","Email","",		"","", "#000000","chat","",		"","",	"_chat", 	"email", "reporter_email", ""],
 "chat":	["chat","Chat","",			"","", "#17b8ddff","chat","",	"","",	"_chat", 	"phone", "reporter_phone", "safepal"],
@@ -564,6 +568,59 @@ te["tab"] = { c:
 
 // --------------------------------------------------------------------
 
+te["activate_passwd_vw"] = { div:["x15"], c:
+[
+	{ div:["y"], c:
+	[
+		{ s:["c xx yy b cg","Password Changed Successful"] },
+		{ div:["e"] }
+	]},
+	{ div:[" xx t b20"], c:
+	[
+		{ a:["xx y08 gb cw tc bd h3","","Proceed to Login","/./"] },
+	]}
+]};
+
+te["activateAccount"] = { div:["y30"], c:
+[
+	{ div:["w50 ma b10"], c:
+		[
+			{ s:["c xx b y n",APP_NAME] },
+			{ s:["c xx b y n bl2_b","Set New Password"] },
+			{ div:["e"] }
+		]},
+		
+	{ div:["w50 ma  gw_"], c:
+	[
+		{ div:["x15 tt"], c:
+		[
+			{ s:["c xx y12 n b","Set a new Password for your Account"] },
+			// { ac:["d","","_uvp","xx y08 h cb","&Cross;"] },
+			{ div:["e"] }
+		]},
+
+		{ div:["","ve"], c:
+		[
+			{ div:["x25"], c:[ { p:["c w40","nb"], u:["nb","users_nb"] }, { div:["e"] } ] },
+			{ p:["x25","o"], c:
+			[
+				{ div:["t15"], c:
+				[
+					{ s:["c w15 y","New Password"] }, { passwd:["d w25 gw_ ba","w25 x y","","pass1",""] }, { div:["e"] }
+				]},
+				{ div:["t15"], c:
+				[
+					{ s:["c w15 y","Confirm Password"] }, { passwd:["d w25 gw_ ba","w25 x y","","pass2",""] }, { div:["e"] }
+				]},
+				{ arg:["","otp","%5"] }
+			]},
+			{ div:["x25 t30 b20"], vp_sav:["activate_passwd-changeAuthOTP","_postj","Change","Changing...","myprofile-user_","_nnvp","Cancel"] }
+		]}
+	]}
+]};
+
+// --------------------------------------------------------------------
+
 te["change_passwd_vw"] = { div:["w45 ma bd sh__ gw_","vddvw"], ev:["_undd"], c:
 [
 	{ div:["xx y"], c:
@@ -752,7 +809,7 @@ te["dash_rpt"] = { c: // dash_rpt:["Case Categories","bar","stacked","case_categ
 te["dash_src_r"] = { div:[], c:
 [
 	{ input:["g","","dash_src","%0","radio","%9"] },
-	{ ac:["opti_","","_dash","x y gw cb bd ",""], c:
+	{ ac:["mt20 opti_","","_dash","x y gw cb bd ",""], c:
 	[
 		{ s:["x y tc","%1"] },
 		{ div:["x y w03 ma"], s:["%2",""], c:[ { img:["","","%3","30"] } ] },
@@ -796,7 +853,7 @@ te["dash_main"] = { c:
 			{ div:["c w13_ t01 "], s:["abs mt17 w13_",""], c:
 			[
 				{ input:["g","","sbr","1","radio"] },
-				{ ac:["ao btn","erl","_activity_vw_id","xx sh__ bd gg cw h03",""], c:
+				{ ac:["ao btn","walkin","_activity_vw_id","xx sh__ bd gg cw h03",""], c:
 				[
 					{ s:["c y","Walk In"] },
 					{ s:["d t03 h2 micon","directions_walk"] },
@@ -816,13 +873,13 @@ te["dash_main"] = { c:
 		]},
 		{ div:["xx tt b20  mtn1	"], c:
 		[
-			{ s:["c xx y15 h3_ b","OpenCHS"] },
+			{ a:["c xx y15 h3_ b cb","",APP_NAME,"."] },
 			{ div:["e"] }
 		]},
 	]},
 	{ div:["abs w12 h100 x15","vdf"], c: // filter params
 	[
-		{ div:[" "], c:
+		{ div:[], c:
 		[
 			{ div:["ay","va"], ac:["","","_dd","x  cb ba bd",""], c:
 			[
@@ -839,21 +896,7 @@ te["dash_main"] = { c:
 				]},
 				{ div:["e"] }
 			]},
-		]},
-		
-		{ div:[" yy"], c:
-		[
-			{ div:["ay","va"], ac:["","","_dd","x bd cb bd ba",""], c:
-			[
-				{ s:["c l y","::dash_gbv:1:1"] },
-				{ div:["d w02 t04"], c:[ { div:["h02 w02 awb"] } ] },
-				{ div:["e"] }
-			]},
-			{ div:["dd w13 y ba bd gw","vdd"], c:
-			[
-				{ uchk:["dash_gbv_r","%1","dash_gbv"] }
-			]},
-		]},							 
+		]},		 
 
 		{ uchk:["dash_src_r","%2","dash_src"] },
 		
@@ -875,7 +918,7 @@ te["dash"] = { c:
 	{ div:[], c:
 	[	
 		{ input:["g","","case_vw_vt","1","radio"] }, 		// _vw_id | _ed
-		{ p:["tabv  mm gw","vfvwm"] }
+		{ p:["tabv gw","vfvwm"] }
 	]}
 ]};
 
@@ -902,11 +945,11 @@ te["user_usn"] = { div:[], c:[ { s:["xx y cd  tr","%5"] }, { div:["e"] } ] };
 
 te["user_menu"] = { c:
 [
-	{ p:["x07","agent_status"], agent_status:["aoffline","gd bd h01 w01","cd","Connecting ...","",""] },	
-
 	{ div:[""], u:["user_usn","auth"] },
 
 	{ p:["tr","phone_status"], s:["xx y cd","Checking Phone Status ..."] },
+
+	{ p:["x07","agent_status"], agent_status:["aoffline","","","","x cd","Connecting ...","gd bd h01 w01"] },	
 
 	{ p:["tr","ati_status"] },
 				
@@ -972,7 +1015,7 @@ te["main"] = { c:
 
 	{ div:["g r05"], ev:["boo"], c: 
 	[
-		{ div:["d w30_ mr1"], s:["abs zzzzz mt70 sh__ w30_ bd8 gw ",""], c:
+		{ div:["d w30_ mr1"], s:["abs zzzzz mt80 sh__ w30_ bd8 gw ",""], c:
 		[
 			{ div:[], c:
 			[
@@ -1001,7 +1044,7 @@ te["main"] = { c:
 	{ div:["w06 h105 gb abs mtn1","vb"], c: 
 	[
 		{ div:["gb mtn1"], c:[ { a:["h06","","","/helpline/"], c:[ { img:["","",APP_LOGO, "60"] } ] } ] },
-
+	
 		{ sbl:["","1","1","","speed","Dash","noop"] }, // todo: rename to activities
 		
 		{ sbl:["","2","","cases-cases","cases","Cases","sbl_case"] },
@@ -1027,8 +1070,6 @@ te["main"] = { c:
 		{ sbl:["admin_","9","","","dashboard","Wallboard","noop"] },
 
 		// { sbl:["admin_","9","","contacts-contacts","import_contacts","Contacts","noop"] },
-
-		{ sbl:["","10","","","audiotrack","Transcribe","noop"] },
 	]},
 	
 	{ p:["abs zzzzzzz y op_ga g","vp"], ev:["_uvpd"] }, // popup window	
@@ -1047,7 +1088,6 @@ te["main"] = { c:
 		{ div:[], c:[ { input:["g","","mtv","7","radio"] }, 	{ form:["tabv","vftab"] } ] }, // users
 		{ div:[], c:[ { input:["g","","mtv","8","radio"] }, 	{ form:["tabv","vftab"] } ] }, // contacts
 		{ div:[], c:[ { input:["g","","mtv","9","radio"] }, 	{ form:["tabv","vfvwm"], wallboard:[] } ] }, // wallboard
-		{ div:[], c:[ { input:["g","","mtv","10","radio"] }, 	{ form:["tabv","vfvwm"], c:[ { iframe:["wp100 h100","","transcription_frontend_template.php"] } ] } ] },
 		{ div:["g"], c:
 		[
 			{ iframe:["","",VA_AMI_HOST] },
@@ -1058,7 +1098,7 @@ te["main"] = { c:
 
 te["login"] = { div:["gw "], c:
 [
-	{ div:["loginbg"], s:["ma w100",""], c: 
+	{ div:["logimnbg"], s:["ma w100",""], c: 
 	[
 		{ div:["c t20"], c:
 		[
@@ -1071,8 +1111,8 @@ te["login"] = { div:["gw "], c:
 		
 			{ div:["ma w26 y40"], c:
 			[ 
-				//{ div:["c w13"], c:[ { img:["","","/helpline/images/coartofarms.jpg", "90"] } ] },
-				{ div:["c w13 t15"], c:[ { img:["","",APP_LOGO, "100"] } ] },
+				
+				//{ div:["c w13 t15"], c:[ { img:["","",APP_LOGO, "100"] } ] },
 				{ div:["e"] }
 			]}, 
 					
@@ -1117,13 +1157,39 @@ te["login"] = { div:["gw "], c:
 	// { div:["y h50"]}
 ]};
 
-function _dash ()
+// -------------------------------------------------------
+
+function unloadphone (el, u, a, r, m)
 {
-	this.previousSibling.checked = true;
-	var p = __(this,"vdf");
-	var a = {args:"?", ".id":""};
-	argv (p, a);
-	url (p.parentNode, "dash", "dash", a.args);
+	VOICEAPPS_UA.disconnect ();
+}
+
+function loadphone (el, u, a, r, m)
+{
+	var v = re["user_role"][ra["auth"][0][6]];
+	if (v) document.getElementById ("vv").className = v[2];
+	console.log ("loadphone: "+ra["auth"][0][7]+" | "+JSON.stringify (v));
+	VOICEAPPS_UA.DetectDevices ();
+	VOICEAPPS_UA.connect (ra["auth"][0][7]);
+}
+
+function ami_wait (el, u, a, r, m)
+{
+
+}
+
+function _phone_fmt (s)
+{
+	var a = 0;
+	var n = s.length;
+	for (var i=0; i<n; i++) 
+	{
+		var ch = s.substr (i,1);
+		if (ch=="+" || ch=="0" || ch==" ") { a++; continue; }
+		break;
+	}
+	if (n-a==9) return COUNTRY_CODE+s.substr (a,(n-a));
+	return s.substr (a,(n-a));
 }
 
 function case_prio_chart (el, u, a, r, m)
@@ -1166,39 +1232,13 @@ function case_prio_chart (el, u, a, r, m)
 	}
 }
 
-// -----------------------
-
-function unloadphone (el, u, a, r, m)
+function _dash ()
 {
-	VOICEAPPS_UA.disconnect ();
-}
-
-function loadphone (el, u, a, r, m)
-{
-	var v = re["user_role"][ra["auth"][0][6]];
-	if (v) document.getElementById ("vv").className = v[2];
-	console.log ("loadphone: "+ra["auth"][0][7]+" | "+JSON.stringify (v));
-	VOICEAPPS_UA.DetectDevices ();
-	VOICEAPPS_UA.connect (ra["auth"][0][7]);
-}
-
-function ami_wait (el, u, a, r, m)
-{
-
-}
-
-function _phone_fmt (s)
-{
-	var a = 0;
-	var n = s.length;
-	for (var i=0; i<n; i++) 
-	{
-		var ch = s.substr (i,1);
-		if (ch=="+" || ch=="0" || ch==" ") { a++; continue; }
-		break;
-	}
-	if (n-a==9) return COUNTRY_CODE+s.substr (a,(n-a));
-	return s.substr (a,(n-a));
+	this.previousSibling.checked = true;
+	var p = __(this,"vdf");
+	var a = {args:"?", ".id":""};
+	argv (p, a);
+	url (p.parentNode, "dash", "dash", a.args);
 }
 
 function _mtabr (ev)

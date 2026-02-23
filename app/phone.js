@@ -122,7 +122,7 @@ VOICEAPPS_UA.re_connect = function (nbr, t=1)
 			console.log ("phone.js: [UA.reconnect successful] "+VOICEAPPS_UA.uao.displayName);
 			// Reconnect attempt succeeded
 			VOICEAPPS_UA.attemptingReconnection = false;
-			VOICEAPPS_UA.re_connect (["xx y",("Extension "+VOICEAPPS_UA.uao.displayName)], 0)
+			VOICEAPPS_UA.re_connect (["xx y cd",("Extension "+VOICEAPPS_UA.uao.displayName)], 0)
            	})
            	.catch ((error) => 
 		{
@@ -201,9 +201,9 @@ VOICEAPPS_UA.endcall = function (session, leg)
    	} 
 }
 
-VOICEAPPS_UA.btnholdstate = function (vs, hold) 
+VOICEAPPS_UA.btnholdstate = function (vs) 
 {
-	var pvw = document.getElementById ("vv").childNodes[6].childNodes[0].childNodes[1]; 	
+	var pvw = document.getElementById ("vv").childNodes[6].childNodes[1].childNodes[1].childNodes[1].childNodes[1]; 	
 	var el_ = _(pvw.firstChild, "chanholdstate", "input");
 	if (el_) el_.checked = vs.ishold;
 }
@@ -448,10 +448,14 @@ function _add_action (ev)
 {
 	var u = this.id.split ("-");
 	var p = __(this,"ve")
-	var el = _(document.getElementById ("call_sessions"), __(p,"vddvw").childNodes[1].id);
+	var ch = re["channels"][p.parentNode.firstChild.value];
 	var o = {}
 	jso (p, o);
-	argv (el, o);	
+	o["chan"] = ch[AMI.CHAN_CHAN];
+	o["chan2"] = ch[AMI.CHAN_CHAN_2];
+	o["src_uid"] = ch[AMI.CHAN_UNIQUEID];
+	o["src_address"] = ch[AMI.CHAN_CID_NUM_2];
+	o["cbid"] = ch[AMI.CHAN_EXTEN_MASQ];
 	ami_action (this, o, u[2]);	
 	boo (ev);
 }
@@ -460,16 +464,19 @@ function _add_dial (ev)
 {
 	var u = this.id.split ("-"); // todo: inv
 	var p = __(this,"ve")
-	var el = _(document.getElementById ("call_sessions"), p.parentNode.id);
+	var ch = re["channels"][p.parentNode.id];
 	var o = {}
-	if (el==null) 
+	if (!ch) 
 	{
 		this.parentNode.nextSibling.innerHTML = "<div class='x y'><div class='x08 y gp cr'>Call has already ended</div></div>";
 		return;
 	}
-	jso (p, o);  
-	argv (el, o);
-	// if (o.cbid.length>0) o.chan2=""; // unset chan2 to remove it from unnecesary redirect
+	jso (p, o);
+	o["chan"] = ch[AMI.CHAN_CHAN];
+	o["chan2"] = ch[AMI.CHAN_CHAN_2];
+	o["src_uid"] = ch[AMI.CHAN_UNIQUEID];
+	o["src_address"] = ch[AMI.CHAN_CID_NUM_2];
+	o["cbid"] = ch[AMI.CHAN_EXTEN_MASQ];
 	ami_action (this, o, "2");	
 }
 
@@ -480,10 +487,8 @@ function _add_dial_form ()
 	var o = {};
 	var r_ = ra[u[1]][0].slice (0)
 	var el = null;
-	argv (__(this,"vfvw").firstChild.lastChild, o)	
-	el = _(document.getElementById ("call_sessions"), o.src_uid);
-	argv (__(el,"va"), o);
-	console.log ("phone.js: [_add_dial_form] "+JSON.stringify (o))
+	argv (__(this,"vfvwm").firstChild.lastChild, o)	
+	console.log ("[_add_dial_form] "+JSON.stringify (o))
 	r_[AMI.CHAN_UNIQUEID] = o.src_uid;
 	vp (p);
 	nd (p, te[u[0]], [], r_, [0]);

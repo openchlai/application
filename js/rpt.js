@@ -225,7 +225,7 @@ te["rpt_hdr"] = { c:
 	{ ac:["c","","","x y07 n cb b",null] },
  	{ div:["d bd ll"], c:
         [
-                { div:["mb_ ay","va"], ac:["","","_dd","x y gws",""], c:[ { s:["h2 cb micon","more_vert"] } ] }, // { img:["","","/helpline/images/more.png", "19"] }
+                { div:["mb_ ay","va"], ac:["","","_dd","x y gws",""], c:[ { s:["h2 cb micon","more_vert"] } ] },
                 { div:["dd w15 x y mln13 ba gw sh","vdd"], ev:["_undd"], c:
                 [
                         { rpt_hdr_menu_r:["xax","timeseries","1","XAxis Timeseries"] },
