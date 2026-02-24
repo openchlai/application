@@ -72,6 +72,18 @@ te["activity_messages_title"] = { c:
 	{ s:["c ll t h3 b",":v:activities:src::case_src:1"] },
 	{ s:["c x t h3","/"] },
 	{ s:["c t h3 b",":v:activities:src_address"] },
+	{ div:["d w10 t01 mr14"], s:["abs w10  gw zzzz",""], c:
+	[
+		{ div:["","ve"], c:
+		[
+			{ ac:["ay btn w09 ","","_ati_end","bd8 cb",""], c: 
+			[
+				{ s:["c x y cb s","End Chat"] },
+				{ s:["c w03 h cb tc micon","last_page"] },
+				{ div:["e"] }
+			]}
+		]}
+	]}, 
 	{ div:["e"] }
 ]};
 

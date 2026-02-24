@@ -114,23 +114,6 @@ te["ati_toolbar"] = { c:
 			]}
 		]},
 
-		{ div:["d w10 t01 mr6"], s:["abs w10 t20 gw zzzz",""], c:
-		[
-			{ div:["","ve"], c:
-			[
-				{ ac:["ay btn w09 t","","_ati_end","bd8 cb",""], c: 
-				[
-					{ s:["c x t cb s","End Chat"] },
-					{ s:["c w03 h cb tc micon","last_page"] },
-					{ div:["e"] }
-				]}
-			]}
-		]}, 
-
-		{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
-		{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
-		{ div:["d w06 t01"], s:["abs w06 h03 gw t15 zzzz",""] },
-
 		{ div:["e"] }
 	]}
 ]};
