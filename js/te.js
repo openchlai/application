@@ -831,7 +831,7 @@ function umime (el, u, a, r, m)
 		}
 		if (vo)
 		{
-			console.log ("[umime]"+v);
+			console.log ("[umime/json]"+v);
 			ra[u[3]] = vo;
 			nd (el, te[u[3]], [], r, [0]);
 			return;

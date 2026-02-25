@@ -243,7 +243,8 @@ function uo_ (el, u, i, o)
 
 function uo (el, u, a, r, m)
 {
+	// console.log ("[uo]"+JSON.stringify (u))
 	var o = ra[u[3]];
-	uo_(el,u,3,o);
+	uo_ (el,u,3,o);
 }
 
