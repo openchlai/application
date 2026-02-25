@@ -194,14 +194,21 @@ te["pmessage_rpt_count"] = { pmessage_rpt_:["Count", "src","src","src", "src", "
 
 te["pmessage_rpt_main"] = { c:
 [
-	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio","1"] }, { p:["tabv","vt"], pmessage_rpt_count:[] } ]},
-	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv oh","vt"] } ] },
-	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-	{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+	{ div:[], c:
+	[
+		// todo rpt toolbar: metrics, saved reports
+	]},
+	{ div:[], c:
+	[
+		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio","1"] }, { p:["tabv","vt"], pmessage_rpt_count:[] } ]},
+		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv oh","vt"] } ] },
+		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+		{ div:[], c:[ { input:["g","","pmessage_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+	]}
 ]};
 
 // ---------------------------------------------------------------------------------------------
@@ -492,12 +499,12 @@ te["pmessage_main"] = { c:
 [
 	{ div:["tt","vb"], c:
 	[
-		{ div:["c t03"], c:
+		{ div:["c w17_"], c:
 		[
 			{ div:["","va"], s:["",""], c:
 			[
 				{ input:["g","","pmessage_t_","0","radio","1"] },
-				{ ac:["c","pmessage_main-pmessages-vftab","_u","x y cb b h2","Other Channels"] }, 
+				{ ac:["c","pmessage_main-pmessages-vftab","_u","x y cb b h3_","Other Channels"] }, 
 				//{ ac:["c t02 x ay","","_dd","h02 w02 gws_ awb",""] },
 				{ div:["e"] } //, arg:["","_title","%5"] }
 			]},
@@ -507,28 +514,21 @@ te["pmessage_main"] = { c:
 			]}
 		]},
 
-		{ div:["c l40"], ac:["ay","pmessage_f-pmessages_f","_vpf","x t01 bd_ cb s",""], c:
+		{ div:["c"], ac:["ay","pmessage_f-pmessages_f","_vpf","x bd_ cb s",""], c:
 		[ 
-			{ s:["c t04 h3_ micon","search"] },
+			{ s:["c t h3_ micon","search"] },
 			{ div:["c x y","","Search"] }, 
 			{ div:["e"] }
 		]},
 
-		{ div:["c l40"], ac:["ay","pmessages","_download","x t01 bd_ cb s",""], c:
-		[ 
-			{ s:["c t04 h3_ micon","download"] },
-			{ div:["c x y","","Download"] }, 
-			{ div:["e"] }
-		]},
-		
 		{ div:["c l40"], c: 
 		[
 			{ arg:["pmessage_list-pmessages","","0"] },
 			{ input:["g","","pmessages_t_","0","radio","1"] },
-			{ li:["opto x gw s cb","pmessage_list-pmessages"], ev:["_tab"], c:
+			{ li:["opto x02 s cb","pmessage_list-pmessages"], ev:["_tab"], c:
 			[
-				{ s:["c l t h3_ micon","list"] },
-				{ div:["c xx y","","List"] }, 
+				{ s:["c y04 h3_ micon","list"] },
+				{ div:["c x y03","","List"] }, 
 				{ div:["e"] }
 			]}
 		]},
@@ -537,15 +537,22 @@ te["pmessage_main"] = { c:
 		[
 			{ arg:["pmessage_rpt_vw-pmessages-@","","1,0"] },
 			{ input:["g","","pmessages_t_","1","radio"] },
-			{ li:["opto x gw s cb","pmessage_rpt_main-r_"], ev:["_tab"], c:[ { div:[], c:
+			{ li:["opto x02 s cb","pmessage_rpt_main-r_"], ev:["_tab"], c:
 			[
-				{ s:["c l t h3_ micon","bar_chart"] },
-				{ s:["c xx y","Reports"] }, 
+				{ s:["c y04 h3_ micon","bar_chart"] },
+				{ s:["c x y03","Reports"] }, 
 				{ div:["e"] }
-			]} ]}
+			]}
 		]},
 
-		{ div:["e"], c:[ { arg:["","","pmessage_list-pmessages"] }, { arg:["","","0"] }, { arg:["","","-1"] }, { arg:["","",""] } ] }
+		{ div:["c l40"], ac:["ay","pmessages","_download","x bd_ cb s",""], c:
+		[ 
+			{ s:["c t h3_ micon","download"] },
+			{ div:["c x y","","Download"] }, 
+			{ div:["e"] }
+		]},
+
+		{ div:["e"], c:[ { arg:["","","pmessage_list-pmessages"] }, { arg:["","","0"] }, { arg:["","","100"] }, { arg:["","",""] } ] }
 	]},
 
 	{ div:["yy","vf"], c:[ { div:["","pmessage_f-pmessages_f"], c: // ev:["_n_vpf"], c:
@@ -555,7 +562,7 @@ te["pmessage_main"] = { c:
 
 	{ div:[], c:
 	[
-		{ div:[], c:[ { input:["g","","pmessages_v","0","radio","1"] }, { p:["tabv yy","vt"], pmessage_list:[] } ] },
+		{ div:[], c:[ { input:["g","","pmessages_v","100","radio","1"] }, { p:["tabv","vt"], pmessage_list:[] } ] },
 		{ div:[], c:[ { input:["g","","pmessages_v","1","radio"] }, { p:["tabv","vt"] } ] },				
 	]}
 ]};

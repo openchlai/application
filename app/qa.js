@@ -195,14 +195,21 @@ te["qa_rpt_count"] 		= { qa_rpt_:["Count", "chan_user_name","chan_user_name","ch
 
 te["qa_rpt_main"] = { c:
 [
-	{ div:[], c:[ { input:["g","","qa_rptv","0","radio","1"] }, { p:["tabv","vt"], qa_rpt_count:[] } ]},
-	{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv oh","vt"] } ] },
-	{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-	{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-	{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-	{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-	{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
-	{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+	{ div:[], c:
+	[
+		// todo rpt toolbar: metrics, saved reports
+	]},
+	{ div:[], c:
+	[
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio","1"] }, { p:["tabv","vt"], qa_rpt_count:[] } ]},
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv oh","vt"] } ] },
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+		{ div:[], c:[ { input:["g","","qa_rptv","0","radio"] }, { p:["tabv","vt"] } ] },
+	]}
 ]};
 
 // -----------------------------
@@ -793,12 +800,12 @@ te["qa_main"] = { c:
 [
 	{ div:["tt","vb"], c:
 	[
-		{ div:["c t03"], c:
+		{ div:["c w15_"], c:
 		[
 			{ div:["","va"], s:["",""], c:
 			[
 				{ input:["g","","qa_t_","0","radio","1"] },
-				{ ac:["c","qa_main-qas-vftab","_u","x y cb b h2","QA Results"] }, 
+				{ ac:["c","qa_main-qas-vftab","_u","x y cb b h3_","QA Results"] }, 
 				//{ ac:["c t02 x ay","","_dd","h02 w02 gws_ awb",""] },
 				{ div:["e"] } //, arg:["","_title","%5"] }
 			]},
@@ -808,17 +815,10 @@ te["qa_main"] = { c:
 			]}
 		]},
 
-		{ div:["c l40"], ac:["ay","qa_f-qas_f","_vpf","x t01 bd_ cb s",""], c:
+		{ div:["c"], ac:["ay","qa_f-qas_f","_vpf","x bd_ cb s",""], c:
 		[ 
-			{ s:["c t04 h3_ micon","search"] },
+			{ s:["c t h3_ micon","search"] },
 			{ div:["c x y","","Search"] }, 
-			{ div:["e"] }
-		]},
-
-		{ div:["c l40"], ac:["ay","qas","_download","x t01 bd_ cb s",""], c:
-		[ 
-			{ s:["c t04 h3_ micon","download"] },
-			{ div:["c x y","","Download"] }, 
 			{ div:["e"] }
 		]},
 
@@ -826,10 +826,10 @@ te["qa_main"] = { c:
 		[
 			{ arg:["qa_list-qas","","0"] },
 			{ input:["g","","qas_t_","0","radio","1"] },
-			{ li:["opto x gw s cb","qa_list-qas"], ev:["_tab"], c:
+			{ li:["opto x02 s cb","qa_list-qas"], ev:["_tab"], c:
 			[
-				{ s:["c l t h3_ micon","list"] },
-				{ div:["c xx y","","List"] }, 
+				{ s:["c y04 h3_ micon","list"] },
+				{ div:["c x y03","","List"] }, 
 				{ div:["e"] }
 			]}
 		]},
@@ -838,15 +838,22 @@ te["qa_main"] = { c:
 		[
 			{ arg:["qa_rpt_vw-qas-@","","1,0"] },
 			{ input:["g","","qas_t_","1","radio"] },
-			{ li:["opto x gw s cb","qa_rpt_main-r_"], ev:["_tab"], c:[ { div:[], c:
+			{ li:["opto x02 s cb","qa_rpt_main-r_"], ev:["_tab"], c:
 			[
-				{ s:["c l t h3_ micon","bar_chart"] },
-				{ s:["c xx y","Reports"] }, 
+				{ s:["c y04 h3_ micon","bar_chart"] },
+				{ s:["c x y03","Reports"] }, 
 				{ div:["e"] }
-			]} ]}
+			]}
 		]},
-		
-		{ div:["e"], c:[ { arg:["","","qa_list-qas"] }, { arg:["","","0"] }, { arg:["","","-1"] }, { arg:["","",""] } ] }
+
+		{ div:["c l40"], ac:["ay","qas","_download","x bd_ cb s",""], c:
+		[ 
+			{ s:["c t h3_ micon","download"] },
+			{ div:["c x y","","Download"] }, 
+			{ div:["e"] }
+		]},
+
+		{ div:["e"], c:[ { arg:["","","qa_list-qas"] }, { arg:["","","0"] }, { arg:["","","100"] }, { arg:["","",""] } ] }
 	]},
 
 	{ div:["yy","vf"], c:[ { div:["","qa_f-qas_f"], c: // ev:["_n_vpf"], c:
@@ -856,7 +863,7 @@ te["qa_main"] = { c:
 
 	{ div:[], c:
 	[
-		{ div:[], c:[ { input:["g","","qas_v","0","radio","1"] }, { p:["tabv yy","vt"], qa_list:[] } ] },
+		{ div:[], c:[ { input:["g","","qas_v","100","radio","1"] }, { p:["tabv","vt"], qa_list:[] } ] },
 		{ div:[], c:[ { input:["g","","qas_v","1","radio"] }, { p:["tabv","vt"] } ] },				
 	]}
 ]};

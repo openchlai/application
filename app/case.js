@@ -611,7 +611,7 @@ te["case_priority_r"] = { div:[], ac:["ay","","_sel","xx tt b05 cb",""], c:
 	{ div:["e"], c:[ { arg:["id-0","","%0"] } ] }
 ]};
 
-te["case_priority_enum"] = { case_enum_sel:["x y",null,null, "tag-r_--o--::case_priority:0:1-priority-%0-", "c w12",  null," ::case_priority:0:1","priority"," %0","", 
+te["case_priority_enum"] = { case_enum_sel:["x y",null,null, "tag-r_--o--::case_priority:0:1-priority-%0-", "c w11",  null," ::case_priority:0:1","priority"," %0","", 
 "dd w17 ba_b gw_ cb","case_priority_r","case_priority_form"] };
 
 // ---
@@ -674,7 +674,7 @@ te["case_ed_sub_referals"] = { div:["t15"], c: // 117:referal
 [
 	{ arg:["","",""] },
 	{ div:["w01 tt bb2_b abs"] },
-	{ div:["ll _ba_"], case_referal_enum:["Referals",":v:cases:referals"] },
+	{ div:["ll"], case_referal_enum:["Referals",":v:cases:referals"] },
 	{ p:["","_case_other_referal_"], usub:["case_ed_sub_other_referal","r_",":v:cases:referals",CASE_REFERAL_OTHER_ID] },
 ]};
 
@@ -838,26 +838,23 @@ te["case_reporter_uuid_arg"] = { arg:["","reporter_uuid_id","%0"] };
 
 te["case_form_col_1"] = { c:
 [
-	{ div:[], c:
+	{ div:["t15 w57"], case_category_enum:[] },
+	
+	{ div:["t15"], c:
 	[
-		{ div:["t15 w57 _ba_"], case_category_enum:[] },
-		{ div:["t15"], c:
+		{ div:[], c:
 		[
-			{ div:[], c:
-			[
-				{ s:["c x y","Is this Case GBV Related?"] },
-				{ s:["c t cr b h2","*"] },
-				{ div:["e"] }
-			]},
-			{ p:["","o"], c:
-			[
-				{ uchk:["case_yesno_r",":v:cases:gbv_related","yesnoo","",   "gbv_related"," %2"] },
-				{ div:["e"] }		
-			]}
+			{ s:["c x y","Is this Case GBV Related?"] },
+			{ s:["c t cr b h2","*"] },
+			{ div:["e"] }
 		]},
-		{ div:["e"] }
+		{ p:["","o"], c:
+		[
+			{ uchk:["case_yesno_r",":v:cases:gbv_related","yesnoo","",   "gbv_related"," %2"] },
+			{ div:["e"] }		
+		]}
 	]},
-
+	
 	{ p:["","_case_medical_exam_"], usub:["case_ed_sub_medical_exam,case_ed_sub_medical_exam","r_",":v:cases:case_category_fullname_id", CASE_CATEGORY_PHYSICAL_N_SEXUAL_ABUSE_ID] },	
 	{ p:["","_case_incidence_"], usub:["case_ed_sub_incidence","r_",":v:cases:case_category_fullname_id",CASE_CATEGORY_SEXUAL_ABUSE_ID] },
 	
@@ -883,13 +880,13 @@ te["case_form_col_1"] = { c:
 		{ p:["","o"], c:[ { textarea:["w57 wx58 mh15 xx yy ba","","plan",":v:cases:plan","Enter Case Plan"] } ] }
 	]},
 	
-	{ p:["_ba_","_case_justice_"], usub:["case_ed_sub_justice","r_",":v:cases:case_category_fullname_id",CASE_CATEGORY_ABUSE_ID] },
+	{ p:["","_case_justice_"], usub:["case_ed_sub_justice","r_",":v:cases:case_category_fullname_id",CASE_CATEGORY_ABUSE_ID] },
 	
 	{ div:["t15"], c:
 	[
-		{ div:["c w15 r20 _ba_"], case_priority_enum:["Priority","*",":v:cases:priority"] },
-		{ div:["c w16 r20 _ba_"], case_status_enum:["Status","*",":v:cases:status"] },
-		{ div:["c w22 _ba_"], case_escalated_to_enum:["Escalated To",":v:cases:escalated_to_id",":v:cases:escalated_to"," %0"] },
+		{ div:["c w15 r20"], case_priority_enum:["Priority","*",":v:cases:priority"] },
+		{ div:["c w16 r20"], case_status_enum:["Status","*",":v:cases:status"] },
+		{ div:["c w22"], case_escalated_to_enum:["Escalated To",":v:cases:escalated_to_id",":v:cases:escalated_to"," %0"] },
 		{ div:["e"] }
 	]}
 ]};
@@ -963,7 +960,7 @@ te["case_form_col_0"] = {  c:
 		
 	{ div:["t15"], c:
 	[ 
-		{ div:["_ba_"], case_service_enum:["Services Offered",":v:cases:services"] },
+		{ div:[], case_service_enum:["Services Offered",":v:cases:services"] },
 		{ p:["bl2_b","_case_referals_"], usub:["case_ed_sub_referals","r_",":v:cases:services",CASE_SERVICE_REFERAL_ID] },
 		{ p:["bl2_b","_case_police_ref_"], usub:["case_ed_sub_police_ref","r_",":v:cases:services",CASE_SERVICE_POLICE_ID] },
 		{ p:["bl2_b","_case_other_service_"], usub:["case_ed_sub_other_service","r_",":v:cases:services",CASE_SERVICE_OTHER_ID] },
@@ -971,7 +968,7 @@ te["case_form_col_0"] = {  c:
 		
 	{ div:["t15"], c:
 	[
-		{ div:["_ba_"], case_knowabout116_enum:["How did you know about 116?",":v:cases:knowabout116_id",":v:cases:knowabout116"," %0"] }
+		{ div:[], case_knowabout116_enum:["How did you know about 116?",":v:cases:knowabout116_id",":v:cases:knowabout116"," %0"] }
 	]},
 ]};
 
@@ -994,7 +991,7 @@ te["case_form_"] = { div:["","ve"], c: // new case
 
 	{ div:["x20 y"], c:[ { p:["c w100","nb"], c:[ { u:["nb","cases_nb"] }, { u:["nb","newcase_nb"] } ] }, { div:["e"] } ] },
 					
-	{ div:["x20 w130_"], c:
+	{ div:["x20 w130_ _ba_"], c:
 	[
 		{ div:["c w35_ r50"], case_form_col_0:[null] },
 		{ div:["c w80_"], case_form_col_1:[] },
@@ -1975,13 +1972,13 @@ te["case_main"] = { c:
 [
 	{ div:["tt","vb"], c:
 	[
-		{ div:["c"], c:
+		{ div:["c w15_"], c:
 		[
 			{ div:["","va"], s:["",""], c:
 			[
 				{ input:["g","","cases_t_","0","radio","1"] },
 				{ ac:["c","case_main-cases-vftab","_u","x y cb b h3_","::case_title:5:1"] }, 
-				{ ac:["c t x ay","","_dd","h02 w02 gws_ awb",""] },
+				{ ac:["c t ay","","_dd","h02 w02 awb",""] },
 				{ div:["e"], arg:["","_title","%5"] }
 			]},
 			{ div:["dd x y gw ba sh nd w14","vdd"], c:
@@ -2002,18 +1999,18 @@ te["case_main"] = { c:
 			]}
 		]},
 
-		{ div:["c l30"], ac:["ay","case_f-cases_f","_vpf","x bd_ cb s",""], c:
+		{ div:["c"], ac:["ay","case_f-cases_f","_vpf","x bd_ cb s",""], c:
 		[ 
 			{ s:["c t h3_ micon","search"] },
 			{ div:["c x y","","Search"] }, 
 			{ div:["e"] }
 		]},
 		
-		{ div:["c l30"], c: 
+		{ div:["c l40"], c: 
 		[
 			{ arg:["case_list-cases","","0"] },
 			{ input:["g","","cases_t_","0","radio","1"] },
-			{ li:["opto xx s cb bd_","case_list-cases"], ev:["_tab"], c:
+			{ li:["opto x02 s cb","case_list-cases"], ev:["_tab"], c:
 			[
 				{ s:["c y04 h3_ micon","list"] },
 				{ div:["c x y03","","List"] }, 
@@ -2021,11 +2018,11 @@ te["case_main"] = { c:
 			]}
 		]},
 
-		{ div:["c l30"], c: 
+		{ div:["c l40"], c: 
 		[
 			{ arg:["case_rpt_vw-cases-@","","1,0"] },
 			{ input:["g","","cases_t_","1","radio"] },
-			{ li:["opto xx s cb bd_","case_rpt_main-r_"], ev:["_tab"], c: // todo: reports quick links (save reports, commmon metrics) ?
+			{ li:["opto x02 s cb","case_rpt_main-r_"], ev:["_tab"], c: // todo: reports quick links (save reports, commmon metrics) ?
 			[
 				{ s:["c y04 h3_ micon","bar_chart"] },
 				{ s:["c x y03","Reports"] }, 
@@ -2033,7 +2030,7 @@ te["case_main"] = { c:
 			]}
 		]},
 
-		{ div:["c l30"], ac:["ay","cases","_download","x bd_ cb s",""], c:
+		{ div:["c l40"], ac:["ay","cases","_download","x bd_ cb s",""], c:
 		[ 
 			{ s:["c t h3_ micon","download"] },
 			{ div:["c x y","","Download"] }, 
