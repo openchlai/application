@@ -1,11 +1,10 @@
-
 te["case_contact_ed_age"] = { c:
 [
 	{ div:["","vb"], c:[ { p:["","o"], c:
 	[
-		{ div:[], c:[ { input:["g","","age_t","0","radio","1"] }, { ac:["c w07 rc_","","_tab","x03 y cd","Age"] } ] },
-		{ div:[], c:[ { input:["g","","age_t","1","radio"] }, { ac:["c w07 rc_","","_tab","xx y cd","DOB"] } ] },
-		{ div:[], c:[ { input:["g","","age_t","2","radio"] }, { ac:["d w07 rc_","","_tab","y cd tr","Age Group"] } ] }, 
+		{ div:[], c:[ { input:["g","","age_t","0","radio","1"] }, { ac:["c w07 rc_","","_tab","x03 y cs","Age"] } ] },
+		{ div:[], c:[ { input:["g","","age_t","1","radio"] }, { ac:["c w07 rc_","","_tab","xx y cs","DOB"] } ] },
+		{ div:[], c:[ { input:["g","","age_t","2","radio"] }, { ac:["d w07 rc_","","_tab","y cs tr","Age Group"] } ] }, 
 		{ div:["e"] }
 	]} ]},
 	{ div:["","vaa"], c: 
@@ -118,7 +117,7 @@ te["case_contact_ed_"] = { c: // div:["w68 ma sh__ gw_"], c:
 [	
 	{ div:[], c:
 	[
-		{ s:["c x y15 b h3",null] },
+		{ s:["c l r25 y15 b h3",null] },
 		{ ac:["d","","_uvp","xx y08 h cb","&Cross;"] },
 		{ div:["e"] }
 	]},
@@ -156,13 +155,15 @@ te["case_contact_ed_"] = { c: // div:["w68 ma sh__ gw_"], c:
 
 te["case_contact_ed"] = { div:["w64 x15 yy ma sh__ gw_ bd8"], ev:["_undd"], c:
 [
-	{ case_contact_ed_:["Edit Reporter", DISPOSITION_ID_CONTACT_EDIT, "activity_contact_ed-contacts^disposition","_activity_postj","Update","Updating...","","_uvp", "Cancel"] }
+	{ case_contact_ed_:["Edit Contact", DISPOSITION_ID_CONTACT_EDIT, "activity_contact_ed-contacts^disposition","_activity_postj","Update","Updating...","","_uvp", "Cancel"] }
 ]};
 
 te["case_contact_new"] = { div:["w64 x15 yy ma sh__ gw_ bd8"], ev:["_undd"], c:
 [
-	{ case_contact_ed_:["New Reporter", DISPOSITION_ID_CONTACT_NEW, "activity_contact_new-contacts^disposition", "_activity_postj", "Create", "Creating...", "", "_uvp", "Cancel"] }
+	{ case_contact_ed_:["New Contact", DISPOSITION_ID_CONTACT_NEW, "activity_contact_new-contacts^disposition", "_activity_postj", "Create", "Creating...", "", "_uvp", "Cancel"] }
 ]}
+
+// -------
 
 te["contact_ed_r_"] = { div:["","ve"], c:
 [

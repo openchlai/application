@@ -336,7 +336,7 @@ ul:hover {background-color:#cee8f0; color:black;}
 :checked + .lr { background-color:#dadcdf; }
 :checked + .lr .r { border-left:1px solid darkorange; }
 
-:checked + .rc_ { font-weight:bold; }
+:checked + .rc_ a { color:dimgray; }
 
 .navl { padding:5px; width:11px; height:10px; background-color:orange; display:none; }
 .savl { display:none; }
@@ -552,14 +552,14 @@ ul:hover {background-color:#cee8f0; color:black;}
 .w120_ {width:1200px; }
 .w125_ {width:1250px; }
 .w130 {width:1300px; overflow:hidden;}
-.w130_ {width:1300px; }
+.w130_ {width:1300px; }f
 .w150 {width:1500px; overflow:hidden;}
 .w160 {width:1500px; overflow:hidden;}
 .w170 {width:1700px; overflow:hidden;}
 .w200 {width:2000px; overflow:hidden;}
 .w250 {width:2500px; overflow:hidden;}
 .w300 {width:3000px; overflow:hidden;}
-.w400 {width:3000px; overflow:hidden;}
+.w400 {width:4000px; overflow:hidden;}
 .w700 {width:7000px; overflow:hidden;}
 
 .oh { overflow:hidden; }

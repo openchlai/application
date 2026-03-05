@@ -7,7 +7,7 @@ function _ro () { return false; }
 
 function sub (el, u, r, v, v_, f)
 {
-	// console.log ("    [sub-check] ("+u[0]+") " + v +"==" + v_ + " | "+f); 
+	console.log ("[sub] is "+ v +" in " + v_ + " | "+u[0]); 
 	var vv = v.split (",");
 	var vv_ = v_.split (",");
 	for (var j=0; j<vv.length; j++)
@@ -49,7 +49,7 @@ function sel_sub (coll, v, f, m=0)
 		{
 			var k = p_.nextSibling.value.split ("-");
 			var kk = re[(k[0]+"_k")]
-                	r_[kk[k[1]][0]] = v.split(":")[0];
+			r_[kk[k[1]][0]] = v.split(":")[0];
 		}
 		if (m==1) p_.innerHTML="";
 		sub (p_, u_, r_, v, coll[i].value, f);
@@ -95,8 +95,11 @@ function sel (el, r_)
 	p_.innerHTML = "";
 	nd (p_, te[u_[0]], a_, r_, [a_.length]);
 	
-	if (b.nextSibling && b.nextSibling.id=="sub") sel_sub (b.nextSibling.childNodes, r_[2], true, 1);
-	
+	if (b.nextSibling && b.nextSibling.id=="sub")
+	{
+		sel_sub (b.nextSibling.childNodes, r_[2], true, 1);
+	}
+
 	if (b.nextSibling && b.nextSibling.nextSibling && b.nextSibling.nextSibling.id=="fn")
 	{
 		window[b.nextSibling.nextSibling.firstChild.id] (b.nextSibling.nextSibling.firstChild, r_);
@@ -262,13 +265,6 @@ function _opt ()
 	this.previousSibling.checked = true;
 	if (this.parentNode.lastChild.id=="sub") 
 	{
-		var el = this.parentNode.lastChild.firstChild;
-		var u_ = el.id.split ("-");
-		var p = _( __(el,u_[2]), u_[3]);
-		var r_ = re[u_[1]][0].slice (0); 
-		p.innerHTML = "";
-		sub (p, u_, r_, this.previousSibling.value, el.value, true);
+		sel_sub (this.parentNode.lastChild.childNodes, this.previousSibling.value, true, 1);
 	}
 }
-
-

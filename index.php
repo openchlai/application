@@ -129,6 +129,8 @@ echo "\r\nrz[\"location\"]=[".$LOCATION_HIERARCHY."];\r\n";
 
 include "app/app.js";
 
+include "/usr/src/opensrc/CHS-UG/giz.js";
+
 
 echo "</script>
 ";
