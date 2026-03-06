@@ -527,7 +527,7 @@ te["vp_apply_"] = { div:["xx t b15"], c: //
 
 te["vp_apply"] = { vp_apply_:[null,"_uvpf","","_uvp"] };
 
-te["vp_sav"] = { c:
+te["vp_sav_"] = { c:
 [
 	{ div:["d l15"], c:
 	[ 
@@ -537,10 +537,12 @@ te["vp_sav"] = { c:
 	{ div:["d","va"], ac:["ay",null,null,"w09 y04 bd8 ba tc cd",""], c:
 	[ 
 		{ s:["",null] },
-		{ p:["g","o"], arg:["",".id","%0"] } 
+		{ p:["g","o"], arg:["",".id",null] } 
 	]},
 	{ div:["e"] }
 ]};
+
+te["vp_sav"] = { vp_sav_:[null,null,null,null,null,null,null,"%0"] };
 
 // -----------------------------------------------------------------
 

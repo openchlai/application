@@ -211,13 +211,13 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ bd8 gw_"], c:
 
 		{ p:["x25 not_dept_of_labor","_case_client_disabled_"], usub:["case_client_ed_sub_disabled","r_",":v:clients:is_disabled","1"] },
 
-		{ div:["x25 t30 b20"], vp_sav:[null,null,null,null,null,null,null] }
+		{ div:["x25 t30 b20"], vp_sav_:[null,null,null,null,null,null,null,null] }
 	]}
 ]};	
 
-te["case_client_ed"] = { case_client_ed_:["Edit Client Details","client_ed-clients","_activity_postj","Update","Updating...","","_uvp","Cancel"] };
+te["case_client_ed"] = { case_client_ed_:["Edit Client Details","client_ed-clients","_activity_postj","Update","Updating...","","_uvp","Cancel",""] };
 
-te["case_client_new"] = { case_client_ed_:["New Client","client_new-clients","_activity_postj","Create","Creating...","","_uvp","Cancel"] };
+te["case_client_new"] = { case_client_ed_:["New Client","client_new-clients","_activity_postj","Create","Creating...","","_uvp","Cancel","%0"] };
 
 // --------------------------------------------------------------------------------------------
 
