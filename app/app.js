@@ -122,7 +122,7 @@ var UU =
 
 "client_del":{ 202:[["case_client_del","clients_del","va"]], 412:[["nb","errors","v","nb"]] },
 "client_ed":{ 202:[["uvpfn","clients","vp"]], 200:[["case_client_ed","clients","vp"]], 412:[["nb","errors","v","nb"]] },
-"client_new":{ 201:[["uvpfn","clients","vp"]], 412:[["nb","errors","v","nb"]] },
+"client_new":{ 201:[["uvpfn","clients","vp"]],  202:[["uvpfn","clients","vp"]], 412:[["nb","errors","v","nb"]] },
 "client_vw_id":{ 200:[["case_client_vw_id","clients"]] },
 
 "perpetrator_del":{ 202:[["case_perpetrator_del","perpetrators_del","va"]], 412:[["nb","errors","v","nb"]] },
