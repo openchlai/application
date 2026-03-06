@@ -215,9 +215,9 @@ te["case_client_ed_"] = { div:["w68 ma mb sh__ bd8 gw_"], c:
 	]}
 ]};	
 
-te["case_client_ed"] = { case_client_ed_:["Edit Client Details","client_ed-clients","_activity_postj","Update","Updating...","","_uvp","Cancel",""] };
+te["case_client_ed"] = { case_client_ed_:["Edit Client Details","client_ed-clients","_activity_postj","Update","Updating...","","_uvp","Cancel","%0"] };
 
-te["case_client_new"] = { case_client_ed_:["New Client","client_new-clients","_activity_postj","Create","Creating...","","_uvp","Cancel","%0"] };
+te["case_client_new"] = { case_client_ed_:["New Client","client_new-clients","_activity_postj","Create","Creating...","","_uvp","Cancel",""] };
 
 // --------------------------------------------------------------------------------------------
 
