@@ -122,14 +122,14 @@ include "app/attachment.js";
 include "app/case.js";
 include "app/case_activity.js";
 include "app/category.js";
-include "app/aii.js";
+//include "app/aii.js";
 include "app/wallboard.js";
 
 echo "\r\nrz[\"location\"]=[".$LOCATION_HIERARCHY."];\r\n";
 
 include "app/app.js";
 
-include "/usr/src/opensrc/CHS-UG/giz.js";
+//include "/usr/src/opensrc/CHS-UG/giz.js";
 
 
 echo "</script>

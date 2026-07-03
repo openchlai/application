@@ -45,9 +45,10 @@ var VOICEAPPS_UA =
 		delegate: { onInvite: null },
 	    	transportOptions: 
 		{
-			server : "wss://"+VA_SIP_HOST+"/ws/",
-			//traceSip: true,
-			//log: { level:"log" },
+			server : "wss://"+VA_SIP_HOST+":8089/ws/",
+			//server : "wss://"+VA_SIP_HOST+"/ws/",
+			// traceSip: true,
+			// log: { level:"log" },
 		},
 		//log: { level:"log" },
 	}
@@ -103,8 +104,11 @@ VOICEAPPS_UA.disconnect = function ()
 VOICEAPPS_UA.re_connect = function (nbr, t=1)
 {
 	var p = document.getElementById ("phone_status"); // show error
-	p.innerHTML = "";
-	nd (p, te["nb"], [], nbr, [0])
+	if (p)
+	{
+		p.innerHTML = "";
+		nd (p, te["nb"], [], nbr, [0])
+	}
 
 	if (t!=1) return;
 
@@ -146,7 +150,7 @@ VOICEAPPS_UA.on_connect = function ()
 	.catch ((error) => 
 	{
 		console.log ("phone.js: [Registration Failed] "+error)
-	 	VOICEAPPS_UA.re_connect (["xx y gp cr",e], 0)
+	 	VOICEAPPS_UA.re_connect (["xx y gp cr",error], 0)
 		return;
 	})
 }
@@ -346,7 +350,7 @@ function VOICEAPPS_SESSION (_leg)
 		var el_ = document.createElement ("P"); 
 		el_.id = this.ssid.substr (0,20);
 		p.insertBefore (el_, p.firstChild);
-		var el = nd (el_, te["call_session"], [(this.leg==1?"/helpline/images/dialtone.wav":"/helpline/images/earlymedia.mp3")], r, [1]);
+		var el = nd (el_, te["call_session"], [(this.leg==1?"/tower/images/dialtone.wav":"/tower/images/earlymedia.mp3")], r, [1]);
 		el = el.parentNode.parentNode;
 		this.el = el;
 		var coll = el.childNodes[1].childNodes;
@@ -418,7 +422,7 @@ function VOICEAPPS_SESSION (_leg)
 
 			if (state<3) // update ring tone
 			{
-				me.mediaElement.src = "/helpline/images/earlymedia.mp3";
+				me.mediaElement.src = "/tower/images/earlymedia.mp3";
 				me.mediaElement.play ();
 				me.mediaElement.loop = true;
 			}

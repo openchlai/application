@@ -474,7 +474,7 @@ function chan_agtk_vw_ufn (el, u, a, r, m)
 	let ch = re["channels"][src_id]
 	if (ch && ch[AMI.CHAN_STATE_HANGUP].length==0)
 	{
-		chan_agtk_vw (ch, el.parentNode)
+		chan_agtk_vw (el.parentNode, ch)
 	}
 }
 
@@ -615,7 +615,7 @@ function chan_add (vp_add, ch, ch_, ts)
 	{
 		if (vp_add.firstChild.firstChild.id=="add_ld") vp_add.firstChild.innerHTML="<div id='add_ed'></div>"; 
 		var el_ = chani ("chan_add", vp_add.nextSibling, ch_, ts); 
-		if (ch_[AMI.CHAN_XFER]=="obc" && el_.firstChild.lastChild.childNodes.length==0) // set oly during create
+		if (ch_[AMI.CHAN_XFER]=="dialing" && el_.firstChild.lastChild.childNodes.length==0) // set oly during create
 		{
 			nd (el_.firstChild.lastChild, te["chan_add_btns"], [], ch_, [0]);
 		}
@@ -629,7 +629,7 @@ function chan_add (vp_add, ch, ch_, ts)
 	}			
 }
 
-function chan_agtk_vw (ch, p)
+function chan_agtk_vw (p, ch)
 {
 	// vw status bar
 	var coll = p.previousSibling.firstChild.firstChild.childNodes
@@ -647,7 +647,7 @@ function chan_agtk_vw (ch, p)
 	if (vs) VOICEAPPS_UA.btnholdstate (vs)
 }
 
-function chan_agtk (el, ch, pcoll, pv, pva)
+function chan_agtk (el, ch)
 {
 	var coll = el.childNodes[1].childNodes
 	coll[0].childNodes[2].innerHTML = ch[AMI.CHAN_CID_NUM_2];
@@ -658,22 +658,6 @@ function chan_agtk (el, ch, pcoll, pv, pva)
 	el_.id = "ts";
 	el_.value = ch[AMI.CHAN_STATUS_TS_];
 	el_.previousSibling.innerHTML = ch[AMI.CHAN_STATUS_TS_TXT_];
-
-	if (!pv) return;									// happens when loading main - sidepanel loads before vw
-	var f = pv.childNodes.length;
-	
-	// if (f>0 && no form && no popup and wrapup ended)		// todo: auto-close 
-
-	if (f==0 && !chan_a[ch[2]].vw && !chan_a[ch[2]].src_end_ts) // auto-popup 
-	{
-		if (ch[AMI.CHAN_UNIQUEID_2].length<1) return; 		// wait for src_uid2 -> activity args are not updated in realtime 
-		chan_a[ch[2]].vw = Date.now();
-		pcoll[3].childNodes[1].firstChild.checked = true;
-		pcoll[6].childNodes[1].firstChild.checked = true;	
-		el.firstChild.checked = true;	
-		pv.previousSibling.checked = true;
-		url (pv, "activity_vw_id_call", "activities", coll[2].firstChild.value);
-	}
 }
 
 function chans_pop (ts, pv, pva)
@@ -722,12 +706,12 @@ function chans_pop (ts, pv, pva)
 			o["action"] 			= "complete";
 			if (el) 
 			{
-				chan_agtk (el, ch, null, null, {});
+				chan_agtk (el, ch);
 			}
 			if (pva.src && pva.src_uid && pva.src=="call" && pva.src_uid==ch[AMI.CHAN_UNIQUEID]) // matching vw
 			{
-				chan_agtk_vw (ch, pv.firstChild.childNodes[1])
-				if ((chan_a[ch[2]]["status"]*1) < 15) activity_close (pv); // autoclose vw if not answered
+				chan_agtk_vw (pv.firstChild.childNodes[1], ch)
+				if ((chan_a[ch[2]]["status"]*1) < 5) activity_close (pv); // autoclose vw if not answered
 			}
 			url (pn, "activity_new", "activities", "", null, 2, o, "POST");
 		}
@@ -760,7 +744,7 @@ function chans (o, k, ts, pcoll, pv, pva)
 	var is_trunk = 0;
 	var c = [0,0,0,0,0,0,0];
 	var cn = ["","","",""];
-	
+//console.log ("chan-->"+k.length);	
 	if (pvp && pvp.firstChild && pvp.firstChild.firstChild)
 	{
 		if (pvp.firstChild.firstChild.id=="vp_add") vp_add = pvp.firstChild.childNodes[1];
@@ -791,9 +775,13 @@ function chans (o, k, ts, pcoll, pv, pva)
 			continue;
 		}
 
+		console.log ("->"+ch[6]+","+ ch[AMI.CHAN_SIPCALLID]+","+ch[3].substr(6,4)+","+user_cid);
+
 		if (ch[6].substr(0,4)=="DLPN" && ch[AMI.CHAN_SIPCALLID].length>0 && (ch[3].substr(6,4)==(user_cid+"-") || ch[3].substr(6,5)==("0"+user_cid+"-")))  
 		{
 			var vs_ = CALLS[ch[AMI.CHAN_SIPCALLID].substr (0,20)]
+
+			console.log ("agtk"+vs_);
 
 			chan_status ("chan_agtk", ch);
 			if (chan_a[ch[2]]===undefined) 
@@ -834,15 +822,34 @@ function chans (o, k, ts, pcoll, pv, pva)
 				url (pn, "activity_new", "activities", "", null, 2, chan_a[ch[2]], "POST");
 			}
 
-			var el = _(pu, ch[2]); 													// matching notification
+			// auto popup here (not in activity_agtk_call_ufn) !!! nb: also notif_count response will render b4 activity_vw_id response
+				
+			// if (pv.childNodes.length>0 && no form && no popup and wrapup ended)		// todo: auto-close 
+
+			if (pv.childNodes.length==0 && ch[AMI.CHAN_UNIQUEID_2].length>0				// wait for src_uid2 -> activity args are not updated in realtime 
+				&& !chan_a[ch[2]].vw && !chan_a[ch[2]].src_end_ts)  					// auto-popup 
+			{
+				const a = chan_a[ch[2]]; 
+				chan_a[ch[2]].vw = Date.now();
+				pcoll[3].childNodes[1].firstChild.checked = true;
+				pcoll[6].childNodes[1].firstChild.checked = true;	
+				// el.firstChild.checked = true;									// todo: find el
+				pv.previousSibling.checked = true;
+				var s = "src=" + a.src + "&src_uid=" + a.src_uid + "&src_uid2=" + ch[AMI.CHAN_UNIQUEID_2]; 
+				s += "&src_callid=" + a.src_callid + "&src_vector=" + a.src_vector;
+				s += "&src_address=" + a.src_address + "&src_usr=" + a.src_usr + "&src_ts=" + a.src_ts;
+				url (pv, "activity_vw_id_call", "activities", "-1?"+s);
+			}
+
+			var el = _(pu, ch[2]); 												// matching notification
 			if (el) 
 			{
-				chan_agtk (el, ch, pcoll, pv, pva);
+				chan_agtk (el, ch);
 			} 
 
 			if (pva.src && pva.src_uid && pva.src=="call" && pva.src_uid==ch[AMI.CHAN_UNIQUEID]) // matching vw
 			{
-				chan_agtk_vw (ch, pv.firstChild.childNodes[1])
+				chan_agtk_vw (pv.firstChild.childNodes[1], ch)
 			}
 
 			if (vp_add && vp_add.id==ch[AMI.CHAN_UNIQUEID]) 								//

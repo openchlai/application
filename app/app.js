@@ -1093,7 +1093,7 @@ te["main"] = { c:
 		{ div:["g"], c:
 		[
 			{ iframe:["","",VA_AMI_HOST] },
-			{ iframe:["","",VA_ATI_HOST] },
+//			{ iframe:["","",VA_ATI_HOST] },
 		]},
 	]}
 ]};
@@ -1273,7 +1273,7 @@ function rxmsg (ev)
 {
         if (document.getElementById ("user_cid")==null) return;
 
-        // console.debug (ev.data)
+       //  console.debug (ev.data)
         
         var o = JSON.parse (ev.data);
 
